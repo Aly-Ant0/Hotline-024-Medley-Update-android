@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Yuri.png">
+	<!-- Created with Adobe Animate version 21.0.0.35450 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Yuri Down0000" x="10" y="10" width="202" height="428"/>
+	<SubTexture name="Yuri Down0001" x="10" y="10" width="202" height="428"/>
+	<SubTexture name="Yuri Down0002" x="222" y="10" width="202" height="428"/>
+	<SubTexture name="Yuri Down0003" x="222" y="10" width="202" height="428"/>
+	<SubTexture name="Yuri Idle0000" x="434" y="10" width="204" height="428"/>
+	<SubTexture name="Yuri Idle0001" x="434" y="10" width="204" height="428"/>
+	<SubTexture name="Yuri Idle0002" x="648" y="10" width="204" height="428"/>
+	<SubTexture name="Yuri Idle0003" x="648" y="10" width="204" height="428"/>
+	<SubTexture name="Yuri Idle0004" x="862" y="10" width="204" height="428"/>
+	<SubTexture name="Yuri Idle0005" x="862" y="10" width="204" height="428"/>
+	<SubTexture name="Yuri Idle0006" x="1076" y="10" width="204" height="428"/>
+	<SubTexture name="Yuri Idle0007" x="1076" y="10" width="204" height="428"/>
+	<SubTexture name="Yuri Idle0008" x="1290" y="10" width="204" height="428"/>
+	<SubTexture name="Yuri Idle0009" x="1290" y="10" width="204" height="428"/>
+	<SubTexture name="Yuri Idle0010" x="1504" y="10" width="204" height="428"/>
+	<SubTexture name="Yuri Idle0011" x="1504" y="10" width="204" height="428"/>
+	<SubTexture name="Yuri Idle0012" x="1718" y="10" width="204" height="428"/>
+	<SubTexture name="Yuri Idle0013" x="1718" y="10" width="204" height="428"/>
+	<SubTexture name="Yuri Idle0014" x="10" y="448" width="204" height="428"/>
+	<SubTexture name="Yuri Idle0015" x="10" y="448" width="204" height="428"/>
+	<SubTexture name="Yuri Left0000" x="224" y="448" width="194" height="429"/>
+	<SubTexture name="Yuri Left0001" x="224" y="448" width="194" height="429"/>
+	<SubTexture name="Yuri Left0002" x="428" y="448" width="194" height="429"/>
+	<SubTexture name="Yuri Left0003" x="428" y="448" width="194" height="429"/>
+	<SubTexture name="Yuri Right0000" x="632" y="448" width="197" height="437"/>
+	<SubTexture name="Yuri Right0001" x="632" y="448" width="197" height="437"/>
+	<SubTexture name="Yuri Right0002" x="839" y="448" width="197" height="437"/>
+	<SubTexture name="Yuri Right0003" x="839" y="448" width="197" height="437"/>
+	<SubTexture name="Yuri Up0000" x="1046" y="448" width="174" height="442"/>
+	<SubTexture name="Yuri Up0001" x="1046" y="448" width="174" height="442"/>
+	<SubTexture name="Yuri Up0002" x="1230" y="448" width="174" height="442"/>
+	<SubTexture name="Yuri Up0003" x="1230" y="448" width="174" height="442"/>
+</TextureAtlas>

@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				-3,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "charlie idle instance 1",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-22,
+				5
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "charlie derehca instance 1",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				49,
+				1
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "charlie izquierda instance 1",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-11,
+				41
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "charlie arriba instance 1",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-10,
+				-7
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "charlie abajo instance 1",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/Charlie",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "charlie",
+	"flip_x": false,
+	"healthbar_colors": [
+		197,
+		167,
+		99
+	],
+	"camera_position": [
+		0,
+		0
+	],
+	"sing_duration": 6.1,
+	"scale": 1.2
+}

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="vinyl.png">
+	<!-- Created with Adobe Animate version 18.0.1.115 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="vinyl0000" x="0" y="0" width="67" height="65" frameX="-1" frameY="-1" frameWidth="68" frameHeight="68"/>
+	<SubTexture name="vinyl0001" x="97" y="0" width="65" height="67" frameX="-2" frameY="0" frameWidth="68" frameHeight="68"/>
+	<SubTexture name="vinyl0002" x="0" y="97" width="68" height="67" frameX="0" frameY="-1" frameWidth="68" frameHeight="68"/>
+	<SubTexture name="vinyl0003" x="98" y="97" width="67" height="67" frameX="-1" frameY="0" frameWidth="68" frameHeight="68"/>
+</TextureAtlas>

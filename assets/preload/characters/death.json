@@ -1,0 +1,56 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "firstDeath",
+			"fps": 24,
+			"name": "dead loop",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "deathLoop",
+			"fps": 24,
+			"name": "dead loop",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				29,
+				-8
+			],
+			"anim": "deathConfirm",
+			"fps": 24,
+			"name": "dead confirm",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/MATZURETRY",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "nikku",
+	"flip_x": true,
+	"healthbar_colors": [
+		178,
+		14,
+		54
+	],
+	"camera_position": [
+		0,
+		0
+	],
+	"sing_duration": 6.1,
+	"scale": 1.2
+}

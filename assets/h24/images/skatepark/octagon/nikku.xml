@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="nikku.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Nikku Last Frame0000" x="2" y="2" width="264" height="395"/>
+	<SubTexture name="Nikku Move 10000" x="268" y="2" width="561" height="627" frameX="0" frameY="0" frameWidth="561" frameHeight="634"/>
+	<SubTexture name="Nikku Move 10001" x="268" y="2" width="561" height="630" frameX="0" frameY="-4" frameWidth="561" frameHeight="634"/>
+</TextureAtlas>

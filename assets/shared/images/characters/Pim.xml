@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Pim.png">
+	<!-- Created with Adobe Animate version 22.0.3.179 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="pim abajo instance 10000" x="1851" y="0" width="849" height="429" frameX="0" frameY="-16" frameWidth="849" frameHeight="490"/>
+	<SubTexture name="pim abajo instance 10001" x="1851" y="0" width="849" height="429" frameX="0" frameY="-16" frameWidth="849" frameHeight="490"/>
+	<SubTexture name="pim abajo instance 10002" x="0" y="0" width="828" height="438" frameX="-15" frameY="-6" frameWidth="849" frameHeight="444"/>
+	<SubTexture name="pim abajo instance 10003" x="0" y="0" width="828" height="438" frameX="-15" frameY="-6" frameWidth="849" frameHeight="444"/>
+	<SubTexture name="pim abajo instance 10004" x="928" y="0" width="823" height="444" frameX="-19" frameY="0" frameWidth="849" frameHeight="444"/>
+	<SubTexture name="pim abajo instance 10005" x="928" y="0" width="823" height="444" frameX="-19" frameY="0" frameWidth="849" frameHeight="444"/>
+	<SubTexture name="pim abajo miss instance 10000" x="1851" y="0" width="849" height="429" frameX="0" frameY="-60" frameWidth="849" frameHeight="490"/>
+	<SubTexture name="pim abajo miss instance 10001" x="2800" y="0" width="849" height="429" frameX="0" frameY="-60" frameWidth="849" frameHeight="490"/>
+	<SubTexture name="pim abajo miss instance 10002" x="3749" y="0" width="849" height="490"/>
+	<SubTexture name="pim abajo miss instance 10003" x="3749" y="0" width="849" height="490"/>
+	<SubTexture name="pim abajo miss instance 10004" x="4698" y="0" width="849" height="490"/>
+	<SubTexture name="pim abajo miss instance 10005" x="4698" y="0" width="849" height="490"/>
+	<SubTexture name="pim arriba instance 10000" x="5647" y="0" width="803" height="462" frameX="-10" frameY="0" frameWidth="816" frameHeight="462"/>
+	<SubTexture name="pim arriba instance 10001" x="5647" y="0" width="803" height="462" frameX="-10" frameY="0" frameWidth="816" frameHeight="462"/>
+	<SubTexture name="pim arriba instance 10002" x="6550" y="0" width="816" height="448" frameX="0" frameY="-14" frameWidth="816" frameHeight="462"/>
+	<SubTexture name="pim arriba instance 10003" x="6550" y="0" width="816" height="448" frameX="0" frameY="-14" frameWidth="816" frameHeight="462"/>
+	<SubTexture name="pim arriba instance 10004" x="0" y="590" width="816" height="450" frameX="0" frameY="-11" frameWidth="816" frameHeight="462"/>
+	<SubTexture name="pim arriba instance 10005" x="0" y="590" width="816" height="450" frameX="0" frameY="-11" frameWidth="816" frameHeight="462"/>
+	<SubTexture name="pim arriba miss instance 10000" x="916" y="590" width="802" height="463" frameX="0" frameY="-19" frameWidth="803" frameHeight="482"/>
+	<SubTexture name="pim arriba miss instance 10001" x="916" y="590" width="802" height="463" frameX="0" frameY="-19" frameWidth="803" frameHeight="482"/>
+	<SubTexture name="pim arriba miss instance 10002" x="1818" y="590" width="803" height="482"/>
+	<SubTexture name="pim arriba miss instance 10003" x="1818" y="590" width="803" height="482"/>
+	<SubTexture name="pim arriba miss instance 10004" x="2721" y="590" width="803" height="478" frameX="0" frameY="-4" frameWidth="803" frameHeight="482"/>
+	<SubTexture name="pim arriba miss instance 10005" x="2721" y="590" width="803" height="478" frameX="0" frameY="-4" frameWidth="803" frameHeight="482"/>
+	<SubTexture name="pim derecha instance 10000" x="3624" y="590" width="816" height="425" frameX="0" frameY="-17" frameWidth="817" frameHeight="442"/>
+	<SubTexture name="pim derecha instance 10001" x="3624" y="590" width="816" height="425" frameX="0" frameY="-17" frameWidth="817" frameHeight="442"/>
+	<SubTexture name="pim derecha instance 10002" x="4540" y="590" width="815" height="441" frameX="-2" frameY="-1" frameWidth="817" frameHeight="442"/>
+	<SubTexture name="pim derecha instance 10003" x="4540" y="590" width="815" height="441" frameX="-2" frameY="-1" frameWidth="817" frameHeight="442"/>
+	<SubTexture name="pim derecha instance 10004" x="5455" y="590" width="815" height="442" frameX="-2" frameY="0" frameWidth="817" frameHeight="442"/>
+	<SubTexture name="pim derecha instance 10005" x="5455" y="590" width="815" height="442" frameX="-2" frameY="0" frameWidth="817" frameHeight="442"/>
+	<SubTexture name="pim derecha miss instance 10000" x="6370" y="590" width="816" height="426" frameX="0" frameY="-15" frameWidth="816" frameHeight="441"/>
+	<SubTexture name="pim derecha miss instance 10001" x="7286" y="590" width="816" height="426" frameX="0" frameY="-15" frameWidth="816" frameHeight="441"/>
+	<SubTexture name="pim derecha miss instance 10002" x="0" y="1172" width="815" height="441" frameX="0" frameY="0" frameWidth="816" frameHeight="441"/>
+	<SubTexture name="pim derecha miss instance 10003" x="0" y="1172" width="815" height="441" frameX="0" frameY="0" frameWidth="816" frameHeight="441"/>
+	<SubTexture name="pim derecha miss instance 10004" x="915" y="1172" width="815" height="441" frameX="0" frameY="0" frameWidth="816" frameHeight="441"/>
+	<SubTexture name="pim derecha miss instance 10005" x="915" y="1172" width="815" height="441" frameX="0" frameY="0" frameWidth="816" frameHeight="441"/>
+	<SubTexture name="pim idle instance 10000" x="1830" y="1172" width="845" height="406" frameX="0" frameY="-24" frameWidth="845" frameHeight="431"/>
+	<SubTexture name="pim idle instance 10001" x="1830" y="1172" width="845" height="406" frameX="0" frameY="-24" frameWidth="845" frameHeight="431"/>
+	<SubTexture name="pim idle instance 10002" x="2775" y="1172" width="824" height="394" frameX="-16" frameY="-36" frameWidth="845" frameHeight="431"/>
+	<SubTexture name="pim idle instance 10003" x="2775" y="1172" width="824" height="394" frameX="-16" frameY="-36" frameWidth="845" frameHeight="431"/>
+	<SubTexture name="pim idle instance 10004" x="3699" y="1172" width="816" height="401" frameX="-22" frameY="-30" frameWidth="845" frameHeight="431"/>
+	<SubTexture name="pim idle instance 10005" x="3699" y="1172" width="816" height="401" frameX="-22" frameY="-30" frameWidth="845" frameHeight="431"/>
+	<SubTexture name="pim idle instance 10006" x="4615" y="1172" width="815" height="425" frameX="-22" frameY="-6" frameWidth="845" frameHeight="431"/>
+	<SubTexture name="pim idle instance 10007" x="4615" y="1172" width="815" height="425" frameX="-22" frameY="-6" frameWidth="845" frameHeight="431"/>
+	<SubTexture name="pim idle instance 10008" x="5530" y="1172" width="815" height="428" frameX="-22" frameY="-3" frameWidth="845" frameHeight="431"/>
+	<SubTexture name="pim idle instance 10009" x="5530" y="1172" width="815" height="428" frameX="-22" frameY="-3" frameWidth="845" frameHeight="431"/>
+	<SubTexture name="pim idle instance 10010" x="6445" y="1172" width="815" height="431" frameX="-22" frameY="0" frameWidth="845" frameHeight="431"/>
+	<SubTexture name="pim idle instance 10011" x="7360" y="1172" width="815" height="431" frameX="-22" frameY="0" frameWidth="845" frameHeight="431"/>
+	<SubTexture name="pim idle instance 10012" x="0" y="1713" width="815" height="431" frameX="-22" frameY="0" frameWidth="845" frameHeight="431"/>
+	<SubTexture name="pim idle instance 10013" x="0" y="1713" width="815" height="431" frameX="-22" frameY="0" frameWidth="845" frameHeight="431"/>
+	<SubTexture name="pim idle instance 10014" x="0" y="1713" width="815" height="431" frameX="-22" frameY="0" frameWidth="845" frameHeight="431"/>
+	<SubTexture name="pim idle instance 10015" x="0" y="1713" width="815" height="431" frameX="-22" frameY="0" frameWidth="845" frameHeight="431"/>
+	<SubTexture name="pim izquierda instance 10000" x="915" y="1713" width="818" height="431" frameX="0" frameY="-5" frameWidth="818" frameHeight="436"/>
+	<SubTexture name="pim izquierda instance 10001" x="915" y="1713" width="818" height="431" frameX="0" frameY="-5" frameWidth="818" frameHeight="436"/>
+	<SubTexture name="pim izquierda instance 10002" x="1833" y="1713" width="816" height="436" frameX="-1" frameY="0" frameWidth="818" frameHeight="436"/>
+	<SubTexture name="pim izquierda instance 10003" x="1833" y="1713" width="816" height="436" frameX="-1" frameY="0" frameWidth="818" frameHeight="436"/>
+	<SubTexture name="pim izquierda instance 10004" x="2749" y="1713" width="816" height="436" frameX="-1" frameY="0" frameWidth="818" frameHeight="436"/>
+	<SubTexture name="pim izquierda instance 10005" x="2749" y="1713" width="816" height="436" frameX="-1" frameY="0" frameWidth="818" frameHeight="436"/>
+	<SubTexture name="pim izquierda miss instance 10000" x="3665" y="1713" width="817" height="431" frameX="0" frameY="-56" frameWidth="817" frameHeight="487"/>
+	<SubTexture name="pim izquierda miss instance 10001" x="4582" y="1713" width="817" height="431" frameX="0" frameY="-56" frameWidth="817" frameHeight="487"/>
+	<SubTexture name="pim izquierda miss instance 10002" x="5499" y="1713" width="817" height="487"/>
+	<SubTexture name="pim izquierda miss instance 10003" x="5499" y="1713" width="817" height="487"/>
+	<SubTexture name="pim izquierda miss instance 10004" x="6416" y="1713" width="816" height="487" frameX="-1" frameY="0" frameWidth="817" frameHeight="487"/>
+	<SubTexture name="pim izquierda miss instance 10005" x="6416" y="1713" width="816" height="487" frameX="-1" frameY="0" frameWidth="817" frameHeight="487"/>
+</TextureAtlas>

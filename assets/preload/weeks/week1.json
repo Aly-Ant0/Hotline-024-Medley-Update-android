@@ -1,0 +1,28 @@
+{
+	"songs": [
+		["Broadcasting", "dad", [146, 113, 253]],
+		["Mirror Magic", "dad", [146, 113, 253]],
+		["FANDOMANIA", "dad", [146, 113, 253]],
+		["Killer Queen", "dad", [146, 113, 253]],
+		["Hyperfunk", "dad", [146, 113, 253]],
+		["Sugarcrush", "dad", [146, 113, 253]],
+		["Smokebomb", "dad", [146, 113, 253]],
+		["Overdrive", "dad", [146, 113, 253]],
+		["EXPURGATED", "dad", [146, 113, 253]]
+	],
+
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "Daddy Dearest",
+	"weekBefore": "tutorial",
+	"weekName": "Week 1",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}

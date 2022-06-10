@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				-3,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "Gogo_Idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-32,
+				-13
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "Gogo_Right",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				83,
+				36
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "Gogo_Left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-23,
+				0
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "Gogo_Up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				74,
+				3
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "Gogo_Down",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/Gogo_Sprites",
+	"position": [
+		40,
+		-160
+	],
+	"healthicon": "gogo",
+	"flip_x": true,
+	"healthbar_colors": [
+		14,
+		9,
+		26
+	],
+	"camera_position": [
+		0,
+		0
+	],
+	"sing_duration": 6.1,
+	"scale": 0.9
+}

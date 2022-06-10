@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": true,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "matzu idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				8,
+				35
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "matzu right",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				49,
+				11
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "matzu left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-11,
+				-9
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "matzu up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				11,
+				17
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "matzu down",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/matzutwo",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "nikku",
+	"flip_x": false,
+	"healthbar_colors": [
+		178,
+		14,
+		54
+	],
+	"camera_position": [
+		0,
+		0
+	],
+	"sing_duration": 6.1,
+	"scale": 1.2
+}

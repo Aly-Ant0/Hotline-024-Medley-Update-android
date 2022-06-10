@@ -1,0 +1,29 @@
+{
+	"song": {
+		"speed": 2.8,
+		"stage": "jojo",
+		"player1": "bf",
+		"player2": "nikku",
+		"player3": null,
+		"events": [
+			[
+				48000,
+				[
+					[
+						"JoJo Cutscene",
+						"",
+						""
+					]
+				]
+			]
+		],
+		"notes": [],
+		"splashSkin": null,
+		"validScore": false,
+		"gfVersion": "gf",
+		"bpm": 140,
+		"arrowSkin": null,
+		"needsVoices": true,
+		"song": "Killer Queen"
+	}
+}

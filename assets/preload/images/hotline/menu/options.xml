@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="options.png">
+	<!-- Created with Adobe Animate version 18.0.1.115 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="glow0000" x="0" y="0" width="563" height="927"/>
+	<SubTexture name="normal0000" x="0" y="957" width="563" height="927"/>
+</TextureAtlas>

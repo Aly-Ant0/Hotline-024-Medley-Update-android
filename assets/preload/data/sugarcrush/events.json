@@ -1,0 +1,49 @@
+{
+	"song": {
+		"speed": 2.8,
+		"stage": "skatepark",
+		"player1": "bf",
+		"player2": "nikku",
+		"player3": null,
+		"events": [
+			[
+				105205.479452055,
+				[
+					[
+						"Sonic.EXE Cutscene",
+						"",
+						""
+					]
+				]
+			],
+			[
+				157808.219178082,
+				[
+					[
+						"Sugarcrush Octagon Cutscene",
+						"",
+						""
+					]
+				]
+			],
+			[
+				190273.97260274,
+				[
+					[
+						"Play Animation",
+						"ugh",
+						"0"
+					]
+				]
+			]
+		],
+		"notes": [],
+		"splashSkin": null,
+		"validScore": false,
+		"gfVersion": "gf",
+		"bpm": 146,
+		"arrowSkin": null,
+		"needsVoices": true,
+		"song": "Sugarcrush"
+	}
+}

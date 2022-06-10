@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				120,
+				120
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "Rude1 left"
+		},
+		{
+			"offsets": [
+				120,
+				120
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "Rude1 down"
+		},
+		{
+			"offsets": [
+				120,
+				120
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "Rude1 up"
+		},
+		{
+			"offsets": [
+				120,
+				120
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "Rude1 right"
+		},
+		{
+			"loop": true,
+			"offsets": [
+				120,
+				120
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "Rude1 idle",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/rude1_date_assets",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "rude1",
+	"flip_x": false,
+	"healthbar_colors": [
+		255,
+		255,
+		255
+	],
+	"camera_position": [
+		-390,
+		-50
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

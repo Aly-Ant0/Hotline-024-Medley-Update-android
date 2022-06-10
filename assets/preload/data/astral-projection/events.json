@@ -1,0 +1,34 @@
+{
+	"song": {
+		"speed": 2.7,
+		"stage": "astral",
+		"player1": "bf",
+		"player2": "matzu",
+		"player3": null,
+		"events": [
+			[
+				112941.176470588,
+				[
+					[
+						"Astral Event",
+						"",
+						""
+					],
+					[
+						"Change Character",
+						"dad",
+						"matzufuckedupandtwisted"
+					]
+				]
+			]
+		],
+		"notes": [],
+		"splashSkin": null,
+		"validScore": false,
+		"gfVersion": "gf",
+		"bpm": 170,
+		"arrowSkin": null,
+		"needsVoices": true,
+		"song": "Astral Projection"
+	}
+}

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="matzu.png">
+	<!-- Created with Adobe Animate version 21.0.8.42666 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="matzushii down0000" x="0" y="0" width="492" height="465" pivotX="34.95" pivotY="-133.6" frameX="-31" frameY="-25" frameWidth="590" frameHeight="492"/>
+	<SubTexture name="matzushii down0001" x="492" y="0" width="492" height="458" frameX="-31" frameY="-34" frameWidth="590" frameHeight="492"/>
+	<SubTexture name="matzushii down0002" x="984" y="0" width="509" height="448" frameX="-28" frameY="-39" frameWidth="590" frameHeight="492"/>
+	<SubTexture name="matzushii down0003" x="1493" y="0" width="578" height="427" frameX="-10" frameY="-46" frameWidth="590" frameHeight="492"/>
+	<SubTexture name="matzushii down0004" x="2071" y="0" width="590" height="474" frameX="0" frameY="0" frameWidth="590" frameHeight="492"/>
+	<SubTexture name="matzushii idle0000" x="2661" y="0" width="627" height="604" pivotX="42.65" pivotY="4.9" frameX="-6" frameY="-7" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0001" x="2661" y="0" width="627" height="604" frameX="-6" frameY="-7" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0002" x="3288" y="0" width="629" height="599" frameX="0" frameY="-14" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0003" x="3288" y="0" width="629" height="599" frameX="0" frameY="-14" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0004" x="0" y="604" width="630" height="587" frameX="0" frameY="-26" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0005" x="0" y="604" width="630" height="587" frameX="0" frameY="-26" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0006" x="630" y="604" width="642" height="583" frameX="-4" frameY="-29" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0007" x="630" y="604" width="642" height="583" frameX="-4" frameY="-29" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0008" x="1272" y="604" width="651" height="586" frameX="-14" frameY="-25" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0009" x="1272" y="604" width="651" height="586" frameX="-14" frameY="-25" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0010" x="1923" y="604" width="637" height="595" frameX="-34" frameY="-15" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0011" x="1923" y="604" width="637" height="595" frameX="-34" frameY="-15" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0012" x="2560" y="604" width="632" height="601" frameX="-40" frameY="-9" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0013" x="2560" y="604" width="632" height="601" frameX="-40" frameY="-9" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0014" x="3192" y="604" width="633" height="601" frameX="-42" frameY="-8" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0015" x="3192" y="604" width="633" height="601" frameX="-42" frameY="-8" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0016" x="0" y="1205" width="633" height="600" frameX="-43" frameY="-8" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0017" x="0" y="1205" width="633" height="600" frameX="-43" frameY="-8" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0018" x="633" y="1205" width="617" height="601" frameX="-61" frameY="-7" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0019" x="633" y="1205" width="617" height="601" frameX="-61" frameY="-7" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0020" x="1250" y="1205" width="601" height="593" frameX="-75" frameY="-17" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0021" x="1250" y="1205" width="601" height="593" frameX="-75" frameY="-17" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0022" x="1851" y="1205" width="595" height="612" frameX="-76" frameY="0" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0023" x="1851" y="1205" width="595" height="612" frameX="-76" frameY="0" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0024" x="2446" y="1205" width="587" height="602" frameX="-74" frameY="-7" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0025" x="2446" y="1205" width="587" height="602" frameX="-74" frameY="-7" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0026" x="3033" y="1205" width="590" height="595" frameX="-64" frameY="-13" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0027" x="3033" y="1205" width="590" height="595" frameX="-64" frameY="-13" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0028" x="0" y="1817" width="614" height="603" frameX="-37" frameY="-6" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0029" x="0" y="1817" width="614" height="603" frameX="-37" frameY="-6" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0030" x="614" y="1817" width="630" height="607" frameX="-21" frameY="-3" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0031" x="614" y="1817" width="630" height="607" frameX="-21" frameY="-3" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0032" x="1244" y="1817" width="634" height="609" frameX="-15" frameY="-1" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii idle0033" x="1244" y="1817" width="634" height="609" frameX="-15" frameY="-1" frameWidth="678" frameHeight="613"/>
+	<SubTexture name="matzushii left0000" x="1878" y="1817" width="546" height="573" pivotX="141.2" pivotY="11.6" frameX="-9" frameY="-3" frameWidth="604" frameHeight="590"/>
+	<SubTexture name="matzushii left0001" x="2424" y="1817" width="548" height="579" frameX="-6" frameY="0" frameWidth="604" frameHeight="590"/>
+	<SubTexture name="matzushii left0002" x="2972" y="1817" width="558" height="574" frameX="0" frameY="-11" frameWidth="604" frameHeight="590"/>
+	<SubTexture name="matzushii left0003" x="0" y="2426" width="577" height="548" frameX="-12" frameY="-42" frameWidth="604" frameHeight="590"/>
+	<SubTexture name="matzushii left0004" x="577" y="2426" width="516" height="532" frameX="-88" frameY="-54" frameWidth="604" frameHeight="590"/>
+	<SubTexture name="matzushii right0000" x="1093" y="2426" width="487" height="573" pivotX="-27.8" pivotY="7.25" frameX="-118" frameY="0" frameWidth="618" frameHeight="606"/>
+	<SubTexture name="matzushii right0001" x="1580" y="2426" width="488" height="569" frameX="-122" frameY="-7" frameWidth="618" frameHeight="606"/>
+	<SubTexture name="matzushii right0002" x="2068" y="2426" width="509" height="544" frameX="-109" frameY="-36" frameWidth="618" frameHeight="606"/>
+	<SubTexture name="matzushii right0003" x="2577" y="2426" width="538" height="519" frameX="-59" frameY="-70" frameWidth="618" frameHeight="606"/>
+	<SubTexture name="matzushii right0004" x="3115" y="2426" width="489" height="524" frameX="0" frameY="-82" frameWidth="618" frameHeight="606"/>
+	<SubTexture name="matzushii up0000" x="3604" y="2426" width="441" height="541" pivotX="45.35" pivotY="43.85" frameX="-34" frameY="-18" frameWidth="571" frameHeight="616"/>
+	<SubTexture name="matzushii up0001" x="0" y="2999" width="441" height="557" frameX="-32" frameY="-1" frameWidth="571" frameHeight="616"/>
+	<SubTexture name="matzushii up0002" x="441" y="2999" width="457" height="562" frameX="-22" frameY="0" frameWidth="571" frameHeight="616"/>
+	<SubTexture name="matzushii up0003" x="898" y="2999" width="502" height="580" frameX="0" frameY="-8" frameWidth="571" frameHeight="616"/>
+	<SubTexture name="matzushii up0004" x="1400" y="2999" width="564" height="579" frameX="-7" frameY="-37" frameWidth="571" frameHeight="616"/>
+</TextureAtlas>

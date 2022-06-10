@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="CURSEDRETRY.png">
+	<!-- Created with Adobe Animate version 21.0.8.42666 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="cursed dead confirm0000" x="0" y="0" width="1491" height="1395" pivotX="116.7" pivotY="616.35" frameX="-92" frameY="-86" frameWidth="1687" frameHeight="1531"/>
+	<SubTexture name="cursed dead confirm0001" x="1491" y="0" width="1687" height="1531"/>
+	<SubTexture name="cursed dead confirm0002" x="3178" y="0" width="1687" height="1531"/>
+	<SubTexture name="cursed dead confirm0003" x="4865" y="0" width="1629" height="1524" frameX="-29" frameY="-7" frameWidth="1687" frameHeight="1531"/>
+	<SubTexture name="cursed dead confirm0004" x="4865" y="0" width="1629" height="1524" frameX="-29" frameY="-7" frameWidth="1687" frameHeight="1531"/>
+	<SubTexture name="cursed dead confirm0005" x="6494" y="0" width="1595" height="1485" frameX="-42" frameY="-32" frameWidth="1687" frameHeight="1531"/>
+	<SubTexture name="cursed dead confirm0006" x="6494" y="0" width="1595" height="1485" frameX="-42" frameY="-32" frameWidth="1687" frameHeight="1531"/>
+	<SubTexture name="cursed dead confirm0007" x="0" y="1531" width="1595" height="1472" frameX="-42" frameY="-35" frameWidth="1687" frameHeight="1531"/>
+	<SubTexture name="cursed dead confirm0008" x="0" y="1531" width="1595" height="1472" frameX="-42" frameY="-35" frameWidth="1687" frameHeight="1531"/>
+	<SubTexture name="cursed dead confirm0009" x="1595" y="1531" width="1595" height="1472" frameX="-42" frameY="-35" frameWidth="1687" frameHeight="1531"/>
+	<SubTexture name="cursed dead confirm0010" x="1595" y="1531" width="1595" height="1472" frameX="-42" frameY="-35" frameWidth="1687" frameHeight="1531"/>
+	<SubTexture name="cursed dead confirm0011" x="3190" y="1531" width="1595" height="1470" frameX="-42" frameY="-35" frameWidth="1687" frameHeight="1531"/>
+	<SubTexture name="cursed dead confirm0012" x="3190" y="1531" width="1595" height="1470" frameX="-42" frameY="-35" frameWidth="1687" frameHeight="1531"/>
+	<SubTexture name="cursed dead confirm0013" x="3190" y="1531" width="1595" height="1470" frameX="-42" frameY="-35" frameWidth="1687" frameHeight="1531"/>
+	<SubTexture name="cursed dead loop0000" x="4785" y="1531" width="1595" height="1452" pivotX="74.4" pivotY="581.95" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0001" x="6380" y="1531" width="1595" height="1480"/>
+	<SubTexture name="cursed dead loop0002" x="0" y="3011" width="1595" height="1480"/>
+	<SubTexture name="cursed dead loop0003" x="1595" y="3011" width="1595" height="1476" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0004" x="3190" y="3011" width="1595" height="1476" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0005" x="4785" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0006" x="6380" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0007" x="6380" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0008" x="6380" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0009" x="6380" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0010" x="6380" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0011" x="6380" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0012" x="6380" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0013" x="6380" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0014" x="6380" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0015" x="6380" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0016" x="6380" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0017" x="0" y="4491" width="1595" height="1452" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0018" x="1595" y="4491" width="1595" height="1480"/>
+	<SubTexture name="cursed dead loop0019" x="1595" y="4491" width="1595" height="1480"/>
+	<SubTexture name="cursed dead loop0020" x="3190" y="4491" width="1595" height="1476" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0021" x="3190" y="4491" width="1595" height="1476" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0022" x="6380" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0023" x="6380" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0024" x="6380" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0025" x="6380" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0026" x="6380" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0027" x="6380" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0028" x="6380" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0029" x="6380" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0030" x="6380" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0031" x="6380" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0032" x="6380" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+	<SubTexture name="cursed dead loop0033" x="6380" y="3011" width="1595" height="1470" frameX="0" frameY="0" frameWidth="1595" frameHeight="1480"/>
+</TextureAtlas>

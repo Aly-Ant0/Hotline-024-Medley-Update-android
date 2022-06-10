@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="CLIPS.png">
+	<!-- Created by ONEILR -->
+	<!-- https://oneilr.newgrounds.com/ -->
+	<SubTexture name="Clips Idle Dance0000" x="0" y="0" width="733" height="814"/>	
+	<SubTexture name="Clips Idle Dance0001" x="0" y="0" width="733" height="814"/>		
+	<SubTexture name="Clips Idle Dance0002" x="1466" y="0" width="733" height="814"/>	
+	<SubTexture name="Clips Idle Dance0003" x="1466" y="0" width="733" height="814"/>	
+	<SubTexture name="Clips Idle Dance0004" x="2199" y="0" width="733" height="814"/>	
+	<SubTexture name="Clips Idle Dance0005" x="2199" y="0" width="733" height="814"/>
+	<SubTexture name="Clips Idle Dance0006" x="2932" y="0" width="733" height="814"/>	
+	<SubTexture name="Clips Idle Dance0007" x="2932" y="0" width="733" height="814"/>
+	<SubTexture name="Clips Idle Dance0008" x="2932" y="0" width="733" height="814"/>	
+	<SubTexture name="Clips Idle Dance0009" x="2932" y="0" width="733" height="814"/>		
+	<SubTexture name="Clips Idle Dance0010" x="2932" y="0" width="733" height="814"/>	
+	<SubTexture name="Clips Idle Dance0011" x="2932" y="0" width="733" height="814"/>			
+	<SubTexture name="Clips Idle Dance0012" x="2932" y="0" width="733" height="814"/>	
+	<SubTexture name="Clips Idle Dance0013" x="2932" y="0" width="733" height="814"/>		
+
+
+
+
+	<SubTexture name="Clips Sing Note UP0000" x="0" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note UP0001" x="733" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note UP0002" x="1466" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note UP0003" x="1466" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note UP0004" x="1466" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note UP0005" x="1466" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note UP0006" x="1466" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note UP0007" x="1466" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note UP0008" x="1466" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note UP0009" x="1466" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note UP0010" x="1466" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note UP0011" x="1466" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note UP0012" x="1466" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note UP0013" x="1466" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note UP0014" x="1466" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note UP0015" x="1466" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note UP0016" x="1466" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note UP0017" x="1466" y="814" width="733" height="814"/>	
+
+
+	<SubTexture name="Clips Sing Note RIGHT0000" x="2199" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note RIGHT0001" x="2932" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note RIGHT0002" x="3665" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note RIGHT0003" x="3665" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note RIGHT0004" x="3665" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note RIGHT0005" x="3665" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note RIGHT0006" x="3665" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note RIGHT0007" x="3665" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note RIGHT0008" x="3665" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note RIGHT0009" x="3665" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note RIGHT0010" x="3665" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note RIGHT0011" x="3665" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note RIGHT0012" x="3665" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note RIGHT0013" x="3665" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note RIGHT0014" x="3665" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note RIGHT0015" x="3665" y="814" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note RIGHT0016" x="3665" y="814" width="733" height="814"/>		
+	<SubTexture name="Clips Sing Note RIGHT0017" x="3665" y="814" width="733" height="814"/>		
+	
+	<SubTexture name="Clips Sing Note DOWN0000" x="0" y="1628" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note DOWN0001" x="733" y="1628" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note DOWN0002" x="1466" y="1628" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note DOWN0003" x="1466" y="1628" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note DOWN0004" x="1466" y="1628" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note DOWN0005" x="1466" y="1628" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note DOWN0006" x="1466" y="1628" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note DOWN0007" x="1466" y="1628" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note DOWN0008" x="1466" y="1628" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note DOWN0009" x="1466" y="1628" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note DOWN0010" x="1466" y="1628" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note DOWN0011" x="1466" y="1628" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note DOWN0012" x="1466" y="1628" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note DOWN0013" x="1466" y="1628" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note DOWN0014" x="1466" y="1628" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note DOWN0015" x="1466" y="1628" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note DOWN0016" x="1466" y="1628" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note DOWN0017" x="1466" y="1628" width="733" height="814"/>		
+
+	<SubTexture name="Clips Sing Note LEFT0000" x="2199" y="1628" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note LEFT0001" x="2932" y="1628" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note LEFT0002" x="3665" y="1628" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note LEFT0003" x="3665" y="1628" width="733" height="814"/>
+	<SubTexture name="Clips Sing Note LEFT0004" x="3665" y="1628" width="733" height="814"/>
+	<SubTexture name="Clips Sing Note LEFT0005" x="3665" y="1628" width="733" height="814"/>
+	<SubTexture name="Clips Sing Note LEFT0006" x="3665" y="1628" width="733" height="814"/>
+	<SubTexture name="Clips Sing Note LEFT0007" x="3665" y="1628" width="733" height="814"/>
+	<SubTexture name="Clips Sing Note LEFT0008" x="3665" y="1628" width="733" height="814"/>
+	<SubTexture name="Clips Sing Note LEFT0009" x="3665" y="1628" width="733" height="814"/>
+	<SubTexture name="Clips Sing Note LEFT0010" x="3665" y="1628" width="733" height="814"/>
+	<SubTexture name="Clips Sing Note LEFT0011" x="3665" y="1628" width="733" height="814"/>
+	<SubTexture name="Clips Sing Note LEFT0012" x="3665" y="1628" width="733" height="814"/>
+	<SubTexture name="Clips Sing Note LEFT0013" x="3665" y="1628" width="733" height="814"/>
+	<SubTexture name="Clips Sing Note LEFT0014" x="3665" y="1628" width="733" height="814"/>
+	<SubTexture name="Clips Sing Note LEFT0015" x="3665" y="1628" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note LEFT0016" x="3665" y="1628" width="733" height="814"/>	
+	<SubTexture name="Clips Sing Note LEFT0017" x="3665" y="1628" width="733" height="814"/>	
+
+</TextureAtlas>

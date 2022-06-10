@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="sketch nikku assets.png">
+	<!-- Created with Adobe Animate version 19.1.0.349 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="nikku down0000" x="10" y="10" width="764" height="757"/>
+	<SubTexture name="nikku down0001" x="10" y="10" width="764" height="757"/>
+	<SubTexture name="nikku down0002" x="784" y="10" width="764" height="757"/>
+	<SubTexture name="nikku down0003" x="784" y="10" width="764" height="757"/>
+	<SubTexture name="nikku down0004" x="784" y="10" width="764" height="757"/>
+	<SubTexture name="nikku down0005" x="784" y="10" width="764" height="757"/>
+	<SubTexture name="nikku down0006" x="784" y="10" width="764" height="757"/>
+	<SubTexture name="nikku down0007" x="784" y="10" width="764" height="757"/>
+	<SubTexture name="nikku down0008" x="784" y="10" width="764" height="757"/>
+	<SubTexture name="nikku down0009" x="784" y="10" width="764" height="757"/>
+	<SubTexture name="nikku down0010" x="784" y="10" width="764" height="757"/>
+	<SubTexture name="nikku down0011" x="784" y="10" width="764" height="757"/>
+	<SubTexture name="nikku down0012" x="784" y="10" width="764" height="757"/>
+	<SubTexture name="nikku down0013" x="784" y="10" width="764" height="757"/>
+	<SubTexture name="nikku left0000" x="10" y="777" width="764" height="757"/>
+	<SubTexture name="nikku left0001" x="10" y="777" width="764" height="757"/>
+	<SubTexture name="nikku left0002" x="784" y="777" width="764" height="757"/>
+	<SubTexture name="nikku left0003" x="784" y="777" width="764" height="757"/>
+	<SubTexture name="nikku left0004" x="784" y="777" width="764" height="757"/>
+	<SubTexture name="nikku left0005" x="784" y="777" width="764" height="757"/>
+	<SubTexture name="nikku left0006" x="784" y="777" width="764" height="757"/>
+	<SubTexture name="nikku left0007" x="784" y="777" width="764" height="757"/>
+	<SubTexture name="nikku left0008" x="784" y="777" width="764" height="757"/>
+	<SubTexture name="nikku left0009" x="784" y="777" width="764" height="757"/>
+	<SubTexture name="nikku left0010" x="784" y="777" width="764" height="757"/>
+	<SubTexture name="nikku left0011" x="784" y="777" width="764" height="757"/>
+	<SubTexture name="nikku left0012" x="784" y="777" width="764" height="757"/>
+	<SubTexture name="nikku left0013" x="784" y="777" width="764" height="757"/>
+	<SubTexture name="nikku right0000" x="10" y="1544" width="764" height="757"/>
+	<SubTexture name="nikku right0001" x="10" y="1544" width="764" height="757"/>
+	<SubTexture name="nikku right0002" x="784" y="1544" width="764" height="757"/>
+	<SubTexture name="nikku right0003" x="784" y="1544" width="764" height="757"/>
+	<SubTexture name="nikku right0004" x="784" y="1544" width="764" height="757"/>
+	<SubTexture name="nikku right0005" x="784" y="1544" width="764" height="757"/>
+	<SubTexture name="nikku right0006" x="784" y="1544" width="764" height="757"/>
+	<SubTexture name="nikku right0007" x="784" y="1544" width="764" height="757"/>
+	<SubTexture name="nikku right0008" x="784" y="1544" width="764" height="757"/>
+	<SubTexture name="nikku right0009" x="784" y="1544" width="764" height="757"/>
+	<SubTexture name="nikku right0010" x="784" y="1544" width="764" height="757"/>
+	<SubTexture name="nikku right0011" x="784" y="1544" width="764" height="757"/>
+	<SubTexture name="nikku right0012" x="784" y="1544" width="764" height="757"/>
+	<SubTexture name="nikku right0013" x="784" y="1544" width="764" height="757"/>
+	<SubTexture name="nikku stand0000" x="10" y="2311" width="764" height="757"/>
+	<SubTexture name="nikku up0000" x="784" y="2311" width="764" height="757"/>
+	<SubTexture name="nikku up0001" x="784" y="2311" width="764" height="757"/>
+	<SubTexture name="nikku up0002" x="10" y="3078" width="764" height="757"/>
+	<SubTexture name="nikku up0003" x="10" y="3078" width="764" height="757"/>
+	<SubTexture name="nikku up0004" x="10" y="3078" width="764" height="757"/>
+	<SubTexture name="nikku up0005" x="10" y="3078" width="764" height="757"/>
+	<SubTexture name="nikku up0006" x="10" y="3078" width="764" height="757"/>
+	<SubTexture name="nikku up0007" x="10" y="3078" width="764" height="757"/>
+	<SubTexture name="nikku up0008" x="10" y="3078" width="764" height="757"/>
+	<SubTexture name="nikku up0009" x="10" y="3078" width="764" height="757"/>
+	<SubTexture name="nikku up0010" x="10" y="3078" width="764" height="757"/>
+	<SubTexture name="nikku up0011" x="10" y="3078" width="764" height="757"/>
+	<SubTexture name="nikku up0012" x="10" y="3078" width="764" height="757"/>
+	<SubTexture name="nikku up0013" x="10" y="3078" width="764" height="757"/>
+</TextureAtlas>

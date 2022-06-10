@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="jukebox_play.png">
+	<!-- Created with Adobe Animate version 21.0.8.42666 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Jukebox0000" x="0" y="0" width="475" height="471" pivotX="0" pivotY="0" frameX="0" frameY="-30" frameWidth="475" frameHeight="501"/>
+	<SubTexture name="Jukebox0001" x="475" y="0" width="475" height="471" frameX="0" frameY="-30" frameWidth="475" frameHeight="501"/>
+	<SubTexture name="Jukebox0002" x="950" y="0" width="457" height="496" frameX="-9" frameY="-5" frameWidth="475" frameHeight="501"/>
+	<SubTexture name="Jukebox0003" x="1407" y="0" width="457" height="496" frameX="-9" frameY="-5" frameWidth="475" frameHeight="501"/>
+	<SubTexture name="Jukebox0004" x="1864" y="0" width="457" height="501" frameX="-9" frameY="0" frameWidth="475" frameHeight="501"/>
+	<SubTexture name="Jukebox0005" x="2321" y="0" width="457" height="501" frameX="-9" frameY="0" frameWidth="475" frameHeight="501"/>
+	<SubTexture name="Jukebox0006" x="2778" y="0" width="457" height="501" frameX="-9" frameY="0" frameWidth="475" frameHeight="501"/>
+	<SubTexture name="Jukebox0007" x="3235" y="0" width="457" height="501" frameX="-9" frameY="0" frameWidth="475" frameHeight="501"/>
+	<SubTexture name="Jukebox0008" x="0" y="501" width="457" height="501" frameX="-9" frameY="0" frameWidth="475" frameHeight="501"/>
+	<SubTexture name="Jukebox0009" x="457" y="501" width="457" height="501" frameX="-9" frameY="0" frameWidth="475" frameHeight="501"/>
+	<SubTexture name="Jukebox0010" x="914" y="501" width="457" height="501" frameX="-9" frameY="0" frameWidth="475" frameHeight="501"/>
+	<SubTexture name="Jukebox0011" x="1371" y="501" width="457" height="501" frameX="-9" frameY="0" frameWidth="475" frameHeight="501"/>
+	<SubTexture name="Jukebox0012" x="1828" y="501" width="457" height="501" frameX="-9" frameY="0" frameWidth="475" frameHeight="501"/>
+	<SubTexture name="Jukebox0013" x="2285" y="501" width="457" height="501" frameX="-9" frameY="0" frameWidth="475" frameHeight="501"/>
+	<SubTexture name="Jukebox0014" x="2742" y="501" width="457" height="501" frameX="-9" frameY="0" frameWidth="475" frameHeight="501"/>
+	<SubTexture name="Jukebox0015" x="3199" y="501" width="457" height="501" frameX="-9" frameY="0" frameWidth="475" frameHeight="501"/>
+	<SubTexture name="Jukebox0016" x="0" y="1002" width="457" height="501" frameX="-9" frameY="0" frameWidth="475" frameHeight="501"/>
+	<SubTexture name="Jukebox0017" x="457" y="1002" width="457" height="501" frameX="-9" frameY="0" frameWidth="475" frameHeight="501"/>
+</TextureAtlas>

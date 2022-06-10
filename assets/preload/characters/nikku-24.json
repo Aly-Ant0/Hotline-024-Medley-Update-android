@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				-3,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "Nikku-ex idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-71,
+				-130
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "Nikku-ex right",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				100,
+				-30
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "Nikku-ex left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-43,
+				34
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "Nikku-ex up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-90,
+				-200
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "Nikku-ex down",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/Nikku24-1",
+	"position": [
+		10,
+		-140
+	],
+	"healthicon": "nikku",
+	"flip_x": false,
+	"healthbar_colors": [
+		178,
+		14,
+		54
+	],
+	"camera_position": [
+		0,
+		0
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="matzu.png">
+
+<SubTexture name="matzu idle0000" x="0" y="0" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0001" x="0" y="0" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0002" x="805" y="0" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0003" x="805" y="0" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0004" x="1610" y="0" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0005" x="1610" y="0" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0006" x="2415" y="0" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0007" x="2415" y="0" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0008" x="0" y="810" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0009" x="0" y="810" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0010" x="805" y="810" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0011" x="805" y="810" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0012" x="1610" y="810" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0013" x="1610" y="810" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0014" x="2415" y="810" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0015" x="2415" y="810" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0016" x="0" y="1620" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0017" x="0" y="1620" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0018" x="805" y="1620" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0019" x="805" y="1620" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0020" x="1610" y="1620" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0021" x="1610" y="1620" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0022" x="2415" y="1620" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0023" x="2415" y="1620" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0024" x="0" y="2430" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0025" x="0" y="2430" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0026" x="805" y="2430" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu idle0027" x="805" y="2430" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+
+<SubTexture name="matzu right0000" x="1610" y="2430" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu right0001" x="2415" y="2430" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu right0002" x="0" y="3240" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu right0003" x="0" y="3240" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu right0004" x="805" y="3240" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu right0005" x="805" y="3240" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu right0006" x="1610" y="3240" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu right0007" x="1610" y="3240" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu right0008" x="2415" y="3240" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu right0009" x="2415" y="3240" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu right0010" x="0" y="4050" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu right0011" x="0" y="4050" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+
+<SubTexture name="matzu left0000" x="805" y="4050" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu left0001" x="805" y="4050" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu left0002" x="1610" y="4050" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu left0003" x="1610" y="4050" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu left0004" x="2415" y="4050" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu left0005" x="2415" y="4050" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu left0006" x="0" y="4860" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu left0007" x="0" y="4860" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu left0008" x="805" y="4860" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu left0009" x="805" y="4860" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu left0010" x="1610" y="4860" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu left0011" x="1610" y="4860" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+
+<SubTexture name="matzu down0000" x="2415" y="4860" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu down0001" x="2415" y="4860" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu down0002" x="0" y="5670" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu down0003" x="0" y="5670" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu down0004" x="805" y="5670" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu down0005" x="805" y="5670" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu down0006" x="1610" y="5670" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu down0007" x="1610" y="5670" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu down0008" x="2415" y="5670" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu down0009" x="2415" y="5670" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu down0010" x="0" y="6480" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu down0011" x="0" y="6480" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+
+<SubTexture name="matzu up0000" x="805" y="6480" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu up0001" x="805" y="6480" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu up0002" x="1610" y="6480" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu up0003" x="1610" y="6480" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu up0004" x="2415" y="6480" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu up0005" x="2415" y="6480" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu up0006" x="0" y="7290" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu up0007" x="0" y="7290" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu up0008" x="805" y="7290" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu up0009" x="805" y="7290" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu up0010" x="1610" y="7290" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+    <SubTexture name="matzu up0011" x="1610" y="7290" width="805" height="810" frameX="0" frameY="0" frameWidth="805" frameHeight="810" />
+</TextureAtlas>
