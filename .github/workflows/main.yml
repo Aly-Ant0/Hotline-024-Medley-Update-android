@@ -23,10 +23,10 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-      - uses: krdlab/setup-haxe@v1
+      - uses: actions/checkout@v2
+      - uses: krdlab/setup-haxe@master
         with:
-          haxe-version: 4.2.4
+          haxe-version: 4.2.0
           
       - name: Cache haxelib path
         uses: actions/cache@v2
@@ -75,7 +75,7 @@ jobs:
       - name: Compile
         run: |
           haxelib run lime setup android
-          haxelib run lime build android --app-version="4.0.0-${{ github.run_id}}"
+          haxelib run lime build android -final
           
       - name: Publish Artifact
         uses: actions/upload-artifact@v3.0.0
