@@ -1403,7 +1403,7 @@ class PlayState extends MusicBeatState
 			dad = new Character(0, 0, SONG.player2);
 		}
 		else {
-			switch(skinn) {
+			switch(skinSelection) {
 				case 0:
 					dad = new Character(0, 0, 'nikku');
 				case 1:
