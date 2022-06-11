@@ -16,6 +16,7 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.FlxSubState;
 import flixel.addons.display.FlxGridOverlay;
+import flixel.addons.display.FlxBackdrop;
 import flixel.addons.effects.FlxTrail;
 import flixel.addons.effects.FlxTrailArea;
 import flixel.addons.effects.chainable.FlxEffectSprite;
@@ -118,15 +119,28 @@ class PlayState extends MusicBeatState
 	public static var isPixelStage:Bool = false;
 	public static var SONG:SwagSong = null;
 	public static var isStoryMode:Bool = false;
+	public static var isCovers:Bool = false;
+	public static var isExtras:Bool = false;
+	public static var isCode:Bool = false;
+	public static var noSkins:Bool = false;
 	public static var storyWeek:Int = 0;
 	public static var storyPlaylist:Array<String> = [];
 	public static var storyDifficulty:Int = 1;
 
 	public var vocals:FlxSound;
+	
+	// nikku skin int
+	var skinSelection:Int = ChooseSkinState.curSelected;
 
+	// dad
 	public var dad:Character = null;
+	public var dadReflect:Character = null;
+	// gf
 	public var gf:Character = null;
+	public var gfReflect:Character = null;
+	// bf
 	public var boyfriend:Boyfriend = null;
+	public var bfThing:Boyfriend = null;
 
 	public var notes:FlxTypedGroup<Note>;
 	public var unspawnNotes:Array<Note> = [];
@@ -192,6 +206,69 @@ class PlayState extends MusicBeatState
 
 	var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
 	var dialogueJson:DialogueFile = null;
+
+ // stage variables xd
+  var bg10:BGSprite;
+  var cutsceneBG:BGSprite;
+  var cutsceneEnd:BGSprite;
+  var cutsceneLogo:BGSprite;
+	var black:FlxSprite;
+	var text1:BGSprite;
+	var text2:BGSprite;
+	
+	var majinBG:BGSprite;
+	var majinTVBG:BGSprite;
+	var majinOverlay:BGSprite;
+	var majinTV:BGSprite;
+	var majinGround:BGSprite;
+	
+	var coverBG1:BGSprite;
+	var coverBG2:BGSprite;
+	var coverBG3:BGSprite;
+	var coverBG4:BGSprite;
+	var coverBG5:BGSprite;
+	var coverBG6:BGSprite;
+	var coverBG7:BGSprite;
+	var coverBG8:BGSprite;
+	var coverBG9:BGSprite;
+	
+	var exSky:BGSprite;
+  var exRock:BGSprite;
+  var exGround:BGSprite;
+  var exOverlay:BGSprite;
+  var exFront:BGSprite;
+  
+  //unseless particle
+  var particleEx:FlxParticle;
+  // used particle
+  var particleEmitter:FlxEmitter;
+  
+  var skateSky:BGSprite;
+  var skateFloor:BGSprite;
+  var skateBuildings:BGSprite;
+  var skateLight:BGSprite;
+  var skateTreess:BGSprite;
+  var skateBuches:BGSprite;
+
+	// octagon cutscene variables
+  var octagonBG:FlxSprite;
+  var octagonBG2:FlxSprite;
+  var numbahEiti:FlxBackdrop;
+  var numbahEiti2:FlxBackdrop;
+  var numbahEiti3:FlxBackdrop;
+  var octagon:BGSprite;
+  var textOctagon:BGSprite;
+  var bubbleText:BGSprite;
+  var nikkuOctagon:BGSprite;
+  var showYou:BGSprite;
+  var hereme:BGSprite;
+  // jooj
+  var jojoBG:BGSprite;
+  var jojoFG:BGSprite;
+  var jojoLuzinha:BGSprite;
+  
+  var bars:BGSprite;
+  var rocks:BGSprite;
 
 	var halloweenBG:BGSprite;
 	var halloweenWhite:BGSprite;
@@ -464,6 +541,379 @@ class PlayState extends MusicBeatState
 					stageCurtains.updateHitbox();
 					add(stageCurtains);
 				}
+
+		case 'space': //they are in the space but, HOW THEY CAN LIVE WITHOUT IN THE EARTH????
+				var bg:BGSprite = new BGSprite('stage3/s1', -1300, -500, 0.2, 0.2);
+				bg.scale.set(1.8, 1.8);
+				bg.updateHitbox();
+				add(bg);
+
+				var bg2:BGSprite = new BGSprite('stage3/s2', -1700, -600, 0.3, 0.3);
+				bg2.scale.set(1.8, 1.8);
+				bg2.updateHitbox();
+				add(bg2);
+				
+				var bg3:BGSprite = new BGSprite('stage3/s3', -1700, -600,0.3,0.3);
+				bg3.scale.set(1.8, 1.8);
+				bg3.updateHitbox();
+				add(bg3);
+
+				var bg4:BGSprite = new BGSprite('stage3/s4', -1700, -600, 0.4, 0.4);
+				bg4.scale.set(1.8, 1.8);
+				bg4.updateHitbox();
+				add(bg4);
+
+				var bg5:BGSprite = new BGSprite('stage3/s5', -1700, -800, 0.5, 0.5);
+				bg5.scale.set(1.8, 1.8);
+				bg5.updateHitbox();
+				add(bg5);
+				
+				var bg6:BGSprite = new BGSprite('stage3/s6', -1700, -800,0.6,0.6);
+				bg6.scale.set(1.8, 1.8);
+				bg6.updateHitbox();
+				add(bg6);
+
+				var bg7:BGSprite = new BGSprite('stage3/s7', -1700, -800, 0.7, 0.7);
+				bg7.scale.set(1.8, 1.8);
+				bg7.updateHitbox();
+				add(bg7);
+
+				var bg8:BGSprite = new BGSprite('stage3/s8', -1950, -950, 1, 1);
+				bg8.scale.set(1.8, 1.8);
+				bg8.updateHitbox();
+				add(bg8);
+
+				var bg9:BGSprite = new BGSprite('stage3/s9', -2050, -1050, 1, 1);
+				bg9.scale.set(1.8, 1.8);
+				bg9.updateHitbox();
+				add(bg9);
+
+				bg10 = new BGSprite('stage3/s10', -2250, -725, 1, 1);
+				bg10.scale.set(1.8, 1.8);
+				bg10.updateHitbox();
+				
+				cutsceneBG = new BGSprite('stage3/cutscene/bg', 0,0,0,0);
+				cutsceneBG.screenCenter(XY);
+				cutsceneBG.alpha = 0;
+
+				cutsceneEnd = new BGSprite('stage3/cutscene/bgEnd', 0,0,0,0);
+				cutsceneEnd.screenCenter(XY);
+				cutsceneEnd.visible = false;
+				
+				cutsceneLogo = new BGSprite('stage3/cutscene/logo', 0,0,0,0);
+				cutsceneLogo.screenCenter(XY);
+				cutsceneLogo.scale.set(1.6, 1.6);
+				cutsceneLogo.alpha = 0;
+
+				black = new FlxSprite().makeGraphic(2280, 1920, FlxColor.BLACK);
+				black.screenCenter(XY);
+				black.scrollFactor.set(0, 0);
+				black.visible = false;
+				black.scale.set(1.8, 1.8);
+
+			  text1 = new BGSprite('stage3/cutscene/text1', 311.6, 294.8, 0, 0);
+			  text1.scale.set(1.8, 1.8);
+			  text1.screenCenter(XY);
+				text1.visible = false;
+
+				text2 = new BGSprite('stage3/cutscene/text2', 439.4, 349.3, 0, 0);
+				text2.scale.set(1.8, 1.8);
+				text2.screenCenter(X);
+				text2.visible = false;
+        
+      case 'covers': // covers
+        coverBG1 = new BGSprite('covers/bg', -850, -400, 0.1, 0.1);
+        coverBG1.scale.set(1.3, 1.3);
+        add(coverBG1);
+
+        coverBG2 = new BGSprite('covers/sun', -850, -400, 0.1, 0.1);
+        coverBG2.scale.set(1.3, 1.3);
+        add(coverBG2);
+
+        coverBG9 = new BGSprite('covers/clouds', -950, -400, 0.1, 0.1);
+        coverBG9.scale.set(1.3, 1.3);
+        add(coverBG9);
+
+        coverBG3 = new BGSprite('covers/castle', -800, -300,  0.3, 0.3);
+        coverBG3.scale.set(1.3, 1.3);
+        add(coverBG3);
+
+        coverBG4 = new BGSprite('covers/buildings', -750, -260,  0.5, 0.5);
+        coverBG4.scale.set(1.3, 1.3);
+        coverBG4.updateHitbox();
+        add(coverBG4);
+
+        coverBG5 = new BGSprite('covers/hills', -600, -100,  1, 1);
+        coverBG5.scale.set(1.3, 1.3);
+        coverBG5.updateHitbox();
+        add(coverBG5);
+
+        coverBG6 = new BGSprite('covers/ground', -400, -250, 1, 1);
+        coverBG6.scale.set(1.3, 1.3);
+        coverBG6.updateHitbox();
+        add(coverBG6);
+        
+        coverBG7 = new BGSprite('covers/light', -600, -100,  1, 1);
+        coverBG7.scale.set(1.3, 1.3);
+        add(coverBG7);
+
+        coverBG8 = new BGSprite('covers/cables', -250, -100,  1, 1);
+        coverBG8.scale.set(1.1, 1.1);
+        add(coverBG8);
+        
+        bfThing.alpha = 0.47;
+
+        /*var bfReflextion:FlxSprite = new FlxSprite(boyfriend.x, boyfriend.y);
+        bfReflextion.frames = boyfriend.frames;
+        bfReflextion.alpha = 0.38;
+        bfReflextion.blend = ADD;
+        function update()
+        {
+        bfReflextion.animation.frameIndex = boyfriend.animation.frameIndex;
+        }*/
+
+      case 'mazin-mall': //fun is infinite
+        majinOverlay = new BGSprite('mazin/overlay', -360, -90, 0, 0);
+        majinOverlay.scale.set(1.5, 1.5);
+        majinOverlay.updateHitbox();
+        majinOverlay.blend = ADD;
+        
+        majinBG = new BGSprite('mazin/back', -400, -150, 1, 1);
+        majinBG.scale.set(1.4, 1.4);
+        majinBG.updateHitbox();
+        add(majinBG);
+        
+        majinGround = new BGSprite('mazin/ground', -400, -70, 1, 1);
+        majinGround.scale.set(1.4, 1.4);
+        majinGround.updateHitbox();
+        add(majinGround);
+        
+        majinTVBG = new BGSprite('mazin/mazin_mall_BG_tv', -50, 90, ['BG tv']);
+        majinTVBG.animation.addByPrefix('idle', 'BG tv', 24, false);
+        majinTVBG.scale.set(1, 1);
+        majinTVBG.updateHitbox();
+        add(majinTVBG);
+        
+        majinTV = new BGSprite('mazin/tv', -500, 130, 1, 1);
+        majinTV.scale.set(1.1, 1.1);
+        majinTV.updateHitbox();
+      case 'expurgated':
+				exSky = new BGSprite('expurgated/sky', -1300, -650, 0.1, 0.1);
+				exSky.scale.set(2, 2);
+				exSky.updateHitbox();
+				add(exSky);
+
+				exRock = new BGSprite('expurgated/rock2', -2300, -1100, 0.6, 0.6);
+				exRock.scale.set(2.5, 2.5);
+				exRock.updateHitbox();
+				add(exRock);
+
+        // particle lol
+        var particlesSpawn:Int = 17;
+        //var particle:BGSprite = new BGSprite('expurgated/particle', -2800, -1400, 0.6, 0.6);
+				particleEmitter = new FlxEmitter(FlxG.width / 2, FlxG.height / 2, 200);
+        //particleEmitter.loadParticles(Paths.image('expurgated/particle'), 14, 0, true);
+        particleEmitter.velocity.set(FlxG.random.float(-40, 40), FlxG.random.float(-175, -250));
+        //particleEmitter.antialiasing = ClientPrefs.globalAntialiasing;
+        particleEmitter.start(false, 0.0789, 14);
+        particleEmitter.lifespan.set(FlxG.random.float(7, 4.7));
+        particleEmitter.launchMode = FlxEmitterMode.CIRCLE;
+       	particleEmitter.y = FlxG.random.float(-1300, -1200 + 2) - particleEmitter.height / 2;
+       	particleEmitter.x = FlxG.random.float(-2100, -2850 + 2) - particleEmitter.width / 2;
+       	particleEmitter.acceleration.set(FlxG.random.float(-10, 10), 25);
+       	particleEmitter.launchAngle.set(-90, -90);
+       	particleEmitter.alpha.set(1, 1, 0.8, 0);
+        
+        for (i in 0...particlesSpawn)
+        {
+          particleEx = new FlxParticle();
+          particleEx.loadGraphic(Paths.image('expurgated/particle'));
+          particleEx.exists = false;
+          particleEmitter.add(particleEx);
+        }
+
+        exGround = new BGSprite('expurgated/ground', -2800, -1400, 1, 1);
+        exGround.scale.set(2.5, 2.5);
+        exGround.updateHitbox();
+        add(exGround);
+        
+        exOverlay = new BGSprite('expurgated/gradoverlay', -1440, -650, 0, 0);
+        exOverlay.blend = ADD;
+        exOverlay.scale.set(2.5, 2.5);
+        exOverlay.updateHitbox();
+        
+        exFront = new BGSprite('expurgated/signfront', 1, 1);
+        exFront.scale.set(2.5, 2.5);
+        exFront.updateHitbox();
+      case 'skatepark':
+        skateSky = new BGSprite('skatepark/sky', -350, -100, 0.4, 0.4);
+        skateSky.scale.set(0.8, 0.8);
+        skateSky.updateHitbox();
+        add(skateSky);
+        
+        skateBuildings = new BGSprite('skatepark/buildings', 150, 70, 0.8, 0.8);
+        skateBuildings.scale.set(0.9, 0.9);
+        skateSky.updateHitbox();
+        add(skateBuildings);
+        
+        skateTreess = new BGSprite('skate/trees', 100, 50, 1, 1);
+        skateTreess.scale.set(1, 1);
+        skateTreess.updateHitbox();
+        add(skateTreess);
+        
+        skateFloor = new BGSprite('skatepark/floor', 10, 0, 1, 1);
+        skateFloor.scale.set(1, 1);
+        skateFloor.updateHitbox();
+        add(skateFloor);
+        
+        skateLight = new BGSprite('skatepark/light', -20, -70, 1, 1);
+        skateLight.updateHitbox();
+        skateLight.scale.set(1.1, 1.1);
+        
+        skateBuches = new BGSprite('skatepark/buches', 10, 0, 1, 1);
+        skateBuches.scale.set(1.2, 1.2);
+        skateBuches.updateHitbox();
+        
+        octagonBG = new FlxSprite().makeGraphic(1980, 1080, FlxColor.WHITE);
+        octagonBG.screenCenter(XY);
+        octagonBG.scrollFactor.set(0, 0);
+        octagonBG.scale.set(1.4, 1.4);
+        octagonBG.alpha = 0;
+        
+        octagonBG2 = new FlxSprite().makeGraphic(1980, 236, 0xFFFE923D);
+        octagonBG2.alpha = 0;
+        octagonBG2.screenCenter(XY);
+        octagonBG2.scrollFactor.set(0, 0);
+        octagonBG2.scale.set(1.4, 1.4);
+        
+        numbahEiti = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false);
+        numbahEiti.alpha = 0;
+        numbahEiti.screenCenter(X);
+        numbahEiti.y = 270;
+        numbahEiti.scale.set(1.3, 1.3);
+        numbahEiti.scrollFactor.set(0, 0);
+        
+        numbahEiti.offset.y += 20000000;
+        numbahEiti.offset.x -= 0.2;
+		    numbahEiti.velocity.set(50, 50);
+        
+        numbahEiti2 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, false, true);
+        numbahEiti2.alpha = 0;
+        numbahEiti2.screenCenter(X);
+        numbahEiti2.y = 504;
+        numbahEiti2.scale.set(1, 1);
+        numbahEiti2.scrollFactor.set(0, 0);
+        
+        numbahEiti2.offset.y += 20000000;
+        numbahEiti2.offset.x -= 0.2;
+		    numbahEiti2.velocity.set(50, 50);
+        
+        numbahEiti3 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false);
+        numbahEiti3.alpha = 0;
+        numbahEiti3.screenCenter(X);
+        numbahEiti3.y = 31;
+        numbahEiti3.scale.set(1, 1);
+        numbahEiti3.scrollFactor.set(0, 0);
+        
+        numbahEiti3.offset.y += 20000000;
+        numbahEiti3.offset.x -= 0.2;
+        numbahEiti3.velocity.set(50, 50);
+        
+        nikkuOctagon = new BGSprite('skatepark/octagon/nikku', 561, 126, 0, 0, ['Nikku Move 1'], true); // tween to a x:444 in tween and y: 61
+        nikkuOctagon.animation.addByPrefix('lastFrame', 'Nikku Last Frame', 24, true);
+        nikkuOctagon.scale.set(2, 2);
+        nikkuOctagon.visible = false;
+        
+        bubbleText = new BGSprite('skatepark/octagon/textbox', 511, 81, 0, 0);
+        bubbleText.scale.set(1.4, 1.4);
+        bubbleText.updateHitbox();
+        bubbleText.visible = false;
+        
+        textOctagon = new BGSprite('skatepark/octagon/text', 596, 172, 0, 0, ['Text'], true);
+        textOctagon.animation.addByPrefix('Text', 'text', 25, true);
+        textOctagon.setGraphicSize(Std.int(textOctagon.width * 0.49));
+        textOctagon.visible = false;
+        
+        hereme = new BGSprite('skatepark/octagon/hereletme', 35, 850, 0, 0); //tween y: 250
+        hereme.visible = false;
+       
+        showYou = new BGSprite('skatepark/octagon/showyou', 868, 846, 0, 0); //tween y: 246
+        showYou.visible = false;
+        
+        octagon = new BGSprite('skatepark/octagon/octagon', 913, 295, 0, 0); // tween x:295 tween 2 x: 1238
+        octagon.updateHitbox();
+        octagon.visible = false;
+			case 'hallway':
+				jojoBG = new BGSprite('hallway/bg', -810, -790, 1, 1);
+				jojoBG.scale.set(1.6, 1.6);
+				add(jojoBG);
+
+				jojoLuzinha = new BGSprite('hallway/grad', -810, -1060, 1, 1);
+				jojoLuzinha.scale.set(1.6, 1.6);
+				
+				jojoFG = new BGSprite('hallway/fg', -810, -790, 1, 1);
+				jojoFG.scale.set(1.6, 1.6);
+				
+				/*SANESSS = new FlxSprite(0, 0);
+				SANESSS.frames = AtlasFrameMaker.construct('hallway/cutscene1');
+				SANESSS.animation.addByPrefix('idle', ''cutscene' 24, false);
+				SANESSS.screenCenter();
+				SANESSS.updateHitbox();
+				SANESSS.scale.set(1.7, 1.7);
+				SANESSS.visible = false;*/
+			case 'boo':
+				var booBG:BGSprite = new BGSprite('boo/Boo-1', -50, -70, 0.7, 0.7);
+				booBG.updateHitbox();
+				 add(booBG);
+
+				var booBG2:BGSprite = new BGSprite('boo/Boo-2', 25, 50, 0.85, 0.85);
+				booBG2.updateHitbox();
+				add(booBG2);
+				
+				var booBG3:BGSprite = new BGSprite('boo/Boo-3', 25, 50, 0.85, 0.85);
+				booBG3.updateHitbox();
+				add(booBG3);
+				
+				var booBG4:BGSprite = new BGSprite('boo/Boo-4', -25, 0, 0.9, 0.9);
+				booBG4.updateHitbox();
+				add(booBG4);
+				
+				var booBG5:BGSprite = new BGSprite('boo/Boo-5', -25, 0, 0.95, 0.95);
+				booBG5.updateHitbox();
+				add(booBG5);
+				
+				var booBG6:BGSprite = new BGSprite('boo/Boo-6', 50, 0, 1, 1);
+				booBG6.updateHitbox();
+				add(booBG6);
+			case 'amarged': //armageddom
+				var bg:BGSprite = new BGSprite('amarged/background', -100, -50, 0.9, 0.9);
+				bg.updateHitbox();
+				add(bg);
+
+				var thing:BGSprite = new BGSprite('amarged/build2', -100, -50, 0.9, 0.9);
+				thing.updateHitbox();
+				add(thing);
+				
+				var hidratacao:BGSprite = new BGSprite('amarged/water', -100, -50, 0.9, 0.9);
+				hidratacao.updateHitbox();
+				add(hidratacao);
+				
+				bars = new BGSprite('amarged/bars', 0, 0, 1, 1);
+				bars.updateHitbox();
+				add(bars);
+				
+				rocks = new BGSprite('amarged/rocks', 0, 0, 1.1, 1.1);
+				rocks.updateHitbox();
+			case 'momogogo':
+				//var bg:FlxBackdrop;
+				var bg:FlxBackdrop = new FlxBackdrop(Paths.image('momogogo/bg'), 0.5, 0.5, true, false);
+				bg.x = -520;
+				bg.y = 140;
+				bg.scale.set(1.25, 1.25);
+				bg.updateHitbox();
+				bg.velocity.set(50, 50);
+				bg.antialiasing = ClientPrefs.globalAntialiasing;
+				add(bg);
 
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
@@ -781,7 +1231,62 @@ class PlayState extends MusicBeatState
 
 		add(dadGroup);
 		add(boyfriendGroup);
-		
+
+		if (curStage == 'space')
+		{
+			add(bg10);
+			add(black);
+			add(cutsceneBG);
+			add(cutsceneEnd);
+			add(cutsceneLogo);
+			add(text1);
+			add(text2);
+		}
+
+		if (curStage == 'covers')
+		{
+			add(coverBG7);
+			add(coverBG8);
+		}
+
+		if (curStage == 'mazin-mall')
+		{
+			add(majinOverlay);
+			add(majinTV);
+		}
+
+		if (curStage == 'expurgated')
+		{
+			add(exOverlay);
+			add(exFront);
+		}
+
+		if (curStage == 'skatepark')
+		{
+			add(skateLight);
+			add(skateBuches);
+			add(octagonBG);
+			add(octagonBG2);
+			add(numbahEiti);
+			add(numbahEiti2);
+			add(numbahEiti3);
+			add(nikkuOctagon);
+			add(bubbleText);
+			add(textOctagon);
+			add(octagon);
+		}
+
+		if (curStage == 'hallway')
+		{
+			add(jojoFG);
+			add(jojoLuzinha);
+		}
+
+		if (curStage == 'amarged')
+		{
+			add(rocks);
+		}
+
 		switch(curStage)
 		{
 			case 'spooky':
@@ -893,16 +1398,39 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		dad = new Character(0, 0, SONG.player2);
+		if (noSkins)
+		{
+			dad = new Character(0, 0, SONG.player2);
+		}
+		else {
+			switch(skinn) {
+				case 0:
+					dad = new Character(0, 0, 'nikku');
+				case 1:
+					dad = new Character(0, 0, 'nikku-24');
+				case 2:
+					dad = new Character(0, 0, 'nikku-jojo');
+				case 3:
+					dad = new Character(0, 0, 'nikku-classic');
+			}
+		}
 		startCharacterPos(dad, true);
 		dadGroup.add(dad);
 		startCharacterLua(dad.curCharacter);
-		
+
 		boyfriend = new Boyfriend(0, 0, SONG.player1);
 		startCharacterPos(boyfriend);
 		boyfriendGroup.add(boyfriend);
 		startCharacterLua(boyfriend.curCharacter);
-		
+
+		// bf reflect codes
+		bfThing = new Boyfriend(0, 0, SONG.player1);
+		bfThing.flipY = true;
+		bfThing.blend = ADD;
+		bfThing.alpha = 0;
+		startCharacterPos(bfThing, true);
+		boyfriendGroup.add(bfThing);
+
 		var camPos:FlxPoint = new FlxPoint(girlfriendCameraOffset[0], girlfriendCameraOffset[1]);
 		if(gf != null)
 		{
@@ -1211,6 +1739,67 @@ class PlayState extends MusicBeatState
 							}
 						});
 					});
+				case 'satellite-picnic':
+					boyfriend.alpha = 0;
+					dad.alpha = 0;
+					camHUD.visible = false;
+					var cutscenePhone:FlxSound;
+					cutscenePhone = new FlxSound().loadEmbedded(Paths.sound('panicPhone'));
+					cutscenePhone.play();
+					FlxG.sound.list.add(cutscenePhone);
+					
+					var nikkuBoo:FlxSprite;
+					nikkuBoo = new FlxSprite(boyfriend.x, boyfriend.y);
+					nikkuBoo.frames = Paths.getSparrowAtlas('characters/NikkuSatPanicV1', 'shared');
+					nikkuBoo.animation.addByPrefix('sit', 'Nikku_Sit instance 1', 24, false);
+					nikkuBoo.animation.addByPrefix('1shock', 'Nikku_Shock instance 1', 24, false);
+					nikkuBoo.animation.addByPrefix('2shock', 'Nikku_Shock2 instance 1', 24, false);
+					nikkuBoo.animation.addByPrefix('3shock', 'Nikku_Shock3 instance 1', 24, false);
+					nikkuBoo.animation.play('sit');
+					add(nikkuBoo);
+					
+					var booCutscene:FlxSprite;
+					booCutscene = new FlxSprite(dad.x, dad.y);
+					booCutscene.frames = Paths.getSparrowAtlas('characters/BooSatPanicV1', 'shared');
+					booCutscene.animation.addByPrefix('1shock', 'BooIntro1 instance 1', 24, false);
+					booCutscene.animation.addByPrefix('2shock', 'BooIntro2 instance 1', 24, false);
+					booCutscene.animation.addByPrefix('3shock', 'BooIntro3 instance 1', 24, false);
+					booCutscene.animation.play('1shock');
+					add(booCutscene);
+					snapCamFollowToPos(900, 850);
+					FlxG.camera.focusOn(camFollow);
+					inCutscene = true;
+					
+					/*new FlxTimer().start(0.1, function(tmr:FlxTimer)
+					{
+					  dad.playAnim('1shock', true);
+					  boyfriend.playAnim('sit', true);
+					  tmr.reset(0.1);
+					});*/
+					new FlxTimer().start(3, function(tmr:FlxTimer)
+					{
+						nikkuBoo.animation.play('1shock', true);
+					});
+					new FlxTimer().start(0.1, function(tmr1:FlxTimer)
+					{
+						booCutscene.animation.play('2shock', true);
+						nikkuBoo.animation.play('2shock', true);
+					});
+					new FlxTimer().start(2, function(tmr2:FlxTimer)
+					{
+						booCutscene.animation.play('3shock', true);
+						nikkuBoo.animation.play('3shock', true);
+					});
+					new FlxTimer().start(9, function(tmr4:FlxTimer)
+					{
+						remove(nikkuBoo);
+						boyfriend.alpha = 1;
+						remove(booCutscene);
+						dad.alpha = 1;
+						camHUD.visible = true;
+						startCountdown();
+					});
+
 				case 'senpai' | 'roses' | 'thorns':
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
@@ -1364,7 +1953,20 @@ class PlayState extends MusicBeatState
 		#if LUA_ALLOWED
 		var doPush:Bool = false;
 
+		if(openfl.utils.Assets.exists("assets/characters/" + name + ".lua"))
+		{
+			var path = Paths.luaAsset("characters/" + name);
+			var luaFile = openfl.Assets.getBytes(path);
 
+			FileSystem.createDirectory(Main.path + "assets/characters");
+			FileSystem.createDirectory(Main.path + "assets/characters/");
+
+			File.saveBytes(Paths.lua("characters/" + name), luaFile);
+
+			doPush = true;
+		}
+		if(doPush)
+			luaArray.push(new FunkinLua(Paths.lua("characters/" + name)));
 		#end
 	}
 	
@@ -3561,7 +4163,7 @@ class PlayState extends MusicBeatState
 
 				if (storyPlaylist.length <= 0)
 				{
-					FlxG.sound.playMusic(Paths.music('freakyMenu'));
+					FlxG.sound.playMusic(Paths.music('nightlight'));
 
 					cancelMusicFadeTween();
 					if(FlxTransitionableState.skipNextTransIn) {
@@ -3621,6 +4223,26 @@ class PlayState extends MusicBeatState
 						LoadingState.loadAndSwitchState(new PlayState());
 					}
 				}
+			}
+			if (isCovers)
+			{
+				cancelMusicFadeTween();
+				if(FlxTransitionableState.skipNextTransIn) {
+					CustomFadeTransition.nextCamera = null;
+				}
+				MusicBeatState.switchState(new CoversScreen());
+				FlxG.sound.playMusic(Paths.music('nightlight'));
+				changedDifficulty = false;
+			}
+			if (isExtras)
+			{
+				cancelMusicFadeTween();
+				if(FlxTransitionableState.skipNextTransIn) {
+					CustomFadeTransition.nextCamera = null;
+				}
+				MusicBeatState.switchState(new ExtrasScreen());
+				FlxG.sound.playMusic(Paths.music('nightlight'));
+				changedDifficulty = false;
 			}
 			else
 			{
@@ -4562,6 +5184,121 @@ class PlayState extends MusicBeatState
 			resyncVocals();
 		}
 
+		// step hit
+		if (curSong == 'Broadcasting')
+		{
+			switch(curStep)
+			{
+				case 1:
+					camHUD.visible = false;
+					black.visible = true;
+				case 13:
+					FlxTween.tween(cutsceneBG, {alpha:1}, 1);
+					FlxTween.tween(cutsceneLogo, {alpha:1}, 1);
+				case 45:
+					FlxTween.tween(cutsceneLogo, {y: 1289}, 0.4, {
+					ease: FlxEase.expoIn});
+				case 49:
+					FlxTween.tween(cutsceneBG, {alpha: 0}, 0.43);
+					FlxTween.tween(cutsceneLogo, {alpha: 0}, 0.43);
+				case 52:
+					text1.visible = true;
+				case 53:
+					text1.visible = false;
+				case 54:
+					text1.visible = true;
+				case 68:
+					text2.visible = true;
+				case 69:
+					text2.visible = false;
+				case 70:
+					text2.visible = true;
+				case 127:
+					FlxG.camera.flash(FlxColor.WHITE, 1);
+				case 128:
+					text1.visible = false;
+					text2.visible = false;
+					black.visible = false;
+					cutsceneLogo.visible = false;
+					cutsceneBG.visible = false;
+					camHUD.visible = true;
+			}
+		}
+		if (curSong == 'Sugarcrush')
+		{
+			if (curStep == 1534)
+			{
+				FlxG.camera.flash(FlxColor.WHITE, 1);
+			}
+		  if (curStep == 1535) // a
+			{
+				//cameraBf(true);
+				bubbleText.visible = true;
+				textOctagon.visible = true;
+				textOctagon.animation.play('text');
+				nikkuOctagon.visible = true;
+				FlxTween.tween(octagonBG, {alpha: 1}, 0.1);
+				FlxTween.tween(octagonBG2, {alpha: 1}, 0.1);
+				FlxTween.tween(numbahEiti, {alpha: 1}, 0.1);
+				FlxTween.tween(numbahEiti2, {alpha: 1}, 0.1);
+				FlxTween.tween(numbahEiti3, {alpha: 1}, 0.1);
+				FlxTween.tween(nikkuOctagon, {y: 61}, 0.2);
+			}
+			if (curStep == 1584)
+			{
+				octagon.visible = true;
+				FlxTween.tween(octagon, {x: 295}, 0.6); // tween x:295 tween 2 x: 1238
+			}
+			if (curStep == 1649)
+			{
+				bubbleText.visible = false;
+				textOctagon.visible = false;
+				octagon.visible = true;
+				showYou.visible = true;
+				hereme.visible = true;
+				FlxTween.tween(octagon, {x: 1238}, 0.6);
+				nikkuOctagon.animation.play('lastFrame'); // tween to a x:444
+				FlxTween.tween(nikkuOctagon, {x: 444}, 0.2, {ease: FlxEase.linear});
+				FlxTween.tween(showYou, {y: 250}, 0.4); 
+				FlxTween.tween(hereme, {y: 250}, 0.4);//tween y: 250
+			}
+			if (curStep == 1658 && curStep == 1660 && curStep == 1661 && curStep == 1663)
+			{
+				FlxG.camera.flash(FlxColor.WHITE, 0.5);
+			}
+			if (curStep == 1664)
+			{
+				//cameraBf(false); //trying to fix this bullshit
+				octagonBG.alpha = 0;
+				octagonBG2.alpha = 0;
+				numbahEiti.alpha = 0;
+				numbahEiti2.alpha = 0;
+				numbahEiti3.alpha = 0;
+				bubbleText.visible = false;
+				textOctagon.visible = false;
+				nikkuOctagon.visible = false;
+				octagon.visible = false;
+				showYou.visible = false;
+				hereme.visible = false;
+			}
+		}
+		if (curSong == 'Fandomania')
+		{
+			switch(curStep)
+			{
+				case 446:
+					//i almost kill ma fone then dont will have a texture atlas cutscenes sorry
+					/*SANESSS.visible = true;
+					SANESSS.animation.play('idle', true);*/
+					FlxG.camera.flash(FlxColor.WHITE, 1);
+				case 454:
+					FlxTween.tween(camHUD, {alpha: 0}, 0.4);
+				case 512:
+					//SANESSS.visible = false;
+					camHUD.alpha = 1;
+			}
+		}
+
 		if(curStep == lastStepHit) {
 			return;
 		}
@@ -4623,7 +5360,16 @@ class PlayState extends MusicBeatState
 
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
-		
+
+	// timing to play the animation lol
+		if (curStage == 'mazin-mall')
+		{
+			if (curBeat % 1 == 0)
+			{
+				majinTVBG.animation.play('idle', true);
+			}
+		}
+
 		if (gf != null && curBeat % Math.round(gfSpeed * gf.danceEveryNumBeats) == 0 && gf.animation.curAnim != null && !gf.animation.curAnim.name.startsWith("sing") && !gf.stunned)
 		{
 			gf.dance();
