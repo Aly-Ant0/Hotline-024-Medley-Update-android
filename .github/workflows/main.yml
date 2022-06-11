@@ -46,7 +46,7 @@ jobs:
         
       - uses: nttld/setup-ndk@v1
         with:
-          ndk-version: r23b
+          ndk-version: r21d
 
       # Runs a set of commands using the runners shell
       - name: Install Haxelib
@@ -54,7 +54,7 @@ jobs:
           haxelib setup ~/haxelib
           haxelib install lime
           haxelib install openfl
-          haxelib install hxcpp
+          haxelib install hxcpp > /dev/null
           haxelib run lime setup
           haxelib --never install flixel
           haxelib run lime setup flixel
