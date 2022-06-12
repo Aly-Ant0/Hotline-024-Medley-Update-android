@@ -42,7 +42,7 @@ jobs:
         uses: actions/setup-java@v2.3.1
         with:
           distribution: 'zulu'
-          java-version: '11'
+          java-version: '8'
         
       - uses: nttld/setup-ndk@v1
         with:
@@ -76,7 +76,7 @@ jobs:
       - name: Compile
         run: |
           haxelib run lime setup android
-          haxelib run lime build android -final
+          haxelib run lime build android -DHXCPP_VERBOSE
           
       - name: Publish Artifact
         uses: actions/upload-artifact@v3.0.0
