@@ -62,7 +62,6 @@ jobs:
           lime config ANDROID_NDK_ROOT ${{ steps.setup-ndk.outputs.ndk-path }}
           lime config JAVA_HOME $JAVA_HOME
           lime config ANDROID_SETUP true
-          lime config
           haxelib install flixel-tools
           haxelib install flixel-ui 
           haxelib install flixel-addons
