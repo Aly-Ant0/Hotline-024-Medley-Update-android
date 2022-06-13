@@ -49,6 +49,10 @@ jobs:
           # id: setup-ndk
           ndk-version: r15c
 
+      - name: Enable HXCPP compile cache
+        run: |
+          echo "HXCPP_COMPILE_CACHE=~/.hxcpp" >> $GITHUB_ENV
+
       # Runs a set of commands using the runners shell
       - name: Install Haxelib
         run: |
@@ -71,6 +75,7 @@ jobs:
           haxelib git extension-androidtools https://github.com/jigsaw-4277821/extension-androidtools.git   
           haxelib git extension-webview https://github.com/Daninnocent/extension-webview.git --quiet
           haxelib list
+
           
       - name: Create Version Tag
         run: echo "${{github.run_id}}" > VERSION
