@@ -746,8 +746,8 @@ class PlayState extends MusicBeatState
         exFront.scale.set(2.5, 2.5);
         exFront.updateHitbox();
       case 'skatepark':
-        skateSky = new BGSprite('skatepark/sky', -350, -100, 0.4, 0.4);
-        skateSky.scale.set(0.8, 0.8);
+        skateSky = new BGSprite('skatepark/sky', -100, -200, 0.4, 0.4);
+        skateSky.scale.set(1, 1);
         skateSky.updateHitbox();
         add(skateSky);
         
