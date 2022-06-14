@@ -142,8 +142,10 @@ class ChooseSkinState extends MusicBeatState
 
  	 super.update(elapsed);
   }
-  var skinTween:FlxTween;
-  var skinTween2:FlxTween;
+  // i dont need twn variable
+
+  //var skinTween:FlxTween;
+  //var skinTween2:FlxTween;
   function changeSkin(change:Int = 0)
   {
       curSelected += change;
@@ -163,50 +165,45 @@ class ChooseSkinState extends MusicBeatState
 		{
 			if (change == 1)
 			{
-			  skinS.loadGraphic(newSkin);
-				skinS.x = -5;
-				if(skinTween != null) skinTween.cancel();
-				skinTween = FlxTween.tween(skinS, {x: skinS.x + 5}, 0.34, {ease: FlxEase.elasticInOut, onComplete: function(twn:FlxTween)
+				skinS.loadGraphic(newSkin);
+				skinS.x = -50;
+				FlxTween.tween(skinS, {x: skinS.x + 50}, 0.75, {ease: FlxEase.smoothStepOut, onComplete: function(twn:FlxTween)
 				{
-				skinS.x = 0;
+					skinS.x = 0;
 				}});
 			}
 			if (change == -1) {
 			  skinS.loadGraphic(newSkin);
-				skinS.x = 5;
-				if(skinTween != null) skinTween.cancel();
-				skinTween = FlxTween.tween(skinS, {x: skinS.x - 5}, 0.34, {ease: FlxEase.elasticInOut, onComplete: function(twn:FlxTween)
+				skinS.x = 50;
+				FlxTween.tween(skinS, {x: skinS.x - 50}, 0.75, {ease: FlxEase.smoothStepOut, onComplete: function(twn:FlxTween)
 				{
-				  skinS.x = 0;
+					skinS.x = 0;
 				}});
 			}
 		}
 		if(skinShadow.graphic != newSkinShadow)
 		{
-		  if (change == 1)
-		  {
-		    skinShadow.loadGraphic(newSkinShadow);
+			if (change == 1)
+			{
+				skinShadow.loadGraphic(newSkinShadow);
 				skinShadow.alpha = 0.48;
-				skinShadow.x = -4;
-				if(skinTween2 != null) skinTween2.cancel();
-				skinTween2 = FlxTween.tween(skinShadow, {x: skinShadow.x + 4, alpha: 1}, 0.92, {ease: FlxEase.expoOut, onComplete: function(twn:FlxTween)
+				FlxTween.tween(skinShadow, {alpha: 1}, 0.92, {ease: FlxEase.smoothStepOut, onComplete: function(twn:FlxTween)
 				{
-					skinShadow.x = 0;
+					// do nothing 
 				}});
-		  }
-		  if (change == -1)
+			}
+			if (change == -1)
 			{
 			  skinShadow.loadGraphic(newSkinShadow);
 				skinShadow.alpha = 0.48;
-				skinShadow.x = 4;
-				if(skinTween2 != null) skinTween2.cancel();
-				skinTween2 = FlxTween.tween(skinShadow, {x: skinShadow.x - 4, alpha: 1}, 0.92, {ease: FlxEase.expoOut, onComplete: function(twn:FlxTween)
+				skinShadow.x = 10;
+				FlxTween.tween(skinShadow, {x: skinShadow.x - 10, alpha: 1}, 0.92, {ease: FlxEase.smoothStepOut, onComplete: function(twn:FlxTween)
 				{
-				skinShadow.x = 0;
+					skinShadow.x = 0;
 				}});
 			}
 		}
-  }
+	}
   /*var skinTween3:FlxTween;
   var skinTween4:FlxTween;
   function changeLeft(change:Int = 0)
