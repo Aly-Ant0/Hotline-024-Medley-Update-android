@@ -770,7 +770,7 @@ class PlayState extends MusicBeatState
         skateLight.updateHitbox();
         skateLight.scale.set(1.1, 1.1);
         
-        skateBuches = new BGSprite('skatepark/buches', 10, 0, 1, 1);
+        skateBuches = new BGSprite('skatepark/buches', 100, 100, 1, 1);
         skateBuches.scale.set(1.2, 1.2);
         skateBuches.updateHitbox();
         
