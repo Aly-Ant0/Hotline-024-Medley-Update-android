@@ -187,7 +187,7 @@ class ChooseSkinState extends MusicBeatState
 			{
 				skinShadow.loadGraphic(newSkinShadow);
 				skinShadow.alpha = 0.48;
-				FlxTween.tween(skinShadow, {alpha: 1}, 0.92, {ease: FlxEase.smoothStepOut, onComplete: function(twn:FlxTween)
+				FlxTween.tween(skinShadow, {alpha: 1}, 0.1, {ease: FlxEase.smoothStepOut, onComplete: function(twn:FlxTween)
 				{
 					// do nothing 
 				}});
@@ -196,8 +196,8 @@ class ChooseSkinState extends MusicBeatState
 			{
 			  skinShadow.loadGraphic(newSkinShadow);
 				skinShadow.alpha = 0.48;
-				skinShadow.x = 10;
-				FlxTween.tween(skinShadow, {x: skinShadow.x - 10, alpha: 1}, 0.92, {ease: FlxEase.smoothStepOut, onComplete: function(twn:FlxTween)
+				skinShadow.x = 5;
+				FlxTween.tween(skinShadow, {x: skinShadow.x - 5, alpha: 1}, 0.1, {ease: FlxEase.smoothStepOut, onComplete: function(twn:FlxTween)
 				{
 					skinShadow.x = 0;
 				}});
