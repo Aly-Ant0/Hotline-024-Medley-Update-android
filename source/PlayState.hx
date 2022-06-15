@@ -2895,6 +2895,11 @@ class PlayState extends MusicBeatState
 
 				var newCharacter:String = event.value2;
 				addCharacterToList(newCharacter, charType);
+				
+				case 'Flash':
+					var whiteLol:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+					whiteLol.visible = false;
+					add(whiteLol);
 
 			case 'Philly Glow':
 				blammedLightsBlack = new FlxSprite(FlxG.width * -0.5, FlxG.height * -0.5).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
@@ -3977,6 +3982,17 @@ class PlayState extends MusicBeatState
 							songSpeedTween = null;
 						}
 					});
+				}
+			
+			case 'Flash':
+				new FlxTimer().start(0.01, function(tmr:FlxTimer)
+				{
+					whiteLol.visible = true;
+				});
+				
+				new FlxTimer().start(0.01, function(tmr:FlxTimer)
+				{
+					whiteLol.visible = false;
 				}
 
 			case 'Set Property':
