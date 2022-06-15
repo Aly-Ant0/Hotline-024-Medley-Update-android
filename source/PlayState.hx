@@ -3991,7 +3991,6 @@ class PlayState extends MusicBeatState
 						}
 					});
 				}
-			
 			case 'Flash':
 				new FlxTimer().start(0.01, function(tmr:FlxTimer)
 				{
@@ -4001,8 +4000,7 @@ class PlayState extends MusicBeatState
 				new FlxTimer().start(0.01, function(tmr:FlxTimer)
 				{
 					whiteLol.visible = false;
-				}
-
+				});
 			case 'Set Property':
 				var killMe:Array<String> = value1.split('.');
 				if(killMe.length > 1) {
