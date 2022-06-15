@@ -622,43 +622,49 @@ class PlayState extends MusicBeatState
 				text2.visible = false;
         
       case 'covers': // covers
-        coverBG1 = new BGSprite('covers/bg', -850, -400, 0.1, 0.1);
-        coverBG1.scale.set(1.3, 1.3);
+        coverBG1 = new BGSprite('covers/bg', -960, -250, 0.1, 0.1);
+        coverBG1.scale.set(1.4, 1.2);
+        coverBG1.updateHitbox();
         add(coverBG1);
 
-        coverBG2 = new BGSprite('covers/sun', -850, -400, 0.1, 0.1);
+        coverBG2 = new BGSprite('covers/sun', -1200, -250, 0.1, 0.1);
         coverBG2.scale.set(1.3, 1.3);
+        coverBG2.updateHitbox();
         add(coverBG2);
 
-        coverBG9 = new BGSprite('covers/clouds', -950, -400, 0.1, 0.1);
-        coverBG9.scale.set(1.3, 1.3);
+        coverBG9 = new BGSprite('covers/clouds', -1200, 0, 0.1, 0.1);
+        coverBG9.updateHitbox();
         add(coverBG9);
 
-        coverBG3 = new BGSprite('covers/castle', -800, -300,  0.3, 0.3);
-        coverBG3.scale.set(1.3, 1.3);
+        coverBG3 = new BGSprite('covers/castle', -1100, --250,  0.3, 0.3);
+        coverBG3.scale.set(1.4, 1.2);
+        coverBG3.updateHitbox();
         add(coverBG3);
 
-        coverBG4 = new BGSprite('covers/buildings', -750, -260,  0.5, 0.5);
-        coverBG4.scale.set(1.3, 1.3);
+        coverBG4 = new BGSprite('covers/buildings', -1000, -150,  0.5, 0.5);
+        coverBG4.scale.set(1.4, 1.2);
         coverBG4.updateHitbox();
         add(coverBG4);
 
-        coverBG5 = new BGSprite('covers/hills', -600, -100,  1, 1);
+        coverBG5 = new BGSprite('covers/hills', -1000, -150,  1, 1);
         coverBG5.scale.set(1.3, 1.3);
         coverBG5.updateHitbox();
         add(coverBG5);
 
-        coverBG6 = new BGSprite('covers/ground', -400, -250, 1, 1);
-        coverBG6.scale.set(1.3, 1.3);
+        coverBG6 = new BGSprite('covers/ground', -260, -140, 1, 1);
+        coverBG6.scale.set(1.2, 1.2);
         coverBG6.updateHitbox();
         add(coverBG6);
         
-        coverBG7 = new BGSprite('covers/light', -600, -100,  1, 1);
-        coverBG7.scale.set(1.3, 1.3);
+        coverBG7 = new BGSprite('covers/light', -260, -140,  1.1, 1.1);
+        coverBG7.scale.set(1.2, 1.2);
+        coverBG7.updateHitbox();
+        coverBG7.blend = ADD;
         add(coverBG7);
 
-        coverBG8 = new BGSprite('covers/cables', -250, -100,  1, 1);
-        coverBG8.scale.set(1.1, 1.1);
+        coverBG8 = new BGSprite('covers/cables', -260, -140, 1.2, 1.2);
+        coverBG8.scale.set(1.2, 1);
+        coverBG8.updateHitbox();
         add(coverBG8);
         
         bfThing.alpha = 0.47;
@@ -768,6 +774,7 @@ class PlayState extends MusicBeatState
         
         skateLight = new BGSprite('skatepark/light', -20, -70, 1, 1);
         skateLight.updateHitbox();
+        skateLight.blend = ADD;
         skateLight.scale.set(1.1, 1.1);
         
         skateBuches = new BGSprite('skatepark/buches', 100, 100, 1, 1);
@@ -849,6 +856,7 @@ class PlayState extends MusicBeatState
 				add(jojoBG);
 
 				jojoLuzinha = new BGSprite('hallway/grad', -810, -1060, 1, 1);
+				jojoLuzinha.blend = ADD;
 				jojoLuzinha.scale.set(1.6, 1.6);
 				
 				jojoFG = new BGSprite('hallway/fg', -810, -790, 1, 1);
