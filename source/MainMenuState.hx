@@ -235,7 +235,7 @@ class MainMenuState extends MusicBeatState
 								{
 									case 'story_mode':
 										FlxG.sound.play(Paths.sound('errorsfx'));
-										FlxFlicker.flicker(spr, 0.4, 0.06, false, false;
+										FlxFlicker.flicker(spr, 0.4, 0.06, false, false);
 									case 'freeplay':
 										MusicBeatState.switchState(new FreeplayState());
 									case 'credits':
