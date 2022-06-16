@@ -33,9 +33,7 @@ class FreeplayState extends MusicBeatState
 	var curDifficulty:Int = -1;
 	private static var lastDifficultyName:String = '';
 
-	var scoreBG:FlxSprite;
 	var scoreText:FlxText;
-	var diffText:FlxText;
 	var nicu:FlxSprite;
 	var textChapter:FlxSprite;
 	var bars:FlxSprite;
@@ -47,12 +45,7 @@ class FreeplayState extends MusicBeatState
 	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
 
-	private var iconArray:Array<HealthIcon> = [];
-
 	var bg:FlxSprite;
-	var intendedColor:Int;
-	var colorTween:FlxTween;
-
 	override function create()
 	{
 		Paths.clearStoredMemory();
@@ -70,14 +63,12 @@ class FreeplayState extends MusicBeatState
 		for (i in 0...WeekData.weeksList.length) {
 			if(weekIsLocked(WeekData.weeksList[i])) continue;
 
-			var leWeek:WeekData = WeekData.weeksLoaded.get(WeekData.weeksList[i]);
+			var leWeek:WeekData = WeekData.weeksLoaded.get(WeekData.weeksList[1][i]);
 			var leSongs:Array<String> = [];
-			var leChars:Array<String> = [];
 
 			for (j in 0...leWeek.songs.length)
 			{
 				leSongs.push(leWeek.songs[j][0]);
-				leChars.push(leWeek.songs[j][1]);
 			}
 
 			WeekData.setDirectoryFromWeek(leWeek);
@@ -153,6 +144,8 @@ class FreeplayState extends MusicBeatState
 		scoreText.screenCenter(X);
 		add(scoreText);
 
+		if(curSelected >= songs.length) curSelected = 0;
+
 		if(lastDifficultyName == '')
 		{
 			lastDifficultyName = CoolUtil.defaultDifficulty;
@@ -194,9 +187,9 @@ class FreeplayState extends MusicBeatState
 		super.closeSubState();
 	}
 
-	public function addSong(songName:String, weekNum:Int, songCharacter:String, color:Int)
+	public function addSong(songName:String, weekNum:Int, songCharacter:String)
 	{
-		songs.push(new SongMetadata(songName, weekNum, songCharacter, color));
+		songs.push(new SongMetadata(songName, weekNum, songCharacter));
 	}
 
 	function weekIsLocked(name:String):Bool {
@@ -486,11 +479,6 @@ class FreeplayState extends MusicBeatState
 
 	private function positionHighscore() {
 		scoreText.x = FlxG.width - scoreText.width - 6;
-
-		scoreBG.scale.x = FlxG.width - scoreText.x + 6;
-		scoreBG.x = FlxG.width - (scoreBG.scale.x / 2);
-		diffText.x = Std.int(scoreBG.x + (scoreBG.width / 2));
-		diffText.x -= diffText.width / 2;
 	}
 }
 
@@ -498,16 +486,14 @@ class SongMetadata
 {
 	public var songName:String = "";
 	public var week:Int = 0;
-	public var songCharacter:String = "";
-	public var color:Int = -7179779;
+	public var songCharacter:String = "";;
 	public var folder:String = "";
 
-	public function new(song:String, week:Int, songCharacter:String, color:Int)
+	public function new(song:String, week:Int, songCharacter:String)
 	{
 		this.songName = song;
 		this.week = week;
 		this.songCharacter = songCharacter;
-		this.color = color;
 		this.folder = Paths.currentModDirectory;
 		if(this.folder == null) this.folder = '';
 	}
