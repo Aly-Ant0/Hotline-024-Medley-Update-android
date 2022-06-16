@@ -164,6 +164,8 @@ class PlayState extends MusicBeatState
 	public var camZoomingDecay:Float = 1;
 	private var curSong:String = "";
 
+	var whiteLol:FlxSprite;
+
 	public var gfSpeed:Int = 1;
 	public var health:Float = 1;
 	public var combo:Int = 0;
@@ -636,7 +638,7 @@ class PlayState extends MusicBeatState
         coverBG9.updateHitbox();
         add(coverBG9);
 
-        coverBG3 = new BGSprite('covers/castle', -1100, --250,  0.3, 0.3);
+        coverBG3 = new BGSprite('covers/castle', -1100, -250,  0.3, 0.3);
         coverBG3.scale.set(1.4, 1.2);
         coverBG3.updateHitbox();
         add(coverBG3);
@@ -646,7 +648,7 @@ class PlayState extends MusicBeatState
         coverBG4.updateHitbox();
         add(coverBG4);
 
-        coverBG5 = new BGSprite('covers/hills', -1000, -150,  1, 1);
+        coverBG5 = new BGSprite('covers/hills', -1000, -150, o 1, 1);
         coverBG5.scale.set(1.3, 1.3);
         coverBG5.updateHitbox();
         add(coverBG5);
@@ -1488,7 +1490,7 @@ class PlayState extends MusicBeatState
 
 		var showTime:Bool = (ClientPrefs.timeBarType != 'Disabled');
 		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248, 19, 400, "", 32);
-		timeTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		timeTxt.setFormat(Paths.font("goodbyeDespair.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		timeTxt.scrollFactor.set();
 		timeTxt.alpha = 0;
 		timeTxt.borderSize = 2;
@@ -1626,14 +1628,14 @@ class PlayState extends MusicBeatState
 		reloadHealthBarColors();
 
 		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
-		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scoreTxt.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.25;
 		scoreTxt.visible = !ClientPrefs.hideHud;
 		add(scoreTxt);
 
 		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "BOTPLAY", 32);
-		botplayTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		botplayTxt.setFormat(Paths.font("goodbyeDespair.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		botplayTxt.scrollFactor.set();
 		botplayTxt.borderSize = 1.25;
 		botplayTxt.visible = cpuControlled;
@@ -2905,7 +2907,7 @@ class PlayState extends MusicBeatState
 				addCharacterToList(newCharacter, charType);
 				
 				case 'Flash':
-					var whiteLol:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+					whiteLol = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 					whiteLol.visible = false;
 					add(whiteLol);
 
