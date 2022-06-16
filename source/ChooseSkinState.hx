@@ -127,15 +127,28 @@ class ChooseSkinState extends MusicBeatState
 
       if (controls.BACK)
       {
+      	var covers:String = PlayState.isCovers;
+      	var extras:String = PlayState.isExtras;
  				FlxG.sound.play(Paths.sound('cancelMenu'));
-        MusicBeatState.switchState(new FreeplayState());
+ 				if (covers)
+ 				{
+ 					MusicBeatState.switchState(new CoversScreen());
+ 				}
+				if (extras)
+				{
+					MusicBeatState.switchState(new ExtrasScreen());
+				}
+				else
+				{
+					MusicBeatState.switchState(new FreeplayState());
+				}
       }
       if (controls.ACCEPT)
       {
         FlxG.sound.play(Paths.sound('entersfx'));
-        new FlxTimer().start(0.9, function(tmr:FlxTimer)
+        new FlxTimer().start(0.1, function(tmr:FlxTimer)
         {
-        MusicBeatState.switchState(new PlayState());
+        	LoadingState.switchState(new PlayState());
         });
       }
 
