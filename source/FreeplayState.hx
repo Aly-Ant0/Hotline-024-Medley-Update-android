@@ -14,6 +14,7 @@ import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.tweens.FlxTween;
+import flixel.tweens.FlxEase;
 import lime.utils.Assets;
 import flixel.system.FlxSound;
 import openfl.utils.Assets as OpenFlAssets;
@@ -146,7 +147,7 @@ class FreeplayState extends MusicBeatState
 		}
 		WeekData.setDirectoryFromWeek();
 		
-		bars = new FlxSprite().loadGraphic(Path.image('hotline/menu/bars'));
+		bars = new FlxSprite().loadGraphic(Paths.image('hotline/menu/bars'));
 		bars.screenCenter();
 		bars.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bars);
