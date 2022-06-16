@@ -35,9 +35,8 @@ class MainMenuState extends MusicBeatState
 	var optionShit:Array<String> = [
 		'story_mode',
 		'freeplay',
-		
 		'credits',
-		
+		'extras',
 		'options'
 	];
 
@@ -235,14 +234,14 @@ class MainMenuState extends MusicBeatState
 								switch (daChoice)
 								{
 									case 'story_mode':
-										MusicBeatState.switchState(new StoryMenuState());
+										FlxG.sound.play(Paths.sound('errorsfx');
+										FlxFlicker.flicker(spr, 1, 0.06, false, false,
 									case 'freeplay':
 										MusicBeatState.switchState(new FreeplayState());
-									
-									case 'extras':
-										MusicBeatState.switchState(new ExtrasScreen());
 									case 'credits':
 										MusicBeatState.switchState(new CreditsState());
+									case 'extras':
+										MusicBeatState.switchState(new ExtrasScreen());
 									case 'options':
 										LoadingState.loadAndSwitchState(new options.OptionsState());
 								}
