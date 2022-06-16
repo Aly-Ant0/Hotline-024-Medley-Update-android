@@ -60,7 +60,7 @@ class FreeplayState extends MusicBeatState
 		Paths.clearUnusedMemory();
 		
 		persistentUpdate = true;
-		PlayState.isStoryMode = false;
+		PlayState.noSkins = false;
 		WeekData.reloadWeekFiles(false);
 
 		#if desktop
