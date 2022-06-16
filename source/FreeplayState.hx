@@ -115,7 +115,7 @@ class FreeplayState extends MusicBeatState
 		nicu.screenCenter();
 		add(nicu);
 
-		FlxTween.tween(nicu, {y: nicu.y + 5}, 1.74, {ease: FlxEase.quadInOut, type: PINGPONG});'
+		FlxTween.tween(nicu, {y: nicu.y + 5}, 1.74, {ease: FlxEase.quadInOut, type: PINGPONG});
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
 		add(grpSongs);
@@ -157,7 +157,7 @@ class FreeplayState extends MusicBeatState
 		add(textChapter);
 
 		scoreText = new FlxText(0, 660, 0, "", 32);
-		scoreText.setFormat(Paths.font("LEMONMILK-Bold.ttf"), 32, FlxColor.WHITE, RIGHT);
+		scoreText.setFormat(Paths.font("LEMONMILK-Bold.otf"), 32, FlxColor.WHITE, RIGHT);
 		scoreText.screenCenter(X);
 		add(scoreText);
 
