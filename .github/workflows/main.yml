@@ -2,7 +2,7 @@
 
 name: Build
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
@@ -44,8 +44,9 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
         
-      - uses: nttld/setup-ndk@v1
-        with:
+        - name: Setup NDK
+          uses: nttld/setup-ndk@v1
+          with:
           # id: setup-ndk
           ndk-version: r15c
 
@@ -75,7 +76,6 @@ jobs:
           haxelib git extension-androidtools https://github.com/jigsaw-4277821/extension-androidtools.git   
           haxelib git extension-webview https://github.com/Daninnocent/extension-webview.git --quiet
           haxelib list
-
           
       - name: Create Version Tag
         run: echo "${{github.run_id}}" > VERSION
