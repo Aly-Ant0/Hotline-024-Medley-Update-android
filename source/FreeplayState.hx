@@ -39,7 +39,6 @@ class FreeplayState extends MusicBeatState
 	var nicu:FlxSprite;
 	var textChapter:FlxSprite;
 	var bars:FlxSprite;
-	var nicuflutualol:Int = 20
 	var lerpScore:Int = 0;
 	var lerpRating:Float = 0;
 	var intendedScore:Int = 0;
