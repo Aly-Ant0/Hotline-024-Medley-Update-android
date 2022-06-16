@@ -648,7 +648,7 @@ class PlayState extends MusicBeatState
         coverBG4.updateHitbox();
         add(coverBG4);
 
-        coverBG5 = new BGSprite('covers/hills', -1000, -150, o 1, 1);
+        coverBG5 = new BGSprite('covers/hills', -1000, -150, 1, 1);
         coverBG5.scale.set(1.3, 1.3);
         coverBG5.updateHitbox();
         add(coverBG5);
