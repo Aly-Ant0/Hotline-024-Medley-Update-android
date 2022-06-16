@@ -44,8 +44,7 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
         
-        - name: Setup NDK
-          uses: nttld/setup-ndk@v1
+        - uses: nttld/setup-ndk@v1
           with:
           # id: setup-ndk
           ndk-version: r15c
