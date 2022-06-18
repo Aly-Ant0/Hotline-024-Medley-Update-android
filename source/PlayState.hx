@@ -2905,11 +2905,6 @@ class PlayState extends MusicBeatState
 
 				var newCharacter:String = event.value2;
 				addCharacterToList(newCharacter, charType);
-				
-				case 'Flash':
-					whiteLol = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-					whiteLol.visible = false;
-					add(whiteLol);
 
 			case 'Philly Glow':
 				blammedLightsBlack = new FlxSprite(FlxG.width * -0.5, FlxG.height * -0.5).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
