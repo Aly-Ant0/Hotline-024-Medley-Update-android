@@ -4568,7 +4568,7 @@ class PlayState extends MusicBeatState
 					combotxt1.borderSize = 1.25;
 					add(combotxt1);
 
-					FlxFlicker.flicker(combotxt1, 1.1, 0.15, false);
+					FlxFlicker.flicker(combotxt1, 1, 0.15, false);
 					FlxTween.tween(combotxt1, {alpha: 0}, 1, {ease: FlxEase.quadInOut,
 						onComplete:function(twn:FlxTween)
 						{
@@ -4585,7 +4585,7 @@ class PlayState extends MusicBeatState
 					combotxt2.borderSize = 1.25;
 					add(combotxt2);
 
-					FlxFlicker.flicker(combotxt2, 1.1, 0.15, false);
+					FlxFlicker.flicker(combotxt2, 1, 0.15, false);
 					FlxTween.tween(combotxt2, {alpha: 0}, 1, {ease: FlxEase.quadInOut,
 						onComplete:function(twn:FlxTween)
 						{
@@ -4602,7 +4602,7 @@ class PlayState extends MusicBeatState
 					combotxt3.borderSize = 1.25;
 					add(combotxt3);
 
-					FlxFlicker.flicker(combotxt3, 1.1, 0.15, false);
+					FlxFlicker.flicker(combotxt3, 1, 0.15, false);
 					FlxTween.tween(combotxt3, {alpha: 0}, 1, {ease: FlxEase.quadInOut,
 						onComplete:function(twn:FlxTween)
 						{
@@ -4987,7 +4987,10 @@ class PlayState extends MusicBeatState
 
 			else if (songHits += 1)
 			{
-				resetCombo();
+				new FlxTimer().start(3, function(tmr:FlxTimer)
+				{
+					resetCombo();
+				});
 			}
 
 			if(!note.noAnimation) {
