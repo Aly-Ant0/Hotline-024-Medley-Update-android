@@ -53,6 +53,7 @@ import Note.EventNote;
 import openfl.events.KeyboardEvent;
 import flixel.effects.particles.FlxEmitter;
 import flixel.effects.particles.FlxParticle;
+import flixel.effects.FlxFlicker;
 import flixel.util.FlxSave;
 import animateatlas.AtlasFrameMaker;
 import Achievements;
@@ -4542,6 +4543,78 @@ class PlayState extends MusicBeatState
 		});
 	}
 
+	var comboArray:Array<String> = [
+		'perfect',
+		'good',
+		'bruh'
+	];
+	var comboTxt:FlxText;
+	var combotxt1:FlxText;
+	var combotxt2:FlxText;
+	var combotxt3:FlxText;
+	var lerpCombo:Int = 0;
+	var intendedCombo:Int = songScore;
+
+	public function resetCombo() // combo thing
+	{
+		switch(comboArray)
+		{
+			case 'perfect':
+				else if (songHits += 10)
+				{
+					combotxt1 new FlxText(0, healthBarBG.y + 36, FlxG.width, "perfect!", 32);
+					combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+					combotxt1.scrollFactor.set();
+					combotxt1.borderSize = 1.25;
+					add(combotxt1);
+
+					FlxFlicker.flicker(combotxt1, 1.1, 0.15, false);
+					FlxTween.tween(combotxt1, {alpha: 0}, 1, {ease: FlxEase.quadInOut,
+						onComplete:function(twn:FlxTween)
+						{
+							combotxt1.kill();
+						}
+					});
+				}
+			case 'good': // good
+				else if (songHits += 5)
+				{
+					combotxt2 new FlxText(0, healthBarBG.y + 36, FlxG.width, "good!", 32);
+					combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+					combotxt2.scrollFactor.set();
+					combotxt2.borderSize = 1.25;
+					add(combotxt2);
+
+					FlxFlicker.flicker(combotxt2, 1.1, 0.15, false);
+					FlxTween.tween(combotxt2, {alpha: 0}, 1, {ease: FlxEase.quadInOut,
+						onComplete:function(twn:FlxTween)
+						{
+							combotxt2.kill();
+						}
+					});
+				}
+			case 'bruh': // whoops...
+				else if (songMisses += 1)
+				{
+					combotxt3 new FlxText(0, healthBarBG.y + 36, FlxG.width, "Whoops...", 32);
+					combotxt3.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+					combotxt3.scrollFactor.set();
+					combotxt3.borderSize = 1.25;
+					add(combotxt3);
+
+					FlxFlicker.flicker(combotxt3, 1.1, 0.15, false);
+					FlxTween.tween(combotxt3, {alpha: 0}, 1, {ease: FlxEase.quadInOut,
+						onComplete:function(twn:FlxTween)
+						{
+							combotxt3.kill();
+						}
+					});
+				}
+		}
+		lerpCombo = Math.floor(FlxMath.lerp(lerpCombo, intendedCombo, CoolUtil.boundTo(elapsed * 24, 0, 1)));
+		songScore++
+	}
+
 	private function onKeyPress(event:KeyboardEvent):Void
 	{
 		var eventKey:FlxKey = event.keyCode;
@@ -4911,6 +4984,11 @@ class PlayState extends MusicBeatState
 				if(combo > 9999) combo = 9999;
 			}
 			health += note.hitHealth * healthGain;
+
+			else if (songHits += 1)
+			{
+				resetCombo();
+			}
 
 			if(!note.noAnimation) {
 				var daAlt = '';
