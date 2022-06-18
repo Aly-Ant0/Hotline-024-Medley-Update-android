@@ -1628,8 +1628,8 @@ class PlayState extends MusicBeatState
 		add(iconP2);
 		reloadHealthBarColors();
 
-		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
-		scoreTxt.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 42);
+		scoreTxt.setFormat(Paths.font("goodbyeDespair.ttf"), 30, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.25;
 		scoreTxt.visible = !ClientPrefs.hideHud;
@@ -4400,9 +4400,9 @@ class PlayState extends MusicBeatState
 				if(scoreTxtTween != null) {
 					scoreTxtTween.cancel();
 				}
-				scoreTxt.scale.x = 1.075;
-				scoreTxt.scale.y = 1.075;
-				scoreTxtTween = FlxTween.tween(scoreTxt.scale, {x: 1, y: 1}, 0.2, {
+				scoreTxt.scale.x = 2.075;
+				scoreTxt.scale.y = 2.075;
+				scoreTxtTween = FlxTween.tween(scoreTxt.scale, {x: 2, y: 2}, 0.2, {
 					onComplete: function(twn:FlxTween) {
 						scoreTxtTween = null;
 					}
@@ -4560,7 +4560,7 @@ class PlayState extends MusicBeatState
 		switch(comboArray)
 		{
 			case 'perfect':
-				else if (songHits += 10)
+				else if (songHits => 10)
 				{
 					combotxt1 new FlxText(0, healthBarBG.y + 36, FlxG.width, "perfect!", 32);
 					combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -4577,7 +4577,7 @@ class PlayState extends MusicBeatState
 					});
 				}
 			case 'good': // good
-				else if (songHits += 5)
+				if (songHits => 5)
 				{
 					combotxt2 new FlxText(0, healthBarBG.y + 36, FlxG.width, "good!", 32);
 					combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -4594,7 +4594,7 @@ class PlayState extends MusicBeatState
 					});
 				}
 			case 'bruh': // whoops...
-				else if (songMisses += 1)
+				else if (songMisses => 1)
 				{
 					combotxt3 new FlxText(0, healthBarBG.y + 36, FlxG.width, "Whoops...", 32);
 					combotxt3.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -4612,7 +4612,6 @@ class PlayState extends MusicBeatState
 				}
 		}
 		lerpCombo = Math.floor(FlxMath.lerp(lerpCombo, intendedCombo, CoolUtil.boundTo(elapsed * 24, 0, 1)));
-		songScore++
 	}
 
 	private function onKeyPress(event:KeyboardEvent):Void
@@ -4985,7 +4984,7 @@ class PlayState extends MusicBeatState
 			}
 			health += note.hitHealth * healthGain;
 
-			else if (songHits += 1)
+			else if (songHits => 1)
 			{
 				new FlxTimer().start(3, function(tmr:FlxTimer)
 				{
