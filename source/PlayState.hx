@@ -3718,7 +3718,8 @@ class PlayState extends MusicBeatState
 				whiteLol = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.WHITE);
 				whiteLol.visible = false;
 				add(whiteLol);
-				switch(value1);
+
+				switch(value1)
 				{
 					case 1:
 						new FlxTimer().start(0.01, function(tmr:FlxTimer)
