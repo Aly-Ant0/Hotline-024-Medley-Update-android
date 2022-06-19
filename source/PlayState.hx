@@ -4553,74 +4553,76 @@ class PlayState extends MusicBeatState
 	{
 		var comboArray:String = 'perfect', 'good', 'bruh';
 
-		switch(comboArray)
+		if (comboArray == 'perfect')
 		{
-			case 'perfect': // perfect txt
-				if (combo > 10)
-				{
-					combotxt1.text = 'Perfect!';
-					FlxFlicker.flicker(combotxt1, 1, 0.10, false);
-					FlxTween.tween(combotxt1, {alpha: 0}, 1, {
-						ease: FlxEase.quadOut,
-						onComplete: function(twn:FlxTween)
-						{
-							combotxt1.destroy();
-						}
-					});
+			if (combo > 15)
+			{
+				combotxt1.text = 'Perfect!';
+				FlxFlicker.flicker(combotxt1, 1, 0.10, false);
+				FlxTween.tween(combotxt1, {alpha: 0}, 1, {
+					ease: FlxEase.quadOut,
+					onComplete: function(twn:FlxTween)
+					{
+						combotxt1.destroy();
+					}
+				});
+				FlxFlicker.flicker(combotxt2, 1, 0.10, false, false);
+				FlxTween.tween(combotxt2, {alpha: 0}, 1, {
+					ease: FlxEase.quadOut,
+					onComplete: function(twn:FlxTween)
+					{
+						combotxt2.destroy();
+					}
+				});
+			}
+		}
+		if (comboArray == 'good')
+		{
+			if (combo > 1)
+			{
+				combotxt1.text = 'Good!';
+				FlxFlicker.flicker(combotxt1, 1, 0.10, false, false);
+				FlxTween.tween(combotxt1, {alpha: 0}, 1, {
+					ease: FlxEase.quadOut,
+					onComplete: function(twn:FlxTween)
+					{
+						combotxt1.destroy();
+					}
+				});
 
-					FlxFlicker.flicker(combotxt2, 1, 0.10, false, false);
-					FlxTween.tween(combotxt2, {alpha: 0}, 1, {
-						ease: FlxEase.quadOut,
-						onComplete: function(twn:FlxTween)
-						{
-							combotxt2.destroy();
-						}
-					});
-				}
-			case 'good': // good txt
-				if (combo > 5)
-				{
-					combotxt1.text = 'Good!';
-					FlxFlicker.flicker(combotxt1, 1, 0.10, false, false);
-					FlxTween.tween(combotxt1, {alpha: 0}, 1, {
-						ease: FlxEase.quadOut,
-						onComplete: function(twn:FlxTween)
-						{
-							combotxt1.destroy();
-						}
-					});
+				FlxFlicker.flicker(combotxt2, 1, 0.10, false, false);
+				FlxTween.tween(combotxt2, {alpha: 0}, 1, {
+					ease: FlxEase.quadOut,
+					onComplete: function(twn:FlxTween)
+					{
+						combotxt2.destroy();
+					}
+				});
+			}
+		}
+		if (comboArray == 'perfect')
+		{
+			if (songMisses += 1)
+			{
+				combotxt1.text = 'whoops...';
+				FlxFlicker.flicker(combotxt1, 1, 0.10, false, false);
+				FlxTween.tween(combotxt1, {alpha: 0}, 1, {
+					ease: FlxEase.quadOut,
+					onComplete: function(twn:FlxTween)
+					{
+						combotxt1.destroy();
+					}
+				});
 
-					FlxFlicker.flicker(combotxt2, 1, 0.10, false, false);
-					FlxTween.tween(combotxt2, {alpha: 0}, 1, {
-						ease: FlxEase.quadOut,
-						onComplete: function(twn:FlxTween)
-						{
-							combotxt2.destroy();
-						}
-					});
-				}
-			case 'bruh': // whoops... txt
-				if (songMisses > 1)
-				{
-					combotxt1.text = 'whoops...';
-					FlxFlicker.flicker(combotxt1, 1, 0.10, false, false);
-					FlxTween.tween(combotxt1, {alpha: 0}, 1, {
-						ease: FlxEase.quadOut,
-						onComplete: function(twn:FlxTween)
-						{
-							combotxt1.destroy();
-						}
-					});
-
-					FlxFlicker.flicker(combotxt2, 1, 0.10, false, false);
-					FlxTween.tween(combotxt2, {alpha: 0}, 1, {
-						ease: FlxEase.quadOut,
-						onComplete: function(twn:FlxTween)
-						{
-							combotxt2.destroy();
-						}
-					});
-				}
+				FlxFlicker.flicker(combotxt2, 1, 0.10, false, false);
+				FlxTween.tween(combotxt2, {alpha: 0}, 1, {
+					ease: FlxEase.quadOut,
+					onComplete: function(twn:FlxTween)
+					{
+						combotxt2.destroy();
+					}
+				});
+			}
 		}
 	}
 
