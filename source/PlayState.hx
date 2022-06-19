@@ -4546,7 +4546,6 @@ class PlayState extends MusicBeatState
 	var comboTxt:FlxText;
 	var combotxt1:FlxText;
 	var combotxt2:FlxText;
-	var combotxt3:FlxText;
 	var lerpCombo:Int = 0;
 	var intendedCombo:Int = songScore;
 
@@ -4558,28 +4557,25 @@ class PlayState extends MusicBeatState
 		'bruh'
 		];
 
-		combotxt1 new FlxText(0, strumLineNotes.y, FlxG.width, "perfect!", 32);
+		combotxt1 new FlxText(0, strumLineNotes.y, FlxG.width, "", 32);
 		combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		combotxt1.scrollFactor.set();
 		combotxt1.borderSize = 1.25;
+		add(combotxt1);
 
-		combotxt2 new FlxText(0, strumLineNotes.y + 36, FlxG.width, "good!", 32);
+		combotxt2 new FlxText(0, combotxt1.y + 15, FlxG.width, lerpScore, 26);
 		combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		combotxt2.scrollFactor.set();
 		combotxt2.borderSize = 1.25;
-
-		combotxt3 new FlxText(0, strumLineNotes.y + 36, FlxG.width, "Whoops...", 32);
-		combotxt3.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		combotxt3.scrollFactor.set();
-		combotxt3.borderSize = 1.25;
+		add(combotxt2);
 
 		switch(comboArray)
 		{
 			case 'perfect':
 				if (combo > 10)
 				{
-					add(combotxt1);
-					FlxFlicker.flicker(combotxt1, 1, 0.15, false);
+					combotxt1.text = 'Perfect!';
+					FlxFlicker.flicker(combotxt1, 1, 0.10, false);
 					FlxTween.tween(combotxt1, {alpha: 0}, 1, {
 						ease: FlxEase.quadOut,
 						onComplete: function(twn:FlxTween)
@@ -4587,12 +4583,30 @@ class PlayState extends MusicBeatState
 							combotxt1.destroy();
 						}
 					});
+
+					FlxFlicker.flicker(combotxt2, 1, 0.10, false, false);
+					FlxTween.tween(combotxt2, {alpha: 0}, 1, {
+						ease: FlxEase.quadOut,
+						onComplete: function(twn:FlxTween)
+						{
+							combotxt2.destroy();
+						}
+					});
 				}
 			case 'good': // good
 				if (combo > 5)
 				{
-					add(combotxt2);
-					FlxFlicker.flicker(combotxt2, 1, 0.15, false);
+					combotxt1.text = 'Good!';
+					FlxFlicker.flicker(combotxt1, 1, 0.10, false, false);
+					FlxTween.tween(combotxt1, {alpha: 0}, 1, {
+						ease: FlxEase.quadOut,
+						onComplete: function(twn:FlxTween)
+						{
+							combotxt1.destroy();
+						}
+					});
+
+					FlxFlicker.flicker(combotxt2, 1, 0.10, false, false);
 					FlxTween.tween(combotxt2, {alpha: 0}, 1, {
 						ease: FlxEase.quadOut,
 						onComplete: function(twn:FlxTween)
@@ -4604,17 +4618,27 @@ class PlayState extends MusicBeatState
 			case 'bruh': // whoops...
 				if (songMisses > 1)
 				{
-					add(combotxt3);
-					FlxFlicker.flicker(combotxt3, 1, 0.15, false);
-					FlxTween.tween(combotxt3, {alpha: 0}, 1, {
+					combotxt1.text = 'whoops...';
+					FlxFlicker.flicker(combotxt1, 1, 0.10, false, false);
+					FlxTween.tween(combotxt1, {alpha: 0}, 1, {
 						ease: FlxEase.quadOut,
 						onComplete: function(twn:FlxTween)
 						{
-							combotxt3.destroy();
+							combotxt1.destroy();
+						}
+					});
+
+					FlxFlicker.flicker(combotxt2, 1, 0.10, false, false);
+					FlxTween.tween(combotxt2, {alpha: 0}, 1, {
+						ease: FlxEase.quadOut,
+						onComplete: function(twn:FlxTween)
+						{
+							combotxt2.destroy();
 						}
 					});
 				}
 		}
+		lerpCombo = Math.floor(FlxMath.lerp(lerpCombo, intendedCombo, CoolUtil.boundTo(elapsed * 24, 0, 1)));
 	}
 
 	private function onKeyPress(event:KeyboardEvent):Void
