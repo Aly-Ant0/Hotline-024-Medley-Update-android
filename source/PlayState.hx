@@ -1646,15 +1646,16 @@ class PlayState extends MusicBeatState
 		combotxt1 = new FlxText();
 		combotxt1.size = 32;
 		combotxt1.color = FlxColor.WHITE;
+		combotxt1.text = "";
 		combotxt1.x = 300;
-		combotxt1.y = strumLineNotes.y + 5;
+		combotxt1.y = healthBarBG + 20;
 		combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		combotxt1.scrollFactor.set();
 		combotxt1.borderSize = 1.25;
 		add(combotxt1);
 
-		// combo score +
-		combotxt2 = new FlxText(0, combotxt1.y + 15, 0, lerpCombo, 26);
+		// combo score lerp
+		combotxt2 = new FlxText(0, combotxt1.y + 10, 0, "0", 26);
 		combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		combotxt2.scrollFactor.set();
 		combotxt2.borderSize = 1.25;
@@ -4567,8 +4568,6 @@ class PlayState extends MusicBeatState
 	var comboTxt:FlxText;
 	var combotxt1:FlxText;
 	var combotxt2:FlxText;
-	var lerpCombo:Int = 0;
-	var intendedCombo:Int = songScore;
 
 	function resetCombo() // combo thing
 	{
@@ -4578,7 +4577,9 @@ class PlayState extends MusicBeatState
 		'bruh'
 		];
 
-		switch(comboArray)
+		var daCombothing:String = comboArray;
+
+		switch(daCombothing)
 		{
 			case 'perfect':
 				if (combo > 10)
@@ -4647,7 +4648,6 @@ class PlayState extends MusicBeatState
 					});
 				}
 		}
-		lerpCombo = Math.floor(FlxMath.lerp(lerpCombo, intendedCombo, CoolUtil.boundTo(elapsed * 24, 0, 1)));
 	}
 
 	private function onKeyPress(event:KeyboardEvent):Void
@@ -5020,7 +5020,7 @@ class PlayState extends MusicBeatState
 			}
 			health += note.hitHealth * healthGain;
 
-				if (combo => 1 && note.isSustainNote)
+				if (combo += 1 && note.isSustainNote)
 				{
 					new FlxTimer().start(3, function(tmr:FlxTimer)
 					{
