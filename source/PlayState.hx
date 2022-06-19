@@ -5004,7 +5004,8 @@ class PlayState extends MusicBeatState
 
 				if (!note.isSustainNote)
 				{
-					if (combo +== 1)
+					combo++
+					if (combo > 1)
 					{
 						new FlxTimer().start(3.5, function(tmr:FlxTimer)
 						{
