@@ -4600,7 +4600,7 @@ class PlayState extends MusicBeatState
 				});
 			}
 		}
-		if (comboArray == 'perfect')
+		if (comboArray == 'bruh')
 		{
 			if (songMisses += 1)
 			{
