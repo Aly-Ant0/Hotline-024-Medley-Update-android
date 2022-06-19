@@ -4561,7 +4561,7 @@ class PlayState extends MusicBeatState
 		switch(comboArray)
 		{
 			case 'perfect':
-				else if (combo += 10)
+				if (combo > 10)
 				{
 					combotxt1 new FlxText(0, healthBarBG.y + 36, FlxG.width, "perfect!", 32);
 					combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -4578,7 +4578,7 @@ class PlayState extends MusicBeatState
 					});
 				}
 			case 'good': // good
-				if (combo += 5)
+				if (combo > 5)
 				{
 					combotxt2 new FlxText(0, healthBarBG.y + 36, FlxG.width, "good!", 32);
 					combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -4595,7 +4595,7 @@ class PlayState extends MusicBeatState
 					});
 				}
 			case 'bruh': // whoops...
-				if (songMisses += 1)
+				if (songMisses > 1)
 				{
 					combotxt3 new FlxText(0, healthBarBG.y + 36, FlxG.width, "Whoops...", 32);
 					combotxt3.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
