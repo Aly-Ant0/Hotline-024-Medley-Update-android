@@ -5020,7 +5020,7 @@ class PlayState extends MusicBeatState
 			}
 			health += note.hitHealth * healthGain;
 
-				else if (combo => 1 && note.isSustainNote)
+				if (combo => 1 && note.isSustainNote)
 				{
 					new FlxTimer().start(3, function(tmr:FlxTimer)
 					{
