@@ -3734,27 +3734,7 @@ class PlayState extends MusicBeatState
 				var value:Int = Std.parseInt(value1);
 				if(Math.isNaN(value) || value < 1) value = 1;
 				gfSpeed = value;
-				
-			case 'Flash':
-				// dont have the value 2 only value 1 xd
-				var value1:Int = Std.parse(value1);
-				whiteLol = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.WHITE);
-				whiteLol.visible = false;
-				add(whiteLol);
 
-				switch(value1)
-				{
-					case 1:
-						new FlxTimer().start(0.01, function(tmr:FlxTimer)
-						{
-							whiteLol.visible = true;
-						});
-						
-						new FlxTimer().start(0.01, function(tmr:FlxTimer)
-						{
-							whiteLol.visible = false;
-						});
-				}
 			case 'Philly Glow':
 				var lightId:Int = Std.parseInt(value1);
 				if(Math.isNaN(lightId)) lightId = 0;
