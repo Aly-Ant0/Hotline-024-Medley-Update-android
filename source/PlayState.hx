@@ -4552,11 +4552,12 @@ class PlayState extends MusicBeatState
 
 	function resetCombo() // combo thing
 	{
-			var comboArray:Array<String> = [
+		var comboArray:Array<String> = [
 		'perfect',
 		'good',
 		'bruh'
-	];
+		];
+
 		switch(comboArray)
 		{
 			case 'perfect':
@@ -4566,10 +4567,11 @@ class PlayState extends MusicBeatState
 					combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 					combotxt1.scrollFactor.set();
 					combotxt1.borderSize = 1.25;
+					insert(members.indexOf(strumLineNotes), combotxt1);
 					add(combotxt1);
 
-					FlxFlicker.flicker(combotxt1, 1, 0.15, false);
-					FlxTween.tween(combotxt1, {alpha: 0}, 1, {ease: FlxEase.quadOut,
+					FlxTween.tween(combotxt1, {alpha: 0}, 1, {
+						ease: FlxEase.quadOut,
 						onComplete: function(twn:FlxTween)
 						{
 							combotxt1.kill();
@@ -4583,11 +4585,12 @@ class PlayState extends MusicBeatState
 					combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 					combotxt2.scrollFactor.set();
 					combotxt2.borderSize = 1.25;
+					insert(members.indexOf(strumLineNotes), combotxt2);
 					add(combotxt2);
 
-					FlxFlicker.flicker(combotxt2, 1, 0.15, false);
-					FlxTween.tween(combotxt2, {alpha: 0}, 1, {ease: FlxEase.quadOut,
-						onComplete:function(twn:FlxTween)
+					FlxTween.tween(combotxt2, {alpha: 0}, 1, {
+						ease: FlxEase.quadOut,
+						onComplete: function(twn:FlxTween)
 						{
 							combotxt2.kill();
 						}
@@ -4600,18 +4603,19 @@ class PlayState extends MusicBeatState
 					combotxt3.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 					combotxt3.scrollFactor.set();
 					combotxt3.borderSize = 1.25;
+					insert(members.indexOf(strumLineNotes), combotxt3);
 					add(combotxt3);
 
 					FlxFlicker.flicker(combotxt3, 1, 0.15, false);
-					FlxTween.tween(combotxt3, {alpha: 0}, 1, {ease: FlxEase.quadOut,
-						onComplete:function(twn:FlxTween)
+					FlxTween.tween(combotxt3, {alpha: 0}, 1, {
+						ease: FlxEase.quadOut,
+						onComplete: function(twn:FlxTween)
 						{
 							combotxt3.kill();
 						}
 					});
 				}
 		}
-		lerpCombo = Math.floor(FlxMath.lerp(lerpCombo, intendedCombo, CoolUtil.boundTo(elapsed * 24, 0, 1)));
 	}
 
 	private function onKeyPress(event:KeyboardEvent):Void
