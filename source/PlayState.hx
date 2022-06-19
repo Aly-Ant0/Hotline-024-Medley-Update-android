@@ -4553,12 +4553,11 @@ class PlayState extends MusicBeatState
 	{
 		var comboArray:String = '';
 		comboArray = combostuff;
-		
 
 		var combolol = 'perfect';
 		var combolol2 = 'good';
 		var combolol3 = 'bruh';
-		var combostuff = combolol, combolol2, combolol3;
+		var combostuff:String = combolol, combolol2, combolol3;
 
 		if (comboArray == 'perfect')
 		{
@@ -5003,12 +5002,15 @@ class PlayState extends MusicBeatState
 			}
 			health += note.hitHealth * healthGain;
 
-				if (combo += 1 && !note.isSustainNote)
+				if (!note.isSustainNote)
 				{
-					new FlxTimer().start(3.5, function(tmr:FlxTimer)
+					if (combo += 1)
 					{
-						resetCombo();
-					});
+						new FlxTimer().start(3.5, function(tmr:FlxTimer)
+						{
+							resetCombo();
+						});
+					}
 				}
 
 			if(!note.noAnimation) {
