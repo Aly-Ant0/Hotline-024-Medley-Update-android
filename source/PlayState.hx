@@ -1641,6 +1641,21 @@ class PlayState extends MusicBeatState
 		botplayTxt.borderSize = 1.25;
 		botplayTxt.visible = cpuControlled;
 		add(botplayTxt);
+
+		// lol
+		combotxt1 new FlxText(200, strumLineNotes.y, 0, "", 32);
+		combotxt1.setFormat(Paths.font('goodbyeDespair.ttf'), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		combotxt1.scrollFactor.set();
+		combotxt1.borderSize = 1.25;
+		add(combotxt1);
+
+		// combo score +
+		combotxt2 new FlxText(0, combotxt1.y + 15, 0, lerpScore, 26);
+		combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		combotxt2.scrollFactor.set();
+		combotxt2.borderSize = 1.25;
+		add(combotxt2);
+
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
 		}
@@ -1654,6 +1669,8 @@ class PlayState extends MusicBeatState
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 		botplayTxt.cameras = [camHUD];
+		combotxt1.cameras = [camHUD];
+		combotxt2.cameras = [camHUD];
 		timeBar.cameras = [camHUD];
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
@@ -4556,18 +4573,6 @@ class PlayState extends MusicBeatState
 		'good',
 		'bruh'
 		];
-
-		combotxt1 new FlxText(200, strumLineNotes.y, 0, "", 32);
-		combotxt1.setFormat(Paths.font('goodbyeDespair.ttf'), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		combotxt1.scrollFactor.set();
-		combotxt1.borderSize = 1.25;
-		add(combotxt1);
-
-		combotxt2 new FlxText(0, combotxt1.y + 15, 0, lerpScore, 26);
-		combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		combotxt2.scrollFactor.set();
-		combotxt2.borderSize = 1.25;
-		add(combotxt2);
 
 		switch(comboArray)
 		{
