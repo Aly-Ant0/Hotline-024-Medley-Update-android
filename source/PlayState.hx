@@ -4551,8 +4551,7 @@ class PlayState extends MusicBeatState
 
 	function resetCombo() // combo thing
 	{
-		var comboArray:String = '';
-		comboArray = combostuff;
+		var comboArray:String = combostuff;
 
 		var combolol = 'perfect';
 		var combolol2 = 'good';
@@ -5004,7 +5003,7 @@ class PlayState extends MusicBeatState
 
 				if (!note.isSustainNote)
 				{
-					combo++
+					combo++;
 					if (combo > 1)
 					{
 						new FlxTimer().start(3.5, function(tmr:FlxTimer)
