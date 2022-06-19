@@ -4560,7 +4560,7 @@ class PlayState extends MusicBeatState
 		switch(comboArray)
 		{
 			case 'perfect':
-				else if (songHits => 10)
+				else if (combo => 10)
 				{
 					combotxt1 new FlxText(0, healthBarBG.y + 36, FlxG.width, "perfect!", 32);
 					combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -4577,7 +4577,7 @@ class PlayState extends MusicBeatState
 					});
 				}
 			case 'good': // good
-				if (songHits => 5)
+				if (combo => 5)
 				{
 					combotxt2 new FlxText(0, healthBarBG.y + 36, FlxG.width, "good!", 32);
 					combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -4984,13 +4984,13 @@ class PlayState extends MusicBeatState
 			}
 			health += note.hitHealth * healthGain;
 
-			else if (songHits => 1)
-			{
-				new FlxTimer().start(3, function(tmr:FlxTimer)
+				else if (combo => 1 && note.isSustainNote)
 				{
-					resetCombo();
-				});
-			}
+					new FlxTimer().start(3, function(tmr:FlxTimer)
+					{
+						resetCombo();
+					});
+				}
 
 			if(!note.noAnimation) {
 				var daAlt = '';
