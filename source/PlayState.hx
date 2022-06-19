@@ -4563,12 +4563,12 @@ class PlayState extends MusicBeatState
 		combotxt1.scrollFactor.set();
 		combotxt1.borderSize = 1.25;
 
-		combotxt2 new FlxText(0, healthBarBG.y + 36, FlxG.width, "good!", 32);
+		combotxt2 new FlxText(0, strumLineNotes.y + 36, FlxG.width, "good!", 32);
 		combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		combotxt2.scrollFactor.set();
 		combotxt2.borderSize = 1.25;
 
-		combotxt3 new FlxText(0, healthBarBG.y + 36, FlxG.width, "Whoops...", 32);
+		combotxt3 new FlxText(0, strumLineNotes.y + 36, FlxG.width, "Whoops...", 32);
 		combotxt3.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		combotxt3.scrollFactor.set();
 		combotxt3.borderSize = 1.25;
