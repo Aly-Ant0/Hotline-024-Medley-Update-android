@@ -1643,8 +1643,12 @@ class PlayState extends MusicBeatState
 		add(botplayTxt);
 
 		// lol
-		combotxt1 new FlxText(200, strumLineNotes.y, 0, "", 32);
-		combotxt1.setFormat(Paths.font('goodbyeDespair.ttf'), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		combotxt1 new FlxText();
+		combotxt1.size = 32;
+		combotxt1.color = FlxColor.WHITE
+		combotxt1.x = 300;
+		combotxt1.y = strumLineNotes.y + 5;
+		combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		combotxt1.scrollFactor.set();
 		combotxt1.borderSize = 1.25;
 		add(combotxt1);
