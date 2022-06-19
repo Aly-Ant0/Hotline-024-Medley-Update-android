@@ -1652,14 +1652,12 @@ class PlayState extends MusicBeatState
 		combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		combotxt1.scrollFactor.set();
 		combotxt1.borderSize = 1.25;
-		add(combotxt1);
 
 		// combo score lerp
 		combotxt2 = new FlxText(0, combotxt1.y + 10, 0, "0", 26);
 		combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		combotxt2.scrollFactor.set();
 		combotxt2.borderSize = 1.25;
-		add(combotxt2);
 
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
@@ -4011,16 +4009,6 @@ class PlayState extends MusicBeatState
 						}
 					});
 				}
-			case 'Flash':
-				new FlxTimer().start(0.01, function(tmr:FlxTimer)
-				{
-					whiteLol.visible = true;
-				});
-				
-				new FlxTimer().start(0.01, function(tmr:FlxTimer)
-				{
-					whiteLol.visible = false;
-				});
 			case 'Set Property':
 				var killMe:Array<String> = value1.split('.');
 				if(killMe.length > 1) {
@@ -4562,18 +4550,20 @@ class PlayState extends MusicBeatState
 		if (comboTime >= comboArray.length)
 			comboTime = 0;
 
-		switch(comboTimeArray)
+		switch(comboTime)
 		{
-			case 'Perfect!':
+			case 0:
 				if (combo > 15)
 				{
+					add(combotxt1);
+					add(combotxt2);
 					combotxt1.text = 'Perfect!';
 					FlxFlicker.flicker(combotxt1, 1, 0.10, false);
 					FlxTween.tween(combotxt1, {alpha: 0}, 1, {
 						ease: FlxEase.quadOut,
 						onComplete: function(twn:FlxTween)
 						{
-							combotxt1.destroy();
+							combotxt1.kill();
 						}
 					});
 					FlxFlicker.flicker(combotxt2, 1, 0.10, false, false);
@@ -4581,20 +4571,22 @@ class PlayState extends MusicBeatState
 						ease: FlxEase.quadOut,
 						onComplete: function(twn:FlxTween)
 						{
-							combotxt2.destroy();
+							combotxt2.kill();
 						}
 					});
 				}
 		case 'Nice!':
 			if (combo > 1)
 			{
+				add(combotxt1);
+				add(combotxt2);
 				combotxt1.text = 'Nice!';
 				FlxFlicker.flicker(combotxt1, 1, 0.10, false, false);
 				FlxTween.tween(combotxt1, {alpha: 0}, 1, {
 					ease: FlxEase.quadOut,
 					onComplete: function(twn:FlxTween)
 					{
-						combotxt1.destroy();
+						combotxt1.kill();
 					}
 				});
 
@@ -4603,20 +4595,22 @@ class PlayState extends MusicBeatState
 					ease: FlxEase.quadOut,
 					onComplete: function(twn:FlxTween)
 					{
-						combotxt2.destroy();
+						combotxt2.kill();
 					}
 				});
 			}
 			case 'Whoops...':
 				if (songMisses > 1)
 				{
+					add(combotxt1);
+					add(combotxt2);
 					combotxt1.text = 'whoops...';
 					FlxFlicker.flicker(combotxt1, 1, 0.10, false, false);
 					FlxTween.tween(combotxt1, {alpha: 0}, 1, {
 						ease: FlxEase.quadOut,
 						onComplete: function(twn:FlxTween)
 						{
-							combotxt1.destroy();
+							combotxt1.kill();
 						}
 					});
 
@@ -4625,7 +4619,7 @@ class PlayState extends MusicBeatState
 						ease: FlxEase.quadOut,
 						onComplete: function(twn:FlxTween)
 						{
-							combotxt2.destroy();
+							combotxt2.kill();
 						}
 					});
 				}
