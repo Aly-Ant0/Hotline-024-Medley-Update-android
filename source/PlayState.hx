@@ -5025,6 +5025,7 @@ class PlayState extends MusicBeatState
 					new FlxTimer().start(3, function(tmr:FlxTimer)
 					{
 						resetCombo();
+						combo = 0;
 					});
 				}
 
