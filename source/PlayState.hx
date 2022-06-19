@@ -4551,41 +4551,44 @@ class PlayState extends MusicBeatState
 
 	function resetCombo() // combo thing
 	{
-		var comboArray:Array = ['perfect', 'good', 'bruh'];
+		var comboArray:Array<String> = ['Perfect!', 'Nice!', 'Whoops...'];
+		var comboTime:Int = 0;
+		var comboTimeArray:String = comboArray[comboTime];
 
-		//var combolol = 'perfect';
-		//var combolol2 = 'good';
-		//var combolol3 = 'bruh';
-		//var combostuff:String = combolol, combolol2, combolol3;
+				if (comboTime < 0)
 
-		if (comboArray == 'perfect')
+			comboTime = comboArray.length - 1;
+
+		if (comboTime >= comboArray.length)
+			comboTime = 0;
+
+		switch(comboTimeArray)
 		{
-			if (combo > 15)
-			{
-				combotxt1.text = 'Perfect!';
-				FlxFlicker.flicker(combotxt1, 1, 0.10, false);
-				FlxTween.tween(combotxt1, {alpha: 0}, 1, {
-					ease: FlxEase.quadOut,
-					onComplete: function(twn:FlxTween)
-					{
-						combotxt1.destroy();
-					}
-				});
-				FlxFlicker.flicker(combotxt2, 1, 0.10, false, false);
-				FlxTween.tween(combotxt2, {alpha: 0}, 1, {
-					ease: FlxEase.quadOut,
-					onComplete: function(twn:FlxTween)
-					{
-						combotxt2.destroy();
-					}
-				});
-			}
-		}
-		if (comboArray == 'good')
-		{
+			case 'Perfect!':
+				if (combo > 15)
+				{
+					combotxt1.text = 'Perfect!';
+					FlxFlicker.flicker(combotxt1, 1, 0.10, false);
+					FlxTween.tween(combotxt1, {alpha: 0}, 1, {
+						ease: FlxEase.quadOut,
+						onComplete: function(twn:FlxTween)
+						{
+							combotxt1.destroy();
+						}
+					});
+					FlxFlicker.flicker(combotxt2, 1, 0.10, false, false);
+					FlxTween.tween(combotxt2, {alpha: 0}, 1, {
+						ease: FlxEase.quadOut,
+						onComplete: function(twn:FlxTween)
+						{
+							combotxt2.destroy();
+						}
+					});
+				}
+		case 'Nice!':
 			if (combo > 1)
 			{
-				combotxt1.text = 'Good!';
+				combotxt1.text = 'Nice!';
 				FlxFlicker.flicker(combotxt1, 1, 0.10, false, false);
 				FlxTween.tween(combotxt1, {alpha: 0}, 1, {
 					ease: FlxEase.quadOut,
@@ -4604,30 +4607,28 @@ class PlayState extends MusicBeatState
 					}
 				});
 			}
-		}
-		if (comboArray == 'bruh')
-		{
-			if (songMisses > 1)
-			{
-				combotxt1.text = 'whoops...';
-				FlxFlicker.flicker(combotxt1, 1, 0.10, false, false);
-				FlxTween.tween(combotxt1, {alpha: 0}, 1, {
-					ease: FlxEase.quadOut,
-					onComplete: function(twn:FlxTween)
-					{
-						combotxt1.destroy();
-					}
-				});
+			case 'Whoops...':
+				if (songMisses > 1)
+				{
+					combotxt1.text = 'whoops...';
+					FlxFlicker.flicker(combotxt1, 1, 0.10, false, false);
+					FlxTween.tween(combotxt1, {alpha: 0}, 1, {
+						ease: FlxEase.quadOut,
+						onComplete: function(twn:FlxTween)
+						{
+							combotxt1.destroy();
+						}
+					});
 
-				FlxFlicker.flicker(combotxt2, 1, 0.10, false, false);
-				FlxTween.tween(combotxt2, {alpha: 0}, 1, {
-					ease: FlxEase.quadOut,
-					onComplete: function(twn:FlxTween)
-					{
-						combotxt2.destroy();
-					}
-				});
-			}
+					FlxFlicker.flicker(combotxt2, 1, 0.10, false, false);
+					FlxTween.tween(combotxt2, {alpha: 0}, 1, {
+						ease: FlxEase.quadOut,
+						onComplete: function(twn:FlxTween)
+						{
+							combotxt2.destroy();
+						}
+					});
+				}
 		}
 	}
 
