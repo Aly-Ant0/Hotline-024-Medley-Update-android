@@ -4558,57 +4558,59 @@ class PlayState extends MusicBeatState
 		'bruh'
 		];
 
+		combotxt1 new FlxText(0, strumLineNotes.y, FlxG.width, "perfect!", 32);
+		combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		combotxt1.scrollFactor.set();
+		combotxt1.borderSize = 1.25;
+
+		combotxt2 new FlxText(0, healthBarBG.y + 36, FlxG.width, "good!", 32);
+		combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		combotxt2.scrollFactor.set();
+		combotxt2.borderSize = 1.25;
+
+		combotxt3 new FlxText(0, healthBarBG.y + 36, FlxG.width, "Whoops...", 32);
+		combotxt3.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		combotxt3.scrollFactor.set();
+		combotxt3.borderSize = 1.25;
+
 		switch(comboArray)
 		{
 			case 'perfect':
 				if (combo > 10)
 				{
-					combotxt1 new FlxText(0, healthBarBG.y + 36, FlxG.width, "perfect!", 32);
-					combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-					combotxt1.scrollFactor.set();
-					combotxt1.borderSize = 1.25;
 					add(combotxt1);
-
+					FlxFlicker.flicker(combotxt1, 1, 0.15, false);
 					FlxTween.tween(combotxt1, {alpha: 0}, 1, {
 						ease: FlxEase.quadOut,
 						onComplete: function(twn:FlxTween)
 						{
-							combotxt1.kill();
+							combotxt1.destroy();
 						}
 					});
 				}
 			case 'good': // good
 				if (combo > 5)
 				{
-					combotxt2 new FlxText(0, healthBarBG.y + 36, FlxG.width, "good!", 32);
-					combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-					combotxt2.scrollFactor.set();
-					combotxt2.borderSize = 1.25;
 					add(combotxt2);
-
+					FlxFlicker.flicker(combotxt2, 1, 0.15, false);
 					FlxTween.tween(combotxt2, {alpha: 0}, 1, {
 						ease: FlxEase.quadOut,
 						onComplete: function(twn:FlxTween)
 						{
-							combotxt2.kill();
+							combotxt2.destroy();
 						}
 					});
 				}
 			case 'bruh': // whoops...
 				if (songMisses > 1)
 				{
-					combotxt3 new FlxText(0, healthBarBG.y + 36, FlxG.width, "Whoops...", 32);
-					combotxt3.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-					combotxt3.scrollFactor.set();
-					combotxt3.borderSize = 1.25;
 					add(combotxt3);
-
 					FlxFlicker.flicker(combotxt3, 1, 0.15, false);
 					FlxTween.tween(combotxt3, {alpha: 0}, 1, {
 						ease: FlxEase.quadOut,
 						onComplete: function(twn:FlxTween)
 						{
-							combotxt3.kill();
+							combotxt3.destroy();
 						}
 					});
 				}
