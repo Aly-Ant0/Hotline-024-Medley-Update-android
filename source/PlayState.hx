@@ -4551,7 +4551,7 @@ class PlayState extends MusicBeatState
 
 	function resetCombo() // combo thing
 	{
-		var comboArray:Array<String> = ['perfect', 'good', 'bruh']
+		var comboArray:Array<String> = ['perfect', 'good', 'bruh'];
 
 		//var combolol = 'perfect';
 		//var combolol2 = 'good';
