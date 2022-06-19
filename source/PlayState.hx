@@ -4608,7 +4608,7 @@ class PlayState extends MusicBeatState
 		}
 		if (comboArray == 'bruh')
 		{
-			if (songMisses += 1)
+			if (songMisses > 1)
 			{
 				combotxt1.text = 'whoops...';
 				FlxFlicker.flicker(combotxt1, 1, 0.10, false, false);
@@ -5004,7 +5004,7 @@ class PlayState extends MusicBeatState
 
 				if (!note.isSustainNote)
 				{
-					if (combo += 1)
+					if (combo +== 1)
 					{
 						new FlxTimer().start(3.5, function(tmr:FlxTimer)
 						{
