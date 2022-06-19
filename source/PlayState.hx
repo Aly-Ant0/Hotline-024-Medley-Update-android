@@ -1648,7 +1648,7 @@ class PlayState extends MusicBeatState
 		combotxt1.color = FlxColor.WHITE;
 		combotxt1.text = "";
 		combotxt1.x = 300;
-		combotxt1.y = healthBarBG + 20;
+		combotxt1.y = FlxG.height + 20;
 		combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		combotxt1.scrollFactor.set();
 		combotxt1.borderSize = 1.25;
@@ -4551,11 +4551,8 @@ class PlayState extends MusicBeatState
 
 	function resetCombo() // combo thing
 	{
-		var comboArray:String = [
-		'perfect',
-		'good',
-		'bruh'
-		];
+		var comboArray:String = 'perfect', 'good', 'bruh';
+
 		switch(comboArray)
 		{
 			case 'perfect': // perfect txt
@@ -4580,7 +4577,7 @@ class PlayState extends MusicBeatState
 						}
 					});
 				}
-			case 1: // good txt
+			case 'good': // good txt
 				if (combo > 5)
 				{
 					combotxt1.text = 'Good!';
@@ -4602,7 +4599,7 @@ class PlayState extends MusicBeatState
 						}
 					});
 				}
-			case 2: // whoops... txt
+			case 'bruh': // whoops... txt
 				if (songMisses > 1)
 				{
 					combotxt1.text = 'whoops...';
@@ -4997,12 +4994,11 @@ class PlayState extends MusicBeatState
 			}
 			health += note.hitHealth * healthGain;
 
-				if (combo += 1 && note.isSustainNote)
+				if (combo += 1 && !note.isSustainNote)
 				{
-					new FlxTimer().start(3, function(tmr:FlxTimer)
+					new FlxTimer().start(3.5, function(tmr:FlxTimer)
 					{
 						resetCombo();
-						combo = 0;
 					});
 				}
 
