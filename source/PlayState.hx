@@ -4557,11 +4557,11 @@ class PlayState extends MusicBeatState
 		'bruh'
 		];
 
-		var daCombothing:String = comboArray;
+		var daCombothing:Int = comboArray;
 
 		switch(daCombothing)
 		{
-			case 'perfect':
+			case 0: // perfect txt
 				if (combo > 10)
 				{
 					combotxt1.text = 'Perfect!';
@@ -4583,7 +4583,7 @@ class PlayState extends MusicBeatState
 						}
 					});
 				}
-			case 'good': // good
+			case 1: // good txt
 				if (combo > 5)
 				{
 					combotxt1.text = 'Good!';
@@ -4605,7 +4605,7 @@ class PlayState extends MusicBeatState
 						}
 					});
 				}
-			case 'bruh': // whoops...
+			case 2: // whoops... txt
 				if (songMisses > 1)
 				{
 					combotxt1.text = 'whoops...';
