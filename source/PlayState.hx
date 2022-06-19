@@ -4543,11 +4543,6 @@ class PlayState extends MusicBeatState
 		});
 	}
 
-	var comboArray:Array<String> = [
-		'perfect',
-		'good',
-		'bruh'
-	];
 	var comboTxt:FlxText;
 	var combotxt1:FlxText;
 	var combotxt2:FlxText;
@@ -4555,8 +4550,13 @@ class PlayState extends MusicBeatState
 	var lerpCombo:Int = 0;
 	var intendedCombo:Int = songScore;
 
-	public function resetCombo() // combo thing
+	function resetCombo() // combo thing
 	{
+			var comboArray:Array<String> = [
+		'perfect',
+		'good',
+		'bruh'
+	];
 		switch(comboArray)
 		{
 			case 'perfect':
@@ -4569,8 +4569,8 @@ class PlayState extends MusicBeatState
 					add(combotxt1);
 
 					FlxFlicker.flicker(combotxt1, 1, 0.15, false);
-					FlxTween.tween(combotxt1, {alpha: 0}, 1, {ease: FlxEase.quadInOut,
-						onComplete:function(twn:FlxTween)
+					FlxTween.tween(combotxt1, {alpha: 0}, 1, {ease: FlxEase.quadOut,
+						onComplete: function(twn:FlxTween)
 						{
 							combotxt1.kill();
 						}
@@ -4586,7 +4586,7 @@ class PlayState extends MusicBeatState
 					add(combotxt2);
 
 					FlxFlicker.flicker(combotxt2, 1, 0.15, false);
-					FlxTween.tween(combotxt2, {alpha: 0}, 1, {ease: FlxEase.quadInOut,
+					FlxTween.tween(combotxt2, {alpha: 0}, 1, {ease: FlxEase.quadOut,
 						onComplete:function(twn:FlxTween)
 						{
 							combotxt2.kill();
@@ -4603,7 +4603,7 @@ class PlayState extends MusicBeatState
 					add(combotxt3);
 
 					FlxFlicker.flicker(combotxt3, 1, 0.15, false);
-					FlxTween.tween(combotxt3, {alpha: 0}, 1, {ease: FlxEase.quadInOut,
+					FlxTween.tween(combotxt3, {alpha: 0}, 1, {ease: FlxEase.quadOut,
 						onComplete:function(twn:FlxTween)
 						{
 							combotxt3.kill();
