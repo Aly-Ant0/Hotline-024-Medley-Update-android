@@ -1645,7 +1645,7 @@ class PlayState extends MusicBeatState
 		// lol
 		combotxt1 = new FlxText();
 		combotxt1.size = 32;
-		combotxt1.color = FlxColor.WHITE
+		combotxt1.color = FlxColor.WHITE;
 		combotxt1.x = 300;
 		combotxt1.y = strumLineNotes.y + 5;
 		combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -1654,7 +1654,7 @@ class PlayState extends MusicBeatState
 		add(combotxt1);
 
 		// combo score +
-		combotxt2 = new FlxText(0, combotxt1.y + 15, 0, lerpScore, 26);
+		combotxt2 = new FlxText(0, combotxt1.y + 15, 0, lerpCombo, 26);
 		combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		combotxt2.scrollFactor.set();
 		combotxt2.borderSize = 1.25;
