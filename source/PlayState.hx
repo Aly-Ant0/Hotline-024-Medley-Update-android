@@ -4548,7 +4548,7 @@ class PlayState extends MusicBeatState
 	var combotxt2:FlxText;
 	var combotxt3:FlxText;
 	var lerpCombo:Int = 0;
-	var intendedCombo:Int = songScore;
+	var intendedCombo:Int = songScore++;
 
 	function resetCombo() // combo thing
 	{
@@ -4594,7 +4594,7 @@ class PlayState extends MusicBeatState
 					});
 				}
 			case 'bruh': // whoops...
-				else if (songMisses => 1)
+				else if (songMisses > 1)
 				{
 					combotxt3 new FlxText(0, healthBarBG.y + 36, FlxG.width, "Whoops...", 32);
 					combotxt3.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
