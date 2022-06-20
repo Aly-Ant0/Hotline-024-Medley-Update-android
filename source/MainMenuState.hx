@@ -202,6 +202,17 @@ class MainMenuState extends MusicBeatState
 
 			if (controls.ACCEPT)
 			{
+				if (optionShit[curSelected] == 'story_mode')
+				{
+					menuItems.forEach(function(spr:FlxSprite)
+					{
+						if (curSelected != spr.ID)
+						{
+							FlxG.sound.play(Paths.sound('errorsfx'));
+							FlxFlicker.flicker(spr, 0.4, 0.06, false, false);
+						}
+					});
+				}
 				if (optionShit[curSelected] == 'donate')
 				{
 					CoolUtil.browserLoad('https://ninja-muffin24.itch.io/funkin');
@@ -233,9 +244,6 @@ class MainMenuState extends MusicBeatState
 
 								switch (daChoice)
 								{
-									case 'story_mode':
-										FlxG.sound.play(Paths.sound('errorsfx'));
-										FlxFlicker.flicker(spr, 0.4, 0.06, false, false);
 									case 'freeplay':
 										MusicBeatState.switchState(new FreeplayState());
 									case 'credits':
