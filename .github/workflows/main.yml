@@ -42,7 +42,7 @@ jobs:
         with:
           haxe-version: 4.2.4
 
-      - name: Setup HaxeFlixel
+      - name: Install haxelib stuff
         run: |
           haxelib --quiet install lime
           haxelib --quiet install openfl
@@ -58,7 +58,7 @@ jobs:
           haxelib git linc_luajit https://github.com/jigsaw-4277821/linc_luajit.git --quiet
           haxelib list
 
-      - name: Setup Lime
+      - name: Config Lime stuff
         run: |
           haxelib run lime setup -alias -y
           lime config ANDROID_SDK $ANDROID_HOME
@@ -69,11 +69,11 @@ jobs:
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
-      - name: Build APK
+      - name: Compile the APK
         run: lime build android -final
       
       - name: Upload Artifact
         uses: actions/upload-artifact@v2.2.2
         with:
-          name: Hotline 024 Android
+          name: Hotline Medley update
           path: export/release/android/bin/app/build/outputs/apk/debug
