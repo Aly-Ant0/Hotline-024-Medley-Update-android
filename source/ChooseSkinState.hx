@@ -210,7 +210,7 @@ class ChooseSkinState extends MusicBeatState
 			  skinShadow.loadGraphic(newSkinShadow);
 				skinShadow.alpha = 0.48;
 				skinShadow.x = 5;
-				FlxTween.tween(skinShadow, {alpha: 1}, 1.97 {ease: FlxEase.smoothStepOut});
+				FlxTween.tween(skinShadow, {alpha: 1}, 1.97, {ease: FlxEase.smoothStepOut});
 				FlxTween.tween(skinShadow, {x: skinShadow.x - 5}, 1.34, {ease: FlxEase.smoothStepOut, onComplete: function(twn:FlxTween)
 				{
 					skinShadow.x = 0;
