@@ -4581,7 +4581,7 @@ class PlayState extends MusicBeatState
 						}
 					});
 				}
-		case 'Nice!':
+		case 1:
 			if (combo > 1)
 			{
 				add(combotxt1);
@@ -4605,7 +4605,7 @@ class PlayState extends MusicBeatState
 					}
 				});
 			}
-			case 'Whoops...':
+			case 2:
 				if (songMisses > 1)
 				{
 					add(combotxt1);
