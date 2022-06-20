@@ -149,11 +149,13 @@ class ExtrasScreen extends MusicBeatState
 		{
 			case 0:
 				button1.alpha = 1;
+				FlxTween.tween(button1, {y: button1.y + 5}, 2, {ease: FlxEase.quadInOut, type: PINGPONG});
 				button2.alpha = 0.3;
 				coversButton.alpha = 0.3;
 			case 1:
 				button1.alpha = 0.3;
 				button2.alpha = 1;
+				FlxTween.tween(button2, {y: button2.y + 5}, 2, {ease: FlxEase.quadInOut, type: PINGPONG});
 				coversButton.alpha = 0.3;
 			case 2:
 				button1.alpha = 0.3;
