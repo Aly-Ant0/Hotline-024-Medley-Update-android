@@ -4546,7 +4546,8 @@ class PlayState extends MusicBeatState
 
 		if (comboTime >= comboArray.length)
 			comboTime = 0;
-
+		if (isComboTime)
+		{
 			switch(comboTime)
 			{
 				case 0:
@@ -4621,6 +4622,7 @@ class PlayState extends MusicBeatState
 						});
 					}
 			}
+		}
 	}
 
 	private function onKeyPress(event:KeyboardEvent):Void
@@ -4988,18 +4990,19 @@ class PlayState extends MusicBeatState
 			if (!note.isSustainNote)
 			{
 				popUpScore(note);
-				if (1 > 0)
+				if (songHits % 1 == 0)
 				{
 					new FlxTimer().start(3, function(tmr:FlxTimer)
 					{
 						resetCombo();
+						isComboTime = true;
 						combo = 0;
 					});
 				}
 				if(combo > 9999) combo = 9999;
 			}
 			else {
-				combo = 0;
+				isComboTime = false;
 			}
 			health += note.hitHealth * healthGain;
 
