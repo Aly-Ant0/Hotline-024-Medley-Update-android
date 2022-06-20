@@ -111,12 +111,12 @@ class FreeplayState extends MusicBeatState
 		add(bg);
 		bg.screenCenter();
 
-		nicu = new FlxSprite().loadGraphic(Paths.image('hotline/menu/nikkuRender'));
+		nicu = new FlxSprite().loadGraphic(Paths.image('hotline/menu/freeplay/nikkuRender'));
 		nicu.antialiasing = ClientPrefs.globalAntialiasing;
 		nicu.screenCenter();
 		add(nicu);
 
-		FlxTween.tween(nicu, {y: nicu.y + 5}, 1.74, {ease: FlxEase.quadInOut, type: PINGPONG});
+		FlxTween.tween(nicu, {y: nicu.y + 10}, 1.74, {ease: FlxEase.quadInOut, type: PINGPONG});
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
 		add(grpSongs);
@@ -147,24 +147,19 @@ class FreeplayState extends MusicBeatState
 		}
 		WeekData.setDirectoryFromWeek();
 		
-		bars = new FlxSprite().loadGraphic(Paths.image('hotline/menu/bars'));
+		bars = new FlxSprite().loadGraphic(Paths.image('hotline/menu/freeplay/bars'));
 		bars.screenCenter();
 		bars.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bars);
 
-		textChapter = new FlxSprite().loadGraphic(Paths.image('hotline/menu/chapter1'));
+		textChapter = new FlxSprite().loadGraphic(Paths.image('hotline/menu/freeplay/chapter1'));
 		textChapter.screenCenter();
 		textChapter.antialiasing = ClientPrefs.globalAntialiasing;
 		add(textChapter);
 
 		scoreText = new FlxText(0, 660, 0, "", 32);
 		scoreText.setFormat(Paths.font("LEMONMILK-Bold.otf"), 32, FlxColor.WHITE, RIGHT);
-		scoreText.screenCenter(X);
 		add(scoreText);
-
-		if(curSelected >= songs.length) curSelected = 0;
-		bg.color = songs[curSelected].color;
-		intendedColor = bg.color;
 
 		if(lastDifficultyName == '')
 		{
@@ -408,19 +403,6 @@ class FreeplayState extends MusicBeatState
 
 		lastDifficultyName = CoolUtil.difficulties[curDifficulty];
 
-		var newColor:Int = songs[curSelected].color;
-		if(newColor != intendedColor) {
-			if(colorTween != null) {
-				colorTween.cancel();
-			}
-			intendedColor = newColor;
-			colorTween = FlxTween.color(bg2, 1, bg2.color, intendedColor, {
-				onComplete: function(twn:FlxTween) {
-					colorTween = null;
-				}
-			});
-		}
-
 		#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
 		intendedRating = Highscore.getRating(songs[curSelected].songName, curDifficulty);
@@ -440,7 +422,6 @@ class FreeplayState extends MusicBeatState
 			curSelected = songs.length - 1;
 		if (curSelected >= songs.length)
 			curSelected = 0;
-			
 
 		// selector.y = (70 * curSelected) + 30;
 
@@ -520,7 +501,6 @@ class SongMetadata
 	public var songName:String = "";
 	public var week:Int = 0;
 	public var songCharacter:String = "";
-	public var color:Int = -7179779;
 	public var folder:String = "";
 
 	public function new(song:String, week:Int, songCharacter:String, color:Int)
