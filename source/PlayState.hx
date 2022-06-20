@@ -1658,7 +1658,7 @@ class PlayState extends MusicBeatState
 		combotxt1.borderSize = 1.25;
 
 		// combo score lerp
-		combotxt2 = new FlxText(0, combotxt1.y + 10, 0, lerpScore, 26);
+		combotxt2 = new FlxText(0, combotxt1.y + 10, 0, "0", 26);
 		combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		combotxt2.scrollFactor.set();
 		combotxt2.borderSize = 1.25;
@@ -4383,6 +4383,7 @@ class PlayState extends MusicBeatState
 		}
 
 		if(!practiceMode && !cpuControlled) {
+			songScore += score;
 			if(!note.ratingDisabled)
 			{
 				songHits++;
@@ -5009,8 +5010,6 @@ class PlayState extends MusicBeatState
 						new FlxTimer().start(3.5, function(tmr:FlxTimer)
 						{
 							resetCombo();
-							songScore += score;
-							lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, CoolUtil.boundTo(elapsed * 24, 0, -1)));
 						});
 					}
 				}
