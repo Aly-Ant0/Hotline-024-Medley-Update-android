@@ -634,7 +634,7 @@ class PlayState extends MusicBeatState
         coverBG1.updateHitbox();
         add(coverBG1);
 
-        coverBG2 = new BGSprite('covers/sun', -1200, -250, 0.1, 0.1);
+        coverBG2 = new BGSprite('covers/sun', -1200, -450, 0.1, 0.1);
         coverBG2.scale.set(1.3, 1.3);
         coverBG2.updateHitbox();
         add(coverBG2);
@@ -653,7 +653,7 @@ class PlayState extends MusicBeatState
         coverBG4.updateHitbox();
         add(coverBG4);
 
-        coverBG5 = new BGSprite('covers/hills', -1000, -150, 1, 1);
+        coverBG5 = new BGSprite('covers/hills', -1250, -150, 1, 1);
         coverBG5.scale.set(1.3, 1.3);
         coverBG5.updateHitbox();
         add(coverBG5);
@@ -673,8 +673,6 @@ class PlayState extends MusicBeatState
         coverBG8.scale.set(1.2, 1);
         coverBG8.updateHitbox();
         add(coverBG8);
-        
-        bfThing.alpha = 0.47;
 
         /*var bfReflextion:FlxSprite = new FlxSprite(boyfriend.x, boyfriend.y);
         bfReflextion.frames = boyfriend.frames;
@@ -769,7 +767,7 @@ class PlayState extends MusicBeatState
         skateSky.updateHitbox();
         add(skateBuildings);
         
-        skateTreess = new BGSprite('skate/trees', 100, 50, 1, 1);
+        skateTreess = new BGSprite('skatepark/trees', 100, 50, 1, 1);
         skateTreess.scale.set(1, 1);
         skateTreess.updateHitbox();
         add(skateTreess);
@@ -834,7 +832,7 @@ class PlayState extends MusicBeatState
         numbahEiti3.velocity.set(50, 50);
         
         nikkuOctagon = new BGSprite('skatepark/octagon/nikku', 561, 126, 0, 0, ['Nikku Move 1'], true); // tween to a x:444 in tween and y: 61
-        nikkuOctagon.animation.addByPrefix('lastFrame', 'Nikku Last Frame', 24, true);
+        nikkuOctagon.animation.addByPrefix('lastFrame', 'Nikku Last Frame', 24, false);
         nikkuOctagon.scale.set(2, 2);
         nikkuOctagon.visible = false;
         
@@ -844,7 +842,7 @@ class PlayState extends MusicBeatState
         bubbleText.visible = false;
         
         textOctagon = new BGSprite('skatepark/octagon/text', 596, 172, 0, 0, ['Text'], true);
-        textOctagon.animation.addByPrefix('Text', 'text', 25, true);
+        textOctagon.animation.addByPrefix('text', 'Text', 24, true);
         textOctagon.setGraphicSize(Std.int(textOctagon.width * 0.49));
         textOctagon.visible = false;
         
@@ -1438,14 +1436,6 @@ class PlayState extends MusicBeatState
 		boyfriendGroup.add(boyfriend);
 		startCharacterLua(boyfriend.curCharacter);
 
-		// bf reflect codes
-		bfThing = new Boyfriend(0, 0, SONG.player1);
-		bfThing.flipY = true;
-		bfThing.blend = ADD;
-		bfThing.alpha = 0;
-		startCharacterPos(bfThing, true);
-		boyfriendGroup.add(bfThing);
-
 		var camPos:FlxPoint = new FlxPoint(girlfriendCameraOffset[0], girlfriendCameraOffset[1]);
 		if(gf != null)
 		{
@@ -1652,7 +1642,7 @@ class PlayState extends MusicBeatState
 		combotxt1.color = FlxColor.WHITE;
 		combotxt1.text = "";
 		combotxt1.x = 300;
-		combotxt1.y = FlxG.height + 20;
+		combotxt1.y = FlxG.height + 50;
 		combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		combotxt1.scrollFactor.set();
 		combotxt1.borderSize = 1.25;
@@ -4396,9 +4386,9 @@ class PlayState extends MusicBeatState
 				if(scoreTxtTween != null) {
 					scoreTxtTween.cancel();
 				}
-				scoreTxt.scale.x = 2.075;
-				scoreTxt.scale.y = 2.075;
-				scoreTxtTween = FlxTween.tween(scoreTxt.scale, {x: 2, y: 2}, 0.2, {
+				scoreTxt.scale.x = 1.075;
+				scoreTxt.scale.y = 1.075;
+				scoreTxtTween = FlxTween.tween(scoreTxt.scale, {x: 1, y: 1}, 0.2, {
 					onComplete: function(twn:FlxTween) {
 						scoreTxtTween = null;
 					}
@@ -4996,23 +4986,18 @@ class PlayState extends MusicBeatState
 
 			if (!note.isSustainNote)
 			{
-				combo += 1;
+					if (combo + 1)
+					{
+						new FlxTimer().start(3, function(tmr:FlxTimer)
+						{
+							combo = 0;
+							resetCombo();
+						});
+					}
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
 			}
 			health += note.hitHealth * healthGain;
-
-				if (!note.isSustainNote)
-				{
-					combo++;
-					if (combo > 1)
-					{
-						new FlxTimer().start(3.5, function(tmr:FlxTimer)
-						{
-							resetCombo();
-						});
-					}
-				}
 
 			if(!note.noAnimation) {
 				var daAlt = '';
