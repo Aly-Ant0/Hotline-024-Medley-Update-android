@@ -4988,11 +4988,12 @@ class PlayState extends MusicBeatState
 			if (!note.isSustainNote)
 			{
 				popUpScore(note);
-				if (combo == 0 > 1)
+				if (1 > 0)
 				{
 					new FlxTimer().start(3, function(tmr:FlxTimer)
 					{
 						resetCombo();
+						combo = 0;
 					});
 				}
 				if(combo > 9999) combo = 9999;
