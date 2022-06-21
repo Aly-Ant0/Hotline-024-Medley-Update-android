@@ -654,7 +654,7 @@ class PlayState extends MusicBeatState
         coverBG4.updateHitbox();
         add(coverBG4);
 
-        coverBG5 = new BGSprite('covers/hills', -1250, -150, 1, 1);
+        coverBG5 = new BGSprite('covers/hills', -600, -150, 1, 1);
         coverBG5.scale.set(1.3, 1.3);
         coverBG5.updateHitbox();
         add(coverBG5);
@@ -1623,7 +1623,7 @@ class PlayState extends MusicBeatState
 		add(iconP2);
 		reloadHealthBarColors();
 
-		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 42);
+		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 36);
 		scoreTxt.setFormat(Paths.font("goodbyeDespair.ttf"), 30, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.25;
@@ -1642,20 +1642,25 @@ class PlayState extends MusicBeatState
 		combotxt1.size = 32;
 		combotxt1.color = FlxColor.WHITE;
 		combotxt1.text = "";
-		combotxt1.x = 300;
-		combotxt1.y = FlxG.height + 50;
+		combotxt1.x = 600;
+		combotxt1.y = 115;
 		combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		combotxt1.scrollFactor.set();
 		combotxt1.borderSize = 1.25;
 
 		// combo score lerp
-		combotxt2 = new FlxText(0, combotxt1.y + 10, 0, "0", 26);
+		combotxt2 = new FlxText(combotxt.x, combotxt1.y + 20, 0, "0", 26);
 		combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		combotxt2.scrollFactor.set();
 		combotxt2.borderSize = 1.25;
 
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
+			combotxt1.y = 610;
+		}
+		if (ClientPrefs.middleScroll)
+		{
+			combotxt1.y = 210;
 		}
 
 		strumLineNotes.cameras = [camHUD];
@@ -4990,19 +4995,13 @@ class PlayState extends MusicBeatState
 			if (!note.isSustainNote)
 			{
 				popUpScore(note);
-				if (songHits % 1 == 0)
-				{
 					new FlxTimer().start(3, function(tmr:FlxTimer)
 					{
 						resetCombo();
 						isComboTime = true;
-						combo = 0;
 					});
 				}
 				if(combo > 9999) combo = 9999;
-			}
-			else {
-				isComboTime = false;
 			}
 			health += note.hitHealth * healthGain;
 
@@ -5397,7 +5396,7 @@ class PlayState extends MusicBeatState
 			}
 			if (curStep == 1658 && curStep == 1660 && curStep == 1661 && curStep == 1663)
 			{
-				FlxG.camera.flash(FlxColor.WHITE, 0.5);
+				FlxG.camera.flash(FlxColor.WHITE, 0.15);
 			}
 			if (curStep == 1664)
 			{
