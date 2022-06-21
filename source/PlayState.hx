@@ -4284,7 +4284,7 @@ class PlayState extends MusicBeatState
 					CustomFadeTransition.nextCamera = null;
 				}
 				MusicBeatState.switchState(new FreeplayState());
-				FlxG.sound.playMusic(Paths.music('freakyMenu'));
+				FlxG.sound.playMusic(Paths.music('nightlight'));
 				changedDifficulty = false;
 			}
 			transitioning = true;
@@ -4556,7 +4556,7 @@ class PlayState extends MusicBeatState
 			switch(comboTime)
 			{
 				case 0:
-					if (combo > 15)
+					if (daLoop > 15)
 					{
 						add(combotxt1);
 						add(combotxt2);
@@ -4579,7 +4579,7 @@ class PlayState extends MusicBeatState
 						});
 					}
 			case 1:
-				if (combo > 1)
+				if (daLoop > 1)
 				{
 					add(combotxt1);
 					add(combotxt2);
@@ -4998,6 +4998,7 @@ class PlayState extends MusicBeatState
 					new FlxTimer().start(3, function(tmr:FlxTimer)
 					{
 						resetCombo();
+						daLoop = 0;
 						isComboTime = true;
 					});
 				if(combo > 9999) combo = 9999;
