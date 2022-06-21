@@ -173,7 +173,7 @@ class ChooseSkinState extends MusicBeatState
 			{
 				skinS.loadGraphic(newSkin);
 				skinS.x = -50;
-				FlxTween.tween(skinS, {x: skinS.x + 50}, 0.55, {ease: FlxEase.smoothStepOut, onComplete: function(twn:FlxTween)
+				FlxTween.tween(skinS, {x: skinS.x + 50}, 0.55, {ease: FlxEase.expoOut, onComplete: function(twn:FlxTween)
 				{
 					skinS.x = 0;
 				}});
@@ -181,7 +181,7 @@ class ChooseSkinState extends MusicBeatState
 			if (change == -1) {
 			  skinS.loadGraphic(newSkin);
 				skinS.x = 50;
-				FlxTween.tween(skinS, {x: skinS.x - 50}, 0.55, {ease: FlxEase.smoothStepOut, onComplete: function(twn:FlxTween)
+				FlxTween.tween(skinS, {x: skinS.x - 50}, 0.55, {ease: FlxEase.expoOut, onComplete: function(twn:FlxTween)
 				{
 					skinS.x = 0;
 				}});
@@ -194,13 +194,13 @@ class ChooseSkinState extends MusicBeatState
 				skinShadow.loadGraphic(newSkinShadow);
 				skinShadow.alpha = 0.48;
 				if (skinTween2 != null) skinTween2.cancel();
-				skinTween2 = FlxTween.tween(skinShadow, {x: skinShadow.x + 2}, 1.34, {ease: FlxEase.smoothStepOut, onComplete: function(twn:FlxTween)
+				skinTween2 = FlxTween.tween(skinShadow, {x: skinShadow.x + 2}, 1.34, {ease: FlxEase.expoOut, onComplete: function(twn:FlxTween)
 					{
 						skinTween2 = null;
 					}
 				});
 				if (skinTween != null) skinTween.cancel();
-				skinTween = FlxTween.tween(skinShadow, {alpha: 1}, 1, {ease: FlxEase.smoothStepOut, onComplete: function(twn:FlxTween)
+				skinTween = FlxTween.tween(skinShadow, {alpha: 1}, 0.89, {ease: FlxEase.quadInOut, onComplete: function(twn:FlxTween)
 				{
 					skinTween = null;
 				}});
@@ -210,8 +210,8 @@ class ChooseSkinState extends MusicBeatState
 			  skinShadow.loadGraphic(newSkinShadow);
 				skinShadow.alpha = 0.48;
 				skinShadow.x = 5;
-				FlxTween.tween(skinShadow, {alpha: 1}, 1.97, {ease: FlxEase.smoothStepOut});
-				FlxTween.tween(skinShadow, {x: skinShadow.x - 5}, 1.34, {ease: FlxEase.smoothStepOut, onComplete: function(twn:FlxTween)
+				FlxTween.tween(skinShadow, {alpha: 1}, 0.89, {ease: FlxEase.quadInOut});
+				FlxTween.tween(skinShadow, {x: skinShadow.x - 5}, 1.34, {ease: FlxEase.expoOut, onComplete: function(twn:FlxTween)
 				{
 					skinShadow.x = 0;
 				}});
