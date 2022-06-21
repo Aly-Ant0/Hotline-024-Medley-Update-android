@@ -5000,7 +5000,6 @@ class PlayState extends MusicBeatState
 						resetCombo();
 						isComboTime = true;
 					});
-				}
 				if(combo > 9999) combo = 9999;
 			}
 			health += note.hitHealth * healthGain;
