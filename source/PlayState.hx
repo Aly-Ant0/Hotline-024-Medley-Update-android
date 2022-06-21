@@ -1649,7 +1649,7 @@ class PlayState extends MusicBeatState
 		combotxt1.borderSize = 1.25;
 
 		// combo score lerp
-		combotxt2 = new FlxText(combotxt.x, combotxt1.y + 20, 0, "0", 26);
+		combotxt2 = new FlxText(combotxt1.x, combotxt1.y + 20, 0, "0", 26);
 		combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		combotxt2.scrollFactor.set();
 		combotxt2.borderSize = 1.25;
