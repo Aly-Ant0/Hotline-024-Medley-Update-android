@@ -4951,15 +4951,13 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
-			}
-			health += note.hitHealth * healthGain;
-			
-			else if (!note.isSustainNote) {
+			} else if (!note.isSustainNote) {
 				new FlxTimer().start(3, function(tmr:FlxTimer)
 				{
 						resetCombo();
 				});
 			}
+			health += note.hitHealth * healthGain;
 
 			if(!note.noAnimation) {
 				var daAlt = '';
