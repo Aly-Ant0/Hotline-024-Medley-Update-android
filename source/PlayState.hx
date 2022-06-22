@@ -4954,8 +4954,7 @@ class PlayState extends MusicBeatState
 			}
 			health += note.hitHealth * healthGain;
 			
-			else if (!note.isSustainNote)
-			{
+			else if (!note.isSustainNote) {
 				new FlxTimer().start(3, function(tmr:FlxTimer)
 				{
 						resetCombo();
