@@ -922,9 +922,9 @@ class PlayState extends MusicBeatState
 				rocks.updateHitbox();
 			case 'momogogo':
 				//var bg:FlxBackdrop;
-				momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), 0.5, 0.5, true, false);
+				momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), 0.2, 0.2, true, false);
 				momogogoBG.x = -1000;
-				momogogoBG.y = -10;
+				momogogoBG.y = -100;
 				momogogoBG.scale.set(1.25, 1.25);
 				momogogoBG.updateHitbox();
 				momogogoBG.antialiasing = ClientPrefs.globalAntialiasing;
@@ -4954,7 +4954,7 @@ class PlayState extends MusicBeatState
 			}
 			health += note.hitHealth * healthGain;
 			
-			if (!note.isSustainNote)
+			else if (!note.isSustainNote)
 			{
 				new FlxTimer().start(3, function(tmr:FlxTimer)
 				{
