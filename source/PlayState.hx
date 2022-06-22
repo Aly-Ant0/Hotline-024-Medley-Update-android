@@ -273,6 +273,8 @@ class PlayState extends MusicBeatState
   
   var bars:BGSprite;
   var rocks:BGSprite;
+  
+  var momogogoBG:FlxBackdrop;
 
 	var halloweenBG:BGSprite;
 	var halloweenWhite:BGSprite;
@@ -920,12 +922,11 @@ class PlayState extends MusicBeatState
 				rocks.updateHitbox();
 			case 'momogogo':
 				//var bg:FlxBackdrop;
-				var bg:FlxBackdrop = new FlxBackdrop(Paths.image('momogogo/bg'), 0.5, 0.5, true, false);
-				bg.x = -520;
-				bg.y = 140;
+				momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), 0.5, 0.5, true, false);
+				bg.x = -1000;
+				bg.y = 100;
 				bg.scale.set(1.25, 1.25);
 				bg.updateHitbox();
-				bg.velocity.set(50, 50);
 				bg.antialiasing = ClientPrefs.globalAntialiasing;
 				add(bg);
 
@@ -1647,12 +1648,16 @@ class PlayState extends MusicBeatState
 		combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		combotxt1.scrollFactor.set();
 		combotxt1.borderSize = 1.25;
+		combotxt1.visible = false;
+		add(combotxt1);
 
 		// combo score lerp
 		combotxt2 = new FlxText(combotxt1.x, combotxt1.y + 20, 0, "0", 26);
 		combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		combotxt2.scrollFactor.set();
 		combotxt2.borderSize = 1.25;
+		combotxt2.visible = false;
+		add(combotxt2);
 
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
@@ -1797,7 +1802,7 @@ class PlayState extends MusicBeatState
 					booCutscene.animation.addByPrefix('3shock', 'BooIntro3 instance 1', 24, false);
 					booCutscene.animation.play('1shock');
 					add(booCutscene);
-					snapCamFollowToPos(900, 850);
+					snapCamFollowToPos(dad.x + 10, dad.y = 10);
 					FlxG.camera.focusOn(camFollow);
 					inCutscene = true;
 					
@@ -3306,6 +3311,9 @@ class PlayState extends MusicBeatState
 			}
 		}
 
+		// backdrops things
+		momogogoBG.x -= 90 * elapsed;
+
 		super.update(elapsed);
 
 		intendedScore = songScore;
@@ -4328,8 +4336,6 @@ class PlayState extends MusicBeatState
 	public var showCombo:Bool = true;
 	public var showRating:Bool = true;
 
-	public var daLoop:Int = 0;
-
 	private function popUpScore(note:Note = null):Void
 	{
 		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.ratingOffset);
@@ -4420,7 +4426,7 @@ class PlayState extends MusicBeatState
 			pixelShitPart1 = 'pixelUI/';
 			pixelShitPart2 = '-pixel';
 		}
-
+		var daLoop:Int = 0;
 		rating.loadGraphic(Paths.image(pixelShitPart1 + daRating + pixelShitPart2));
 		rating.cameras = [camHUD];
 		rating.screenCenter();
@@ -4511,7 +4517,11 @@ class PlayState extends MusicBeatState
 			});
 
 			daLoop++;
-		}
+			new FlxTimer().start(3, function(tmr:FlxTimer)
+			{
+					resetCombo();
+					combo = 0;
+			});
 		/* 
 			trace(combo);
 			trace(seperatedScore);
@@ -4542,92 +4552,38 @@ class PlayState extends MusicBeatState
 
 	function resetCombo() // combo thing
 	{
-		var comboArray:Array<String> = ['Perfect!', 'Nice!', 'Whoops...'];
-		var comboTime:Int = 0;
-		var comboTimeArray:String = comboArray[comboTime];
+		combotxt1.visible = true;
+		combotxt2.visible = true;
 
-				if (comboTime < 0)
-
-			comboTime = comboArray.length - 1;
-
-		if (comboTime >= comboArray.length)
-			comboTime = 0;
-		if (isComboTime)
-		{
-			switch(comboTime)
+		FlxFlicker.flicker(combotxt1, 1, 0.10, false, false);
+		FlxTween.tween(combotxt1, {alpha: 0}, 1, {
+			ease: FlxEase.quadOut,
+			onComplete: function(twn:FlxTween)
 			{
-				case 0:
-					if (daLoop > 15)
-					{
-						add(combotxt1);
-						add(combotxt2);
-						combotxt1.text = 'Perfect!';
-						FlxFlicker.flicker(combotxt1, 1, 0.10, false);
-						FlxTween.tween(combotxt1, {alpha: 0}, 1, {
-							ease: FlxEase.quadOut,
-							onComplete: function(twn:FlxTween)
-							{
-								combotxt1.kill();
-							}
-						});
-						FlxFlicker.flicker(combotxt2, 1, 0.10, false, false);
-						FlxTween.tween(combotxt2, {alpha: 0}, 1, {
-							ease: FlxEase.quadOut,
-							onComplete: function(twn:FlxTween)
-							{
-								combotxt2.kill();
-							}
-						});
-					}
-			case 1:
-				if (daLoop > 1)
-				{
-					add(combotxt1);
-					add(combotxt2);
-					combotxt1.text = 'Nice!';
-					FlxFlicker.flicker(combotxt1, 1, 0.10, false, false);
-					FlxTween.tween(combotxt1, {alpha: 0}, 1, {
-						ease: FlxEase.quadOut,
-						onComplete: function(twn:FlxTween)
-						{
-							combotxt1.kill();
-						}
-					});
-
-					FlxFlicker.flicker(combotxt2, 1, 0.10, false, false);
-					FlxTween.tween(combotxt2, {alpha: 0}, 1, {
-						ease: FlxEase.quadOut,
-						onComplete: function(twn:FlxTween)
-						{
-							combotxt2.kill();
-						}
-					});
-				}
-				case 2:
-					if (songMisses > 1)
-					{
-						add(combotxt1);
-						add(combotxt2);
-						combotxt1.text = 'whoops...';
-						FlxFlicker.flicker(combotxt1, 1, 0.10, false, false);
-						FlxTween.tween(combotxt1, {alpha: 0}, 1, {
-							ease: FlxEase.quadOut,
-							onComplete: function(twn:FlxTween)
-							{
-								combotxt1.kill();
-							}
-						});
-	
-						FlxFlicker.flicker(combotxt2, 1, 0.10, false, false);
-						FlxTween.tween(combotxt2, {alpha: 0}, 1, {
-							ease: FlxEase.quadOut,
-							onComplete: function(twn:FlxTween)
-							{
-								combotxt2.kill();
-							}
-						});
-					}
+				combotxt1.kill();
 			}
+		});
+
+		FlxFlicker.flicker(combotxt2, 1, 0.10, false, false);
+		FlxTween.tween(combotxt2, {alpha: 0}, 1, {
+			ease: FlxEase.quadOut,
+			onComplete: function(twn:FlxTween)
+			{
+				combotxt2.kill();
+			}
+		});
+
+		if (FlxG.random.bool(2.5))
+		{
+			combotxt1.text = 'whoops...';
+		}
+		if (FlxG.random.bool(20))
+		{
+			combotxt1.text = 'Perfect!';
+		}
+		if (FlxG.random.bool(12))
+		{
+			combotxt1.text = 'Nice!';
 		}
 	}
 
@@ -4996,12 +4952,6 @@ class PlayState extends MusicBeatState
 			if (!note.isSustainNote)
 			{
 				popUpScore(note);
-					new FlxTimer().start(3, function(tmr:FlxTimer)
-					{
-						resetCombo();
-						daLoop = 0;
-						isComboTime = true;
-					});
 				if(combo > 9999) combo = 9999;
 			}
 			health += note.hitHealth * healthGain;
@@ -5423,8 +5373,8 @@ class PlayState extends MusicBeatState
 					//i almost kill ma fone then dont will have a texture atlas cutscenes sorry
 					/*SANESSS.visible = true;
 					SANESSS.animation.play('idle', true);*/
-					FlxG.camera.flash(FlxColor.WHITE, 1);
-				case 454:
+					FlxG.camera.flash(FlxColor.WHITE, );
+				case 452:
 					FlxTween.tween(camHUD, {alpha: 0}, 0.4);
 				case 512:
 					//SANESSS.visible = false;
