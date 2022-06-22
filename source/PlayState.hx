@@ -3311,8 +3311,10 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		// backdrops things
-		momogogoBG.x -= 90 * elapsed;
+		// backdrops things (is in the curstage keys for prevent crash in the other stages) fun fact: the * is for multiplicate stuff :D
+		if (curStage == 'momogogo') {
+			momogogoBG.x += 1070 * elapsed;
+		}
 
 		super.update(elapsed);
 
@@ -4949,14 +4951,15 @@ class PlayState extends MusicBeatState
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
 			}
+			health += note.hitHealth * healthGain;
+			
 			if (!note.isSustainNote)
 			{
-					new FlxTimer().start(3, function(tmr:FlxTimer)
-					{
+				new FlxTimer().start(3, function(tmr:FlxTimer)
+				{
 						resetCombo();
-					});
+				});
 			}
-			health += note.hitHealth * healthGain;
 
 			if(!note.noAnimation) {
 				var daAlt = '';
