@@ -4517,11 +4517,6 @@ class PlayState extends MusicBeatState
 			});
 
 			daLoop++;
-			new FlxTimer().start(3, function(tmr:FlxTimer)
-			{
-					resetCombo();
-					combo = 0;
-			});
 		}
 		/* 
 			trace(combo);
@@ -4564,7 +4559,6 @@ class PlayState extends MusicBeatState
 				combotxt1.kill();
 			}
 		});
-
 		FlxFlicker.flicker(combotxt2, 1, 0.10, false, false);
 		FlxTween.tween(combotxt2, {alpha: 0}, 1, {
 			ease: FlxEase.quadOut,
@@ -4574,7 +4568,7 @@ class PlayState extends MusicBeatState
 			}
 		});
 
-		if (FlxG.random.bool(2.5))
+		if (FlxG.random.bool(15.5))
 		{
 			combotxt1.text = 'whoops...';
 		}
@@ -4582,9 +4576,9 @@ class PlayState extends MusicBeatState
 		{
 			combotxt1.text = 'Perfect!';
 		}
-		if (FlxG.random.bool(12))
+		if (FlxG.random.bool(70))
 		{
-			combotxt1.text = 'Nice!';
+			combotxt1.text = 'Great!';
 		}
 	}
 
@@ -4954,6 +4948,13 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
+			}
+			if (!note.isSustainNote)
+			{
+					new FlxTimer().start(3, function(tmr:FlxTimer)
+					{
+						resetCombo();
+					});
 			}
 			health += note.hitHealth * healthGain;
 
