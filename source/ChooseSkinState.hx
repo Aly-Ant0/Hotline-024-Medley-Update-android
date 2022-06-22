@@ -155,7 +155,7 @@ class ChooseSkinState extends MusicBeatState
   function changeSkin(change:Int = 0)
   {
       curSelected += change;
-    
+
         if (curSelected < 0)
 
 			curSelected = skinShit.length - 1;
@@ -194,13 +194,13 @@ class ChooseSkinState extends MusicBeatState
 				skinShadow.loadGraphic(newSkinShadow);
 				skinShadow.alpha = 0.48;
 				if (skinTween2 != null) skinTween2.cancel();
-				skinTween2 = FlxTween.tween(skinShadow, {x: skinShadow.x + 2}, 1.34, {ease: FlxEase.expoOut, onComplete: function(twn:FlxTween)
+				skinTween2 = FlxTween.tween(skinShadow, {x: skinShadow.x + 3}, 1.34, {ease: FlxEase.expoOut, onComplete: function(twn:FlxTween)
 					{
 						skinTween2 = null;
 					}
 				});
 				if (skinTween != null) skinTween.cancel();
-				skinTween = FlxTween.tween(skinShadow, {alpha: 1}, 0.89, {ease: FlxEase.quadInOut, onComplete: function(twn:FlxTween)
+				skinTween = FlxTween.tween(skinShadow, {alpha: 1}, 0.5, {ease: FlxEase.quadInOut, onComplete: function(twn:FlxTween)
 				{
 					skinTween = null;
 				}});
@@ -210,8 +210,8 @@ class ChooseSkinState extends MusicBeatState
 			  skinShadow.loadGraphic(newSkinShadow);
 				skinShadow.alpha = 0.48;
 				skinShadow.x = 5;
-				FlxTween.tween(skinShadow, {alpha: 1}, 0.89, {ease: FlxEase.quadInOut});
-				FlxTween.tween(skinShadow, {x: skinShadow.x - 5}, 1.34, {ease: FlxEase.expoOut, onComplete: function(twn:FlxTween)
+				FlxTween.tween(skinShadow, {alpha: 1}, 0.5, {ease: FlxEase.quadInOut});
+				FlxTween.tween(skinShadow, {x: skinShadow.x - 3}, 1.34, {ease: FlxEase.expoOut, onComplete: function(twn:FlxTween)
 				{
 					skinShadow.x = 0;
 				}});
