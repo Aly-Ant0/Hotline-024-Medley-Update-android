@@ -5348,7 +5348,7 @@ class PlayState extends MusicBeatState
 			}
 			if (curStep == 1658 && curStep == 1660 && curStep == 1661 && curStep == 1663)
 			{
-				FlxG.camera.flash(FlxColor.WHITE, 0.15);
+				FlxG.camera.flash(FlxColor.WHITE, 0.15, null, true);
 			}
 			if (curStep == 1664)
 			{
@@ -5374,7 +5374,7 @@ class PlayState extends MusicBeatState
 					//i almost kill ma fone then dont will have a texture atlas cutscenes sorry
 					/*SANESSS.visible = true;
 					SANESSS.animation.play('idle', true);*/
-					FlxG.camera.flash(FlxColor.WHITE, );
+					FlxG.camera.flash(FlxColor.WHITE, 1, null, true);
 				case 452:
 					FlxTween.tween(camHUD, {alpha: 0}, 0.4);
 				case 512:
