@@ -923,12 +923,12 @@ class PlayState extends MusicBeatState
 			case 'momogogo':
 				//var bg:FlxBackdrop;
 				momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), 0.5, 0.5, true, false);
-				bg.x = -1000;
-				bg.y = 100;
-				bg.scale.set(1.25, 1.25);
-				bg.updateHitbox();
-				bg.antialiasing = ClientPrefs.globalAntialiasing;
-				add(bg);
+				momogogoBG.x = -1000;
+				momogogoBG.y = 100;
+				momogogoBG.scale.set(1.25, 1.25);
+				momogogoBG.updateHitbox();
+				momogogoBG.antialiasing = ClientPrefs.globalAntialiasing;
+				add(momogogoBG);
 
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
