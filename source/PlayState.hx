@@ -924,10 +924,11 @@ class PlayState extends MusicBeatState
 				//var bg:FlxBackdrop;
 				momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), 0.5, 0.5, true, false);
 				momogogoBG.x = -1000;
-				momogogoBG.y = 100;
+				momogogoBG.y = -10;
 				momogogoBG.scale.set(1.25, 1.25);
 				momogogoBG.updateHitbox();
 				momogogoBG.antialiasing = ClientPrefs.globalAntialiasing;
+				momogogoBG.offset.x = 0;
 				add(momogogoBG);
 
 			case 'spooky': //Week 2
@@ -3313,7 +3314,7 @@ class PlayState extends MusicBeatState
 
 		// backdrops things (is in the curstage keys for prevent crash in the other stages) fun fact: the * is for multiplicate stuff :D
 		if (curStage == 'momogogo') {
-			momogogoBG.x += 1070 * elapsed;
+			momogogoBG.x += 90 * elapsed;
 		}
 
 		super.update(elapsed);
