@@ -4522,6 +4522,7 @@ class PlayState extends MusicBeatState
 					resetCombo();
 					combo = 0;
 			});
+		}
 		/* 
 			trace(combo);
 			trace(seperatedScore);
@@ -4544,7 +4545,6 @@ class PlayState extends MusicBeatState
 			},
 			startDelay: Conductor.crochet * 0.001
 		});
-		}
 	}
 
 	var comboTxt:FlxText;
