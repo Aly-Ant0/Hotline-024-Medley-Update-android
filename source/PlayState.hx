@@ -4428,6 +4428,7 @@ class PlayState extends MusicBeatState
 		comboGlow.x = combotxt1.x;
 		comboGlow.y = combotxt1.y;
 		comboGlow.alpha = 0.70;
+		add(comboGlow);
 
 		combotxt1 = new FlxText();
 		combotxt1.size = 32;
@@ -4439,6 +4440,7 @@ class PlayState extends MusicBeatState
 		combotxt1.scrollFactor.set();
 		combotxt1.borderSize = 1.25;
 		combotxt1.cameras = [camHUD];
+		add(combotxt1);
 
 		// combo score lerp
 		combotxt2 = new FlxText(combotxt1.x, combotxt1.y + 20, 0, "score: " + scoreCount, 26);
@@ -4446,6 +4448,7 @@ class PlayState extends MusicBeatState
 		combotxt2.scrollFactor.set();
 		combotxt2.borderSize = 1.25;
 		combotxt2.cameras = [camHUD];
+		add(combotxt2);
 
 		if (ClientPrefs.downScroll) {
 			combotxt1.y = combotxt1.y * 2;
@@ -4462,7 +4465,7 @@ class PlayState extends MusicBeatState
 
 		for (i in seperatedScore)
 		{
-			insert(members.indexOf(strumLineNotes), comboGlow);
+			//insert(members.indexOf(strumLineNotes), comboGlow);
 			daCombo++;
 		}
 		/* 
@@ -4476,8 +4479,8 @@ class PlayState extends MusicBeatState
 
 	function resetCombo() // combo thing
 	{
-			scoreCount -= Math.floor(FlxMath.lerp(scoreCount, score, CoolUtil.boundTo(1 - (FlxG.elapsed * 9), 0, -1)));
-			songScore += Math.floor(FlxMath.lerp(songScore, score, CoolUtil.boundTo(1 - (FlxG.elapsed * 9), 0, 1)));
+			scoreCount -= FlxMath.lerp(scoreCount, score, CoolUtil.boundTo(1 - (FlxG.elapsed * 9), 0, -1));
+			songScore += bomFlxMath.lerp(songScore, score, CoolUtil.boundTo(1 - (FlxG.elapsed * 9), 0, 1));
 
 		FlxFlicker.flicker(combotxt1, 1.5, 0.10, false, false);
 		FlxTween.tween(combotxt1, {alpha: 0}, 1.5, {
