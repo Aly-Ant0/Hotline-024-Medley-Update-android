@@ -3296,7 +3296,7 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		intendedScore = songScore;
+		//intendedScore = songScore;
 
 		scoreTxt.text = 'Score: ' + songScore + ' | Misses: ' + songMisses + ' | Rating: ' + ratingName;
 		if(ratingName != '?')
@@ -4479,7 +4479,7 @@ class PlayState extends MusicBeatState
 
 	function resetCombo() // combo thing
 	{
-			scoreCount -= FlxMath.lerp(scoreCount, score, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 0, 1));
+			scoreCount = FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 0, 1));
 			songScore += FlxMath.lerp(songScore, score, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 0, 1));
 
 		FlxFlicker.flicker(combotxt1, 1.5, 0.10, false, false);
