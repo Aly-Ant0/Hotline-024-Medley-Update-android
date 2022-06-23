@@ -4336,7 +4336,7 @@ class PlayState extends MusicBeatState
 		coolText.x = FlxG.width * 0.35;
 		//
 
-		var rating:FlxSprite = new FlxSprite();
+	//	var rating:FlxSprite = new FlxSprite();
 
 		//tryna do MS based judgment due to popular demand
 		var daRating:String = Conductor.judgeNote(note, noteDiff);
@@ -4479,8 +4479,8 @@ class PlayState extends MusicBeatState
 
 	function resetCombo() // combo thing
 	{
-			scoreCount -= FlxMath.lerp(scoreCount, score, CoolUtil.boundTo(1 - (FlxG.elapsed * 9), 0, -1));
-			songScore += bomFlxMath.lerp(songScore, score, CoolUtil.boundTo(1 - (FlxG.elapsed * 9), 0, 1));
+			scoreCount -= FlxMath.lerp(scoreCount, score, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 0, 1));
+			songScore += FlxMath.lerp(songScore, score, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 0, 1));
 
 		FlxFlicker.flicker(combotxt1, 1.5, 0.10, false, false);
 		FlxTween.tween(combotxt1, {alpha: 0}, 1.5, {
