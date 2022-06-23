@@ -4318,6 +4318,7 @@ class PlayState extends MusicBeatState
 
 	public var showCombo:Bool = true;
 	public var showRating:Bool = true;
+	public var score:Int = 350;
 
 	private function popUpScore(note:Note = null):Void
 	{
@@ -4335,7 +4336,6 @@ class PlayState extends MusicBeatState
 		//
 
 		var rating:FlxSprite = new FlxSprite();
-		var score:Int = 350;
 
 		//tryna do MS based judgment due to popular demand
 		var daRating:String = Conductor.judgeNote(note, noteDiff);
@@ -4368,9 +4368,10 @@ class PlayState extends MusicBeatState
 		{
 			spawnNoteSplashOnNote(note);
 		}
-
-		if(!practiceMode && !cpuControlled) {
-			songScore += score;
+		
+		if (!practiceMode && !cpuControlled) {
+			combotxt2 =+ score;
+		}
 			if(!note.ratingDisabled)
 			{
 				songHits++;
@@ -4420,16 +4421,7 @@ class PlayState extends MusicBeatState
 			else if (combo > 4)
 				daRating = 'bad';
 		 */
-
-		var pixelShitPart1:String = "";
-		var pixelShitPart2:String = '';
-
-		if (PlayState.isPixelStage)
-		{
-			pixelShitPart1 = 'pixelUI/';
-			pixelShitPart2 = '-pixel';
-		}
-		var daLoop:Int = 0;
+		var daCombo:Int = 0;
 		
 		comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
 		comboGlow.cameras = [camHUD];
@@ -4440,7 +4432,7 @@ class PlayState extends MusicBeatState
 		combotxt1 = new FlxText();
 		combotxt1.size = 32;
 		combotxt1.color = FlxColor.WHITE;
-		combotxt1.text = daRating + " x" + daLoop;
+		combotxt1.text = daRating + " x" + daCombo;
 		combotxt1.x = STRUM_X_MIDDLESCROLL;
 		combotxt1.y = botplayTxt.y;
 		combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -4470,21 +4462,8 @@ class PlayState extends MusicBeatState
 
 		for (i in seperatedScore)
 		{
-			var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'num' + Std.int(i) + pixelShitPart2));
-			numScore.cameras = [camHUD];
-			numScore.screenCenter();
-			numScore.x = coolText.x + (43 * daLoop) - 90;
-			numScore.y += 80;
-			numScore.alpha = 0; // vou deixar tudo no alpha 0
-			// motivo: preguiça zzzzzzzzzz
-
-			numScore.x += ClientPrefs.comboOffset[2];
-			numScore.y -= ClientPrefs.comboOffset[3];
-
-			//if (combo >= 10 || combo == 0)
-				insert(members.indexOf(strumLineNotes), numScore);
-
-			daLoop++;
+			insert(members.indexOf(strumLineNotes), comboGlow);
+			daCombo++;
 		}
 		/* 
 			trace(combo);
@@ -4498,7 +4477,10 @@ class PlayState extends MusicBeatState
 
 	function resetCombo() // combo thing
 	{
-		combotxt2.text = "0";
+		if(!practiceMode && !cpuControlled) {
+			combotxt2 -= Math.floor(FlxMath.lerp(combotxt2, score, CoolUtil.boundTo(1 - (FlxG.elapsed * 9), 0, -1)));
+			scoreTxt += Math.floor(FlxMath.lerp(scoreTxt, score, CoolUtil.boundTo(1 - (FlxG.elapsed * 9), 0, 1)));
+		}
 		FlxFlicker.flicker(combotxt1, 1.5, 0.10, false, false);
 		FlxTween.tween(combotxt1, {alpha: 0}, 1.5, {
 			ease: FlxEase.quadInOut,
