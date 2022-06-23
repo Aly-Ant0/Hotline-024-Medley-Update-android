@@ -4413,7 +4413,6 @@ class PlayState extends MusicBeatState
 						comboTwn2 = null;
 					}
 				});
-		}
 
 		/* if (combo > 60)
 				daRating = 'sick';
@@ -4473,7 +4472,6 @@ class PlayState extends MusicBeatState
 
 		coolText.text = Std.string(seperatedScore);
 		// add(coolText);
-
 	}
 
 	function resetCombo() // combo thing
