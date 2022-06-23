@@ -4343,8 +4343,6 @@ class PlayState extends MusicBeatState
 	public var totalPlayed:Int = 0;
 	public var totalNotesHit:Float = 0.0;
 	//tryna do MS based judgment due to popular demand
-	public var daRating:String = Conductor.judgeNote(note, noteDiff);
-	var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.ratingOffset);
 
 	public var showCombo:Bool = true;
 	public var showRating:Bool = true;
@@ -4363,7 +4361,8 @@ class PlayState extends MusicBeatState
 		coolText.screenCenter();
 		coolText.x = FlxG.width * 0.35;
 		//
-
+		public var daRating:String = Conductor.judgeNote(note, noteDiff);
+		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.ratingOffset);
 	//	var rating:FlxSprite = new FlxSprite();
 
 		switch (daRating)
@@ -4397,6 +4396,7 @@ class PlayState extends MusicBeatState
 		
 		if (!practiceMode && !cpuControlled) {
 			scoreCount += score;
+			//songScore += score;
 		}
 			if(!note.ratingDisabled)
 			{
@@ -4439,6 +4439,14 @@ class PlayState extends MusicBeatState
 					}
 				});
 
+		var pixelShitPart1:String = "";
+		var pixelShitPart2:String = '';
+
+		if (PlayState.isPixelStage)
+		{
+			pixelShitPart1 = 'pixelUI/';
+			pixelShitPart2 = '-pixel';
+		}
 		/* if (combo > 60)
 				daRating = 'sick';
 			else if (combo > 12)
@@ -4447,10 +4455,51 @@ class PlayState extends MusicBeatState
 				daRating = 'bad';
 		 */
 		var daCombo:Int = 0;
+		
+		rating.loadGraphic(Paths.image(pixelShitPart1 + daRating.image + pixelShitPart2));
+		rating.cameras = [camHUD];
+		rating.screenCenter();
+		rating.x = coolText.x - 40;
+		rating.y -= 60;
+		rating.acceleration.y = 550;
+		rating.velocity.y -= FlxG.random.int(140, 175);
+		rating.velocity.x -= FlxG.random.int(0, 10);
+		rating.visible = (!ClientPrefs.hideHud && showRating);
+		rating.x += ClientPrefs.comboOffset[0];
+		rating.y -= ClientPrefs.comboOffset[1];
+
+		var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'combo' + pixelShitPart2));
+		comboSpr.cameras = [camHUD];
+		comboSpr.screenCenter();
+		comboSpr.x = coolText.x;
+		comboSpr.acceleration.y = 600;
+		comboSpr.velocity.y -= 150;
+		comboSpr.visible = (!ClientPrefs.hideHud && showCombo);
+		comboSpr.x += ClientPrefs.comboOffset[0];
+		comboSpr.y -= ClientPrefs.comboOffset[1];
+
+		comboSpr.velocity.x += FlxG.random.int(1, 10);
+		insert(members.indexOf(strumLineNotes), rating);
+
+		if (!PlayState.isPixelStage)
+		{
+			rating.setGraphicSize(Std.int(rating.width * 0.7));
+			rating.antialiasing = ClientPrefs.globalAntialiasing;
+			comboSpr.setGraphicSize(Std.int(comboSpr.width * 0.7));
+			comboSpr.antialiasing = ClientPrefs.globalAntialiasing;
+		}
+		else
+		{
+			rating.setGraphicSize(Std.int(rating.width * daPixelZoom * 0.85));
+			comboSpr.setGraphicSize(Std.int(comboSpr.width * daPixelZoom * 0.85));
+		}
+
+		comboSpr.updateHitbox();
+		rating.updateHitbox();
 
 		var seperatedScore:Array<Int> = [];
 
-		add(comboGlow);
+		//add(comboGlow);
 		add(combotxt1);
 		add(combotxt2);
 
@@ -4462,7 +4511,41 @@ class PlayState extends MusicBeatState
 		seperatedScore.push(combo % 10);
 
 		for (i in seperatedScore)
-		{
+		{			var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'num' + Std.int(i) + pixelShitPart2));
+			numScore.cameras = [camHUD];
+			numScore.screenCenter();
+			numScore.x = coolText.x + (43 * daLoop) - 90;
+			numScore.y += 80;
+
+			numScore.x += ClientPrefs.comboOffset[2];
+			numScore.y -= ClientPrefs.comboOffset[3];
+
+			if (!PlayState.isPixelStage)
+			{
+				numScore.antialiasing = ClientPrefs.globalAntialiasing;
+				numScore.setGraphicSize(Std.int(numScore.width * 0.5));
+			}
+			else
+			{
+				numScore.setGraphicSize(Std.int(numScore.width * daPixelZoom));
+			}
+			numScore.updateHitbox();
+
+			numScore.acceleration.y = FlxG.random.int(200, 300);
+			numScore.velocity.y -= FlxG.random.int(140, 160);
+			numScore.velocity.x = FlxG.random.float(-5, 5);
+			numScore.visible = !ClientPrefs.hideHud;
+
+			//if (combo >= 10 || combo == 0)
+				insert(members.indexOf(strumLineNotes), numScore);
+
+			FlxTween.tween(numScore, {alpha: 0}, 0.2, {
+				onComplete: function(tween:FlxTween)
+				{
+					numScore.destroy();
+				},
+				startDelay: Conductor.crochet * 0.002
+			});
 			//insert(members.indexOf(strumLineNotes), comboGlow);
 			daCombo++;
 		}
@@ -4473,6 +4556,20 @@ class PlayState extends MusicBeatState
 
 		coolText.text = Std.string(seperatedScore);
 		// add(coolText);
+		FlxTween.tween(rating, {alpha: 0}, 0.2, {
+			startDelay: Conductor.crochet * 0.001
+		});
+
+		FlxTween.tween(comboSpr, {alpha: 0}, 0.2, {
+			onComplete: function(tween:FlxTween)
+			{
+				coolText.destroy();
+				comboSpr.destroy();
+
+				rating.destroy();
+			},
+			startDelay: Conductor.crochet * 0.001
+		});
 	}
 
 	function resetCombo() // combo thing
