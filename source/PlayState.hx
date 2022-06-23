@@ -315,6 +315,7 @@ class PlayState extends MusicBeatState
 	var tankmanRun:FlxTypedGroup<TankmenBG>;
 	var foregroundSprites:FlxTypedGroup<BGSprite>;
 
+	//score stuff
 	public var songScore:Int = 0;
 	public var songHits:Int = 0;
 	public var songMisses:Int = 0;
@@ -323,6 +324,7 @@ class PlayState extends MusicBeatState
 	public var lerpScore2:Int = 0;
 	public var intendedScore2:Int = 0;
 	public var scoreTxt:FlxText;
+	public var comboGlow:FlxSprite;
 	var timeTxt:FlxText;
 	var scoreTxtTween:FlxTween;
 
@@ -1639,34 +1641,8 @@ class PlayState extends MusicBeatState
 		botplayTxt.visible = cpuControlled;
 		add(botplayTxt);
 
-		// lol
-		combotxt1 = new FlxText();
-		combotxt1.size = 32;
-		combotxt1.color = FlxColor.WHITE;
-		combotxt1.text = "";
-		combotxt1.x = 600;
-		combotxt1.y = 115;
-		combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		combotxt1.scrollFactor.set();
-		combotxt1.borderSize = 1.25;
-		combotxt1.visible = false;
-		add(combotxt1);
-
-		// combo score lerp
-		combotxt2 = new FlxText(combotxt1.x, combotxt1.y + 20, 0, "0", 26);
-		combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		combotxt2.scrollFactor.set();
-		combotxt2.borderSize = 1.25;
-		combotxt2.visible = false;
-		add(combotxt2);
-
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
-			combotxt1.y = 610;
-		}
-		if (ClientPrefs.middleScroll)
-		{
-			combotxt1.y = 210;
 		}
 
 		strumLineNotes.cameras = [camHUD];
@@ -1678,8 +1654,6 @@ class PlayState extends MusicBeatState
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 		botplayTxt.cameras = [camHUD];
-		combotxt1.cameras = [camHUD];
-		combotxt2.cameras = [camHUD];
 		timeBar.cameras = [camHUD];
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
@@ -4333,6 +4307,10 @@ class PlayState extends MusicBeatState
 		eventNotes = [];
 	}
 
+	var comboTwn:FlxTween;
+	var comboTwn2:FlxTween;
+	var comboTwn3:FlxTween;
+
 	public var totalPlayed:Int = 0;
 	public var totalNotesHit:Float = 0.0;
 
@@ -4362,7 +4340,7 @@ class PlayState extends MusicBeatState
 
 		switch (daRating)
 		{
-			case "shit": // shit
+			case "shit..": // shit
 				totalNotesHit += 0;
 				note.ratingMod = 0;
 				score = 50;
@@ -4372,19 +4350,19 @@ class PlayState extends MusicBeatState
 				note.ratingMod = 0.5;
 				score = 100;
 				if(!note.ratingDisabled) bads++;
-			case "good": // good
+			case "good!": // good
 				totalNotesHit += 0.75;
 				note.ratingMod = 0.75;
 				score = 200;
 				if(!note.ratingDisabled) goods++;
-			case "sick": // sick
+			case "sick!": // sick
 				totalNotesHit += 1;
 				note.ratingMod = 1;
 				if(!note.ratingDisabled) sicks++;
 		}
 		note.rating = daRating;
 
-		if(daRating == 'sick' && !note.noteSplashDisabled)
+		if(daRating == 'sick!' && !note.noteSplashDisabled)
 		{
 			spawnNoteSplashOnNote(note);
 		}
@@ -4411,6 +4389,26 @@ class PlayState extends MusicBeatState
 					}
 				});
 			}
+			if (comboTwn != null) {
+				comboTwn.cancel();
+			}
+				combotxt1.scale.x = 1.075;
+				combotxt1.scale.y = 1.075;
+				comboTwn = FlxTween.tween(combotxt1.scale, {x: 1, y: 1}, 0.2, {
+					onComplete: function(twn:FlxTween) {
+						comboTwn = null;
+					}
+				});
+			if (comboTwn2 != null) {
+				comboTwn2.cancel();
+			}
+				combotxt2.scale.x = 1.075;
+				combotxt2.scale.y = 1.075;
+				comboTwn2 = FlxTween.tween(combotxt2.scale, {x: 1, y: 1}, 0.2, {
+					onComplete: function(twn:FlxTween) {
+						comboTwn2 = null;
+					}
+				});
 		}
 
 		/* if (combo > 60)
@@ -4430,6 +4428,35 @@ class PlayState extends MusicBeatState
 			pixelShitPart2 = '-pixel';
 		}
 		var daLoop:Int = 0;
+		
+		comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
+		comboGlow.cameras = [camHUD];
+		comboGlow.x = combotxt1.x;
+		comboGlow.y = combotxt1.y;
+		comboGlow.alpha = 0.70;
+
+		combotxt1 = new FlxText();
+		combotxt1.size = 32;
+		combotxt1.color = FlxColor.WHITE;
+		combotxt1.text = daRating + " x" + daLoop;
+		combotxt1.x = STRUM_X_MIDDLESCROLL;
+		combotxt1.y = botplayTxt.y;
+		combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		combotxt1.scrollFactor.set();
+		combotxt1.borderSize = 1.25;
+		combotxt1.cameras = [camHUD];
+
+		// combo score lerp
+		combotxt2 = new FlxText(combotxt1.x, combotxt1.y + 15, 0, "+ " + score, 26);
+		combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		combotxt2.scrollFactor.set();
+		combotxt2.borderSize = 1.25;
+		combotxt2.cameras = [camHUD];
+
+		if (ClientPrefs.downscroll) {
+			combotxt1.y = combotxt1.y * 2;
+		}
+
 		rating.loadGraphic(Paths.image(pixelShitPart1 + daRating + pixelShitPart2));
 		rating.cameras = [camHUD];
 		rating.screenCenter();
@@ -4440,6 +4467,8 @@ class PlayState extends MusicBeatState
 		rating.velocity.x -= FlxG.random.int(0, 10);
 		rating.visible = (!ClientPrefs.hideHud && showRating);
 		rating.x += ClientPrefs.comboOffset[0];
+		rating.alpha = 0; // vou deixar tudo no alpha
+		// motivo: preguiça zzzzzzzzzz
 		rating.y -= ClientPrefs.comboOffset[1];
 
 		var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'combo' + pixelShitPart2));
@@ -4451,7 +4480,8 @@ class PlayState extends MusicBeatState
 		comboSpr.visible = (!ClientPrefs.hideHud && showCombo);
 		comboSpr.x += ClientPrefs.comboOffset[0];
 		comboSpr.y -= ClientPrefs.comboOffset[1];
-
+		comboSpr.alpha = 0; // vou deixar tudo no alpha
+			// motivo: preguiça zzzzzzzzzz
 
 		comboSpr.velocity.x += FlxG.random.int(1, 10);
 		insert(members.indexOf(strumLineNotes), rating);
@@ -4488,6 +4518,8 @@ class PlayState extends MusicBeatState
 			numScore.screenCenter();
 			numScore.x = coolText.x + (43 * daLoop) - 90;
 			numScore.y += 80;
+			numScore.alpha = 0; // vou deixar tudo no alpha 0
+			// motivo: preguiça zzzzzzzzzz
 
 			numScore.x += ClientPrefs.comboOffset[2];
 			numScore.y -= ClientPrefs.comboOffset[3];
@@ -4551,26 +4583,30 @@ class PlayState extends MusicBeatState
 
 	function resetCombo() // combo thing
 	{
-		combotxt1.visible = true;
-		combotxt2.visible = true;
-
-		FlxFlicker.flicker(combotxt1, 1, 0.10, false, false);
-		FlxTween.tween(combotxt1, {alpha: 0}, 1, {
-			ease: FlxEase.quadOut,
+		combotxt2.text = "0";
+		FlxFlicker.flicker(combotxt1, 1.5, 0.10, false, false);
+		FlxTween.tween(combotxt1, {alpha: 0}, 1.5, {
+			ease: FlxEase.quadInOut,
 			onComplete: function(twn:FlxTween)
 			{
-				combotxt1.kill();
+				combotxt1.alpha = 0;
 			}
 		});
-		FlxFlicker.flicker(combotxt2, 1, 0.10, false, false);
-		FlxTween.tween(combotxt2, {alpha: 0}, 1, {
-			ease: FlxEase.quadOut,
+		FlxFlicker.flicker(combotxt2, 1.5, 0.10, false, false);
+		FlxTween.tween(combotxt2, {alpha: 0}, 1.5, {
+			ease: FlxEase.quadInOut,
 			onComplete: function(twn:FlxTween)
 			{
-				combotxt2.kill();
+				combotxt2.alpha = 0;
 			}
 		});
-
+		FlxTween.tween(comboGlow, {alpha: 0}, 1.5, {
+			ease: FlxEase.quadInOut,
+			onComplete: function(twn:FlxTween)
+			{
+				comboGlow.alpha = 0;
+			}
+		});
 		if (FlxG.random.bool(15.5))
 		{
 			combotxt1.text = 'whoops...';
