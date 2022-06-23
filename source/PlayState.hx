@@ -4344,6 +4344,7 @@ class PlayState extends MusicBeatState
 	public var totalNotesHit:Float = 0.0;
 	//tryna do MS based judgment due to popular demand
 	public var daRating:String = Conductor.judgeNote(note, noteDiff);
+	var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.ratingOffset);
 
 	public var showCombo:Bool = true;
 	public var showRating:Bool = true;
@@ -4351,7 +4352,6 @@ class PlayState extends MusicBeatState
 
 	private function popUpScore(note:Note = null):Void
 	{
-		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.ratingOffset);
 		//trace(noteDiff, ' ' + Math.abs(note.strumTime - Conductor.songPosition));
 
 		// boyfriend.playAnim('hey');
