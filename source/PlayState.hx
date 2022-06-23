@@ -4478,10 +4478,9 @@ class PlayState extends MusicBeatState
 
 	function resetCombo() // combo thing
 	{
-		if(!practiceMode && !cpuControlled) {
 			scoreCount -= Math.floor(FlxMath.lerp(scoreCount, score, CoolUtil.boundTo(1 - (FlxG.elapsed * 9), 0, -1)));
 			songScore += Math.floor(FlxMath.lerp(songScore, score, CoolUtil.boundTo(1 - (FlxG.elapsed * 9), 0, 1)));
-		}
+
 		FlxFlicker.flicker(combotxt1, 1.5, 0.10, false, false);
 		FlxTween.tween(combotxt1, {alpha: 0}, 1.5, {
 			ease: FlxEase.quadInOut,
