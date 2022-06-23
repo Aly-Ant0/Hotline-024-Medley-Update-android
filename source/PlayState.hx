@@ -327,6 +327,7 @@ class PlayState extends MusicBeatState
 	public var comboGlow:FlxSprite;
 	public var combotxt1:FlxText;
 	public var combotxt2:FlxText;
+	public var scoreCount:Int = 0;
 	var timeTxt:FlxText;
 	var scoreTxtTween:FlxTween;
 
@@ -4370,7 +4371,7 @@ class PlayState extends MusicBeatState
 		}
 		
 		if (!practiceMode && !cpuControlled) {
-			combotxt2 =+ score;
+			scoreCount += score;
 		}
 			if(!note.ratingDisabled)
 			{
@@ -4441,7 +4442,7 @@ class PlayState extends MusicBeatState
 		combotxt1.cameras = [camHUD];
 
 		// combo score lerp
-		combotxt2 = new FlxText(combotxt1.x, combotxt1.y + 15, 0, "+ " + score, 26);
+		combotxt2 = new FlxText(combotxt1.x, combotxt1.y + 20, 0, + scoreCount, 26);
 		combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		combotxt2.scrollFactor.set();
 		combotxt2.borderSize = 1.25;
@@ -4478,8 +4479,8 @@ class PlayState extends MusicBeatState
 	function resetCombo() // combo thing
 	{
 		if(!practiceMode && !cpuControlled) {
-			combotxt2 -= Math.floor(FlxMath.lerp(combotxt2, score, CoolUtil.boundTo(1 - (FlxG.elapsed * 9), 0, -1)));
-			scoreTxt += Math.floor(FlxMath.lerp(scoreTxt, score, CoolUtil.boundTo(1 - (FlxG.elapsed * 9), 0, 1)));
+			scoreCount -= Math.floor(FlxMath.lerp(scoreCount, score, CoolUtil.boundTo(1 - (FlxG.elapsed * 9), 0, -1)));
+			songScore += Math.floor(FlxMath.lerp(songScore, score, CoolUtil.boundTo(1 - (FlxG.elapsed * 9), 0, 1)));
 		}
 		FlxFlicker.flicker(combotxt1, 1.5, 0.10, false, false);
 		FlxTween.tween(combotxt1, {alpha: 0}, 1.5, {
@@ -4508,7 +4509,7 @@ class PlayState extends MusicBeatState
 		{
 			combotxt1.text = 'whoops...';
 		}
-		if (FlxG.random.bool(40))
+		if (FlxG.random.bool(80))
 		{
 			combotxt1.text = 'Perfect!';
 		}
