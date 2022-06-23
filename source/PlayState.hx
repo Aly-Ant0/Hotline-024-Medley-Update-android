@@ -4453,7 +4453,7 @@ class PlayState extends MusicBeatState
 		combotxt2.borderSize = 1.25;
 		combotxt2.cameras = [camHUD];
 
-		if (ClientPrefs.downscroll) {
+		if (ClientPrefs.downScroll) {
 			combotxt1.y = combotxt1.y * 2;
 		}
 
