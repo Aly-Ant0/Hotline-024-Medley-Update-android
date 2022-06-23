@@ -329,6 +329,9 @@ class PlayState extends MusicBeatState
 	public var combotxt2:FlxText;
 	public var scoreCount:Int = 0;
 	var timeTxt:FlxText;
+	var comboTwn:FlxTween;
+	var comboTwn2:FlxTween;
+	var comboTwn3:FlxTween;
 	var scoreTxtTween:FlxTween;
 
 	public static var campaignScore:Int = 0;
@@ -4337,12 +4340,10 @@ class PlayState extends MusicBeatState
 		eventNotes = [];
 	}
 
-	var comboTwn:FlxTween;
-	var comboTwn2:FlxTween;
-	var comboTwn3:FlxTween;
-
 	public var totalPlayed:Int = 0;
 	public var totalNotesHit:Float = 0.0;
+	//tryna do MS based judgment due to popular demand
+	public var daRating:String = Conductor.judgeNote(note, noteDiff);
 
 	public var showCombo:Bool = true;
 	public var showRating:Bool = true;
@@ -4364,9 +4365,6 @@ class PlayState extends MusicBeatState
 		//
 
 	//	var rating:FlxSprite = new FlxSprite();
-
-		//tryna do MS based judgment due to popular demand
-		var daRating:String = Conductor.judgeNote(note, noteDiff);
 
 		switch (daRating)
 		{
