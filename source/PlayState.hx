@@ -1643,9 +1643,33 @@ class PlayState extends MusicBeatState
 		botplayTxt.borderSize = 1.25;
 		botplayTxt.visible = cpuControlled;
 		add(botplayTxt);
+		
+		comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
+		comboGlow.x = combotxt1.x;
+		comboGlow.y = combotxt1.y;
+		comboGlow.alpha = 0.70;
+
+		combotxt1 = new FlxText();
+		combotxt1.size = 32;
+		combotxt1.color = FlxColor.WHITE;
+		combotxt1.text = daRating + " x" + daCombo;
+		combotxt1.x = 400;
+		combotxt1.y = botplayTxt.y;
+		combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		combotxt1.scrollFactor.set();
+		combotxt1.borderSize = 1.25;
+		//add(combotxt1);
+
+		// combo score lerp
+		combotxt2 = new FlxText(combotxt1.x, combotxt1.y + 20, 0, "score: " + scoreCount, 26);
+		combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		combotxt2.scrollFactor.set();
+		combotxt2.borderSize = 1.25;
+		//add(combotxt2);
 
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
+			combotxt1.y = combotxt1.y * 2;
 		}
 
 		strumLineNotes.cameras = [camHUD];
@@ -1657,6 +1681,9 @@ class PlayState extends MusicBeatState
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 		botplayTxt.cameras = [camHUD];
+		comboGlow.cameras = [camHUD];
+		combotxt1.cameras = [camHUD];
+		combotxt2.cameras = [camHUD];
 		timeBar.cameras = [camHUD];
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
@@ -4422,39 +4449,12 @@ class PlayState extends MusicBeatState
 				daRating = 'bad';
 		 */
 		var daCombo:Int = 0;
-		
-		comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
-		comboGlow.cameras = [camHUD];
-		comboGlow.x = combotxt1.x;
-		comboGlow.y = combotxt1.y;
-		comboGlow.alpha = 0.70;
-		add(comboGlow);
-
-		combotxt1 = new FlxText();
-		combotxt1.size = 32;
-		combotxt1.color = FlxColor.WHITE;
-		combotxt1.text = daRating + " x" + daCombo;
-		combotxt1.x = STRUM_X_MIDDLESCROLL;
-		combotxt1.y = botplayTxt.y;
-		combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		combotxt1.scrollFactor.set();
-		combotxt1.borderSize = 1.25;
-		combotxt1.cameras = [camHUD];
-		add(combotxt1);
-
-		// combo score lerp
-		combotxt2 = new FlxText(combotxt1.x, combotxt1.y + 20, 0, "score: " + scoreCount, 26);
-		combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		combotxt2.scrollFactor.set();
-		combotxt2.borderSize = 1.25;
-		combotxt2.cameras = [camHUD];
-		add(combotxt2);
-
-		if (ClientPrefs.downScroll) {
-			combotxt1.y = combotxt1.y * 2;
-		}
 
 		var seperatedScore:Array<Int> = [];
+
+		add(comboGlow);
+		add(combotxt1);
+		add(combotxt2);
 
 		if(combo >= 1000) {
 			seperatedScore.push(Math.floor(combo / 1000) % 10);
