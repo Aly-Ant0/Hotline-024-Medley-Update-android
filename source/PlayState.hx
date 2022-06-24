@@ -1646,33 +1646,9 @@ class PlayState extends MusicBeatState
 		botplayTxt.borderSize = 1.25;
 		botplayTxt.visible = cpuControlled;
 		add(botplayTxt);
-		
-		comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
-		comboGlow.x = combotxt1.x;
-		comboGlow.y = combotxt1.y;
-		comboGlow.alpha = 0.70;
-
-		combotxt1 = new FlxText();
-		combotxt1.size = 32;
-		combotxt1.color = FlxColor.WHITE;
-		combotxt1.text = daRating + " x" + daCombo;
-		combotxt1.x = 400;
-		combotxt1.y = botplayTxt.y;
-		combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		combotxt1.scrollFactor.set();
-		combotxt1.borderSize = 1.25;
-		//add(combotxt1);
-
-		// combo score lerp
-		combotxt2 = new FlxText(combotxt1.x, combotxt1.y + 20, 0, "score: " + scoreCount, 26);
-		combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		combotxt2.scrollFactor.set();
-		combotxt2.borderSize = 1.25;
-		//add(combotxt2);
 
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
-			combotxt1.y = combotxt1.y * 2;
 		}
 
 		strumLineNotes.cameras = [camHUD];
@@ -4356,6 +4332,7 @@ class PlayState extends MusicBeatState
 		coolText.screenCenter();
 		coolText.x = FlxG.width * 0.35;
 		//
+
 		var daRating:String = Conductor.judgeNote(note, noteDiff);
 		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.ratingOffset);
 		//var rating:FlxSprite = new FlxSprite();
@@ -4472,6 +4449,10 @@ class PlayState extends MusicBeatState
 		combotxt2.cameras = [camHUD];
 		//add(combotxt2);
 		//add(comboGlow);
+
+		if(ClientPrefs.downScroll) {
+			combotxt1.y = combotxt1.y * 2;
+		}
 
 		if(combo >= 1000) {
 			seperatedScore.push(Math.floor(combo / 1000) % 10);
