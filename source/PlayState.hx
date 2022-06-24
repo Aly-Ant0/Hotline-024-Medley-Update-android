@@ -4511,7 +4511,8 @@ class PlayState extends MusicBeatState
 		seperatedScore.push(combo % 10);
 
 		for (i in seperatedScore)
-		{			var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'num' + Std.int(i) + pixelShitPart2));
+		{
+			var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'num' + Std.int(i) + pixelShitPart2));
 			numScore.cameras = [camHUD];
 			numScore.screenCenter();
 			numScore.x = coolText.x + (43 * daLoop) - 90;
