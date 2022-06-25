@@ -4342,7 +4342,7 @@ class PlayState extends MusicBeatState
 
 		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.ratingOffset);
 		//var rating:FlxSprite = new FlxSprite();
-		public var score:Int = 350;
+		var score:Int = 350;
 	//tryna do MS based judgment due to popular demand
 		var daRating:String = Conductor.judgeNote(note, noteDiff);
 
