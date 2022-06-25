@@ -3191,6 +3191,7 @@ class PlayState extends MusicBeatState
 							exParticle.add(particle);
 						}
 					}
+				}
 			case 'limo':
 				if(!ClientPrefs.lowQuality) {
 					grpLimoParticles.forEach(function(spr:BGSprite) {
