@@ -4432,7 +4432,6 @@ class PlayState extends MusicBeatState
 		 */
 		var daCombo:Int = 0;
 
-		//insert(members.indexOf(strumLineNotes), comboGlow);
 
 		var seperatedScore:Array<Int> = [];
 
@@ -4441,31 +4440,12 @@ class PlayState extends MusicBeatState
 		comboGlow.y = combotxt1.y;
 		comboGlow.alpha = 0.70;
 		comboGlow.cameras = [camHUD];
-
-		combotxt1 = new FlxText();
-		combotxt1.size = 32;
-		combotxt1.color = FlxColor.WHITE;
-		combotxt1.text = daRating + " x" + daCombo;
-		combotxt1.x = 400;
-		combotxt1.y = botplayTxt.y;
-		combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		combotxt1.scrollFactor.set();
-		combotxt1.borderSize = 1.25;
-		combotxt1.cameras = [camHUD];
-		//add(combotxt1);
-
-		// combo score lerp
-		combotxt2 = new FlxText(combotxt1.x, combotxt1.y + 20, 0, "s " + scoreCount, 26);
-		combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		combotxt2.scrollFactor.set();
-		combotxt2.borderSize = 1.25;
-		combotxt2.cameras = [camHUD];
-		//add(combotxt2);
 		//add(comboGlow);
 
 		if(ClientPrefs.downScroll) {
 			combotxt1.y = combotxt1.y * 2;
 		}
+		insert(members.indexOf(strumLineNotes), comboGlow);
 
 		if(combo >= 1000) {
 			seperatedScore.push(Math.floor(combo / 1000) % 10);
@@ -4480,8 +4460,27 @@ class PlayState extends MusicBeatState
 			//add(combotxt1);
 			//add(combotxt2);
 
+		combotxt1 = new FlxText();
+		combotxt1.size = 32;
+		combotxt1.color = FlxColor.WHITE;
+		combotxt1.text = daRating + " x" + Std.int(i);
+		combotxt1.x = 400;
+		combotxt1.y = botplayTxt.y;
+		combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		combotxt1.scrollFactor.set();
+		combotxt1.borderSize = 1.25;
+		combotxt1.cameras = [camHUD];
+		//add(combotxt1);
+
+			// combo score lerp
+		combotxt2 = new FlxText(combotxt1.x, combotxt1.y + 20, 0, "s " + scoreCount, 26);
+		combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		combotxt2.scrollFactor.set();
+		combotxt2.borderSize = 1.25;
+		combotxt2.cameras = [camHUD];
+		//add(combotxt2);
+
 			//if (combo >= 10 || combo == 0)
-			insert(members.indexOf(strumLineNotes), comboGlow);
 			insert(members.indexOf(strumLineNotes), combotxt1);
 			insert(members.indexOf(strumLineNotes), combotxt2);
 
