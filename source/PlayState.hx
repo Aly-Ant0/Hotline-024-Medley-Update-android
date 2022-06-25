@@ -4325,6 +4325,7 @@ class PlayState extends MusicBeatState
 
 	public var showCombo:Bool = true;
 	public var showRating:Bool = true;
+	var score:Int = 350;
 
 	private function popUpScore(note:Note = null):Void
 	{
@@ -4342,7 +4343,6 @@ class PlayState extends MusicBeatState
 
 		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.ratingOffset);
 		//var rating:FlxSprite = new FlxSprite();
-		var score:Int = 350;
 	//tryna do MS based judgment due to popular demand
 		var daRating:String = Conductor.judgeNote(note, noteDiff);
 
