@@ -242,11 +242,14 @@ class PlayState extends MusicBeatState
   var exOverlay:BGSprite;
   var exFront:BGSprite;
   
-  //unseless particle
-  var particleEx:FlxParticle;
-  // used particle
-  var particleEmitter:FlxEmitter;
-  
+  //unseless particle things
+/*
+	var particleEx:FlxParticle;
+	var particleEmitter:FlxEmitter;
+*/
+	// used particle
+	var exParticle:FlxTypedGroup<ExpurgatedParticle>;
+ 
   var skateSky:BGSprite;
   var skateFloor:BGSprite;
   var skateBuildings:BGSprite;
@@ -731,28 +734,8 @@ class PlayState extends MusicBeatState
 				add(exRock);
 
         // particle lol
-        var particlesSpawn:Int = 17;
-        //var particle:BGSprite = new BGSprite('expurgated/particle', -2800, -1400, 0.6, 0.6);
-				particleEmitter = new FlxEmitter(FlxG.width / 2, FlxG.height / 2, 200);
-        //particleEmitter.loadParticles(Paths.image('expurgated/particle'), 14, 0, true);
-        particleEmitter.velocity.set(FlxG.random.float(-40, 40), FlxG.random.float(-175, -250));
-        //particleEmitter.antialiasing = ClientPrefs.globalAntialiasing;
-        particleEmitter.start(false, 0.0789, 14);
-        particleEmitter.lifespan.set(FlxG.random.float(7, 4.7));
-        particleEmitter.launchMode = FlxEmitterMode.CIRCLE;
-       	particleEmitter.y = FlxG.random.float(-1300, -1200 + 2) - particleEmitter.height / 2;
-       	particleEmitter.x = FlxG.random.float(-2100, -2850 + 2) - particleEmitter.width / 2;
-       	particleEmitter.acceleration.set(FlxG.random.float(-10, 10), 25);
-       	particleEmitter.launchAngle.set(-90, -90);
-       	particleEmitter.alpha.set(1, 1, 0.8, 0);
-        
-        for (i in 0...particlesSpawn)
-        {
-          particleEx = new FlxParticle();
-          particleEx.loadGraphic(Paths.image('expurgated/particle'));
-          particleEx.exists = false;
-          particleEmitter.add(particleEx);
-        }
+				precacheList.set('philly/particle', 'image'); //precache particle image
+				exParticle = new FlxTypedGroup<ExpurgatedParticle>();
 
         exGround = new BGSprite('expurgated/ground', -2800, -1400, 1, 1);
         exGround.scale.set(2.5, 2.5);
@@ -3183,6 +3166,31 @@ class PlayState extends MusicBeatState
 						--i;
 					}
 				}
+			case 'expurgated':
+				if(exParticle != null)
+				{
+					var i:Int = exParticle.members.length-1;
+					while (i > 0)
+					{
+						var expurparticle = exParticle.members[i];
+						if(expurparticle.alpha < 0)
+						{
+							expurparticle.kill();
+							exParticle.remove(expurparticle, true);
+							expurparticle.destroy();
+						}
+						--i;
+					}
+					var particlesNum:Int = FlxG.random.int(8, 12);
+					var width:Float = (2000 / particlesNum);
+					for (j in 0...3)
+					{
+						for (i in 0...particlesNum)
+						{
+							var particle:ExpurgatedParticle = new ExpurgatedParticle(-400 + width * i + FlxG.random.float(-width / 5, width / 5), ExpurgatedParticle.originalY + 200 + (FlxG.random.float(0, 125) + j * 40));
+							exParticle.add(particle);
+						}
+					}
 			case 'limo':
 				if(!ClientPrefs.lowQuality) {
 					grpLimoParticles.forEach(function(spr:BGSprite) {
