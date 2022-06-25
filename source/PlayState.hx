@@ -734,8 +734,10 @@ class PlayState extends MusicBeatState
 				add(exRock);
 
         // particle lol
+/*
 				precacheList.set('philly/particle', 'image'); //precache particle image
 				exParticle = new FlxTypedGroup<ExpurgatedParticle>();
+*/
 
         exGround = new BGSprite('expurgated/ground', -2800, -1400, 1, 1);
         exGround.scale.set(2.5, 2.5);
@@ -3166,32 +3168,34 @@ class PlayState extends MusicBeatState
 						--i;
 					}
 				}
-			case 'expurgated':
-				if(exParticle != null)
+			/*case 'expurgated':
+				exParticle.forEach(function(particle:ExpurgatedParticle)
 				{
-					var i:Int = exParticle.members.length-1;
-					while (i > 0)
+					if(exParticle != null)
 					{
-						var expurparticle = exParticle.members[i];
-						if(expurparticle.alpha < 0)
+						var i:Int = exParticle.members.length-1;
+						while (i > 0)
 						{
-							expurparticle.kill();
-							exParticle.remove(expurparticle, true);
-							expurparticle.destroy();
+							if(particle.alpha < 0)
+							{
+								particle.kill();
+								exParticle.remove(particle, true);
+								particle.destroy();
+							}
+							--i;
 						}
-						--i;
-					}
-					var particlesNum:Int = FlxG.random.int(8, 12);
-					var width:Float = (2000 / particlesNum);
-					for (j in 0...3)
-					{
-						for (i in 0...particlesNum)
+						var particlesNum:Int = FlxG.random.int(8, 12);
+						var width:Float = (2000 / particlesNum);
+						for (j in 0...3)
 						{
-							var particle:ExpurgatedParticle = new ExpurgatedParticle(-400 + width * i + FlxG.random.float(-width / 5, width / 5), ExpurgatedParticle.originalY + 200 + (FlxG.random.float(0, 125) + j * 40));
-							exParticle.add(particle);
+							for (i in 0...particlesNum)
+							{
+								var particle:ExpurgatedParticle = new ExpurgatedParticle(-400 + width * i + FlxG.random.float(-width / 5, width / 5), ExpurgatedParticle.originalY + 200 + (FlxG.random.float(0, 125) + j * 40));
+								exParticle.add(particle);
+							}
 						}
 					}
-				}
+				}*/
 			case 'limo':
 				if(!ClientPrefs.lowQuality) {
 					grpLimoParticles.forEach(function(spr:BGSprite) {
