@@ -45,6 +45,7 @@ class MainMenuState extends MusicBeatState
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
+	var selected:Bool = false;
 
 	override function create()
 	{
@@ -175,13 +176,13 @@ class MainMenuState extends MusicBeatState
 		{
 			if (controls.UI_LEFT_P)
 			{
-				FlxG.sound.play(Paths.sound('scrollMenu'));
+				FlxG.sound.play(Paths.sound('selectsfx'));
 				changeItem(-1);
 			}
 
 			if (controls.UI_RIGHT_P)
 			{
-				FlxG.sound.play(Paths.sound('scrollMenu'));
+				FlxG.sound.play(Paths.sound('selectsfx'));
 				changeItem(1);
 			}
 
@@ -270,39 +271,26 @@ class MainMenuState extends MusicBeatState
 			curSelected = 0;
 		if (curSelected < 0)
 			curSelected = menuItems.length - 1;
-			
-		for (i in 0...menuItems.length)
-		{
+
 			if (huh == 1)
 			{
-				menuItems.forEach(function(spr:FlxSprite)
-				{
-					if (curSelected != spr.ID)
+				selected = false;
+				FlxG.sound.play(Paths.sound('selectsfx'), 0.4);
+				FlxTween.tween(menuItems, {x: menuItems.x - 780}, 0.58, {ease: FlxEase.expoOut, onComplete: function(sus:FlxTween)
 					{
-						spr.x -= 20 * FlxG.elapsed;
-						spr.scale.y -= 10 * FlxG.elapsed;
-					}
-					else {
-						spr.x += 0 * FlxG.elapsed;
-						spr.scale.y += scale * FlxG.elapsed;
+						selected = true;
 					}
 				});
 			}
-				if (huh == -1)
-				{
-					menuItems.forEach(function(spr:FlxSprite)
+			if (huh == -1)
+			{
+				selected = false;
+				FlxG.sound.play(Paths.sound('selectsfx'), 0.4);
+				FlxTween.tween(menuItems,{x: menuItems.x + 780}, 0.58, {ease: FlxEase.expoOut, onComplete: function(sus:FlxTween)
 					{
-						if (curSelected != spr.ID)
-						{
-							spr.x += 20 * FlxG.elapsed;
-							spr.scale.y -= 10 * FlxG.elapsed;
-						}
-						else {
-							spr.x -= 0 * FlxG.elapsed;
-							spr.scale.y += scale * FlxG.elapsed;
-						}
-					});
-				}
+						selected = true;
+					}
+				});
 			}
 	}
 }
