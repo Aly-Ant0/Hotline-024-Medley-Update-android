@@ -104,7 +104,7 @@ class MainMenuState extends MusicBeatState
 			menuItem.animation.play('idle');
 			menuItem.ID = i;
 			menuItem.screenCenter(X);
-			menuItems.push(menuItem);
+			optionShit.push(menuItem);
 			menuItem.scrollFactor.set();
 			menuItem.antialiasing = ClientPrefs.globalAntialiasing;
 			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
@@ -232,7 +232,7 @@ class MainMenuState extends MusicBeatState
 						}
 						else
 						{
-							menuItem[curSelected].animation.play('selected');
+							optionShit[curSelected].animation.play('selected');
 							FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
 							{
 								var daChoice:String = optionShit[curSelected];
@@ -251,17 +251,15 @@ class MainMenuState extends MusicBeatState
 					});
 				}
 			}
-			if (touch.overlaps(creditsImage) && touch.justPressed) {
-					MusicBeatState.switchState(new CreditsState());
+			for (touch in FlxG.touches.list)
+			{
+				if (touch.overlaps(creditsImage) && touch.justPressed) {
+						MusicBeatState.switchState(new CreditsState());
+				}
 			}
 		}
 
 		super.update(elapsed);
-
-		menuItems.forEach(function(spr:FlxSprite)
-		{
-			spr.screenCenter(X);
-		});
 	}
 
 	function changeItem(huh:Int = 0)
@@ -270,17 +268,17 @@ class MainMenuState extends MusicBeatState
 
 		var scale:Int = 1;
 
-		if (curSelected >= menuItems.length)
+		if (curSelected >= optionShit.length)
 			curSelected = 0;
 		if (curSelected < 0)
-			curSelected = menuItems.length - 1;
+			curSelected = optionShit.length - 1;
 			
-		for (i in 0...menuItems.length)
+		for (i in 0...optionShit.length)
 		{
-				menuItem[i].x -= 20 * FlxG.elapsed;
-				menuItem[i].scale -= 10 * FlxG.elapsed;
-				menuItem[curSelected].x = 0.85 * FlxG.elapsed ;
-				menuItem[curSelected].scale = scale * FlxG.elapsed;
+				optionShit[i].x -= 20 * FlxG.elapsed;
+				optionShit[i].scale -= 10 * FlxG.elapsed;
+				optionShit[curSelected].x = 0.85 * FlxG.elapsed ;
+				optionShit[curSelected].scale = scale * FlxG.elapsed;
 		}
 	}
 }
