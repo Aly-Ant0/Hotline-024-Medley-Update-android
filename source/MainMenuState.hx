@@ -96,15 +96,13 @@ class MainMenuState extends MusicBeatState
 		for (i in 0...optionShit.length)
 		{
 			var menuItem:FlxSprite = new FlxSprite();
-			menuItem.scale.x = i;
-			menuItem.scale.y = i;
 			menuItem.frames = Paths.getSparrowAtlas('hotline/menu/' + optionShit[i]);
-			menuItem.animation.addByPrefix('idle', "normal", 24);
-			menuItem.animation.addByPrefix('selected', "glow", 24);
+			menuItem.animation.addByPrefix('idle', "normal");
+			menuItem.animation.addByPrefix('selected', "glow");
 			menuItem.animation.play('idle');
 			menuItem.ID = i;
-			menuItem.screenCenter(X);
-			optionShit.push(menuItem);
+			menuItem.screenCenter(XY);
+			menuItems.push(menuItem);
 			menuItem.scrollFactor.set();
 			menuItem.antialiasing = ClientPrefs.globalAntialiasing;
 			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
@@ -149,7 +147,7 @@ class MainMenuState extends MusicBeatState
 		#end
 
 		#if android
-		addVirtualPad(LEFT_RIGHT, A_B); // no editors since idk what will happen honestly
+		addVirtualPad(LEFT_RIGHT, A_B); // no editors since idk what will happen honestly edit: nothing but dont will have editors menu lol
 		#end
 
 		super.create();
@@ -232,7 +230,7 @@ class MainMenuState extends MusicBeatState
 						}
 						else
 						{
-							optionShit[curSelected].animation.play('selected');
+							spr.animation.play('selected');
 							FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
 							{
 								var daChoice:String = optionShit[curSelected];
@@ -268,17 +266,42 @@ class MainMenuState extends MusicBeatState
 
 		var scale:Int = 1;
 
-		if (curSelected >= optionShit.length)
+		if (curSelected >= menuItems.length)
 			curSelected = 0;
 		if (curSelected < 0)
-			curSelected = optionShit.length - 1;
+			curSelected = menuItems.length - 1;
 			
-		for (i in 0...optionShit.length)
+		for (i in 0...menuItems.length)
 		{
-				optionShit[i].x -= 20 * FlxG.elapsed;
-				optionShit[i].scale -= 10 * FlxG.elapsed;
-				optionShit[curSelected].x += 0.85 * FlxG.elapsed ;
-				optionShit[curSelected].scale += scale * FlxG.elapsed;
-		}
+			if (huh == 1)
+			{
+				menuItems.forEach(function(spr:FlxSprite)
+				{
+					if (curSelected != spr.ID)
+					{
+						spr.x -= 20 * FlxG.elapsed;
+						spr.scale -= 10 * FlxG.elapsed;
+					}
+					else {
+						spr.x += 0 * FlxG.elapsed;
+						spr.scale += scale * FlxG.elapsed;
+					}
+				}
+				if (huh == -1)
+				{
+					menuItems.forEach(function(spr:FlxSprite)
+					{
+						if (curSelected != spr.ID)
+						{
+							spr.x += 20 * FlxG.elapsed;
+							spr.scale -= 10 * FlxG.elapsed;
+						}
+						else {
+							spr.x -= 0 * FlxG.elapsed;
+							spr.scale += scale * FlxG.elapsed;
+						}
+					}
+				}
+			}
 	}
 }
