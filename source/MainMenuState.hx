@@ -286,7 +286,8 @@ class MainMenuState extends MusicBeatState
 						spr.x += 0 * FlxG.elapsed;
 						spr.scale += scale * FlxG.elapsed;
 					}
-				}
+				});
+			}
 				if (huh == -1)
 				{
 					menuItems.forEach(function(spr:FlxSprite)
@@ -300,7 +301,7 @@ class MainMenuState extends MusicBeatState
 							spr.x -= 0 * FlxG.elapsed;
 							spr.scale += scale * FlxG.elapsed;
 						}
-					}
+					});
 				}
 			}
 	}
