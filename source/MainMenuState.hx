@@ -280,11 +280,11 @@ class MainMenuState extends MusicBeatState
 					if (curSelected != spr.ID)
 					{
 						spr.x -= 20 * FlxG.elapsed;
-						spr.scale -= 10 * FlxG.elapsed;
+						spr.scale.y -= 10 * FlxG.elapsed;
 					}
 					else {
 						spr.x += 0 * FlxG.elapsed;
-						spr.scale += scale * FlxG.elapsed;
+						spr.scale.y += scale * FlxG.elapsed;
 					}
 				});
 			}
@@ -295,11 +295,11 @@ class MainMenuState extends MusicBeatState
 						if (curSelected != spr.ID)
 						{
 							spr.x += 20 * FlxG.elapsed;
-							spr.scale -= 10 * FlxG.elapsed;
+							spr.scale.y -= 10 * FlxG.elapsed;
 						}
 						else {
 							spr.x -= 0 * FlxG.elapsed;
-							spr.scale += scale * FlxG.elapsed;
+							spr.scale.y += scale * FlxG.elapsed;
 						}
 					});
 				}
