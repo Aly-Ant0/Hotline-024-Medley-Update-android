@@ -14,12 +14,13 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
 import flixel.math.FlxMath;
 import flixel.tweens.FlxEase;
+import flixel.addons.display.FlxBackdrop;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import lime.app.Application;
 import Achievements;
 import editors.MasterEditorMenu;
-import flixel.input.keyboard.FlxKey;
+import flixel.input.*;
 
 using StringTools;
 
@@ -35,11 +36,11 @@ class MainMenuState extends MusicBeatState
 	var optionShit:Array<String> = [
 		'story_mode',
 		'freeplay',
-		'credits',
-		'extras',
-		'options'
+		'options',
+		'extras'
 	];
-
+	var creditsImage:FlxSprite;
+	var jukeboxText:FlxSprite;
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
@@ -47,6 +48,8 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
+		FlxG.mouse.visible = true;
+
 		WeekData.loadTheFirstEnabledMod();
 
 		#if desktop
@@ -68,68 +71,62 @@ class MainMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
-		var yScroll:Float = Math.max(0.25 - (0.05 * (optionShit.length - 4)), 0.1);
-		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menuBG'));
-		bg.scrollFactor.set(0, yScroll);
+		var bg:FlxSprite = new FlxBackdrop(Paths.image('hotline/menu/bg'), 0.2, 0.2, true, false);
+		bg.scrollFactor.set();
 		bg.setGraphicSize(Std.int(bg.width * 1.175));
+		bg.velocity.x = 90;
 		bg.updateHitbox();
 		bg.screenCenter();
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
-
-		camFollow = new FlxObject(0, 0, 1, 1);
-		camFollowPos = new FlxObject(0, 0, 1, 1);
-		add(camFollow);
-		add(camFollowPos);
-
-		magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
-		magenta.scrollFactor.set(0, yScroll);
-		magenta.setGraphicSize(Std.int(magenta.width * 1.175));
-		magenta.updateHitbox();
-		magenta.screenCenter();
-		magenta.visible = false;
-		magenta.antialiasing = ClientPrefs.globalAntialiasing;
-		magenta.color = 0xFFfd719b;
-		add(magenta);
 		
-		// magenta.scrollFactor.set();
+		var bars:FlxSprite = new FlxSprite().loadGraphic(Paths.image('hotline/menu/bars'));
+		bars.updateHitbox();
+		bars.screenCenter();
+		bars.antialiasing = ClientPrefs.globalAntialiasing;
+		add(bars);
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
 
-		var scale:Float = 1;
 		/*if(optionShit.length > 6) {
 			scale = 6 / optionShit.length;
 		}*/
 
 		for (i in 0...optionShit.length)
 		{
-			var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-			var menuItem:FlxSprite = new FlxSprite(0, (i * 140)  + offset);
-			menuItem.scale.x = scale;
-			menuItem.scale.y = scale;
-			menuItem.frames = Paths.getSparrowAtlas('mainmenu/menu_' + optionShit[i]);
-			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
-			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
+			var menuItem:FlxSprite = new FlxSprite();
+			menuItem.scale.x = i;
+			menuItem.scale.y = i;
+			menuItem.frames = Paths.getSparrowAtlas('hotline/menu/' + optionShit[i]);
+			menuItem.animation.addByPrefix('idle', "normal", 24);
+			menuItem.animation.addByPrefix('selected', "glow", 24);
 			menuItem.animation.play('idle');
 			menuItem.ID = i;
 			menuItem.screenCenter(X);
 			menuItems.add(menuItem);
-			var scr:Float = (optionShit.length - 4) * 0.135;
-			if(optionShit.length < 6) scr = 0;
-			menuItem.scrollFactor.set(0, scr);
+			menuItem.scrollFactor.set();
 			menuItem.antialiasing = ClientPrefs.globalAntialiasing;
 			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
 			menuItem.updateHitbox();
 		}
 
-		FlxG.camera.follow(camFollowPos, null, 1);
+		jukeboxText = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox'));
+		jukeboxText.screenCenter();
+		jukeboxText.antialiasing = ClientPrefs.globalAntialiasing;
+		add(jukeboxText);
+
+		creditsImage = new FlxSprite().loadGraphic(Paths.image('hotline/menu/credits'));
+		creditsImage.screenCenter(X);
+		creditsImage.y = FlxG.height * 2;
+		creditsImage.antialiasing = ClientPrefs.globalAntialiasing;
+		add(creditsImage);
 
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 24, 0, "Friday Night Funkin' v" + Application.current.meta.get('version'), 12);
+		var versionShit:FlxText = new FlxText(12, FlxG.height - 24, 0, "Hotline 024 v" + Application.current.meta.get('version'), 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
@@ -152,7 +149,7 @@ class MainMenuState extends MusicBeatState
 		#end
 
 		#if android
-		addVirtualPad(UP_DOWN, A_B); // no editors since idk what will happen honestly
+		addVirtualPad(LEFT_RIGHT, A_B); // no editors since idk what will happen honestly
 		#end
 
 		super.create();
@@ -176,18 +173,15 @@ class MainMenuState extends MusicBeatState
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
 
-		var lerpVal:Float = CoolUtil.boundTo(elapsed * 7.5, 0, 1);
-		camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal));
-
 		if (!selectedSomethin)
 		{
-			if (controls.UI_UP_P)
+			if (controls.UI_LEFT_P)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				changeItem(-1);
 			}
 
-			if (controls.UI_DOWN_P)
+			if (controls.UI_RIGHT_P)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				changeItem(1);
@@ -238,6 +232,7 @@ class MainMenuState extends MusicBeatState
 						}
 						else
 						{
+							menuItems.animation.play('selected');
 							FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
 							{
 								var daChoice:String = optionShit[curSelected];
@@ -246,8 +241,6 @@ class MainMenuState extends MusicBeatState
 								{
 									case 'freeplay':
 										MusicBeatState.switchState(new FreeplayState());
-									case 'credits':
-										MusicBeatState.switchState(new CreditsState());
 									case 'extras':
 										MusicBeatState.switchState(new ExtrasScreen());
 									case 'options':
@@ -257,6 +250,9 @@ class MainMenuState extends MusicBeatState
 						}
 					});
 				}
+			}
+			if (touch.overlaps(creditsImage) && touch.justPressed) {
+					MusicBeatState.switchState(new CreditsState());
 			}
 			else if (FlxG.keys.anyJustPressed(debugKeys) #if android || _virtualpad.buttonE.justPressed #end)
 			{
@@ -278,26 +274,19 @@ class MainMenuState extends MusicBeatState
 	{
 		curSelected += huh;
 
+		var scale:Float = 1;
+
 		if (curSelected >= menuItems.length)
 			curSelected = 0;
 		if (curSelected < 0)
 			curSelected = menuItems.length - 1;
-
-		menuItems.forEach(function(spr:FlxSprite)
+			
+		for (i in 0...menuItems.length)
 		{
-			spr.animation.play('idle');
-			spr.updateHitbox();
-
-			if (spr.ID == curSelected)
-			{
-				spr.animation.play('selected');
-				var add:Float = 0;
-				if(menuItems.length > 4) {
-					add = menuItems.length * 8;
-				}
-				camFollow.setPosition(spr.getGraphicMidpoint().x, spr.getGraphicMidpoint().y - add);
-				spr.centerOffsets();
-			}
-		});
+				menuItems[i].x -= FlxG.elapsed * 20;
+				menuItems[i].scale -= FlxG.elapsed * 10;
+				menuItems[curSelected].x = FlxG.elapsed * 0.85
+				menuItems[curSelected].scale = FlxG.elapsed * scale;
+		}
 	}
 }
