@@ -54,7 +54,7 @@ class MainMenuState extends MusicBeatState
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
-		debugKeys = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_1'));
+		//debugKeys = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_1'));
 
 		camGame = new FlxCamera();
 		camAchievement = new FlxCamera();
@@ -102,7 +102,7 @@ class MainMenuState extends MusicBeatState
 			menuItem.animation.play('idle');
 			menuItem.ID = i;
 			menuItem.screenCenter(X);
-			menuItems.add(menuItem);
+			menuItems.push(menuItem);
 			menuItem.scrollFactor.set();
 			menuItem.antialiasing = ClientPrefs.globalAntialiasing;
 			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
@@ -266,7 +266,7 @@ class MainMenuState extends MusicBeatState
 	{
 		curSelected += huh;
 
-		var scale:Float = 1;
+		var scale:Int = 1;
 
 		if (curSelected >= menuItems.length)
 			curSelected = 0;
@@ -275,10 +275,10 @@ class MainMenuState extends MusicBeatState
 			
 		for (i in 0...menuItems.length)
 		{
-				menuItems[i].x -= FlxG.elapsed * 20;
-				menuItems[i].scale -= FlxG.elapsed * 10;
-				menuItems[curSelected].x = FlxG.elapsed * 0.85;
-				menuItems[curSelected].scale = FlxG.elapsed * scale;
+				menuItems[i].x -= 20 * FlxG.elapsed;
+				menuItems[i].scale -= 10 * FlxG.elapsed;
+				menuItems[curSelected].x = 0.85 * FlxG.elapsed ;
+				menuItems[curSelected].scale = scale * FlxG.elapsed;
 		}
 	}
 }
