@@ -277,8 +277,8 @@ class MainMenuState extends MusicBeatState
 		{
 				optionShit[i].x -= 20 * FlxG.elapsed;
 				optionShit[i].scale -= 10 * FlxG.elapsed;
-				optionShit[curSelected].x = 0.85 * FlxG.elapsed ;
-				optionShit[curSelected].scale = scale * FlxG.elapsed;
+				optionShit[curSelected].x += 0.85 * FlxG.elapsed ;
+				optionShit[curSelected].scale += scale * FlxG.elapsed;
 		}
 	}
 }
