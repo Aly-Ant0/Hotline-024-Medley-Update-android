@@ -232,7 +232,7 @@ class MainMenuState extends MusicBeatState
 						}
 						else
 						{
-							menuItem.animation.play('selected');
+							menuItem[curSelected].animation.play('selected');
 							FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
 							{
 								var daChoice:String = optionShit[curSelected];
@@ -277,10 +277,10 @@ class MainMenuState extends MusicBeatState
 			
 		for (i in 0...menuItems.length)
 		{
-				menuItems[i].x -= 20 * FlxG.elapsed;
-				menuItems[i].scale -= 10 * FlxG.elapsed;
-				menuItems[curSelected].x = 0.85 * FlxG.elapsed ;
-				menuItems[curSelected].scale = scale * FlxG.elapsed;
+				menuItem[i].x -= 20 * FlxG.elapsed;
+				menuItem[i].scale -= 10 * FlxG.elapsed;
+				menuItem[curSelected].x = 0.85 * FlxG.elapsed ;
+				menuItem[curSelected].scale = scale * FlxG.elapsed;
 		}
 	}
 }
