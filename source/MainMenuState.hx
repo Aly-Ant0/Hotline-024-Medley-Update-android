@@ -254,12 +254,6 @@ class MainMenuState extends MusicBeatState
 			if (touch.overlaps(creditsImage) && touch.justPressed) {
 					MusicBeatState.switchState(new CreditsState());
 			}
-			else if (FlxG.keys.anyJustPressed(debugKeys) #if android || _virtualpad.buttonE.justPressed #end)
-			{
-				//selectedSomethin = true;
-				//MusicBeatState.switchState(new MasterEditorMenu());
-				//put
-			}
 		}
 
 		super.update(elapsed);
