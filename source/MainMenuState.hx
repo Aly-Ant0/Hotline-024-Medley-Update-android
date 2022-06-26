@@ -19,7 +19,9 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import lime.app.Application;
 import Achievements;
-import flixel.input.*;
+import flixel.input.touch.FlxTouch;
+import flixel.input.touch.FlxTouchManager;
+import flixel.input.keyboard.FlxKey;
 
 using StringTools;
 
@@ -230,7 +232,7 @@ class MainMenuState extends MusicBeatState
 						}
 						else
 						{
-							menuItems.animation.play('selected');
+							menuItem.animation.play('selected');
 							FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
 							{
 								var daChoice:String = optionShit[curSelected];
