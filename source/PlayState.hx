@@ -4498,8 +4498,10 @@ class PlayState extends MusicBeatState
 
 			daCombo++;
 		}
-// eu tenho que pensar num bagui que faz que apartir do primeiro combo nao spawna mais combo glow pq meu cell quase morreu dps de eu testar lol
-				if (SONG.notes[Math.floor(curStep / 16)].mustHitSection != null && combo > 1 && curBeat % 3 == 0) 
+		var lastMustHit:Bool = SONG.notes[Math.floor(curStep / 16)].mustHitSection;
+				// eu tenho que pensar num bagui que faz que apartir do primeiro combo nao spawna mais combo glow pq meu cell quase morreu dps de eu testar lol
+				lastMustHit = SONG.notes[Math.floor(curStep / 16)].mustHitSection;
+				if (lastMustHit == false && combo > 1 && curBeat % 3 == 0) 
 				{
 					combo = 0;
 					intendedScore = scoreCount;
