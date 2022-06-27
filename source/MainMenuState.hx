@@ -99,13 +99,13 @@ class MainMenuState extends MusicBeatState
 
 		for (i in 0...optionShit.length)
 		{
-			var menuItem:FlxSprite = new FlxSprite((i * 50), 0);
+			var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
+			var menuItem:FlxSprite = new FlxSprite((i * 50) + offset, 0);
 			menuItem.frames = Paths.getSparrowAtlas('hotline/menu/' + optionShit[i]);
 			menuItem.animation.addByPrefix('idle', "normal");
 			menuItem.animation.addByPrefix('selected', "glow");
 			menuItem.animation.play('idle');
 			menuItem.ID = i;
-			menuItem.screenCenter(XY);
 			menuItems.add(menuItem);
 			menuItem.scrollFactor.set(0.1, 0);
 			menuItem.antialiasing = ClientPrefs.globalAntialiasing;
@@ -113,8 +113,7 @@ class MainMenuState extends MusicBeatState
 			menuItem.updateHitbox();
 		}
 
-		jukeboxText = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox')); // eu nao vou programar o jukebox menu pq nao tem nenhum video que mostra o jukebox menu ent eu nao como é o jukebox menu e eu nao tenho pc
-			// sadness
+		jukeboxText = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox')); // eu nao vou programar o jukebox menu pq nao tem nenhum video que mostra o jukebox menu ent eu nao sei como é o jukebox menu e eu nao tenho pc // sadness
 		jukeboxText.screenCenter();
 		jukeboxText.antialiasing = ClientPrefs.globalAntialiasing;
 		add(jukeboxText);
@@ -180,13 +179,13 @@ class MainMenuState extends MusicBeatState
 		{
 			if (controls.UI_LEFT_P)
 			{
-				FlxG.sound.play(Paths.sound('selectsfx'));
+				//FlxG.sound.play(Paths.sound('selectsfx'));
 				changeItem(-1);
 			}
 
 			if (controls.UI_RIGHT_P)
 			{
-				FlxG.sound.play(Paths.sound('selectsfx'));
+				//FlxG.sound.play(Paths.sound('selectsfx'));
 				changeItem(1);
 			}
 
@@ -260,13 +259,26 @@ class MainMenuState extends MusicBeatState
 						MusicBeatState.switchState(new CreditsState());
 				}
 			}
-			#if (desktop)
+			#if (desktop) // only on pc lol
 			else if (FlxG.keys.anyJustPressed(debugKeys))
 			{
 				selectedSomethin = true;
 				MusicBeatState.switchState(new MasterEditorMenu());
 			}
 			#end
+		}
+
+		for (item in grpOptions.members)
+		{
+			var lerpVal:Float = CoolUtil.boundTo(elapsed * 12, 0, 1);
+			if(item.x == 0) {
+				var lastX:Float = item.x;
+				item.screenCenter(X);
+				item.x = FlxMath.lerp(lastX, item.x - 70, lerpVal);
+			}
+			else {
+				item.x = FlxMath.lerp(item.x, 200 + -40 * Math.abs(item.y), lerpVal);
+			}
 		}
 
 		super.update(elapsed);
@@ -283,25 +295,26 @@ class MainMenuState extends MusicBeatState
 		if (curSelected < 0)
 			curSelected = menuItems.length - 1;
 
-			if (huh == 1) // vai ser tween msm fds kkkk
-			{
-				selected = false;
-				FlxG.sound.play(Paths.sound('selectsfx'));
-				FlxTween.tween(menuItems, {x: menuItems.x - 780}, 0.58, {ease: FlxEase.expoOut, onComplete: function(sus:FlxTween)
-					{
-						selected = true;
-					}
-				});
+			FlxG.sound.play(Paths.sound('selectsfx'));
+
+		var porra:Int = 0;
+
+		for (item in menuItems.members)
+		{
+			item.x = porra - curSelected;
+			porra++; // mais porra, entendeu? NÃO MÃE PA-
+
+			if (!unselectableCheck(porra-1)) {
+				item.x == item.x + 5;
+				item.alpha = 0.7;
 			}
-			if (huh == -1) // vai ser tween msm fds kkkk
-			{
-				selected = false;
-				FlxG.sound.play(Paths.sound('selectsfx'));
-				FlxTween.tween(menuItems,{x: menuItems.x + 780}, 0.58, {ease: FlxEase.expoOut, onComplete: function(sus:FlxTween)
-					{
-						selected = true;
-					}
-				});
+			if (item.x == 0) {
+				item.alpha = 1; // no mod original não tem o bagui de alpha nos bagui do menu mas beleza né
 			}
+		}
+	}
+
+	private function unselectableCheck(num:Int):Bool {
+		return optionShit[num].length <= 1;
 	}
 }
