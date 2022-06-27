@@ -268,7 +268,7 @@ class MainMenuState extends MusicBeatState
 			#end
 		}
 
-		for (item in grpOptions.members)
+		for (item in menuItems.members)
 		{
 			var lerpVal:Float = CoolUtil.boundTo(elapsed * 12, 0, 1);
 			if(item.x == 0) {
