@@ -11,6 +11,7 @@ import flixel.addons.transition.FlxTransitionableState;
 import flixel.effects.FlxFlicker;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.text.FlxText;
 import flixel.math.FlxMath;
 import flixel.tweens.FlxEase;
@@ -19,6 +20,7 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import lime.app.Application;
 import Achievements;
+import editors.MasterEditorMenu;
 import flixel.input.touch.FlxTouch;
 import flixel.input.touch.FlxTouchManager;
 import flixel.input.keyboard.FlxKey;
@@ -258,6 +260,13 @@ class MainMenuState extends MusicBeatState
 						MusicBeatState.switchState(new CreditsState());
 				}
 			}
+			#if (desktop)
+			else if (FlxG.keys.anyJustPressed(debugKeys))
+			{
+				selectedSomethin = true;
+				MusicBeatState.switchState(new MasterEditorMenu());
+			}
+			#end
 		}
 
 		super.update(elapsed);
