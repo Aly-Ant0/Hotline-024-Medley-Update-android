@@ -30,7 +30,7 @@ class MainMenuState extends MusicBeatState
 	public static var psychEngineVersion:String = '0.5.2h'; //This is also used for Discord RPC
 	public static var curSelected:Int = 0;
 
-	var menuItems:FlxTypedGroup<FlxSprite>;
+	var menuItems:FlxTypedSpriteGroup<FlxSprite>;
 	private var camGame:FlxCamera;
 	private var camAchievement:FlxCamera;
 	
@@ -51,6 +51,7 @@ class MainMenuState extends MusicBeatState
 	{
 		FlxG.mouse.visible = true;
 
+		FlxG.sound.playMusic(Paths.music('nightlight'));
 		WeekData.loadTheFirstEnabledMod();
 
 		#if desktop
@@ -72,7 +73,7 @@ class MainMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
-		var bg:FlxSprite = new FlxBackdrop(Paths.image('hotline/menu/bg'), 0.2, 0.2, true, false);
+		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('hotline/menu/bg'), 0.2, 0.2, true, false);
 		bg.scrollFactor.set();
 		bg.setGraphicSize(Std.int(bg.width * 1.175));
 		bg.velocity.x = 90;
@@ -87,16 +88,16 @@ class MainMenuState extends MusicBeatState
 		bars.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bars);
 
-		menuItems = new FlxTypedGroup<FlxSprite>();
+		menuItems = new FlxTypedSpriteGroup<FlxSprite>();
 		add(menuItems);
 
 		/*if(optionShit.length > 6) {
 			scale = 6 / optionShit.length;
-		}*/
+		}*/ // nao precisa por sinal
 
 		for (i in 0...optionShit.length)
 		{
-			var menuItem:FlxSprite = new FlxSprite();
+			var menuItem:FlxSprite = new FlxSprite((i * 50), 0);
 			menuItem.frames = Paths.getSparrowAtlas('hotline/menu/' + optionShit[i]);
 			menuItem.animation.addByPrefix('idle', "normal");
 			menuItem.animation.addByPrefix('selected', "glow");
@@ -104,20 +105,21 @@ class MainMenuState extends MusicBeatState
 			menuItem.ID = i;
 			menuItem.screenCenter(XY);
 			menuItems.add(menuItem);
-			menuItem.scrollFactor.set();
+			menuItem.scrollFactor.set(0.1, 0);
 			menuItem.antialiasing = ClientPrefs.globalAntialiasing;
 			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
 			menuItem.updateHitbox();
 		}
 
-		jukeboxText = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox'));
+		jukeboxText = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox')); // eu nao vou programar o jukebox menu pq nao tem nenhum video que mostra o jukebox menu ent eu nao como é o jukebox menu e eu nao tenho pc
+			// sadness
 		jukeboxText.screenCenter();
 		jukeboxText.antialiasing = ClientPrefs.globalAntialiasing;
 		add(jukeboxText);
 
 		creditsImage = new FlxSprite().loadGraphic(Paths.image('hotline/menu/credits'));
 		creditsImage.screenCenter(X);
-		creditsImage.y = FlxG.height * 2;
+		creditsImage.y = FlxG.height * 0.4;
 		creditsImage.antialiasing = ClientPrefs.globalAntialiasing;
 		add(creditsImage);
 
@@ -189,7 +191,7 @@ class MainMenuState extends MusicBeatState
 			if (controls.BACK)
 			{
 				selectedSomethin = true;
-				FlxG.sound.play(Paths.sound('cancelMenu'));
+				FlxG.sound.play(Paths.sound('backsfx'));
 				MusicBeatState.switchState(new TitleState());
 			}
 
@@ -213,7 +215,7 @@ class MainMenuState extends MusicBeatState
 				else
 				{
 					selectedSomethin = true;
-					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxG.sound.play(Paths.sound('entersfx'));
 
 					if(ClientPrefs.flashing) FlxFlicker.flicker(magenta, 1.1, 0.15, false);
 
@@ -265,27 +267,27 @@ class MainMenuState extends MusicBeatState
 	{
 		curSelected += huh;
 
-		var scale:Int = 1;
+		/*var scale:Int = 1;*/ // idk
 
 		if (curSelected >= menuItems.length)
 			curSelected = 0;
 		if (curSelected < 0)
 			curSelected = menuItems.length - 1;
 
-			if (huh == 1)
+			if (huh == 1) // vai ser tween msm fds kkkk
 			{
 				selected = false;
-				FlxG.sound.play(Paths.sound('selectsfx'), 0.4);
+				FlxG.sound.play(Paths.sound('selectsfx'));
 				FlxTween.tween(menuItems, {x: menuItems.x - 780}, 0.58, {ease: FlxEase.expoOut, onComplete: function(sus:FlxTween)
 					{
 						selected = true;
 					}
 				});
 			}
-			if (huh == -1)
+			if (huh == -1) // vai ser tween msm fds kkkk
 			{
 				selected = false;
-				FlxG.sound.play(Paths.sound('selectsfx'), 0.4);
+				FlxG.sound.play(Paths.sound('selectsfx'));
 				FlxTween.tween(menuItems,{x: menuItems.x + 780}, 0.58, {ease: FlxEase.expoOut, onComplete: function(sus:FlxTween)
 					{
 						selected = true;
