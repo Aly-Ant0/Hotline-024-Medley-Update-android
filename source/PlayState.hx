@@ -4403,11 +4403,11 @@ class PlayState extends MusicBeatState
 					}
 				});
 			}
-			/*if (comboTwn != null) {
+			if (comboTwn != null) {
 				comboTwn.cancel();
 			}
-				combotxt1.scale.x = 1.075;
-				combotxt1.scale.y = 1.075;
+				combotxt1.scale.x = 0.875;
+				combotxt1.scale.y = 0.875;
 				comboTwn = FlxTween.tween(combotxt1.scale, {x: 1, y: 1}, 0.2, {
 					onComplete: function(twn:FlxTween) {
 						comboTwn = null;
@@ -4416,13 +4416,13 @@ class PlayState extends MusicBeatState
 			if (comboTwn2 != null) {
 				comboTwn2.cancel();
 			}
-				combotxt2.scale.x = 1.075;
-				combotxt2.scale.y = 1.075;
+				combotxt2.scale.x = 0.875;
+				combotxt2.scale.y = 0.875;
 				comboTwn2 = FlxTween.tween(combotxt2.scale, {x: 1, y: 1}, 0.2, {
 					onComplete: function(twn:FlxTween) {
 						comboTwn2 = null;
 					}
-				});*/
+				});
 		/* if (combo > 60)
 				daRating = 'sick';
 			else if (combo > 12)
@@ -4431,7 +4431,8 @@ class PlayState extends MusicBeatState
 				daRating = 'bad';
 		 */
 		var daCombo:Int = 0;
-
+		var mustHitSection:String = SONG.notes[Math.floor(curStep / 16)].mustHitSection;
+		var lastMustHit:String = mustHitSection;
 		var seperatedScore:Array<Int> = [];
 
 		comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
@@ -4440,6 +4441,7 @@ class PlayState extends MusicBeatState
 		comboGlow.alpha = 0.70;
 		comboGlow.cameras = [camHUD];
 		//add(comboGlow);
+		if (combo == 1)
 		insert(members.indexOf(strumLineNotes), comboGlow);
 		
 		if (ClientPrefs.downScroll) {
@@ -4492,60 +4494,63 @@ class PlayState extends MusicBeatState
 			}
 
 			//if (combo >= 10 || combo == 0)
+			if (combo == 1)
 			insert(members.indexOf(strumLineNotes), combotxt1);
 			insert(members.indexOf(strumLineNotes), combotxt2);
 
 			daCombo++;
 		}
-		if (daCombo++)
+// eu tenho que pensar num bagui que faz que apartir do primeiro combo nao spawna mais combo glow pq meu cell quase morreu dps de eu testar lol
 		{
-			new FlxTimer().start(3, function(tmr:FlxTimer)
-			{
-				intendedScore = scoreCount;
-				scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 0, 1)));
-				songScore += Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 0, 1)));
-
-				// se tiver visível é claro né meu fi ou fia sla
-				FlxFlicker.flicker(combotxt1, 1.5, 0.10, false, false);
-				FlxTween.tween(combotxt1, {alpha: 0}, 1.5, {
-					ease: FlxEase.quadInOut,
-					onComplete: function(twn:FlxTween)
-					{
-						combotxt1.alpha = 0;
-					}
-				});
-				FlxFlicker.flicker(combotxt2, 1.5, 0.10, false, false);
-				FlxTween.tween(combotxt2, {alpha: 0}, 1.5, {
-					ease: FlxEase.quadInOut,
-					onComplete: function(twn:FlxTween)
-					{
-						combotxt2.alpha = 0;
-					}
-				});
-				FlxTween.tween(comboGlow, {alpha: 0}, 1.5, {
-					ease: FlxEase.quadInOut,
-					onComplete: function(twn:FlxTween)
-					{
-						comboGlow.alpha = 0;
-					}
-				});
-				if (FlxG.random.bool(15.5))
+			if (lastMustHit == mustHitSection) {
+				lastMustHit = mustHitSection;
+				if (lastMustHit > 1 && combo > 1 && curBeat % 3 == 0) 
 				{
-					combotxt1.text = 'whoops...';
+					daCombo = 0;
+					intendedScore = scoreCount;
+					scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 0, 1)));
+					songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 0, 1)));
+	
+					// se tiver visível é claro né meu fi ou fia sla
+					FlxFlicker.flicker(combotxt1, 1.5, 0.10, false, false);
+					FlxTween.tween(combotxt1, {alpha: 0}, 1.5, {
+						ease: FlxEase.quadInOut,
+						onComplete: function(twn:FlxTween)
+						{
+							combotxt1.kill();
+						}
+					});
+					FlxFlicker.flicker(combotxt2, 1.5, 0.10, false, false);
+					FlxTween.tween(combotxt2, {alpha: 0}, 1.5, {
+						ease: FlxEase.quadInOut,
+						onComplete: function(twn:FlxTween)
+						{
+							combotxt2.kill();
+						}
+					});
+					FlxTween.tween(comboGlow, {alpha: 0}, 1.5, {
+						ease: FlxEase.quadInOut,
+						onComplete: function(twn:FlxTween)
+						{
+							comboGlow.kill();
+						}
+					});
+					if (FlxG.random.bool(30.5))
+					{
+						combotxt1.text = 'whoops...';
+					}
+					if (FlxG.random.bool(80))
+					{
+						combotxt1.text = 'Perfect!';
+					}
+					if (FlxG.random.bool(70))
+					{
+						combotxt1.text = 'Great!';
+					}
 				}
-				if (FlxG.random.bool(80))
-				{
-					combotxt1.text = 'Perfect!';
-				}
-				if (FlxG.random.bool(70))
-				{
-					combotxt1.text = 'Great!';
-				}
-			});
-			else if {
-				return -1;
 			}
 		}
+		
 		 /* 
 			trace(combo);
 			trace(seperatedScore);
