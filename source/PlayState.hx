@@ -4432,12 +4432,12 @@ class PlayState extends MusicBeatState
 		 */
 		var daCombo:Int = 0;
 		var mustHitSection:Int = SONG.notes[Math.floor(curStep / 16)].mustHitSection;
-		var lastMustHit:Int = mustHitSection;
+		var lastMustHit:Int = 0;
 		var seperatedScore:Array<Int> = [];
 
 		comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
-		comboGlow.x = 400;
-		comboGlow.y = FlxG.height * 0.75;
+		comboGlow.x = STRUM_X_MIDDLESCROLL;
+		comboGlow.y = FlxG.height * 0.;
 		comboGlow.alpha = 0.70;
 		comboGlow.cameras = [camHUD];
 		//add(comboGlow);
@@ -4445,7 +4445,7 @@ class PlayState extends MusicBeatState
 		insert(members.indexOf(strumLineNotes), comboGlow);
 		
 		if (ClientPrefs.downScroll) {
-			comboGlow.y = FlxG.height * 0.04;
+			comboGlow.y = FlxG.height * 0.94;
 		}
 		
 		if(ClientPrefs.middleScroll) {
