@@ -113,20 +113,20 @@ class ChooseSkinState extends MusicBeatState
   
   override function update(elapsed:Float)
   {
-      if (controls.UI_LEFT_P)
-      {
-        FlxG.sound.play(Paths.sound('selectsfx'));
-        changeSkin(-1);
-      }
-      if (controls.UI_RIGHT_P)
-      {
-        FlxG.sound.play(Paths.sound('selectsfx'));
-        changeSkin(1);
-      }
+			if (controls.UI_LEFT_P)
+			{
+				FlxG.sound.play(Paths.sound('selectsfx'));
+				changeSkin(-1);
+			}
+			if (controls.UI_RIGHT_P)
+			{
+				FlxG.sound.play(Paths.sound('selectsfx'));
+				changeSkin(1);
+			}
 
-      if (controls.BACK)
-      {
- 				FlxG.sound.play(Paths.sound('backsfx'));
+			if (controls.BACK)
+			{
+				FlxG.sound.play(Paths.sound('backsfx'));
 				if (PlayState.isCovers)
 				{
 					MusicBeatState.switchState(new CoversScreen());
@@ -135,29 +135,27 @@ class ChooseSkinState extends MusicBeatState
 				{
 					MusicBeatState.switchState(new FreeplayState());
 				}
-      }
-      if (controls.ACCEPT)
-      {
-        FlxG.sound.play(Paths.sound('entersfx'));
-        new FlxTimer().start(0.1, function(tmr:FlxTimer)
-        {
-        	LoadingState.loadAndSwitchState(new PlayState());
-        });
-      }
+			}
+			if (controls.ACCEPT)
+			{
+				FlxG.sound.play(Paths.sound('entersfx'));
+				new FlxTimer().start(0.01, function(tmr:FlxTimer)
+				{
+					LoadingState.loadAndSwitchState(new PlayState());
+				});
+			}
 
+		super.update(elapsed);
+	}
+	var skinTween:FlxTween;
+	var skinTween2:FlxTween;
+	var skinTween3:FlxTween;
+	var skinTween4:FlxTween;
+	function changeSkin(change:Int = 0)
+	{
+		curSelected += change;
 
- 	 super.update(elapsed);
-  }
-  var skinTween:FlxTween;
-  var skinTween2:FlxTween;
-  var skinTween3:FlxTween;
-  var skinTween4:FlxTween;
-  function changeSkin(change:Int = 0)
-  {
-      curSelected += change;
-
-        if (curSelected < 0)
-
+		if (curSelected < 0)
 			curSelected = skinShit.length - 1;
 
 		if (curSelected >= skinShit.length)
@@ -166,7 +164,7 @@ class ChooseSkinState extends MusicBeatState
 		var newSkin:FlxGraphic = Paths.image('hotline/menu/skins/' + skinShit[curSelected]);
 
 		var newSkinShadow:FlxGraphic = Paths.image('hotline/menu/skins/' + skinShit[curSelected] + 'Shadow');
-		
+
 		if(skinS.graphic != newSkin)
 		{
 			if (change == 1)
@@ -179,7 +177,7 @@ class ChooseSkinState extends MusicBeatState
 				}});
 			}
 			if (change == -1) {
-			  skinS.loadGraphic(newSkin);
+				skinS.loadGraphic(newSkin);
 				skinS.x = 50;
 				FlxTween.tween(skinS, {x: skinS.x - 50}, 0.55, {ease: FlxEase.expoOut, onComplete: function(twn:FlxTween)
 				{
@@ -194,24 +192,24 @@ class ChooseSkinState extends MusicBeatState
 				skinShadow.loadGraphic(newSkinShadow);
 				skinShadow.alpha = 0.48;
 				if (skinTween2 != null) skinTween2.cancel();
-				skinTween2 = FlxTween.tween(skinShadow, {x: skinShadow.x + 3}, 1.34, {ease: FlxEase.expoOut, onComplete: function(twn:FlxTween)
+				skinTween2 = FlxTween.tween(skinShadow, {x: skinShadow.x + 3}, 1.22, {ease: FlxEase.expoOut, onComplete: function(twn:FlxTween)
 					{
 						skinTween2 = null;
 					}
 				});
 				if (skinTween != null) skinTween.cancel();
-				skinTween = FlxTween.tween(skinShadow, {alpha: 1}, 0.5, {ease: FlxEase.quadInOut, onComplete: function(twn:FlxTween)
+				skinTween = FlxTween.tween(skinShadow, {alpha: 1}, 0.76, {ease: FlxEase.quadInOut, onComplete: function(twn:FlxTween)
 				{
 					skinTween = null;
 				}});
 			}
 			if (change == -1)
 			{
-			  skinShadow.loadGraphic(newSkinShadow);
+				skinShadow.loadGraphic(newSkinShadow);
 				skinShadow.alpha = 0.48;
-				skinShadow.x = 5;
+				skinShadow.x = 3;
 				FlxTween.tween(skinShadow, {alpha: 1}, 0.5, {ease: FlxEase.quadInOut});
-				FlxTween.tween(skinShadow, {x: skinShadow.x - 3}, 1.34, {ease: FlxEase.expoOut, onComplete: function(twn:FlxTween)
+				FlxTween.tween(skinShadow, {x: skinShadow.x - 3}, 1.22, {ease: FlxEase.expoOut, onComplete: function(twn:FlxTween)
 				{
 					skinShadow.x = 0;
 				}});
