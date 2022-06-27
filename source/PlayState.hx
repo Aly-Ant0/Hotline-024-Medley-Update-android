@@ -4431,8 +4431,6 @@ class PlayState extends MusicBeatState
 				daRating = 'bad';
 		 */
 		var daCombo:Int = 0;
-		var mustHitSection:Int = SONG.notes[Math.floor(curStep / 16)].mustHitSection;
-		var lastMustHit:Int = 0;
 		var seperatedScore:Array<Int> = [];
 
 		comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
@@ -4501,11 +4499,9 @@ class PlayState extends MusicBeatState
 			daCombo++;
 		}
 // eu tenho que pensar num bagui que faz que apartir do primeiro combo nao spawna mais combo glow pq meu cell quase morreu dps de eu testar lol
-			if (lastMustHit == mustHitSection) {
-				lastMustHit = mustHitSection;
-				if (lastMustHit > 1 && combo > 1 && curBeat % 3 == 0) 
+				if (SONG.notes[Math.floor(curStep / 16)].mustHitSection != null && combo > 1 && curBeat % 3 == 0) 
 				{
-					daCombo = 0;
+					combo = 0;
 					intendedScore = scoreCount;
 					scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 0, 1)));
 					songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 0, 1)));
@@ -4547,8 +4543,6 @@ class PlayState extends MusicBeatState
 						combotxt1.text = 'Great!';
 					}
 				}
-			}
-		
 		 /* 
 			trace(combo);
 			trace(seperatedScore);
