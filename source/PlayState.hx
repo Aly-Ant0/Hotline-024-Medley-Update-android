@@ -4435,12 +4435,20 @@ class PlayState extends MusicBeatState
 		var seperatedScore:Array<Int> = [];
 
 		comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
-		comboGlow.x = combotxt1.x;
-		comboGlow.y = combotxt1.y;
+		comboGlow.x = 400;
+		comboGlow.y = FlxG.height * 0.75;
 		comboGlow.alpha = 0.70;
 		comboGlow.cameras = [camHUD];
 		//add(comboGlow);
 		insert(members.indexOf(strumLineNotes), comboGlow);
+		
+		if (ClientPrefs.downScroll) {
+			comboGlow.y = FlxG.height * 0.04;
+		}
+		
+		if(ClientPrefs.middleScroll) {
+			comboGlow.visible = false;
+		}
 
 		if(combo >= 1000) {
 			seperatedScore.push(Math.floor(combo / 1000) % 10);
@@ -4451,7 +4459,7 @@ class PlayState extends MusicBeatState
 
 		for (i in seperatedScore)
 		{
-			//add(comboGlow); esse add não precisa lol pq se não vai crashar SPOILER: crashou
+			//add(comboGlow); esse add não precisa lol pq se não vai crashar SPOILER: NÃO FUNCIONOU VEI BUAAAA
 			//add(combotxt1);
 			//add(combotxt2);
 
@@ -4466,8 +4474,8 @@ class PlayState extends MusicBeatState
 			combotxt1.borderSize = 1.25;
 			combotxt1.cameras = [camHUD];
 			//add(combotxt1);
-	
-				// combo score lerp
+
+			// combo score lerp
 			combotxt2 = new FlxText(combotxt1.x, combotxt1.y + 20, 0, "s " + scoreCount, 26);
 			combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt2.scrollFactor.set();
@@ -4477,6 +4485,10 @@ class PlayState extends MusicBeatState
 
 			if(ClientPrefs.downScroll) {
 				combotxt1.y = 602;
+			}
+			if(ClientPrefs.middleScroll) {
+				combotxt1.visible = false;
+				combotxt2.visible = false;
 			}
 
 			//if (combo >= 10 || combo == 0)
@@ -4499,6 +4511,7 @@ class PlayState extends MusicBeatState
 		scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 0, 1)));
 		songScore += Math.floor(FlxMath.lerp(songScore, score, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 0, 1)));
 
+		// se tiver visível é claro né meu fi ou fia sla
 		FlxFlicker.flicker(combotxt1, 1.5, 0.10, false, false);
 		FlxTween.tween(combotxt1, {alpha: 0}, 1.5, {
 			ease: FlxEase.quadInOut,
