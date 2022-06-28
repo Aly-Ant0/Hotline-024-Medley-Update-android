@@ -100,7 +100,7 @@ class MainMenuState extends MusicBeatState
 		for (i in 0...optionShit.length)
 		{
 			var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-			var menuItem:FlxSprite = new FlxSprite((i * 300) + offset, 0);
+			var menuItem:FlxSprite = new FlxSprite((i * 200) + offset, 0);
 			menuItem.frames = Paths.getSparrowAtlas('hotline/menu/' + optionShit[i]);
 			menuItem.animation.addByPrefix('idle', "normal");
 			menuItem.animation.addByPrefix('selected', "glow");
@@ -270,12 +270,14 @@ class MainMenuState extends MusicBeatState
 
 		for (item in menuItems.members) {
 			var lerpVal:Float = CoolUtil.boundTo(elapsed * 30, 0, 1);
-			if(item.x == 0) {
+			if(item.x == 0)
+			{
 				var lastX:Float = item.x;
 				item.screenCenter(X);
 				item.x = FlxMath.lerp(lastX, item.x - 80, lerpVal);
 			}
-			else if {
+			else
+			{
 				item.x = FlxMath.lerp(item.x, 200 + -40 * Math.abs(item.x), lerpVal);
 			}
 		}
