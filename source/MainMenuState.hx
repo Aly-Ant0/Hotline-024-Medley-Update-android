@@ -100,7 +100,7 @@ class MainMenuState extends MusicBeatState
 		for (i in 0...optionShit.length)
 		{
 			var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-			var menuItem:FlxSprite = new FlxSprite((i * 50) + offset, 0);
+			var menuItem:FlxSprite = new FlxSprite((i * 300) + offset, 0);
 			menuItem.frames = Paths.getSparrowAtlas('hotline/menu/' + optionShit[i]);
 			menuItem.animation.addByPrefix('idle', "normal");
 			menuItem.animation.addByPrefix('selected', "glow");
@@ -109,7 +109,7 @@ class MainMenuState extends MusicBeatState
 			menuItems.add(menuItem);
 			menuItem.scrollFactor.set(0.1, 0);
 			menuItem.antialiasing = ClientPrefs.globalAntialiasing;
-			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
+			menuItem.setGraphicSize(Std.int(menuItem.width * 0.78));
 			menuItem.updateHitbox();
 		}
 
@@ -268,16 +268,14 @@ class MainMenuState extends MusicBeatState
 			#end
 		}
 
-		for (item in menuItems.members)
-		{
-			var lerpVal:Float = CoolUtil.boundTo(elapsed * 12, 0, 1);
+		for (item in menuItems.members) {
+			var lerpVal:Float = CoolUtil.boundTo(elapsed * 30, 0, 1);
 			if(item.x == 0) {
 				var lastX:Float = item.x;
 				item.screenCenter(X);
-				item.x = FlxMath.lerp(lastX, item.x - 70, lerpVal);
-			}
-			else {
-				item.x = FlxMath.lerp(item.x, 200 + -40 * Math.abs(item.y), lerpVal);
+				item.x = FlxMath.lerp(lastX, item.x - 80, lerpVal);
+			} else if {
+				item.x = FlxMath.lerp(item.x, 200 + -40 * Math.abs(item.x), lerpVal);
 			}
 		}
 
@@ -305,8 +303,7 @@ class MainMenuState extends MusicBeatState
 			porra++; // mais porra, entendeu? NÃO MÃE PA-
 
 			if (!unselectableCheck(porra-1)) {
-				item.x == item.x + 5;
-				item.alpha = 0.7;
+				item.alpha = 0.54;
 			}
 			if (item.x == 0) {
 				item.alpha = 1; // no mod original não tem o bagui de alpha nos bagui do menu mas beleza né
