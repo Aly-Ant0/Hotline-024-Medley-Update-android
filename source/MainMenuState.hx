@@ -274,7 +274,8 @@ class MainMenuState extends MusicBeatState
 				var lastX:Float = item.x;
 				item.screenCenter(X);
 				item.x = FlxMath.lerp(lastX, item.x - 80, lerpVal);
-			} else if {
+			}
+			else if {
 				item.x = FlxMath.lerp(item.x, 200 + -40 * Math.abs(item.x), lerpVal);
 			}
 		}
