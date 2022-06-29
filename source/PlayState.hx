@@ -4539,7 +4539,7 @@ class PlayState extends MusicBeatState
 					{
 						combotxt1.text = 'Great!';
 					}
-					if (songHits == 0 > 1) {
+					if (songHits % 1 == 0) {
 						tmr.reset(Conductor.crochet / 1000 * 10);
 					}
 				});
@@ -4552,10 +4552,11 @@ class PlayState extends MusicBeatState
 		// add(coolText);
 	}
 
-	public function resetCombo() // combo thing
+	public function resetCombo(elapsed:Float) // combo thing
 	{
-		scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (FlxG.elapsed * 14), 1, 0)));
-		songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 0, 1)));
+		intendedScore = scoreCount;
+		scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (elapsed * 24), 1, 0)));
+		songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (elapsed * 24), 0, 1)));
 	}
 
 	private function onKeyPress(event:KeyboardEvent):Void
@@ -4926,7 +4927,7 @@ class PlayState extends MusicBeatState
 				if(combo > 9999) combo = 9999;
 				new FlxTimer().start(Conductor.crochet / 1000 * 10, function(tmr:FlxTimer) {
 					resetCombo();
-					if (songHits == 0 > 1) {
+					if (songHits % 1 == 0) {
 						tmr.reset(Conductor.crochet / 1000 * 10);
 					}
 				});
@@ -5409,7 +5410,7 @@ class PlayState extends MusicBeatState
 		{
 			moveCameraSection(Std.int(curStep / 16));
 		}
-		if (camZooming && FlxG.camera.zoom < 1.35 && ClientPrefs.camZooms && curBeat % 4 == 0)
+		if (camZooming && FlxG.camera.zoom < 1.35 && ClientPrefs.camZooms && curBeat  4 == 0)
 		{
 			FlxG.camera.zoom += 0.015 * camZoomingMult;
 			camHUD.zoom += 0.03 * camZoomingMult;
