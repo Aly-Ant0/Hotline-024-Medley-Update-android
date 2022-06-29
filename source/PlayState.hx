@@ -336,7 +336,7 @@ class PlayState extends MusicBeatState
 	var comboTwn2:FlxTween;
 	var comboTwn3:FlxTween;
 	var scoreTxtTween:FlxTween;
-	var comboTmr:FlxTimer;
+	//var comboTmr:FlxTimer;
 
 	public static var campaignScore:Int = 0;
 	public static var campaignMisses:Int = 0;
@@ -4552,7 +4552,7 @@ class PlayState extends MusicBeatState
 		// add(coolText);
 	}
 
-	public function resetCombo() // combo thing
+	function resetCombo() // combo thing
 	{
 		intendedScore = scoreCount;
 		scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 1, 0)));
