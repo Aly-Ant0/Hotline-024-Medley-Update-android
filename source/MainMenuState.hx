@@ -300,10 +300,13 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 					switch (daChoice)
 					{
 						case 'freeplay':
+							FlxFlicker.flicker(freeplayButton2, 0.4, 0.06, false);
 							MusicBeatState.switchState(new FreeplayState());
 						case 'extras':
+							FlxFlicker.flicker(extrasButton2, 0.4, 0.06, false);
 							MusicBeatState.switchState(new ExtrasScreen());
 						case 'options':
+							FlxFlicker.flicker(optionsButton2, 0.4, 0.06, false);
 							LoadingState.loadAndSwitchState(new options.OptionsState());
 					}
 			}
