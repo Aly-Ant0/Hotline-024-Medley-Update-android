@@ -368,7 +368,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 				freeplayButton.visible = true;
 				freeplayButton2.visible = false; // tu é frango é?
 				storyButton.x -= FlxG.width / 2 * FlxG.elapsed;
-				freeplayButton.x += FlxG.width / 2 + 30 FlxG.elapsed;
+				freeplayButton.x += FlxG.width / 2 + 30 * FlxG.elapsed;
 				extrasButton.x += FlxG.width / 2 - 30 * FlxG.elapsed;
 				optionsButton2.x += FlxG.width / 2 * FlxG.elapsed;
 			case 'extras':
@@ -377,7 +377,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 				extrasButton2.visible = true;
 				extrasButton.visible = false;
 				storyButton.x -= FlxG.width / 2 - 30 * FlxG.elapsed;
-				freeplayButton.x += FlxG.width / 2 FlxG.elapsed;
+				freeplayButton.x += FlxG.width / 2 * FlxG.elapsed;
 				extrasButton2.x += FlxG.width / 2 * FlxG.elapsed;
 				optionsButton.x += FlxG.width / 2 + 30 * FlxG.elapsed;
 		}
