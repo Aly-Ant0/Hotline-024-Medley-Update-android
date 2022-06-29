@@ -334,10 +334,10 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 
 		/*var scale:Int = 1;*/ // idk
 
-		if (curSelected >= menuItems.length)
+		if (curSelected >= optionShit.length)
 			curSelected = 0;
 		if (curSelected < 0)
-			curSelected = menuItems.length - 1;
+			curSelected = optionShit.length - 1;
 
 			FlxG.sound.play(Paths.sound('selectsfx'));
 
