@@ -34,9 +34,9 @@ class CoversScreen extends MusicBeatState
   var text:FlxSprite;
   var bars:FlxSprite;
   public var songName:String = "";
-  
+
   public static var curSelected:Int = 0;
-  
+
   var coverList:Array<String> = [
     'thunderstorm',
     'cg-megamix',
@@ -70,7 +70,7 @@ class CoversScreen extends MusicBeatState
     buttons.screenCenter();
     
     buttonSelected = new FlxSprite().loadGraphic(Paths.image('hotline/menu/covers/' + buttonList[curSelected]));
-    buttonSelected.screenCenter();*/
+    buttonSelected.screenCenter();*/ //idk
     
     button1 = new FlxSprite().loadGraphic(Paths.image('hotline/menu/covers/button1'));
     button1.screenCenter();
@@ -138,46 +138,46 @@ class CoversScreen extends MusicBeatState
     }
     if (controls.ACCEPT)
     {
-      var coverChoice:String = buttonList[curSelected];
-      switch(coverChoice)
-      {
+			var coverChoice:String = buttonList[curSelected];
+			switch(coverChoice)
+			{
 				case 'button1':
 					PlayState.SONG = Song.loadFromJson('thunderstorm', 'thunderstorm');
 					PlayState.isCovers = true;
-      		FlxG.sound.play(Paths.sound('entersfx'));
-      		new FlxTimer().start(0.1, function(tmr:FlxTimer)
-      		{
-        		MusicBeatState.switchState(new ChooseSkinState());
-      		}); // lazyiness to delete the timer lol
-      	case 'button2':
+					FlxG.sound.play(Paths.sound('entersfx'));
+					new FlxTimer().start(0.1, function(tmr:FlxTimer)
+					{
+						MusicBeatState.switchState(new ChooseSkinState());
+					}); // lazyiness to delete the timer lol
+				case 'button2':
 					PlayState.SONG = Song.loadFromJson('cg-megamix', 'cg-megamix');
 					PlayState.isCovers = true;
-      		FlxG.sound.play(Paths.sound('entersfx'));
-      		new FlxTimer().start(0.1, function(tmr:FlxTimer)
-      		{
-        		MusicBeatState.switchState(new ChooseSkinState());
-      		});
-      	case 'button3':
+					FlxG.sound.play(Paths.sound('entersfx'));
+					new FlxTimer().start(0.1, function(tmr:FlxTimer)
+					{
+						MusicBeatState.switchState(new ChooseSkinState());
+					});
+				case 'button3':
 					PlayState.SONG = Song.loadFromJson('promenade', 'promenade');
 					PlayState.isCovers = true;
-      		FlxG.sound.play(Paths.sound('entersfx'));
-      		new FlxTimer().start(0.1, function(tmr:FlxTimer)
-      		{
-        		MusicBeatState.switchState(new ChooseSkinState());
-      		});
-      	case 'button4':
+					FlxG.sound.play(Paths.sound('entersfx'));
+					new FlxTimer().start(0.1, function(tmr:FlxTimer)
+					{
+						MusicBeatState.switchState(new ChooseSkinState());
+					});
+				case 'button4':
 					PlayState.SONG = Song.loadFromJson('deathmatch', 'deathmatch');
 					PlayState.isCovers = true;
-      		FlxG.sound.play(Paths.sound('entersfx'));
-      		new FlxTimer().start(0.1, function(tmr:FlxTimer)
-      		{
-        		MusicBeatState.switchState(new ChooseSkinState());
-      		});
-      }
-    }
-    super.update(elapsed);
-  }
-  
+					FlxG.sound.play(Paths.sound('entersfx'));
+					new FlxTimer().start(0.1, function(tmr:FlxTimer)
+					{
+						MusicBeatState.switchState(new ChooseSkinState());
+					});
+			}
+		}
+		super.update(elapsed);
+	}
+
   function changeCover(change:Int = 0)
   {
     curSelected += change;
@@ -195,48 +195,48 @@ class CoversScreen extends MusicBeatState
 		  button1.alpha = 1;
 		  button1Black.alpha = 0;
 		  //button2.color = FlxColor.BLACK;
-		  button2.alpha = 0.15;
-		  button2Black.alpha = 0.4;
+		  button2.alpha = 0.25;
+		  button2Black.alpha = 0.75;
 		  //button3.color = FlxColor.BLACK;
-		  button3.alpha = 0.15;
-		  button3Black.alpha = 0.4;
+		  button3.alpha = 0.25;
+		  button3Black.alpha = 0.75;
 		  //button4.color = FlxColor.BLACK;
-		  button4.alpha = 0.15;
-		  button4Black.alpha = 0.4;
+		  button4.alpha = 0.25;
+		  button4Black.alpha = 0.75;
 		  case 1:
 		  //button1.color = FlxColor.BLACK;
-		  button1.alpha = 0.15;
-		  button1Black.alpha = 0.4;
+		  button1.alpha = 0.25;
+		  button1Black.alpha = 0.75;
 		  button2.alpha = 1;
 		  button2Black.alpha = 0;
 		  //button3.color = FlxColor.BLACK;
-		  button3.alpha = 0.15;
-		  button3Black.alpha = 0.4;
+		  button3.alpha = 0.25;
+		  button3Black.alpha = 0.75;
 		  //button4.color = FlxColor.BLACK;
-		  button4Black.alpha = 0.4;
-		  button4.alpha = 0.15;
+		  button4Black.alpha = 0.75;
+		  button4.alpha = 0.25;
 		  case 2:
 		  //button1.color = FlxColor.BLACK;
-		  button1.alpha = 0.15;
-		  button1Black.alpha = 0.4;
+		  button1.alpha = 0.25;
+		  button1Black.alpha = 0.75;
 		  //button2.color = FlxColor.BLACK;
-		  button2.alpha = 0.15;
-		  button2Black.alpha = 0.4;
+		  button2.alpha = 0.25;
+		  button2Black.alpha = 0.75;
 		  button3.alpha = 1;
 		  button3Black.alpha = 0;
 		  //button4.color = FlxColor.BLACK;
-		  button4.alpha = 0.15;
-		  button4Black.alpha = 0.4;
+		  button4.alpha = 0.25;
+		  button4Black.alpha = 0.75;
 		  case 3:
 		  //button1.color = FlxColor.BLACK;
-		  button1.alpha = 0.15;
-		  button1Black.alpha = 0.4;
+		  button1.alpha = 0.25;
+		  button1Black.alpha = 0.75;
 		  //button2.color = FlxColor.BLACK;
-		  button2.alpha = 0.15;
-		  button2Black.alpha = 0.4;
+		  button2.alpha = 0.25;
+		  button2Black.alpha = 0.75;
 		  //button3.color = FlxColor.BLACK;
-		  button3.alpha = 0.15;
-		  button3Black.alpha = 0.4;
+		  button3.alpha = 0.25;
+		  button3Black.alpha = 0.75;
 		  button4.alpha = 1;
 		  button4Black.alpha = 0;
 		}
