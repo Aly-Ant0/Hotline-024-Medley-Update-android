@@ -336,6 +336,7 @@ class PlayState extends MusicBeatState
 	var comboTwn2:FlxTween;
 	var comboTwn3:FlxTween;
 	var scoreTxtTween:FlxTween;
+	var comboTmr:FlxTimer;
 
 	public static var campaignScore:Int = 0;
 	public static var campaignMisses:Int = 0;
@@ -406,6 +407,7 @@ class PlayState extends MusicBeatState
 		{
 			keysPressed.push(false);
 		}
+		FlxG.mouse.visible = false;
 
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
@@ -1767,7 +1769,7 @@ class PlayState extends MusicBeatState
 					booCutscene.animation.addByPrefix('2shock', 'BooIntro2 instance 1', 24, false);
 					booCutscene.animation.addByPrefix('3shock', 'BooIntro3 instance 1', 24, false);
 					add(booCutscene);
-					snapCamFollowToPos(dad.x + 10, dad.y = 10);
+					snapCamFollowToPos(dad.x + 10, dad.y + 10);
 					FlxG.camera.focusOn(camFollow);
 					inCutscene = true;
 					
@@ -4434,8 +4436,8 @@ class PlayState extends MusicBeatState
 		var seperatedScore:Array<Int> = [];
 
 		comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
-		comboGlow.x = STRUM_X_MIDDLESCROLL;
-		comboGlow.y = FlxG.height * 0.;
+		comboGlow.x = -310;
+		comboGlow.y = FlxG.height * 0.24;
 		comboGlow.alpha = 0.70;
 		comboGlow.cameras = [camHUD];
 		//add(comboGlow);
@@ -4498,16 +4500,9 @@ class PlayState extends MusicBeatState
 
 			daCombo++;
 		}
-		var lastMustHit:Bool = SONG.notes[Math.floor(curStep / 16)].mustHitSection;
 				// eu tenho que pensar num bagui que faz que apartir do primeiro combo nao spawna mais combo glow pq meu cell quase morreu dps de eu testar lol
-				lastMustHit = SONG.notes[Math.floor(curStep / 16)].mustHitSection;
-				if (lastMustHit == false && combo > 1 && curBeat % 3 == 0) 
+				new FlxTimer().start(Conductor.crochet / 1000 * 10, function(tmr:FlxTimer)
 				{
-					combo = 0;
-					intendedScore = scoreCount;
-					scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 0, 1)));
-					songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 0, 1)));
-	
 					// se tiver visível é claro né meu fi ou fia sla
 					FlxFlicker.flicker(combotxt1, 1.5, 0.10, false, false);
 					FlxTween.tween(combotxt1, {alpha: 0}, 1.5, {
@@ -4544,7 +4539,10 @@ class PlayState extends MusicBeatState
 					{
 						combotxt1.text = 'Great!';
 					}
-				}
+					if (songHits++) {
+						tmr.reset(Conductor.crochet / 1000 * 10);
+					}
+				});
 		 /* 
 			trace(combo);
 			trace(seperatedScore);
@@ -4554,47 +4552,10 @@ class PlayState extends MusicBeatState
 		// add(coolText);
 	}
 
-	function resetCombo() // combo thing
+	public function resetCombo() // combo thing
 	{
-		scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 0, 1)));
-		songScore += Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 0, 1)));
-
-		// se tiver visível é claro né meu fi ou fia sla
-		FlxFlicker.flicker(combotxt1, 1.5, 0.10, false, false);
-		FlxTween.tween(combotxt1, {alpha: 0}, 1.5, {
-			ease: FlxEase.quadInOut,
-			onComplete: function(twn:FlxTween)
-			{
-				combotxt1.alpha = 0;
-			}
-		});
-		FlxFlicker.flicker(combotxt2, 1.5, 0.10, false, false);
-		FlxTween.tween(combotxt2, {alpha: 0}, 1.5, {
-			ease: FlxEase.quadInOut,
-			onComplete: function(twn:FlxTween)
-			{
-				combotxt2.alpha = 0;
-			}
-		});
-		FlxTween.tween(comboGlow, {alpha: 0}, 1.5, {
-			ease: FlxEase.quadInOut,
-			onComplete: function(twn:FlxTween)
-			{
-				comboGlow.alpha = 0;
-			}
-		});
-		if (FlxG.random.bool(15.5))
-		{
-			combotxt1.text = 'whoops...';
-		}
-		if (FlxG.random.bool(80))
-		{
-			combotxt1.text = 'Perfect!';
-		}
-		if (FlxG.random.bool(70))
-		{
-			combotxt1.text = 'Great!';
-		}
+		scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (FlxG.elapsed * 14), 1, 0)));
+		songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 0, 1)));
 	}
 
 	private function onKeyPress(event:KeyboardEvent):Void
@@ -4963,6 +4924,12 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
+				new FlxTimer().start(Conductor.crochet / 1000 * 3, function(tmr:FlxTimer) {
+					resetCombo();
+					if (songHits++) {
+						tmr.reset(3);
+					}
+				});
 			}
 			health += note.hitHealth * healthGain;
 
