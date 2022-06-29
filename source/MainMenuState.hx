@@ -27,7 +27,7 @@ import flixel.input.keyboard.FlxKey;
 
 using StringTools;
 
-class MainMenuState extends MusicBeatState
+class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira programano o menu kkkk
 {
 	public static var psychEngineVersion:String = '0.5.2h'; //This is also used for Discord RPC
 	public static var curSelected:Int = 0;
@@ -39,21 +39,30 @@ class MainMenuState extends MusicBeatState
 	var optionShit:Array<String> = [
 		'story_mode',
 		'freeplay',
-		'options',
-		'extras'
+		'extras',
+		'options'
 	];
 	var creditsImage:FlxSprite;
+	var storyButton:FlxSprite;
+	var storyButton2:FlxSprite;
+	var freeplayButton:FlxSprite;
+	var freeplayButton2:FlxSprite;
+	var extrasButton:FlxSprite;
+	var extrasButton2:FlxSprite;
+	var optionsButton:FlxSprite;
+	var optionsButton2:FlxSprite;
 	var jukeboxText:FlxSprite;
-	var magenta:FlxSprite;
-	var camFollow:FlxObject;
-	var camFollowPos:FlxObject;
 	var selected:Bool = false;
 
 	override function create()
 	{
 		FlxG.mouse.visible = true;
 
-		FlxG.sound.playMusic(Paths.music('nightlight'));
+		if (FlxG.sound.music == null) {
+			FlxG.sound.playMusic(Paths.music('nightlight'), 0);
+			FlxG.sound.music.fadeIn(0.4, 0.6, 1);
+		}
+
 		WeekData.loadTheFirstEnabledMod();
 
 		#if desktop
@@ -90,28 +99,112 @@ class MainMenuState extends MusicBeatState
 		bars.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bars);
 
-		menuItems = new FlxTypedSpriteGroup<FlxSprite>();
-		add(menuItems);
+	//	menuItems = new FlxTypedSpriteGroup<FlxSprite>();
+	//	add(menuItems);
 
 		/*if(optionShit.length > 6) {
 			scale = 6 / optionShit.length;
 		}*/ // nao precisa por sinal
 
-		for (i in 0...optionShit.length)
-		{
-			var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-			var menuItem:FlxSprite = new FlxSprite((i * 200) + offset, 0);
-			menuItem.frames = Paths.getSparrowAtlas('hotline/menu/' + optionShit[i]);
-			menuItem.animation.addByPrefix('idle', "normal");
-			menuItem.animation.addByPrefix('selected', "glow");
-			menuItem.animation.play('idle');
-			menuItem.ID = i;
-			menuItems.add(menuItem);
-			menuItem.scrollFactor.set(0.1, 0);
-			menuItem.antialiasing = ClientPrefs.globalAntialiasing;
-			menuItem.setGraphicSize(Std.int(menuItem.width * 0.78));
-			menuItem.updateHitbox();
-		}
+		storyButton = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
+		storyButton.frames = Paths.getSparrowAtlas('hotline/menu/story_mode');
+		storyButton.animation.addByPrefix('idle', "normal");
+		storyButton.animation.addByPrefix('selected', "glow");
+		storyButton.animation.play('idle');
+		storyButton.scrollFactor.set(0.1, 0);
+		storyButton.antialiasing = ClientPrefs.globalAntialiasing;
+		storyButton.setGraphicSize(Std.int(menuItem.width * 0.78));
+		storyButton.updateHitbox();
+
+		freeplayButton = new FlxSprite(storyButton.x - 30, FlxG.height / 2);
+		freeplayButton.frames = Paths.getSparrowAtlas('hotline/menu/freeplay');
+		freeplayButton.animation.addByPrefix('idle', "normal");
+		freeplayButton.animation.addByPrefix('selected', "glow");
+		freeplayButton.animation.play('idle');
+		add(freeplayButton);
+		freeplayButton.scrollFactor.set(0.1, 0);
+		freeplayButton.antialiasing = ClientPrefs.globalAntialiasing;
+		freeplayButton.setGraphicSize(Std.int(menuItem.width * 0.78));
+		freeplayButton.updateHitbox();
+
+		optionsButton = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
+		optionsButton.frames = Paths.getSparrowAtlas('hotline/menu/options');
+		optionsButton.animation.addByPrefix('idle', "normal");
+		optionsButton.animation.addByPrefix('selected', "glow");
+		optionsButton.animation.play('idle');
+		add(optionsButton);
+		optionsButton.scrollFactor.set(0.1, 0);
+		optionsButton.antialiasing = ClientPrefs.globalAntialiasing;
+		optionsButton.setGraphicSize(Std.int(menuItem.width * 0.78));
+		optionsButton.updateHitbox();
+
+		extrasButton = new FlxSprite(storyButton.x + 30, FlxG.height / 2);
+		extrasButton.frames = Paths.getSparrowAtlas('hotline/menu/extras');
+		extrasButton.animation.addByPrefix('idle', "normal");
+		extrasButton.animation.addByPrefix('selected', "glow");
+		extrasButton.animation.play('idle');
+		add(extrasButton);
+		extrasButton.scrollFactor.set(0.1, 0);
+		extrasButton.antialiasing = ClientPrefs.globalAntialiasing;
+		extrasButton.setGraphicSize(Std.int(menuItem.width * 0.78));
+		extrasButton.updateHitbox();
+
+		storyButton2 = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
+		storyButton2.frames = Paths.getSparrowAtlas('hotline/menu/story_mode');
+		storyButton2.animation.addByPrefix('idle', "normal");
+		storyButton2.animation.addByPrefix('selected', "glow");
+		storyButton2.animation.play('idle');
+		add(storyButton2);
+		storyButton2.scrollFactor.set(0.1, 0);
+		storyButton2.antialiasing = ClientPrefs.globalAntialiasing;
+		storyButton2.setGraphicSize(Std.int(menuItem.width * 0.78));
+		storyButton2.visible = false;
+		storyButton2.updateHitbox();
+
+		freeplayButton2 = new FlxSprite(freeplayButton.x, FlxG.height / 2);
+		freeplayButton2.frames = Paths.getSparrowAtlas('hotline/menu/freeplay');
+		freeplayButton2.animation.addByPrefix('idle', "normal");
+		freeplayButton2.animation.addByPrefix('selected', "glow");
+		freeplayButton2.animation.play('idle');
+		add(freeplayButton2);
+		freeplayButton2.scrollFactor.set(0.1, 0);
+		freeplayButton2.antialiasing = ClientPrefs.globalAntialiasing;
+		freeplayButton2.setGraphicSize(Std.int(menuItem.width * 0.78));
+		storyButton2.visible = false;
+		freeplayButton2.updateHitbox();
+
+		optionsButton2 = new FlxSprite(optionsButton.x, FlxG.height / 2);
+		optionsButton2.frames = Paths.getSparrowAtlas('hotline/menu/options');
+		optionsButton2.animation.addByPrefix('idle', "normal");
+		optionsButton2.animation.addByPrefix('selected', "glow");
+		optionsButton2.animation.play('idle');
+		add(optionsButton2);
+		optionsButton.scrollFactor.set(0.1, 0);
+		optionsButton2.antialiasing = ClientPrefs.globalAntialiasing;
+		optionsButton2.setGraphicSize(Std.int(menuItem.width * 0.78));
+		optionsButton2.visible = false;
+		optionsButton2.updateHitbox();
+
+		extrasButton2 = new FlxSprite(extrasButton.x, FlxG.height / 2);
+		extrasButton2.frames = Paths.getSparrowAtlas('hotline/menu/extras');
+		extrasButton2.animation.addByPrefix('idle', "normal");
+		extrasButton2.animation.addByPrefix('selected', "glow");
+		extrasButton2.animation.play('idle');
+		add(extrasButton2);
+		extrasButton2.scrollFactor.set(0.1, 0);
+		extrasButton2.antialiasing = ClientPrefs.globalAntialiasing;
+		extrasButton2.setGraphicSize(Std.int(menuItem.width * 0.78));
+		extrasButton2.visible = false;
+		extrasButton2.updateHitbox();
+
+		add(extrasButton);
+		add(optionsButton);
+		add(freeplayButton);
+		add(storyButton);
+		add(storyButton2);
+		add(freeplayButton2);
+		add(optionsButton2);
+		add(extrasButton2);
 
 		jukeboxText = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox')); // eu nao vou programar o jukebox menu pq nao tem nenhum video que mostra o jukebox menu ent eu nao sei como é o jukebox menu e eu nao tenho pc // sadness
 		jukeboxText.screenCenter();
@@ -200,58 +293,19 @@ class MainMenuState extends MusicBeatState
 			{
 				if (optionShit[curSelected] == 'story_mode')
 				{
-					menuItems.forEach(function(spr:FlxSprite)
-					{
-						if (curSelected != spr.ID)
-						{
 							FlxG.sound.play(Paths.sound('errorsfx'));
-							FlxFlicker.flicker(spr, 0.4, 0.06, false, false);
-						}
-					});
+							FlxFlicker.flicker(storyButton, 0.4, 0.06, false);
 				}
-				if (optionShit[curSelected] == 'donate')
-				{
-					CoolUtil.browserLoad('https://ninja-muffin24.itch.io/funkin');
-				}
-				else
-				{
-					selectedSomethin = true;
-					FlxG.sound.play(Paths.sound('entersfx'));
-
-					if(ClientPrefs.flashing) FlxFlicker.flicker(magenta, 1.1, 0.15, false);
-
-					menuItems.forEach(function(spr:FlxSprite)
+					var daChoice:String = optionShit[curSelected];
+					switch (daChoice)
 					{
-						if (curSelected != spr.ID)
-						{
-							FlxTween.tween(spr, {alpha: 0}, 0.4, {
-								ease: FlxEase.quadOut,
-								onComplete: function(twn:FlxTween)
-								{
-									spr.kill();
-								}
-							});
-						}
-						else
-						{
-							spr.animation.play('selected');
-							FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
-							{
-								var daChoice:String = optionShit[curSelected];
-
-								switch (daChoice)
-								{
-									case 'freeplay':
-										MusicBeatState.switchState(new FreeplayState());
-									case 'extras':
-										MusicBeatState.switchState(new ExtrasScreen());
-									case 'options':
-										LoadingState.loadAndSwitchState(new options.OptionsState());
-								}
-							});
-						}
-					});
-				}
+						case 'freeplay':
+							MusicBeatState.switchState(new FreeplayState());
+						case 'extras':
+							MusicBeatState.switchState(new ExtrasScreen());
+						case 'options':
+							LoadingState.loadAndSwitchState(new options.OptionsState());
+					}
 			}
 			for (touch in FlxG.touches.list)
 			{
@@ -266,20 +320,6 @@ class MainMenuState extends MusicBeatState
 				MusicBeatState.switchState(new MasterEditorMenu());
 			}
 			#end
-		}
-
-		for (item in menuItems.members) {
-			var lerpVal:Float = CoolUtil.boundTo(elapsed * 30, 0, 1);
-			if(item.x == 0)
-			{
-				var lastX:Float = item.x;
-				item.screenCenter(X);
-				item.x = FlxMath.lerp(lastX, item.x - 80, lerpVal);
-			}
-			else
-			{
-				item.x = FlxMath.lerp(item.x, 200 + -40 * Math.abs(item.x), lerpVal);
-			}
 		}
 
 		super.update(elapsed);
@@ -298,23 +338,45 @@ class MainMenuState extends MusicBeatState
 
 			FlxG.sound.play(Paths.sound('selectsfx'));
 
-		var porra:Int = 0;
+		//var porra:Int = 0;
+		var option:String = optionShit[curSelected];
 
-		for (item in menuItems.members)
-		{
-			item.x = porra - curSelected;
-			porra++; // mais porra, entendeu? NÃO MÃE PA-
-
-			if (!unselectableCheck(porra-1)) {
-				item.alpha = 0.54;
-			}
-			if (item.x == 0) {
-				item.alpha = 1; // no mod original não tem o bagui de alpha nos bagui do menu mas beleza né
-			}
+		switch(option) { // por enquando vai ser brusco mesmo e eu fiquei mt confuso pra programar isso puta que pariu
+		// e os botão 2 é tipo o botao 1 so que eles são MACHO ALFA cof, cof, quer dizer, eles estão na frente pra não ficar todo lascado.
+			case 'story_mode':
+				storyButton2.visible = true;
+				storyButton.visible = false;
+				storyButton2.x = storyButton.x;
+				freeplayButton.x = freeplayButton.x;
+				extrasButton.x = extrasButton.x;
+				optionsButton.x =  optionsButton.x;
+			case 'freeplay':
+				freeplayButton2.visible = true;
+				storyButton.visible = true;
+				storyButton2.visible = false;
+				freeplayButton.visible = false;
+				storyButton.x -= FlxG.width / 2 + 30 * FlxG.elapsed;
+				freeplayButton2.x += FlxG.width / 2 * FlxG.elapsed;
+				extrasButton.x += FlxG.width / 2 * FlxG.elapsed;
+				optionsButton.x += FlxG.width / 2 - 30 * FlxG.elapsed;
+			case 'options':
+				optionsButton.visible = false;
+				optionsButton2.visible = true;
+				freeplayButton.visible = true;
+				freeplayButton2.visible = false; // tu é frango é?
+				storyButton.x -= FlxG.width / 2 * FlxG.elapsed;
+				freeplayButton.x += FlxG.width / 2 + 30 FlxG.elapsed;
+				extrasButton.x += FlxG.width / 2 - 30 * FlxG.elapsed;
+				optionsButton2.x += FlxG.width / 2 * FlxG.elapsed;
+			case 'extras':
+				optionsButton.visible = true;
+				optionsButton2.visible = false;
+				extrasButton2.visible = true;
+				extrasButton.visible = false;
+				storyButton.x -= FlxG.width / 2 - 30 * FlxG.elapsed;
+				freeplayButton.x += FlxG.width / 2 FlxG.elapsed;
+				extrasButton2.x += FlxG.width / 2 * FlxG.elapsed;
+				optionsButton.x += FlxG.width / 2 + 30 * FlxG.elapsed;
 		}
-	}
-
-	private function unselectableCheck(num:Int):Bool {
-		return optionShit[num].length <= 1;
 	}
 }
