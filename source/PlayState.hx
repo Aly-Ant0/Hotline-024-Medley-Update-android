@@ -4435,23 +4435,6 @@ class PlayState extends MusicBeatState
 		var daCombo:Int = 0;
 		var seperatedScore:Array<Int> = [];
 
-		comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
-		comboGlow.x = -310;
-		comboGlow.y = FlxG.height * 0.24;
-		comboGlow.alpha = 0.70;
-		comboGlow.cameras = [camHUD];
-		//add(comboGlow);
-		if (combo == 1)
-		insert(members.indexOf(strumLineNotes), comboGlow);
-		
-		if (ClientPrefs.downScroll) {
-			comboGlow.y = FlxG.height * 0.94;
-		}
-		
-		if(ClientPrefs.middleScroll) {
-			comboGlow.visible = false;
-		}
-
 		if(combo >= 1000) {
 			seperatedScore.push(Math.floor(combo / 1000) % 10);
 		}
@@ -4465,10 +4448,19 @@ class PlayState extends MusicBeatState
 			//add(combotxt1);
 			//add(combotxt2);
 
+			comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
+			comboGlow.x = -310;
+			comboGlow.y = FlxG.height * 0.24;
+			comboGlow.alpha = 0.70;
+			comboGlow.cameras = [camHUD];
+			//add(comboGlow);
+			if (combo == 1)
+			insert(members.indexOf(strumLineNotes), comboGlow);
+
 			combotxt1 = new FlxText();
 			combotxt1.size = 32;
 			combotxt1.color = FlxColor.WHITE;
-			combotxt1.text = daRating + " x" + Std.int(i);
+			combotxt1.text = daRating + "! x" + Std.int(i);
 			combotxt1.x = 400;
 			combotxt1.y = botplayTxt.y;
 			combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -4478,19 +4470,22 @@ class PlayState extends MusicBeatState
 			//add(combotxt1);
 
 			// combo score lerp
-			combotxt2 = new FlxText(combotxt1.x, combotxt1.y + 20, 0, "s " + scoreCount, 26);
+			combotxt2 = new FlxText(combotxt1.x, combotxt1.y + 20, 0, "", 26);
 			combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt2.scrollFactor.set();
 			combotxt2.borderSize = 1.25;
+			combotxt2.text = scoreCount;
 			combotxt2.cameras = [camHUD];
 			//add(combotxt2);
 
 			if(ClientPrefs.downScroll) {
 				combotxt1.y = 602;
+				comboGlow.y = FlxG.height * 0.94;
 			}
 			if(ClientPrefs.middleScroll) {
 				combotxt1.visible = false;
 				combotxt2.visible = false;
+				comboGlow.visible = false;
 			}
 
 			//if (combo >= 10 || combo == 0)
@@ -5235,6 +5230,20 @@ class PlayState extends MusicBeatState
 		}
 	}
 
+	function flash() {
+		var huh:FlxSprite = new FlxSprite().makeGraphic(1280, 720, FlxColor.WHITE);
+		huh.updateHitbox();
+		huh.visible = false;
+		add(huh);
+
+		new FlxTimer().start(0.1, function(tmr:FlxTimer) {
+			huh.visible = true;
+		});
+		new FlxTimer().start(0.1, function(tmr:FlxTimer) {
+			huh.visible = false;
+		});
+	}
+
 	var lastStepHit:Int = -1;
 	override function stepHit()
 	{
@@ -5276,7 +5285,6 @@ class PlayState extends MusicBeatState
 					text2.visible = true;
 				case 127:
 					FlxG.camera.flash(FlxColor.WHITE, 1);
-				case 128:
 					text1.visible = false;
 					text2.visible = false;
 					black.visible = false;
@@ -5289,7 +5297,7 @@ class PlayState extends MusicBeatState
 		{
 			if (curStep == 1534)
 			{
-				FlxG.camera.flash(FlxColor.WHITE, 1);
+				flash();
 			}
 		  if (curStep == 1535) // a
 			{
@@ -5325,7 +5333,7 @@ class PlayState extends MusicBeatState
 			}
 			if (curStep == 1658 && curStep == 1660 && curStep == 1661 && curStep == 1663)
 			{
-				FlxG.camera.flash(FlxColor.WHITE, 0.15, null, true);
+				flash();
 			}
 			if (curStep == 1664)
 			{
