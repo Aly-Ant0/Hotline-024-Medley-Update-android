@@ -643,88 +643,88 @@ class PlayState extends MusicBeatState
 				text2.scale.set(1.8, 1.8);
 				text2.screenCenter(X);
 				text2.visible = false;
-        
-      case 'covers': // covers
-        coverBG1 = new BGSprite('covers/bg', -960, -250, 0.1, 0.1);
-        coverBG1.scale.set(1.4, 1.2);
-        coverBG1.updateHitbox();
-        add(coverBG1);
 
-        coverBG2 = new BGSprite('covers/sun', -1200, -450, 0.1, 0.1);
-        coverBG2.scale.set(1.3, 1.3);
-        coverBG2.updateHitbox();
-        add(coverBG2);
+			case 'covers': // covers
+				coverBG1 = new BGSprite('covers/bg', -960, -250, 0.1, 0.1);
+				coverBG1.scale.set(1.4, 1.2);
+				coverBG1.updateHitbox();
+				add(coverBG1);
 
-        coverBG9 = new BGSprite('covers/clouds', -1200, 0, 0.1, 0.1);
-        coverBG9.updateHitbox();
-        add(coverBG9);
+				coverBG2 = new BGSprite('covers/sun', -1200, -450, 0.1, 0.1);
+				coverBG2.scale.set(1.3, 1.3);
+				coverBG2.updateHitbox();
+				add(coverBG2);
 
-        coverBG3 = new BGSprite('covers/castle', -1100, -250,  0.3, 0.3);
-        coverBG3.scale.set(1.4, 1.2);
-        coverBG3.updateHitbox();
-        add(coverBG3);
+				coverBG9 = new BGSprite('covers/clouds', -1200, 0, 0.1, 0.1);
+				coverBG9.updateHitbox();
+				add(coverBG9);
 
-        coverBG4 = new BGSprite('covers/buildings', -1000, -150,  0.5, 0.5);
-        coverBG4.scale.set(1.4, 1.2);
-        coverBG4.updateHitbox();
-        add(coverBG4);
+				coverBG3 = new BGSprite('covers/castle', -1100, -250,  0.3, 0.3);
+				coverBG3.scale.set(1.4, 1.2);
+				coverBG3.updateHitbox();
+				add(coverBG3);
 
-        coverBG5 = new BGSprite('covers/hills', -600, -150, 1, 1);
-        coverBG5.scale.set(1.3, 1.3);
-        coverBG5.updateHitbox();
-        add(coverBG5);
+				coverBG4 = new BGSprite('covers/buildings', -1000, -150,  0.5, 0.5);
+				coverBG4.scale.set(1.4, 1.2);
+				coverBG4.updateHitbox();
+				add(coverBG4);
 
-        coverBG6 = new BGSprite('covers/ground', -260, -140, 1, 1);
-        coverBG6.scale.set(1.2, 1.2);
-        coverBG6.updateHitbox();
-        add(coverBG6);
-        
-        coverBG7 = new BGSprite('covers/light', -260, -140,  1.1, 1.1);
-        coverBG7.scale.set(1.2, 1.2);
-        coverBG7.updateHitbox();
-        coverBG7.blend = ADD;
-        add(coverBG7);
+				coverBG5 = new BGSprite('covers/hills', -600, -150, 1, 1);
+				coverBG5.scale.set(1.3, 1.3);
+				coverBG5.updateHitbox();
+				add(coverBG5);
 
-        coverBG8 = new BGSprite('covers/cables', -260, -140, 1.2, 1.2);
-        coverBG8.scale.set(1.2, 1);
-        coverBG8.updateHitbox();
-        add(coverBG8);
+				coverBG6 = new BGSprite('covers/ground', -260, -140, 1, 1);
+				coverBG6.scale.set(1.2, 1.2);
+				coverBG6.updateHitbox();
+				add(coverBG6);
 
-        /*var bfReflextion:FlxSprite = new FlxSprite(boyfriend.x, boyfriend.y);
-        bfReflextion.frames = boyfriend.frames;
-        bfReflextion.alpha = 0.38;
-        bfReflextion.blend = ADD;
-        function update()
-        {
-        bfReflextion.animation.frameIndex = boyfriend.animation.frameIndex;
-        }*/
+				coverBG7 = new BGSprite('covers/light', -260, -140,  1.1, 1.1);
+				coverBG7.scale.set(1.2, 1.2);
+				coverBG7.updateHitbox();
+				coverBG7.blend = ADD;
+				add(coverBG7);
 
-      case 'mazin-mall': //fun is infinite
-        majinOverlay = new BGSprite('mazin/overlay', -360, -90, 0, 0);
-        majinOverlay.scale.set(1.5, 1.5);
-        majinOverlay.updateHitbox();
-        majinOverlay.blend = ADD;
-        
-        majinBG = new BGSprite('mazin/back', -400, -150, 1, 1);
-        majinBG.scale.set(1.4, 1.4);
-        majinBG.updateHitbox();
-        add(majinBG);
-        
-        majinGround = new BGSprite('mazin/ground', -400, -70, 1, 1);
-        majinGround.scale.set(1.4, 1.4);
-        majinGround.updateHitbox();
-        add(majinGround);
-        
-        majinTVBG = new BGSprite('mazin/mazin_mall_BG_tv', -50, 90, ['BG tv']);
-        majinTVBG.animation.addByPrefix('idle', 'BG tv', 24, false);
-        majinTVBG.scale.set(1, 1);
-        majinTVBG.updateHitbox();
-        add(majinTVBG);
-        
-        majinTV = new BGSprite('mazin/tv', -500, 130, 1, 1);
-        majinTV.scale.set(1.1, 1.1);
-        majinTV.updateHitbox();
-      case 'expurgated':
+				coverBG8 = new BGSprite('covers/cables', -260, -140, 1.2, 1.2);
+				coverBG8.scale.set(1.2, 1);
+				coverBG8.updateHitbox();
+				add(coverBG8);
+
+				/*var bfReflextion:FlxSprite = new FlxSprite(boyfriend.x, boyfriend.y);
+				bfReflextion.frames = boyfriend.frames;
+				bfReflextion.alpha = 0.38;
+				bfReflextion.blend = ADD;
+				function update()
+				{
+				bfReflextion.animation.frameIndex = boyfriend.animation.frameIndex;
+				}*/
+
+			case 'mazin-mall': //fun is infinite
+				majinOverlay = new BGSprite('mazin/overlay', -360, -90, 0, 0);
+				majinOverlay.scale.set(1.5, 1.5);
+				majinOverlay.updateHitbox();
+				majinOverlay.blend = ADD;
+
+				majinBG = new BGSprite('mazin/back', -400, -150, 1, 1);
+				majinBG.scale.set(1.4, 1.4);
+				majinBG.updateHitbox();
+				add(majinBG);
+
+				majinGround = new BGSprite('mazin/ground', -400, -70, 1, 1);
+				majinGround.scale.set(1.4, 1.4);
+				majinGround.updateHitbox();
+				add(majinGround);
+
+				majinTVBG = new BGSprite('mazin/mazin_mall_BG_tv', -50, 90, ['BG tv']);
+				majinTVBG.animation.addByPrefix('idle', 'BG tv', 24, false);
+				majinTVBG.scale.set(1, 1);
+				majinTVBG.updateHitbox();
+				add(majinTVBG);
+
+				majinTV = new BGSprite('mazin/tv', -500, 130, 1, 1);
+				majinTV.scale.set(1.1, 1.1);
+				majinTV.updateHitbox();
+			case 'expurgated':
 				exSky = new BGSprite('expurgated/sky', -1300, -650, 0.1, 0.1);
 				exSky.scale.set(2, 2);
 				exSky.updateHitbox();
@@ -741,133 +741,137 @@ class PlayState extends MusicBeatState
 				exParticle = new FlxTypedGroup<ExpurgatedParticle>();
 */
 
-        exGround = new BGSprite('expurgated/ground', -2800, -1400, 1, 1);
-        exGround.scale.set(2.5, 2.5);
-        exGround.updateHitbox();
-        add(exGround);
-        
-        exOverlay = new BGSprite('expurgated/gradoverlay', -1440, -650, 0, 0);
-        exOverlay.blend = ADD;
-        exOverlay.scale.set(2.5, 2.5);
-        exOverlay.updateHitbox();
-        
-        exFront = new BGSprite('expurgated/signfront', 1, 1);
-        exFront.scale.set(2.5, 2.5);
-        exFront.updateHitbox();
-      case 'skatepark':
-        skateSky = new BGSprite('skatepark/sky', -100, -200, 0.4, 0.4);
-        skateSky.scale.set(1, 1);
-        skateSky.updateHitbox();
-        add(skateSky);
-        
-        skateBuildings = new BGSprite('skatepark/buildings', 150, 70, 0.8, 0.8);
-        skateBuildings.scale.set(0.9, 0.9);
-        skateSky.updateHitbox();
-        add(skateBuildings);
-        
-        skateTreess = new BGSprite('skatepark/trees', 100, 50, 1, 1);
-        skateTreess.scale.set(1, 1);
-        skateTreess.updateHitbox();
-        add(skateTreess);
-        
-        skateFloor = new BGSprite('skatepark/floor', 10, 0, 1, 1);
-        skateFloor.scale.set(1, 1);
-        skateFloor.updateHitbox();
-        add(skateFloor);
-        
-        skateLight = new BGSprite('skatepark/light', -20, -70, 1, 1);
-        skateLight.updateHitbox();
-        skateLight.blend = ADD;
-        skateLight.scale.set(1.1, 1.1);
-        
-        skateBuches = new BGSprite('skatepark/buches', 100, 100, 1, 1);
-        skateBuches.scale.set(1.2, 1.2);
-        skateBuches.updateHitbox();
-        
-        octagonBG = new FlxSprite().makeGraphic(1980, 1080, FlxColor.WHITE);
-        octagonBG.screenCenter(XY);
-        octagonBG.scrollFactor.set(0, 0);
-        octagonBG.scale.set(1.4, 1.4);
-        octagonBG.alpha = 0;
-        
-        octagonBG2 = new FlxSprite().makeGraphic(1980, 236, 0xFFFE923D);
-        octagonBG2.alpha = 0;
-        octagonBG2.screenCenter(XY);
-        octagonBG2.scrollFactor.set(0, 0);
-        octagonBG2.scale.set(1.4, 1.4);
-        
-        numbahEiti = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false);
-        numbahEiti.alpha = 0;
-        numbahEiti.screenCenter(X);
-        numbahEiti.y = 270;
-        numbahEiti.scale.set(1.3, 1.3);
-        numbahEiti.scrollFactor.set(0, 0);
-        
-        numbahEiti.offset.y += 20000000;
-        numbahEiti.offset.x -= 0.2;
-		    numbahEiti.velocity.set(50, 50);
-        
-        numbahEiti2 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, false, true);
-        numbahEiti2.alpha = 0;
-        numbahEiti2.screenCenter(X);
-        numbahEiti2.y = 504;
-        numbahEiti2.scale.set(1, 1);
-        numbahEiti2.scrollFactor.set(0, 0);
-        
-        numbahEiti2.offset.y += 20000000;
-        numbahEiti2.offset.x -= 0.2;
-		    numbahEiti2.velocity.set(50, 50);
-        
-        numbahEiti3 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false);
-        numbahEiti3.alpha = 0;
-        numbahEiti3.screenCenter(X);
-        numbahEiti3.y = 31;
-        numbahEiti3.scale.set(1, 1);
-        numbahEiti3.scrollFactor.set(0, 0);
-        
-        numbahEiti3.offset.y += 20000000;
-        numbahEiti3.offset.x -= 0.2;
-        numbahEiti3.velocity.set(50, 50);
-        
-        nikkuOctagon = new BGSprite('skatepark/octagon/nikku', 561, 126, 0, 0, ['Nikku Move 1'], true); // tween to a x:444 in tween and y: 61
-        nikkuOctagon.animation.addByPrefix('lastFrame', 'Nikku Last Frame', 24, false);
-        nikkuOctagon.scale.set(2, 2);
-        nikkuOctagon.visible = false;
-        
-        bubbleText = new BGSprite('skatepark/octagon/textbox', 511, 81, 0, 0);
-        bubbleText.scale.set(1.4, 1.4);
-        bubbleText.updateHitbox();
-        bubbleText.visible = false;
-        
-        textOctagon = new BGSprite('skatepark/octagon/text', 596, 172, 0, 0, ['Text'], true);
-        textOctagon.animation.addByPrefix('text', 'Text', 24, true);
-        textOctagon.setGraphicSize(Std.int(textOctagon.width * 0.49));
-        textOctagon.visible = false;
-        
-        hereme = new BGSprite('skatepark/octagon/hereletme', 35, 850, 0, 0); //tween y: 250
-        hereme.visible = false;
-       
-        showYou = new BGSprite('skatepark/octagon/showyou', 868, 846, 0, 0); //tween y: 246
-        showYou.visible = false;
-        
-        octagon = new BGSprite('skatepark/octagon/octagon', 913, 295, 0, 0); // tween x:295 tween 2 x: 1238
-        octagon.updateHitbox();
-        octagon.visible = false;
+				exGround = new BGSprite('expurgated/ground', -2800, -1400, 1, 1);
+				exGround.scale.set(2.5, 2.5);
+				exGround.updateHitbox();
+				add(exGround);
+
+				exOverlay = new BGSprite('expurgated/gradoverlay', -1440, -650, 0, 0);
+				exOverlay.blend = ADD;
+				exOverlay.scale.set(2.5, 2.5);
+				exOverlay.updateHitbox();
+
+				exFront = new BGSprite('expurgated/signfront', 1, 1);
+				exFront.scale.set(2.5, 2.5);
+				exFront.updateHitbox();
+			case 'skatepark':
+				skateSky = new BGSprite('skatepark/sky', -100, -200, 0.4, 0.4);
+				skateSky.scale.set(1, 1);
+				skateSky.updateHitbox();
+				add(skateSky);
+
+				skateBuildings = new BGSprite('skatepark/buildings', 150, 70, 0.8, 0.8);
+				skateBuildings.scale.set(0.9, 0.9);
+				skateSky.updateHitbox();
+				add(skateBuildings);
+
+				skateTreess = new BGSprite('skatepark/trees', 100, 50, 1, 1);
+				skateTreess.scale.set(1, 1);
+				skateTreess.updateHitbox();
+				add(skateTreess);
+
+				skateFloor = new BGSprite('skatepark/floor', 10, 0, 1, 1);
+				skateFloor.scale.set(1, 1);
+				skateFloor.updateHitbox();
+				add(skateFloor);
+
+				skateLight = new BGSprite('skatepark/light', -20, -70, 1, 1);
+				skateLight.updateHitbox();
+				skateLight.blend = ADD;
+				skateLight.scale.set(1.1, 1.1);
+
+				skateBuches = new BGSprite('skatepark/buches', 100, 100, 1, 1);
+				skateBuches.scale.set(1.2, 1.2);
+				skateBuches.updateHitbox();
+
+				octagonBG = new FlxSprite().makeGraphic(1980, 1080, FlxColor.WHITE);
+				octagonBG.screenCenter(XY);
+				octagonBG.scrollFactor.set(0, 0);
+				octagonBG.scale.set(1.4, 1.4);
+				octagonBG.alpha = 0;
+
+				octagonBG2 = new FlxSprite().makeGraphic(1980, 236, 0xFFFE923D);
+				octagonBG2.alpha = 0;
+				octagonBG2.screenCenter(XY);
+				octagonBG2.scrollFactor.set(0, 0);
+				octagonBG2.scale.set(1.4, 1.4);
+
+				// analfabeto do caralho
+				numbahEiti = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false);
+				numbahEiti.alpha = 0;
+				numbahEiti.screenCenter(X);
+				numbahEiti.y = 270;
+				numbahEiti.scale.set(1.3, 1.3);
+				numbahEiti.scrollFactor.set(0, 0);
+
+				numbahEiti.offset.y = 20000000;
+				numbahEiti.offset.x = 0.2;
+				numbahEiti.velocity.x = 50;
+
+				numbahEiti2 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, false, true);
+				numbahEiti2.alpha = 0;
+				numbahEiti2.screenCenter(X);
+				numbahEiti2.y = 504;
+				numbahEiti2.scale.set(1, 1);
+				numbahEiti2.scrollFactor.set(0, 0);
+
+				numbahEiti2.offset.y += 20000000;
+				numbahEiti2.offset.x -= 0.2;
+				numbahEiti2.velocity.set(50, 50);
+
+				numbahEiti3 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false);
+				numbahEiti3.alpha = 0;
+				numbahEiti3.screenCenter(X);
+				numbahEiti3.y = 31;
+				numbahEiti3.scale.set(1, 1);
+				numbahEiti3.scrollFactor.set(0, 0);
+
+				numbahEiti3.offset.y += 20000000;
+				numbahEiti3.offset.x -= 0.2;
+				numbahEiti3.velocity.set(50, 50);
+
+				nikkuOctagon = new BGSprite('skatepark/octagon/nikku', 561, 126, 0, 0, ['Nikku Move 1'], true); // tween to a x:444 in tween and y: 61
+				nikkuOctagon.animation.addByPrefix('lastFrame', 'Nikku Last Frame', 24, false);
+				nikkuOctagon.scale.set(2, 2);
+				nikkuOctagon.visible = false;
+
+				bubbleText = new BGSprite('skatepark/octagon/textbox', 511, 81, 0, 0);
+				bubbleText.scale.set(1.4, 1.4);
+				bubbleText.updateHitbox();
+				bubbleText.visible = false;
+
+				textOctagon = new BGSprite('skatepark/octagon/text', 596, 172, 0, 0, ['Text'], true);
+				textOctagon.animation.addByPrefix('text', 'Text', 24, true);
+				textOctagon.setGraphicSize(Std.int(textOctagon.width * 0.49));
+				textOctagon.visible = false;
+
+				hereme = new BGSprite('skatepark/octagon/hereletme', 35, 850, 0, 0); //tween y: 250
+				hereme.visible = false;
+
+				showYou = new BGSprite('skatepark/octagon/showyou', 868, 846, 0, 0); //tween y: 246
+				showYou.visible = false;
+
+				octagon = new BGSprite('skatepark/octagon/octagon', 913, 295, 0, 0); // tween x:295 tween 2 x: 1238
+				octagon.updateHitbox();
+				octagon.visible = false;
 			case 'hallway':
 				jojoBG = new BGSprite('hallway/bg', -810, -790, 1, 1);
 				jojoBG.scale.set(1.6, 1.6);
+				jojoBG.updateHitbox();
 				add(jojoBG);
 
 				jojoLuzinha = new BGSprite('hallway/grad', -810, -1060, 1, 1);
 				jojoLuzinha.blend = ADD;
+				jojoLuzinha.updateHitbox();
 				jojoLuzinha.scale.set(1.6, 1.6);
 				
 				jojoFG = new BGSprite('hallway/fg', -810, -790, 1, 1);
+				jojoFG.updateHitbox();
 				jojoFG.scale.set(1.6, 1.6);
 				
 				/*SANESSS = new FlxSprite(0, 0);
 				SANESSS.frames = AtlasFrameMaker.construct('hallway/cutscene1');
-				SANESSS.animation.addByPrefix('idle', ''cutscene' 24, false);
+				SANESSS.animation.addByPrefix('idle', 'cutscene' 24, false);
 				SANESSS.screenCenter();
 				SANESSS.updateHitbox();
 				SANESSS.scale.set(1.7, 1.7);
@@ -880,11 +884,11 @@ class PlayState extends MusicBeatState
 				var booBG2:BGSprite = new BGSprite('boo/Boo-2', 25, 50, 0.85, 0.85);
 				booBG2.updateHitbox();
 				add(booBG2);
-				
+
 				var booBG3:BGSprite = new BGSprite('boo/Boo-3', 25, 50, 0.85, 0.85);
 				booBG3.updateHitbox();
 				add(booBG3);
-				
+
 				var booBG4:BGSprite = new BGSprite('boo/Boo-4', -25, 0, 0.9, 0.9);
 				booBG4.updateHitbox();
 				add(booBG4);
@@ -4454,8 +4458,7 @@ class PlayState extends MusicBeatState
 			comboGlow.alpha = 0.70;
 			comboGlow.cameras = [camHUD];
 			//add(comboGlow);
-			if (combo > 1)
-			insert(members.indexOf(strumLineNotes), comboGlow);
+			//if (combo > 1) bruh
 
 			combotxt1 = new FlxText();
 			combotxt1.size = 32;
@@ -4492,7 +4495,7 @@ class PlayState extends MusicBeatState
 			if (combo > 1 || combo == 0)
 			insert(members.indexOf(strumLineNotes), combotxt1);
 			insert(members.indexOf(strumLineNotes), combotxt2);
-
+			insert(members.indexOf(strumLineNotes), comboGlow);
 			daCombo++;
 		}
 				// eu tenho que pensar num bagui que faz que apartir do primeiro combo nao spawna mais combo glow pq meu cell quase morreu dps de eu testar lol
