@@ -4454,7 +4454,7 @@ class PlayState extends MusicBeatState
 			comboGlow.alpha = 0.70;
 			comboGlow.cameras = [camHUD];
 			//add(comboGlow);
-			if (combo == 1)
+			if (combo > 1)
 			insert(members.indexOf(strumLineNotes), comboGlow);
 
 			combotxt1 = new FlxText();
@@ -4479,8 +4479,8 @@ class PlayState extends MusicBeatState
 			//add(combotxt2);
 
 			if(ClientPrefs.downScroll) {
-				combotxt1.y = 602;
-				comboGlow.y = FlxG.height * 0.94;
+				combotxt1.y = 500;
+				comboGlow.y = 500;
 			}
 			if(ClientPrefs.middleScroll) {
 				combotxt1.visible = false;
@@ -4489,7 +4489,7 @@ class PlayState extends MusicBeatState
 			}
 
 			//if (combo >= 10 || combo == 0)
-			if (combo == 1)
+			if (combo > 1 || combo == 0)
 			insert(members.indexOf(strumLineNotes), combotxt1);
 			insert(members.indexOf(strumLineNotes), combotxt2);
 
