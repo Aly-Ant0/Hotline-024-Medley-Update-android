@@ -4449,7 +4449,9 @@ class PlayState extends MusicBeatState
 			//add(comboGlow); esse add não precisa lol pq se não vai crashar SPOILER: NÃO FUNCIONOU VEI BUAAAA
 			//add(combotxt1);
 			//add(combotxt2);
-
+			
+		for (i in seperatedScore)
+		{
 			comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
 			comboGlow.x = -310;
 			comboGlow.y = FlxG.height * 0.24;
@@ -4461,8 +4463,8 @@ class PlayState extends MusicBeatState
 			combotxt1 = new FlxText();
 			combotxt1.size = 32;
 			combotxt1.color = FlxColor.WHITE;
-			combotxt1.text = daRating + "! x" + daCombo;
-			combotxt1.x = 400;
+			combotxt1.text = daRating + "! x" + Std.int(i);
+			combotxt1.x = -310;
 			combotxt1.y = botplayTxt.y;
 			combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt1.scrollFactor.set();
@@ -4496,7 +4498,6 @@ class PlayState extends MusicBeatState
 				add(combotxt2);
 			}
 			daCombo++;
-
 				// eu tenho que pensar num bagui que faz que apartir do primeiro combo nao spawna mais combo glow pq meu cell quase morreu dps de eu testar lol
 				new FlxTimer().start(Conductor.crochet / 1000 * 10, function(tmr:FlxTimer)
 				{
@@ -4540,6 +4541,8 @@ class PlayState extends MusicBeatState
 						tmr.reset(Conductor.crochet / 1000 * 10);
 					}
 				});
+		}
+
 		 /* 
 			trace(combo);
 			trace(seperatedScore);
