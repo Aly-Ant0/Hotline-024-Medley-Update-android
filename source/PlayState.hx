@@ -4446,8 +4446,6 @@ class PlayState extends MusicBeatState
 		seperatedScore.push(Math.floor(combo / 10) % 10);
 		seperatedScore.push(combo % 10);
 
-		for (i in seperatedScore)
-		{
 			//add(comboGlow); esse add não precisa lol pq se não vai crashar SPOILER: NÃO FUNCIONOU VEI BUAAAA
 			//add(combotxt1);
 			//add(combotxt2);
@@ -4492,12 +4490,13 @@ class PlayState extends MusicBeatState
 			}
 
 			//if (combo >= 10 || combo == 0)
-			if (combo > 1 || combo == 0)
-			insert(members.indexOf(strumLineNotes), combotxt1);
-			insert(members.indexOf(strumLineNotes), combotxt2);
-			insert(members.indexOf(strumLineNotes), comboGlow);
+			if (combo == 1) { // vai ser add msm fds
+				add(comboGlow);
+				add(combotxt1);
+				add(combotxt2);
+			}
 			daCombo++;
-		}
+
 				// eu tenho que pensar num bagui que faz que apartir do primeiro combo nao spawna mais combo glow pq meu cell quase morreu dps de eu testar lol
 				new FlxTimer().start(Conductor.crochet / 1000 * 10, function(tmr:FlxTimer)
 				{
@@ -4537,7 +4536,7 @@ class PlayState extends MusicBeatState
 					{
 						combotxt1.text = 'Great!';
 					}
-					if (songHits % 1 == 0) {
+					if (songHits % 0 == 1) {
 						tmr.reset(Conductor.crochet / 1000 * 10);
 					}
 				});
@@ -4546,7 +4545,7 @@ class PlayState extends MusicBeatState
 			trace(seperatedScore);
 		 */
 
-		coolText.text = Std.string(seperatedScore);
+		//coolText.text = Std.string(seperatedScore);
 		// add(coolText);
 	}
 
@@ -4925,7 +4924,7 @@ class PlayState extends MusicBeatState
 				if(combo > 9999) combo = 9999;
 				new FlxTimer().start(Conductor.crochet / 1000 * 10, function(tmr:FlxTimer) {
 					resetCombo();
-					if (songHits % 1 == 0) {
+					if (songHits % 0 == 1) {
 						tmr.reset(Conductor.crochet / 1000 * 10);
 					}
 				});
