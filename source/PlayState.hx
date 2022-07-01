@@ -4461,7 +4461,7 @@ class PlayState extends MusicBeatState
 			combotxt1 = new FlxText();
 			combotxt1.size = 32;
 			combotxt1.color = FlxColor.WHITE;
-			combotxt1.text = daRating + "! x" + Std.int(i);
+			combotxt1.text = daRating + "! x" + daCombo;
 			combotxt1.x = 400;
 			combotxt1.y = botplayTxt.y;
 			combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -5432,7 +5432,7 @@ class PlayState extends MusicBeatState
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
 
-	// timing to play the animation lol
+		// timing to play the animation lol
 		if (curStage == 'mazin-mall')
 		{
 			if (curBeat % 1 == 0)
