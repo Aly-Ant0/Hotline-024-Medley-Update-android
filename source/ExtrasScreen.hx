@@ -1,9 +1,10 @@
 package;
 
 import flixel.FlxState;
-import flixel.graphics.frames.FlxAtlasFrames;
+//import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
+import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.FlxG;
@@ -34,8 +35,11 @@ class ExtrasScreen extends MusicBeatState
 	var coversButton:FlxSprite;
 	var secret:FlxSprite;
 	var text:FlxSprite;
-
-	public static var curSelected:Int = 0;
+	var button1Twn:FlxTween;
+	var button1Twn2:FlxTween;
+	var button2Twn:FlxTween;
+	var button2Twn2:FlxTween;
+	public static var curSelected:Int = 0; // idk why is public but ok
 
 	override function create()
 	{
@@ -70,9 +74,9 @@ class ExtrasScreen extends MusicBeatState
 		add(bg);
 		add(bars);
 		add(bars2);
-		add(cubes);
 		add(button1);
 		add(button2);
+		add(cubes);
 		add(coversButton);
 		add(text);
 
@@ -91,12 +95,13 @@ class ExtrasScreen extends MusicBeatState
 			changeExtra(-1);
 		}
 		if (controls.UI_DOWN_P)
-	{
+		{
 			FlxG.sound.play(Paths.sound('selectsfx'));
 			changeExtra(1);
 		}
 		if (controls.BACK)
 		{
+			FlxG.soud.play(Paths.sound('backsfx'));
 			MusicBeatState.switchState(new MainMenuState());
 		}
 		if (controls.ACCEPT)
@@ -124,7 +129,7 @@ class ExtrasScreen extends MusicBeatState
 					FlxG.sound.play(Paths.sound('entersfx'));
 					new FlxTimer().start(0.1, function(tmr:FlxTimer)
 					{
-        		MusicBeatState.switchState(new CoversScreen());
+						MusicBeatState.switchState(new CoversScreen());
 					});
 			}
 		}
@@ -144,23 +149,49 @@ class ExtrasScreen extends MusicBeatState
 		/*var extraSelected:FlxGraphic = Paths.image('hotline/menu/extras/' + buttonList[curSelected]);
 		var extra:FlxGraphic = Paths.image('hotline/menu/extras/' + buttonList);*/
 
+		if (button1Twn != null) {
+			button1Twn.cancel();
+		}
+		if (button2Twn != null) {
+			button2Twn.cancel();
+		}
+
 		//sadness
 		switch(curSelected)
 		{
 			case 0:
 				button1.alpha = 1;
+				button1.color = 0xFFFFFFFF; // <-- ta em branco ai quando ta em branco a cor fica transparente tlg
+				button1.scale.y += 0.045;
+				button1.scale.x += 0.015;
 				FlxTween.tween(button1, {y: button1.y + 5}, 2, {ease: FlxEase.quadInOut, type: PINGPONG});
+				button1Twn = FlxTween.tween(button1.scale, {y: 1, x: 1}, 0.45, {ease: FlxEase.expoOut});
 				button2.alpha = 0.3;
+				button2.color = 0xFF363636; // <-- ta em cinza
 				coversButton.alpha = 0.3;
+				coversButton.color = 0xFF363636; // <-- ta em cinza
 			case 1:
+				button1Twn = null;
+			//	button2Twn = null;
 				button1.alpha = 0.3;
+				button1.color = 0xFF363636; // <-- ta em cinza
 				button2.alpha = 1;
-				FlxTween.tween(button2, {y: button2.y + 5}, 2, {ease: FlxEase.quadInOut, type: PINGPONG});
+				button2.color = 0xFFFFFFFF; // <-- ta em branco ai quando ta em branco a cor fica transparente tlg
+				button2.scale.y += 0.045;
+				button2.scale.x += 0.015;
+				button2Twn = FlxTween.tween(button2.scale, {y: 1, x: 1}, 0.45, {ease: FlxEase.expoOut});
+				FlxTween.tween(button2, {y: button2.y + 5}, 1.34, {ease: FlxEase.quadInOut, type: PINGPONG});
 				coversButton.alpha = 0.3;
+				coversButton.color = 0xFF363636; // <-- ta em cinza
 			case 2:
+				button1Twn = null;
+				button2Twn = null;
 				button1.alpha = 0.3;
+				button1.color = 0xFF363636; // <-- ta em cinza
 				button2.alpha = 0.3;
+				button2.color = 0xFF363636; // <-- ta em cinza
 				coversButton.alpha = 1;
+				coversButton.color = 0xFFFFFFFF; // <-- ta em branco ai quando ta em branco a cor fica transparente tlg
 		}
 			/*for (i in 0...buttonList.length)
 			{
