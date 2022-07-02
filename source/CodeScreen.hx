@@ -1,1 +1,266 @@
+package;
 
+import flixel.util.FlxColor;
+import flixel.text.FlxText;
+import flixel.FlxG;
+import flixel.input.FlxAccelerometer;
+import flixel.util.FlxTimer;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
+import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
+import flixel.FlxSprite;
+
+class CodeScreen extends MusicBeatState
+{
+	var bg:FlxSprite;
+	var paineudicontroli:FlxSprite;
+	var numbersSpr:FlxTypedGroup<FlxSprite>;
+	var code:FlxText;
+	var codes:FlxSprite;
+	var selection:Int;
+
+	var canSelect:Bool = true;
+	var showallcodes:Bool = false;
+	var isCorrect:Bool = false;
+
+	override function create() // i get this code from vs soni lol
+	{
+		FlxG.mouse.visible = true;
+
+		PlayState.isStoryMode = false;
+		PlayState.isCode = true;
+		//PlayState.noSkins = true; // no skins?
+
+		bg = new FlxSprite().loadGraphic(Paths.image('hotline/menu/code/bg'));
+		bg.screenCenter();
+		bg.alpha = 0;
+		bg.antialiasing = ClientPrefs.globalAntialiasing;
+		add(bg);
+
+		paineudicontroli = new FlxSprite().loadGraphic(Paths.image('hotline/menu/code/panel'));
+		paineudicontroli.screenCenter();
+		//paineudicontroli.alpha = 0;
+		paineudicontroli.antialiasing = ClientPrefs.globalAntialiasing;
+		add(paineudicontroli);
+
+		codes = new FlxSprite().loadGraphic(Paths.image('hotline/menu/code/buttons/names/codes'));
+		codes.screenCenter();
+		codes.alpha = 0;
+		codes.antialiasing = ClientPrefs.globalAntialiasing;
+		add(codes);
+
+		new FlxTimer().start(0.45, function(tmr:FlxTimer)
+		{
+			FlxTween.tween(bg, {alpha: 1}, 0.98, {ease: FlxEase.quadOut});
+			if (!showallcodes) {
+				FlxTween.tween(codes, {alpha: 1}, 0.98, {ease: FlxEase.quadOut});
+			}
+		});
+
+		numbersSpr = new FlxTypedGroup<FlxSprite>();
+		add(numbersSpr);
+
+		for (i in 0...10)
+		{
+			var button:FlxSprite = new FlxSprite().loadGraphic(Paths.image('hotline/menu/code/buttons/BUTT$i'));
+			button.antialiasing = ClientPrefs.globalAntialiasing;
+			//button.antialiasing = ClientPrefs.globalAntialiasing;
+			/*
+			switch(i)
+			{
+				case 0:
+					button.setPosition(107,84);
+						//button.setGraphicSize(58,33);
+				case 1:
+					button.setPosition(542,555);
+						// button.setGraphicSize(56,40);
+				case 2:
+					button.setPosition(617,570);
+						// button.setGraphicSize(58,34);
+				case 3:
+					button.setPosition(693,557);
+						// button.setGraphicSize(55,38);
+				case 4:
+					button.setPosition(540,512);
+						//button.setGraphicSize(53,36);
+				case 5:
+					button.setPosition(617,525);
+						//  button.setGraphicSize(57,33);
+				case 6:
+					button.setPosition(697,511);
+						//   button.setGraphicSize(54,37);
+				case 7:
+					button.setPosition(536,463);
+						//  button.setGraphicSize(57,39);
+				case 8:
+					button.setPosition(616,476);
+						//  button.setGraphicSize(59,35);
+				case 9:
+					button.setPosition(699,463);
+						//  button.setGraphicSize(56,39);
+			}
+			*/
+			button.screenCenter();
+			button.ID = i;
+			button.updateHitbox();
+			//button.y -= 5;
+			numbersSpr.add(button);
+		}
+
+		code = new FlxText(565, 161, 200, "", 28);
+		code.setFormat(Paths.font("LEMONMILK-Bold.otf"), 80, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		code.text = '';
+		code.textField = 0.40;
+		code.screenCenter(X);
+		if (!isCorrect)
+		{
+			code.color = FlxColor.GREEN;
+		}
+		add(code);
+
+		#if android
+		addVirtualPad(A_B);
+		#end
+		super.create();
+	}
+
+	override function update(elapsed:Float)
+	{
+		numbersSpr.forEach(function(spr:FlxSprite)
+		{
+			if(FlxG.mouse.overlaps(spr))
+			selection = spr.ID;
+		});
+		//trace(selection);
+
+		super.update(elapsed);
+
+		if (controls.BACK && canSelect) //me when the so
+		{
+			FlxG.sound.play(Paths.sound('backsfx'));
+			MusicBeatState.switchState(new ExtrasScreen());
+			//FlxG.mouse.visible = false;
+		}
+
+			numbersSpr.forEach(function(spraiti:FlxSprite) {
+				if(FlxG.mouse.overlaps(spraiti) && canSelect) {
+					FlxG.sound.play(Paths.sound('codeHover'));
+					spraiti[i].alpha = 0.3;
+					if(code.text.length < 4)
+						if(FlxG.mouse.justPressed)
+							FlxG.sound.play(Paths.sound('codeUp'));
+							code.text += selection;
+				}
+			});
+			switch(code.text) {
+				case '2480':
+					isCorrect = true;
+				case '2448':
+					isCorrect = true;
+				case '5141':
+					isCorrect = true;
+				case '2020':
+					isCorrect = true;
+				case '2151':
+					isCorrect = true;
+				case '1921';
+					isCorrect = true;
+				case '1391':
+					isCorrect = true;
+				case '8989':
+					isCorrect = true;
+				case '6120':
+					isCorrect = true;
+				case '2119':
+					isCorrect = true;
+				default:
+					isCorrect = false;
+			}
+
+			if(controls.ACCEPT) {
+				FlxG.sound.play(Paths.sound('entersfx'));
+				switch(code.text)
+				{
+					case '2480': // code to show all the others codes
+						MusicBeatState.switchState(new AllCodes());
+						FlxG.mouse.visible = false;
+					case '2448': //naitilendi
+						PlayState.SONG = Song.loadFromJson('nightland', 'nightland');
+						PlayState.noSkins = false;
+						MusicBeatState.switchState(new ChooseSkinState());
+						FlxG.mouse.visible = false;
+					case '5141': // ema
+						PlayState.SONG = Song.loadFromJson('uncanny-valley', 'uncanny-valley');
+						PlayState.noSkins = true;
+						LoadingState.loadAndSwitchState(new PlayState());
+						FlxG.mouse.visible = false;
+					case '2020': // extraterrestre
+						PlayState.SONG = Song.loadFromJson('extraterrestrial', 'extraterrestrial');
+						PlayState.noSkins = true;
+						LoadingState.loadAndSwitchState(new PlayState());
+						FlxG.mouse.visible = false;
+					case '2151': // spooki
+						PlayState.SONG = Song.loadFromJson('satellite-picnic', 'satellite-picnic');
+						PlayState.noSkins = true;
+						LoadingState.loadAndSwitchState(new PlayState());
+						FlxG.mouse.visible = false;
+					case '1921': // AMOGUS
+						PlayState.SONG = Song.loadFromJson('sussy-pussy', 'sussy-pussy');
+						PlayState.noSkins = true;
+						LoadingState.loadAndSwitchState(new PlayState());
+						FlxG.mouse.visible = false;
+					case '1391': // i wanna die
+						PlayState.SONG = Song.loadFromJson('close-chuckle', 'close-chuckle');
+						PlayState.noSkins = true;
+						LoadingState.loadAndSwitchState(new PlayState());
+						FlxG.mouse.visible = false;
+					case '8989': // nicu vs turma da mônica
+						PlayState.SONG = Song.loadFromJson('deep-poems', 'deep-poems');
+						PlayState.noSkins = true;
+						LoadingState.loadAndSwitchState(new PlayState());
+						FlxG.mouse.visible = false;
+					case '6120': // fun is infinite
+						PlayState.SONG = Song.loadFromJson('majin', 'majin');
+						PlayState.noSkins = true;
+						LoadingState.loadAndSwitchState(new PlayState());
+						FlxG.mouse.visible = false;
+					case '2119':
+						PlayState.SONG = Song.loadFromJson('astral-projection', 'astral-projection');
+						PlayState.noSkins = true;
+						LoadingState.loadAndSwitchState(new PlayState());
+						FlxG.mouse.visible = false;
+					default:
+						FlxG.sound.play(Paths.sound('errorsfx'));
+						isError = false;
+				}
+			}
+	}
+}
+
+class AllCodes extends MusicBeatState
+{
+	var bg:FlxSprite;
+
+	override function create() {
+		bg = new FlxSprite().loadGraphic(Paths.image('hotline/menu/code/buttons/code/fun'));
+		bg.antialiasing = ClientPrefs.globalAntialiasing;
+		bg.screenCenter();
+		add(bg);
+
+		#if android
+		addVirtualPad(B);
+		#end
+		super.create();
+	}
+	override function update(elapsed:Float) {
+		if (controls.BACK) {
+			FlxG.play.sound(Paths.sound('backsfx'));
+			MusicBeatState.switchState(new CodeScreen());
+			CodeScreen.showallcodes = true;
+			FlxG.save.flush();
+		}
+
+		super.update(elapsed)!
+	}
+}
