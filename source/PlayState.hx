@@ -123,7 +123,7 @@ class PlayState extends MusicBeatState
 	public static var isCovers:Bool = false;
 	public static var isExtras:Bool = false;
 	public static var isCode:Bool = false;
-	public static var noSkins:Bool = false;
+	public static var noSkins:Bool = false; // no skins?
 	public static var storyWeek:Int = 0;
 	public static var storyPlaylist:Array<String> = [];
 	public static var storyDifficulty:Int = 1;
@@ -1453,6 +1453,11 @@ class PlayState extends MusicBeatState
 
 		switch(curStage)
 		{
+			case 'covers':
+				var bfshade = new FlxTrail(boyfriend, null, 0, 0, 0.3, 0); //nice
+				bfshade.flipY = true;
+				bfshade.blend = ADD;
+				insert(members.indexOf(boyfriendGroup) - 1, bfshade);
 			case 'limo':
 				resetFastCar();
 				insert(members.indexOf(gfGroup) - 1, fastCar);
