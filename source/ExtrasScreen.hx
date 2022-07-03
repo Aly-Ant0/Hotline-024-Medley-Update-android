@@ -101,7 +101,7 @@ class ExtrasScreen extends MusicBeatState
 		}
 		if (controls.BACK)
 		{
-			FlxG.soud.play(Paths.sound('backsfx'));
+			FlxG.sound.play(Paths.sound('backsfx'));
 			MusicBeatState.switchState(new MainMenuState());
 		}
 		if (controls.ACCEPT)
