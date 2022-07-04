@@ -15,6 +15,8 @@ import flixel.graphics.FlxGraphic;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import openfl.utils.Assets as OpenFlAssets;
+import flixel.input.touch.FlxTouch;
+import flixel.input.touch.FlxTouchManager;
 import lime.utils.Assets;
 
 using StringTools;
@@ -61,11 +63,11 @@ class ExtrasScreen extends MusicBeatState
 		cubes.screenCenter();
 
 		button1 = new FlxSprite().loadGraphic(Paths.image('hotline/menu/extras/button1'));
-		button1.setGraphicSize(Std.int(button1.scale * 0.5));
+		button1.setGraphicSize(Std.int(button1.width * 0.5));
 		button1.screenCenter();
 
 		button2 = new FlxSprite().loadGraphic(Paths.image('hotline/menu/extras/button2'));
-		button1.setGraphicSize(Std.int(button2.scale * 0.5));
+		button1.setGraphicSize(Std.int(button2.width * 0.5));
 		button2.screenCenter();
 		
 		buttonLock = new FlxSprite().loadGraphic(Paths.image('hotline/menu/extras/lock'));
@@ -97,7 +99,7 @@ class ExtrasScreen extends MusicBeatState
 	}
 	override function update(elapsed:Float)
 	{
-		for (touch in FlxG.touch.list) {
+		for (touch in FlxG.touches.list) {
 			if (touch.overlaps(buttonLock) && FlxG.mouse.overlaps(buttonLock)) {
 				buttonLock.color = 0xFFFFFFFF;
 				if (touch.justPressed && FlxG.mouse.justPressed) {
