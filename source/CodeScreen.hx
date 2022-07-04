@@ -9,6 +9,8 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
+import flixel.input.touch.FlxTouch;
+import flixel.input.touch.FlxTouchManager;
 import flixel.FlxSprite;
 
 class CodeScreen extends MusicBeatState
@@ -123,6 +125,9 @@ class CodeScreen extends MusicBeatState
 		{
 			code.color = FlxColor.GREEN;
 		}
+		else {
+			code.color = FlxColor.WHITE;
+		}
 		add(code);
 
 		#if android
@@ -148,7 +153,7 @@ class CodeScreen extends MusicBeatState
 			//FlxG.mouse.visible = false;
 		}
 
-			for (touch in FlxG.touch.list) {
+			for (touch in FlxG.touches.list) {
 				numbersSpr.forEach(function(spraiti:FlxSprite) {
 					if(FlxG.mouse.overlaps(spraiti) && touch.overlaps(spraiti) && canSelect) {
 						FlxG.sound.play(Paths.sound('codeHover'));
