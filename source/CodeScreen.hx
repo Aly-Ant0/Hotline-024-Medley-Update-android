@@ -176,7 +176,7 @@ class CodeScreen extends MusicBeatState
 						isCorrect = true;
 					case '2151':
 						isCorrect = true;
-					case '1921';
+					case '1921':
 						isCorrect = true;
 					case '1391':
 						isCorrect = true;
