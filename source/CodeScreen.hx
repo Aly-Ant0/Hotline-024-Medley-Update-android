@@ -154,7 +154,7 @@ class CodeScreen extends MusicBeatState
 				}
 				switch(code.text) {
 					case '2480' | '2448' | '5141' | '2020' | '2151' | '1921' | '1391' | '8989' | '6120' | '2119':
-						code.color = FlxColor.GREEN:
+						code.color = FlxColor.GREEN;
 				}
 			}
 
