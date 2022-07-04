@@ -39,6 +39,7 @@ class ExtrasScreen extends MusicBeatState
 	var button1Twn2:FlxTween;
 	var button2Twn:FlxTween;
 	var button2Twn2:FlxTween;
+	var buttonLock:FlxSprite;
 	public static var curSelected:Int = 0; // idk why is public but ok
 
 	override function create()
@@ -60,10 +61,16 @@ class ExtrasScreen extends MusicBeatState
 		cubes.screenCenter();
 
 		button1 = new FlxSprite().loadGraphic(Paths.image('hotline/menu/extras/button1'));
+		button1.setGraphicSize(Std.int(button1.scale * 0.5));
 		button1.screenCenter();
 
 		button2 = new FlxSprite().loadGraphic(Paths.image('hotline/menu/extras/button2'));
+		button1.setGraphicSize(Std.int(button2.scale * 0.5));
 		button2.screenCenter();
+		
+		buttonLock = new FlxSprite().loadGraphic(Paths.image('hotline/menu/extras/lock'));
+		buttonLock.setPosition(1158, 16);
+		buttonLock.color = 0xFF363636;
 
 		coversButton = new FlxSprite().loadGraphic(Paths.image('hotline/menu/extras/coversButton'));
 		coversButton.screenCenter();
@@ -76,6 +83,7 @@ class ExtrasScreen extends MusicBeatState
 		add(bars2);
 		add(button1);
 		add(button2);
+		add(buttonLock);
 		add(cubes);
 		add(coversButton);
 		add(text);
@@ -89,6 +97,15 @@ class ExtrasScreen extends MusicBeatState
 	}
 	override function update(elapsed:Float)
 	{
+		for (touch in FlxG.touch.list) {
+			if (touch.overlaps(buttonLock) && FlxG.mouse.overlaps(buttonLock)) {
+				buttonLock.color = 0xFFFFFFFF;
+				if (touch.justPressed && FlxG.mouse.justPressed) {
+					FlxG.sound.play(Paths.sound('selectsfx'));
+					MusicBeatState.switchState(new CodeScreen());
+				}
+			}
+		}
 		if (controls.UI_UP_P)
 		{
 			FlxG.sound.play(Paths.sound('selectsfx'));
@@ -149,12 +166,12 @@ class ExtrasScreen extends MusicBeatState
 		/*var extraSelected:FlxGraphic = Paths.image('hotline/menu/extras/' + buttonList[curSelected]);
 		var extra:FlxGraphic = Paths.image('hotline/menu/extras/' + buttonList);*/
 
-		if (button1Twn != null) {
+		/*if (button1Twn != null) {
 			button1Twn.cancel();
 		}
 		if (button2Twn != null) {
 			button2Twn.cancel();
-		}
+		}*/
 
 		//sadness
 		switch(curSelected)
@@ -162,33 +179,33 @@ class ExtrasScreen extends MusicBeatState
 			case 0:
 				button1.alpha = 1;
 				button1.color = 0xFFFFFFFF; // <-- ta em branco ai quando ta em branco a cor fica transparente tlg
-				button1.scale.y += 0.045;
-				button1.scale.x += 0.015;
+				button1.scale.y += 0.5;
+				button1.scale.x += 0.025;
 				FlxTween.tween(button1, {y: button1.y + 5}, 2, {ease: FlxEase.quadInOut, type: PINGPONG});
 				button1Twn = FlxTween.tween(button1.scale, {y: 1, x: 1}, 0.45, {ease: FlxEase.expoOut});
-				button2.alpha = 0.3;
+				button2.alpha = 0.4;
 				button2.color = 0xFF363636; // <-- ta em cinza
-				coversButton.alpha = 0.3;
+				coversButton.alpha = 0.4;
 				coversButton.color = 0xFF363636; // <-- ta em cinza
 			case 1:
-				button1Twn = null;
+				button1Twn.cancel();;
 			//	button2Twn = null;
-				button1.alpha = 0.3;
+				button1.alpha = 0.4;
 				button1.color = 0xFF363636; // <-- ta em cinza
 				button2.alpha = 1;
 				button2.color = 0xFFFFFFFF; // <-- ta em branco ai quando ta em branco a cor fica transparente tlg
-				button2.scale.y += 0.045;
-				button2.scale.x += 0.015;
+				button2.scale.y += 0.5;
+				button2.scale.x += 0.025;
 				button2Twn = FlxTween.tween(button2.scale, {y: 1, x: 1}, 0.45, {ease: FlxEase.expoOut});
 				FlxTween.tween(button2, {y: button2.y + 5}, 1.34, {ease: FlxEase.quadInOut, type: PINGPONG});
-				coversButton.alpha = 0.3;
+				coversButton.alpha = 0.4;
 				coversButton.color = 0xFF363636; // <-- ta em cinza
 			case 2:
-				button1Twn = null;
-				button2Twn = null;
-				button1.alpha = 0.3;
+				//button1Twn.cancel();
+				button2Twn.cancel();
+				button1.alpha = 0.4;
 				button1.color = 0xFF363636; // <-- ta em cinza
-				button2.alpha = 0.3;
+				button2.alpha = 0.4;
 				button2.color = 0xFF363636; // <-- ta em cinza
 				coversButton.alpha = 1;
 				coversButton.color = 0xFFFFFFFF; // <-- ta em branco ai quando ta em branco a cor fica transparente tlg
