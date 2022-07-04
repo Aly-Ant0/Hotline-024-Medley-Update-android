@@ -19,6 +19,8 @@ class CodeScreen extends MusicBeatState
 	var code:FlxText;
 	var codes:FlxSprite;
 	var selection:Int;
+	var focusButton:Bool = false;
+	var clickButton:Bool = false;
 
 	var canSelect:Bool = true;
 	var showallcodes:Bool = false;
@@ -65,43 +67,47 @@ class CodeScreen extends MusicBeatState
 		{
 			var button:FlxSprite = new FlxSprite().loadGraphic(Paths.image('hotline/menu/code/buttons/BUTT$i'));
 			button.antialiasing = ClientPrefs.globalAntialiasing;
-			//button.antialiasing = ClientPrefs.globalAntialiasing;
-			/*
+
 			switch(i)
 			{
 				case 0:
-					button.setPosition(107,84);
+					button.setPosition(588, 495);
 						//button.setGraphicSize(58,33);
 				case 1:
-					button.setPosition(542,555);
+					button.setPosition(480, 238);
 						// button.setGraphicSize(56,40);
 				case 2:
-					button.setPosition(617,570);
+					button.setPosition(588, 238);
 						// button.setGraphicSize(58,34);
 				case 3:
-					button.setPosition(693,557);
+					button.setPosition(693, 238);
 						// button.setGraphicSize(55,38);
 				case 4:
-					button.setPosition(540,512);
+					button.setPosition(480, 324);
 						//button.setGraphicSize(53,36);
 				case 5:
-					button.setPosition(617,525);
+					button.setPosition(588, 324);
 						//  button.setGraphicSize(57,33);
 				case 6:
-					button.setPosition(697,511);
+					button.setPosition(693, 324);
 						//   button.setGraphicSize(54,37);
 				case 7:
-					button.setPosition(536,463);
+					button.setPosition(480, 408);
 						//  button.setGraphicSize(57,39);
 				case 8:
-					button.setPosition(616,476);
+					button.setPosition(588, 408);
 						//  button.setGraphicSize(59,35);
 				case 9:
-					button.setPosition(699,463);
+					button.setPosition(693, 403);
 						//  button.setGraphicSize(56,39);
 			}
-			*/
-			button.screenCenter();
+			if (!focusButton) {
+				button.color = 0xFF363636;
+			}
+			else {
+				button.color = 0xFFFFFFFF;
+			}
+			//button.screenCenter();
 			button.ID = i;
 			button.updateHitbox();
 			//button.y -= 5;
@@ -129,7 +135,6 @@ class CodeScreen extends MusicBeatState
 	{
 		numbersSpr.forEach(function(spr:FlxSprite)
 		{
-			if(FlxG.mouse.overlaps(spr))
 			selection = spr.ID;
 		});
 		//trace(selection);
@@ -143,39 +148,42 @@ class CodeScreen extends MusicBeatState
 			//FlxG.mouse.visible = false;
 		}
 
-			numbersSpr.forEach(function(spraiti:FlxSprite) {
-				if(FlxG.mouse.overlaps(spraiti) && canSelect) {
-					FlxG.sound.play(Paths.sound('codeHover'));
-					spraiti[i].alpha = 0.3;
-					if(code.text.length < 4)
-						if(FlxG.mouse.justPressed)
-							FlxG.sound.play(Paths.sound('codeUp'));
-							code.text += selection;
+			for (touch in FlxG.touch.list) {
+				numbersSpr.forEach(function(spraiti:FlxSprite) {
+					if(FlxG.mouse.overlaps(spraiti) && touch.overlaps(spraiti) && canSelect) {
+						FlxG.sound.play(Paths.sound('codeHover'));
+						focusButton = true;
+						if(code.text.length < 4)
+							if(FlxG.mouse.justPressed && touch.justPressed)
+								//clickButton = true;
+								FlxG.sound.play(Paths.sound('codeUp'));
+								code.text += selection;
+					}
+				});
+				switch(code.text) {
+					case '2480':
+						isCorrect = true;
+					case '2448':
+						isCorrect = true;
+					case '5141':
+						isCorrect = true;
+					case '2020':
+						isCorrect = true;
+					case '2151':
+						isCorrect = true;
+					case '1921';
+						isCorrect = true;
+					case '1391':
+						isCorrect = true;
+					case '8989':
+						isCorrect = true;
+					case '6120':
+						isCorrect = true;
+					case '2119':
+						isCorrect = true;
+					default:
+						isCorrect = false;
 				}
-			});
-			switch(code.text) {
-				case '2480':
-					isCorrect = true;
-				case '2448':
-					isCorrect = true;
-				case '5141':
-					isCorrect = true;
-				case '2020':
-					isCorrect = true;
-				case '2151':
-					isCorrect = true;
-				case '1921';
-					isCorrect = true;
-				case '1391':
-					isCorrect = true;
-				case '8989':
-					isCorrect = true;
-				case '6120':
-					isCorrect = true;
-				case '2119':
-					isCorrect = true;
-				default:
-					isCorrect = false;
 			}
 
 			if(controls.ACCEPT) {
@@ -205,17 +213,17 @@ class CodeScreen extends MusicBeatState
 						PlayState.noSkins = true;
 						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
-					case '1921': // AMOGUS
+					case '1921': // sus
 						PlayState.SONG = Song.loadFromJson('sussy-pussy', 'sussy-pussy');
 						PlayState.noSkins = true;
 						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
-					case '1391': // i wanna die
+					case '1391': // i gonna shoot maself
 						PlayState.SONG = Song.loadFromJson('close-chuckle', 'close-chuckle');
 						PlayState.noSkins = true;
 						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
-					case '8989': // nicu vs turma da mônica
+					case '8989': // nicu vs turma da mônica so que nao
 						PlayState.SONG = Song.loadFromJson('deep-poems', 'deep-poems');
 						PlayState.noSkins = true;
 						LoadingState.loadAndSwitchState(new PlayState());
@@ -225,14 +233,14 @@ class CodeScreen extends MusicBeatState
 						PlayState.noSkins = true;
 						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
-					case '2119':
+					case '2119': // final song
 						PlayState.SONG = Song.loadFromJson('astral-projection', 'astral-projection');
 						PlayState.noSkins = true;
 						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
 					default:
 						FlxG.sound.play(Paths.sound('errorsfx'));
-						isError = false;
+						//isError = false;
 				}
 			}
 	}
