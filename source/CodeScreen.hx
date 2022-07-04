@@ -274,6 +274,6 @@ class AllCodes extends MusicBeatState
 			FlxG.save.flush();
 		}
 
-		super.update(elapsed)!
+		super.update(elapsed);
 	}
 }
