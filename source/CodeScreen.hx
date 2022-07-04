@@ -131,7 +131,7 @@ class CodeScreen extends MusicBeatState
 		add(code);
 
 		#if android
-		aaddVirtualPad(NONE, A_B);
+		addVirtualPad(NONE, A_B);
 		#end
 		super.create();
 	}
