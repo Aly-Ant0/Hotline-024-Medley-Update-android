@@ -188,7 +188,7 @@ class ExtrasScreen extends MusicBeatState
 				coversButton.alpha = 0.4;
 				coversButton.color = 0xFF363636; // <-- ta em cinza
 			case 1:
-				button1Twn.cancel();;
+				button1Twn.cancel();
 			//	button2Twn = null;
 				button1.alpha = 0.4;
 				button1.color = 0xFF363636; // <-- ta em cinza
