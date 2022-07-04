@@ -85,10 +85,10 @@ class ExtrasScreen extends MusicBeatState
 		add(bars2);
 		add(button1);
 		add(button2);
-		add(buttonLock);
 		add(cubes);
 		add(coversButton);
 		add(text);
+		add(buttonLock);
 
 		changeExtra();
 		super.create();
