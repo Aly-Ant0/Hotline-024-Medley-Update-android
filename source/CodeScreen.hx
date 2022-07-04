@@ -25,7 +25,7 @@ class CodeScreen extends MusicBeatState
 	var clickButton:Bool = false;
 
 	var canSelect:Bool = true;
-	var showallcodes:Bool = false;
+	public static var showallcodes:Bool = false;
 	var isCorrect:Bool = false;
 
 	override function create() // i get this code from vs soni lol
@@ -116,10 +116,10 @@ class CodeScreen extends MusicBeatState
 			numbersSpr.add(button);
 		}
 
-		code = new FlxText(565, 161, 200, "", 28);
+		code = new FlxText(565, 161, 40, "", 38);
 		code.setFormat(Paths.font("LEMONMILK-Bold.otf"), 80, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		code.text = '';
-		code.textField = 0.40;
+		//code.textField = 0.40;
 		code.screenCenter(X);
 		if (!isCorrect)
 		{
@@ -131,7 +131,7 @@ class CodeScreen extends MusicBeatState
 		add(code);
 
 		#if android
-		addVirtualPad(A_B);
+		aaddVirtualPad(NONE, A_B);
 		#end
 		super.create();
 	}
@@ -262,13 +262,13 @@ class AllCodes extends MusicBeatState
 		add(bg);
 
 		#if android
-		addVirtualPad(B);
+		addVirtualPad(NONE, B);
 		#end
 		super.create();
 	}
 	override function update(elapsed:Float) {
 		if (controls.BACK) {
-			FlxG.play.sound(Paths.sound('backsfx'));
+			FlxG.sound.play(Paths.sound('backsfx'));
 			MusicBeatState.switchState(new CodeScreen());
 			CodeScreen.showallcodes = true;
 			FlxG.save.flush();
