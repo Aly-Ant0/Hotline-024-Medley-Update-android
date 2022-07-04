@@ -100,14 +100,8 @@ class CodeScreen extends MusicBeatState
 					button.setPosition(588, 408);
 						//  button.setGraphicSize(59,35);
 				case 9:
-					button.setPosition(693, 403);
+					button.setPosition(693, 408);
 						//  button.setGraphicSize(56,39);
-			}
-			if (!focusButton) {
-				button.color = 0xFF363636;
-			}
-			else {
-				button.color = 0xFFFFFFFF;
 			}
 			//button.screenCenter();
 			button.ID = i;
@@ -116,18 +110,11 @@ class CodeScreen extends MusicBeatState
 			numbersSpr.add(button);
 		}
 
-		code = new FlxText(565, 161, 40, "", 38);
+		code = new FlxText(565, 161, 40, "", 28);
 		code.setFormat(Paths.font("LEMONMILK-Bold.otf"), 80, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		code.text = '';
 		//code.textField = 0.40;
 		code.screenCenter(X);
-		if (!isCorrect)
-		{
-			code.color = FlxColor.GREEN;
-		}
-		else {
-			code.color = FlxColor.WHITE;
-		}
 		add(code);
 
 		#if android
@@ -154,40 +141,20 @@ class CodeScreen extends MusicBeatState
 		}
 
 			for (touch in FlxG.touches.list) {
-				numbersSpr.forEach(function(spraiti:FlxSprite) {
-					if(FlxG.mouse.overlaps(spraiti) && touch.overlaps(spraiti) && canSelect) {
+				for (i in numbersSpr) {
+					if(FlxG.mouse.overlaps(i) && touch.overlaps(i) && canSelect) {
 						FlxG.sound.play(Paths.sound('codeHover'));
-						focusButton = true;
+						i.color = 0xFF363636;
 						if(code.text.length < 4)
 							if(FlxG.mouse.justPressed && touch.justPressed)
 								//clickButton = true;
 								FlxG.sound.play(Paths.sound('codeUp'));
 								code.text += selection;
 					}
-				});
+				}
 				switch(code.text) {
-					case '2480':
-						isCorrect = true;
-					case '2448':
-						isCorrect = true;
-					case '5141':
-						isCorrect = true;
-					case '2020':
-						isCorrect = true;
-					case '2151':
-						isCorrect = true;
-					case '1921':
-						isCorrect = true;
-					case '1391':
-						isCorrect = true;
-					case '8989':
-						isCorrect = true;
-					case '6120':
-						isCorrect = true;
-					case '2119':
-						isCorrect = true;
-					default:
-						isCorrect = false;
+					case '2480' | '2448' | '5141' | '2020' | '2151' | '1921' | '1391' | '8989' | '6120' | '2119':
+						code.color = FlxColor.GREEN:
 				}
 			}
 
@@ -245,6 +212,7 @@ class CodeScreen extends MusicBeatState
 						FlxG.mouse.visible = false;
 					default:
 						FlxG.sound.play(Paths.sound('errorsfx'));
+						code.text = '';
 						//isError = false;
 				}
 			}
