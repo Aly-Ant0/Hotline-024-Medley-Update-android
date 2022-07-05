@@ -4482,6 +4482,7 @@ class PlayState extends MusicBeatState
 			combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt2.scrollFactor.set();
 			combotxt2.borderSize = 1.25;
+			combotxt2.size = 26;
 			combotxt2.setPosition(579, 110);
 			combotxt2.text = "" + scoreCount;
 			combotxt2.cameras = [camHUD];
