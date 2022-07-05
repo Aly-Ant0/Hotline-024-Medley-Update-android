@@ -4560,11 +4560,11 @@ class PlayState extends MusicBeatState
 		// add(coolText);
 	}
 
-	function resetCombo(?elapsed:Float = 0):Void // combo thing
+	function resetCombo():Void // combo thing
 	{
 		intendedScore = scoreCount;
-		scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (elapsed * 24), 1, 0)));
-		songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (elapsed * 24), 0, 1)));
+		scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 1, 0)));
+		songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 0, 1)));
 	}
 
 	private function onKeyPress(event:KeyboardEvent):Void
