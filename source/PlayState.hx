@@ -4934,7 +4934,7 @@ class PlayState extends MusicBeatState
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
 				new FlxTimer().start(Conductor.crochet / 1000 * 10, function(tmr:FlxTimer) {
-					resetCombo(elapsed);
+					resetCombo();
 					if (songHits % 0 == 1) {
 						tmr.reset(Conductor.crochet / 1000 * 10);
 					}
