@@ -4416,26 +4416,7 @@ class PlayState extends MusicBeatState
 					}
 				});
 			}
-			if (comboTwn != null) {
-				comboTwn.cancel();
-			}
-				combotxt1.scale.x += 0.875;
-				combotxt1.scale.y += 0.875;
-				comboTwn = FlxTween.tween(combotxt1.scale, {x: 1, y: 1}, 0.2, {
-					onComplete: function(twn:FlxTween) {
-						comboTwn = null;
-					}
-				});
-			if (comboTwn2 != null) {
-				comboTwn2.cancel();
-			}
-				combotxt2.scale.x += 0.875;
-				combotxt2.scale.y += 0.875;
-				comboTwn2 = FlxTween.tween(combotxt2.scale, {x: 1, y: 1}, 0.2, {
-					onComplete: function(twn:FlxTween) {
-						comboTwn2 = null;
-					}
-				});
+
 		/* if (combo > 60)
 				daRating = 'sick';
 			else if (combo > 12)
@@ -4547,6 +4528,26 @@ class PlayState extends MusicBeatState
 					}
 					if (songHits % 0 == 1) {
 						tmr.reset(Conductor.crochet / 1000 * 10);
+					}
+				});
+			if (comboTwn != null) {
+				comboTwn.cancel();
+			}
+				combotxt1.scale.x += 0.875;
+				combotxt1.scale.y += 0.875;
+				comboTwn = FlxTween.tween(combotxt1.scale, {x: 1, y: 1}, 0.2, {
+					onComplete: function(twn:FlxTween) {
+						comboTwn = null;
+					}
+				});
+			if (comboTwn2 != null) {
+				comboTwn2.cancel();
+			}
+				combotxt2.scale.x += 0.875;
+				combotxt2.scale.y += 0.875;
+				comboTwn2 = FlxTween.tween(combotxt2.scale, {x: 1, y: 1}, 0.2, {
+					onComplete: function(twn:FlxTween) {
+						comboTwn2 = null;
 					}
 				});
 		}
