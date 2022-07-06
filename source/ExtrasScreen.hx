@@ -102,6 +102,9 @@ class ExtrasScreen extends MusicBeatState
 		for (touch in FlxG.touches.list) {
 			if (touch.overlaps(buttonLock) && FlxG.mouse.overlaps(buttonLock)) {
 				buttonLock.color = 0xFFFFFFFF;
+			else {
+				buttonLock.color = 0xFF363636;
+			}
 				if (touch.justPressed && FlxG.mouse.justPressed) {
 					FlxG.sound.play(Paths.sound('selectsfx'));
 					MusicBeatState.switchState(new CodeScreen());
@@ -179,6 +182,7 @@ class ExtrasScreen extends MusicBeatState
 		switch(curSelected)
 		{
 			case 0:
+				button2Twn.cancel();
 				button1.alpha = 1;
 				button1.color = 0xFFFFFFFF; // <-- ta em branco ai quando ta em branco a cor fica transparente tlg
 				button1.scale.y += 0.5;
@@ -203,7 +207,7 @@ class ExtrasScreen extends MusicBeatState
 				coversButton.alpha = 0.4;
 				coversButton.color = 0xFF363636; // <-- ta em cinza
 			case 2:
-				//button1Twn.cancel();
+				button1Twn.cancel();
 				button2Twn.cancel();
 				button1.alpha = 0.4;
 				button1.color = 0xFF363636; // <-- ta em cinza
