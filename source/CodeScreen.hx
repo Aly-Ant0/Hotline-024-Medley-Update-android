@@ -158,9 +158,6 @@ class CodeScreen extends MusicBeatState
 					if(FlxG.mouse.overlaps(spr) && touch.overlaps(spr) && canSelect) {
 						FlxG.sound.play(Paths.sound('codeHover'));
 						spr.color = 0xFF363636;
-					} else {
-						spr.color = 0xFFFFFFFF;
-					}
 
 						if(code.text.length < 4)
 							if(FlxG.mouse.justPressed && touch.justPressed)
@@ -172,6 +169,9 @@ class CodeScreen extends MusicBeatState
 									case 6 | 7 | 8 | 9:
 										FlxG.sound.play(Paths.sound('codeDown'));
 								}
+					}
+					else {
+						spr.color = 0xFFFFFFFF;
 					}
 				}
 				switch(code.text) {
