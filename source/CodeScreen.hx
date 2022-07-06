@@ -158,6 +158,9 @@ class CodeScreen extends MusicBeatState
 					if(FlxG.mouse.overlaps(spr) && touch.overlaps(spr) && canSelect) {
 						FlxG.sound.play(Paths.sound('codeHover'));
 						spr.color = 0xFF363636;
+					} else {
+						spr.color = 0xFFFFFFFF;
+					}
 
 						if(code.text.length < 4)
 							if(FlxG.mouse.justPressed && touch.justPressed)
