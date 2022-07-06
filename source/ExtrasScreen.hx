@@ -102,6 +102,9 @@ class ExtrasScreen extends MusicBeatState
 		for (touch in FlxG.touches.list) {
 			if (touch.overlaps(buttonLock) && FlxG.mouse.overlaps(buttonLock)) {
 				buttonLock.color = 0xFFFFFFFF;
+			} else {
+				buttonLock.color = 0xFF363636;
+
 				if (touch.justPressed && FlxG.mouse.justPressed) {
 					FlxG.sound.play(Paths.sound('selectsfx'));
 					MusicBeatState.switchState(new CodeScreen());
