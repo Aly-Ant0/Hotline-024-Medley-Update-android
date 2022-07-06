@@ -63,11 +63,11 @@ class ExtrasScreen extends MusicBeatState
 		cubes.screenCenter();
 
 		button1 = new FlxSprite().loadGraphic(Paths.image('hotline/menu/extras/button1'));
-		button1.setGraphicSize(Std.int(button1.width * 0.5));
+		//button1.setGraphicSize(Std.int(button1.width * 0.5));
 		button1.screenCenter();
 
 		button2 = new FlxSprite().loadGraphic(Paths.image('hotline/menu/extras/button2'));
-		button1.setGraphicSize(Std.int(button2.width * 0.5));
+		//button1.setGraphicSize(Std.int(button2.width * 0.5));
 		button2.screenCenter();
 		
 		buttonLock = new FlxSprite().loadGraphic(Paths.image('hotline/menu/extras/lock'));
@@ -182,33 +182,33 @@ class ExtrasScreen extends MusicBeatState
 		switch(curSelected)
 		{
 			case 0:
-				button2Twn.cancel();
+				//button2Twn.cancel();
 				button1.alpha = 1;
 				button1.color = 0xFFFFFFFF; // <-- ta em branco ai quando ta em branco a cor fica transparente tlg
-				button1.scale.y += 0.5;
-				button1.scale.x += 0.025;
+				//button1.scale.y += 0.5;
+				//button1.scale.x += 0.025;
 				FlxTween.tween(button1, {y: button1.y + 5}, 2, {ease: FlxEase.quadInOut, type: PINGPONG});
-				button1Twn = FlxTween.tween(button1.scale, {y: 1, x: 1}, 0.45, {ease: FlxEase.expoOut});
+				//button1Twn = FlxTween.tween(button1.scale, {y: 1, x: 1}, 0.45, {ease: FlxEase.expoOut});
 				button2.alpha = 0.4;
 				button2.color = 0xFF363636; // <-- ta em cinza
 				coversButton.alpha = 0.4;
 				coversButton.color = 0xFF363636; // <-- ta em cinza
 			case 1:
-				button1Twn.cancel();
+				//button1Twn.cancel();
 			//	button2Twn = null;
 				button1.alpha = 0.4;
 				button1.color = 0xFF363636; // <-- ta em cinza
 				button2.alpha = 1;
 				button2.color = 0xFFFFFFFF; // <-- ta em branco ai quando ta em branco a cor fica transparente tlg
-				button2.scale.y += 0.5;
-				button2.scale.x += 0.025;
-				button2Twn = FlxTween.tween(button2.scale, {y: 1, x: 1}, 0.45, {ease: FlxEase.expoOut});
+				//button2.scale.y += 0.5;
+				//button2.scale.x += 0.025;
+				//button2Twn = FlxTween.tween(button2.scale, {y: 1, x: 1}, 0.45, {ease: FlxEase.expoOut});
 				FlxTween.tween(button2, {y: button2.y + 5}, 1.34, {ease: FlxEase.quadInOut, type: PINGPONG});
 				coversButton.alpha = 0.4;
 				coversButton.color = 0xFF363636; // <-- ta em cinza
 			case 2:
-				button1Twn.cancel();
-				button2Twn.cancel();
+				//button1Twn.cancel();
+				//button2Twn.cancel();
 				button1.alpha = 0.4;
 				button1.color = 0xFF363636; // <-- ta em cinza
 				button2.alpha = 0.4;
