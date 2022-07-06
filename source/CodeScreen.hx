@@ -15,6 +15,19 @@ import flixel.FlxSprite;
 
 class CodeScreen extends MusicBeatState
 {
+	/*var buttonnum:Array<Int> = [
+		0,
+		1,
+		2,
+		3,
+		4,
+		5,
+		6,
+		7,
+		8,
+		9
+	];*/
+	
 	var bg:FlxSprite;
 	var paineudicontroli:FlxSprite;
 	var numbersSpr:FlxTypedGroup<FlxSprite>;
@@ -54,7 +67,7 @@ class CodeScreen extends MusicBeatState
 		codes.antialiasing = ClientPrefs.globalAntialiasing;
 		add(codes);
 
-		new FlxTimer().start(0.45, function(tmr:FlxTimer)
+		new FlxTimer().start(0.85, function(tmr:FlxTimer)
 		{
 			FlxTween.tween(bg, {alpha: 1}, 0.98, {ease: FlxEase.quadOut});
 			if (!showallcodes) {
@@ -67,7 +80,7 @@ class CodeScreen extends MusicBeatState
 
 		for (i in 0...10)
 		{
-			var button:FlxSprite = new FlxSprite().loadGraphic(Paths.image('hotline/menu/code/buttons/BUTT$i'));
+			var button:FlxSprite = new FlxSprite().loadGraphic(Paths.image('hotline/menu/code/buttons/BUTT' + i));
 			button.antialiasing = ClientPrefs.globalAntialiasing;
 
 			switch(i)
@@ -110,7 +123,7 @@ class CodeScreen extends MusicBeatState
 			numbersSpr.add(button);
 		}
 
-		code = new FlxText(565, 161, 40, "", 28);
+		code = new FlxText(565, 161, 0, "", 28);
 		code.setFormat(Paths.font("LEMONMILK-Bold.otf"), 80, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		code.text = '';
 		//code.textField = 0.40;
@@ -141,15 +154,23 @@ class CodeScreen extends MusicBeatState
 		}
 
 			for (touch in FlxG.touches.list) {
-				for (i in numbersSpr) {
-					if(FlxG.mouse.overlaps(i) && touch.overlaps(i) && canSelect) {
+				for (spr in numbersSpr) {
+					if(FlxG.mouse.overlaps(spr) && touch.overlaps(spr) && canSelect) {
 						FlxG.sound.play(Paths.sound('codeHover'));
-						i.color = 0xFF363636;
+						spr.color = 0xFF363636;
+					else {
+						spr.color = 0xFFFFFFFF;
+					}
 						if(code.text.length < 4)
 							if(FlxG.mouse.justPressed && touch.justPressed)
+								code.text += spr.ID;
 								//clickButton = true;
-								FlxG.sound.play(Paths.sound('codeUp'));
-								code.text += selection;
+								switch (spr.ID) {
+									case 0 | 1 | 2 | 3 | 4 | 5:
+										FlxG.sound.play(Paths.sound('codeUp'));
+									case 6 | 7 | 8 | 9:
+										FlxG.sound.play(Paths.sound('codeDown'));
+								}
 					}
 				}
 				switch(code.text) {
