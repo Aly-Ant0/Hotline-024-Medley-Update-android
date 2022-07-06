@@ -1454,11 +1454,13 @@ class PlayState extends MusicBeatState
 		switch(curStage)
 		{
 			case 'covers':
-				var bfshade = new FlxSprite(boyfriend.x, boyfriend.y); //bf reflect
+				var bfshade = new FlxSprite(boyfriend.x, boyfriend.y); //bf reflect test
 				bfshade.frames = boyfriend.frames;
 				bfshade.flipY = true;
 				bfshade.blend = ADD;
 				bfshade.alpha = 0.5;
+				bfshade.y = boyfriend.y + 50;
+				bfshade.animation.frameIndex = boyfriend.animation.frameIndex;
 				insert(members.indexOf(boyfriendGroup), bfshade);
 			case 'limo':
 				resetFastCar();
@@ -4394,6 +4396,7 @@ class PlayState extends MusicBeatState
 		
 		if (!practiceMode && !cpuControlled) {
 			scoreCount += score;
+			intendedScore += score;
 			//songScore += score;
 		}
 			if(!note.ratingDisabled)
@@ -4475,8 +4478,8 @@ class PlayState extends MusicBeatState
 				comboGlow.setPosition(579, 585);
 			}
 			if(ClientPrefs.middleScroll) {
-				combotxt1.visible = false;
-				combotxt2.visible = false;
+				combotxt1.x = 90000;
+				combotxt2.x = 90000;
 				comboGlow.visible = false;
 			}
 
@@ -4488,7 +4491,7 @@ class PlayState extends MusicBeatState
 			}
 			daCombo++;
 				// eu tenho que pensar num bagui que faz que apartir do primeiro combo nao spawna mais combo glow pq meu cell quase morreu dps de eu testar lol
-				new FlxTimer().start(Conductor.crochet / 1000 * 10, function(tmr:FlxTimer)
+				new FlxTimer().start(3, function(tmr:FlxTimer)
 				{
 					// se tiver visível é claro né meu fi ou fia sla
 					FlxFlicker.flicker(combotxt1, 1.5, 0.10, false, false);
@@ -4514,11 +4517,11 @@ class PlayState extends MusicBeatState
 							comboGlow.kill();
 						}
 					});
-					if (FlxG.random.bool(30.5))
+					if (FlxG.random.bool(25.5))
 					{
 						combotxt1.text = 'whoops...';
 					}
-					if (FlxG.random.bool(80))
+					if (FlxG.random.bool(90))
 					{
 						combotxt1.text = 'Perfect!';
 					}
@@ -4527,7 +4530,7 @@ class PlayState extends MusicBeatState
 						combotxt1.text = 'Great!';
 					}
 					if (songHits % 0 == 1) {
-						tmr.reset(Conductor.crochet / 1000 * 10);
+						tmr.reset(3);
 					}
 				});
 			if (comboTwn != null) {
@@ -4563,7 +4566,7 @@ class PlayState extends MusicBeatState
 
 	function resetCombo():Void // combo thing
 	{
-		intendedScore = scoreCount;
+		//intendedScore = scoreCount;
 		scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 1, 0)));
 		songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 0, 1)));
 	}
@@ -4934,10 +4937,10 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
-				new FlxTimer().start(Conductor.crochet / 1000 * 10, function(tmr:FlxTimer) {
+				new FlxTimer().start(3, function(tmr:FlxTimer) {
 					resetCombo();
 					if (songHits % 0 == 1) {
-						tmr.reset(Conductor.crochet / 1000 * 10);
+						tmr.reset(3);
 					}
 				});
 			}
