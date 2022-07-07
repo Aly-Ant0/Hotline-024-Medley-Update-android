@@ -3330,7 +3330,7 @@ class PlayState extends MusicBeatState
 			if (songHits % 0 > 1) {
 				tmr.reset(3.5);
 			}
-		}
+		});
 
 		super.update(elapsed);
 
