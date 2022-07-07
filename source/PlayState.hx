@@ -4569,7 +4569,7 @@ class PlayState extends MusicBeatState
 	function resetCombo():Void // combo thing
 	{
 		//intendedScore = scoreCount;
-		var elapsed:Float;
+		var elapsed:Float = 0;
 		scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (elapsed * 30), 1, 0)));
 		songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (elapsed * 30), 0, 1)));
 	}
