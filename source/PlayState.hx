@@ -331,6 +331,7 @@ class PlayState extends MusicBeatState
 	public var combotxt1:FlxText;
 	public var combotxt2:FlxText;
 	public var scoreCount:Int = 0;
+	var score:Int = 350;
 	var timeTxt:FlxText;
 	var comboTwn:FlxTween;
 	var comboTwn2:FlxTween;
@@ -3322,6 +3323,14 @@ class PlayState extends MusicBeatState
 		if (curStage == 'momogogo') {
 			momogogoBG.x += 90 * elapsed;
 		}
+		
+		new FlxTimer().start(3.5, function(tmr:FlxTimer) {
+			scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (elapsed * 30), 1, 0)));
+			songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (elapsed * 30), 0, 1)));
+			if (songHits % 0 > 1) {
+				tmr.reset(3.5);
+			}
+		}
 
 		super.update(elapsed);
 
@@ -4344,7 +4353,6 @@ class PlayState extends MusicBeatState
 
 	public var showCombo:Bool = true;
 	public var showRating:Bool = true;
-	var score:Int = 350;
 
 	private function popUpScore(note:Note = null):Void
 	{
@@ -4448,12 +4456,11 @@ class PlayState extends MusicBeatState
 			comboGlow.alpha = 0.70;
 			comboGlow.cameras = [camHUD];
 			//add(comboGlow);
-			//if (combo > 1) bruh
 
 			combotxt1 = new FlxText();
 			combotxt1.size = 32;
 			combotxt1.color = FlxColor.WHITE;
-			combotxt1.text = daRating + "! x" + Std.int(i);
+			combotxt1.text = daRating + "! x" + placement;
 			combotxt1.setPosition(579, 80);
 			combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt1.scrollFactor.set();
@@ -4486,16 +4493,17 @@ class PlayState extends MusicBeatState
 			}
 
 			//if (combo >= 10 || combo == 0)
-			if (combo > 1) { // vai ser add msm fds
+			if (combo == 1) { // vai ser add msm fds
 				add(comboGlow);
 				add(combotxt1);
-				add(combotxt2);
+				add(combotxt2);f
 			}
-			daCombo++;
+			combo++;
 				// eu tenho que pensar num bagui que faz que apartir do primeiro combo nao spawna mais combo glow pq meu cell quase morreu dps de eu testar lol
-				new FlxTimer().start(3, function(tmr:FlxTimer)
+				new FlxTimer().start(3.5, function(tmr:FlxTimer)
 				{
 					// se tiver visível é claro né meu fi ou fia sla
+					combo = 0;
 					FlxFlicker.flicker(combotxt1, 1.5, 0.10, false, false);
 					FlxTween.tween(combotxt1, {alpha: 0}, 1.5, {
 						ease: FlxEase.quadInOut,
@@ -4532,7 +4540,7 @@ class PlayState extends MusicBeatState
 						combotxt1.text = 'Great!';
 					}
 					if (songHits % 0 > 1) {
-						tmr.reset(3);
+						tmr.reset(3.5);
 					}
 				});
 			if (comboTwn != null) {
@@ -4566,7 +4574,7 @@ class PlayState extends MusicBeatState
 		// add(coolText);
 	}
 
-	function resetCombo():Void // combo thing
+	function resetCombo():Void // combo thing not used for now
 	{
 		//intendedScore = scoreCount;
 		var elapsed:Float = 0;
@@ -4940,12 +4948,6 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
-				new FlxTimer().start(5, function(tmr:FlxTimer) {
-					resetCombo();
-					if (songHits % 0 > 1) {
-						tmr.reset(5);
-					}
-				});
 			}
 			health += note.hitHealth * healthGain;
 
