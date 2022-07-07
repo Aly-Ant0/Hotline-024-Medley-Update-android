@@ -4480,11 +4480,13 @@ class PlayState extends MusicBeatState
 			if(ClientPrefs.middleScroll) {
 				combotxt1.x = 90000;
 				combotxt2.x = 90000;
+				combotxt1.visible = false;
+				combotxt2.visible = false;
 				comboGlow.visible = false;
 			}
 
 			//if (combo >= 10 || combo == 0)
-			if (combo == 1 || combo == 0) { // vai ser add msm fds
+			if (combo > 1) { // vai ser add msm fds
 				add(comboGlow);
 				add(combotxt1);
 				add(combotxt2);
@@ -4529,7 +4531,7 @@ class PlayState extends MusicBeatState
 					{
 						combotxt1.text = 'Great!';
 					}
-					if (songHits % 0 == 1) {
+					if (songHits % 0 > 1) {
 						tmr.reset(3);
 					}
 				});
@@ -4567,8 +4569,9 @@ class PlayState extends MusicBeatState
 	function resetCombo():Void // combo thing
 	{
 		//intendedScore = scoreCount;
-		scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 1, 0)));
-		songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (FlxG.elapsed * 24), 0, 1)));
+		var elapsed:Float;
+		scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (elapsed * 30), 1, 0)));
+		songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (elapsed * 30), 0, 1)));
 	}
 
 	private function onKeyPress(event:KeyboardEvent):Void
@@ -4937,10 +4940,10 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
-				new FlxTimer().start(3, function(tmr:FlxTimer) {
+				new FlxTimer().start(5, function(tmr:FlxTimer) {
 					resetCombo();
-					if (songHits % 0 == 1) {
-						tmr.reset(3);
+					if (songHits % 0 > 1) {
+						tmr.reset(5);
 					}
 				});
 			}
