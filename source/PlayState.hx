@@ -4496,7 +4496,7 @@ class PlayState extends MusicBeatState
 			if (combo == 1) { // vai ser add msm fds
 				add(comboGlow);
 				add(combotxt1);
-				add(combotxt2);f
+				add(combotxt2);
 			}
 			combo++;
 				// eu tenho que pensar num bagui que faz que apartir do primeiro combo nao spawna mais combo glow pq meu cell quase morreu dps de eu testar lol
