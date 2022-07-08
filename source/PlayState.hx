@@ -2454,12 +2454,18 @@ class PlayState extends MusicBeatState
 	//var songTwn:FlxTween;
 	public function songSlide():Void
 	{
-		FlxTween.tween(songlol, {x:500}, 0.28, {ease: FlxEase.expoOut, onComplete: function(twn:FlxTween) {
-			new FlxTimer().start(5, function(tmr:FlxTimer) {
-				FlxTween.tween(songlol, {x:0}, 0.28, {ease: FlxEase.expoIn, onComplete: function(twn:FlxTween) {
-					songlol.alpha = 0;
+		FlxTween.tween(songlol, {x:500}, 0.28, {ease: FlxEase.expoOut, 
+			onComplete: function(twn:FlxTween) {
+				new FlxTimer().start(4, function(tmr:FlxTimer) 
+				{
+					FlxTween.tween(songlol, {x:0}, 0.28, {ease: FlxEase.expoIn,
+						onComplete: function(twn:FlxTween)
+						{
+							songlol.alpha = 0;
+						}
+					});
 				});
-			});
+			}
 		});
 	}
 
