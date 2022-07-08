@@ -166,6 +166,8 @@ class PlayState extends MusicBeatState
 	public var camZoomingDecay:Float = 1;
 	private var curSong:String = "";
 
+	// song bar idk
+	var songlol:SongBar;
 	var whiteLol:FlxSprite;
 
 	public var gfSpeed:Int = 1;
@@ -1648,6 +1650,10 @@ class PlayState extends MusicBeatState
 		botplayTxt.visible = cpuControlled;
 		add(botplayTxt);
 
+		songlol = new SongBar();
+		songlol.setPosition(0, 129);
+		add(songlol);
+
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
 		}
@@ -1661,6 +1667,7 @@ class PlayState extends MusicBeatState
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 		botplayTxt.cameras = [camHUD];
+		songlol.cameras = [camHUD];
 		timeBar.cameras = [camHUD];
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
@@ -2444,6 +2451,18 @@ class PlayState extends MusicBeatState
 		}
 	}
 
+	//var songTwn:FlxTween;
+	public function songSlide():Void
+	{
+		FlxTween.tween(songlol, {x:500}, 0.28, {ease: FlxEase.expoOut, onComplete: function(twn:FlxTween) {
+			new FlxTimer().start(2, function(tmr:FlxTimer) {
+				FlxTween.tween(songlol, {x:0}, 0.28, {ease: FlxEase.expoIn, onComplete: function(twn:FlxTween) {
+					
+				});
+			});
+		});
+	}
+
 	var startTimer:FlxTimer;
 	var finishTimer:FlxTimer = null;
 
@@ -2493,6 +2512,10 @@ class PlayState extends MusicBeatState
 				return;
 			}
 
+			new FlxTimer().start(0.35, function(tmr:FlxTimer)
+			{
+				songSlide();
+			}
 			startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
 			{
 				if (gf != null && tmr.loopsLeft % Math.round(gfSpeed * gf.danceEveryNumBeats) == 0 && gf.animation.curAnim != null && !gf.animation.curAnim.name.startsWith("sing") && !gf.stunned)
@@ -3324,13 +3347,15 @@ class PlayState extends MusicBeatState
 			momogogoBG.x += 90 * elapsed;
 		}
 		
-		new FlxTimer().start(3.5, function(tmr:FlxTimer) {
-			scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (elapsed * 30), 1, 0)));
-			songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (elapsed * 30), 0, 1)));
-			if (songHits % 0 > 1) {
-				tmr.reset(3.5);
-			}
-		});
+		if (!note.isSustainNote) {
+			new FlxTimer().start(3.5, function(tmr:FlxTimer) {
+				scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (elapsed * 30), 1, 0)));
+				songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (elapsed * 30), 0, 1)));
+				if (songHits % 0 > 1) {
+					tmr.reset(3.5);
+				}
+			});
+		}
 
 		super.update(elapsed);
 
