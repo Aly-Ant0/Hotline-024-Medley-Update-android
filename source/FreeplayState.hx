@@ -242,7 +242,7 @@ class FreeplayState extends MusicBeatState
 			var lastAngle:Float = item.angle;
 			if (item.ID != curSelected) {
 				item.angle = 0;
-				item.angle = FlxMath.lerp(lastX, item.angle - 70, lerpVal);
+				item.angle = FlxMath.lerp(lastAngle, item.angle - 70, lerpVal);
 			}
 			else
 			{
