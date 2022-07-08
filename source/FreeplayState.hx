@@ -138,7 +138,7 @@ class FreeplayState extends MusicBeatState
 			// songText.screenCenter(X);
 		}
 		WeekData.setDirectoryFromWeek();
-		
+
 		bars = new FlxSprite().loadGraphic(Paths.image('hotline/menu/freeplay/bars'));
 		bars.screenCenter();
 		bars.antialiasing = ClientPrefs.globalAntialiasing;
@@ -238,10 +238,12 @@ class FreeplayState extends MusicBeatState
 		if (Math.abs(lerpRating - intendedRating) <= 0.01)
 			lerpRating = intendedRating;
 			
-		for (item in grpSongs.members) {
-			var lerpVal:Float = CoolUtil.boundTo(elapsed * 8, 0, 1);
+		grpSongs.forEach(function(item:FlxSprite)
+		{
+			var lerpVal:Float = CoolUtil.boundTo(elapsed * 10, 0, 1);
 			var lastAngle:Float = item.angle;
-			if (item.ID != curSelected) {
+			if (item.ID != curSelected)
+			{
 				item.angle = 0;
 				item.angle = FlxMath.lerp(lastAngle, item.angle - 70, lerpVal);
 			}
@@ -249,7 +251,7 @@ class FreeplayState extends MusicBeatState
 			{
 				item.angle = FlxMath.lerp(item.angle, 200 + -40 * Math.abs(item.y), lerpVal);
 			}
-		}
+		});
 		var ratingSplit:Array<String> = Std.string(Highscore.floorDecimal(lerpRating * 100, 2)).split('.');
 		if(ratingSplit.length < 2) { //No decimals, add an empty space
 			ratingSplit.push('');
@@ -436,12 +438,11 @@ class FreeplayState extends MusicBeatState
 
 		var bullShit:Int = 0;
 
-		for (item in grpSongs.members)
+		grpSongs.forEach(function(item:FlxSprite)
 		{
 			item.y = bullShit - curSelected;
 			bullShit++;
 
-			item.alpha = 0.6;
 			// item.setGraphicSize(Std.int(item.width * 0.8));
 
 			if (item.ID != curSelected)
@@ -449,8 +450,12 @@ class FreeplayState extends MusicBeatState
 				item.alpha = 1;
 				// item.setGraphicSize(Std.int(item.width));
 			}
-		}
-		
+			else
+			{
+				item.alpha = 0.6;
+			}
+		});
+
 		Paths.currentModDirectory = songs[curSelected].folder;
 		PlayState.storyWeek = songs[curSelected].week;
 
