@@ -237,7 +237,7 @@ class FreeplayState extends MusicBeatState
 		if (Math.abs(lerpRating - intendedRating) <= 0.01)
 			lerpRating = intendedRating;
 			
-		for (item for grpSongs.members) {
+		for (item in grpSongs.members) {
 			var lerpVal:Float = CoolUtil.boundTo(elapsed * 8, 0, 1);
 			var lastAngle:Float = item.angle;
 			if (item.ID != curSelected) {
