@@ -2521,7 +2521,7 @@ class PlayState extends MusicBeatState
 			new FlxTimer().start(0.65, function(tmr:FlxTimer)
 			{
 				songSlide();
-			}
+			});
 			startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
 			{
 				if (gf != null && tmr.loopsLeft % Math.round(gfSpeed * gf.danceEveryNumBeats) == 0 && gf.animation.curAnim != null && !gf.animation.curAnim.name.startsWith("sing") && !gf.stunned)
