@@ -28,7 +28,7 @@ class SongBar extends FlxSprite
 		var content:String = directory + 'info.txt';
 		//var get:String = c
 		if(FileSystem.exists(content)) {
-			songTxt.text = getContent(content);
+			songTxt.text = File.getContent(content);
 		}
 		else {
 			songTxt.text = 'null';
