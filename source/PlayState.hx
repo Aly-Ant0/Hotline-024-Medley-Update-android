@@ -3353,7 +3353,8 @@ class PlayState extends MusicBeatState
 			momogogoBG.x += 90 * elapsed;
 		}
 		
-		if (!note.isSustainNote) {
+		//if (!note.isSustainNote) {
+		if (songHits % 0 > 1) {
 			new FlxTimer().start(3.5, function(tmr:FlxTimer) {
 				scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (elapsed * 30), 1, 0)));
 				songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (elapsed * 30), 0, 1)));
@@ -3362,6 +3363,7 @@ class PlayState extends MusicBeatState
 				}
 			});
 		}
+		//}
 
 		super.update(elapsed);
 
