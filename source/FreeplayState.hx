@@ -118,26 +118,17 @@ class FreeplayState extends MusicBeatState
 
 		FlxTween.tween(nicu, {y: nicu.y + 10}, 1.74, {ease: FlxEase.quadInOut, type: PINGPONG});
 
-		grpSongs = new FlxTypedGroup<Alphabet>();
+		grpSongs = new FlxTypedGroup<FlxSprite>();
 		add(grpSongs);
 
 		for (i in 0...songs.length)
 		{
-			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
-			songText.isMenuItem = true;
-			songText.targetY = i;
+			var songText:FlxSprite = new FlxSprite(0, (70 * i) + 30).loadGraphic(Paths.image('freeplaySongText/' + songs[i], 'shared'));
+			songText.antialiasing = globalAntialiasing;
+			songText.screenCenter(X);
+			songText.x += 150;
+			songText.ID = i;
 			grpSongs.add(songText);
-
-			if (songText.width > 980)
-			{
-				var textScale:Float = 980 / songText.width;
-				songText.scale.x = textScale;
-				for (letter in songText.lettersArray)
-				{
-					letter.x *= textScale;
-					letter.offset.x *= textScale;
-				}
-			}
 
 			Paths.currentModDirectory = songs[i].folder;
 
@@ -245,7 +236,19 @@ class FreeplayState extends MusicBeatState
 			lerpScore = intendedScore;
 		if (Math.abs(lerpRating - intendedRating) <= 0.01)
 			lerpRating = intendedRating;
-
+			
+		for (item for grpSongs.members) {
+			var lerpVal:Float = CoolUtil.boundTo(elapsed * 8, 0, 1);
+			var lastAngle:Float = item.angle;
+			if (item.ID != curSelected) {
+				item.angle = 0;
+				item.angle = FlxMath.lerp(lastX, item.angle - 70, lerpVal);
+			}
+			else
+			{
+				item.angle = FlxMath.lerp(item.angle, 200 + -40 * Math.abs(item.y), lerpVal);
+			}
+		}
 		var ratingSplit:Array<String> = Std.string(Highscore.floorDecimal(lerpRating * 100, 2)).split('.');
 		if(ratingSplit.length < 2) { //No decimals, add an empty space
 			ratingSplit.push('');
@@ -434,13 +437,13 @@ class FreeplayState extends MusicBeatState
 
 		for (item in grpSongs.members)
 		{
-			item.targetY = bullShit - curSelected;
+			item.y = bullShit - curSelected;
 			bullShit++;
 
 			item.alpha = 0.6;
 			// item.setGraphicSize(Std.int(item.width * 0.8));
 
-			if (item.targetY == 0)
+			if (item.ID != curSelected)
 			{
 				item.alpha = 1;
 				// item.setGraphicSize(Std.int(item.width));
