@@ -1,4 +1,6 @@
 import flixel.FlxSprite;
+import flixel.FlxG;
+import Song.SwagSong;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import sys.io.File;
