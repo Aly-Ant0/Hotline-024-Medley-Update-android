@@ -10,6 +10,7 @@ import flixel.FlxSprite;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
@@ -118,14 +119,14 @@ class FreeplayState extends MusicBeatState
 
 		FlxTween.tween(nicu, {y: nicu.y + 10}, 1.74, {ease: FlxEase.quadInOut, type: PINGPONG});
 
-		grpSongs = new FlxTypedGroup<FlxSprite>();
+		grpSongs = new FlxTypedSpriteGroup<FlxSprite>();
 		add(grpSongs);
 
 		for (i in 0...songs.length)
 		{
 			var songText:FlxSprite = new FlxSprite(0, (70 * i) + 30).loadGraphic(Paths.image('freeplaySongText/' + songs[i], 'shared'));
-			songText.antialiasing = globalAntialiasing;
-			songText.screenCenter(X);
+			songText.antialiasing = ClientPrefs.globalAntialiasing;
+			songText.screenCenter();
 			songText.x += 150;
 			songText.ID = i;
 			grpSongs.add(songText);
