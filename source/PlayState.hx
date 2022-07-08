@@ -1652,6 +1652,9 @@ class PlayState extends MusicBeatState
 		botplayTxt.borderSize = 1.25;
 		botplayTxt.visible = cpuControlled;
 		add(botplayTxt);
+		
+		songlol = new FlxTypedSpriteGroup<FlxSprite>();
+		add(songlol);
 
 		songTxt = new FlxText(FlxG.width + 10, bar.y + 9, 0, "", 37);
 		songTxt.setFormat(Paths.font("LEMONMILK-Bold.otf"), 32, FlxColor.WHITE, RIGHT);
@@ -1660,7 +1663,7 @@ class PlayState extends MusicBeatState
 		bar.alpha = 0.34;
 		bar.scale.x = FlxG.width - songTxt.x + 15;
 		bar.x = 0;
-		bar.y -= 500;
+		bar.y -= 420;
 
 		songlol.add(bar);
 		songlol.add(songTxt);
