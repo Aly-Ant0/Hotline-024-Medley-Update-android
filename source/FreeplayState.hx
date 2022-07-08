@@ -47,7 +47,7 @@ class FreeplayState extends MusicBeatState
 	var intendedColor:Int;
 	var colorTween:FlxTween;
 
-	private var grpSongs:FlxTypedGroup<Alphabet>;
+	private var grpSongs:FlxTypedGroup<FlxSprite>;
 	private var curPlaying:Bool = false;
 
 	var bg2:FlxSprite;
