@@ -2455,9 +2455,9 @@ class PlayState extends MusicBeatState
 	public function songSlide():Void
 	{
 		FlxTween.tween(songlol, {x:500}, 0.28, {ease: FlxEase.expoOut, onComplete: function(twn:FlxTween) {
-			new FlxTimer().start(2, function(tmr:FlxTimer) {
+			new FlxTimer().start(5, function(tmr:FlxTimer) {
 				FlxTween.tween(songlol, {x:0}, 0.28, {ease: FlxEase.expoIn, onComplete: function(twn:FlxTween) {
-					
+					songlol.alpha = 0;
 				});
 			});
 		});
@@ -2512,7 +2512,7 @@ class PlayState extends MusicBeatState
 				return;
 			}
 
-			new FlxTimer().start(0.35, function(tmr:FlxTimer)
+			new FlxTimer().start(0.65, function(tmr:FlxTimer)
 			{
 				songSlide();
 			}
