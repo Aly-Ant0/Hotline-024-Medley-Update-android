@@ -25,6 +25,7 @@ import flixel.addons.transition.FlxTransitionableState;
 import flixel.graphics.atlas.FlxAtlas;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.group.FlxGroup.FlxTypedSpriteGroup;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
@@ -167,7 +168,9 @@ class PlayState extends MusicBeatState
 	private var curSong:String = "";
 
 	// song bar idk
-	var songlol:SongBar;
+	var bar:FlxSprite;
+	var songTxt:FlxText;
+	var songlol:FlxTypedSpriteGroup<FlxSprite>;
 	var whiteLol:FlxSprite;
 
 	public var gfSpeed:Int = 1;
@@ -1650,9 +1653,27 @@ class PlayState extends MusicBeatState
 		botplayTxt.visible = cpuControlled;
 		add(botplayTxt);
 
-		songlol = new SongBar();
-		songlol.setPosition(0, 129);
-		add(songlol);
+		songTxt = new FlxText(FlxG.width + 10, bar.y + 9, 0, "", 37);
+		songTxt.setFormat(Paths.font("LEMONMILK-Bold.otf"), 32, FlxColor.WHITE, RIGHT);
+
+		bar = new FlxSprite().makeGraphic(1, 90, FlxColor.BLACK);
+		bar.alpha = 0.34;
+		bar.scale.x = FlxG.width - songTxt.x + 15;
+		bar.x = 0;
+		bar.y -= 500;
+
+		songlol.add(bar);
+		songlol.add(songTxt);
+
+		var directory:String = 'data/' + songName + '/';
+		var content:String = directory + 'info.txt';
+		//var get:String = c
+		if(FileSystem.exists(content)) {
+			songTxt.text = File.getContent(content);
+		}
+		else {
+			songTxt.text = 'null';
+		}
 
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
