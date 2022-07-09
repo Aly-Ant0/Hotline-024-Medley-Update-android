@@ -138,6 +138,7 @@ class FreeplayState extends MusicBeatState
 					letter.x *= textScale;
 					letter.offset.x *= textScale;
 				}
+			}
 
 			Paths.currentModDirectory = songs[i].folder;
 
