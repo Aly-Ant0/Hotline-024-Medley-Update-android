@@ -242,12 +242,12 @@ class PlayState extends MusicBeatState
 	var coverBG9:BGSprite;
 
 	var exSky:BGSprite;
-  var exRock:BGSprite;
-  var exGround:BGSprite;
-  var exOverlay:BGSprite;
-  var exFront:BGSprite;
-  
-  //unseless particle things
+	var exRock:BGSprite;
+	var exGround:BGSprite;
+	var exOverlay:BGSprite;
+	var exFront:BGSprite;
+
+	//unseless particle things
 /*
 	var particleEx:FlxParticle;
 	var particleEmitter:FlxEmitter;
@@ -255,34 +255,49 @@ class PlayState extends MusicBeatState
 	// used particle
 	var exParticle:FlxTypedGroup<ExpurgatedParticle>;
  
-  var skateSky:BGSprite;
-  var skateFloor:BGSprite;
-  var skateBuildings:BGSprite;
-  var skateLight:BGSprite;
-  var skateTreess:BGSprite;
-  var skateBuches:BGSprite;
+	var skateSky:BGSprite;
+	var skateFloor:BGSprite;
+	var skateBuildings:BGSprite;
+	var skateLight:BGSprite;
+	var skateTreess:BGSprite;
+	var skateBuches:BGSprite;
 
 	// octagon cutscene variables
-  var octagonBG:FlxSprite;
-  var octagonBG2:FlxSprite;
-  var numbahEiti:FlxBackdrop;
-  var numbahEiti2:FlxBackdrop;
-  var numbahEiti3:FlxBackdrop;
-  var octagon:BGSprite;
-  var textOctagon:BGSprite;
-  var bubbleText:BGSprite;
-  var nikkuOctagon:BGSprite;
-  var showYou:BGSprite;
-  var hereme:BGSprite;
-  // jooj
-  var jojoBG:BGSprite;
-  var jojoFG:BGSprite;
-  var jojoLuzinha:BGSprite;
-  
-  var bars:BGSprite;
-  var rocks:BGSprite;
-  
-  var momogogoBG:FlxBackdrop;
+	var octagonBG:FlxSprite;
+	var octagonBG2:FlxSprite;
+	var numbahEiti:FlxBackdrop;
+	var numbahEiti2:FlxBackdrop;
+	var numbahEiti3:FlxBackdrop;
+	var octagon:BGSprite;
+	var textOctagon:BGSprite;
+	var bubbleText:BGSprite;
+	var nikkuOctagon:BGSprite;
+	var showYou:BGSprite;
+	var hereme:BGSprite;
+	// jooj
+	var jojoBG:BGSprite;
+	var jojoFG:BGSprite;
+	var jojoLuzinha:BGSprite;
+
+	var bars:BGSprite;
+	var rocks:BGSprite;
+
+	var momogogoBG:FlxBackdrop;
+
+	// da ultima musica la a astral projection
+	var matzuBG:BGSprite;
+	var matzuDESK:BGSprite;
+	var asPlantadaMinhaMae:BGSprite;
+
+	// é quando ta tudo fudido
+	var TAPORRATUDOFUDIDO:Bool = false;
+	var matzuFudida1:BGSprite;
+	var matzuFudida2:BGSprite;
+	var matzuFudida3:BGSprite;
+	var matzuFudida4:BGSprite;
+	var matzuFudida5:BGSprite;
+	var matzuFudida6:BGSprite;
+	var matzuFudida7:BGSprite;
 
 	var halloweenBG:BGSprite;
 	var halloweenWhite:BGSprite;
@@ -936,6 +951,66 @@ class PlayState extends MusicBeatState
 				momogogoBG.offset.x = 0;
 				add(momogogoBG);
 
+			case 'astral': // pq as planta da mãe ta aqui
+				matzuBG = new BGSprite('matzu/BG1', 0, 0, 0.1, 0.1);
+				matzuBG.updateHitbox();
+				add(matzuBG);
+
+				matzuDESK = new BGSprite('matzu/DES', 0, 0, 0.2, 0.2);
+				matzuDESK.updateHitbox();
+				add(matzuDESK);
+
+				asPlantadaMinhaMae = new BGSprite('matzu/PLAMTS', 0, 0, 1.1, 1.1);
+				asPlantadaMinhaMae.updateHitbox();
+				add(asPlantadaMinhaMae);
+
+				matzuFudida1 = new BGSprite('matzu/2/BG1', 0, 0, 0.1, 0.1);
+				matzuFudida1.updateHitbox();
+				matzuFudida1.visible = false;
+				add(matzuFudida1);
+
+				matzuFudida2 = new BGSprite('matzu/2/idk', 0, 0, 0, 0);
+				matzuFudida2.updateHitbox();
+				matzuFudida2.visible = false;
+				add(matzuFudida2);
+
+				matzuFudida3 = new BGSprite('matzu/2/ground', 0, 0, 0, 0);
+				matzuFudida3.updateHitbox();
+				matzuFudida3.visible = false;
+				add(matzuFudida3);
+
+				matzuFudida4 = new BGSprite('matzu/2/messages', 0, 0, 0.4, 0.4);
+				matzuFudida4.updateHitbox();
+				matzuFudida4.visible = false;
+				add(matzuFudida4);
+
+				matzuFudida5 = new BGSprite('matzu/2/door', 0, 0, 0.4, 0.4);
+				matzuFudida5.updateHitbox();
+				matzuFudida5.visible = false;
+				add(matzuFudida5);
+
+				matzuFudida6 = new BGSprite('matzu/2/desk2', 0, 0, 0.2, 0.2);
+				matzuFudida6.updateHitbox();
+				matzuFudida6.visible = false;
+				add(matzuFudida6);
+
+				matzuFudida7 = new BGSprite('matzu/2/plamts2', 0, 0, 1.1, 1.1);
+				matzuFudida7.updateHitbox();
+				matzuFudida7.visible = false;
+				add(matzuFudida7);
+
+				if (!TAPORRATUDOFUDIDO) {
+					asPlantadaMinhaMae.visible = false;
+					matzuBG.visible = false;
+					asPlantadaMinhaMae.visible = false;
+					matzuFudida1.visible = true;
+					matzuFudida2.visible = true;
+					matzuFudida3.visible = true;
+					matzuFudida4.visible = true;
+					matzuFudida5.visible = true;
+					matzuFudida6.visible = true;
+					matzuFudida7.visible = true;
+				}
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
 					halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
@@ -1652,27 +1727,23 @@ class PlayState extends MusicBeatState
 		botplayTxt.borderSize = 1.25;
 		botplayTxt.visible = cpuControlled;
 		add(botplayTxt);
-		
-		songlol = new FlxTypedSpriteGroup<FlxSprite>();
-		add(songlol);
-
-		songTxt = new FlxText(FlxG.width + 10, bar.y + 9, 0, "", 37);
-		songTxt.setFormat(Paths.font("LEMONMILK-Bold.otf"), 32, FlxColor.WHITE, RIGHT);
 
 		bar = new FlxSprite().makeGraphic(1, 90, FlxColor.BLACK);
 		bar.alpha = 0.34;
 		bar.scale.x = FlxG.width - songTxt.x + 15;
-		bar.x = 0;
+		bar.x -= 20;
 		bar.y -= 420;
+		add(bar);
 
-		songlol.add(bar);
-		songlol.add(songTxt);
+		songTxt = new FlxText(FlxG.width + 10, bar.y + 10, 0, "", 37);
+		songTxt.setFormat(Paths.font("LEMONMILK-Bold.otf"), 32, FlxColor.WHITE, RIGHT);
+		add(songTxt);
 
-		var directory:String = 'data/' + songName + '/';
-		var content:String = directory + 'info.txt';
+		var content:String = Paths.txt(songName + '/info');
+		//var content:String = directory + 'info.txt';
 		//var get:String = c
-		if(FileSystem.exists(content)) {
-			songTxt.text = File.getContent(content);
+		if(OpenFlAssets.exists(content)) {
+			songTxt.text = CoolUtil.coolTextFile(SUtil.getPath() + content);
 		}
 		else {
 			songTxt.text = 'null';
@@ -1691,7 +1762,8 @@ class PlayState extends MusicBeatState
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 		botplayTxt.cameras = [camHUD];
-		songlol.cameras = [camHUD];
+		bar.cameras = [camHUD];
+		songTxt.cameras = [camHUD];
 		timeBar.cameras = [camHUD];
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
@@ -2478,18 +2550,29 @@ class PlayState extends MusicBeatState
 	//var songTwn:FlxTween;
 	public function songSlide():Void
 	{
-		FlxTween.tween(songlol, {x:500}, 0.28, {ease: FlxEase.expoOut, 
-			onComplete: function(twn:FlxTween) {
-				new FlxTimer().start(4, function(tmr:FlxTimer) 
+		new FlxTimer().start(0.01, function(tmr:FlxTimer) {
+			FlxTween.tween(songTxt, {x:500}, 0.28, {ease: FlxEase.expoOut});
+		});
+		new FlxTimer().start(4, function(tmr:FlxTimer) 
+		{
+			FlxTween.tween(songTxt, {x:0}, 0.28, {ease: FlxEase.expoIn,
+				onComplete: function(twn:FlxTween)
 				{
-					FlxTween.tween(songlol, {x:0}, 0.28, {ease: FlxEase.expoIn,
-						onComplete: function(twn:FlxTween)
-						{
-							songlol.alpha = 0;
-						}
-					});
-				});
-			}
+					songTxt.alpha = 0;
+				}
+			});
+		});
+		new FlxTimer().start(0.01, function(tmr:FlxTimer) {
+			FlxTween.tween(bar, {x:500}, 0.28, {ease: FlxEase.expoOut});
+		});
+		new FlxTimer().start(4, function(tmr:FlxTimer) 
+		{
+			FlxTween.tween(bar, {x:0}, 0.28, {ease: FlxEase.expoIn,
+				onComplete: function(twn:FlxTween)
+				{
+					bar.alpha = 0;
+				}
+			});
 		});
 	}
 
@@ -5445,6 +5528,13 @@ class PlayState extends MusicBeatState
 				case 512:
 					//SANESSS.visible = false;
 					camHUD.alpha = 1;
+			}
+		}
+
+		if (curSong == 'Astral Projection') {
+			switch(curStep) {
+				case 1280:
+					TAPORRATUDOFUDIDO = true;
 			}
 		}
 
