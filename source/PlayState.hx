@@ -216,21 +216,23 @@ class PlayState extends MusicBeatState
 	var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
 	var dialogueJson:DialogueFile = null;
 
- // stage variables xd
-  var bg10:BGSprite;
-  var cutsceneBG:BGSprite;
-  var cutsceneEnd:BGSprite;
-  var cutsceneLogo:BGSprite;
+	// stage variables xd
+	var bg10:BGSprite;
+	var cutsceneBG:BGSprite;
+	var cutsceneEnd:BGSprite;
+	var cutsceneLogo:BGSprite;
 	var black:FlxSprite;
 	var text1:BGSprite;
 	var text2:BGSprite;
-	
+
+	// fun is infinite
 	var majinBG:BGSprite;
 	var majinTVBG:BGSprite;
 	var majinOverlay:BGSprite;
 	var majinTV:BGSprite;
 	var majinGround:BGSprite;
-	
+
+	// covers stage
 	var coverBG1:BGSprite;
 	var coverBG2:BGSprite;
 	var coverBG3:BGSprite;
@@ -241,6 +243,7 @@ class PlayState extends MusicBeatState
 	var coverBG8:BGSprite;
 	var coverBG9:BGSprite;
 
+	// expurgated
 	var exSky:BGSprite;
 	var exRock:BGSprite;
 	var exGround:BGSprite;
@@ -254,7 +257,8 @@ class PlayState extends MusicBeatState
 */
 	// used particle
 	var exParticle:FlxTypedGroup<ExpurgatedParticle>;
- 
+
+	// skate
 	var skateSky:BGSprite;
 	var skateFloor:BGSprite;
 	var skateBuildings:BGSprite;
@@ -274,14 +278,17 @@ class PlayState extends MusicBeatState
 	var nikkuOctagon:BGSprite;
 	var showYou:BGSprite;
 	var hereme:BGSprite;
+
 	// jooj
 	var jojoBG:BGSprite;
 	var jojoFG:BGSprite;
 	var jojoLuzinha:BGSprite;
 
+	// ARMAGEDOM
 	var bars:BGSprite;
 	var rocks:BGSprite;
 
+	// do stage da gostosa la
 	var momogogoBG:FlxBackdrop;
 
 	// da ultima musica la a astral projection
@@ -290,7 +297,6 @@ class PlayState extends MusicBeatState
 	var asPlantadaMinhaMae:BGSprite;
 
 	// é quando ta tudo fudido
-	var TAPORRATUDOFUDIDO:Bool = false;
 	var matzuFudida1:BGSprite;
 	var matzuFudida2:BGSprite;
 	var matzuFudida3:BGSprite;
@@ -298,6 +304,10 @@ class PlayState extends MusicBeatState
 	var matzuFudida5:BGSprite;
 	var matzuFudida6:BGSprite;
 	var matzuFudida7:BGSprite;
+
+	// ena
+	var enaOverlay:BGSprite;
+	var idkWhatIsthat:BGSprite;
 
 	var halloweenBG:BGSprite;
 	var halloweenWhite:BGSprite;
@@ -997,7 +1007,26 @@ class PlayState extends MusicBeatState
 				matzuFudida7 = new BGSprite('matzu/2/plamts2', 0, 0, 1.1, 1.1);
 				matzuFudida7.updateHitbox();
 				matzuFudida7.visible = false;
+			case 'ena':
+				var enaBG1:BGSprite = new BGSprite('ena/ENA-1', -150, 0, 0.7, 0.7);
+				enaBG1.updateHitbox();
+				add(enaBG1);
 
+				var enaBG2:BGSprite = new BGSprite('ena/ENA-2', -150, 0, 0.8, 0.8);
+				enaBG2.updateHitbox();
+				add(enaBG2);
+
+				var enaBG3:BGSprite = new BGSprite('ena/ENA-3', -150, 0, 0.9, 0.9);
+				enaBG3.updateHitbox();
+				add(enaBG3);
+
+				enaOverlay = new BGSprite('ena/OERLAY-4', 0, 0, 0, 0);
+				enaOverlay.blend = ADD;
+				enaOverlay.updateHitbox();
+
+				idkWhatIsthat = new BGSprite('ena/ENA-5', 0, 20, 1.1, 1.1);
+				idkWhatIsthat.updateHitbox();
+				add(idkWhatIsthat);
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
 					halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
@@ -1375,6 +1404,10 @@ class PlayState extends MusicBeatState
 			add(asPlantadaMinhaMae);
 			add(matzuFudida6);
 			add(matzuFudida7);
+		}
+
+		if (curStage == 'ena') {
+			add(enaOverlay);
 		}
 
 		switch(curStage)
