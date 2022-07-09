@@ -5534,6 +5534,7 @@ class PlayState extends MusicBeatState
 		if (curSong == 'Astral Projection') {
 			switch(curStep) {
 				case 1280:
+					FlxG.camera.flash(FlxColor.BLACK, 5, null, true);
 					TAPORRATUDOFUDIDO = true;
 			}
 		}
