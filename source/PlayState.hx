@@ -1002,7 +1002,7 @@ class PlayState extends MusicBeatState
 				if (!TAPORRATUDOFUDIDO) {
 					asPlantadaMinhaMae.visible = false;
 					matzuBG.visible = false;
-					asPlantadaMinhaMae.visible = false;
+					matzuDESK.visible = false;
 					matzuFudida1.visible = true;
 					matzuFudida2.visible = true;
 					matzuFudida3.visible = true;
@@ -1728,6 +1728,7 @@ class PlayState extends MusicBeatState
 		botplayTxt.visible = cpuControlled;
 		add(botplayTxt);
 
+		/*
 		bar = new FlxSprite().makeGraphic(1, 90, FlxColor.BLACK);
 		bar.alpha = 0.34;
 		bar.scale.x = FlxG.width - songTxt.x + 15;
@@ -1748,6 +1749,7 @@ class PlayState extends MusicBeatState
 		else {
 			songTxt.text = 'null';
 		}
+		*/
 
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
@@ -1762,8 +1764,8 @@ class PlayState extends MusicBeatState
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 		botplayTxt.cameras = [camHUD];
-		bar.cameras = [camHUD];
-		songTxt.cameras = [camHUD];
+		//bar.cameras = [camHUD];
+		//songTxt.cameras = [camHUD];
 		timeBar.cameras = [camHUD];
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
@@ -2625,10 +2627,10 @@ class PlayState extends MusicBeatState
 				return;
 			}
 
-			new FlxTimer().start(0.65, function(tmr:FlxTimer)
+			/*new FlxTimer().start(0.65, function(tmr:FlxTimer)
 			{
 				songSlide();
-			});
+			});*/
 			startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
 			{
 				if (gf != null && tmr.loopsLeft % Math.round(gfSpeed * gf.danceEveryNumBeats) == 0 && gf.animation.curAnim != null && !gf.animation.curAnim.name.startsWith("sing") && !gf.stunned)
