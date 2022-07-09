@@ -41,9 +41,9 @@ class CodeScreen extends MusicBeatState
 	public static var showallcodes:Bool = false;
 	var isCorrect:Bool = false;
 
-	override function create() // i get this code from vs soni lol
+	override function create()
 	{
-		FlxG.mouse.visible = true;
+		//FlxG.mouse.visible = true;
 
 		PlayState.isStoryMode = false;
 		PlayState.isCode = true;
@@ -155,12 +155,12 @@ class CodeScreen extends MusicBeatState
 
 			for (touch in FlxG.touches.list) {
 				for (spr in numbersSpr) {
-					if(FlxG.mouse.overlaps(spr) && touch.overlaps(spr) && canSelect) {
-						FlxG.sound.play(Paths.sound('codeHover'));
+					if(touch.overlaps(spr) && canSelect) {
+						//FlxG.sound.play(Paths.sound('codeHover'));
 						spr.color = 0xFF363636;
 
 						if(code.text.length < 4)
-							if(FlxG.mouse.justPressed && touch.justPressed)
+							if(touch.justPressed)
 								code.text += spr.ID;
 								//clickButton = true;
 								switch (spr.ID) {
@@ -181,55 +181,64 @@ class CodeScreen extends MusicBeatState
 				}
 
 			if(controls.ACCEPT) {
-				FlxG.sound.play(Paths.sound('entersfx'));
 				switch(code.text)
 				{
 					case '2480': // code to show all the others codes
 						MusicBeatState.switchState(new AllCodes());
 						FlxG.mouse.visible = false;
+						FlxG.sound.play(Paths.sound('entersfx'));
 					case '2448': //naitilendi
 						PlayState.SONG = Song.loadFromJson('nightland', 'nightland');
 						PlayState.noSkins = false;
+						FlxG.sound.play(Paths.sound('entersfx'));
 						MusicBeatState.switchState(new ChooseSkinState());
 						FlxG.mouse.visible = false;
 					case '5141': // ema
 						PlayState.SONG = Song.loadFromJson('uncanny-valley', 'uncanny-valley');
 						PlayState.noSkins = true;
+						FlxG.sound.play(Paths.sound('entersfx'));
 						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
 					case '2020': // extraterrestre
 						PlayState.SONG = Song.loadFromJson('extraterrestrial', 'extraterrestrial');
 						PlayState.noSkins = true;
+						FlxG.sound.play(Paths.sound('entersfx'));
 						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
 					case '2151': // spooki
 						PlayState.SONG = Song.loadFromJson('satellite-picnic', 'satellite-picnic');
 						PlayState.noSkins = true;
+						FlxG.sound.play(Paths.sound('entersfx'));
 						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
 					case '1921': // sus
 						PlayState.SONG = Song.loadFromJson('sussy-pussy', 'sussy-pussy');
 						PlayState.noSkins = true;
+						FlxG.sound.play(Paths.sound('entersfx'));
 						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
 					case '1391': // i gonna shoot maself
 						PlayState.SONG = Song.loadFromJson('close-chuckle', 'close-chuckle');
 						PlayState.noSkins = true;
+						FlxG.sound.play(Paths.sound('entersfx'));
 						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
 					case '8989': // nicu vs turma da mônica so que nao
 						PlayState.SONG = Song.loadFromJson('deep-poems', 'deep-poems');
 						PlayState.noSkins = true;
+						FlxG.sound.play(Paths.sound('entersfx'));
 						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
 					case '6120': // fun is infinite
 						PlayState.SONG = Song.loadFromJson('majin', 'majin');
 						PlayState.noSkins = true;
+						FlxG.sound.play(Paths.sound('entersfx'));
 						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
 					case '2119': // final song
 						PlayState.SONG = Song.loadFromJson('astral-projection', 'astral-projection');
 						PlayState.noSkins = true;
+						FlxG.sound.play(Paths.sound('entersfx'));
 						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
 					default:
