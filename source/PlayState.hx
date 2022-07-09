@@ -958,11 +958,9 @@ class PlayState extends MusicBeatState
 
 				matzuDESK = new BGSprite('matzu/DES', 0, 0, 0.2, 0.2);
 				matzuDESK.updateHitbox();
-				add(matzuDESK);
 
 				asPlantadaMinhaMae = new BGSprite('matzu/PLAMTS', 0, 0, 1.1, 1.1);
 				asPlantadaMinhaMae.updateHitbox();
-				add(asPlantadaMinhaMae);
 
 				matzuFudida1 = new BGSprite('matzu/2/BG1', 0, 0, 0.1, 0.1);
 				matzuFudida1.updateHitbox();
@@ -992,25 +990,11 @@ class PlayState extends MusicBeatState
 				matzuFudida6 = new BGSprite('matzu/2/desk2', 0, 0, 0.2, 0.2);
 				matzuFudida6.updateHitbox();
 				matzuFudida6.visible = false;
-				add(matzuFudida6);
 
 				matzuFudida7 = new BGSprite('matzu/2/plamts2', 0, 0, 1.1, 1.1);
 				matzuFudida7.updateHitbox();
 				matzuFudida7.visible = false;
-				add(matzuFudida7);
 
-				if (!TAPORRATUDOFUDIDO) {
-					asPlantadaMinhaMae.visible = false;
-					matzuBG.visible = false;
-					matzuDESK.visible = false;
-					matzuFudida1.visible = true;
-					matzuFudida2.visible = true;
-					matzuFudida3.visible = true;
-					matzuFudida4.visible = true;
-					matzuFudida5.visible = true;
-					matzuFudida6.visible = true;
-					matzuFudida7.visible = true;
-				}
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
 					halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
@@ -1381,6 +1365,13 @@ class PlayState extends MusicBeatState
 		if (curStage == 'amarged')
 		{
 			add(rocks);
+		}
+
+		if (curStage == 'astral') {
+			add(matzuDESK);
+			add(asPlantadaMinhaMae);
+			add(matzuFudida6);
+			add(matzuFudida7);
 		}
 
 		switch(curStage)
@@ -3989,6 +3980,9 @@ class PlayState extends MusicBeatState
 			case 'Kill Henchmen':
 				killHenchmen();
 
+			case 'Astral Event':
+				changeAstralBG();
+
 			case 'Add Camera Zoom':
 				if(ClientPrefs.camZooms && FlxG.camera.zoom < 1.35) {
 					var camZoom:Float = Std.parseFloat(value1);
@@ -4188,6 +4182,23 @@ class PlayState extends MusicBeatState
 				}
 		}
 		callOnLuas('onEvent', [eventName, value1, value2]);
+	}
+
+	function changeAstralBG():Void
+	{
+		if (curStage == 'astral') {
+			FlxG.camera.flash(FlxColor.BLACK, 5, null, true);
+			asPlantadaMinhaMae.visible = false;
+			matzuBG.visible = false;
+			matzuDESK.visible = false;
+			matzuFudida1.visible = true;
+			matzuFudida2.visible = true;
+			matzuFudida3.visible = true;
+			matzuFudida4.visible = true;
+			matzuFudida5.visible = true;
+			matzuFudida6.visible = true;
+			matzuFudida7.visible = true;
+		}
 	}
 
 	function moveCameraSection(?id:Int = 0):Void {
@@ -5530,14 +5541,6 @@ class PlayState extends MusicBeatState
 				case 512:
 					//SANESSS.visible = false;
 					camHUD.alpha = 1;
-			}
-		}
-
-		if (curSong == 'Astral Projection') {
-			switch(curStep) {
-				case 1280:
-					FlxG.camera.flash(FlxColor.BLACK, 5, null, true);
-					TAPORRATUDOFUDIDO = true;
 			}
 		}
 
