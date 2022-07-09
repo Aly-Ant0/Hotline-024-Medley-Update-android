@@ -47,7 +47,7 @@ class FreeplayState extends MusicBeatState
 	var intendedColor:Int;
 	var colorTween:FlxTween;
 
-	private var grpSongs:FlxTypedSpriteGroup<FlxSprite>;
+	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
 
 	var bg2:FlxSprite;
@@ -119,17 +119,25 @@ class FreeplayState extends MusicBeatState
 
 		FlxTween.tween(nicu, {y: nicu.y + 10}, 1.74, {ease: FlxEase.quadInOut, type: PINGPONG});
 
-		grpSongs = new FlxTypedSpriteGroup<FlxSprite>();
+		grpSongs = new FlxTypedGroup<Alphabet>();
 		add(grpSongs);
 
 		for (i in 0...songs.length)
 		{
-			var songText:FlxSprite = new FlxSprite(0, (70 * i) + 30).loadGraphic(Paths.image('freeplaySongText/' + songs[i], 'shared'));
-			songText.antialiasing = ClientPrefs.globalAntialiasing;
-			songText.screenCenter();
-			songText.x += 150;
-			songText.ID = i;
+			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
+			songText.isMenuItem = true;
+			songText.targetY = i;
 			grpSongs.add(songText);
+
+			if (songText.width > 980)
+			{
+				var textScale:Float = 980 / songText.width;
+				songText.scale.x = textScale;
+				for (letter in songText.lettersArray)
+				{
+					letter.x *= textScale;
+					letter.offset.x *= textScale;
+				}
 
 			Paths.currentModDirectory = songs[i].folder;
 
@@ -238,7 +246,7 @@ class FreeplayState extends MusicBeatState
 		if (Math.abs(lerpRating - intendedRating) <= 0.01)
 			lerpRating = intendedRating;
 			
-		grpSongs.forEach(function(item:FlxSprite)
+		/*grpSongs.forEach(function(item:FlxSprite)
 		{
 			var lerpVal:Float = CoolUtil.boundTo(elapsed * 10, 0, 1);
 			var lastAngle:Float = item.angle;
@@ -251,7 +259,7 @@ class FreeplayState extends MusicBeatState
 			{
 				item.angle = FlxMath.lerp(item.angle, 200 + -40 * Math.abs(item.y), lerpVal);
 			}
-		});
+		});*/
 		var ratingSplit:Array<String> = Std.string(Highscore.floorDecimal(lerpRating * 100, 2)).split('.');
 		if(ratingSplit.length < 2) { //No decimals, add an empty space
 			ratingSplit.push('');
@@ -438,23 +446,18 @@ class FreeplayState extends MusicBeatState
 
 		var bullShit:Int = 0;
 
-		grpSongs.forEach(function(item:FlxSprite)
+		for (item in grpSongs.members)
 		{
-			item.y = bullShit - curSelected;
+			item.targetY = bullShit - curSelected;
 			bullShit++;
 
 			// item.setGraphicSize(Std.int(item.width * 0.8));
+			item.alpha = 0.6;
 
-			if (item.ID != curSelected)
-			{
+			if (item.targetY == 0) {
 				item.alpha = 1;
-				// item.setGraphicSize(Std.int(item.width));
 			}
-			else
-			{
-				item.alpha = 0.6;
-			}
-		});
+
 
 		Paths.currentModDirectory = songs[curSelected].folder;
 		PlayState.storyWeek = songs[curSelected].week;
