@@ -458,7 +458,7 @@ class FreeplayState extends MusicBeatState
 			if (item.targetY == 0) {
 				item.alpha = 1;
 			}
-
+		}
 
 		Paths.currentModDirectory = songs[curSelected].folder;
 		PlayState.storyWeek = songs[curSelected].week;
