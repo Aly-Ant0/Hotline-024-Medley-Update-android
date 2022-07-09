@@ -952,16 +952,18 @@ class PlayState extends MusicBeatState
 				add(momogogoBG);
 
 			case 'astral': // pq as planta da mãe ta aqui
-				matzuBG = new BGSprite('matzu/BG1', 0, 0, 0.1, 0.1);
+				matzuBG = new BGSprite('matzu/BG', 0, 0, 0.1, 0.1);
 				matzuBG.updateHitbox();
 				add(matzuBG);
 
-				matzuDESK = new BGSprite('matzu/DES', 0, 0, 0.2, 0.2);
+				matzuDESK = new BGSprite('matzu/DES', 0, 0, 0, 0);
 				matzuDESK.updateHitbox();
+				matzuDESK.y -= 20;
 
 				asPlantadaMinhaMae = new BGSprite('matzu/PLAMTS', 0, 0, 1.1, 1.1);
 				asPlantadaMinhaMae.updateHitbox();
 
+				// quando ta tudo fucked twisted
 				matzuFudida1 = new BGSprite('matzu/2/BG1', 0, 0, 0.1, 0.1);
 				matzuFudida1.updateHitbox();
 				matzuFudida1.visible = false;
@@ -987,8 +989,9 @@ class PlayState extends MusicBeatState
 				matzuFudida5.visible = false;
 				add(matzuFudida5);
 
-				matzuFudida6 = new BGSprite('matzu/2/desk2', 0, 0, 0.2, 0.2);
+				matzuFudida6 = new BGSprite('matzu/2/desk2', 0, 0, 0, 0);
 				matzuFudida6.updateHitbox();
+				matzuFudida6.y -= 20;
 				matzuFudida6.visible = false;
 
 				matzuFudida7 = new BGSprite('matzu/2/plamts2', 0, 0, 1.1, 1.1);
@@ -1742,6 +1745,15 @@ class PlayState extends MusicBeatState
 		}
 		*/
 
+		if (songName == 'uncanny-valley') {
+			iconP2.visible = false;
+		}
+		if (songName == 'astral-projection') {
+			iconP1.visible = false;
+			iconP2.visible = false;
+			healthBarBG.visible = false;
+			healthBar.visible = false;
+		}
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
 		}
@@ -3454,14 +3466,9 @@ class PlayState extends MusicBeatState
 		}
 		
 		//if (!note.isSustainNote) {
-		if (songHits % 0 > 1) {
-			new FlxTimer().start(3.5, function(tmr:FlxTimer) {
-				scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (elapsed * 30), 1, 0)));
-				songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (elapsed * 30), 0, 1)));
-				if (songHits % 0 > 1) {
-					tmr.reset(3.5);
-				}
-			});
+		if (!isComboTime) {
+			scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (elapsed * 30), 1, 0)));
+			songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (elapsed * 30), 0, 1)));
 		}
 		//}
 
@@ -4653,69 +4660,65 @@ class PlayState extends MusicBeatState
 			}
 			combo++;
 				// eu tenho que pensar num bagui que faz que apartir do primeiro combo nao spawna mais combo glow pq meu cell quase morreu dps de eu testar lol
-				new FlxTimer().start(3.5, function(tmr:FlxTimer)
-				{
-					// se tiver visível é claro né meu fi ou fia sla
-					combo = 0;
-					FlxFlicker.flicker(combotxt1, 1.5, 0.10, false, false);
-					FlxTween.tween(combotxt1, {alpha: 0}, 1.5, {
-						ease: FlxEase.quadInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							combotxt1.kill();
+						if (!isComboTime) {
+						// se tiver visível é claro né meu fi ou fia sla
+							combo = 0;
+							FlxFlicker.flicker(combotxt1, 1.5, 0.10, false, false);
+							FlxTween.tween(combotxt1, {alpha: 0}, 1.5, {
+								ease: FlxEase.quadInOut,
+								onComplete: function(twn:FlxTween)
+								{
+									combotxt1.kill();
+								}
+							});
+							FlxFlicker.flicker(combotxt2, 1.5, 0.10, false, false);
+							FlxTween.tween(combotxt2, {alpha: 0}, 1.5, {
+								ease: FlxEase.quadInOut,
+								onComplete: function(twn:FlxTween)
+								{
+									combotxt2.kill();
+								}
+							});
+							FlxTween.tween(comboGlow, {alpha: 0}, 1.5, {
+								ease: FlxEase.quadInOut,
+								onComplete: function(twn:FlxTween)
+								{
+									comboGlow.kill();
+								}
+							});
+							if (FlxG.random.bool(25.5))
+							{
+								combotxt1.text = 'whoops...';
+							}
+							if (FlxG.random.bool(90))
+							{
+								combotxt1.text = 'Perfect!';
+							}
+							if (FlxG.random.bool(70))
+							{
+								combotxt1.text = 'Great!';
+							}
+						}
+				if (comboTwn != null) {
+					comboTwn.cancel();
+				}
+					combotxt1.scale.x += 0.875;
+					combotxt1.scale.y += 0.875;
+					comboTwn = FlxTween.tween(combotxt1.scale, {x: 1, y: 1}, 0.2, {
+						onComplete: function(twn:FlxTween) {
+							comboTwn = null;
 						}
 					});
-					FlxFlicker.flicker(combotxt2, 1.5, 0.10, false, false);
-					FlxTween.tween(combotxt2, {alpha: 0}, 1.5, {
-						ease: FlxEase.quadInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							combotxt2.kill();
+				if (comboTwn2 != null) {
+					comboTwn2.cancel();
+				}
+					combotxt2.scale.x += 0.875;
+					combotxt2.scale.y += 0.875;
+					comboTwn2 = FlxTween.tween(combotxt2.scale, {x: 1, y: 1}, 0.2, {
+						onComplete: function(twn:FlxTween) {
+							comboTwn2 = null;
 						}
 					});
-					FlxTween.tween(comboGlow, {alpha: 0}, 1.5, {
-						ease: FlxEase.quadInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							comboGlow.kill();
-						}
-					});
-					if (FlxG.random.bool(25.5))
-					{
-						combotxt1.text = 'whoops...';
-					}
-					if (FlxG.random.bool(90))
-					{
-						combotxt1.text = 'Perfect!';
-					}
-					if (FlxG.random.bool(70))
-					{
-						combotxt1.text = 'Great!';
-					}
-					if (songHits % 0 > 1) {
-						tmr.reset(3.5);
-					}
-				});
-			if (comboTwn != null) {
-				comboTwn.cancel();
-			}
-				combotxt1.scale.x += 0.875;
-				combotxt1.scale.y += 0.875;
-				comboTwn = FlxTween.tween(combotxt1.scale, {x: 1, y: 1}, 0.2, {
-					onComplete: function(twn:FlxTween) {
-						comboTwn = null;
-					}
-				});
-			if (comboTwn2 != null) {
-				comboTwn2.cancel();
-			}
-				combotxt2.scale.x += 0.875;
-				combotxt2.scale.y += 0.875;
-				comboTwn2 = FlxTween.tween(combotxt2.scale, {x: 1, y: 1}, 0.2, {
-					onComplete: function(twn:FlxTween) {
-						comboTwn2 = null;
-					}
-				});
 		}
 
 		 /* 
@@ -5101,6 +5104,12 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
+				new FlxTimer().start(3.5, function(tmr:FlxTimer) {
+					isComboTime = true;
+					if (!note.isSustainNote) {
+						tmr.reset(3.5)
+					}
+				});
 			}
 			health += note.hitHealth * healthGain;
 
