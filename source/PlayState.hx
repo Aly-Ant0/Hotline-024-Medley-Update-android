@@ -1026,7 +1026,7 @@ class PlayState extends MusicBeatState
 
 				idkWhatIsthat = new BGSprite('ena/ENA-5', 0, 20, 1.1, 1.1);
 				idkWhatIsthat.updateHitbox();
-				add(idkWhatIsthat);
+
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
 					halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
@@ -1408,6 +1408,7 @@ class PlayState extends MusicBeatState
 
 		if (curStage == 'ena') {
 			add(enaOverlay);
+			add(idkWhatIsthat);
 		}
 
 		switch(curStage)
@@ -5140,7 +5141,7 @@ class PlayState extends MusicBeatState
 				new FlxTimer().start(3.5, function(tmr:FlxTimer) {
 					isComboTime = true;
 					if (!note.isSustainNote) {
-						tmr.reset(3.5)
+						tmr.reset(3.5);
 					}
 				});
 			}
