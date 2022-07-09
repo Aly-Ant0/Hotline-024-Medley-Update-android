@@ -94,7 +94,7 @@ class ChartingState extends MusicBeatState
 		['Change Character', "Value 1: Character to change (Dad, BF, GF)\nValue 2: New character's name"],
 		['Change Scroll Speed', "Value 1: Scroll Speed Multiplier (1 is default)\nValue 2: Time it takes to change fully in seconds."],
 		['Set Property', "Value 1: Variable name\nValue 2: New value"],
-		['Flash', "Value 1: nothing,\nValue 2: nothing to lol"]
+		['Astral Event', "just for astral projection, you cant put this in others songs."]
 	];
 
 	var _file:FileReference;
