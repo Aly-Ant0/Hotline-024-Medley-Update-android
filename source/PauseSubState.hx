@@ -75,7 +75,7 @@ class PauseSubState extends MusicBeatSubstate
 		bgstuff.add(sidebar);
 
 		for (item in bgstuff.members) {
-			FlxTween.tween(item, {x: 0}, 0.25 + (i * 0.25), {ease: FlxEase.linear, onComplete: function(twn:FlxTween) // i get this code from kade engine main menu
+			FlxTween.tween(item, {x: 0}, 0.25, {ease: FlxEase.linear, onComplete: function(twn:FlxTween) // i get this code from kade engine main menu
 			{
 				//finishedFunnyMove = true; 
 				changeSelection();
@@ -178,7 +178,7 @@ class PauseSubState extends MusicBeatSubstate
 					}
 					PlayState.cancelMusicFadeTween();
 					FlxG.sound.playMusic(Paths.music('nightlight'), 0);
-					FlxG.sound.fadeIn(4, 4.5, 6, 8);
+					FlxG.sound.music.fadeIn(4, 0, 0.8);
 					PlayState.changedDifficulty = false;
 					PlayState.chartingMode = false;
 			}
