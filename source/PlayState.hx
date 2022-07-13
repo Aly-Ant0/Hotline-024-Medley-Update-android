@@ -4477,7 +4477,7 @@ class PlayState extends MusicBeatState
 				if(FlxTransitionableState.skipNextTransIn) {
 					CustomFadeTransition.nextCamera = null;
 				}
-				MusicBeatState.switchState(new ExtrasScreen());
+				MusicBeatState.switchState(new CodeScreen());
 				FlxG.sound.playMusic(Paths.music('codemenu'), 0);
 				FlxG.sound.music.fadeIn(4, 0, 0.8);
 				changedDifficulty = false;
