@@ -5121,7 +5121,7 @@ class PlayState extends MusicBeatState
 				combo++;
 				new FlxTimer().start(3.5, function(tmr:FlxTimer) {
 					isComboTime = true;
-					if (!note.isSustainNote) {
+					else if (!note.isSustainNote) {
 						tmr.reset(3.5);
 					}
 				});
