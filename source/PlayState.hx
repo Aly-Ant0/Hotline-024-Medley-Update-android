@@ -5816,8 +5816,6 @@ class PlayState extends MusicBeatState
 		if(chartingMode) return null;
 
 		var usedPractice:Bool = (ClientPrefs.getGameplaySetting('practice', false) || ClientPrefs.getGameplaySetting('botplay', false));
-	var curLight:Int = -1;
-	var curLightEvent:Int = -1;
 	for (i in 0...achievesToCheck.length) {
 			var achievementName:String = achievesToCheck[i];
 			if(!Achievements.isAchievementUnlocked(achievementName) && !cpuControlled) {
@@ -5896,4 +5894,6 @@ class PlayState extends MusicBeatState
 		return null;
 	}
 	#end
+	var curLight:Int = -1;
+	var curLightEvent:Int = -1;
 }
