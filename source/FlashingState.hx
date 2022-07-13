@@ -9,6 +9,7 @@ import flixel.effects.FlxFlicker;
 import lime.app.Application;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.tweens.FlxTween;
+import flixel.addons.display.FlxBackdrop;
 import flixel.util.FlxTimer;
 
 class FlashingState extends MusicBeatState
@@ -20,24 +21,41 @@ class FlashingState extends MusicBeatState
 	{
 		super.create();
 
-		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('hotline/flashing/bg'), 0.2, 0.2, true, false);
+		bg.scrollFactor.set();
+		bg.setGraphicSize(Std.int(bg.width * 1.175));
+		bg.velocity.x = 90;
+		bg.updateHitbox();
+		bg.screenCenter();
+		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
 
 		warnText = new FlxText(0, 0, FlxG.width,
-			"Hey, watch out!\n
-			This Mod contains some flashing lights!\n
-			Press ENTER to disable them now or go to Options Menu.\n
-			Press ESCAPE to ignore this message.\n
-			You've been warned!",
-			32);
-		warnText.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER);
+			"hey you, thanks for playing this recreation!\n
+      this recreation is made by\n
+      MAYKOLLYOUTUBE and Alyant\n
+      we hope you all enjoy it\n credits in the credits menu\n to the original creators \n of hotline 024! press A to play",
+			30);
+		warnText.setFormat("goodbyeDespai", 30, FlxColor.WHITE, CENTER);
 		warnText.screenCenter(Y);
 		add(warnText);
 
 		#if android
-		addVirtualPad(NONE, A_B);
+		addVirtualPad(NONE, A);
 		#end
 	}
+
+			// var music:FlxSound = new FlxSound();
+			// music.loadStream(Paths.music('nightlight'));
+			// FlxG.sound.list.add(music);
+			// music.play();
+
+			if(FlxG.sound.music == null) {
+				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
+
+				FlxG.sound.music.fadeIn(4, 0, 0.7);
+			}
+		}
 
 	override function update(elapsed:Float)
 	{
