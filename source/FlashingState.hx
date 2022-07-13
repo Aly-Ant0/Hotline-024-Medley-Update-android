@@ -21,7 +21,7 @@ class FlashingState extends MusicBeatState
 	{
 		super.create();
 
-		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('hotline/flashing/bg'), 0.2, 0.2, true, false);
+		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('flashing/bg'), 0.2, 0.2, true, false);
 		bg.scrollFactor.set();
 		bg.setGraphicSize(Std.int(bg.width * 1.175));
 		bg.velocity.x = 90;
