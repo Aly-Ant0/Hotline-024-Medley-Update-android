@@ -19,6 +19,8 @@ class PauseSubState extends MusicBeatSubstate
 {
 	var grpMenuShit:FlxTypedGroup<FlxSprite>;
 	var bgstuff:FlxTypedGroup<FlxSprite>;
+	var firstStart:Bool = true;
+	var finishedFunnyMove:Bool = false;
 
 	var menuItems:Array<String> = [];
 	var menuItemsOG:Array<String> = ['resume', 'restart', 'botplay', 'practice', 'exit'];
@@ -48,6 +50,7 @@ class PauseSubState extends MusicBeatSubstate
 		pauseMusic = new FlxSound();
 		pauseMusic.loadEmbedded(Paths.music('memories'), true, true);
 		pauseMusic.play(false, FlxG.random.int(0, Std.int(pauseMusic.length / 2)));
+		pauseMusic.fadeIn(4, 0, 0.36);
 
 		FlxG.sound.list.add(pauseMusic);
 
@@ -61,37 +64,39 @@ class PauseSubState extends MusicBeatSubstate
 
 		var cubes1:FlxSprite = new FlxSprite().loadGraphic(Paths.image('pause/cubes1', 'shared'));
 		cubes1.screenCenter();
-		cubes1.x = FlxG.width * 1.8;
+		cubes1.x -= FlxG.width * 1.8;
 		bgstuff.add(cubes1);
 
 		var cubes2:FlxSprite = new FlxSprite().loadGraphic(Paths.image('pause/cubes2', 'shared'));
 		cubes2.screenCenter();
-		cubes2.x = FlxG.width * 1.8;
+		cubes2.x -= FlxG.width * 1.8;
 		bgstuff.add(cubes2);
 
 		var sidebar:FlxSprite = new FlxSprite().loadGraphic(Paths.image('pause/sidebar', 'shared'));
 		sidebar.screenCenter();
-		sidebar.x = FlxG.width * 1.8;
+		sidebar.x -= FlxG.width * 1.8;
 		bgstuff.add(sidebar);
 
 		for (i in 0...3) {
-			for (item in bgstuff.members) {
-				FlxTween.tween(item, {x: 0}, 0.25, {ease: FlxEase.linear, onComplete: function(twn:FlxTween) // i get this code from kade engine main menu
-				{
-					//finishedFunnyMove = true; 
-					changeSelection();
-				}});
-			}
+			if (firstStart)
+				for (item in bgstuff.members) {
+					FlxTween.tween(item, {x: 0}, 0.25, {ease: FlxEase.linear, onComplete: function(twn:FlxTween) // i get this code from kade engine main menu
+					{
+						//finishedFunnyMove = true; 
+						changeSelection();
+					}});
+				}
 		}
 
 		grpMenuShit = new FlxTypedGroup<FlxSprite>();
 		add(grpMenuShit);
 
 		regenMenu();
-		//cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
+		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
 
 		#if android
 		addVirtualPad(UP_DOWN, A);
+		addPadCamera();
 		#end
 	}
 
@@ -171,16 +176,22 @@ class PauseSubState extends MusicBeatSubstate
 						MusicBeatState.switchState(new StoryMenuState());
 					} if(PlayState.isCode) {
 						MusicBeatState.switchState(new CodeScreen());
+						FlxG.sound.playMusic(Paths.music('codemenu'), 0);
+						FlxG.sound.music.fadeIn(4, 0, 0.8);
 					} if (PlayState.isExtras) {
 						MusicBeatState.switchState(new ExtrasScreen());
+						FlxG.sound.playMusic(Paths.music('nightlight'), 0);
+						FlxG.sound.music.fadeIn(4, 0, 0.8);
 					} if (PlayState.isCovers) {
 						MusicBeatState.switchState(new CoversScreen());
+						FlxG.sound.playMusic(Paths.music('nightlight'), 0);
+						FlxG.sound.music.fadeIn(4, 0, 0.8);
 					} else {
 						MusicBeatState.switchState(new FreeplayState());
+						FlxG.sound.playMusic(Paths.music('nightlight'), 0);
+						FlxG.sound.music.fadeIn(4, 0, 0.8);
 					}
 					PlayState.cancelMusicFadeTween();
-					FlxG.sound.playMusic(Paths.music('nightlight'), 0);
-					FlxG.sound.music.fadeIn(4, 0, 0.8);
 					PlayState.changedDifficulty = false;
 					PlayState.chartingMode = false;
 			}
@@ -213,23 +224,25 @@ class PauseSubState extends MusicBeatSubstate
 
 	function changeSelection(change:Int = 0):Void
 	{
-		curSelected += change;
-
-		FlxG.sound.play(Paths.sound('selectsfx'), 0.4);
-
-		if (curSelected < 0)
-			curSelected = menuItems.length - 1;
-		if (curSelected >= menuItems.length)
-			curSelected = 0;
+		if (finishedFunnyMove) {
+			curSelected += change;
+	
+			FlxG.sound.play(Paths.sound('selectsfx'), 0.78);
+	
+			if (curSelected < 0)
+				curSelected = menuItems.length - 1;
+			if (curSelected >= menuItems.length)
+				curSelected = 0;
+		}
 
 		//var bullShit:Int = 0;
 
 		for (item in grpMenuShit.members)
 		{
-			item.alpha = 0.36;
+			item.alpha = 0.38;
 			// item.setGraphicSize(Std.int(item.width * 0.8));
 
-			if (item.ID != curSelected)
+			if (item.ID == curSelected && finishedFunnyMove)
 			{
 				item.alpha = 1;
 				// item.setGraphicSize(Std.int(item.width));
@@ -250,13 +263,14 @@ class PauseSubState extends MusicBeatSubstate
 			item.screenCenter();
 			item.ID = i;
 			grpMenuShit.add(item);
-			item.x = FlxG.width * 1.6;
+			item.x -= 700;
 
-			FlxTween.tween(item, {x: 0}, 0.25 + (i * 0.25), {ease: FlxEase.linear, onComplete: function(twn:FlxTween) // i get this code from kade engine main menu
-			{
-				//finishedFunnyMove = true; 
-				changeSelection();
-			}});
+			if (firstStart)
+				FlxTween.tween(item, {x: 0}, 0.050, {ease: FlxEase.linear, onComplete: function(twn:FlxTween) // i get this code from kade engine main menu
+				{
+					finishedFunnyMove = true; 
+					changeSelection();
+				}});
 		}
 		curSelected = 0;
 		//changeSelection();
