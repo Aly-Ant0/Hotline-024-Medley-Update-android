@@ -367,7 +367,7 @@ class PlayState extends MusicBeatState
 	var comboTwn2:FlxTween;
 	var comboTwn3:FlxTween;
 	var scoreTxtTween:FlxTween;
-	//var comboTmr:FlxTimer;
+	var comboTmr:FlxTimer;
 
 	public static var campaignScore:Int = 0;
 	public static var campaignMisses:Int = 0;
@@ -5119,12 +5119,12 @@ class PlayState extends MusicBeatState
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
 				combo++;
-				new FlxTimer().start(3.5, function(tmr:FlxTimer) {
+				comboTmr = new FlxTimer().start(3.5, function(tmr:FlxTimer) {
 					isComboTime = true;
-					else if (!note.isSustainNote) {
-						tmr.reset(3.5);
-					}
 				});
+			}
+			else if (!note.isSustainNote) {
+				comboTmr.reset(3.5);
 			}
 			health += note.hitHealth * healthGain;
 
