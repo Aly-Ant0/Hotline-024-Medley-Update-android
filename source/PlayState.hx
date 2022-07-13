@@ -4457,7 +4457,8 @@ class PlayState extends MusicBeatState
 					CustomFadeTransition.nextCamera = null;
 				}
 				MusicBeatState.switchState(new CoversScreen());
-				FlxG.sound.playMusic(Paths.music('nightlight'));
+				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
+				FlxG.sound.music.fadeIn(4, 0, 0.8);
 				changedDifficulty = false;
 			}
 			if (isExtras)
@@ -4467,7 +4468,18 @@ class PlayState extends MusicBeatState
 					CustomFadeTransition.nextCamera = null;
 				}
 				MusicBeatState.switchState(new ExtrasScreen());
-				FlxG.sound.playMusic(Paths.music('nightlight'));
+				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
+				FlxG.sound.music.fadeIn(4, 0, 0.8);
+				changedDifficulty = false;
+			}
+			if (isCode) {
+				cancelMusicFadeTween();
+				if(FlxTransitionableState.skipNextTransIn) {
+					CustomFadeTransition.nextCamera = null;
+				}
+				MusicBeatState.switchState(new ExtrasScreen());
+				FlxG.sound.playMusic(Paths.music('codemenu'), 0);
+				FlxG.sound.music.fadeIn(4, 0, 0.8);
 				changedDifficulty = false;
 			}
 			else
@@ -4478,7 +4490,8 @@ class PlayState extends MusicBeatState
 					CustomFadeTransition.nextCamera = null;
 				}
 				MusicBeatState.switchState(new FreeplayState());
-				FlxG.sound.playMusic(Paths.music('nightlight'));
+				FlxG.sound.playMusic(Paths.music('nightlight', 0);
+				FlxG.sound.music.fadeIn(4, 0, 0.8);
 				changedDifficulty = false;
 			}
 			transitioning = true;
@@ -5123,7 +5136,7 @@ class PlayState extends MusicBeatState
 					isComboTime = true;
 				});
 			}
-			else if (!note.isSustainNote) {
+			if (!note.isSustainNote) {
 				comboTmr.reset(3.5);
 			}
 			health += note.hitHealth * healthGain;
