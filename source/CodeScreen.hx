@@ -43,7 +43,7 @@ class CodeScreen extends MusicBeatState
 
 	override function create()
 	{
-		//FlxG.mouse.visible = true;
+		FlxG.mouse.visible = false;
 
 		PlayState.isStoryMode = false;
 		PlayState.isCode = true;
@@ -70,7 +70,7 @@ class CodeScreen extends MusicBeatState
 		new FlxTimer().start(0.85, function(tmr:FlxTimer)
 		{
 			FlxTween.tween(bg, {alpha: 1}, 0.98, {ease: FlxEase.quadOut});
-			if (!showallcodes) {
+			if (showallcodes) {
 				FlxTween.tween(codes, {alpha: 1}, 0.98, {ease: FlxEase.quadOut});
 			}
 		});
@@ -160,7 +160,7 @@ class CodeScreen extends MusicBeatState
 						spr.color = 0xFF363636;
 
 						if(code.text.length < 4)
-							if(touch.justPressed)
+							if(touch.pressed)
 								code.text += spr.ID;
 								//clickButton = true;
 								switch (spr.ID) {
@@ -177,7 +177,7 @@ class CodeScreen extends MusicBeatState
 			}
 				switch(code.text) {
 					case '2480' | '2448' | '5141' | '2020' | '2151' | '1921' | '1391' | '8989' | '6120' | '2119':
-						code.color = FlxColor.GREEN;
+						code.color = 0xFF00FF1D;
 				}
 
 			if(controls.ACCEPT) {
@@ -269,8 +269,10 @@ class AllCodes extends MusicBeatState
 		if (controls.BACK) {
 			FlxG.sound.play(Paths.sound('backsfx'));
 			MusicBeatState.switchState(new CodeScreen());
-			CodeScreen.showallcodes = true;
-			FlxG.save.flush();
+			if (FlxG.save.data(showcodes)) {
+				CodeScreen.showallcodes = true;
+				ClientPrefs.saveSettings();
+			}
 		}
 
 		super.update(elapsed);
