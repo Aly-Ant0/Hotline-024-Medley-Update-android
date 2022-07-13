@@ -57,7 +57,7 @@ class PauseSubState extends MusicBeatSubstate
 		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		bg.alpha = 0.45;
 		bg.scrollFactor.set();
-		bgstuff.add(bg);
+		add(bg);
 
 		var cubes1:FlxSprite = new FlxSprite().loadGraphic(Paths.image('pause/cubes1', 'shared'));
 		cubes1.screenCenter();
@@ -74,12 +74,14 @@ class PauseSubState extends MusicBeatSubstate
 		sidebar.x = FlxG.width * 1.8;
 		bgstuff.add(sidebar);
 
-		for (item in bgstuff.members) {
-			FlxTween.tween(item, {x: 0}, 0.25, {ease: FlxEase.linear, onComplete: function(twn:FlxTween) // i get this code from kade engine main menu
-			{
-				//finishedFunnyMove = true; 
-				changeSelection();
-			}});
+		for (i in 0...3) {
+			for (item in bgstuff.members) {
+				FlxTween.tween(item, {x: 0}, 0.25, {ease: FlxEase.linear, onComplete: function(twn:FlxTween) // i get this code from kade engine main menu
+				{
+					//finishedFunnyMove = true; 
+					changeSelection();
+				}});
+			}
 		}
 
 		grpMenuShit = new FlxTypedGroup<FlxSprite>();
