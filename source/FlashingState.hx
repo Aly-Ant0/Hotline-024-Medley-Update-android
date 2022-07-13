@@ -39,7 +39,6 @@ class FlashingState extends MusicBeatState
 		#if android
 		addVirtualPad(NONE, A);
 		#end
-	}
 
 			// var music:FlxSound = new FlxSound();
 			// music.loadStream(Paths.music('nightlight'));
@@ -50,8 +49,8 @@ class FlashingState extends MusicBeatState
 				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
 
 				FlxG.sound.music.fadeIn(4, 0, 0.7);
-			}
 		}
+	}
 
 	override function update(elapsed:Float)
 	{
