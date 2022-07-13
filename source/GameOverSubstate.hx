@@ -23,19 +23,19 @@ class GameOverSubstate extends MusicBeatSubstate
 
 	var stageSuffix:String = "";
 
-	public static var characterName:String = 'bf-dead';
+	public static var characterName:String = 'death';
 	public static var deathSoundName:String = 'fnf_loss_sfx';
-	public static var loopSoundName:String = 'gameOver';
-	public static var endSoundName:String = 'gameOverEnd';
+	public static var loopSoundName:String = 'fatal-shot';
+	public static var endSoundName:String = 'selectsfx';
 	public static var vibrationTime:Int = 500;//milliseconds
 
 	public static var instance:GameOverSubstate;
 
 	public static function resetVariables() {
-		characterName = 'bf-dead';
+		characterName ='death';
 		deathSoundName = 'fnf_loss_sfx';
-		loopSoundName = 'gameOver';
-		endSoundName = 'gameOverEnd';
+		loopSoundName = 'fatal-shot';
+		endSoundName = 'selectsfx';
 		vibrationTime = 500;
 	}
 
@@ -113,10 +113,23 @@ class GameOverSubstate extends MusicBeatSubstate
 
 			if (PlayState.isStoryMode)
 				MusicBeatState.switchState(new StoryMenuState());
+			if (PlayState.isCovers)
+				MusicBeatState.switchState(new CoversScreen());
+				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
+				FlxG.sound.music.fadeIn(4, 0, 0.8);
+			if (PlayState.isExtras)
+				MusicBeatState.switchState(new ExtrasScreen());
+				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
+				FlxG.sound.music.fadeIn(4, 0, 0.8);
+			if (PlayState.isCode)
+				MusicBeatState.switchState(new CodeScreen());
+				FlxG.sound.playMusic(Paths.music('codemenu'), 0);
+				FlxG.sound.music.fadeIn(4, 0, 0.8);
 			else
+				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
+				FlxG.sound.music.fadeIn(4, 0, 0.8);
 				MusicBeatState.switchState(new FreeplayState());
 
-			FlxG.sound.playMusic(Paths.music('freakyMenu'));
 			PlayState.instance.callOnLuas('onGameOverConfirm', [false]);
 		}
 
@@ -173,6 +186,7 @@ class GameOverSubstate extends MusicBeatSubstate
 	function coolStartDeath(?volume:Float = 1):Void
 	{
 		FlxG.sound.playMusic(Paths.music(loopSoundName), volume);
+		FlxG.sound.music.fadeIn(4, 0, 0.8);
 	}
 
 	function endBullshit():Void
