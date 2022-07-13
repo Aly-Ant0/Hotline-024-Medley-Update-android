@@ -21,18 +21,18 @@ class FlashingState extends MusicBeatState
 	{
 		super.create();
 
-		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('flashing/bg'), 0.2, 0.2, true, false);
+		/*var bg:FlxBackdrop = new FlxBackdrop(Paths.image('flashing/bg'), 0.2, 0.2, true, false);
 		bg.scrollFactor.set();
 		bg.setGraphicSize(Std.int(bg.width * 1.175));
 		bg.velocity.x = 90;
 		bg.updateHitbox();
 		bg.screenCenter();
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
-		add(bg);
+		add(bg);*/
 
 		warnText = new FlxText(0, 0, FlxG.width,
 			"hey you, thanks for playing this recreation!\n this recreation is made by\n MAYKOLLYOUTUBE and Aly-Ant\n we hope you all enjoy it\n credits in the credits menu\n to the original creators \n of hotline 024! press A to play /n also you can disable the shaders in graphic options /n and enable some optimization options if you have a low end phone. /n thank you.", 30);
-		warnText.setFormat("goodbyeDespair", 30, FlxColor.WHITE, CENTER);
+		warnText.setFormat(Paths.font("goodbyeDespair.ttf"), 30, FlxColor.WHITE, CENTER);
 		warnText.screenCenter(Y);
 		add(warnText);
 
@@ -44,12 +44,6 @@ class FlashingState extends MusicBeatState
 			// music.loadStream(Paths.music('nightlight'));
 			// FlxG.sound.list.add(music);
 			// music.play();
-
-			if(FlxG.sound.music == null) {
-				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
-
-				FlxG.sound.music.fadeIn(4, 0, 0.7);
-		}
 	}
 
 	override function update(elapsed:Float)
@@ -63,7 +57,7 @@ class FlashingState extends MusicBeatState
 				if(!back) {
 					ClientPrefs.flashing = false;
 					ClientPrefs.saveSettings();
-					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxG.sound.play(Paths.sound('entersfx'));
 					FlxFlicker.flicker(warnText, 1, 0.1, false, true, function(flk:FlxFlicker) {
 						new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 							MusicBeatState.switchState(new TitleState());
