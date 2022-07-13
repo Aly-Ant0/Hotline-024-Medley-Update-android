@@ -961,13 +961,14 @@ class PlayState extends MusicBeatState
 				momogogoBG.offset.x = 0;
 				add(momogogoBG);
 
-			case 'astral': // pq as planta da mãe ta aqui
-				matzuBG = new BGSprite('matzu/BG', 0, 0, 0.1, 0.1);
-				matzuBG.updateHitbox();
+			case 'astral': // pq as planta da minha mãe ta aqui
+				matzuBG = new BGSprite('matzu/BG', null, null, 0.1, 0.1);
+				//matzuBG.updateHitbox();
+				matzuBG.screenCenter();
 				add(matzuBG);
 
 				matzuDESK = new BGSprite('matzu/DES', 0, 0, 0, 0);
-				matzuDESK.updateHitbox();
+				//matzuDESK.updateHitbox();
 				matzuDESK.y -= 20;
 
 				asPlantadaMinhaMae = new BGSprite('matzu/PLAMTS', 0, 0, 1.1, 1.1);
@@ -3500,7 +3501,7 @@ class PlayState extends MusicBeatState
 		}
 		
 		//if (!note.isSustainNote) {
-		if (!isComboTime) {
+		if (isComboTime) {
 			scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (elapsed * 30), 1, 0)));
 			songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (elapsed * 30), 0, 1)));
 		}
@@ -4567,26 +4568,32 @@ class PlayState extends MusicBeatState
 	//tryna do MS based judgment due to popular demand
 		var daRating:String = Conductor.judgeNote(note, noteDiff);
 
+		var rating:String = "";
+
 		switch (daRating)
 		{
 			case "shit": // shit
 				totalNotesHit += 0;
 				note.ratingMod = 0;
 				score = 50;
+				rating = "Shit!";
 				if(!note.ratingDisabled) shits++;
 			case "bad": // bad
 				totalNotesHit += 0.5;
 				note.ratingMod = 0.5;
 				score = 100;
+				rating = "bad!";
 				if(!note.ratingDisabled) bads++;
 			case "good": // good
 				totalNotesHit += 0.75;
 				note.ratingMod = 0.75;
 				score = 200;
+				rating = "good!";
 				if(!note.ratingDisabled) goods++;
 			case "sick": // sick
 				totalNotesHit += 1;
 				note.ratingMod = 1;
+				rating = "sick!"
 				if(!note.ratingDisabled) sicks++;
 		}
 		note.rating = daRating;
@@ -4654,7 +4661,7 @@ class PlayState extends MusicBeatState
 			combotxt1 = new FlxText();
 			combotxt1.size = 32;
 			combotxt1.color = FlxColor.WHITE;
-			combotxt1.text = daRating + "! x" + placement;
+			combotxt1.text = rating + " x" + combo;
 			combotxt1.setPosition(579, 80);
 			combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt1.scrollFactor.set();
@@ -4668,14 +4675,15 @@ class PlayState extends MusicBeatState
 			combotxt2.scrollFactor.set();
 			combotxt2.borderSize = 1.25;
 			combotxt2.size = 26;
-			combotxt2.setPosition(579, 110);
+			combotxt2.setPosition(579, null);
+			combotxt2.y = combotxt1.y + 20;
 			combotxt2.text = "" + scoreCount;
 			combotxt2.cameras = [camHUD];
 			//add(combotxt2);
 
 			if(ClientPrefs.downScroll) {
 				combotxt1.setPosition(579, 585);
-				combotxt2.setPosition(579, 600);
+				//combotxt2.setPosition(579, 600);
 				comboGlow.setPosition(579, 585);
 			}
 			if(ClientPrefs.middleScroll) {
@@ -4692,9 +4700,8 @@ class PlayState extends MusicBeatState
 				add(combotxt1);
 				add(combotxt2);
 			}
-			combo++;
 				// eu tenho que pensar num bagui que faz que apartir do primeiro combo nao spawna mais combo glow pq meu cell quase morreu dps de eu testar lol
-						if (!isComboTime) {
+						if (isComboTime) {
 						// se tiver visível é claro né meu fi ou fia sla
 							combo = 0;
 							FlxFlicker.flicker(combotxt1, 1.5, 0.10, false, false);
@@ -5138,6 +5145,7 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
+				combo++;
 				new FlxTimer().start(3.5, function(tmr:FlxTimer) {
 					isComboTime = true;
 					if (!note.isSustainNote) {
