@@ -67,7 +67,7 @@ class CodeScreen extends MusicBeatState
 		codes.antialiasing = ClientPrefs.globalAntialiasing;
 		add(codes);
 
-		new FlxTimer().start(0.85, function(tmr:FlxTimer)
+		new FlxTimer().start(1.35, function(tmr:FlxTimer)
 		{
 			FlxTween.tween(bg, {alpha: 1}, 0.98, {ease: FlxEase.quadOut});
 			if (showallcodes) {
@@ -160,15 +160,10 @@ class CodeScreen extends MusicBeatState
 						spr.color = 0xFF363636;
 
 						if(code.text.length < 4)
-							if(touch.pressed)
+							if(touch.justPressed) {
 								code.text += spr.ID;
-								//clickButton = true;
-								switch (spr.ID) {
-									case 0 | 1 | 2 | 3 | 4 | 5:
-										FlxG.sound.play(Paths.sound('codeUp'));
-									case 6 | 7 | 8 | 9:
-										FlxG.sound.play(Paths.sound('codeDown'));
-								}
+								FlxG.sound.play(Paths.sound('codeUp'));
+							}
 					}
 					else {
 						spr.color = 0xFFFFFFFF;
