@@ -111,25 +111,24 @@ class GameOverSubstate extends MusicBeatSubstate
 			PlayState.deathCounter = 0;
 			PlayState.seenCutscene = false;
 
-			if (PlayState.isStoryMode) {
+			if (PlayState.isStoryMode)
 				MusicBeatState.switchState(new StoryMenuState());
-			} if (PlayState.isCovers) {
+			if (PlayState.isCovers)
 				MusicBeatState.switchState(new CoversScreen());
 				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
 				FlxG.sound.music.fadeIn(4, 0, 0.8);
-			} if (PlayState.isExtras) {
+			if (PlayState.isExtras)
 				MusicBeatState.switchState(new ExtrasScreen());
 				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
 				FlxG.sound.music.fadeIn(4, 0, 0.8);
-			} if (PlayState.isCode) {
+			if (PlayState.isCode)
 				MusicBeatState.switchState(new CodeScreen());
 				FlxG.sound.playMusic(Paths.music('codemenu'), 0);
 				FlxG.sound.music.fadeIn(4, 0, 0.8);
-			} else {
+			else 
 				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
 				FlxG.sound.music.fadeIn(4, 0, 0.8);
 				MusicBeatState.switchState(new FreeplayState());
-			}
 
 			PlayState.instance.callOnLuas('onGameOverConfirm', [false]);
 		}
@@ -160,10 +159,10 @@ class GameOverSubstate extends MusicBeatSubstate
 						}
 					});
 				}
-				else
-				{
-					coolStartDeath();
-				}
+			}
+			else
+			{
+				coolStartDeath();
 				boyfriend.startedDeath = true;
 			}
 		}
@@ -184,9 +183,9 @@ class GameOverSubstate extends MusicBeatSubstate
 
 	var isEnding:Bool = false;
 
-	function coolStartDeath(?volume:Float = 1):Void
+	function coolStartDeath():Void
 	{
-		FlxG.sound.playMusic(Paths.music(loopSoundName), volume);
+		FlxG.sound.playMusic(Paths.music(loopSoundName), 0);
 		FlxG.sound.music.fadeIn(4, 0, 0.8);
 	}
 
