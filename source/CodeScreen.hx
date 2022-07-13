@@ -269,7 +269,7 @@ class AllCodes extends MusicBeatState
 		if (controls.BACK) {
 			FlxG.sound.play(Paths.sound('backsfx'));
 			MusicBeatState.switchState(new CodeScreen());
-			if (FlxG.save.data(showcodes)) {
+			if (FlxG.save.data.showcodes) { // show all codes of the musics
 				CodeScreen.showallcodes = true;
 				ClientPrefs.saveSettings();
 			}
