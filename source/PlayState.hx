@@ -4593,7 +4593,7 @@ class PlayState extends MusicBeatState
 			case "sick": // sick
 				totalNotesHit += 1;
 				note.ratingMod = 1;
-				rating = "sick!"
+				rating = "sick!";
 				if(!note.ratingDisabled) sicks++;
 		}
 		note.rating = daRating;
