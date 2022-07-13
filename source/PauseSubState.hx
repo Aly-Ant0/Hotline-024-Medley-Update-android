@@ -224,10 +224,10 @@ class PauseSubState extends MusicBeatSubstate
 
 		for (item in grpMenuShit.members)
 		{
-			item.alpha = 0.6;
+			item.alpha = 0.36;
 			// item.setGraphicSize(Std.int(item.width * 0.8));
 
-			if item.ID != curSelected)
+			if (item.ID != curSelected)
 			{
 				item.alpha = 1;
 				// item.setGraphicSize(Std.int(item.width));
