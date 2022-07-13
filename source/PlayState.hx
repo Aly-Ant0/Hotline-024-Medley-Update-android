@@ -962,7 +962,7 @@ class PlayState extends MusicBeatState
 				add(momogogoBG);
 
 			case 'astral': // pq as planta da minha mãe ta aqui
-				matzuBG = new BGSprite('matzu/BG', null, null, 0.1, 0.1);
+				matzuBG = new BGSprite('matzu/BG', 0, 0, 0.1, 0.1);
 				//matzuBG.updateHitbox();
 				matzuBG.screenCenter();
 				add(matzuBG);
@@ -4675,7 +4675,7 @@ class PlayState extends MusicBeatState
 			combotxt2.scrollFactor.set();
 			combotxt2.borderSize = 1.25;
 			combotxt2.size = 26;
-			combotxt2.setPosition(579, null);
+			//combotxt2.setPosition(579, 0);
 			combotxt2.y = combotxt1.y + 20;
 			combotxt2.text = "" + scoreCount;
 			combotxt2.cameras = [camHUD];
