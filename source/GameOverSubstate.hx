@@ -111,24 +111,30 @@ class GameOverSubstate extends MusicBeatSubstate
 			PlayState.deathCounter = 0;
 			PlayState.seenCutscene = false;
 
-			if (PlayState.isStoryMode)
-				MusicBeatState.switchState(new StoryMenuState());
 			if (PlayState.isCovers)
+			{
 				MusicBeatState.switchState(new CoversScreen());
 				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
 				FlxG.sound.music.fadeIn(4, 0, 0.8);
+			}
 			if (PlayState.isExtras)
+			{
 				MusicBeatState.switchState(new ExtrasScreen());
 				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
 				FlxG.sound.music.fadeIn(4, 0, 0.8);
+			}
 			if (PlayState.isCode)
+			{
 				MusicBeatState.switchState(new CodeScreen());
 				FlxG.sound.playMusic(Paths.music('codemenu'), 0);
 				FlxG.sound.music.fadeIn(4, 0, 0.8);
-			else 
+			}
+			else
+			{
 				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
 				FlxG.sound.music.fadeIn(4, 0, 0.8);
 				MusicBeatState.switchState(new FreeplayState());
+			}
 
 			PlayState.instance.callOnLuas('onGameOverConfirm', [false]);
 		}
