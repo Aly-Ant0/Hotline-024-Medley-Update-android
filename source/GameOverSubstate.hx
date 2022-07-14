@@ -153,7 +153,7 @@ class GameOverSubstate extends MusicBeatSubstate
 				if (PlayState.SONG.stage == 'tank')
 				{
 					playingDeathSound = true;
-					coolStartDeath(0.2);
+					//coolStartDeath(0.2);
 					
 					var exclude:Array<Int> = [];
 					//if(!ClientPrefs.cursing) exclude = [1, 3, 8, 13, 17, 21];
