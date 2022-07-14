@@ -177,6 +177,8 @@ class PlayState extends MusicBeatState
 	public var health:Float = 1;
 	public var combo:Int = 0;
 
+	var controlHoldArray:Array<Bool> = [left, down, up, right];
+
 	private var healthBarBG:AttachedSprite;
 	public var healthBar:FlxBar;
 	var songPercent:Float = 0;
@@ -916,9 +918,9 @@ class PlayState extends MusicBeatState
 					SANESSS.visible = false;*/
 			case 'boo':
 				if(!ClientPrefs.dontShowBG)
-					var booBG:BGSprite = new BGSprite('boo/Boo-1', -50, -70, 0.7, 0.7);
+					booBG = new BGSprite('boo/Boo-1', -50, -70, 0.7, 0.7);
 					booBG.updateHitbox();
-					 add(booBG);
+					add(booBG);
 	
 					var booBG2:BGSprite = new BGSprite('boo/Boo-2', 25, 50, 0.85, 0.85);
 					booBG2.updateHitbox();
@@ -4946,7 +4948,6 @@ class PlayState extends MusicBeatState
 		var right = controls.NOTE_RIGHT;
 		var down = controls.NOTE_DOWN;
 		var left = controls.NOTE_LEFT;
-		var controlHoldArray:Array<Bool> = [left, down, up, right];
 		
 		// TO DO: Find a better way to handle controller inputs, this should work for now
 		if(ClientPrefs.controllerMode)
