@@ -11,7 +11,13 @@ class ClientPrefs {
 	public static var middleScroll:Bool = false;
 	public static var showFPS:Bool = #if android false #else true #end;
 	public static var flashing:Bool = true;
+
+	// optimization options
+	public static var dontShowGF:Bool = false; 
+	public static var dontShowBG:Bool = false;
+	public static var shaders:Bool = false;
 	public static var globalAntialiasing:Bool = true;
+
 	public static var noteSplashes:Bool = true;
 	public static var lowQuality:Bool = false;
 	public static var framerate:Int = 60;
@@ -112,6 +118,8 @@ class ClientPrefs {
 		FlxG.save.data.timeBarType = timeBarType;
 		FlxG.save.data.scoreZoom = scoreZoom;
 		FlxG.save.data.noReset = noReset;
+		FlxG.save.data.dontShowGF = dontShowGF;
+		FlxG.save.data.dontShowBG = dontShowBG;
 		FlxG.save.data.healthBarAlpha = healthBarAlpha;
 		FlxG.save.data.comboOffset = comboOffset;
 		FlxG.save.data.achievementsMap = Achievements.achievementsMap;
@@ -154,6 +162,12 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.globalAntialiasing != null) {
 			globalAntialiasing = FlxG.save.data.globalAntialiasing;
+		}
+		if(FlxG.save.data.dontShowBG != null) {
+			dontShowBG = FlxG.save.data.dontShowBG;
+		}
+		if(FlxG.save.data.dontShowGF != null) {
+			dontShowGF = FlxG.save.data.dontShowGF;
 		}
 		if(FlxG.save.data.noteSplashes != null) {
 			noteSplashes = FlxG.save.data.noteSplashes;
