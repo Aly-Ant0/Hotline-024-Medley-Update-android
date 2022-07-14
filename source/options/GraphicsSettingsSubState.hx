@@ -33,16 +33,25 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 {
 	public function new()
 	{
-		title = 'Graphics';
+		title = 'Graphic Settings';
 		rpcTitle = 'Graphics Settings Menu'; //for Discord Rich Presence
 
 		//I'd suggest using "Low Quality" as an example for making your own option since it is the simplest here
-		var option:Option = new Option('Low Quality', //Name
-			'If checked, disables some background details,\ndecreases loading times and improves performance.', //Description
-			'lowQuality', //Save data variable name
+
+		var option:Option = new Option("Don't show Girlfriend", //Name
+			"If checked, don't girlfriend in the background, \nif you have a low-end phone i recommend you enable this for better performance.", //Description
+			'dontShowGF', //Save data variable name
 			'bool', //Variable type
 			false); //Default value
 		addOption(option);
+
+		var option:Option = new Option("Don't show background", //Name
+			"If checked, don't show the background, \nif you have a low-end phone i recommend you enable this for better performance.", //Description
+			'dontShowBG', //Save data variable name
+			'bool', //Variable type
+			false); //Default value
+		addOption(option);
+
 
 		var option:Option = new Option('Anti-Aliasing',
 			'If unchecked, disables anti-aliasing, increases performance\nat the cost of sharper visuals.',
