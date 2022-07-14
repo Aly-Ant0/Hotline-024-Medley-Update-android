@@ -177,7 +177,6 @@ class PlayState extends MusicBeatState
 	public var health:Float = 1;
 	public var combo:Int = 0;
 
-	var controlHoldArray:Array<Bool> = [left, down, up, right];
 
 	private var healthBarBG:AttachedSprite;
 	public var healthBar:FlxBar;
@@ -599,7 +598,7 @@ class PlayState extends MusicBeatState
 				}
 
 		case 'space': //they are in the space but, HOW THEY CAN LIVE WITHOUT IN THE EARTH????
-			if(!ClientPrefs.dontShowBG) {
+			//if(!ClientPrefs.dontShowBG) {
 				var bg:BGSprite = new BGSprite('stage3/s1', -1300, -500, 0.2, 0.2);
 				bg.scale.set(1.8, 1.8);
 				bg.updateHitbox();
@@ -648,7 +647,7 @@ class PlayState extends MusicBeatState
 				bg10 = new BGSprite('stage3/s10', -2250, -725, 1, 1);
 				bg10.scale.set(1.8, 1.8);
 				bg10.updateHitbox();
-			}
+			//}
 				cutsceneBG = new BGSprite('stage3/cutscene/bg', 0,0,0,0);
 				cutsceneBG.screenCenter(XY);
 				cutsceneBG.alpha = 0;
@@ -679,7 +678,7 @@ class PlayState extends MusicBeatState
 				text2.visible = false;
 
 			case 'covers': // covers
-				if(!ClientPrefs.dontShowBG)
+				//if(!ClientPrefs.dontShowBG)
 					coverBG1 = new BGSprite('covers/bg', -960, -250, 0.1, 0.1);
 					coverBG1.scale.set(1.4, 1.2);
 					coverBG1.updateHitbox();
@@ -735,7 +734,7 @@ class PlayState extends MusicBeatState
 				}*/
 
 			case 'mazin-mall': //fun is infinite
-				if(!ClientPrefs.dontShowBG)
+				//if(!ClientPrefs.dontShowBG)
 					majinOverlay = new BGSprite('mazin/overlay', -360, -90, 0, 0);
 					majinOverlay.scale.set(1.5, 1.5);
 					majinOverlay.updateHitbox();
@@ -761,7 +760,7 @@ class PlayState extends MusicBeatState
 					majinTV.scale.set(1.1, 1.1);
 					majinTV.updateHitbox();
 			case 'expurgated':
-				if(!ClientPrefs.dontShowBG)
+				//if(!ClientPrefs.dontShowBG)
 					exSky = new BGSprite('expurgated/sky', -1300, -650, 0.1, 0.1);
 					exSky.scale.set(2, 2);
 					exSky.updateHitbox();
@@ -792,7 +791,7 @@ class PlayState extends MusicBeatState
 					exFront.scale.set(2.5, 2.5);
 					exFront.updateHitbox();
 			case 'skatepark':
-				if(!ClientPrefs.dontShowBG) {
+				//if(!ClientPrefs.dontShowBG) {
 					skateSky = new BGSprite('skatepark/sky', -100, -200, 0.4, 0.4);
 					skateSky.scale.set(1, 1);
 					skateSky.updateHitbox();
@@ -821,7 +820,7 @@ class PlayState extends MusicBeatState
 					skateBuches = new BGSprite('skatepark/buches', 100, 100, 1, 1);
 					skateBuches.scale.set(1.2, 1.2);
 					skateBuches.updateHitbox();
-				}
+				//}
 
 				octagonBG = new FlxSprite().makeGraphic(1980, 1080, FlxColor.WHITE);
 				octagonBG.screenCenter(XY);
@@ -894,7 +893,7 @@ class PlayState extends MusicBeatState
 				octagon.updateHitbox();
 				octagon.visible = false;
 			case 'hallway':
-				if(!ClientPrefs.dontShowBG)
+				//if(!ClientPrefs.dontShowBG)
 					jojoBG = new BGSprite('hallway/bg', -810, -790, 1, 1);
 					jojoBG.scale.set(1.6, 1.6);
 					jojoBG.updateHitbox();
@@ -917,7 +916,7 @@ class PlayState extends MusicBeatState
 					SANESSS.scale.set(1.7, 1.7);
 					SANESSS.visible = false;*/
 			case 'boo':
-				if(!ClientPrefs.dontShowBG)
+				//if(!ClientPrefs.dontShowBG)
 					booBG = new BGSprite('boo/Boo-1', -50, -70, 0.7, 0.7);
 					booBG.updateHitbox();
 					add(booBG);
@@ -972,7 +971,7 @@ class PlayState extends MusicBeatState
 				add(momogogoBG);
 
 			case 'astral': // pq as planta da minha mãe ta aqui
-				if(!ClientPrefs.dontShowBG)
+				//if(!ClientPrefs.dontShowBG)
 					matzuBG = new BGSprite('matzu/BG', 0, 0, 0.1, 0.1);
 					//matzuBG.updateHitbox();
 					matzuBG.screenCenter();
@@ -1020,7 +1019,7 @@ class PlayState extends MusicBeatState
 					matzuFudida7.updateHitbox();
 					matzuFudida7.visible = false;
 			case 'ena':
-				if(!ClientPrefs.dontShowBG)
+				//if(!ClientPrefs.dontShowBG)
 					var enaBG1:BGSprite = new BGSprite('ena/ENA-1', -150, 0, 0.7, 0.7);
 					enaBG1.updateHitbox();
 					add(enaBG1);
@@ -1357,7 +1356,7 @@ class PlayState extends MusicBeatState
 		add(dadGroup);
 		add(boyfriendGroup);
 
-		if(!ClientPrefs.dontShowBG) {
+		//if(!ClientPrefs.dontShowBG) {
 			if (curStage == 'space')
 			{
 				add(bg10);
@@ -1424,7 +1423,7 @@ class PlayState extends MusicBeatState
 				add(enaOverlay);
 				add(idkWhatIsthat);
 			}
-		}
+	//	}
 
 
 		switch(curStage)
@@ -2874,7 +2873,7 @@ class PlayState extends MusicBeatState
 		previousFrameTime = FlxG.game.ticks;
 		lastReportedPlayheadPosition = 0;
 
-		cu(1, 1);
+		//cu(1, 1);
 
 		FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 1, false);
 		FlxG.sound.music.onComplete = onSongComplete;
@@ -3515,11 +3514,11 @@ class PlayState extends MusicBeatState
 		}
 
 		// backdrops things (is in the curstage keys for prevent crash in the other stages)
-		if(!ClientPrefs.dontShowBG) {
+		//if(!ClientPrefs.dontShowBG) {
 			if (curStage == 'momogogo') {
 				momogogoBG.x += 90 * elapsed;
 			}
-		}
+	//	}
 		
 		//if (!note.isSustainNote) {
 		if (isComboTime) {
@@ -4044,9 +4043,9 @@ class PlayState extends MusicBeatState
 				killHenchmen();
 
 			case 'Astral Event':
-				if(!ClientPrefs.dontShowBG) {
+				//if(!ClientPrefs.dontShowBG) {
 					changeAstralBG();
-				}
+				//}
 
 			case 'Add Camera Zoom':
 				if(ClientPrefs.camZooms && FlxG.camera.zoom < 1.35) {
@@ -5699,7 +5698,6 @@ class PlayState extends MusicBeatState
 		iconP2.updateHitbox();
 
 		// timing to play the animation lol
-		if(!ClientPrefs.dontShowBG) {
 			if (curStage == 'mazin-mall')
 			{
 				if (curBeat % 1 == 0)
@@ -5707,7 +5705,6 @@ class PlayState extends MusicBeatState
 					majinTVBG.animation.play('idle', true);
 				}
 			}
-		}
 
 		if (gf != null && curBeat % Math.round(gfSpeed * gf.danceEveryNumBeats) == 0 && gf.animation.curAnim != null && !gf.animation.curAnim.name.startsWith("sing") && !gf.stunned)
 		{
