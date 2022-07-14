@@ -4545,14 +4545,6 @@ class PlayState extends MusicBeatState
 			}
 			transitioning = true;
 		}
-		if (controlHoldArray.contains(true) && !endingSong) {
-			#if ACHIEVEMENTS_ALLOWED
-				var achieve:String = checkForAchievement(['oversinging']);
-				if (achieve != null) {
-					startAchievement(achieve);
-				}
-			#end
-		}
 	}
 	#if ACHIEVEMENTS_ALLOWED
 	var achievementObj:AchievementObject = null;
