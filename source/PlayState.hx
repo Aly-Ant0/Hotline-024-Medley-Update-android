@@ -917,7 +917,7 @@ class PlayState extends MusicBeatState
 					SANESSS.visible = false;*/
 			case 'boo':
 				//if(!ClientPrefs.dontShowBG)
-					booBG = new BGSprite('boo/Boo-1', -50, -70, 0.7, 0.7);
+					var booBG:BGSprite = new BGSprite('boo/Boo-1', -50, -70, 0.7, 0.7);
 					booBG.updateHitbox();
 					add(booBG);
 	
@@ -2840,7 +2840,7 @@ class PlayState extends MusicBeatState
 	{
 		var songName:String = Paths.formatToSongPath(SONG.song);
 
-		var leBox:FlxSprite = new FlxSprite(-550, 300).loadGraphic(1, 180, FlxColor.BLACK);
+		var leBox:FlxSprite = new FlxSprite(-550, 300).makeGraphic(1, 180, FlxColor.BLACK);
 		leBox.scrollFactor.set();
 		leBox.cameras = [camHUD];
 		add(leBox);
@@ -4947,7 +4947,9 @@ class PlayState extends MusicBeatState
 		var right = controls.NOTE_RIGHT;
 		var down = controls.NOTE_DOWN;
 		var left = controls.NOTE_LEFT;
-		
+
+		var controlHoldArray:Array<Bool> = [left, down, up, right];
+
 		// TO DO: Find a better way to handle controller inputs, this should work for now
 		if(ClientPrefs.controllerMode)
 		{
