@@ -1778,8 +1778,8 @@ class PlayState extends MusicBeatState
 		bar.y -= 420;
 		add(bar);
 
-		songTxt = new FlxText(FlxG.width + 10, bar.y + 10, 0, "", 37);
-		songTxt.setFormat(Paths.font("LEMONMILK-Bold.otf"), 32, FlxColor.WHITE, RIGHT);
+		songTxt = new FlxText(FlxG.width + 12, bar.y + 10, 0, "", 37);
+		songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 32, FlxColor.WHITE, RIGHT);
 		add(songTxt);
 
 		var content:String = Paths.txt(songName + '/info');
@@ -2835,12 +2835,44 @@ class PlayState extends MusicBeatState
 	var lastReportedPlayheadPosition:Int = 0;
 	var songTime:Float = 0;
 
+	function cu(durationIn:Float = 1, durationOut:Float = 1)
+	{
+		var songName:String = Paths.formatToSongPath(SONG.song);
+
+		var leBox:FlxSprite = new FlxSprite(-550, 300).loadGraphic(1, 180, FlxColor.BLACK);
+		leBox.scrollFactor.set();
+		leBox.cameras = [camHUD];
+		add(leBox);
+
+		var leSongName:FlxText = new FlxText(-200, 320, 0, "", 60);
+		leSongName.scrollFactor.set();
+		leSongName.cameras = [camHUD];
+		leSongName.text = Assets.getText(Paths.txt(songName + '/info.txt'));
+		leSongName.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.tff"), 60, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(leSongName);
+
+		leBox.scale.x += leSongName.x + 25;
+
+		new FlxTimer().start(1, function(tmr:FlxTimer)
+		{
+			FlxTween.tween(leBox, {x: -100}, durationIn, {type:PERSIST, ease:FlxEase.backInOut});
+			FlxTween.tween(leSongName, {x: 100}, durationIn, {type:PERSIST, ease:FlxEase.backInOut});
+		});
+		new FlxTimer().start(6, function(tmr:FlxTimer)
+		{
+			FlxTween.tween(leSongName, {x: -200}, durationOut, {type:PERSIST, ease:FlxEase.backInOut});
+			FlxTween.tween(leBox, {x: -550}, durationOut, {type:PERSIST, ease:FlxEase.backInOut});
+		});
+	}
+
 	function startSong():Void
 	{
 		startingSong = false;
 
 		previousFrameTime = FlxG.game.ticks;
 		lastReportedPlayheadPosition = 0;
+
+		cu(1, 1);
 
 		FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 1, false);
 		FlxG.sound.music.onComplete = onSongComplete;
