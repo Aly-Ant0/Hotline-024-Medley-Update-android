@@ -597,6 +597,7 @@ class PlayState extends MusicBeatState
 				}
 
 		case 'space': //they are in the space but, HOW THEY CAN LIVE WITHOUT IN THE EARTH????
+			if(!ClientPrefs.dontShowBG) {
 				var bg:BGSprite = new BGSprite('stage3/s1', -1300, -500, 0.2, 0.2);
 				bg.scale.set(1.8, 1.8);
 				bg.updateHitbox();
@@ -645,7 +646,7 @@ class PlayState extends MusicBeatState
 				bg10 = new BGSprite('stage3/s10', -2250, -725, 1, 1);
 				bg10.scale.set(1.8, 1.8);
 				bg10.updateHitbox();
-				
+			}
 				cutsceneBG = new BGSprite('stage3/cutscene/bg', 0,0,0,0);
 				cutsceneBG.screenCenter(XY);
 				cutsceneBG.alpha = 0;
@@ -676,50 +677,51 @@ class PlayState extends MusicBeatState
 				text2.visible = false;
 
 			case 'covers': // covers
-				coverBG1 = new BGSprite('covers/bg', -960, -250, 0.1, 0.1);
-				coverBG1.scale.set(1.4, 1.2);
-				coverBG1.updateHitbox();
-				add(coverBG1);
+				if(!ClientPrefs.dontShowBG)
+					coverBG1 = new BGSprite('covers/bg', -960, -250, 0.1, 0.1);
+					coverBG1.scale.set(1.4, 1.2);
+					coverBG1.updateHitbox();
+					add(coverBG1);
+	
+					coverBG2 = new BGSprite('covers/sun', -1200, -450, 0.1, 0.1);
+					coverBG2.scale.set(1.3, 1.3);
+					coverBG2.updateHitbox();
+					add(coverBG2);
+	
+					coverBG9 = new BGSprite('covers/clouds', -1200, 0, 0.1, 0.1);
+					coverBG9.updateHitbox();
+					add(coverBG9);
+	
+					coverBG3 = new BGSprite('covers/castle', -1100, -250,  0.3, 0.3);
+					coverBG3.scale.set(1.4, 1.2);
+					coverBG3.updateHitbox();
+					add(coverBG3);
+	
+					coverBG4 = new BGSprite('covers/buildings', -1000, -150,  0.5, 0.5);
+					coverBG4.scale.set(1.4, 1.2);
+					coverBG4.updateHitbox();
+					add(coverBG4);
+	
+					coverBG5 = new BGSprite('covers/hills', -600, -150, 1, 1);
+					coverBG5.scale.set(1.3, 1.3);
+					coverBG5.updateHitbox();
+					add(coverBG5);
 
-				coverBG2 = new BGSprite('covers/sun', -1200, -450, 0.1, 0.1);
-				coverBG2.scale.set(1.3, 1.3);
-				coverBG2.updateHitbox();
-				add(coverBG2);
-
-				coverBG9 = new BGSprite('covers/clouds', -1200, 0, 0.1, 0.1);
-				coverBG9.updateHitbox();
-				add(coverBG9);
-
-				coverBG3 = new BGSprite('covers/castle', -1100, -250,  0.3, 0.3);
-				coverBG3.scale.set(1.4, 1.2);
-				coverBG3.updateHitbox();
-				add(coverBG3);
-
-				coverBG4 = new BGSprite('covers/buildings', -1000, -150,  0.5, 0.5);
-				coverBG4.scale.set(1.4, 1.2);
-				coverBG4.updateHitbox();
-				add(coverBG4);
-
-				coverBG5 = new BGSprite('covers/hills', -600, -150, 1, 1);
-				coverBG5.scale.set(1.3, 1.3);
-				coverBG5.updateHitbox();
-				add(coverBG5);
-
-				coverBG6 = new BGSprite('covers/ground', -260, -140, 1, 1);
-				coverBG6.scale.set(1.2, 1.2);
-				coverBG6.updateHitbox();
-				add(coverBG6);
-
-				coverBG7 = new BGSprite('covers/light', -260, -140,  1.1, 1.1);
-				coverBG7.scale.set(1.2, 1.2);
-				coverBG7.updateHitbox();
-				coverBG7.blend = ADD;
-				add(coverBG7);
-
-				coverBG8 = new BGSprite('covers/cables', -260, -140, 1.2, 1.2);
-				coverBG8.scale.set(1.2, 1);
-				coverBG8.updateHitbox();
-				add(coverBG8);
+					coverBG6 = new BGSprite('covers/ground', -260, -140, 1, 1);
+					coverBG6.scale.set(1.2, 1.2);
+					coverBG6.updateHitbox();
+					add(coverBG6);
+	
+					coverBG7 = new BGSprite('covers/light', -260, -140,  1.1, 1.1);
+					coverBG7.scale.set(1.2, 1.2);
+					coverBG7.updateHitbox();
+					coverBG7.blend = ADD;
+					add(coverBG7);
+	
+					coverBG8 = new BGSprite('covers/cables', -260, -140, 1.2, 1.2);
+					coverBG8.scale.set(1.2, 1);
+					coverBG8.updateHitbox();
+					add(coverBG8);
 
 				/*var bfReflextion:FlxSprite = new FlxSprite(boyfriend.x, boyfriend.y);
 				bfReflextion.frames = boyfriend.frames;
@@ -731,89 +733,93 @@ class PlayState extends MusicBeatState
 				}*/
 
 			case 'mazin-mall': //fun is infinite
-				majinOverlay = new BGSprite('mazin/overlay', -360, -90, 0, 0);
-				majinOverlay.scale.set(1.5, 1.5);
-				majinOverlay.updateHitbox();
-				majinOverlay.blend = ADD;
+				if(!ClientPrefs.dontShowBG)
+					majinOverlay = new BGSprite('mazin/overlay', -360, -90, 0, 0);
+					majinOverlay.scale.set(1.5, 1.5);
+					majinOverlay.updateHitbox();
+					majinOverlay.blend = ADD;
 
-				majinBG = new BGSprite('mazin/back', -400, -150, 1, 1);
-				majinBG.scale.set(1.4, 1.4);
-				majinBG.updateHitbox();
-				add(majinBG);
+					majinBG = new BGSprite('mazin/back', -400, -150, 1, 1);
+					majinBG.scale.set(1.4, 1.4);
+					majinBG.updateHitbox();
+					add(majinBG);
 
-				majinGround = new BGSprite('mazin/ground', -400, -70, 1, 1);
-				majinGround.scale.set(1.4, 1.4);
-				majinGround.updateHitbox();
-				add(majinGround);
+					majinGround = new BGSprite('mazin/ground', -400, -70, 1, 1);
+					majinGround.scale.set(1.4, 1.4);
+					majinGround.updateHitbox();
+					add(majinGround);
 
-				majinTVBG = new BGSprite('mazin/mazin_mall_BG_tv', -50, 90, ['BG tv']);
-				majinTVBG.animation.addByPrefix('idle', 'BG tv', 24, false);
-				majinTVBG.scale.set(1, 1);
-				majinTVBG.updateHitbox();
-				add(majinTVBG);
-
-				majinTV = new BGSprite('mazin/tv', -500, 130, 1, 1);
-				majinTV.scale.set(1.1, 1.1);
-				majinTV.updateHitbox();
+					majinTVBG = new BGSprite('mazin/mazin_mall_BG_tv', -50, 90, ['BG tv']);
+					majinTVBG.animation.addByPrefix('idle', 'BG tv', 24, false);
+					majinTVBG.scale.set(1, 1);
+					majinTVBG.updateHitbox();
+					add(majinTVBG);
+	
+					majinTV = new BGSprite('mazin/tv', -500, 130, 1, 1);
+					majinTV.scale.set(1.1, 1.1);
+					majinTV.updateHitbox();
 			case 'expurgated':
-				exSky = new BGSprite('expurgated/sky', -1300, -650, 0.1, 0.1);
-				exSky.scale.set(2, 2);
-				exSky.updateHitbox();
-				add(exSky);
-
-				exRock = new BGSprite('expurgated/rock2', -2300, -1100, 0.6, 0.6);
-				exRock.scale.set(2.5, 2.5);
-				exRock.updateHitbox();
-				add(exRock);
-
-        // particle lol
-/*
-				precacheList.set('philly/particle', 'image'); //precache particle image
-				exParticle = new FlxTypedGroup<ExpurgatedParticle>();
-*/
-
-				exGround = new BGSprite('expurgated/ground', -2800, -1400, 1, 1);
-				exGround.scale.set(2.5, 2.5);
-				exGround.updateHitbox();
-				add(exGround);
-
-				exOverlay = new BGSprite('expurgated/gradoverlay', -1440, -650, 0, 0);
-				exOverlay.blend = ADD;
-				exOverlay.scale.set(2.5, 2.5);
-				exOverlay.updateHitbox();
-
-				exFront = new BGSprite('expurgated/signfront', 1, 1);
-				exFront.scale.set(2.5, 2.5);
-				exFront.updateHitbox();
+				if(!ClientPrefs.dontShowBG)
+					exSky = new BGSprite('expurgated/sky', -1300, -650, 0.1, 0.1);
+					exSky.scale.set(2, 2);
+					exSky.updateHitbox();
+					add(exSky);
+	
+					exRock = new BGSprite('expurgated/rock2', -2300, -1100, 0.6, 0.6);
+					exRock.scale.set(2.5, 2.5);
+					exRock.updateHitbox();
+					add(exRock);
+	
+	        // particle lol
+	/*
+					precacheList.set('philly/particle', 'image'); //precache particle image
+					exParticle = new FlxTypedGroup<ExpurgatedParticle>();
+	*/
+	
+					exGround = new BGSprite('expurgated/ground', -2800, -1400, 1, 1);
+					exGround.scale.set(2.5, 2.5);
+					exGround.updateHitbox();
+					add(exGround);
+	
+					exOverlay = new BGSprite('expurgated/gradoverlay', -1440, -650, 0, 0);
+					exOverlay.blend = ADD;
+					exOverlay.scale.set(2.5, 2.5);
+					exOverlay.updateHitbox();
+	
+					exFront = new BGSprite('expurgated/signfront', 1, 1);
+					exFront.scale.set(2.5, 2.5);
+					exFront.updateHitbox();
 			case 'skatepark':
-				skateSky = new BGSprite('skatepark/sky', -100, -200, 0.4, 0.4);
-				skateSky.scale.set(1, 1);
-				skateSky.updateHitbox();
-				add(skateSky);
-
-				skateBuildings = new BGSprite('skatepark/buildings', 150, 70, 0.8, 0.8);
-				skateBuildings.scale.set(0.9, 0.9);
-				skateSky.updateHitbox();
-				add(skateBuildings);
-
-				skateTreess = new BGSprite('skatepark/trees', 100, 50, 1, 1);
-				skateTreess.scale.set(1, 1);
-				skateTreess.updateHitbox();
-				add(skateTreess);
-
-				skateFloor = new BGSprite('skatepark/floor', 10, 0, 1, 1);
-				skateFloor.scale.set(1, 1);
-				skateFloor.updateHitbox();
-				add(skateFloor);
-
-				skateLight = new BGSprite('skatepark/light', -20, -70, 1, 1);
-				skateLight.updateHitbox();
-				skateLight.blend = ADD;
-				skateLight.scale.set(1.1, 1.1);
-
-				skateBuches = new BGSprite('skatepark/buches', 100, 100, 1, 1);
-				skateBuches.scale.set(1.2, 1.2);
-				skateBuches.updateHitbox();
+				if(!ClientPrefs.dontShowBG) {
+					skateSky = new BGSprite('skatepark/sky', -100, -200, 0.4, 0.4);
+					skateSky.scale.set(1, 1);
+					skateSky.updateHitbox();
+					add(skateSky);
+	
+					skateBuildings = new BGSprite('skatepark/buildings', 150, 70, 0.8, 0.8);
+					skateBuildings.scale.set(0.9, 0.9);
+					skateSky.updateHitbox();
+					add(skateBuildings);
+	
+					skateTreess = new BGSprite('skatepark/trees', 100, 50, 1, 1);
+					skateTreess.scale.set(1, 1);
+					skateTreess.updateHitbox();
+					add(skateTreess);
+	
+					skateFloor = new BGSprite('skatepark/floor', 10, 0, 1, 1);
+					skateFloor.scale.set(1, 1);
+					skateFloor.updateHitbox();
+					add(skateFloor);
+	
+					skateLight = new BGSprite('skatepark/light', -20, -70, 1, 1);
+					skateLight.updateHitbox();
+					skateLight.blend = ADD;
+					skateLight.scale.set(1.1, 1.1);
+	
+					skateBuches = new BGSprite('skatepark/buches', 100, 100, 1, 1);
+					skateBuches.scale.set(1.2, 1.2);
+					skateBuches.updateHitbox();
+				}
 
 				octagonBG = new FlxSprite().makeGraphic(1980, 1080, FlxColor.WHITE);
 				octagonBG.screenCenter(XY);
@@ -886,70 +892,72 @@ class PlayState extends MusicBeatState
 				octagon.updateHitbox();
 				octagon.visible = false;
 			case 'hallway':
-				jojoBG = new BGSprite('hallway/bg', -810, -790, 1, 1);
-				jojoBG.scale.set(1.6, 1.6);
-				jojoBG.updateHitbox();
-				add(jojoBG);
-
-				jojoLuzinha = new BGSprite('hallway/grad', -810, -1060, 1, 1);
-				jojoLuzinha.blend = ADD;
-				jojoLuzinha.updateHitbox();
-				jojoLuzinha.scale.set(1.6, 1.6);
-				
-				jojoFG = new BGSprite('hallway/fg', -810, -790, 1, 1);
-				jojoFG.updateHitbox();
-				jojoFG.scale.set(1.6, 1.6);
-				
-				/*SANESSS = new FlxSprite(0, 0);
-				SANESSS.frames = AtlasFrameMaker.construct('hallway/cutscene1');
-				SANESSS.animation.addByPrefix('idle', 'cutscene' 24, false);
-				SANESSS.screenCenter();
-				SANESSS.updateHitbox();
-				SANESSS.scale.set(1.7, 1.7);
-				SANESSS.visible = false;*/
+				if(!ClientPrefs.dontShowBG)
+					jojoBG = new BGSprite('hallway/bg', -810, -790, 1, 1);
+					jojoBG.scale.set(1.6, 1.6);
+					jojoBG.updateHitbox();
+					add(jojoBG);
+	
+					jojoLuzinha = new BGSprite('hallway/grad', -810, -1060, 1, 1);
+					jojoLuzinha.blend = ADD;
+					jojoLuzinha.updateHitbox();
+					jojoLuzinha.scale.set(1.6, 1.6);
+					
+					jojoFG = new BGSprite('hallway/fg', -810, -790, 1, 1);
+					jojoFG.updateHitbox();
+					jojoFG.scale.set(1.6, 1.6);
+					
+					/*SANESSS = new FlxSprite(0, 0);
+					SANESSS.frames = AtlasFrameMaker.construct('hallway/cutscene1');
+					SANESSS.animation.addByPrefix('idle', 'cutscene' 24, false);
+					SANESSS.screenCenter();
+					SANESSS.updateHitbox();
+					SANESSS.scale.set(1.7, 1.7);
+					SANESSS.visible = false;*/
 			case 'boo':
-				var booBG:BGSprite = new BGSprite('boo/Boo-1', -50, -70, 0.7, 0.7);
-				booBG.updateHitbox();
-				 add(booBG);
-
-				var booBG2:BGSprite = new BGSprite('boo/Boo-2', 25, 50, 0.85, 0.85);
-				booBG2.updateHitbox();
-				add(booBG2);
-
-				var booBG3:BGSprite = new BGSprite('boo/Boo-3', 25, 50, 0.85, 0.85);
-				booBG3.updateHitbox();
-				add(booBG3);
-
-				var booBG4:BGSprite = new BGSprite('boo/Boo-4', -25, 0, 0.9, 0.9);
-				booBG4.updateHitbox();
-				add(booBG4);
-				
-				var booBG5:BGSprite = new BGSprite('boo/Boo-5', -25, 0, 0.95, 0.95);
-				booBG5.updateHitbox();
-				add(booBG5);
-				
-				var booBG6:BGSprite = new BGSprite('boo/Boo-6', 50, 0, 1, 1);
-				booBG6.updateHitbox();
-				add(booBG6);
+				if(!ClientPrefs.dontShowBG)
+					var booBG:BGSprite = new BGSprite('boo/Boo-1', -50, -70, 0.7, 0.7);
+					booBG.updateHitbox();
+					 add(booBG);
+	
+					var booBG2:BGSprite = new BGSprite('boo/Boo-2', 25, 50, 0.85, 0.85);
+					booBG2.updateHitbox();
+					add(booBG2);
+	
+					var booBG3:BGSprite = new BGSprite('boo/Boo-3', 25, 50, 0.85, 0.85);
+					booBG3.updateHitbox();
+					add(booBG3);
+	
+					var booBG4:BGSprite = new BGSprite('boo/Boo-4', -25, 0, 0.9, 0.9);
+					booBG4.updateHitbox();
+					add(booBG4);
+					
+					var booBG5:BGSprite = new BGSprite('boo/Boo-5', -25, 0, 0.95, 0.95);
+					booBG5.updateHitbox();
+					add(booBG5);
+					
+					var booBG6:BGSprite = new BGSprite('boo/Boo-6', 50, 0, 1, 1);
+					booBG6.updateHitbox();
+					add(booBG6);
 			case 'amarged': //armageddom
-				var bg:BGSprite = new BGSprite('amarged/background', -100, -50, 0.9, 0.9);
-				bg.updateHitbox();
-				add(bg);
-
-				var thing:BGSprite = new BGSprite('amarged/build2', -100, -50, 0.9, 0.9);
-				thing.updateHitbox();
-				add(thing);
-				
-				var hidratacao:BGSprite = new BGSprite('amarged/water', -100, -50, 0.9, 0.9);
-				hidratacao.updateHitbox();
-				add(hidratacao);
-				
-				bars = new BGSprite('amarged/bars', 0, 0, 1, 1);
-				bars.updateHitbox();
-				add(bars);
-				
-				rocks = new BGSprite('amarged/rocks', 0, 0, 1.1, 1.1);
-				rocks.updateHitbox();
+					var bg:BGSprite = new BGSprite('amarged/background', -100, -50, 0.9, 0.9);
+					bg.updateHitbox();
+					add(bg);
+	
+					var thing:BGSprite = new BGSprite('amarged/build2', -100, -50, 0.9, 0.9);
+					thing.updateHitbox();
+					add(thing);
+					
+					var hidratacao:BGSprite = new BGSprite('amarged/water', -100, -50, 0.9, 0.9);
+					hidratacao.updateHitbox();
+					add(hidratacao);
+					
+					bars = new BGSprite('amarged/bars', 0, 0, 1, 1);
+					bars.updateHitbox();
+					add(bars);
+					
+					rocks = new BGSprite('amarged/rocks', 0, 0, 1.1, 1.1);
+					rocks.updateHitbox();
 			case 'momogogo':
 				//var bg:FlxBackdrop;
 				momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), 0.2, 0.2, true, false);
@@ -962,71 +970,73 @@ class PlayState extends MusicBeatState
 				add(momogogoBG);
 
 			case 'astral': // pq as planta da minha mãe ta aqui
-				matzuBG = new BGSprite('matzu/BG', 0, 0, 0.1, 0.1);
-				//matzuBG.updateHitbox();
-				matzuBG.screenCenter();
-				add(matzuBG);
-
-				matzuDESK = new BGSprite('matzu/DES', 0, 0, 0, 0);
-				//matzuDESK.updateHitbox();
-				matzuDESK.y -= 20;
-
-				asPlantadaMinhaMae = new BGSprite('matzu/PLAMTS', 0, 0, 1.1, 1.1);
-				asPlantadaMinhaMae.updateHitbox();
-
-				// quando ta tudo fucked twisted
-				matzuFudida1 = new BGSprite('matzu/2/BG1', 0, 0, 0.1, 0.1);
-				matzuFudida1.updateHitbox();
-				matzuFudida1.visible = false;
-				add(matzuFudida1);
-
-				matzuFudida2 = new BGSprite('matzu/2/idk', 0, 0, 0, 0);
-				matzuFudida2.updateHitbox();
-				matzuFudida2.visible = false;
-				add(matzuFudida2);
-
-				matzuFudida3 = new BGSprite('matzu/2/ground', 0, 0, 0, 0);
-				matzuFudida3.updateHitbox();
-				matzuFudida3.visible = false;
-				add(matzuFudida3);
-
-				matzuFudida4 = new BGSprite('matzu/2/messages', 0, 0, 0.4, 0.4);
-				matzuFudida4.updateHitbox();
-				matzuFudida4.visible = false;
-				add(matzuFudida4);
-
-				matzuFudida5 = new BGSprite('matzu/2/door', 0, 0, 0.4, 0.4);
-				matzuFudida5.updateHitbox();
-				matzuFudida5.visible = false;
-				add(matzuFudida5);
-
-				matzuFudida6 = new BGSprite('matzu/2/desk2', 0, 0, 0, 0);
-				matzuFudida6.updateHitbox();
-				matzuFudida6.y -= 20;
-				matzuFudida6.visible = false;
-
-				matzuFudida7 = new BGSprite('matzu/2/plamts2', 0, 0, 1.1, 1.1);
-				matzuFudida7.updateHitbox();
-				matzuFudida7.visible = false;
+				if(!ClientPrefs.dontShowBG)
+					matzuBG = new BGSprite('matzu/BG', 0, 0, 0.1, 0.1);
+					//matzuBG.updateHitbox();
+					matzuBG.screenCenter();
+					add(matzuBG);
+	
+					matzuDESK = new BGSprite('matzu/DES', 0, 0, 0, 0);
+					//matzuDESK.updateHitbox();
+					matzuDESK.y -= 20;
+	
+					asPlantadaMinhaMae = new BGSprite('matzu/PLAMTS', 0, 0, 1.1, 1.1);
+					asPlantadaMinhaMae.updateHitbox();
+	
+					// quando ta tudo fucked twisted
+					matzuFudida1 = new BGSprite('matzu/2/BG1', 0, 0, 0.1, 0.1);
+					matzuFudida1.updateHitbox();
+					matzuFudida1.visible = false;
+					add(matzuFudida1);
+	
+					matzuFudida2 = new BGSprite('matzu/2/idk', 0, 0, 0, 0);
+					matzuFudida2.updateHitbox();
+					matzuFudida2.visible = false;
+					add(matzuFudida2);
+	
+					matzuFudida3 = new BGSprite('matzu/2/ground', 0, 0, 0, 0);
+					matzuFudida3.updateHitbox();
+					matzuFudida3.visible = false;
+					add(matzuFudida3);
+	
+					matzuFudida4 = new BGSprite('matzu/2/messages', 0, 0, 0.4, 0.4);
+					matzuFudida4.updateHitbox();
+					matzuFudida4.visible = false;
+					add(matzuFudida4);
+	
+					matzuFudida5 = new BGSprite('matzu/2/door', 0, 0, 0.4, 0.4);
+					matzuFudida5.updateHitbox();
+					matzuFudida5.visible = false;
+					add(matzuFudida5);
+	
+					matzuFudida6 = new BGSprite('matzu/2/desk2', 0, 0, 0, 0);
+					matzuFudida6.updateHitbox();
+					matzuFudida6.y -= 20;
+					matzuFudida6.visible = false;
+	
+					matzuFudida7 = new BGSprite('matzu/2/plamts2', 0, 0, 1.1, 1.1);
+					matzuFudida7.updateHitbox();
+					matzuFudida7.visible = false;
 			case 'ena':
-				var enaBG1:BGSprite = new BGSprite('ena/ENA-1', -150, 0, 0.7, 0.7);
-				enaBG1.updateHitbox();
-				add(enaBG1);
-
-				var enaBG2:BGSprite = new BGSprite('ena/ENA-2', -150, 0, 0.8, 0.8);
-				enaBG2.updateHitbox();
-				add(enaBG2);
-
-				var enaBG3:BGSprite = new BGSprite('ena/ENA-3', -150, 0, 0.9, 0.9);
-				enaBG3.updateHitbox();
-				add(enaBG3);
-
-				enaOverlay = new BGSprite('ena/OERLAY-4', 0, 0, 0, 0);
-				enaOverlay.blend = ADD;
-				enaOverlay.updateHitbox();
-
-				idkWhatIsthat = new BGSprite('ena/ENA-5', 0, 20, 1.1, 1.1);
-				idkWhatIsthat.updateHitbox();
+				if(!ClientPrefs.dontShowBG)
+					var enaBG1:BGSprite = new BGSprite('ena/ENA-1', -150, 0, 0.7, 0.7);
+					enaBG1.updateHitbox();
+					add(enaBG1);
+	
+					var enaBG2:BGSprite = new BGSprite('ena/ENA-2', -150, 0, 0.8, 0.8);
+					enaBG2.updateHitbox();
+					add(enaBG2);
+	
+					var enaBG3:BGSprite = new BGSprite('ena/ENA-3', -150, 0, 0.9, 0.9);
+					enaBG3.updateHitbox();
+					add(enaBG3);
+	
+					enaOverlay = new BGSprite('ena/OERLAY-4', 0, 0, 0, 0);
+					enaOverlay.blend = ADD;
+					enaOverlay.updateHitbox();
+	
+					idkWhatIsthat = new BGSprite('ena/ENA-5', 0, 20, 1.1, 1.1);
+					idkWhatIsthat.updateHitbox();
 
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
@@ -1345,72 +1355,75 @@ class PlayState extends MusicBeatState
 		add(dadGroup);
 		add(boyfriendGroup);
 
-		if (curStage == 'space')
-		{
-			add(bg10);
-			add(black);
-			add(cutsceneBG);
-			add(cutsceneEnd);
-			add(cutsceneLogo);
-			add(text1);
-			add(text2);
+		if(!ClientPrefs.dontShowBG) {
+			if (curStage == 'space')
+			{
+				add(bg10);
+				add(black);
+				add(cutsceneBG);
+				add(cutsceneEnd);
+				add(cutsceneLogo);
+				add(text1);
+				add(text2);
+			}
+	
+			if (curStage == 'covers')
+			{
+				add(coverBG7);
+				add(coverBG8);
+			}
+	
+			if (curStage == 'mazin-mall')
+			{
+				add(majinOverlay);
+				add(majinTV);
+			}
+	
+			if (curStage == 'expurgated')
+			{
+				add(exOverlay);
+				add(exFront);
+			}
+	
+			if (curStage == 'skatepark')
+			{
+				add(skateLight);
+				add(skateBuches);
+				add(octagonBG);
+				add(octagonBG2);
+				add(numbahEiti);
+				add(numbahEiti2);
+				add(numbahEiti3);
+				add(nikkuOctagon);
+				add(bubbleText);
+				add(textOctagon);
+				add(octagon);
+			}
+	
+			if (curStage == 'hallway')
+			{
+				add(jojoFG);
+				add(jojoLuzinha);
+			}
+
+			if (curStage == 'amarged')
+			{
+				add(rocks);
+			}
+	
+			if (curStage == 'astral') {
+				add(matzuDESK);
+				add(asPlantadaMinhaMae);
+				add(matzuFudida6);
+				add(matzuFudida7);
+			}
+	
+			if (curStage == 'ena') {
+				add(enaOverlay);
+				add(idkWhatIsthat);
+			}
 		}
 
-		if (curStage == 'covers')
-		{
-			add(coverBG7);
-			add(coverBG8);
-		}
-
-		if (curStage == 'mazin-mall')
-		{
-			add(majinOverlay);
-			add(majinTV);
-		}
-
-		if (curStage == 'expurgated')
-		{
-			add(exOverlay);
-			add(exFront);
-		}
-
-		if (curStage == 'skatepark')
-		{
-			add(skateLight);
-			add(skateBuches);
-			add(octagonBG);
-			add(octagonBG2);
-			add(numbahEiti);
-			add(numbahEiti2);
-			add(numbahEiti3);
-			add(nikkuOctagon);
-			add(bubbleText);
-			add(textOctagon);
-			add(octagon);
-		}
-
-		if (curStage == 'hallway')
-		{
-			add(jojoFG);
-			add(jojoLuzinha);
-		}
-
-		if (curStage == 'amarged')
-		{
-			add(rocks);
-		}
-
-		if (curStage == 'astral') {
-			add(matzuDESK);
-			add(asPlantadaMinhaMae);
-			add(matzuFudida6);
-			add(matzuFudida7);
-		}
-
-		if (curStage == 'ena') {
-			add(enaOverlay);
-			add(idkWhatIsthat);
-		}
 
 		switch(curStage)
 		{
@@ -1493,7 +1506,7 @@ class PlayState extends MusicBeatState
 			SONG.gfVersion = gfVersion; //Fix for the Chart Editor
 		}
 
-		if (!stageData.hide_girlfriend)
+		if (!stageData.hide_girlfriend && ClientPrefs.dontShowGF)
 		{
 			gf = new Character(0, 0, gfVersion);
 			startCharacterPos(gf);
@@ -3467,15 +3480,17 @@ class PlayState extends MusicBeatState
 			}	
 		}
 
-		// backdrops things (is in the curstage keys for prevent crash in the other stages) fun fact: the * is for multiplicate stuff :D
-		if (curStage == 'momogogo') {
-			momogogoBG.x += 90 * elapsed;
+		// backdrops things (is in the curstage keys for prevent crash in the other stages)
+		if(!ClientPrefs.dontShowBG) {
+			if (curStage == 'momogogo') {
+				momogogoBG.x += 90 * elapsed;
+			}
 		}
 		
 		//if (!note.isSustainNote) {
 		if (isComboTime) {
-			scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (elapsed * 30), 1, 0)));
-			songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (elapsed * 30), 0, 1)));
+			scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (elapsed * 24), 1, 0)));
+			songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (elapsed * 24), 0, 1)));
 		}
 		//}
 
@@ -3995,7 +4010,9 @@ class PlayState extends MusicBeatState
 				killHenchmen();
 
 			case 'Astral Event':
-				changeAstralBG();
+				if(!ClientPrefs.dontShowBG) {
+					changeAstralBG();
+				}
 
 			case 'Add Camera Zoom':
 				if(ClientPrefs.camZooms && FlxG.camera.zoom < 1.35) {
@@ -4925,7 +4942,15 @@ class PlayState extends MusicBeatState
 					goodNoteHit(daNote);
 				}
 			});
-		}
+
+			if (controlHoldArray.contains(true) && !endingSong) {
+				#if ACHIEVEMENTS_ALLOWED
+				var achieve:String = checkForAchievement(['oversinging']);
+				if (achieve != null) {
+					startAchievement(achieve);
+				}
+				#end
+			}
 
 			else if (boyfriend.holdTimer > Conductor.stepCrochet * 0.0011 * boyfriend.singDuration && boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
 			{
@@ -5641,11 +5666,13 @@ class PlayState extends MusicBeatState
 		iconP2.updateHitbox();
 
 		// timing to play the animation lol
-		if (curStage == 'mazin-mall')
-		{
-			if (curBeat % 1 == 0)
+		if(!ClientPrefs.dontShowBG) {
+			if (curStage == 'mazin-mall')
 			{
-				majinTVBG.animation.play('idle', true);
+				if (curBeat % 1 == 0)
+				{
+					majinTVBG.animation.play('idle', true);
+				}
 			}
 		}
 
