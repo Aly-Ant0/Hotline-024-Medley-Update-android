@@ -564,7 +564,7 @@ class TitleState extends MusicBeatState
 	{
 		super.beatHit();
 		
-   if(initializated)
+   if(initialized)
    FlxTween.tween(FlxG.camera, {zoom:1.10}, 0.3, {ease: FlxEase.quadOut, type: BACKWARD});
 		
 		
