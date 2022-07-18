@@ -272,10 +272,11 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 			if(touch.overlaps(jukeboxText))
 			{
 				jukeboxText.color = 0xFF363636;
-			}
-			if(touch.justPressed)
-			{
-				MusicBeatState.switchState(new JukeboxScreen());
+				if(touch.justPressed)
+				{
+					MusicBeatState.switchState(new JukeboxScreen());
+					FlxG.sound.play(Paths.sound('entersfx'));
+				}
 			}
 			else
 			{
