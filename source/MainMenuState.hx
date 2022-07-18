@@ -56,8 +56,6 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 
 	override function create()
 	{
-		FlxG.mouse.visible = true;
-
 		if (FlxG.sound.music == null) {
 			FlxG.sound.playMusic(Paths.music('nightlight'), 0);
 			FlxG.sound.music.fadeIn(0.4, 0.6, 1);
@@ -208,6 +206,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 
 		jukeboxText = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox')); // eu nao vou programar o jukebox menu pq nao tem nenhum video que mostra o jukebox menu ent eu nao sei como é o jukebox menu e eu nao tenho pc // sadness
 		jukeboxText.screenCenter();
+		jukeboxText.setPosition(512, 9);
 		jukeboxText.antialiasing = ClientPrefs.globalAntialiasing;
 		add(jukeboxText);
 
@@ -268,6 +267,21 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
 
+		for (touch in FlxG.touches.list)
+		{
+			if(touch.overlaps(jukeboxText))
+			{
+				jukeboxText.color = 0xFF363636;
+			}
+			if(touch.justPressed)
+			{
+				MusicBeatState.switchState(new JukeboxScreen());
+			}
+			else
+			{
+				jukeboxText.color = 0xFFFFFFFF;
+			}
+		}
 		if (!selectedSomethin)
 		{
 			if (controls.UI_LEFT_P)
