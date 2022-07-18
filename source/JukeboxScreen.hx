@@ -21,15 +21,15 @@ class JukeboxScreen extends MusicBeatState
 {
 	public static var curSongPlaying:String = 'nightlight';
 	var songList:Array<String> = [
-		'customer-service', 'Customer Service',
-		'nightlight', 'Nightlight',
-		'broadcasting', 'Broadcasting',
-		'mirror-magic', 'Mirror-Magic',
-		'fandomania', 'Fandomania',
-		'killer-queen', 'Killer Queen',
-		'hyperfunk', 'Hyperfunk',
-		'sugarcrush', 'Sugarcrush',
-		'smokebomb', 'Smokebomb'
+		'customer-service',
+		'nightlight',
+		'broadcasting',
+		'mirror-magic',
+		'fandomania',
+		'killer-queen',
+		'hyperfunk',
+		'sugarcrush',
+		'smokebomb'
 	];
 	var textGrp:FlxTypedGroup<FlxSprite>;
 	var bg:FlxSprite;
@@ -58,10 +58,10 @@ class JukeboxScreen extends MusicBeatState
 
 		for (i in 0...songList.length)
 		{
-			var text:FlxSprite = new FlxSprite(0, i * 160 + 40).loadGraphic(Paths.image('freeplaySongText/' + songList[0][i], 'shared'));
+			var text:FlxSprite = new FlxSprite(0, i * 160 + 40).loadGraphic(Paths.image('freeplaySongText/' + songList[i], 'shared'));
 			text.screenCenter(X);
 			text.ID = i;
-			text.angle -= text.angle * i - 10;
+			text.angle -= text.angle * i * 10;
 			//text.x -= 60;
 			textGrp.add(text);
 		}
@@ -69,12 +69,12 @@ class JukeboxScreen extends MusicBeatState
 		changeSelection();
 
 		#if android
-		addVitrualPad(UP_DOWN, A_B);
+		addVirtualPad(UP_DOWN, A_B);
 		#end
 
 		super.create();
 	}
-	override function update()
+	override function update(elapsed:Float)
 	{
 		if (controls.UI_UP_P)
 		{
@@ -106,6 +106,7 @@ class JukeboxScreen extends MusicBeatState
 				item.angle = item.angle;
 			}
 		}
+		super.update(elapsed);
 	}
 	function changeSelection(change:Int = 0)
 	{
