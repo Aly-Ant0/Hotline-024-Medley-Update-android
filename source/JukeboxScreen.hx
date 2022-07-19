@@ -62,7 +62,7 @@ class JukeboxScreen extends MusicBeatState
 		{
 			var text:FlxSprite = new FlxSprite(0, i * 160 + 40).loadGraphic(Paths.image('freeplaySongText/' + songList[i], 'shared'));
 			text.screenCenter(X);
-			text.scale.set(1.5, 1.5);
+			text.scale.set(0.6, 0.8);
 			text.ID = i;
 			//text.angle -= i;
 			text.x -= 60;
