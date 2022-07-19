@@ -50,7 +50,9 @@ class JukeboxScreen extends MusicBeatState
 
 		jukebox = new FlxSprite(603, 65);
 		jukebox.frames = Paths.getSparrowAtlas('hotline/menu/jukebox/jukebox_play', 'preload');
-		jukebox.setGraphicSize(Std.int(jukebox.width * 0.8));
+		jukebox.scale.set(1.8, 1.8);
+		jukebox.animation.addByPrefix('bruh', 'Jukebox', 24, true);
+		jukebox.animation.play('bruh');
 		add(jukebox);
 
 		textGrp = new FlxTypedGroup<FlxSprite>();
@@ -60,9 +62,22 @@ class JukeboxScreen extends MusicBeatState
 		{
 			var text:FlxSprite = new FlxSprite(0, i * 160 + 40).loadGraphic(Paths.image('freeplaySongText/' + songList[i], 'shared'));
 			text.screenCenter(X);
+			text.scale.set(1.5, 1.5);
 			text.ID = i;
-			text.angle -= text.angle * i * 10;
-			//text.x -= 60;
+			//text.angle -= i;
+			text.x -= 60;
+			if (text.ID == curSelected)
+			{
+				text.angle += 6;
+				text.scale.x += 8;
+				text.scale.y += 8;
+			}
+			else
+			{
+				text.angle -= 6;
+				text.scale.x -= 4;
+				text.scale.y -= 4;
+			}
 			textGrp.add(text);
 		}
 
@@ -91,21 +106,7 @@ class JukeboxScreen extends MusicBeatState
 			FlxG.sound.play(Paths.sound('backsfx'));
 			MusicBeatState.switchState(new MainMenuState());
 		}
-		for (item in textGrp.members)
-		{
-			var lerpVal:Float = CoolUtil.boundTo(elapsed * 7, 0, 1);
-			if(item.ID == curSelected)
-			{
-				var lastAngle = item.angle;
-				item.angle = FlxMath.lerp(lastAngle, item.angle + 8, lerpVal);
-				item.angle = item.angle;
-			}
-			else
-			{
-				item.angle = FlxMath.lerp(item.angle, item.angle - 10, lerpVal);
-				item.angle = item.angle;
-			}
-		}
+
 		super.update(elapsed);
 	}
 	function changeSelection(change:Int = 0)
@@ -119,15 +120,36 @@ class JukeboxScreen extends MusicBeatState
 		if (curSelected >= songList.length)
 			curSelected = 0;
 
+		var bullShit:Int = 0;
 		for (item in textGrp.members)
 		{
+			item.y = bullShit - curSelected;
+			bullShit++;
 			if(item.ID == curSelected)
 			{
-				item.alpha = 1;
+				if(change == 1)
+				{
+					FlxTween.angle(item, item.angle, item.angle + 5, 0.5, {ease: FlxEase.expoOut});
+					FlxTween.tween(item, {x: item.x + 15}, 0.5, {ease: FlxEase.expoOut});
+				}
+				if(change == -1)
+				{
+					FlxTween.angle(item, item.angle, item.angle - 5, 0.5, {ease: FlxEase.expoOut});
+					FlxTween.tween(item, {x: item.x + 15}, 0.5, {ease: FlxEase.expoOut});
+				}
 			}
 			else
 			{
-				item.alpha = 0.5;
+				if(change == 1)
+				{
+					FlxTween.angle(item, item.angle, item.angle - 5, 0.5, {ease: FlxEase.expoOut});
+					FlxTween.tween(item, {x: item.x - 15}, 0.5, {ease: FlxEase.expoOut});
+				}
+				if(change == -1)
+				{
+					FlxTween.angle(item, item.angle, item.angle + 5, 0.5, {ease: FlxEase.expoOut});
+					FlxTween.tween(item, {x: item.x - 15}, 0.5, {ease: FlxEase.expoOut});
+				}
 			}
 		}
 	}
