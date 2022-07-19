@@ -127,6 +127,7 @@ class JukeboxScreen extends MusicBeatState
 			bullShit++;
 			if(item.ID == curSelected)
 			{
+				item.alpha = 1;
 				if(change == 1)
 				{
 					FlxTween.angle(item, item.angle, item.angle + 5, 0.5, {ease: FlxEase.expoOut});
@@ -140,6 +141,7 @@ class JukeboxScreen extends MusicBeatState
 			}
 			else
 			{
+				item.alpha = 0.5;
 				if(change == 1)
 				{
 					FlxTween.angle(item, item.angle, item.angle - 5, 0.5, {ease: FlxEase.expoOut});
