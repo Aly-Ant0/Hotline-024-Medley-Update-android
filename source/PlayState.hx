@@ -5186,7 +5186,7 @@ class PlayState extends MusicBeatState
 					isComboTime = true;
 				});
 			}
-			if (!note.isSustainNote) {
+			else if (!note.isSustainNote) {
 				comboTmr.reset(3.5);
 			}
 			health += note.hitHealth * healthGain;
