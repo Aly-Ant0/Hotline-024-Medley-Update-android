@@ -51,8 +51,8 @@ class CoversScreen extends MusicBeatState
 
 		buttonGrp = new FlxTypedGroup<FlxSprite>();
 
-		for (i in 0...4) {
-			var butt:FlxSprite = new FlxSprite().loadGraphic(Paths.image('hotline/menu/covers/button' + i));
+		for (i in 0...buttonList.length) {
+			var butt:FlxSprite = new FlxSprite().loadGraphic(Paths.image('hotline/menu/covers/' + buttonList[i]));
 			butt.screenCenter();
 			butt.ID = i;
 			buttonGrp.add(butt);
