@@ -56,10 +56,8 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 
 	override function create()
 	{
-		if (FlxG.sound.music == null) {
 			FlxG.sound.playMusic(Paths.music('nightlight'), 0);
 			FlxG.sound.music.fadeIn(0.4, 0.6, 1);
-		}
 
 		WeekData.loadTheFirstEnabledMod();
 
@@ -97,8 +95,8 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		bars.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bars);
 
-	//	menuItems = new FlxTypedSpriteGroup<FlxSprite>();
-	//	add(menuItems);
+		menuItems = new FlxTypedSpriteGroup<FlxSprite>();
+		add(menuItems);
 
 		/*if(optionShit.length > 6) {
 			scale = 6 / optionShit.length;
@@ -212,7 +210,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 
 		creditsImage = new FlxSprite().loadGraphic(Paths.image('hotline/menu/credits'));
 		creditsImage.screenCenter(X);
-		creditsImage.y = FlxG.height * 0.4;
+		creditsImage.y = 500;
 		creditsImage.antialiasing = ClientPrefs.globalAntialiasing;
 		add(creditsImage);
 
@@ -361,40 +359,90 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 
 		switch(option) { // por enquando vai ser brusco mesmo e eu fiquei mt confuso pra programar isso puta que pariu
 		// e os botão 2 é tipo o botao 1 so que eles são MACHO ALFA cof, cof, quer dizer, eles estão na frente pra não ficar todo lascado.
+		// butao na frente: 500, 85,
+		// buttao de tras: a mesma coisa do butao da frente,
+		// butao no lado esquerdo: 160, 85,
+		// butao no lado direito: 830, 85
 			case 'story_mode':
+				optionsButton2.visible = false;
+				extrasButton2.visible = false;
+				freeplayButton2.visible = false;
 				storyButton2.visible = true;
-				storyButton.visible = false;
-				storyButton2.x = storyButton.x;
-				freeplayButton.x = freeplayButton.x;
-				extrasButton.x = extrasButton.x;
-				optionsButton.x =  optionsButton.x;
-			case 'freeplay':
-				freeplayButton2.visible = true;
-				storyButton.visible = true;
-				storyButton2.visible = false;
-				freeplayButton.visible = false;
-				storyButton.x -= FlxG.width / 2 + 30 * FlxG.elapsed;
-				freeplayButton2.x += FlxG.width / 2 * FlxG.elapsed;
-				extrasButton.x += FlxG.width / 2 * FlxG.elapsed;
-				optionsButton.x += FlxG.width / 2 - 30 * FlxG.elapsed;
-			case 'options':
-				optionsButton.visible = false;
-				optionsButton2.visible = true;
-				freeplayButton.visible = true;
-				freeplayButton2.visible = false; // tu é frango é?
-				storyButton.x -= FlxG.width / 2 * FlxG.elapsed;
-				freeplayButton.x += FlxG.width / 2 + 30 * FlxG.elapsed;
-				extrasButton.x += FlxG.width / 2 - 30 * FlxG.elapsed;
-				optionsButton2.x += FlxG.width / 2 * FlxG.elapsed;
-			case 'extras':
+
 				optionsButton.visible = true;
+				extrasButton.visible = true;
+				freeplayButton.visible = true;
+				storyButton.visible = false;
+
+				storyButton.setPosition(500, 85);
+				freeplayButton.setPosition(160, 85);
+				optionsButton.setPosition(830, 85);
+				extrasButton.setPosition(500, 85);
+
+				storyButton2.setPosition(500, 85);
+				freeplayButton2.setPosition(160, 85);
+				optionsButton2.setPosition(830, 85);
+				extrasButton2.setPosition(500, 85);
+			case 'freeplay':
+				optionsButton2.visible = false;
+				extrasButton2.visible = false;
+				freeplayButton2.visible = true;
+				storyButton2.visible = false;
+
+				optionsButton.visible = true;
+				extrasButton.visible = true;
+				freeplayButton.visible = false;
+				storyButton.visible = true;
+
+				storyButton.setPosition(160, 85);
+				freeplayButton.setPosition(500, 85);
+				optionsButton.setPosition(500, 85);
+				extrasButton.setPosition(830, 85);
+
+				storyButton2.setPosition(160, 85);
+				freeplayButton2.setPosition(500, 85);
+				optionsButton2.setPosition(500, 85);
+				extrasButton2.setPosition(830, 85);
+			case 'extras':
 				optionsButton2.visible = false;
 				extrasButton2.visible = true;
+				freeplayButton2.visible = false;
+				storyButton2.visible = false;
+
+				optionsButton.visible = true;
 				extrasButton.visible = false;
-				storyButton.x -= FlxG.width / 2 - 30 * FlxG.elapsed;
-				freeplayButton.x += FlxG.width / 2 * FlxG.elapsed;
-				extrasButton2.x += FlxG.width / 2 * FlxG.elapsed;
-				optionsButton.x += FlxG.width / 2 + 30 * FlxG.elapsed;
+				freeplayButton.visible = true;
+				storyButton.visible = true;
+
+				storyButton.setPosition(500, 85);
+				freeplayButton.setPosition(160, 85);
+				optionsButton.setPosition(830, 85);
+				extrasButton.setPosition(500, 85);
+
+				storyButton2.setPosition(500, 85);
+				freeplayButton2.setPosition(160, 85);
+				optionsButton2.setPosition(830, 85);
+				extrasButton2.setPosition(500, 85);
+			case 'options':
+				optionsButton2.visible = true;
+				extrasButton2.visible = false;
+				freeplayButton2.visible = false;
+				storyButton2.visible = false;
+
+				optionsButton.visible = false;
+				extrasButton.visible = true;
+				freeplayButton.visible = true;
+				storyButton.visible = true;
+
+				storyButton.setPosition(830, 85);
+				freeplayButton.setPosition(500, 85);
+				optionsButton.setPosition(500, 85);
+				extrasButton.setPosition(160, 85);
+
+				storyButton2.setPosition(830, 85);
+				freeplayButton2.setPosition(500, 85);
+				optionsButton2.setPosition(500, 85);
+				extrasButton2.setPosition(160, 85);
 		}
 	}
 }
