@@ -62,7 +62,7 @@ class JukeboxScreen extends MusicBeatState
 		{
 			var text:FlxSprite = new FlxSprite(0, i * 160 + 40).loadGraphic(Paths.image('freeplaySongText/' + songList[i], 'shared'));
 			text.screenCenter(X);
-			text.scale.set(0.6, 0.8);
+			//text.scale.set(0.6, 0.8);
 			text.ID = i;
 			//text.angle -= i;
 			text.x -= 60;
@@ -152,6 +152,14 @@ class JukeboxScreen extends MusicBeatState
 					FlxTween.angle(item, item.angle, item.angle + 5, 0.5, {ease: FlxEase.expoOut});
 					FlxTween.tween(item, {x: item.x - 15}, 0.5, {ease: FlxEase.expoOut});
 				}
+			}
+			if (change == 1)
+			{
+				FlxTween.tween(item, {y: item.y + 140 + 60}, 0.5, {ease: FlxEase.expoOut});
+			}
+			if(change == -1)
+			{
+				FlxTween.tween(item, {y: item.y - 140 + 60}, 0.5, {ease: FlxEase.expoOut});
 			}
 		}
 	}
