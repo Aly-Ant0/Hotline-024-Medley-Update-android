@@ -131,8 +131,8 @@ class PlayState extends MusicBeatState
 	public static var isComboTime:Bool = false;
 
 	public var vocals:FlxSound;
-	
-	// nikku skin int
+
+	// nikku skin
 	var skinSelection:Int = ChooseSkinState.curSelected;
 
 	// dad
@@ -310,6 +310,11 @@ class PlayState extends MusicBeatState
 	var enaOverlay:BGSprite;
 	var idkWhatIsthat:BGSprite;
 
+	// mall da nicu
+	var nicuLight:BGSprite;
+	var oscabodomeucu:BGSprite;
+	var nicuPlants:BGSprite;
+
 	var halloweenBG:BGSprite;
 	var halloweenWhite:BGSprite;
 
@@ -410,7 +415,7 @@ class PlayState extends MusicBeatState
 	// Debug buttons
 	private var debugKeysChart:Array<FlxKey>;
 	private var debugKeysCharacter:Array<FlxKey>;
-	
+
 	// Less laggy controls
 	private var keysArray:Array<Dynamic>;
 
@@ -769,6 +774,7 @@ class PlayState extends MusicBeatState
 					exRock = new BGSprite('expurgated/rock2', -2300, -1100, 0.6, 0.6);
 					exRock.scale.set(2.5, 2.5);
 					exRock.updateHitbox();
+				///exRock.antialiasing = ClientPrefs.globalAntialiasing;
 					add(exRock);
 	
 	        // particle lol
@@ -780,26 +786,31 @@ class PlayState extends MusicBeatState
 					exGround = new BGSprite('expurgated/ground', -2800, -1400, 1, 1);
 					exGround.scale.set(2.5, 2.5);
 					exGround.updateHitbox();
+					//exGround.antialiasing = ClientPrefs.globalAntialiasing;
 					add(exGround);
 	
 					exOverlay = new BGSprite('expurgated/gradoverlay', -1440, -650, 0, 0);
 					exOverlay.blend = ADD;
 					exOverlay.scale.set(2.5, 2.5);
 					exOverlay.updateHitbox();
+					//exOverlay.antialiasing = ClientPrefs.globalAntialiasing;
 	
 					exFront = new BGSprite('expurgated/signfront', 1, 1);
 					exFront.scale.set(2.5, 2.5);
 					exFront.updateHitbox();
+					//exFront.antialiasing = ClientPrefs.globalAntialiasing;
 			case 'skatepark':
 				//if(!ClientPrefs.dontShowBG) {
 					skateSky = new BGSprite('skatepark/sky', -100, -200, 0.4, 0.4);
 					skateSky.scale.set(1, 1);
 					skateSky.updateHitbox();
+					//skateSky.antialiasing = ClientPrefs.globalAntialiasing;
 					add(skateSky);
 	
 					skateBuildings = new BGSprite('skatepark/buildings', 150, 70, 0.8, 0.8);
 					skateBuildings.scale.set(0.9, 0.9);
-					skateSky.updateHitbox();
+					skateBuildings.updateHitbox();
+					//skateBuildings.antialiasing = ClientPrefs.globalAntialiasing;
 					add(skateBuildings);
 	
 					skateTreess = new BGSprite('skatepark/trees', 100, 50, 1, 1);
@@ -810,16 +821,19 @@ class PlayState extends MusicBeatState
 					skateFloor = new BGSprite('skatepark/floor', 10, 0, 1, 1);
 					skateFloor.scale.set(1, 1);
 					skateFloor.updateHitbox();
+					//skateFloor.antialiasing = ClientPrefs.globalAntialiasing;
 					add(skateFloor);
 	
 					skateLight = new BGSprite('skatepark/light', -20, -70, 1, 1);
 					skateLight.updateHitbox();
 					skateLight.blend = ADD;
+					///skateLight.antialiasing = ClientPrefs.globalAntialiasing;
 					skateLight.scale.set(1.1, 1.1);
 	
 					skateBuches = new BGSprite('skatepark/buches', 100, 100, 1, 1);
 					skateBuches.scale.set(1.2, 1.2);
 					skateBuches.updateHitbox();
+					//skateBuches.antialiasing = ClientPrefs.globalAntialiasing;
 				//}
 
 				octagonBG = new FlxSprite().makeGraphic(1980, 1080, FlxColor.WHITE);
@@ -855,7 +869,7 @@ class PlayState extends MusicBeatState
 
 				numbahEiti2.offset.y += 20000000;
 				numbahEiti2.offset.x -= 0.2;
-				numbahEiti2.velocity.set(50, 50);
+				numbahEiti2.velocity.set(-50, 0);
 
 				numbahEiti3 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false);
 				numbahEiti3.alpha = 0;
@@ -866,46 +880,55 @@ class PlayState extends MusicBeatState
 
 				numbahEiti3.offset.y += 20000000;
 				numbahEiti3.offset.x -= 0.2;
-				numbahEiti3.velocity.set(50, 50);
+				numbahEiti3.velocity.set(50, 0);
 
 				nikkuOctagon = new BGSprite('skatepark/octagon/nikku', 561, 126, 0, 0, ['Nikku Move 1'], true); // tween to a x:444 in tween and y: 61
 				nikkuOctagon.animation.addByPrefix('lastFrame', 'Nikku Last Frame', 24, false);
 				nikkuOctagon.scale.set(2, 2);
+				//ikkuOctagon.antialiasing = ClientPrefs.globalAntialiasing;
 				nikkuOctagon.visible = false;
 
 				bubbleText = new BGSprite('skatepark/octagon/textbox', 511, 81, 0, 0);
 				bubbleText.scale.set(1.4, 1.4);
 				bubbleText.updateHitbox();
+				//bubbleText.antialiasing = ClientPrefs.globalAntialiasing;
 				bubbleText.visible = false;
 
 				textOctagon = new BGSprite('skatepark/octagon/text', 596, 172, 0, 0, ['Text'], true);
 				textOctagon.animation.addByPrefix('text', 'Text', 24, true);
 				textOctagon.setGraphicSize(Std.int(textOctagon.width * 0.49));
+				//textOctagon.antialiasing = ClientPrefs.globalAntialiasing;
 				textOctagon.visible = false;
 
 				hereme = new BGSprite('skatepark/octagon/hereletme', 35, 850, 0, 0); //tween y: 250
+				//hereme.antialiasing = ClientPrefs.globalAntialiasing;
 				hereme.visible = false;
 
 				showYou = new BGSprite('skatepark/octagon/showyou', 868, 846, 0, 0); //tween y: 246
+				//showYou.antialiasing = ClientPrefs.globalAntialiasing;
 				showYou.visible = false;
 
 				octagon = new BGSprite('skatepark/octagon/octagon', 913, 295, 0, 0); // tween x:295 tween 2 x: 1238
 				octagon.updateHitbox();
+				//ctagon.antialiasing = ClientPrefs.globalAntialiasing;
 				octagon.visible = false;
 			case 'hallway':
 				//if(!ClientPrefs.dontShowBG)
 					jojoBG = new BGSprite('hallway/bg', -810, -790, 1, 1);
 					jojoBG.scale.set(1.6, 1.6);
 					jojoBG.updateHitbox();
+					//jojoBG.antialiasing = ClientPrefs.globalAntialiasing;
 					add(jojoBG);
 	
 					jojoLuzinha = new BGSprite('hallway/grad', -810, -1060, 1, 1);
 					jojoLuzinha.blend = ADD;
 					jojoLuzinha.updateHitbox();
+					//jojoLuzinha.antialiasing = ClientPrefs.globalAntialiasing;
 					jojoLuzinha.scale.set(1.6, 1.6);
 					
 					jojoFG = new BGSprite('hallway/fg', -810, -790, 1, 1);
 					jojoFG.updateHitbox();
+					//jojoFG.antialiasing = ClientPrefs.globalAntialiasing;
 					jojoFG.scale.set(1.6, 1.6);
 					
 					/*SANESSS = new FlxSprite(0, 0);
@@ -919,45 +942,56 @@ class PlayState extends MusicBeatState
 				//if(!ClientPrefs.dontShowBG)
 					var booBG:BGSprite = new BGSprite('boo/Boo-1', -50, -70, 0.7, 0.7);
 					booBG.updateHitbox();
+				//	booBG.antialiasing = ClientPrefs.globalAntialiasing;
 					add(booBG);
 	
 					var booBG2:BGSprite = new BGSprite('boo/Boo-2', 25, 50, 0.85, 0.85);
 					booBG2.updateHitbox();
+				//	booBG2.antialiasing = ClientPrefs.globalAntialiasing;
 					add(booBG2);
 	
 					var booBG3:BGSprite = new BGSprite('boo/Boo-3', 25, 50, 0.85, 0.85);
 					booBG3.updateHitbox();
+				//	booBG3.antialiasing = ClientPrefs.globalAntialiasing;
 					add(booBG3);
 	
 					var booBG4:BGSprite = new BGSprite('boo/Boo-4', -25, 0, 0.9, 0.9);
 					booBG4.updateHitbox();
+				//	booBG4.antialiasing = ClientPrefs.globalAntialiasing;
 					add(booBG4);
 					
 					var booBG5:BGSprite = new BGSprite('boo/Boo-5', -25, 0, 0.95, 0.95);
 					booBG5.updateHitbox();
+				//	booBG5.antialiasing = ClientPrefs.globalAntialiasing;
 					add(booBG5);
 					
 					var booBG6:BGSprite = new BGSprite('boo/Boo-6', 50, 0, 1, 1);
 					booBG6.updateHitbox();
+					//booBG.antialiasing = ClientPrefs.globalAntialiasing;
 					add(booBG6);
 			case 'amarged': //armageddom
 					var bg:BGSprite = new BGSprite('amarged/background', -100, -50, 0.9, 0.9);
 					bg.updateHitbox();
+					//bg.antialiasing = ClientPrefs.globalAntialiasing;
 					add(bg);
 	
 					var thing:BGSprite = new BGSprite('amarged/build2', -100, -50, 0.9, 0.9);
 					thing.updateHitbox();
+					//thing.antialiasing = ClientPrefs.globalAntialiasing;
 					add(thing);
 					
 					var hidratacao:BGSprite = new BGSprite('amarged/water', -100, -50, 0.9, 0.9);
 					hidratacao.updateHitbox();
+				//	hidratacao.antialiasing = ClientPrefs.globalAntialiasing;
 					add(hidratacao);
 					
 					bars = new BGSprite('amarged/bars', 0, 0, 1, 1);
 					bars.updateHitbox();
+				//	bars.antialiasing = ClientPrefs.globalAntialiasing;
 					add(bars);
 					
 					rocks = new BGSprite('amarged/rocks', 0, 0, 1.1, 1.1);
+					//rocks.antialiasing = ClientPrefs.globalAntialiasing;
 					rocks.updateHitbox();
 			case 'momogogo':
 				//var bg:FlxBackdrop;
@@ -986,27 +1020,32 @@ class PlayState extends MusicBeatState
 	
 					// quando ta tudo fucked twisted
 					matzuFudida1 = new BGSprite('matzu/2/BG1', 0, 0, 0.1, 0.1);
+					matzuFudida1.screenCenter();
 					matzuFudida1.updateHitbox();
 					matzuFudida1.visible = false;
 					add(matzuFudida1);
 	
 					matzuFudida2 = new BGSprite('matzu/2/idk', 0, 0, 0, 0);
 					matzuFudida2.updateHitbox();
+					matzuFudida2.screenCenter();
 					matzuFudida2.visible = false;
 					add(matzuFudida2);
 	
 					matzuFudida3 = new BGSprite('matzu/2/ground', 0, 0, 0, 0);
 					matzuFudida3.updateHitbox();
+					matzuFudida3.screenCenter();
 					matzuFudida3.visible = false;
 					add(matzuFudida3);
 	
 					matzuFudida4 = new BGSprite('matzu/2/messages', 0, 0, 0.4, 0.4);
+					matzuFudida4.screenCenter();
 					matzuFudida4.updateHitbox();
 					matzuFudida4.visible = false;
 					add(matzuFudida4);
 	
 					matzuFudida5 = new BGSprite('matzu/2/door', 0, 0, 0.4, 0.4);
 					matzuFudida5.updateHitbox();
+					matzuFudida5.screenCenter();
 					matzuFudida5.visible = false;
 					add(matzuFudida5);
 	
@@ -1038,6 +1077,24 @@ class PlayState extends MusicBeatState
 	
 					idkWhatIsthat = new BGSprite('ena/ENA-5', 0, 20, 1.1, 1.1);
 					idkWhatIsthat.updateHitbox();
+
+				case 'nikkuMall':
+					var bg:BGSprite  = new BGSprite('nikkuMall/back', -975, -570, 0.9, 0.9);
+					bg.updateHitbox();
+					add(bg);
+
+					var front:BGSprite = new BGSprite('nikkuMall/front', -975, -545, 0, 0);
+					front.updateHitbox();
+					add(front);
+
+					oscabodomeucu = new BGSprite('nikkuMall/cables', -975, -400, 1.1, 1.1);
+					oscabodomeucu.updateHitbox();
+
+					nicuLight = new BGSprite('nikkuMall/light', -975, -545, 1.1, 1.1);
+					nicuLight.updateHitbox();
+
+					nicuPlants = new BGSprite('nikkuMall/plants', -975, -500, 1.1, 1.1);
+					nicuPlants.updateHitbox();
 
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
@@ -1423,7 +1480,12 @@ class PlayState extends MusicBeatState
 				add(enaOverlay);
 				add(idkWhatIsthat);
 			}
-	//	}
+
+			if (curStage == 'nikkuMall') {
+				add(nicuLight);
+				add(oscabodomeucu);
+				add(nicuPlants);
+			}
 
 
 		switch(curStage)
@@ -1507,7 +1569,7 @@ class PlayState extends MusicBeatState
 			SONG.gfVersion = gfVersion; //Fix for the Chart Editor
 		}
 
-		if (!stageData.hide_girlfriend && ClientPrefs.dontShowGF)
+		if (!stageData.hide_girlfriend && !ClientPrefs.dontShowGF)
 		{
 			gf = new Character(0, 0, gfVersion);
 			startCharacterPos(gf);
@@ -3768,6 +3830,13 @@ class PlayState extends MusicBeatState
 					if(daNote.isSustainNote) {
 						if(daNote.canBeHit) {
 							goodNoteHit(daNote);
+							comboTmr = new FlxTimer().start(3.5, function(tmr:FlxTimer) {
+								isComboTime = true;
+								combo = 0;
+								if (daNote.isSustainNote) {
+									comboTmr.reset(3.5);
+								}
+							});
 						}
 					} else if(daNote.strumTime <= Conductor.songPosition || (daNote.isSustainNote && daNote.canBeHit && daNote.mustPress)) {
 						goodNoteHit(daNote);
@@ -5182,12 +5251,6 @@ class PlayState extends MusicBeatState
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
 				combo++;
-				comboTmr = new FlxTimer().start(3.5, function(tmr:FlxTimer) {
-					isComboTime = true;
-				});
-			}
-			else if (!note.isSustainNote) {
-				comboTmr.reset(3.5);
 			}
 			health += note.hitHealth * healthGain;
 
