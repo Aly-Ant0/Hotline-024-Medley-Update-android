@@ -207,19 +207,21 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		jukeboxText = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox')); // eu nao vou programar o jukebox menu pq nao tem nenhum video que mostra o jukebox menu ent eu nao sei como é o jukebox menu e eu nao tenho pc // sadness
 		jukeboxText.screenCenter();
 		jukeboxText.antialiasing = ClientPrefs.globalAntialiasing;
-		jukeboxText.updateHitbox();
+		//jukeboxText.updateHitbox();
 		add(jukeboxText);
 
-		jukeHitbox = new FlxObject(512, 9, 174, 96);
+		jukeHitbox = new FlxObject(0, 0, 175, 25);
+		jukeHitbox.setPosition(512, 9);
 		add(jukeHitbox);
 
 		creditsImage = new FlxSprite().loadGraphic(Paths.image('hotline/menu/credits'));
 		creditsImage.screenCenter();
 		creditsImage.antialiasing = ClientPrefs.globalAntialiasing;
-		creditsImage.updateHitbox();
+		//creditsImage.updateHitbox();
 		add(creditsImage);
 
-		creditsHitbox = new FlxObject(512, 684, 174, 96);
+		creditsHitbox = new FlxObject(512, 684, 175, 25);
+		creditsHitbox.setPosition(512, 684);
 		add(creditsHitbox);
 
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
