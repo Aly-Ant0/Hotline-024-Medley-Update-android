@@ -1,0 +1,1 @@
+Tem uma opção lá no client prefs, "celularBom", pode usar ela pra alguma outra coisa se quiser, não vai ser mais pra musica.
