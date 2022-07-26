@@ -602,6 +602,52 @@ class PlayState extends MusicBeatState
 					add(stageCurtains);
 				}
 
+		case 'killerqueen': //PODE TROCAR O NOME DPS
+		{
+		
+		var cuts1:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('optim/1'));
+		cuts1.scrollFactor.set(0, 0);
+		cuts1.updateHitbox();
+		cuts1.screenCenter();
+		cuts1.antialiasing = ClientPrefs.globalAntialiasing;
+		add(cuts1);
+
+		var cuts2:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('optim/2'));
+		cuts2.scrollFactor.set(0, 0);
+		cuts2.updateHitbox();
+		cuts2.screenCenter();
+		cuts2.antialiasing = ClientPrefs.globalAntialiasing;
+		add(cuts2);
+
+		var cuts3:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('optim/3'));
+		cuts3.scrollFactor.set(0, 0);
+		cuts3.updateHitbox();
+		cuts3.screenCenter();
+		cuts3.antialiasing = ClientPrefs.globalAntialiasing;
+		add(cuts3);
+
+		var cuts4:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('optim/4'));
+		cuts4.scrollFactor.set(0, 0);
+		cuts4.updateHitbox();
+		cuts4.screenCenter();
+		cuts4.antialiasing = ClientPrefs.globalAntialiasing;
+		add(cuts4);
+
+		var cuts5:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('optim/5'));
+		cuts5.scrollFactor.set(0, 0);
+		cuts5.updateHitbox();
+		cuts5.screenCenter();
+		cuts5.antialiasing = ClientPrefs.globalAntialiasing;
+		add(cuts5);
+
+		// Agora a gambiarra
+		cuts1.visible = false;
+		cuts2.visible = false;
+		cuts3.visible = false;
+		cuts4.visible = false;
+		cuts5.visible = false;
+		}
+
 		case 'space': //they are in the space but, HOW THEY CAN LIVE WITHOUT IN THE EARTH????
 			//if(!ClientPrefs.dontShowBG) {
 				var bg:BGSprite = new BGSprite('stage3/s1', -1300, -500, 0.2, 0.2);
@@ -5579,6 +5625,11 @@ class PlayState extends MusicBeatState
 		}
 
 		// step hit
+		if (curSong == 'Killer Queen')
+		{
+			// TERMINAR
+			//cuts1.visible = true; //Esse é o comando
+		}
 		if (curSong == 'Broadcasting')
 		{
 			switch(curStep)
