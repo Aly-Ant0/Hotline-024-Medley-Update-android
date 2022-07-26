@@ -53,6 +53,8 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 	var optionsButton2:FlxSprite;
 	var jukeboxText:FlxSprite;
 	var selected:Bool = false;
+	var jukeHitbox:FlxObject;
+	var creditsHitbox:FlxObject;
 
 	override function create()
 	{
@@ -83,7 +85,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('hotline/menu/bg'), 0.2, 0.2, true, false);
 		bg.scrollFactor.set();
 		bg.setGraphicSize(Std.int(bg.width * 1.175));
-		bg.velocity.x = 90;
+		bg.velocity.x = -90;
 		bg.updateHitbox();
 		bg.screenCenter();
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
@@ -109,7 +111,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		storyButton.animation.play('idle');
 		storyButton.scrollFactor.set(0.1, 0);
 		storyButton.antialiasing = ClientPrefs.globalAntialiasing;
-		storyButton.setGraphicSize(Std.int(storyButton.width * 0.78));
+		storyButton.scale.set(0.9, 0.9);
 		storyButton.updateHitbox();
 
 		freeplayButton = new FlxSprite(storyButton.x - 30, FlxG.height / 2);
@@ -120,7 +122,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		add(freeplayButton);
 		freeplayButton.scrollFactor.set(0.1, 0);
 		freeplayButton.antialiasing = ClientPrefs.globalAntialiasing;
-		freeplayButton.setGraphicSize(Std.int(freeplayButton.width * 0.78));
+		freeplayButton.scale.set(0.9, 0.9);
 		freeplayButton.updateHitbox();
 
 		optionsButton = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
@@ -131,7 +133,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		add(optionsButton);
 		optionsButton.scrollFactor.set(0.1, 0);
 		optionsButton.antialiasing = ClientPrefs.globalAntialiasing;
-		optionsButton.setGraphicSize(Std.int(optionsButton.width * 0.78));
+		optionsButton.scale.set(0.9, 0.9);
 		optionsButton.updateHitbox();
 
 		extrasButton = new FlxSprite(storyButton.x + 30, FlxG.height / 2);
@@ -142,7 +144,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		add(extrasButton);
 		extrasButton.scrollFactor.set(0.1, 0);
 		extrasButton.antialiasing = ClientPrefs.globalAntialiasing;
-		extrasButton.setGraphicSize(Std.int(extrasButton.width * 0.78));
+		extrasButton.scale.set(0.9, 0.9);
 		extrasButton.updateHitbox();
 
 		storyButton2 = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
@@ -153,7 +155,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		add(storyButton2);
 		storyButton2.scrollFactor.set(0.1, 0);
 		storyButton2.antialiasing = ClientPrefs.globalAntialiasing;
-		storyButton2.setGraphicSize(Std.int(storyButton2.width * 0.78));
+		storyButton2.scale.set(0.9, 0.9);
 		storyButton2.visible = false;
 		storyButton2.updateHitbox();
 
@@ -165,7 +167,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		add(freeplayButton2);
 		freeplayButton2.scrollFactor.set(0.1, 0);
 		freeplayButton2.antialiasing = ClientPrefs.globalAntialiasing;
-		freeplayButton2.setGraphicSize(Std.int(freeplayButton2.width * 0.78));
+		freeplayButton2.scale.set(0.9, 0.9);
 		freeplayButton2.visible = false;
 		freeplayButton2.updateHitbox();
 
@@ -177,7 +179,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		add(optionsButton2);
 		optionsButton.scrollFactor.set(0.1, 0);
 		optionsButton2.antialiasing = ClientPrefs.globalAntialiasing;
-		optionsButton2.setGraphicSize(Std.int(optionsButton2.width * 0.78));
+		optionsButton2.scale.set(0.9, 0.9);
 		optionsButton2.visible = false;
 		optionsButton2.updateHitbox();
 
@@ -189,7 +191,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		add(extrasButton2);
 		extrasButton2.scrollFactor.set(0.1, 0);
 		extrasButton2.antialiasing = ClientPrefs.globalAntialiasing;
-		extrasButton2.setGraphicSize(Std.int(extrasButton2.width * 0.78));
+		extrasButton2.scale.set(0.9, 0.9);
 		extrasButton2.visible = false;
 		extrasButton2.updateHitbox();
 
@@ -204,15 +206,21 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 
 		jukeboxText = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox')); // eu nao vou programar o jukebox menu pq nao tem nenhum video que mostra o jukebox menu ent eu nao sei como é o jukebox menu e eu nao tenho pc // sadness
 		jukeboxText.screenCenter();
-		jukeboxText.setPosition(512, 9);
 		jukeboxText.antialiasing = ClientPrefs.globalAntialiasing;
+		jukeboxText.updateHitbox();
 		add(jukeboxText);
 
+		jukeHitbox = new FlxObject(512, 9, 174, 96);
+		add(jukeHitbox);
+
 		creditsImage = new FlxSprite().loadGraphic(Paths.image('hotline/menu/credits'));
-		creditsImage.screenCenter(X);
-		creditsImage.y = 500;
+		creditsImage.screenCenter();
 		creditsImage.antialiasing = ClientPrefs.globalAntialiasing;
+		creditsImage.updateHitbox();
 		add(creditsImage);
+
+		creditsHitbox = new FlxObject(512, 684, 174, 96);
+		add(creditsHitbox);
 
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
 		versionShit.scrollFactor.set();
@@ -267,7 +275,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 
 		for (touch in FlxG.touches.list)
 		{
-			if(touch.overlaps(jukeboxText))
+			if(touch.overlaps(jukeHitbox))
 			{
 				jukeboxText.color = 0xFF363636;
 				if(touch.justPressed)
@@ -325,7 +333,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 			}
 			for (touch in FlxG.touches.list)
 			{
-				if (touch.overlaps(creditsImage) && touch.justPressed) {
+				if (touch.overlaps(creditsHitbox) && touch.justPressed) {
 						MusicBeatState.switchState(new CreditsState());
 				}
 			}
@@ -375,13 +383,13 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 				storyButton.visible = false;
 
 				storyButton.setPosition(500, 85);
-				freeplayButton.setPosition(160, 85);
-				optionsButton.setPosition(830, 85);
+				freeplayButton.setPosition(830, 85);
+				optionsButton.setPosition(160, 85);
 				extrasButton.setPosition(500, 85);
 
 				storyButton2.setPosition(500, 85);
-				freeplayButton2.setPosition(160, 85);
-				optionsButton2.setPosition(830, 85);
+				freeplayButton2.setPosition(830, 85);
+				optionsButton2.setPosition(160, 85);
 				extrasButton2.setPosition(500, 85);
 			case 'freeplay':
 				optionsButton2.visible = false;
