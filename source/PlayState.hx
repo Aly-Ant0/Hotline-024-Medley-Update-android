@@ -1517,8 +1517,8 @@ class PlayState extends MusicBeatState
 	
 			if (curStage == 'hallway')
 			{
-				add(jojoFG);
-				add(jojoLuzinha);
+				add(hallLuzinha);
+				add(hallFG);
 			}
 
 			if (curStage == 'amarged')
@@ -4150,7 +4150,7 @@ class PlayState extends MusicBeatState
 		new FlxTimer().start(0.01, function(jojotmr:FlxTimer)
 		{
 			flash.visible = true;
-			FlxTween.tween(bfjojo, {x: bfjojo + 200}, 2.5, {ease: FlxEase.linear});
+			FlxTween.tween(bfjojo, {x: bfjojo.x + 200}, 2.5, {ease: FlxEase.linear});
 		});
 		new FlxTimer().start(0.01, function(jojotmr:FlxTimer)
 		{
@@ -4167,7 +4167,7 @@ class PlayState extends MusicBeatState
 		new FlxTimer().start(2.5, function(tmr:FlxTimer)
 		{
 			flash.visible = true;
-			bg.visible = false;
+			jojobg.visible = false;
 			bfjojo.visible = false;
 			bg2.visible = true;
 			gfchocada.visible = true;
