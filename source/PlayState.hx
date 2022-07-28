@@ -783,7 +783,7 @@ class PlayState extends MusicBeatState
 					// particle lol
 				for (i in 0...30)
 				{ // i get this code from x event mod
-					var part:FlxSprite = new FlxSprite(-1200+150*i, 1000).loadGraphic(Paths.image('expurgated/particle'));
+					var part:FlxSprite = new FlxSprite(-1200+150*i, -1380).loadGraphic(Paths.image('expurgated/particle'));
 					part.antialiasing = ClientPrefs.globalAntialiasing;
 					part.scrollFactor.set(0.92, 0.92);
 					//part.active = false;
@@ -4050,19 +4050,12 @@ class PlayState extends MusicBeatState
 		FlxTween.tween(go, {y: newy}, tweenTime, {
 			ease: newEase,
 			type: FlxTween.LOOPING,
-			loopDelay:delayTime,
-			onUpdate: function(twn:FlxTween){
-					go.x = newx + Math.sin(8*twn.scale+ randomScale)*amp;
-			}
-		});
+			loopDelay:delayTime});
+
 			FlxTween.tween(go, {alpha: newalpha}, 2.9, {
 			ease: newEase,
 			type: FlxTween.LOOPING,
-			loopDelay:delayTime,
-			onUpdate: function(twn:FlxTween){
-					go.x = newx + Math.sin(8*twn.scale+ randomScale)*amp;
-			}
-		});
+			loopDelay:delayTime});
 	}
 
 	function jojoMoment():Void // jojo cutscene in killer queen song
