@@ -4047,7 +4047,15 @@ class PlayState extends MusicBeatState
 		var randomScale = 0.4 + Math.random()*baseScale;
 
 		go.scale.set(randomScale, randomScale);
-		FlxTween.tween(go, {y: newy, alpha: newalpha}, tweenTime, {
+		FlxTween.tween(go, {y: newy}, tweenTime, {
+			ease: newEase,
+			type: FlxTween.LOOPING,
+			loopDelay:delayTime,
+			onUpdate: function(twn:FlxTween){
+					go.x = newx + Math.sin(8*twn.scale+ randomScale)*amp;
+			}
+		});
+			FlxTween.tween(go, {alpha: newalpha}, 2.9, {
 			ease: newEase,
 			type: FlxTween.LOOPING,
 			loopDelay:delayTime,
