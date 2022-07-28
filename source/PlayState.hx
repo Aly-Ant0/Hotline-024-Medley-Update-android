@@ -787,10 +787,6 @@ class PlayState extends MusicBeatState
 					part.scrollFactor.set(0.92, 0.92);
 					//part.active = false;
 					TweenParticles(part, part.x, 120, part.y-2000, 0, (Math.random()*5+3),0, FlxEase.quadInOut);
-					
-					new FlxTimer().start(FlxG.random.float(0.5, 1.6), (function:FlxTimer) {
-						FlxTween.tween(part, {alpha: 0}, 0.4);
-					});
 					add(part);
 				}
 	
