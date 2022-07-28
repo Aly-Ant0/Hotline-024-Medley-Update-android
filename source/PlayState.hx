@@ -211,6 +211,7 @@ class PlayState extends MusicBeatState
 	public var iconP2:HealthIcon;
 	public var camHUD:FlxCamera;
 	public var camGame:FlxCamera;
+	public var camCutsceneMidSong:FlxCamera;
 	public var camOther:FlxCamera;
 	public var cameraSpeed:Float = 1;
 
@@ -280,10 +281,10 @@ class PlayState extends MusicBeatState
 	var showYou:BGSprite;
 	var hereme:BGSprite;
 
-	// jooj
-	var jojoBG:BGSprite;
-	var jojoFG:BGSprite;
-	var jojoLuzinha:BGSprite;
+	// hauuei
+	var hallBG:BGSprite;
+	var hallFG:BGSprite;
+	var hallLuzinha:BGSprite;
 
 	// ARMAGEDOM
 	var bars:BGSprite;
@@ -458,12 +459,14 @@ class PlayState extends MusicBeatState
 
 		// var gameCam:FlxCamera = FlxG.camera;
 		camGame = new FlxCamera();
+		camCutsceneMidSong = new FlxCamera();
 		camHUD = new FlxCamera();
 		camOther = new FlxCamera();
 		camHUD.bgColor.alpha = 0;
 		camOther.bgColor.alpha = 0;
 
 		FlxG.cameras.reset(camGame);
+		FlxG.cameras.add(camCutsceneMidSong);
 		FlxG.cameras.add(camHUD);
 		FlxG.cameras.add(camOther);
 		grpNoteSplashes = new FlxTypedGroup<NoteSplash>();
@@ -601,53 +604,6 @@ class PlayState extends MusicBeatState
 					stageCurtains.updateHitbox();
 					add(stageCurtains);
 				}
-
-		case 'killerqueen': //PODE TROCAR O NOME DPS
-		{
-		
-		var cuts1:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('optim/1'));
-		cuts1.scrollFactor.set(0, 0);
-		cuts1.updateHitbox();
-		cuts1.screenCenter();
-		cuts1.antialiasing = ClientPrefs.globalAntialiasing;
-		add(cuts1);
-
-		var cuts2:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('optim/2'));
-		cuts2.scrollFactor.set(0, 0);
-		cuts2.updateHitbox();
-		cuts2.screenCenter();
-		cuts2.antialiasing = ClientPrefs.globalAntialiasing;
-		add(cuts2);
-
-		var cuts3:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('optim/3'));
-		cuts3.scrollFactor.set(0, 0);
-		cuts3.updateHitbox();
-		cuts3.screenCenter();
-		cuts3.antialiasing = ClientPrefs.globalAntialiasing;
-		add(cuts3);
-
-		var cuts4:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('optim/4'));
-		cuts4.scrollFactor.set(0, 0);
-		cuts4.updateHitbox();
-		cuts4.screenCenter();
-		cuts4.antialiasing = ClientPrefs.globalAntialiasing;
-		add(cuts4);
-
-		var cuts5:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('optim/5'));
-		cuts5.scrollFactor.set(0, 0);
-		cuts5.updateHitbox();
-		cuts5.screenCenter();
-		cuts5.antialiasing = ClientPrefs.globalAntialiasing;
-		add(cuts5);
-
-		// Agora a gambiarra
-		cuts1.visible = false;
-		cuts2.visible = false;
-		cuts3.visible = false;
-		cuts4.visible = false;
-		cuts5.visible = false;
-		}
-
 		case 'space': //they are in the space but, HOW THEY CAN LIVE WITHOUT IN THE EARTH????
 			//if(!ClientPrefs.dontShowBG) {
 				var bg:BGSprite = new BGSprite('stage3/s1', -1300, -500, 0.2, 0.2);
@@ -723,7 +679,7 @@ class PlayState extends MusicBeatState
 			  text1.screenCenter(XY);
 				text1.visible = false;
 
-				text2 = new BGSprite('stage3/cutscene/text2', 439.4, 349.3, 0, 0);
+				text2 = new BGSprite('stage3/cutscene/text2', 439.4, text1.y + 15, 0, 0);
 				text2.scale.set(1.8, 1.8);
 				text2.screenCenter(X);
 				text2.visible = false;
@@ -823,11 +779,20 @@ class PlayState extends MusicBeatState
 				///exRock.antialiasing = ClientPrefs.globalAntialiasing;
 					add(exRock);
 	
-	        // particle lol
-	/*
-					precacheList.set('philly/particle', 'image'); //precache particle image
-					exParticle = new FlxTypedGroup<ExpurgatedParticle>();
-	*/
+					// particle lol
+				for (i in 0...30)
+				{ // i get this code from x event mod
+					var part:FlxSprite = new FlxSprite(-1200+150*i, 1000).loadGraphic(Paths.image('expurgated/particle'));
+					part.antialiasing = ClientPrefs.globalAntialiasing;
+					part.scrollFactor.set(0.92, 0.92);
+					//part.active = false;
+					TweenParticles(part, part.x, 120, part.y-2000, 0, (Math.random()*5+3),0, FlxEase.quadInOut);
+					
+					new FlxTimer().start(FlxG.random.float(0.5, 1.6), (function:FlxTimer) {
+						FlxTween.tween(part, {alpha: 0}, 0.4);
+					});
+					add(part);
+				}
 	
 					exGround = new BGSprite('expurgated/ground', -2800, -1400, 1, 1);
 					exGround.scale.set(2.5, 2.5);
@@ -960,22 +925,22 @@ class PlayState extends MusicBeatState
 				octagon.visible = false;
 			case 'hallway':
 				//if(!ClientPrefs.dontShowBG)
-					jojoBG = new BGSprite('hallway/bg', -810, -790, 1, 1);
-					jojoBG.scale.set(1.6, 1.6);
-					jojoBG.updateHitbox();
+					hallBG = new BGSprite('hallway/bg', -810, -790, 1, 1);
+					hallBG.scale.set(1.6, 1.6);
+					hallBG.updateHitbox();
 					//jojoBG.antialiasing = ClientPrefs.globalAntialiasing;
-					add(jojoBG);
+					add(hallBG);
 	
-					jojoLuzinha = new BGSprite('hallway/grad', -810, -1060, 1, 1);
-					jojoLuzinha.blend = ADD;
-					jojoLuzinha.updateHitbox();
+					hallLuzinha = new BGSprite('hallway/grad', -810, -1060, 1, 1);
+					hallLuzinha.blend = ADD;
+					hallLuzinha.updateHitbox();
 					//jojoLuzinha.antialiasing = ClientPrefs.globalAntialiasing;
-					jojoLuzinha.scale.set(1.6, 1.6);
+					hallLuzinha.scale.set(1.6, 1.6);
 					
-					jojoFG = new BGSprite('hallway/fg', -810, -790, 1, 1);
-					jojoFG.updateHitbox();
+					hallFG = new BGSprite('hallway/fg', -810, -790, 1, 1);
+					hallFG.updateHitbox();
 					//jojoFG.antialiasing = ClientPrefs.globalAntialiasing;
-					jojoFG.scale.set(1.6, 1.6);
+					hallFG.scale.set(1.6, 1.6);
 					
 					/*SANESSS = new FlxSprite(0, 0);
 					SANESSS.frames = AtlasFrameMaker.construct('hallway/cutscene1');
@@ -1124,23 +1089,73 @@ class PlayState extends MusicBeatState
 					idkWhatIsthat = new BGSprite('ena/ENA-5', 0, 20, 1.1, 1.1);
 					idkWhatIsthat.updateHitbox();
 
-				case 'nikkuMall':
-					var bg:BGSprite  = new BGSprite('nikkuMall/back', -975, -570, 0.9, 0.9);
-					bg.updateHitbox();
-					add(bg);
+			case 'nikkuMall':
+				var bg:BGSprite  = new BGSprite('nikkuMall/back', -975, -570, 0.9, 0.9);
+				bg.updateHitbox();
+				bg.scale.set(2.4, 2.4);
+				add(bg);
 
-					var front:BGSprite = new BGSprite('nikkuMall/front', -975, -545, 0, 0);
-					front.updateHitbox();
-					add(front);
+				var front:BGSprite = new BGSprite('nikkuMall/front', -975, -545, 0, 0);
+				front.updateHitbox();
+				front.scale.set(2.4, 2.4);
+				add(front);
 
-					oscabodomeucu = new BGSprite('nikkuMall/cables', -975, -400, 1.1, 1.1);
-					oscabodomeucu.updateHitbox();
+				oscabodomeucu = new BGSprite('nikkuMall/cables', -975, -400, 1.1, 1.1);
+				oscabodomeucu.scale.set(2.4, 2.4);
+				oscabodomeucu.updateHitbox();
 
-					nicuLight = new BGSprite('nikkuMall/light', -975, -545, 1.1, 1.1);
-					nicuLight.updateHitbox();
+				nicuLight = new BGSprite('nikkuMall/light', -975, -545, 1.1, 1.1);
+				nicuLight.blend = ADD;
+				nicuLight.scale.set(2.4, 2.4);
+				nicuLight.updateHitbox();
 
-					nicuPlants = new BGSprite('nikkuMall/plants', -975, -500, 1.1, 1.1);
-					nicuPlants.updateHitbox();
+				nicuPlants = new BGSprite('nikkuMall/plants', -975, -500, 1.1, 1.1);
+				nicuPlants.scale.set(2.4, 2.4);
+				nicuPlants.updateHitbox();
+
+			case 'jojo': //PODE TROCAR O NOME DPS
+				var cuts1:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('optim/1'));
+				cuts1.scrollFactor.set(0, 0);
+				cuts1.updateHitbox();
+				cuts1.screenCenter();
+				cuts1.antialiasing = ClientPrefs.globalAntialiasing;
+				add(cuts1);
+		
+				var cuts2:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('optim/2'));
+				cuts2.scrollFactor.set(0, 0);
+				cuts2.updateHitbox();
+				cuts2.screenCenter();
+				cuts2.antialiasing = ClientPrefs.globalAntialiasing;
+				add(cuts2);
+		
+				var cuts3:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('optim/3'));
+				cuts3.scrollFactor.set(0, 0);
+				cuts3.updateHitbox();
+				cuts3.screenCenter();
+				cuts3.antialiasing = ClientPrefs.globalAntialiasing;
+				add(cuts3);
+		
+				var cuts4:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('optim/4'));
+				cuts4.scrollFactor.set(0, 0);
+				cuts4.updateHitbox();
+				cuts4.screenCenter();
+				cuts4.antialiasing = ClientPrefs.globalAntialiasing;
+				add(cuts4);
+		
+				var cuts5:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('optim/5'));
+				cuts5.scrollFactor.set(0, 0);
+				cuts5.updateHitbox();
+				cuts5.screenCenter();
+				cuts5.antialiasing = ClientPrefs.globalAntialiasing;
+				add(cuts5);
+		
+				// Agora a gambiarra
+				cuts1.visible = false;
+				cuts2.visible = false;
+				cuts3.visible = false;
+				cuts4.visible = false;
+				cuts5.visible = false;
+
 
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
@@ -4028,6 +4043,153 @@ class PlayState extends MusicBeatState
 		var pressed:Bool = Reflect.getProperty(controls, key);
 		//trace('Control result: ' + pressed);
 		return pressed;
+	}
+
+	public static function TweenParticles(go:FlxSprite, newx:Float,  amp:Float, newy:Float, newalpha:Float, tweenTime:Float, delayTime:Float, newEase:Float->Float, ?baseScale:Float=1):Void{
+
+		var randomScale = 0.4 + Math.random()*baseScale;
+
+		go.scale.set(randomScale, randomScale);
+		FlxTween.tween(go, {y: newy, alpha: newalpha}, tweenTime, {
+			ease: newEase,
+			type: FlxTween.LOOPING,
+			loopDelay:delayTime,
+			onUpdate: function(twn:FlxTween){
+					go.x = newx + Math.sin(8*twn.scale+ randomScale)*amp;
+			}
+		});
+	}
+
+	function jojoMoment():Void // jojo cutscene in killer queen song
+	{
+		// first scene
+		var jojobg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('jojo/cutscene1/bg', 'h24'));
+		jojobg.antialiasing = ClientPrefs.globalAntialiasing;
+		jojobg.cameras = [camCutsceneMidSong];
+		jojobg.setGraphicSize(Std.int(jojobg.width * 2.5), Std.int(jojobg.height * 2.5));
+		jojobg.screenCenter();
+		jojobg.scrollFactor.set();
+		add(jojobg);
+
+		var bfjojo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('jojo/cutscene1/bf_virou_hetero', 'h24'));
+		bfjojo.antialiasing = ClientPrefs.globalAntialiasing;
+		bfjojo.cameras = [camCutsceneMidSong];
+		bfjojo.screenCenter();
+		bfjojo.setGraphicSize(Std.int(bfjojo.width * 2.5), Std.int(bfjojo.height * 2.5));
+		bfjojo.scrollFactor.set();
+		add(bfjojo);
+
+		// second scene
+		var bg2:FlxSprite = new FlxSprite().loadGraphic(Paths.image('jojo/cutscene1/bg2', 'h24'));
+		bg2.antialiasing = ClientPrefs.globalAntialiasing;
+		bg2.cameras = [camCutsceneMidSong];
+		bg2.screenCenter();
+		bg2.setGraphicSize(Std.int(bg2.width * 2.5), Std.int(bg2.height * 2.5));
+		bg2.scrollFactor.set();
+		bg2.visible = false;
+		add(bg2);
+
+		var gfchocada:FlxSprite = new FlxSprite().loadGraphic(Paths.image('jojo/cutscene1/krl_isso_e_uma_mulher_ou_um_homem', 'h24'));
+		gfchocada.antialiasing = ClientPrefs.globalAntialiasing;
+		gfchocada.cameras = [camCutsceneMidSong];
+		gfchocada.screenCenter();
+		gfchocada.scrollFactor.set();
+		gfchocada.setGraphicSize(Std.int(gfchocada.width * 2.5), Std.int(gfchocada.height * 2.5));
+		gfchocada.visible = false;
+		add(gfchocada);
+
+		// third scene
+		var nicueyes:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('jojo/cutscene1/os_zoi_da_nicu', 'h24'));
+		nicueyes.antialiasing = ClientPrefs.globalAntialiasing;
+		nicueyes.cameras = [camCutsceneMidSong];
+		nicueyes.screenCenter(X);
+		nicueyes.setGraphicSize(Std.int(nicueyes.width * 2.5), Std.int(nicueyes.height * 2.5));
+		nicueyes.visible = false;
+		nicueyes.scrollFactor.set();
+		add(nicueyes);
+
+		var bfheteroEyes:FlxSprite = new FlxSprite(0, nicueyes.y + 390).loadGraphic(Paths.image('jojo/cutscene/os_zoi_do_bf', 'h24'));
+		bfheteroEyes.antialiasing = ClientPrefs.globalAntialiasing;
+		bfheteroEyes.cameras = [camCutsceneMidSong];
+		bfheteroEyes.setGraphicSize(Std.int(bfheteroEyes.width * 2.5), Std.int(bfheteroEyes.height * 2.5));
+		bfheteroEyes.scrollFactor.set();
+		bfheteroEyes.screenCenter(X);
+		bfheteroEyes.visible = false;
+		add(bfheteroEyes);
+
+		// hands scene
+		var bg3:FlxSprite = new FlxSprite().loadGraphic(Paths.image('jojo/cutscene/bg3', 'h24'));
+		bg3.antialiasing = ClientPrefs.globalAntialiasing;
+		bg3.cameras = [camCutsceneMidSong];
+		bg3.scrollFactor.set();
+		bg3.screenCenter();
+		bg3.visible = false;
+		add(bg3);
+
+		var bfhands:FlxSprite = new FlxSprite(139.3,  -198.3).loadGraphic(Paths.image('jojo/cutscene/as_mao_do_bf', 'h24'));
+		bfhands.antialiasing = ClientPrefs.globalAntialiasing;
+		bfhands.cameras = [camCutsceneMidSong];
+		bfhands.scrollFactor.set();
+		//bfhands.screenCenter();
+		bfhands.setGraphicSize(Std.int(778.5), Std.int(960.4));
+		bfhands.visible = false;
+		add(bfhands);
+
+		var nicuhands:FlxSprite = new FlxSprite().loadGraphic(Paths.image('jojo/cutscene/as_mao_do_bf', 'h24'));
+		nicuhands.antialiasing = ClientPrefs.globalAntialiasing;
+		nicuhands.cameras = [camCutsceneMidSong];
+		nicuhands.scrollFactor.set();
+		//nicuhands.screenCenter();
+		nicuhands.setGraphicSize(Std.int(735.1), Std.int(963.5));
+		nicuhands.visible = false;
+		add(nicuhands);
+
+		// flash lol
+		var flash:FlxSprite = new FlxSprite().makeGraphic(Std.int(FlxG.width * 3.2), Std.int(FlxG.height * 3.2), FlxColor.WHITE);
+		flash.cameras = [camCutsceneMidSong];
+		flash.scrollFactor.set();
+		flash.visible = false;
+		add(flash);
+
+		new FlxTimer().start(0.01, function(jojotmr:FlxTimer)
+		{
+			flash.visible = true;
+			FlxTween.tween(bfjojo, {x: bfjojo + 200}, 2.5, {ease: FlxEase.linear});
+		});
+		new FlxTimer().start(0.01, function(jojotmr:FlxTimer)
+		{
+			flash.visible = false;
+		});
+		new FlxTimer().start(0.01, function(jojotmr:FlxTimer)
+		{
+			flash.visible = true;
+		});
+		new FlxTimer().start(0.01, function(jojotmr:FlxTimer)
+		{
+			flash.visible = false;
+		});
+		new FlxTimer().start(2.5, function(tmr:FlxTimer)
+		{
+			flash.visible = true;
+			bg.visible = false;
+			bfjojo.visible = false;
+			bg2.visible = true;
+			gfchocada.visible = true;
+
+			FlxTween.tween(gfchocada, {"scale.x": gfchocada.scale.x + 40, "scale.y": gfchocada.scale.y + 40}, 3);
+		});
+		new FlxTimer().start(0.01, function(jojotmr:FlxTimer)
+		{
+			flash.visible = false;
+		});
+		new FlxTimer().start(0.01, function(jojotmr:FlxTimer)
+		{
+			flash.visible = true;
+		});
+		new FlxTimer().start(0.01, function(jojotmr:FlxTimer)
+		{
+			flash.visible = false;
+		});
 	}
 
 	public function triggerEventNote(eventName:String, value1:String, value2:String) {
