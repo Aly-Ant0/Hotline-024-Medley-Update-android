@@ -79,7 +79,7 @@ class ChooseSkinState extends MusicBeatState
     nikku2Shadow.screenCenter(XY);*/
     
     skinS = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/' + skinShit[curSelected]));
-    skinsS.antialiasing = ClientPrefs.globalAntialiasing
+    skinsS.antialiasing = ClientPrefs.globalAntialiasing;
     skinS.screenCenter(XY);
     
     skinShadow = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/' + skinShit[curSelected] + 'Shadow'));
@@ -90,7 +90,7 @@ class ChooseSkinState extends MusicBeatState
     bars.screenCenter(XY);
     
     chooseText = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/text'));
-    chooseText.antialiasing = ClientPrefs.globalAntialiasing
+    chooseText.antialiasing = ClientPrefs.globalAntialiasing;
     chooseText.screenCenter(XY);
     
     triangles = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/triangles'));
@@ -193,14 +193,15 @@ class ChooseSkinState extends MusicBeatState
 				FlxTween.tween(skinS, {x: skinS.x - 50}, 0.55, {ease: FlxEase.expoOut, onComplete: function(twn:FlxTween)
 				{
 					skinS.x = 0;
+					canSelect = true;
 				}});
 			}
 		}
 		if(skinShadow.graphic != newSkinShadow)
 		{
+				canSelect = false;
 			if (change == 1)
 			{
-				canSelect = false;
 				skinShadow.loadGraphic(newSkinShadow);
 				skinShadow.alpha = 0.48;
 				if (skinTween2 != null) skinTween2.cancel();
