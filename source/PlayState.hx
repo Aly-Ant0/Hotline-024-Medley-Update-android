@@ -257,8 +257,6 @@ class PlayState extends MusicBeatState
 	var particleEx:FlxParticle;
 	var particleEmitter:FlxEmitter;
 */
-	// used particle
-	var exParticle:FlxTypedGroup<ExpurgatedParticle>;
 
 	// skate
 	var skateSky:BGSprite;
@@ -680,9 +678,8 @@ class PlayState extends MusicBeatState
 			  text1.screenCenter(XY);
 				text1.visible = false;
 
-				text2 = new BGSprite('stage3/cutscene/text2', 439.4, text1.y + 15, 0, 0);
+				text2 = new BGSprite('stage3/cutscene/text2', 439.4, text1.y + 55, 0, 0);
 				text2.scale.set(1.8, 1.8);
-				text2.screenCenter(X);
 				text2.visible = false;
 
 			case 'covers': // covers
@@ -783,7 +780,7 @@ class PlayState extends MusicBeatState
 					// particle lol
 				for (i in 0...30)
 				{ // i get this code from x event mod
-					var part:FlxSprite = new FlxSprite(-1200+150*i, -1380).loadGraphic(Paths.image('expurgated/particle'));
+					var part:FlxSprite = new FlxSprite(-1200+150*i, 980).loadGraphic(Paths.image('expurgated/particle'));
 					part.antialiasing = ClientPrefs.globalAntialiasing;
 					part.scrollFactor.set(0.92, 0.92);
 					//part.active = false;
@@ -1890,6 +1887,48 @@ class PlayState extends MusicBeatState
 		botplayTxt.borderSize = 1.25;
 		botplayTxt.visible = cpuControlled;
 		add(botplayTxt);
+
+		comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
+			comboGlow.setPosition(579, 80);
+			comboGlow.alpha = 0.70;
+			comboGlow.cameras = [camHUD];
+			//add(comboGlow);
+
+			combotxt1 = new FlxText();
+			combotxt1.size = 32;
+			combotxt1.color = FlxColor.WHITE;
+			combotxt1.text = rating + " x" + combo;
+			combotxt1.setPosition(579, 80);
+			combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			combotxt1.scrollFactor.set();
+			combotxt1.borderSize = 1.25;
+			combotxt1.cameras = [camHUD];
+			//add(combotxt1);
+
+			// combo score lerp
+			combotxt2 = new FlxText();
+			combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			combotxt2.scrollFactor.set();
+			combotxt2.borderSize = 1.25;
+			combotxt2.size = 26;
+			//combotxt2.setPosition(579, 0);
+			combotxt2.y = combotxt1.y + 20;
+			combotxt2.text = "" + scoreCount;
+			combotxt2.cameras = [camHUD];
+			//add(combotxt2);
+
+			if(ClientPrefs.downScroll) {
+				combotxt1.setPosition(579, 585);
+				//combotxt2.setPosition(579, 600);
+				comboGlow.setPosition(579, 585);
+			}
+			if(ClientPrefs.middleScroll) {
+				combotxt1.x = 90000;
+				combotxt2.x = 90000;
+				combotxt1.visible = false;
+				combotxt2.visible = false;
+				comboGlow.visible = false;
+			}
 
 		/*
 		bar = new FlxSprite().makeGraphic(1, 90, FlxColor.BLACK);
@@ -3641,7 +3680,7 @@ class PlayState extends MusicBeatState
 	//	}
 		
 		//if (!note.isSustainNote) {
-		if (isComboTime) {
+		if (combo == 0) {
 			scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (elapsed * 24), 1, 0)));
 			songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (elapsed * 24), 0, 1)));
 		}
@@ -3888,13 +3927,6 @@ class PlayState extends MusicBeatState
 					if(daNote.isSustainNote) {
 						if(daNote.canBeHit) {
 							goodNoteHit(daNote);
-							comboTmr = new FlxTimer().start(3.5, function(tmr:FlxTimer) {
-								isComboTime = true;
-								combo = 0;
-								if (daNote.isSustainNote) {
-									comboTmr.reset(3.5);
-								}
-							});
 						}
 					} else if(daNote.strumTime <= Conductor.songPosition || (daNote.isSustainNote && daNote.canBeHit && daNote.mustPress)) {
 						goodNoteHit(daNote);
@@ -4961,64 +4993,22 @@ class PlayState extends MusicBeatState
 			
 		for (i in seperatedScore)
 		{
-			comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
-			comboGlow.setPosition(579, 80);
-			comboGlow.alpha = 0.70;
-			comboGlow.cameras = [camHUD];
-			//add(comboGlow);
-
-			combotxt1 = new FlxText();
-			combotxt1.size = 32;
-			combotxt1.color = FlxColor.WHITE;
-			combotxt1.text = rating + " x" + combo;
-			combotxt1.setPosition(579, 80);
-			combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-			combotxt1.scrollFactor.set();
-			combotxt1.borderSize = 1.25;
-			combotxt1.cameras = [camHUD];
-			//add(combotxt1);
-
-			// combo score lerp
-			combotxt2 = new FlxText();
-			combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-			combotxt2.scrollFactor.set();
-			combotxt2.borderSize = 1.25;
-			combotxt2.size = 26;
-			//combotxt2.setPosition(579, 0);
-			combotxt2.y = combotxt1.y + 20;
-			combotxt2.text = "" + scoreCount;
-			combotxt2.cameras = [camHUD];
-			//add(combotxt2);
-
-			if(ClientPrefs.downScroll) {
-				combotxt1.setPosition(579, 585);
-				//combotxt2.setPosition(579, 600);
-				comboGlow.setPosition(579, 585);
-			}
-			if(ClientPrefs.middleScroll) {
-				combotxt1.x = 90000;
-				combotxt2.x = 90000;
-				combotxt1.visible = false;
-				combotxt2.visible = false;
-				comboGlow.visible = false;
-			}
-
 			//if (combo >= 10 || combo == 0)
-			if (combo == 1) { // vai ser add msm fds
+			if (combo > 1) { // vai ser add msm fds
 				add(comboGlow);
 				add(combotxt1);
 				add(combotxt2);
 			}
 				// eu tenho que pensar num bagui que faz que apartir do primeiro combo nao spawna mais combo glow pq meu cell quase morreu dps de eu testar lol
-						if (isComboTime) {
+						if (combo == 0) {
 						// se tiver visível é claro né meu fi ou fia sla
-							combo = 0;
+							//combo = 0;
 							FlxFlicker.flicker(combotxt1, 1.5, 0.10, false, false);
 							FlxTween.tween(combotxt1, {alpha: 0}, 1.5, {
 								ease: FlxEase.quadInOut,
 								onComplete: function(twn:FlxTween)
 								{
-									combotxt1.kill();
+									combotxt1.destroy();
 								}
 							});
 							FlxFlicker.flicker(combotxt2, 1.5, 0.10, false, false);
@@ -5026,14 +5016,14 @@ class PlayState extends MusicBeatState
 								ease: FlxEase.quadInOut,
 								onComplete: function(twn:FlxTween)
 								{
-									combotxt2.kill();
+									combotxt2.destroy();
 								}
 							});
 							FlxTween.tween(comboGlow, {alpha: 0}, 1.5, {
 								ease: FlxEase.quadInOut,
 								onComplete: function(twn:FlxTween)
 								{
-									comboGlow.kill();
+									comboGlow.destroy();
 								}
 							});
 							if (FlxG.random.bool(25.5))
@@ -5457,6 +5447,13 @@ class PlayState extends MusicBeatState
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
 				combo++;
+				new FlxTimer().start(3.5, function(tmr:FlxTimer) {
+					//isComboTime = true;
+					combo = 0;
+					if (!note.isSustainNote) {
+						tmr.reset(3.5);
+					}
+				});
 			}
 			health += note.hitHealth * healthGain;
 
