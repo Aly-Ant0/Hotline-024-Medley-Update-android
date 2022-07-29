@@ -3681,7 +3681,7 @@ class PlayState extends MusicBeatState
 	//	}
 		
 		//if (!note.isSustainNote) {
-		if (combo == 0) {
+		if (isComboTime) {
 			scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (elapsed * 24), 1, 0)));
 			songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (elapsed * 24), 0, 1)));
 		}
@@ -4999,9 +4999,9 @@ class PlayState extends MusicBeatState
 				add(combotxt2);
 			}
 				// eu tenho que pensar num bagui que faz que apartir do primeiro combo nao spawna mais combo glow pq meu cell quase morreu dps de eu testar lol
-						if (combo == 0) {
+						if (isComboTime) {
 						// se tiver visível é claro né meu fi ou fia sla
-							//combo = 0;
+							combo = 0;
 							FlxFlicker.flicker(combotxt1, 1.5, 0.10, false, false);
 							FlxTween.tween(combotxt1, {alpha: 0}, 1.5, {
 								ease: FlxEase.quadInOut,
@@ -5447,8 +5447,8 @@ class PlayState extends MusicBeatState
 				if(combo > 9999) combo = 9999;
 				combo++;
 				new FlxTimer().start(3.5, function(tmr:FlxTimer) {
-					//isComboTime = true;
-					combo = 0;
+					isComboTime = true;
+					//combo = 0;
 					if (!note.isSustainNote) {
 						tmr.reset(3.5);
 					}
