@@ -679,7 +679,7 @@ class PlayState extends MusicBeatState
 			  text1.screenCenter(XY);
 				text1.visible = false;
 
-				text2 = new BGSprite('stage3/cutscene/text2', 439.4, text1.y + 55, 0, 0);
+				text2 = new BGSprite('stage3/cutscene/text2', 439.4, text1.y + 85, 0, 0);
 				text2.scale.set(1.8, 1.8);
 				text2.visible = false;
 
@@ -1008,6 +1008,7 @@ class PlayState extends MusicBeatState
 				momogogoBG.updateHitbox();
 				momogogoBG.antialiasing = ClientPrefs.globalAntialiasing;
 				momogogoBG.offset.x = 0;
+				momogogoBG.velocity.set(90, 0);
 				add(momogogoBG);
 
 			case 'astral': // pq as planta da minha mãe ta aqui
@@ -1889,11 +1890,11 @@ class PlayState extends MusicBeatState
 		botplayTxt.visible = cpuControlled;
 		add(botplayTxt);
 
-		comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
+			comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
 			comboGlow.setPosition(579, 80);
-			comboGlow.alpha = 0.70;
+			comboGlow.alpha = 0;
 			comboGlow.cameras = [camHUD];
-			//add(comboGlow);
+			add(comboGlow);
 
 			combotxt1 = new FlxText();
 			combotxt1.size = 32;
@@ -1904,7 +1905,8 @@ class PlayState extends MusicBeatState
 			combotxt1.scrollFactor.set();
 			combotxt1.borderSize = 1.25;
 			combotxt1.cameras = [camHUD];
-			//add(combotxt1);
+			combotxt1.alpha = 0;
+			add(combotxt1);
 
 			// combo score lerp
 			combotxt2 = new FlxText();
@@ -1916,7 +1918,8 @@ class PlayState extends MusicBeatState
 			combotxt2.y = combotxt1.y + 20;
 			combotxt2.text = "" + scoreCount;
 			combotxt2.cameras = [camHUD];
-			//add(combotxt2);
+			combotxt2.alpha = 0;
+			add(combotxt2);
 
 			if(ClientPrefs.downScroll) {
 				combotxt1.setPosition(579, 585);
@@ -3672,20 +3675,10 @@ class PlayState extends MusicBeatState
 				boyfriendIdleTime = 0;	
 			}	
 		}
-
-		// backdrops things (is in the curstage keys for prevent crash in the other stages)
-		//if(!ClientPrefs.dontShowBG) {
-			if (curStage == 'momogogo') {
-				momogogoBG.x += 90 * elapsed;
-			}
-	//	}
-		
-		//if (!note.isSustainNote) {
 		if (isComboTime) {
 			scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (elapsed * 24), 1, 0)));
 			songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (elapsed * 24), 0, 1)));
 		}
-		//}
 
 		super.update(elapsed);
 
@@ -4085,7 +4078,7 @@ class PlayState extends MusicBeatState
 			type: FlxTween.LOOPING,
 			loopDelay:delayTime});
 
-			FlxTween.tween(go, {alpha: newalpha}, 2.9, {
+			FlxTween.tween(go, {"scale.x": newalpha, "scale.y": newalpha}, 3.9, {
 			ease: newEase,
 			type: FlxTween.LOOPING,
 			loopDelay:delayTime});
@@ -4994,9 +4987,9 @@ class PlayState extends MusicBeatState
 		{
 			//if (combo >= 10 || combo == 0)
 			if (combo > 1) { // vai ser add msm fds
-				add(comboGlow);
-				add(combotxt1);
-				add(combotxt2);
+				comboGlow.alpha = 0.70;
+				combotxt1.alpha = 1;
+				combotxt2.alpha = 1;
 			}
 				// eu tenho que pensar num bagui que faz que apartir do primeiro combo nao spawna mais combo glow pq meu cell quase morreu dps de eu testar lol
 						if (isComboTime) {
@@ -5007,7 +5000,7 @@ class PlayState extends MusicBeatState
 								ease: FlxEase.quadInOut,
 								onComplete: function(twn:FlxTween)
 								{
-									combotxt1.destroy();
+									combotxt1.alpha = 0;
 								}
 							});
 							FlxFlicker.flicker(combotxt2, 1.5, 0.10, false, false);
@@ -5015,14 +5008,14 @@ class PlayState extends MusicBeatState
 								ease: FlxEase.quadInOut,
 								onComplete: function(twn:FlxTween)
 								{
-									combotxt2.destroy();
+									combotxt2.alpha = 0;
 								}
 							});
 							FlxTween.tween(comboGlow, {alpha: 0}, 1.5, {
 								ease: FlxEase.quadInOut,
 								onComplete: function(twn:FlxTween)
 								{
-									comboGlow.destroy();
+									comboGlow.alpha = 0;
 								}
 							});
 							if (FlxG.random.bool(25.5))
@@ -5041,8 +5034,8 @@ class PlayState extends MusicBeatState
 				if (comboTwn != null) {
 					comboTwn.cancel();
 				}
-					combotxt1.scale.x += 0.875;
-					combotxt1.scale.y += 0.875;
+					combotxt1.scale.x += 0.485;
+					combotxt1.scale.y += 0.485;
 					comboTwn = FlxTween.tween(combotxt1.scale, {x: 1, y: 1}, 0.2, {
 						onComplete: function(twn:FlxTween) {
 							comboTwn = null;
@@ -5051,8 +5044,8 @@ class PlayState extends MusicBeatState
 				if (comboTwn2 != null) {
 					comboTwn2.cancel();
 				}
-					combotxt2.scale.x += 0.875;
-					combotxt2.scale.y += 0.875;
+					combotxt2.scale.x += 0.485;
+					combotxt2.scale.y += 0.485;
 					comboTwn2 = FlxTween.tween(combotxt2.scale, {x: 1, y: 1}, 0.2, {
 						onComplete: function(twn:FlxTween) {
 							comboTwn2 = null;
@@ -5446,13 +5439,13 @@ class PlayState extends MusicBeatState
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
 				combo++;
-				new FlxTimer().start(3.5, function(tmr:FlxTimer) {
+				comboTmr = new FlxTimer().start(3.5, function(tmr:FlxTimer) {
 					isComboTime = true;
 					//combo = 0;
-					if (!note.isSustainNote) {
-						tmr.reset(3.5);
-					}
 				});
+			}
+			if (!note.isSustainNote) {
+				comboTmr.reset(3.5);
 			}
 			health += note.hitHealth * healthGain;
 
