@@ -79,7 +79,7 @@ class ChooseSkinState extends MusicBeatState
     nikku2Shadow.screenCenter(XY);*/
     
     skinS = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/' + skinShit[curSelected]));
-    skinsS.antialiasing = ClientPrefs.globalAntialiasing;
+    skinS.antialiasing = ClientPrefs.globalAntialiasing;
     skinS.screenCenter(XY);
     
     skinShadow = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/' + skinShit[curSelected] + 'Shadow'));
