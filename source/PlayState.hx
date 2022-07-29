@@ -189,6 +189,7 @@ class PlayState extends MusicBeatState
 	public var goods:Int = 0;
 	public var bads:Int = 0;
 	public var shits:Int = 0;
+	var rating:String = "";
 	
 	private var generatedMusic:Bool = false;
 	public var endingSong:Bool = false;
@@ -4908,8 +4909,6 @@ class PlayState extends MusicBeatState
 		//var rating:FlxSprite = new FlxSprite();
 	//tryna do MS based judgment due to popular demand
 		var daRating:String = Conductor.judgeNote(note, noteDiff);
-
-		var rating:String = "";
 
 		switch (daRating)
 		{
