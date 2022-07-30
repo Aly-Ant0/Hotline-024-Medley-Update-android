@@ -375,6 +375,8 @@ class PlayState extends MusicBeatState
 	var scoreTxtTween:FlxTween;
 	var comboTmr:FlxTimer;
 
+	comboTm = new FlxTimer();
+
 	public static var campaignScore:Int = 0;
 	public static var campaignMisses:Int = 0;
 	public static var seenCutscene:Bool = false;
@@ -2021,7 +2023,7 @@ class PlayState extends MusicBeatState
 		#end
 		
 		var daSong:String = Paths.formatToSongPath(curSong);
-		if (isStoryMode && !seenCutscene)
+		if (isStoryMode && isCode && !seenCutscene)
 		{
 			switch (daSong)
 			{
@@ -5439,13 +5441,15 @@ class PlayState extends MusicBeatState
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
 				combo++;
-				comboTmr = new FlxTimer().start(3.5, function(tmr:FlxTimer) {
-					isComboTime = true;
-					//combo = 0;
-				});
-			}
-			if (note.isSustainNote) {
-				comboTmr.reset(3.5);
+				comboTmr.start(3.5){
+					if(comboTmr.finished)
+						isComboTime = true;
+						//combo = 0;
+					else if (note.mustPress){
+						comboTmr.reset(3.5);
+					}
+				}
+				comboTmr.loops = 0;
 			}
 			health += note.hitHealth * healthGain;
 
