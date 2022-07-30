@@ -1001,14 +1001,14 @@ class PlayState extends MusicBeatState
 					rocks.updateHitbox();
 			case 'momogogo':
 				//var bg:FlxBackdrop;
-				momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), 0.2, 0.2, true, false);
+				momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), 0.2, 0.2);
 				momogogoBG.x = -1000;
 				momogogoBG.y = -230;
 				momogogoBG.scale.set(1.25, 1.25);
 				momogogoBG.updateHitbox();
 				momogogoBG.antialiasing = ClientPrefs.globalAntialiasing;
 				momogogoBG.offset.x = 0;
-				momogogoBG.velocity.set(90, 0);
+				momogogoBG.velocity.set(120, 0);
 				add(momogogoBG);
 
 			case 'astral': // pq as planta da minha mãe ta aqui
@@ -1020,10 +1020,11 @@ class PlayState extends MusicBeatState
 	
 					matzuDESK = new BGSprite('matzu/DES', 0, 0, 0, 0);
 					//matzuDESK.updateHitbox();
-					matzuDESK.y -= 20;
+					matzuDESK.screenCenter();
 	
 					asPlantadaMinhaMae = new BGSprite('matzu/PLAMTS', 0, 0, 1.1, 1.1);
 					asPlantadaMinhaMae.updateHitbox();
+					asPlantadaMinhaMae.screenCenter();
 	
 					// quando ta tudo fucked twisted
 					matzuFudida1 = new BGSprite('matzu/2/BG1', 0, 0, 0.1, 0.1);
@@ -1058,7 +1059,7 @@ class PlayState extends MusicBeatState
 	
 					matzuFudida6 = new BGSprite('matzu/2/desk2', 0, 0, 0, 0);
 					matzuFudida6.updateHitbox();
-					matzuFudida6.y -= 20;
+					matzuFudida6.screenCenter();
 					matzuFudida6.visible = false;
 	
 					matzuFudida7 = new BGSprite('matzu/2/plamts2', 0, 0, 1.1, 1.1);
