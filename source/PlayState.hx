@@ -5433,8 +5433,7 @@ class PlayState extends MusicBeatState
 				}
 				return;
 			}
-
-			if (!note.isSustainNote)
+			else if (!note.isSustainNote)
 			{
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
@@ -5444,7 +5443,7 @@ class PlayState extends MusicBeatState
 					//combo = 0;
 				});
 			}
-			if (!note.isSustainNote) {
+			if (note.isSustainNote) {
 				comboTmr.reset(3.5);
 			}
 			health += note.hitHealth * healthGain;
