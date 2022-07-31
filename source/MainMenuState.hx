@@ -303,11 +303,15 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 			for (item in menuItems.members)
 			{
 				if (item.ID == curSelected)
+				{
 					item.alpha = 1;
 					item.animation.play('meuamigousacalsinhaescondido');
+				}
 				else
+				{
 					item.alpha = 0.49;
 					item.animation.play('agorausamaisnao');
+				}
 			}
 			if(huh == 1)
 			{
