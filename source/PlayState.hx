@@ -1019,7 +1019,7 @@ class PlayState extends MusicBeatState
 					add(matzuBG);
 	
 					matzuDESK = new BGSprite('matzu/DES', 0, 0, 0, 0);
-					//matzuDESK.updateHitbox();
+					matzuDESK.updateHitbox();
 					matzuDESK.screenCenter();
 	
 					asPlantadaMinhaMae = new BGSprite('matzu/PLAMTS', 0, 0, 1.1, 1.1);
@@ -1064,6 +1064,7 @@ class PlayState extends MusicBeatState
 	
 					matzuFudida7 = new BGSprite('matzu/2/plamts2', 0, 0, 1.1, 1.1);
 					matzuFudida7.updateHitbox();
+					matzuFudida7.screenCenter();
 					matzuFudida7.visible = false;
 			case 'ena':
 				//if(!ClientPrefs.dontShowBG)
@@ -1108,6 +1109,7 @@ class PlayState extends MusicBeatState
 
 				nicuPlants = new BGSprite('nikkuMall/plants', -975, -500, 1.1, 1.1);
 				nicuPlants.scale.set(2.4, 2.4);
+				nicuPlants.screenCenter();
 				nicuPlants.updateHitbox();
 
 			case 'jojo': //PODE TROCAR O NOME DPS
@@ -5436,18 +5438,18 @@ class PlayState extends MusicBeatState
 				}
 				return;
 			}
-			else if (!note.isSustainNote)
+			if (!note.isSustainNote)
 			{
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
 				combo++;
 				comboTmr.start(3.5);
-					if(comboTmr.finished)
-						isComboTime = true;
-						//combo = 0;
-					else if (note.mustPress){
-						comboTmr.reset(3.5);
-					}
+				if(comboTmr.finished)
+					isComboTime = true;
+					//combo = 0;
+				if (note.isSustainNote){
+					comboTmr.reset(3.5);
+				}
 				comboTmr.loops = 0;
 			}
 			health += note.hitHealth * healthGain;
