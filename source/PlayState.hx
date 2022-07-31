@@ -375,7 +375,7 @@ class PlayState extends MusicBeatState
 	var scoreTxtTween:FlxTween;
 	var comboTmr:FlxTimer;
 
-	comboTm = new FlxTimer();
+	comboTmr = new FlxTimer();
 
 	public static var campaignScore:Int = 0;
 	public static var campaignMisses:Int = 0;
