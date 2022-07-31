@@ -667,7 +667,7 @@ class TitleState extends MusicBeatState
 	var increaseVolume:Bool = false;
 	function skipIntro():Void
 	{
-		if (curBeat % 0 == 1) FlxG.camera.zoom += 0.25
+		if (curBeat % 0 == 1) FlxG.camera.zoom += 0.25;
 		if (curBeat % 0 == 2) FlxG.camera.zoom += 0.45;
 
 		if (!skippedIntro)
