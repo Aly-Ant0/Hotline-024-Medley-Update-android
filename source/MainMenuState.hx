@@ -93,7 +93,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 			scale = 6 / optionShit.length;
 		}*/ // nao precisa por sinal
 
-		for (i in optionShit.length)
+		for (i in 0...optionShit.length)
 		{
 			var item:FlxSprite = new FlxSprite(i * 670 + 50, 0);
 			item.frames = Paths.getSparrowAtlas('hotline/' + optionShit[i]);
