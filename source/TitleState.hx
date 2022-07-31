@@ -24,6 +24,7 @@ import options.GraphicsSettingsSubState;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup;
 import flixel.input.gamepad.FlxGamepad;
+import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
 import flixel.system.FlxSound;
@@ -65,6 +66,7 @@ class TitleState extends MusicBeatState
 	public var camZooming:Bool = true;
 	public var camZoomingMult:Float = 1;
 	public var camZoomingDecay:Float = 1;
+	public var defaultCamZoom:Float = 1.05;
 
 	var curWacky:Array<String> = [];
 
@@ -420,7 +422,6 @@ class TitleState extends MusicBeatState
 		if (camZooming)
 		{
 			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, CoolUtil.boundTo(1 - (elapsed * 3.125 * camZoomingDecay), 0, 1));
-			camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, CoolUtil.boundTo(1 - (elapsed * 3.125 * camZoomingDecay), 0, 1));
 		}
 
 
@@ -437,7 +438,7 @@ class TitleState extends MusicBeatState
 		#end
 		if(pressedEnter)
 		{
-			FlxG.sound.music.fadeIn(7, 1, 0, function()
+			FlxG.sound.music.fadeIn(7, 1, 0, onComplete: function(twn:FlxTween)
 			{
 				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
 				FlxG.sound.music.fadeIn(10, 0, 1);
@@ -651,11 +652,11 @@ class TitleState extends MusicBeatState
 				// credTextShit.text = "Friday";
 				// credTextShit.screenCenter();
 				case 14:
-					createCoolText('Hotline');
-					FlxG.camera.zoom += 0.45;
+					createCoolText(['Hotline'], 15);
+					FlxG.camera.zoom += 0.25;
 				// credTextShit.text += '\nNight';
 				case 15:
-					addMoreText('Hotline 024'); // credTextShit.text += '\nFunkin';
+					addMoreText('Hotline 024', 15); // credTextShit.text += '\nFunkin';
 					FlxG.camera.zoom += 0.45;
 				case 16:
 					skipIntro();
