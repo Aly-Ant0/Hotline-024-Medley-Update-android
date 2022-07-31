@@ -42,15 +42,6 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		'extras',
 		'options'
 	];
-	var creditsImage:FlxSprite;
-	var storyButton:FlxSprite;
-	var storyButton2:FlxSprite;
-	var freeplayButton:FlxSprite;
-	var freeplayButton2:FlxSprite;
-	var extrasButton:FlxSprite;
-	var extrasButton2:FlxSprite;
-	var optionsButton:FlxSprite;
-	var optionsButton2:FlxSprite;
 	var jukeboxText:FlxSprite;
 	var selected:Bool = false;
 	var jukeHitbox:FlxObject;
@@ -58,14 +49,11 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 
 	override function create()
 	{
-			FlxG.sound.playMusic(Paths.music('nightlight'), 0);
-			FlxG.sound.music.fadeIn(0.4, 0.6, 1);
-
 		WeekData.loadTheFirstEnabledMod();
 
 		#if desktop
 		// Updating Discord Rich Presence
-		DiscordClient.changePresence("In the Menus", null);
+		DiscordClient.changePresence("In the Main Menu", null);
 		#end
 		//debugKeys = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_1'));
 
@@ -104,105 +92,20 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 			scale = 6 / optionShit.length;
 		}*/ // nao precisa por sinal
 
-		storyButton = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
-		storyButton.frames = Paths.getSparrowAtlas('hotline/menu/story_mode');
-		storyButton.animation.addByPrefix('idle', "normal");
-		storyButton.animation.addByPrefix('selected', "glow");
-		storyButton.animation.play('idle');
-		storyButton.scrollFactor.set(0.1, 0);
-		storyButton.antialiasing = ClientPrefs.globalAntialiasing;
-		storyButton.scale.set(0.9, 0.9);
-		storyButton.updateHitbox();
-
-		freeplayButton = new FlxSprite(storyButton.x - 30, FlxG.height / 2);
-		freeplayButton.frames = Paths.getSparrowAtlas('hotline/menu/freeplay');
-		freeplayButton.animation.addByPrefix('idle', "normal");
-		freeplayButton.animation.addByPrefix('selected', "glow");
-		freeplayButton.animation.play('idle');
-		add(freeplayButton);
-		freeplayButton.scrollFactor.set(0.1, 0);
-		freeplayButton.antialiasing = ClientPrefs.globalAntialiasing;
-		freeplayButton.scale.set(0.9, 0.9);
-		freeplayButton.updateHitbox();
-
-		optionsButton = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
-		optionsButton.frames = Paths.getSparrowAtlas('hotline/menu/options');
-		optionsButton.animation.addByPrefix('idle', "normal");
-		optionsButton.animation.addByPrefix('selected', "glow");
-		optionsButton.animation.play('idle');
-		add(optionsButton);
-		optionsButton.scrollFactor.set(0.1, 0);
-		optionsButton.antialiasing = ClientPrefs.globalAntialiasing;
-		optionsButton.scale.set(0.9, 0.9);
-		optionsButton.updateHitbox();
-
-		extrasButton = new FlxSprite(storyButton.x + 30, FlxG.height / 2);
-		extrasButton.frames = Paths.getSparrowAtlas('hotline/menu/extras');
-		extrasButton.animation.addByPrefix('idle', "normal");
-		extrasButton.animation.addByPrefix('selected', "glow");
-		extrasButton.animation.play('idle');
-		add(extrasButton);
-		extrasButton.scrollFactor.set(0.1, 0);
-		extrasButton.antialiasing = ClientPrefs.globalAntialiasing;
-		extrasButton.scale.set(0.9, 0.9);
-		extrasButton.updateHitbox();
-
-		storyButton2 = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
-		storyButton2.frames = Paths.getSparrowAtlas('hotline/menu/story_mode');
-		storyButton2.animation.addByPrefix('idle', "normal");
-		storyButton2.animation.addByPrefix('selected', "glow");
-		storyButton2.animation.play('idle');
-		add(storyButton2);
-		storyButton2.scrollFactor.set(0.1, 0);
-		storyButton2.antialiasing = ClientPrefs.globalAntialiasing;
-		storyButton2.scale.set(0.9, 0.9);
-		storyButton2.visible = false;
-		storyButton2.updateHitbox();
-
-		freeplayButton2 = new FlxSprite(freeplayButton.x, FlxG.height / 2);
-		freeplayButton2.frames = Paths.getSparrowAtlas('hotline/menu/freeplay');
-		freeplayButton2.animation.addByPrefix('idle', "normal");
-		freeplayButton2.animation.addByPrefix('selected', "glow");
-		freeplayButton2.animation.play('idle');
-		add(freeplayButton2);
-		freeplayButton2.scrollFactor.set(0.1, 0);
-		freeplayButton2.antialiasing = ClientPrefs.globalAntialiasing;
-		freeplayButton2.scale.set(0.9, 0.9);
-		freeplayButton2.visible = false;
-		freeplayButton2.updateHitbox();
-
-		optionsButton2 = new FlxSprite(optionsButton.x, FlxG.height / 2);
-		optionsButton2.frames = Paths.getSparrowAtlas('hotline/menu/options');
-		optionsButton2.animation.addByPrefix('idle', "normal");
-		optionsButton2.animation.addByPrefix('selected', "glow");
-		optionsButton2.animation.play('idle');
-		add(optionsButton2);
-		optionsButton.scrollFactor.set(0.1, 0);
-		optionsButton2.antialiasing = ClientPrefs.globalAntialiasing;
-		optionsButton2.scale.set(0.9, 0.9);
-		optionsButton2.visible = false;
-		optionsButton2.updateHitbox();
-
-		extrasButton2 = new FlxSprite(extrasButton.x, FlxG.height / 2);
-		extrasButton2.frames = Paths.getSparrowAtlas('hotline/menu/extras');
-		extrasButton2.animation.addByPrefix('idle', "normal");
-		extrasButton2.animation.addByPrefix('selected', "glow");
-		extrasButton2.animation.play('idle');
-		add(extrasButton2);
-		extrasButton2.scrollFactor.set(0.1, 0);
-		extrasButton2.antialiasing = ClientPrefs.globalAntialiasing;
-		extrasButton2.scale.set(0.9, 0.9);
-		extrasButton2.visible = false;
-		extrasButton2.updateHitbox();
-
-		add(extrasButton);
-		add(optionsButton);
-		add(freeplayButton);
-		add(storyButton);
-		add(storyButton2);
-		add(freeplayButton2);
-		add(optionsButton2);
-		add(extrasButton2);
+		for (i in optionShit.length)
+		{
+			var item:FlxSprite = new FlxSprite(480 * i + 50, 0);
+			item.frames = Paths.getSparrowAtlas('hotline/' + optionShit[i]);
+			item.antialiasing = ClientPrefs.globalAntialiasing;
+			item.screenCenter(X);
+			item.animation.addByPrefix('meu amigo usa calsinha escondido', "glow")
+			item.animation.addByPrefix('agora usa mais nao', "normal")
+			item.animation.play('agora usa mais nao');
+			item.setGraphicSize(311, 550);
+			item.ID = i;
+			item.updateHitbox();
+			menuItems.add(item);
+		}
 
 		jukeboxText = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox')); // eu nao vou programar o jukebox menu pq nao tem nenhum video que mostra o jukebox menu ent eu nao sei como é o jukebox menu e eu nao tenho pc // sadness
 		jukeboxText.screenCenter();
@@ -266,7 +169,8 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 	}
 	#end
 
-	var selectedSomethin:Bool = false;
+	var selectedSomethin:Bool = false
+	var canSelect:Bool = true;
 
 	override function update(elapsed:Float)
 	{
@@ -291,7 +195,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 				jukeboxText.color = 0xFFFFFFFF;
 			}
 		}
-		if (!selectedSomethin)
+		if (!selectedSomethin && canSelect)
 		{
 			if (controls.UI_LEFT_P)
 			{
@@ -314,29 +218,61 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 
 			if (controls.ACCEPT)
 			{
+				FlxG.sound.play(Paths.sound('entersfx'));
 				if (optionShit[curSelected] == 'story_mode')
 				{
-							FlxG.sound.play(Paths.sound('errorsfx'));
-							FlxFlicker.flicker(storyButton, 0.4, 0.06, false);
-				}
-					var daChoice:String = optionShit[curSelected];
-					switch (daChoice)
+					for (item in menuItems)
 					{
-						case 'freeplay':
-							FlxFlicker.flicker(freeplayButton2, 0.4, 0.06, false);
-							MusicBeatState.switchState(new FreeplayState());
-						case 'extras':
-							FlxFlicker.flicker(extrasButton2, 0.4, 0.06, false);
-							MusicBeatState.switchState(new ExtrasScreen());
-						case 'options':
-							FlxFlicker.flicker(optionsButton2, 0.4, 0.06, false);
-							LoadingState.loadAndSwitchState(new options.OptionsState());
+						if(item.ID == curSelected)
+						{
+							FlxG.sound.play(Paths.sound('errorsfx'));
+							FlxFlicker.flicker(item, 0.4, 0.06, false);
+						}
 					}
+				}
+				for (item in menuItems.members)
+				{
+					var daChoice:String = optionShit[curSelected];
+
+					if (item.ID == curSelected)
+					{
+						FlxFlicker.flicker(item, 0.4, 0.06, false, false, function(flicker:FlxFlicker)
+						{
+							switch(daChoice)
+							{
+								case 'freeplay':
+									MusicBeatState.switchState(new FreeplayState());
+								case 'extras':
+									MusicBeatState.switchState(new ExtrasScreen());
+									case 'options':
+										LoadingState.loadAndSwitchState(new options.OptionsState());
+							}
+						});
+					}
+					else
+					{
+						FlxTween.tween(item, {alpha: 0}, 0.5, {
+							onComplete:function(twn:FlxTween)
+							{
+							item.kill();
+							}
+						});
+					}
+				}
 			}
 			for (touch in FlxG.touches.list)
 			{
-				if (touch.overlaps(creditsHitbox) && touch.justPressed) {
+				if (touch.overlaps(creditsHitbox)) {
+					creditsImage.color = 0xFF363636
+					if(touch.justPressed)
+					{
 						MusicBeatState.switchState(new CreditsState());
+						FlxG.sound.play(Paths.sound('entersfx'));
+					}
+				}
+				else
+				{
+					creditsImage.color = 0xFFFFFFFF;
 				}
 			}
 			#if (desktop) // only on pc lol
@@ -357,102 +293,58 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 
 		/*var scale:Int = 1;*/ // idk
 
-		if (curSelected >= optionShit.length)
+		if (curSelected >= menuItems.length)
 			curSelected = 0;
 		if (curSelected < 0)
-			curSelected = optionShit.length - 1;
+			curSelected = menuItems.length - 1;
 
 			FlxG.sound.play(Paths.sound('selectsfx'));
 
-		//var porra:Int = 0;
-		var option:String = optionShit[curSelected];
-
-		switch(option) { // por enquando vai ser brusco mesmo e eu fiquei mt confuso pra programar isso puta que pariu
-		// e os botão 2 é tipo o botao 1 so que eles são MACHO ALFA cof, cof, quer dizer, eles estão na frente pra não ficar todo lascado.
-		// butao na frente: 500, 85,
-		// buttao de tras: a mesma coisa do butao da frente,
-		// butao no lado esquerdo: 160, 85,
-		// butao no lado direito: 830, 85
-			case 'story_mode':
-				optionsButton2.visible = false;
-				extrasButton2.visible = false;
-				freeplayButton2.visible = false;
-				storyButton2.visible = true;
-
-				optionsButton.visible = true;
-				extrasButton.visible = true;
-				freeplayButton.visible = true;
-				storyButton.visible = false;
-
-				storyButton.setPosition(500, 85);
-				freeplayButton.setPosition(830, 85);
-				optionsButton.setPosition(160, 85);
-				extrasButton.setPosition(500, 85);
-
-				storyButton2.setPosition(500, 85);
-				freeplayButton2.setPosition(830, 85);
-				optionsButton2.setPosition(160, 85);
-				extrasButton2.setPosition(500, 85);
-			case 'freeplay':
-				optionsButton2.visible = false;
-				extrasButton2.visible = false;
-				freeplayButton2.visible = true;
-				storyButton2.visible = false;
-
-				optionsButton.visible = true;
-				extrasButton.visible = true;
-				freeplayButton.visible = false;
-				storyButton.visible = true;
-
-				storyButton.setPosition(160, 85);
-				freeplayButton.setPosition(500, 85);
-				optionsButton.setPosition(500, 85);
-				extrasButton.setPosition(830, 85);
-
-				storyButton2.setPosition(160, 85);
-				freeplayButton2.setPosition(500, 85);
-				optionsButton2.setPosition(500, 85);
-				extrasButton2.setPosition(830, 85);
-			case 'extras':
-				optionsButton2.visible = false;
-				extrasButton2.visible = true;
-				freeplayButton2.visible = false;
-				storyButton2.visible = false;
-
-				optionsButton.visible = true;
-				extrasButton.visible = false;
-				freeplayButton.visible = true;
-				storyButton.visible = true;
-
-				storyButton.setPosition(500, 85);
-				freeplayButton.setPosition(160, 85);
-				optionsButton.setPosition(830, 85);
-				extrasButton.setPosition(500, 85);
-
-				storyButton2.setPosition(500, 85);
-				freeplayButton2.setPosition(160, 85);
-				optionsButton2.setPosition(830, 85);
-				extrasButton2.setPosition(500, 85);
-			case 'options':
-				optionsButton2.visible = true;
-				extrasButton2.visible = false;
-				freeplayButton2.visible = false;
-				storyButton2.visible = false;
-
-				optionsButton.visible = false;
-				extrasButton.visible = true;
-				freeplayButton.visible = true;
-				storyButton.visible = true;
-
-				storyButton.setPosition(830, 85);
-				freeplayButton.setPosition(500, 85);
-				optionsButton.setPosition(500, 85);
-				extrasButton.setPosition(160, 85);
-
-				storyButton2.setPosition(830, 85);
-				freeplayButton2.setPosition(500, 85);
-				optionsButton2.setPosition(500, 85);
-				extrasButton2.setPosition(160, 85);
+			for (item in menuItems.members)
+			{
+				if (item.ID == curSelected)
+					item.alpha = 1;
+					item.animation.play('meu amigo usa calsinha escondido');
+				else
+					item.alpha = 0.49;
+					item.animation.play('agora usa mais nao');
+			}
+			if(huh == 1)
+			{
+				canSelect = false;
+				FlxTween.tween(menuItems, {x: menuItems.x + 480}, 0.5, {onComplete: function(twn:FlxTween)
+					{
+						canSelect = true;
+					}
+				});
+			}
+			if(huh == -1)
+			{
+				canSelect = false;
+				FlxTween.tween(menuItems, {x: menuItems.x - 480}, 0.5, {onComplete: function(twn:FlxTween)
+					{
+						canSelect = true;
+					}
+				});
+			}
+			if(curSelected > optionShit.length && curSelected < optionShit.length)
+			{
+				if(huh == 1)
+				{
+					canSelect = false;
+					FlxTween.tween(menuItems, {x: menuItems.x - 1920}, 0.5, {onComplete: function(twn:FlxTween)
+					{
+						canSelect = true;
+					}});
+				}
+				if(change == -1)
+				{
+					canSelect = false;
+					FlxTween.tween(menuItems, {x: menuItems.x + 1920}, 0.5, {onComplete: function(twn:FlxTween)
+					{
+						canSelect = true;
+					}});
+				}
 		}
 	}
 }
