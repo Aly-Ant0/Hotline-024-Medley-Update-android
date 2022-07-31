@@ -1706,7 +1706,7 @@ class PlayState extends MusicBeatState
 				bfshade.blend = ADD;
 				bfshade.alpha = 0.5;
 				bfshade.y = boyfriend.y + 50;
-				bfshade.animation.play(boyfriend.animation)
+				bfshade.animation.play(boyfriend.animation);
 				insert(members.indexOf(boyfriendGroup), bfshade);
 			case 'limo':
 				resetFastCar();
