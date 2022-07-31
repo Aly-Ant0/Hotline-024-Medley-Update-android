@@ -94,13 +94,13 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 
 		for (i in optionShit.length)
 		{
-			var item:FlxSprite = new FlxSprite(480 * i + 50, 0);
+			var item:FlxSprite = new FlxSprite(i * 670 + 50, 0);
 			item.frames = Paths.getSparrowAtlas('hotline/' + optionShit[i]);
 			item.antialiasing = ClientPrefs.globalAntialiasing;
 			item.screenCenter(X);
-			item.animation.addByPrefix('meu amigo usa calsinha escondido', "glow")
-			item.animation.addByPrefix('agora usa mais nao', "normal")
-			item.animation.play('agora usa mais nao');
+			item.animation.addByPrefix('meuamigousacalsinhaescondido', "glow");
+			item.animation.addByPrefix('agorausamaisnao', "normal");
+			item.animation.play('agorausamaisnao');
 			item.setGraphicSize(311, 550);
 			item.ID = i;
 			item.updateHitbox();
@@ -254,7 +254,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 						FlxTween.tween(item, {alpha: 0}, 0.5, {
 							onComplete:function(twn:FlxTween)
 							{
-							item.kill();
+								item.kill();
 							}
 						});
 					}
@@ -263,7 +263,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 			for (touch in FlxG.touches.list)
 			{
 				if (touch.overlaps(creditsHitbox)) {
-					creditsImage.color = 0xFF363636
+					creditsImage.color = 0xFF363636;
 					if(touch.justPressed)
 					{
 						MusicBeatState.switchState(new CreditsState());
@@ -304,10 +304,10 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 			{
 				if (item.ID == curSelected)
 					item.alpha = 1;
-					item.animation.play('meu amigo usa calsinha escondido');
+					item.animation.play('meuamigousacalsinhaescondido');
 				else
 					item.alpha = 0.49;
-					item.animation.play('agora usa mais nao');
+					item.animation.play('agorausamaisnao');
 			}
 			if(huh == 1)
 			{
