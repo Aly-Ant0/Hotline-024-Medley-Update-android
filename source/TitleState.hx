@@ -62,6 +62,9 @@ class TitleState extends MusicBeatState
 	var credTextShit:Alphabet;
 	var textGroup:FlxGroup;
 	var ngSpr:FlxSprite;
+	public var camZooming:Bool = true;
+	public var camZoomingMult:Float = 1;
+	public var camZoomingDecay:Float = 1;
 
 	var curWacky:Array<String> = [];
 
@@ -414,6 +417,13 @@ class TitleState extends MusicBeatState
 			Conductor.songPosition = FlxG.sound.music.time;
 		// FlxG.watch.addQuick('amp', FlxG.sound.music.amplitude);
 
+		if (camZooming)
+		{
+			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, CoolUtil.boundTo(1 - (elapsed * 3.125 * camZoomingDecay), 0, 1));
+			camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, CoolUtil.boundTo(1 - (elapsed * 3.125 * camZoomingDecay), 0, 1));
+		}
+
+
 		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER || controls.ACCEPT;
 
 		#if mobile
@@ -425,6 +435,14 @@ class TitleState extends MusicBeatState
 			}
 		}
 		#end
+		if(pressedEnter)
+		{
+			FlxG.sound.music.fadeIn(7, 1, 0, function()
+			{
+				FlxG.sound.playMusic(Paths.music('nightlight', 0);
+				FlxG.sound.music.fadeIn(10, 0, 1);
+			});
+		}
 
 		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
 
@@ -451,6 +469,7 @@ class TitleState extends MusicBeatState
 				FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 
 				transitioning = true;
+				
 				// FlxG.sound.music.stop();
 
 				new FlxTimer().start(1, function(tmr:FlxTimer)
@@ -565,11 +584,7 @@ class TitleState extends MusicBeatState
 	override function beatHit()
 	{
 		super.beatHit();
-		
-   if(initialized)
-   FlxTween.tween(FlxG.camera, {zoom:1.10}, 0.3, {ease: FlxEase.quadOut, type: BACKWARD});
-		
-		
+
 		if(logoBl != null) 
 			logoBl.animation.play('bump', true);
 
@@ -635,15 +650,13 @@ class TitleState extends MusicBeatState
 				// credTextShit.visible = false;
 				// credTextShit.text = "Friday";
 				// credTextShit.screenCenter();
-				case 13:
-					addMoreText('Friday');
-				// credTextShit.visible = true;
 				case 14:
-					addMoreText('Night');
+					createCoolText('Hotline');
+					FlxG.camera.zoom += 0.45;
 				// credTextShit.text += '\nNight';
 				case 15:
-					addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
-
+					addMoreText('Hotline 024'); // credTextShit.text += '\nFunkin';
+					FlxG.camera.zoom += 0.45;
 				case 16:
 					skipIntro();
 			}
@@ -654,6 +667,9 @@ class TitleState extends MusicBeatState
 	var increaseVolume:Bool = false;
 	function skipIntro():Void
 	{
+		if (curBeat % 0 == 1) FlxG.camera.zoom += 0.25
+		if (curBeat % 0 == 2) FlxG.camera.zoom += 0.45;
+
 		if (!skippedIntro)
 		{
 			if (playJingle) //Ignore deez
