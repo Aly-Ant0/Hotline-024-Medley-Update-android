@@ -375,8 +375,6 @@ class PlayState extends MusicBeatState
 	var scoreTxtTween:FlxTween;
 	var comboTmr:FlxTimer;
 
-	comboTmr = new FlxTimer();
-
 	public static var campaignScore:Int = 0;
 	public static var campaignMisses:Int = 0;
 	public static var seenCutscene:Bool = false;
@@ -5404,6 +5402,8 @@ class PlayState extends MusicBeatState
 
 	function goodNoteHit(note:Note):Void
 	{
+		comboTmr = new FlxTimer();
+
 		if (!note.wasGoodHit)
 		{
 			if (ClientPrefs.hitsoundVolume > 0 && !note.hitsoundDisabled)
