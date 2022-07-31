@@ -43,6 +43,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		'options'
 	];
 	var jukeboxText:FlxSprite;
+	var creditsImage:FlxSprite;
 	var selected:Bool = false;
 	var jukeHitbox:FlxObject;
 	var creditsHitbox:FlxObject;
@@ -341,7 +342,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 						canSelect = true;
 					}});
 				}
-				if(change == -1)
+				if(huh == -1)
 				{
 					canSelect = false;
 					FlxTween.tween(menuItems, {x: menuItems.x + 1920}, 0.5, {onComplete: function(twn:FlxTween)
