@@ -169,7 +169,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 	}
 	#end
 
-	var selectedSomethin:Bool = false
+	var selectedSomethin:Bool = false;
 	var canSelect:Bool = true;
 
 	override function update(elapsed:Float)
