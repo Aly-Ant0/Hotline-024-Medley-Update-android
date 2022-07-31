@@ -438,10 +438,11 @@ class TitleState extends MusicBeatState
 		#end
 		if(pressedEnter)
 		{
-			FlxG.sound.music.fadeIn(7, 1, 0, onComplete: function()
+			FlxG.sound.music.fadeIn(7, 1, 0);
+			new FlxTimer().start(7, function(tmr:FlxTimer)
 			{
 				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
-				FlxG.sound.music.fadeIn(10, 0, 1);
+				FlxG.sound.music.fadeIn(4, 0, 1);
 			});
 		}
 
