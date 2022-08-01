@@ -5443,14 +5443,14 @@ class PlayState extends MusicBeatState
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
 				combo++;
-				comboTmr.start(3.5);
-				if(comboTmr.finished)
+				comboTmr.start(3.5, function(tm:FlxTimer){
 					isComboTime = true;
 					//combo = 0;
+				});
 				if (note.isSustainNote){
 					comboTmr.reset(3.5);
 				}
-				comboTmr.loops = 0;
+				comboTmr.loops = 9999999999999999999999999;
 			}
 			health += note.hitHealth * healthGain;
 
