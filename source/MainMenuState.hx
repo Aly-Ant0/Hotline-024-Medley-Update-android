@@ -96,7 +96,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		for (i in 0...optionShit.length)
 		{
 			var item:FlxSprite = new FlxSprite(i * 670 + 50, 0);
-			item.frames = Paths.getSparrowAtlas('hotline/' + optionShit[i]);
+			item.frames = Paths.getSparrowAtlas('hotline/menu/' + optionShit[i]);
 			item.antialiasing = ClientPrefs.globalAntialiasing;
 			item.screenCenter(X);
 			item.animation.addByPrefix('meuamigousacalsinhaescondido', "glow");
