@@ -79,12 +79,6 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		bg.screenCenter();
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
-		
-		var bars:FlxSprite = new FlxSprite().loadGraphic(Paths.image('hotline/menu/bars'));
-		bars.updateHitbox();
-		bars.screenCenter();
-		bars.antialiasing = ClientPrefs.globalAntialiasing;
-		add(bars);
 
 		menuItems = new FlxTypedSpriteGroup<FlxSprite>();
 		add(menuItems);
@@ -95,10 +89,10 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 
 		for (i in 0...optionShit.length)
 		{
-			var item:FlxSprite = new FlxSprite(i * 670 + 50, 0);
+			var item:FlxSprite = new FlxSprite((670*i)+230, 0);
 			item.frames = Paths.getSparrowAtlas('hotline/menu/' + optionShit[i]);
 			item.antialiasing = ClientPrefs.globalAntialiasing;
-			item.screenCenter(X);
+			//item.screenCenter(X);
 			item.animation.addByPrefix('meuamigousacalsinhaescondido', "glow");
 			item.animation.addByPrefix('agorausamaisnao', "normal");
 			item.animation.play('agorausamaisnao');
@@ -107,6 +101,12 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 			item.updateHitbox();
 			menuItems.add(item);
 		}
+
+		var bars:FlxSprite = new FlxSprite().loadGraphic(Paths.image('hotline/menu/bars'));
+		bars.updateHitbox();
+		bars.screenCenter();
+		bars.antialiasing = ClientPrefs.globalAntialiasing;
+		add(bars);
 
 		jukeboxText = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox')); // eu nao vou programar o jukebox menu pq nao tem nenhum video que mostra o jukebox menu ent eu nao sei como é o jukebox menu e eu nao tenho pc // sadness
 		jukeboxText.screenCenter();
@@ -291,6 +291,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 	function changeItem(huh:Int = 0)
 	{
 		curSelected += huh;
+		FlxG.log.add('linda, cheirosa, gostos-: ' + optionShit[curSelected]);
 
 		/*var scale:Int = 1;*/ // idk
 
@@ -310,14 +311,16 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 				}
 				else
 				{
-					item.alpha = 0.49;
+					item.alpha = 0.35;
 					item.animation.play('agorausamaisnao');
 				}
 			}
 			if(huh == 1)
 			{
 				canSelect = false;
-				FlxTween.tween(menuItems, {x: menuItems.x + 480}, 0.5, {onComplete: function(twn:FlxTween)
+				FlxTween.tween(menuItems, {x: menuItems.x + 480}, 0.25, {
+					ease: FlxEase.expoOut,
+					onComplete: function(twn:FlxTween)
 					{
 						canSelect = true;
 					}
