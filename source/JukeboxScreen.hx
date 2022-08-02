@@ -14,6 +14,7 @@ import flixel.util.FlxColor;
 import flixel.graphics.FlxGraphic;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import openfl.utils.Assets as OpenFlAssets;
 import lime.utils.Assets;
 
@@ -31,10 +32,11 @@ class JukeboxScreen extends MusicBeatState
 		'sugarcrush',
 		'smokebomb'
 	];
-	var textGrp:FlxTypedGroup<FlxSprite>;
+	var textGrp:FlxTypedSpriteGroup<FlxSprite>;
 	var bg:FlxSprite;
 	var bars:FlxSprite;
 	var jukebox:FlxSprite;
+	var alias:Bool = ClientPrefs.globalAntialiasing;
 
 	public static var curSelected:Int = 0;
 
@@ -42,44 +44,44 @@ class JukeboxScreen extends MusicBeatState
 	{
 		bg = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox/bg'));
 		bg.screenCenter();
+		bg.antialiasing = alias;
 		add(bg);
-
-		bars = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox/bars'));
-		bars.screenCenter();
-		add(bars);
 
 		jukebox = new FlxSprite(603, 65);
 		jukebox.frames = Paths.getSparrowAtlas('hotline/menu/jukebox/jukebox_play', 'preload');
 		jukebox.scale.set(1.8, 1.8);
 		jukebox.animation.addByPrefix('bruh', 'Jukebox', 24, true);
 		jukebox.animation.play('bruh');
+		jukebox.antialiasing = alias;
 		add(jukebox);
 
-		textGrp = new FlxTypedGroup<FlxSprite>();
+		textGrp = new FlxTypedSpriteGroup<FlxSprite>();
 		add(textGrp);
 
 		for (i in 0...songList.length)
 		{
 			var text:FlxSprite = new FlxSprite(0, i * 160 + 40).loadGraphic(Paths.image('freeplaySongText/' + songList[i], 'shared'));
 			text.screenCenter(X);
+			text.antialiasing = alias;
 			//text.scale.set(0.6, 0.8);
 			text.ID = i;
 			//text.angle -= i;
 			text.x -= 60;
 			if (text.ID == curSelected)
 			{
-				text.angle += 6;
-				text.scale.x += 8;
-				text.scale.y += 8;
+				text.angle = 6;
 			}
 			else
 			{
 				text.angle -= 6;
-				text.scale.x -= 4;
-				text.scale.y -= 4;
 			}
 			textGrp.add(text);
 		}
+
+		bars = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox/bars'));
+		bars.screenCenter();
+		bars.antiliasing = alias;
+		add(bars);
 
 		changeSelection();
 
@@ -116,8 +118,8 @@ class JukeboxScreen extends MusicBeatState
 		curSelected += change;
 
 		if (curSelected < 0)
-			curSelected = songList.length - 1;
-		if (curSelected >= songList.length)
+			curSelected = textGrp.length - 1;
+		if (curSelected >= textGrp.length)
 			curSelected = 0;
 
 		var bullShit:Int = 0;
@@ -128,14 +130,15 @@ class JukeboxScreen extends MusicBeatState
 			if(item.ID == curSelected)
 			{
 				item.alpha = 1;
+				//var lastAngle:Float = text.angle;
 				if(change == 1)
 				{
-					FlxTween.angle(item, item.angle, item.angle + 5, 0.5, {ease: FlxEase.expoOut});
+					FlxTween.angle(item, item.angle, 5, 0.5, {ease: FlxEase.expoOut});
 					FlxTween.tween(item, {x: item.x + 15}, 0.5, {ease: FlxEase.expoOut});
 				}
 				if(change == -1)
 				{
-					FlxTween.angle(item, item.angle, item.angle - 5, 0.5, {ease: FlxEase.expoOut});
+					FlxTween.angle(item, item.angle, 5, 0.5, {ease: FlxEase.expoOut});
 					FlxTween.tween(item, {x: item.x + 15}, 0.5, {ease: FlxEase.expoOut});
 				}
 			}
@@ -155,11 +158,11 @@ class JukeboxScreen extends MusicBeatState
 			}
 			if (change == 1)
 			{
-				FlxTween.tween(item, {y: item.y + 140 + 60}, 0.5, {ease: FlxEase.expoOut});
+				FlxTween.tween(item, {y: textGrp.y + 140 + 60}, 0.5, {ease: FlxEase.expoOut});
 			}
 			if(change == -1)
 			{
-				FlxTween.tween(item, {y: item.y - 140 + 60}, 0.5, {ease: FlxEase.expoOut});
+				FlxTween.tween(item, {y: textGrp.y - 140 + 60}, 0.5, {ease: FlxEase.expoOut});
 			}
 		}
 	}
