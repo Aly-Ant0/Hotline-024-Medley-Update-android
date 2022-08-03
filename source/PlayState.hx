@@ -4154,7 +4154,7 @@ class PlayState extends MusicBeatState
 			numbahEiti.scrollFactor.set(0, 0);
 			numbahEiti.cameras = [camCutsceneMidSong];
 			numbahEiti.offset.y = 20000000;
-			numbahEiti.velocity.x = 60;
+			numbahEiti.velocity.x = -60;
 			add(numbahEiti);
 
 			numbahEiti2 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, false, true);
@@ -4164,7 +4164,7 @@ class PlayState extends MusicBeatState
 			numbahEiti2.scale.set(1, 1);
 			numbahEiti2.scrollFactor.set(0, 0);
 			numbahEiti2.offset.y += 20000000;
-			numbahEiti2.velocity.set(-60, 0);
+			numbahEiti2.velocity.set(60, 0);
 			numbahEiti2.cameras = [camCutsceneMidSong];
 			add(numbahEiti2);
 
@@ -4176,7 +4176,7 @@ class PlayState extends MusicBeatState
 			numbahEiti3.scrollFactor.set(0, 0);
 
 			numbahEiti3.offset.y += 20000000;
-			numbahEiti3.velocity.set(60, 0);
+			numbahEiti3.velocity.set(-60, 0);
 			numbahEiti3.cameras = [camCutsceneMidSong];
 			add(numbahEiti3);
 
