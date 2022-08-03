@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="V.S. Nikku: Medley Update" file="H024Android" packageName="com.shadowmario.medleyupdate" package="com.shadowmario.medleyupdate" main="Main" version="0.2.7" company="ShadowMario" />
+	<app title="Hotline 024: Medley Update" file="H024Android" packageName="com.saruky.medleyupdate" package="com.saruky.medleyupdate" main="Main" version="0.2.7" company="ShadowMario" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -158,7 +158,7 @@
 	<haxedef name="FLX_NO_FOCUS_LOST_SCREEN" />
 
 	<!--Disable the Flixel core debugger. Automatically gets set whenever you compile in release mode!-->
-	<haxedef name="FLX_NO_DEBUG" unless="debug" />
+	<!-- <haxedef name="FLX_NO_DEBUG" unless="debug" /> -->
 
 	<!--Enable this for Nape release builds for a serious peformance improvement-->
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
