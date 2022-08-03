@@ -273,12 +273,12 @@ class PlayState extends MusicBeatState
 	var numbahEiti:FlxBackdrop;
 	var numbahEiti2:FlxBackdrop;
 	var numbahEiti3:FlxBackdrop;
-	var octagon:BGSprite;
-	var textOctagon:BGSprite;
-	var bubbleText:BGSprite;
-	var nikkuOctagon:BGSprite;
-	var showYou:BGSprite;
-	var hereme:BGSprite;
+	var octagon:FlxSprite;
+	var textOctagon:FlxSprite;
+	var bubbleText:FlxSprite;
+	var nikkuOctagon:FlxSprite;
+	var showYou:FlxSprite;
+	var hereme:FlxSprite;
 
 	// hauuei
 	var hallBG:BGSprite;
@@ -841,83 +841,6 @@ class PlayState extends MusicBeatState
 					skateBuches.updateHitbox();
 					//skateBuches.antialiasing = ClientPrefs.globalAntialiasing;
 				//}
-
-				octagonBG = new FlxSprite().makeGraphic(1980, 1080, FlxColor.WHITE);
-				octagonBG.screenCenter(XY);
-				octagonBG.scrollFactor.set(0, 0);
-				octagonBG.scale.set(1.4, 1.4);
-				octagonBG.alpha = 0;
-
-				octagonBG2 = new FlxSprite().makeGraphic(1980, 236, 0xFFFE923D);
-				octagonBG2.alpha = 0;
-				octagonBG2.screenCenter(XY);
-				octagonBG2.scrollFactor.set(0, 0);
-				octagonBG2.scale.set(1.4, 1.4);
-
-				// analfabeto do caralho
-				numbahEiti = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false);
-				numbahEiti.alpha = 0;
-				numbahEiti.screenCenter(X);
-				numbahEiti.y = 270;
-				numbahEiti.scale.set(1.3, 1.3);
-				numbahEiti.scrollFactor.set(0, 0);
-
-				numbahEiti.offset.y = 20000000;
-				numbahEiti.offset.x = 0.2;
-				numbahEiti.velocity.x = 50;
-
-				numbahEiti2 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, false, true);
-				numbahEiti2.alpha = 0;
-				numbahEiti2.screenCenter(X);
-				numbahEiti2.y = 504;
-				numbahEiti2.scale.set(1, 1);
-				numbahEiti2.scrollFactor.set(0, 0);
-
-				numbahEiti2.offset.y += 20000000;
-				numbahEiti2.offset.x -= 0.2;
-				numbahEiti2.velocity.set(-50, 0);
-
-				numbahEiti3 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false);
-				numbahEiti3.alpha = 0;
-				numbahEiti3.screenCenter(X);
-				numbahEiti3.y = 31;
-				numbahEiti3.scale.set(1, 1);
-				numbahEiti3.scrollFactor.set(0, 0);
-
-				numbahEiti3.offset.y += 20000000;
-				numbahEiti3.offset.x -= 0.2;
-				numbahEiti3.velocity.set(50, 0);
-
-				nikkuOctagon = new BGSprite('skatepark/octagon/nikku', 561, 126, 0, 0, ['Nikku Move 1'], true); // tween to a x:444 in tween and y: 61
-				nikkuOctagon.animation.addByPrefix('lastFrame', 'Nikku Last Frame', 24, false);
-				nikkuOctagon.scale.set(2, 2);
-				//ikkuOctagon.antialiasing = ClientPrefs.globalAntialiasing;
-				nikkuOctagon.visible = false;
-
-				bubbleText = new BGSprite('skatepark/octagon/textbox', 511, 81, 0, 0);
-				bubbleText.scale.set(1.4, 1.4);
-				bubbleText.updateHitbox();
-				//bubbleText.antialiasing = ClientPrefs.globalAntialiasing;
-				bubbleText.visible = false;
-
-				textOctagon = new BGSprite('skatepark/octagon/text', 596, 172, 0, 0, ['Text'], true);
-				textOctagon.animation.addByPrefix('text', 'Text', 24, true);
-				textOctagon.setGraphicSize(Std.int(textOctagon.width * 0.49));
-				//textOctagon.antialiasing = ClientPrefs.globalAntialiasing;
-				textOctagon.visible = false;
-
-				hereme = new BGSprite('skatepark/octagon/hereletme', 35, 850, 0, 0); //tween y: 250
-				//hereme.antialiasing = ClientPrefs.globalAntialiasing;
-				hereme.visible = false;
-
-				showYou = new BGSprite('skatepark/octagon/showyou', 868, 846, 0, 0); //tween y: 246
-				//showYou.antialiasing = ClientPrefs.globalAntialiasing;
-				showYou.visible = false;
-
-				octagon = new BGSprite('skatepark/octagon/octagon', 913, 295, 0, 0); // tween x:295 tween 2 x: 1238
-				octagon.updateHitbox();
-				//ctagon.antialiasing = ClientPrefs.globalAntialiasing;
-				octagon.visible = false;
 			case 'hallway':
 				//if(!ClientPrefs.dontShowBG)
 					hallBG = new BGSprite('hallway/bg', -810, -790, 1, 1);
@@ -1507,15 +1430,6 @@ class PlayState extends MusicBeatState
 			{
 				add(skateLight);
 				add(skateBuches);
-				add(octagonBG);
-				add(octagonBG2);
-				add(numbahEiti);
-				add(numbahEiti2);
-				add(numbahEiti3);
-				add(nikkuOctagon);
-				add(bubbleText);
-				add(textOctagon);
-				add(octagon);
 			}
 	
 			if (curStage == 'hallway')
@@ -4218,6 +4132,171 @@ class PlayState extends MusicBeatState
 			flash.visible = false;
 		});
 	}
+	function octaMoment():Void
+	{
+			octagonBG = new FlxSprite().makeGraphic(1980, 1080, FlxColor.WHITE);
+			octagonBG.screenCenter(XY);
+			octagonBG.scrollFactor.set(0, 0);
+			octagonBG.scale.set(1.4, 1.4);
+			octagonBG.alpha = 0;
+
+			octagonBG2 = new FlxSprite().makeGraphic(1980, 236, 0xFFFE923D);
+			octagonBG2.alpha = 0;
+			octagonBG2.screenCenter(XY);
+			octagonBG2.scrollFactor.set(0, 0);
+			octagonBG2.scale.set(1.4, 1.4);
+
+			// analfabeto do caralho
+			numbahEiti = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'));
+			numbahEiti.alpha = 0;
+			numbahEiti.y = 0;
+			numbahEiti.scale.set(1.3, 1.3);
+			numbahEiti.scrollFactor.set(0, 0);
+			numbahEiti.cameras = [camCutsceneMidSong];
+			numbahEiti.offset.y = 20000000;
+			numbahEiti.velocity.x = 60;
+			add(numbahEiti);
+
+			numbahEiti2 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, false, true);
+			//numbahEiti2.alpha = 0;
+			numbahEiti2.y = 246.3;
+			numbahEiti2.alpha = 0;
+			numbahEiti2.scale.set(1, 1);
+			numbahEiti2.scrollFactor.set(0, 0);
+			numbahEiti2.offset.y += 20000000;
+			numbahEiti2.velocity.set(-60, 0);
+			numbahEiti2.cameras = [camCutsceneMidSong];
+			add(numbahEiti2);
+
+			numbahEiti3 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false);
+			numbahEiti3.alpha = 0;
+			numbahEiti3.screenCenter(X);
+			numbahEiti3.y = 480.0;
+			numbahEiti3.scale.set(1, 1);
+			numbahEiti3.scrollFactor.set(0, 0);
+
+			numbahEiti3.offset.y += 20000000;
+			numbahEiti3.velocity.set(60, 0);
+			numbahEiti3.cameras = [camCutsceneMidSong];
+			add(numbahEiti3);
+
+			nikkuOctagon = new FlxSprite(-611.8, 632.5);
+			nikkuOctagon.frames = Paths.getSparrowAtlas('skatepark/octagon/nikku');
+			nikkuOctagon.animation.addByPrefix('idle', 'Nikku Move 1', 24, true);
+			nikkuOctagon.animation.addByPrefix('lastFrame', 'Nikku Last Frame', 24, false);
+			nikkuOctagon.scale.set(1.4, 1.4);
+			nikkuOctagon.antialiasing = ClientPrefs.globalAntialiasing;
+			nikkuOctagon.cameras = [camCutsceneMidSong];
+			add(nikkuOctagon);
+			//nikkuOctagon.visible = false;
+
+			bubbleText = new FlxSprite(510, 160);
+			bubbleText.frames = Paths.getSparrowAtlas('skatepark/octagon/nikku');
+			bubbleText.animation.addByPrefix('idle', 'Nikku Move 1', 24, true);
+			bubbleText.animation.addByPrefix('lastFrame', 'Nikku Last Frame', 24, false);
+			bubbleText.scale.set(0.0001, 0.0001);
+			bubbleText.antialiasing = ClientPref.globalAntialiasing;
+			bubbleText.cameras = [camCutsceneMidSong];
+			add(bubbleText);
+
+				textOctagon = new FlxSprite(585,220);
+				textOctagon.frames = getSparrowAtlas('skatepark/octagontext', 'h24');
+				textOctagon.animation.addByPrefix('text', 'Text', 24, false);
+				textOctagon.scale.set(0.4, 0.4);
+				textOctagon.antialiasing = ClientPrefs.globalAntialiasing;
+				textOctagon.alpha = 0;
+				textOctagon.cameras = [camCutsceneMidSong];
+				add(textOctagon);
+
+				hereme = new FlxSprite().loadGraphic(Paths.image('skatepark/octagon/hereletme', 'h24')); //tween y: 250
+				hereme.antialiasing = ClientPrefs.globalAntialiasing;
+				hereme.visible = false;
+				add(hereme);
+
+				showYou = new FlxSprite().loadGraphic(Paths.image('skatepark/octagon/showyou', 'h24')); //tween y: 250
+				showYou.antialiasing = ClientPrefs.globalAntialiasing;
+				showYou.visible = false;
+				add(showYou);
+
+				octagon = new FlxSprite().loadGraphic(Paths.image('skatepark/octagon/octagon', 'h24')); // tween x:295 tween 2 x: 1238
+				octagon.updateHitbox();
+				octagon.antialiasing = ClientPrefs.globalAntialiasing;
+				octagon.visible = false;
+				octagon.cameras = [camCutsceneMidSong];
+				add(octagon);
+
+				var blackStart:FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
+				blackStart.cameras = [camCutsceneMidSong];
+				add(blackStart);
+
+				new FlxTimer().start(0.0020, function(tmr:FlxTimer)
+				{
+					FlxTween.tween(blackStart, {alpha:0}, 0.059);
+					FlxTween.tween(octagonBG, {alpha: 1}, 0.059);
+					FlxTween.tween(octagonBG2, {alpha: 1}, 0.059);
+					FlxTween.tween(numbahEiti, {alpha: 1}, 0.059);
+					FlxTween.tween(numbahEiti2, {alpha: 1}, 0.059);
+					FlxTween.tween(numbahEiti3, {alpha: 1}, 0.059, {
+						onComplete:function(twn:FlxTween)
+						{
+							FlxTween.tween(nikkuOctagon, {x: -48.0, y:39.6}, 0.079, {
+								onComplete:function(twn:FlxTween)
+								{
+									FlxTween.tween(bubbleText, {"scale.x": 1.4, "scale.y": 1.4}, 0.059, {
+										onComplete:function(twn:FlxTween)
+										{
+											textOctagon.alpha = 1;
+											textOctagon.animation.play('text');
+										}
+									});
+								}
+							});
+						}
+					});
+				});
+				new FlxTimer().start(11, function(tmr:FlxTimer)
+				{
+					octaMoment2();
+				});
+	}
+	function octaMoment2():Void // pre-end of the cutscene
+	{
+		//nikkuOctagon.y = 200;
+		var flash:FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.WHITE);
+		flash.visible = false;
+		flash.cameras = [camCutsceneMidSong];
+		add(flash);
+
+		FlxTween.tween(nikkuOctagon, {x: 346.3}, 0.3, {
+			onComplete: function(twn:FlxTween)
+			{
+				nikkuOctagon.animation.play('lastFrame', true);
+				FlxTween.tween(nikkuOctagon, {"scale.x":1.7, "scale.y":1.7}, 2.1, {
+					onComplete:function(twn:FlxTween){
+						//just do nothing and idk why i put this lmao
+					}
+				});
+			}
+		});
+		new FlxTimer().start(2, function(tmr:FlxTimer)
+		{
+			removeOctaCut();
+		});
+	}
+
+	function removeOctaCut():Void //end btw is in function cuz lazyless lmao
+	{
+		octagonBG.alpha = 0;
+		octagonBG2.alpha = 0;
+		numbahEiti.alpha = 0;
+		numbahEiti2.alpha = 0;
+		numbahEiti3.alpha = 0;
+		nikkuOctagon.alpha = 0;
+		bubbleText.alpha = 0;
+		textOctagon.alpha = 0;
+		//octagon.
+
+	}
 
 	public function triggerEventNote(eventName:String, value1:String, value2:String) {
 		switch(eventName) {
@@ -4350,6 +4429,8 @@ class PlayState extends MusicBeatState
 				//if(!ClientPrefs.dontShowBG) {
 					changeAstralBG();
 				//}
+			case 'Sugarcrush Octagon Cutscene':
+				octaMoment();
 
 			case 'Add Camera Zoom':
 				if(ClientPrefs.camZooms && FlxG.camera.zoom < 1.35) {
@@ -5443,12 +5524,15 @@ class PlayState extends MusicBeatState
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
 				combo++;
-				comboTmr.start(3.5, function(tm:FlxTimer){
-					isComboTime = true;
-					//combo = 0;
-				});
-				if (note.isSustainNote){
-					comboTmr.reset(3.5);
+				if (note.isSustainNote) {
+					comboTmr.start(3.5, function(tm:FlxTimer){
+						isComboTime = true;
+						//combo = 0;
+					});
+					if (note.isSustainNote){
+						comboTmr.reset(3.5);
+					}
+					return;
 				}
 				comboTmr.loops = 500;
 			}
@@ -5757,6 +5841,7 @@ class PlayState extends MusicBeatState
 	function flash() {
 		var huh:FlxSprite = new FlxSprite().makeGraphic(1280, 720, FlxColor.WHITE);
 		huh.updateHitbox();
+		huh.cameras = [camCutsceneMidSong];
 		huh.visible = false;
 		add(huh);
 
@@ -5795,7 +5880,7 @@ class PlayState extends MusicBeatState
 					FlxTween.tween(cutsceneBG, {alpha:1}, 1);
 					FlxTween.tween(cutsceneLogo, {alpha:1}, 1);
 				case 45:
-					FlxTween.tween(cutsceneLogo, {y: 1289}, 0.4, {
+					FlxTween.tween(cutsceneLogo, {y: 1289}, 0.78, {
 					ease: FlxEase.expoIn});
 				case 49:
 					FlxTween.tween(cutsceneBG, {alpha: 0}, 0.43);
@@ -5822,64 +5907,6 @@ class PlayState extends MusicBeatState
 					camHUD.visible = true;
 			}
 		}
-		if (curSong == 'Sugarcrush')
-		{
-			if (curStep == 1534)
-			{
-				flash();
-			}
-		  if (curStep == 1535) // a
-			{
-				//cameraBf(true);
-				bubbleText.visible = true;
-				textOctagon.visible = true;
-				textOctagon.animation.play('text');
-				nikkuOctagon.visible = true;
-				FlxTween.tween(octagonBG, {alpha: 1}, 0.1);
-				FlxTween.tween(octagonBG2, {alpha: 1}, 0.1);
-				FlxTween.tween(numbahEiti, {alpha: 1}, 0.1);
-				FlxTween.tween(numbahEiti2, {alpha: 1}, 0.1);
-				FlxTween.tween(numbahEiti3, {alpha: 1}, 0.1);
-				FlxTween.tween(nikkuOctagon, {y: 61}, 0.2);
-			}
-			if (curStep == 1584)
-			{
-				octagon.visible = true;
-				FlxTween.tween(octagon, {x: 295}, 0.6); // tween x:295 tween 2 x: 1238
-			}
-			if (curStep == 1649)
-			{
-				bubbleText.visible = false;
-				textOctagon.visible = false;
-				octagon.visible = true;
-				showYou.visible = true;
-				hereme.visible = true;
-				FlxTween.tween(octagon, {x: 1238}, 0.6);
-				nikkuOctagon.animation.play('lastFrame'); // tween to a x:444
-				FlxTween.tween(nikkuOctagon, {x: 444}, 0.2, {ease: FlxEase.linear});
-				FlxTween.tween(showYou, {y: 250}, 0.4); 
-				FlxTween.tween(hereme, {y: 250}, 0.4);//tween y: 250
-			}
-			if (curStep == 1658 && curStep == 1660 && curStep == 1661 && curStep == 1663)
-			{
-				flash();
-			}
-			if (curStep == 1664)
-			{
-				//cameraBf(false); //trying to fix this bullshit
-				octagonBG.alpha = 0;
-				octagonBG2.alpha = 0;
-				numbahEiti.alpha = 0;
-				numbahEiti2.alpha = 0;
-				numbahEiti3.alpha = 0;
-				bubbleText.visible = false;
-				textOctagon.visible = false;
-				nikkuOctagon.visible = false;
-				octagon.visible = false;
-				showYou.visible = false;
-				hereme.visible = false;
-			}
-		}
 		if (curSong == 'Fandomania')
 		{
 			switch(curStep)
@@ -5889,7 +5916,7 @@ class PlayState extends MusicBeatState
 					/*SANESSS.visible = true;
 					SANESSS.animation.play('idle', true);*/
 					FlxG.camera.flash(FlxColor.WHITE, 1, null, true);
-				case 452:
+				case 456:
 					FlxTween.tween(camHUD, {alpha: 0}, 0.4);
 				case 512:
 					//SANESSS.visible = false;
