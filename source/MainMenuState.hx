@@ -50,6 +50,8 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 
 	override function create()
 	{
+		FlxG.debugger.visible = true;
+
 		WeekData.loadTheFirstEnabledMod();
 
 		#if desktop
@@ -124,7 +126,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		//creditsImage.updateHitbox();
 		add(creditsImage);
 
-		creditsHitbox = new FlxObject(512, 684, 175, 25);
+		creditsHitbox = new FlxObject(0, 0, 175, 25);
 		creditsHitbox.setPosition(512, 684);
 		add(creditsHitbox);
 
