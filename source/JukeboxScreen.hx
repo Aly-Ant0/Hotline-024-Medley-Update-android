@@ -80,7 +80,7 @@ class JukeboxScreen extends MusicBeatState
 
 		bars = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox/bars'));
 		bars.screenCenter();
-		bars.antiliasing = alias;
+		bars.antialiasing = alias;
 		add(bars);
 
 		changeSelection();
