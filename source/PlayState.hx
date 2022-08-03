@@ -4132,7 +4132,7 @@ class PlayState extends MusicBeatState
 			flash.visible = false;
 		});
 	}
-	function octaMoment():Void
+	function ent():Void
 	{
 			octagonBG = new FlxSprite().makeGraphic(1980, 1080, FlxColor.WHITE);
 			octagonBG.screenCenter(XY);
@@ -4195,12 +4195,12 @@ class PlayState extends MusicBeatState
 			bubbleText.animation.addByPrefix('idle', 'Nikku Move 1', 24, true);
 			bubbleText.animation.addByPrefix('lastFrame', 'Nikku Last Frame', 24, false);
 			bubbleText.scale.set(0.0001, 0.0001);
-			bubbleText.antialiasing = ClientPref.globalAntialiasing;
+			bubbleText.antialiasing = ClientPrefs.globalAntialiasing;
 			bubbleText.cameras = [camCutsceneMidSong];
 			add(bubbleText);
 
 				textOctagon = new FlxSprite(585,220);
-				textOctagon.frames = getSparrowAtlas('skatepark/octagontext', 'h24');
+				textOctagon.frames = Paths.getSparrowAtlas('skatepark/octagontext', 'h24');
 				textOctagon.animation.addByPrefix('text', 'Text', 24, false);
 				textOctagon.scale.set(0.4, 0.4);
 				textOctagon.antialiasing = ClientPrefs.globalAntialiasing;
@@ -4256,10 +4256,10 @@ class PlayState extends MusicBeatState
 				});
 				new FlxTimer().start(11, function(tmr:FlxTimer)
 				{
-					octaMoment2();
+					ent2();
 				});
 	}
-	function octaMoment2():Void // pre-end of the cutscene
+	function ent2():Void // pre-end of the cutscene
 	{
 		//nikkuOctagon.y = 200;
 		var flash:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.WHITE);
@@ -4430,7 +4430,7 @@ class PlayState extends MusicBeatState
 					changeAstralBG();
 				//}
 			case 'Sugarcrush Octagon Cutscene':
-				octaMoment();
+				ent();
 
 			case 'Add Camera Zoom':
 				if(ClientPrefs.camZooms && FlxG.camera.zoom < 1.35) {
