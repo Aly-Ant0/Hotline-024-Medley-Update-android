@@ -4132,7 +4132,7 @@ class PlayState extends MusicBeatState
 			flash.visible = false;
 		});
 	}
-	function ent():Void
+	function octaMoment():Void
 	{
 			octagonBG = new FlxSprite().makeGraphic(1980, 1080, FlxColor.WHITE);
 			octagonBG.screenCenter(XY);
@@ -4256,10 +4256,10 @@ class PlayState extends MusicBeatState
 				});
 				new FlxTimer().start(11, function(tmr:FlxTimer)
 				{
-					ent2();
+					octaMoment2();
 				});
 	}
-	function ent2():Void // pre-end of the cutscene
+	function octaMoment2():Void // pre-end of the cutscene
 	{
 		//nikkuOctagon.y = 200;
 		var flash:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.WHITE);
@@ -4430,7 +4430,7 @@ class PlayState extends MusicBeatState
 					changeAstralBG();
 				//}
 			case 'Sugarcrush Octagon Cutscene':
-				ent();
+				octaMoment();
 
 			case 'Add Camera Zoom':
 				if(ClientPrefs.camZooms && FlxG.camera.zoom < 1.35) {
