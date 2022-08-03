@@ -4118,7 +4118,7 @@ class PlayState extends MusicBeatState
 			bg2.visible = true;
 			gfchocada.visible = true;
 
-			FlxTween.tween(gfchocada, {"scale.x": gfchocada.scale.x + 40, "scale.y": gfchocada.scale.y + 40}, 3);
+			FlxTween.tween(gfchocada, {"scale.x": gfchocada.scale.x + 0.90, "scale.y": gfchocada.scale.y + 0.90}, 3);
 		});
 		new FlxTimer().start(0.01, function(jojotmr:FlxTimer)
 		{
@@ -4139,44 +4139,48 @@ class PlayState extends MusicBeatState
 			octagonBG.screenCenter(XY);
 			octagonBG.scrollFactor.set(0, 0);
 			octagonBG.scale.set(1.4, 1.4);
+			octagonBG.cameras = [camCutsceneMidSong];
 			octagonBG.alpha = 0;
+			add(octagonBG);
 
 			octagonBG2 = new FlxSprite().makeGraphic(1980, 236, 0xFFFE923D);
 			octagonBG2.alpha = 0;
 			octagonBG2.screenCenter(XY);
 			octagonBG2.scrollFactor.set(0, 0);
 			octagonBG2.scale.set(1.4, 1.4);
+			octagonBG2.cameras = [camCutsceneMidSong];
+			add(octagonBG2);
 
 			// analfabeto do caralho
-			numbahEiti = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'));
+			numbahEiti = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false, 0, Std.int(1900));
 			numbahEiti.alpha = 0;
 			numbahEiti.y = 0;
 			numbahEiti.scale.set(1.3, 1.3);
 			numbahEiti.scrollFactor.set(0, 0);
 			numbahEiti.cameras = [camCutsceneMidSong];
-			numbahEiti.offset.y = 20000000;
+		//	numbahEiti.offset.y = 20000000;
 			numbahEiti.velocity.x = -60;
 			add(numbahEiti);
 
-			numbahEiti2 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'));
+			numbahEiti2 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false, 0, 1900);
 			//numbahEiti2.alpha = 0;
 			numbahEiti2.y = 246.3;
 			numbahEiti2.alpha = 0;
 			numbahEiti2.scale.set(1, 1);
 			numbahEiti2.scrollFactor.set(0, 0);
-			numbahEiti2.offset.y += 20000000;
+		//	numbahEiti2.offset.y += 20000000;
 			numbahEiti2.velocity.set(60, 0);
 			numbahEiti2.cameras = [camCutsceneMidSong];
 			add(numbahEiti2);
 
-			numbahEiti3 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'));
+			numbahEiti3 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false, 0, Std.int(1900));
 			numbahEiti3.alpha = 0;
 			numbahEiti3.screenCenter(X);
 			numbahEiti3.y = 480.0;
 			numbahEiti3.scale.set(1, 1);
 			numbahEiti3.scrollFactor.set(0, 0);
 
-			numbahEiti3.offset.y += 20000000;
+		//	numbahEiti3.offset.y += 20000000;
 			numbahEiti3.velocity.set(-60, 0);
 			numbahEiti3.cameras = [camCutsceneMidSong];
 			add(numbahEiti3);
@@ -4192,7 +4196,9 @@ class PlayState extends MusicBeatState
 			add(nikkuOctagon);
 			//nikkuOctagon.visible = false;
 
-			FlxG.log.add('nikku x right now: ' + nikkuOctagon.x);
+			FlxG.watch.add(nikkuOctagon, "x");
+			FlxG.watch.add(nikkuOctagon, "y");
+			FlxG.watch.add(nikkuOctagon, "scale");
 
 			bubbleText = new FlxSprite(510, 160);
 			bubbleText.loadGraphic(Paths.image('skatepark/octagon/textbox'));
@@ -4202,7 +4208,7 @@ class PlayState extends MusicBeatState
 			add(bubbleText);
 
 			textOctagon = new FlxSprite(585,220);
-				textOctagon.frames = Paths.getSparrowAtlas('skatepark/octagontext', 'h24');
+				textOctagon.frames = Paths.getSparrowAtlas('skatepark/octagon/text', 'h24');
 				textOctagon.animation.addByPrefix('text', 'Text', 24, false);
 				textOctagon.scale.set(0.4, 0.4);
 				textOctagon.antialiasing = ClientPrefs.globalAntialiasing;
@@ -4273,16 +4279,12 @@ class PlayState extends MusicBeatState
 			onComplete: function(twn:FlxTween)
 			{
 				nikkuOctagon.animation.play('lastFrame', true);
-				FlxTween.tween(nikkuOctagon, {"scale.x":1.7, "scale.y":1.7}, 2.1, {
+				FlxTween.tween(nikkuOctagon, {"scale.x":1.7, "scale.y":1.7}, 2.015, {
 					onComplete:function(twn:FlxTween){
-						//just do nothing and idk why i put this lmao
+						removeOctaCut();
 					}
 				});
 			}
-		});
-		new FlxTimer().start(2, function(tmr:FlxTimer)
-		{
-			removeOctaCut();
 		});
 	}
 
