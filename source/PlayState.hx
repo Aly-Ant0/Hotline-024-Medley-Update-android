@@ -4225,7 +4225,7 @@ class PlayState extends MusicBeatState
 				octagon.cameras = [camCutsceneMidSong];
 				add(octagon);
 
-				var blackStart:FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
+				var blackStart:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
 				blackStart.cameras = [camCutsceneMidSong];
 				add(blackStart);
 
@@ -4262,7 +4262,7 @@ class PlayState extends MusicBeatState
 	function octaMoment2():Void // pre-end of the cutscene
 	{
 		//nikkuOctagon.y = 200;
-		var flash:FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.WHITE);
+		var flash:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.WHITE);
 		flash.visible = false;
 		flash.cameras = [camCutsceneMidSong];
 		add(flash);
