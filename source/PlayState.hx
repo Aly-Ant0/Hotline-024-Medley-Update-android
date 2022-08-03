@@ -423,6 +423,7 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
+		FlxG.debugger.visible = true;
 		Paths.clearStoredMemory();
 
 		// for lua
@@ -4157,7 +4158,7 @@ class PlayState extends MusicBeatState
 			numbahEiti.velocity.x = -60;
 			add(numbahEiti);
 
-			numbahEiti2 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, false, true);
+			numbahEiti2 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'));
 			//numbahEiti2.alpha = 0;
 			numbahEiti2.y = 246.3;
 			numbahEiti2.alpha = 0;
@@ -4168,7 +4169,7 @@ class PlayState extends MusicBeatState
 			numbahEiti2.cameras = [camCutsceneMidSong];
 			add(numbahEiti2);
 
-			numbahEiti3 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false);
+			numbahEiti3 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'));
 			numbahEiti3.alpha = 0;
 			numbahEiti3.screenCenter(X);
 			numbahEiti3.y = 480.0;
@@ -4183,23 +4184,24 @@ class PlayState extends MusicBeatState
 			nikkuOctagon = new FlxSprite(-611.8, 632.5);
 			nikkuOctagon.frames = Paths.getSparrowAtlas('skatepark/octagon/nikku');
 			nikkuOctagon.animation.addByPrefix('idle', 'Nikku Move 1', 24, true);
-			nikkuOctagon.animation.addByPrefix('lastFrame', 'Nikku Last Frame', 24, false);
+			nikkuOctagon.animation.addByPrefix('lastFrame', 'Nikku Last Frame', 24, true);
+			nikkuOctagon.animation.play('idle', true);
 			nikkuOctagon.scale.set(1.4, 1.4);
 			nikkuOctagon.antialiasing = ClientPrefs.globalAntialiasing;
 			nikkuOctagon.cameras = [camCutsceneMidSong];
 			add(nikkuOctagon);
 			//nikkuOctagon.visible = false;
 
+			FlxG.log.add('nikku x right now: ' + nikkuOctagon.x);
+
 			bubbleText = new FlxSprite(510, 160);
-			bubbleText.frames = Paths.getSparrowAtlas('skatepark/octagon/nikku');
-			bubbleText.animation.addByPrefix('idle', 'Nikku Move 1', 24, true);
-			bubbleText.animation.addByPrefix('lastFrame', 'Nikku Last Frame', 24, false);
+			bubbleText.loadGraphic(Paths.image('skatepark/octagon/textbox'));
 			bubbleText.scale.set(0.0001, 0.0001);
 			bubbleText.antialiasing = ClientPrefs.globalAntialiasing;
 			bubbleText.cameras = [camCutsceneMidSong];
 			add(bubbleText);
 
-				textOctagon = new FlxSprite(585,220);
+			textOctagon = new FlxSprite(585,220);
 				textOctagon.frames = Paths.getSparrowAtlas('skatepark/octagontext', 'h24');
 				textOctagon.animation.addByPrefix('text', 'Text', 24, false);
 				textOctagon.scale.set(0.4, 0.4);
@@ -4239,7 +4241,7 @@ class PlayState extends MusicBeatState
 					FlxTween.tween(numbahEiti3, {alpha: 1}, 0.059, {
 						onComplete:function(twn:FlxTween)
 						{
-							FlxTween.tween(nikkuOctagon, {x: -48.0, y:39.6}, 0.079, {
+							FlxTween.tween(nikkuOctagon, {x: -48.0, y:39.6}, 0.059, {
 								onComplete:function(twn:FlxTween)
 								{
 									FlxTween.tween(bubbleText, {"scale.x": 1.4, "scale.y": 1.4}, 0.059, {
@@ -4295,7 +4297,6 @@ class PlayState extends MusicBeatState
 		bubbleText.alpha = 0;
 		textOctagon.alpha = 0;
 		//octagon.
-
 	}
 
 	public function triggerEventNote(eventName:String, value1:String, value2:String) {
@@ -5531,8 +5532,8 @@ class PlayState extends MusicBeatState
 					});
 					if (note.isSustainNote){
 						comboTmr.reset(3.5);
+						return;
 					}
-					return;
 				}
 				comboTmr.loops = 500;
 			}
