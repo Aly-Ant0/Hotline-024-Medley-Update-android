@@ -4237,20 +4237,20 @@ class PlayState extends MusicBeatState
 				blackStart.cameras = [camCutsceneMidSong];
 				add(blackStart);
 
-				new FlxTimer().start(0.0020, function(tmr:FlxTimer)
+				new FlxTimer().start(0.015, function(tmr:FlxTimer)
 				{
-					FlxTween.tween(blackStart, {alpha:0}, 0.029);
-					FlxTween.tween(octagonBG, {alpha: 1}, 0.029);
-					FlxTween.tween(octagonBG2, {alpha: 1}, 0.029);
-					FlxTween.tween(numbahEiti, {alpha: 1}, 0.029);
-					FlxTween.tween(numbahEiti2, {alpha: 1}, 0.029);
-					FlxTween.tween(numbahEiti3, {alpha: 1}, 0.029, {
+					FlxTween.tween(blackStart, {alpha:0}, 0.015);
+					FlxTween.tween(octagonBG, {alpha: 1}, 0.015);
+					FlxTween.tween(octagonBG2, {alpha: 1}, 0.015);
+					FlxTween.tween(numbahEiti, {alpha: 1}, 0.015);
+					FlxTween.tween(numbahEiti2, {alpha: 1}, 0.015);
+					FlxTween.tween(numbahEiti3, {alpha: 1}, 0.015, {
 						onComplete:function(twn:FlxTween)
 						{
-							FlxTween.tween(nikkuOctagon, {x: -48.0, y:39.6}, 0.029, {
+							FlxTween.tween(nikkuOctagon, {x: -48.0, y:39.6}, 0.015, {
 								onComplete:function(twn:FlxTween)
 								{
-									FlxTween.tween(bubbleText, {"scale.x": 1.4, "scale.y": 1.4}, 0.029, {
+									FlxTween.tween(bubbleText, {"scale.x": 1.4, "scale.y": 1.4}, 0.015, {
 										onComplete:function(twn:FlxTween)
 										{
 											textOctagon.alpha = 1;
@@ -4275,11 +4275,12 @@ class PlayState extends MusicBeatState
 		flash.cameras = [camCutsceneMidSong];
 		add(flash);
 
-		FlxTween.tween(nikkuOctagon, {x: 346.3}, 0.25, {
+		FlxTween.tween(nikkuOctagon, {x: 346.3}, 0.15, {
 			onComplete: function(twn:FlxTween)
 			{
+				nikkuOctagon.y = 210.6; // haxeflixel debugger console my beloved
 				nikkuOctagon.animation.play('lastFrame', true);
-				FlxTween.tween(nikkuOctagon, {"scale.x":1.7, "scale.y":1.7}, 2, {
+				FlxTween.tween(nikkuOctagon, {"scale.x":1.5, "scale.y":1.5}, 1.20, {
 					onComplete:function(twn:FlxTween){
 						removeOctaCut();
 					}
