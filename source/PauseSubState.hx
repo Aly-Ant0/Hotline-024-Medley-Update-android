@@ -54,18 +54,18 @@ class PauseSubState extends MusicBeatSubstate
 
 		FlxG.sound.list.add(pauseMusic);
 
-		bgstuff = new FlxTypedGroup<FlxSprite>();
-		add(bgstuff);
-
 		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		bg.alpha = 0.45;
 		bg.scrollFactor.set();
 		add(bg);
 
+		bgstuff = new FlxTypedGroup<FlxSprite>();
+		add(bgstuff);
+
 		var cubes1:FlxSprite = new FlxSprite().loadGraphic(Paths.image('pause/cubes1', 'shared'));
 		cubes1.screenCenter();
 		cubes1.x -= FlxG.width * 1.8;
-		bgstuff.add(cubes1);
+		add(cubes1);
 
 		var cubes2:FlxSprite = new FlxSprite().loadGraphic(Paths.image('pause/cubes2', 'shared'));
 		cubes2.screenCenter();
@@ -80,7 +80,7 @@ class PauseSubState extends MusicBeatSubstate
 		for (i in 0...3) {
 			if (firstStart)
 				for (item in bgstuff.members) {
-					FlxTween.tween(item, {x: 0}, 0.25, {ease: FlxEase.linear, onComplete: function(twn:FlxTween) // i get this code from kade engine main menu
+					FlxTween.tween(item, {x: 0}, 0.15, {ease: FlxEase.linear, onComplete: function(twn:FlxTween) // i get this code from kade engine main menu
 					{
 						//finishedFunnyMove = true; 
 						changeSelection();
@@ -107,7 +107,6 @@ class PauseSubState extends MusicBeatSubstate
 			pauseMusic.volume += 0.01 * elapsed;
 
 		super.update(elapsed);
-		updateSkipTextStuff();
 
 		var upP = controls.UI_UP_P;
 		var downP = controls.UI_DOWN_P;
@@ -126,33 +125,6 @@ class PauseSubState extends MusicBeatSubstate
 
 		if (accepted)
 		{
-			if (menuItems == difficultyChoices)
-			{
-				if(menuItems.length - 1 != curSelected && difficultyChoices.contains(daSelected)) {
-					var name:String = PlayState.SONG.song;
-					var poop = Highscore.formatSong(name, curSelected);
-					PlayState.SONG = Song.loadFromJson(poop, name);
-					PlayState.storyDifficulty = curSelected;
-					MusicBeatState.resetState();
-					FlxG.sound.music.volume = 0;
-					PlayState.changedDifficulty = true;
-					PlayState.chartingMode = false;
-					skipTimeTracker = null;
-
-					if(skipTimeText != null)
-					{
-						skipTimeText.kill();
-						remove(skipTimeText);
-						skipTimeText.destroy();
-					}
-					skipTimeText = null;
-					return;
-				}
-
-				menuItems = menuItemsOG;
-				regenMenu();
-			}
-
 			switch (daSelected)
 			{
 				case "resume":
@@ -274,19 +246,5 @@ class PauseSubState extends MusicBeatSubstate
 		}
 		curSelected = 0;
 		//changeSelection();
-	}
-	
-	function updateSkipTextStuff()
-	{
-		if(skipTimeText == null || skipTimeTracker == null) return;
-
-		skipTimeText.x = skipTimeTracker.x + skipTimeTracker.width + 60;
-		skipTimeText.y = skipTimeTracker.y;
-		skipTimeText.visible = (skipTimeTracker.alpha >= 1);
-	}
-
-	function updateSkipTimeText()
-	{
-		skipTimeText.text = FlxStringUtil.formatTime(Math.max(0, Math.floor(curTime / 1000)), false) + ' / ' + FlxStringUtil.formatTime(Math.max(0, Math.floor(FlxG.sound.music.length / 1000)), false);
 	}
 }
