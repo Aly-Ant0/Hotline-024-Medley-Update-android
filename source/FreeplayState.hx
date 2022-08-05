@@ -113,6 +113,7 @@ class FreeplayState extends MusicBeatState
 			var port:FreeplayText = new FreeplayText(310, 200, songs[i]);
 			port.y += ((port.width - 300) * i);
 			port.targetY = i;
+			port.ID = i;
 			port.setGraphicSize(Std.int(port.width * 1.4));
 			port.alpha = 1;
 
@@ -297,7 +298,7 @@ class FreeplayState extends MusicBeatState
 		if (controls.BACK)
 		{
 			persistentUpdate = false;
-			FlxG.sound.play(Paths.sound('cancelMenu'));
+			FlxG.sound.play(Paths.sound('backsfx'));
 			MusicBeatState.switchState(new MainMenuState());
 		}
 
@@ -317,8 +318,8 @@ class FreeplayState extends MusicBeatState
 				destroyFreeplayVocals();
 				FlxG.sound.music.volume = 0;
 				Paths.currentModDirectory = songs[curSelected].folder;
-				var poop:String = Highscore.formatSong(songs[curSelected].songName.toLowerCase(), curDifficulty);
-				PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].songName.toLowerCase());
+				var poop:String = Highscore.formatSong(songs[curSelected].toLowerCase(), curDifficulty);
+				PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].toLowerCase());
 				if (PlayState.SONG.needsVoices)
 					vocals = new FlxSound().loadEmbedded(Paths.voices(PlayState.SONG.song));
 				else
@@ -337,8 +338,9 @@ class FreeplayState extends MusicBeatState
 
 		else if (accepted)
 		{
+			FlxG.sound.play(Paths.sound('entersfx'));
 			persistentUpdate = false;
-			var songLowercase:String = Paths.formatToSongPath(songs[curSelected].songName);
+			var songLowercase:String = Paths.formatToSongPath(songs[curSelected]);
 			var poop:String = Highscore.formatSong(songLowercase, curDifficulty);
 			/*#if MODS_ALLOWED
 			if(!sys.FileSystem.exists(Paths.modsJson(songLowercase + '/' + poop)) && !sys.FileSystem.exists(Paths.json(songLowercase + '/' + poop))) {
@@ -362,9 +364,32 @@ class FreeplayState extends MusicBeatState
 				LoadingState.loadAndSwitchState(new ChartingState());
 				FlxG.sound.music.volume = 0;
 			}else{
-				MusicBeatState.switchState(new ChooseSkinState());
+				for (item in grpSongs.members){
+					var songslct:String = songs[curSelected];
+					if(curSelected != item.ID)
+					{
+						FlxTween.tween(item, {alpha: 0}, 0.5, {
+							ease: FlxEase.quadInOut,
+							onComplete:function(twn:FlxTween)
+							{
+								item.kill();
+							}
+						});
+					}
+					else
+					{
+						FlxFlicker.flicker(item,0.4,0.06,false,false,function(flicker:FlxFlicker)
+						{
+							switch(songslct){
+								case 'killer-queen':
+									LoadingState.loadAndSwitchState(new PlayState());
+								default:
+									MusicBeatState.switchState(new ChooseSkinState());
+							}
+						});
+					}
+				}
 			}
-
 			destroyFreeplayVocals();
 		}
 		else if(controls.RESET #if android || _virtualpad.buttonY.justPressed #end)
@@ -373,7 +398,7 @@ class FreeplayState extends MusicBeatState
 			removeVirtualPad();
 			#end
 			persistentUpdate = false;
-			openSubState(new ResetScoreSubState(songs[curSelected].songName, curDifficulty, songs[curSelected].songCharacter));
+			openSubState(new ResetScoreSubState(songs[curSelected], curDifficulty, songs[curSelected].songCharacter));
 			FlxG.sound.play(Paths.sound('scrollMenu'));
 		}
 		super.update(elapsed);
@@ -399,8 +424,8 @@ class FreeplayState extends MusicBeatState
 		lastDifficultyName = CoolUtil.difficulties[curDifficulty];
 
 		#if !switch
-		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
-		intendedRating = Highscore.getRating(songs[curSelected].songName, curDifficulty);
+		intendedScore = Highscore.getScore(songs[curSelected], curDifficulty);
+		intendedRating = Highscore.getRating(songs[curSelected], curDifficulty);
 		#end
 
 		PlayState.storyDifficulty = curDifficulty;
@@ -409,7 +434,7 @@ class FreeplayState extends MusicBeatState
 
 	function changeSelection(change:Int = 0, playSound:Bool = true)
 	{
-		if(playSound) FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+		if(playSound) FlxG.sound.play(Paths.sound('selectsfx'), 0.4);
 
 		curSelected += change;
 
@@ -421,8 +446,8 @@ class FreeplayState extends MusicBeatState
 		// selector.y = (70 * curSelected) + 30;
 
 		#if !switch
-		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
-		intendedRating = Highscore.getRating(songs[curSelected].songName, curDifficulty);
+		intendedScore = Highscore.getScore(songs[curSelected], curDifficulty);
+		intendedRating = Highscore.getRating(songs[curSelected], curDifficulty);
 		#end
 
 		var bullShit:Int = 0;
