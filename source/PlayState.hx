@@ -1036,7 +1036,7 @@ class PlayState extends MusicBeatState
 				nicuPlants.screenCenter();
 				nicuPlants.updateHitbox();
 
-			case 'jojo': //PODE TROCAR O NOME DPS
+			case 'jojo': //PODE TROCAR O NOME DPS - matheusx02 part 1 e nunca mais fez alguma no port e fodase
 				var cuts1:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('optim/1'));
 				cuts1.scrollFactor.set(0, 0);
 				cuts1.updateHitbox();
@@ -1589,6 +1589,10 @@ class PlayState extends MusicBeatState
 				case 3:
 					dad = new Character(0, 0, 'nikku-classic');
 			}
+		}
+		switch(songName){
+			case 'killer-queen':
+				dad = new Character(0, 0, 'nikku-jojo');
 		}
 		startCharacterPos(dad, true);
 		dadGroup.add(dad);
@@ -3594,7 +3598,7 @@ class PlayState extends MusicBeatState
 			}	
 		}
 		if (isComboTime) {
-			scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (elapsed * 24), 1, 0)));
+			scoreCount = Math.floor(FlxMath.lerp(scoreCount, 0, CoolUtil.boundTo(1 - (elapsed * 24), 1, 0)));
 			songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (elapsed * 24), 0, 1)));
 		}
 
@@ -5532,23 +5536,25 @@ class PlayState extends MusicBeatState
 				}
 				return;
 			}
+
 			if (!note.isSustainNote)
 			{
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
 				combo++;
-				if (note.isSustainNote) {
-					comboTmr.start(3.5, function(tm:FlxTimer){
-						isComboTime = true;
-						//combo = 0;
-					});
-					if (note.isSustainNote){
-						comboTmr.reset(3.5);
-						return;
-					}
-				}
-				comboTmr.loops = 500;
 			}
+
+			if (!note.isSustainNote) {
+				comboTmr.start(3.5, function(tm:FlxTimer){
+					isComboTime = true;
+					//combo = 0;
+				});
+				if (!note.isSustainNote){
+					comboTmr.reset(3.5);
+				}
+			}
+			return;
+
 			health += note.hitHealth * healthGain;
 
 			if(!note.noAnimation) {
