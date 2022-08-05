@@ -28,7 +28,17 @@ using StringTools;
 
 class FreeplayState extends MusicBeatState
 {
-	var songs:Array<SongMetadata> = [];
+	var songs:Array<String> = [
+		'broadcasting',
+		'mirror-magic',
+		'fandomania',
+		'killer-queen',
+		'hyperfunk',
+		'sugarcrush',
+		'smokebomb',
+		'overdrive',
+		'expurgated'
+	];
 
 	var selector:FlxText;
 	private static var curSelected:Int = 0;
@@ -63,32 +73,8 @@ class FreeplayState extends MusicBeatState
 
 		#if desktop
 		// Updating Discord Rich Presence
-		DiscordClient.changePresence("In the Menus", null);
+		DiscordClient.changePresence('In Freeplay', null);
 		#end
-
-		for (i in 0...WeekData.weeksList.length) {
-			if(weekIsLocked(WeekData.weeksList[i])) continue;
-
-			var leWeek:WeekData = WeekData.weeksLoaded.get(WeekData.weeksList[i]);
-			var leSongs:Array<String> = [];
-
-			for (j in 0...leWeek.songs.length)
-			{
-				leSongs.push(leWeek.songs[j][0]);
-			}
-
-			WeekData.setDirectoryFromWeek(leWeek);
-			for (song in leWeek.songs)
-			{
-				var colors:Array<Int> = song[2];
-				if(colors == null || colors.length < 3)
-				{
-					colors = [146, 113, 253];
-				}
-				addSong(song[0], i, song[1], FlxColor.fromRGB(colors[0], colors[1], colors[2]));
-			}
-		}
-		WeekData.loadTheFirstEnabledMod();
 
 		/*		//KIND OF BROKEN NOW AND ALSO PRETTY USELESS//
 
@@ -96,7 +82,7 @@ class FreeplayState extends MusicBeatState
 		for (i in 0...initSonglist.length)
 		{
 			if(initSonglist[i] != null && initSonglist[i].length > 0) {
-				var songArray:Array<String> = initSonglist[i].split(":");
+				var songArray:Array<String> = initSonglist[i].split(':');
 				addSong(songArray[0], 0, songArray[1], Std.parseInt(songArray[2]));
 			}
 		}*/
@@ -117,46 +103,22 @@ class FreeplayState extends MusicBeatState
 		nicu.screenCenter();
 		add(nicu);
 
-		FlxTween.tween(nicu, {y: nicu.y + 10}, 1.74, {ease: FlxEase.quadInOut, type: PINGPONG});
+		FlxTween.tween(nicu, {y: nicu.y + 15}, 1.74, {ease: FlxEase.quadInOut, type: PINGPONG});
 
 		grpSongs = new FlxTypedGroup<FreeplayText>();
 		add(grpSongs);
 
 		for (i in 0...songs.length)
 		{
-			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
-			songText.isMenuItem = true;
-			songText.targetY = i;
-			songText.alpha = 0;
-			//grpSongs.add(songText);
-
-			if (songText.width > 980)
-			{
-				var textScale:Float = 980 / songText.width;
-				songText.scale.x = textScale;
-				for (letter in songText.lettersArray)
-				{
-					letter.x *= textScale;
-					letter.offset.x *= textScale;
-				}
-			}
-
-			Paths.currentModDirectory = songs[i].folder;
-
-			// songText.x += 40;
-			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
-			// songText.screenCenter(X);
-
-			var port:FreeplayText = new FreeplayText(310, 200, songs[i].songName.toLowerCase());
+			var port:FreeplayText = new FreeplayText(310, 200, songs[i]);
 			port.y += ((port.width - 300) * i);
 			port.targetY = i;
-			port.setGraphicSize(Std.int(port.width * 1.1));
+			port.setGraphicSize(Std.int(port.width * 1.4));
 			port.alpha = 1;
 
 			port.antialiasing = ClientPrefs.globalAntialiasing;
 			grpSongs.add(port);
 		}
-		WeekData.setDirectoryFromWeek();
 
 		bars = new FlxSprite().loadGraphic(Paths.image('hotline/menu/freeplay/bars'));
 		bars.screenCenter();
@@ -168,8 +130,9 @@ class FreeplayState extends MusicBeatState
 		textChapter.antialiasing = ClientPrefs.globalAntialiasing;
 		add(textChapter);
 
-		scoreText = new FlxText(0, 660, 0, "", 32);
-		scoreText.setFormat(Paths.font("LEMONMILK-Bold.otf"), 32, FlxColor.WHITE, RIGHT);
+		scoreText = new FlxText(500, 660, 0, '', 32);
+		scoreText.setFormat(Paths.font('LEMONMILK-Bold.otf'), 32, FlxColor.WHITE, RIGHT);
+		scoreText.alignment = CENTER;
 		add(scoreText);
 
 		if(lastDifficultyName == '')
@@ -181,7 +144,7 @@ class FreeplayState extends MusicBeatState
 		changeSelection();
 		//changeDiff();
 
-		var swag:Alphabet = new Alphabet(1, 0, "swag");
+		var swag:Alphabet = new Alphabet(1, 0, 'swag');
 
 		// JUST DOIN THIS SHIT FOR TESTING!!!
 		/* 
@@ -250,10 +213,10 @@ class FreeplayState extends MusicBeatState
 		}
 
 		for (port in grpSongs.members)
-			{
-		port.angle = 5 * port.targetY;
-		//port.x = port.targetY * 50;
-			}
+		{
+			port.angle = 8 * port.targetY;
+			//port.x = port.targetY * 50;
+		}
 
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, CoolUtil.boundTo(elapsed * 24, 0, 1)));
 		lerpRating = FlxMath.lerp(lerpRating, intendedRating, CoolUtil.boundTo(elapsed * 12, 0, 1));
@@ -392,7 +355,8 @@ class FreeplayState extends MusicBeatState
 			PlayState.isStoryMode = false;
 			PlayState.storyDifficulty = curDifficulty;
 
-			trace('CURRENT WEEK: ' + WeekData.getWeekFileName());
+			FlxG.log.add('sex: ' + songLowercase);
+			//('CURRENT WEEK: ' + WeekData.getWeekFileName());
 			
 			if (FlxG.keys.pressed.SHIFT #if android || _virtualpad.buttonZ.pressed #end){
 				LoadingState.loadAndSwitchState(new ChartingState());
@@ -527,11 +491,11 @@ class FreeplayState extends MusicBeatState
 
 class SongMetadata
 {
-	public var songName:String = "";
+	public var songName:String = '';
 	public var week:Int = 0;
-	public var songCharacter:String = "";
+	public var songCharacter:String = '';
 	public var color:Int = -7179779;
-	public var folder:String = "";
+	public var folder:String = '';
 
 	public function new(song:String, week:Int, songCharacter:String, color:Int)
 	{
