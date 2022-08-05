@@ -1,7 +1,7 @@
 package;
 
 #if desktop
-import Discord.DiscordClient;
+import Discord.DiscordClient; //your code sucks ass aly -Peppy
 #end
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -50,8 +50,6 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 
 	override function create()
 	{
-		FlxG.debugger.visible = true;
-
 		WeekData.loadTheFirstEnabledMod();
 
 		#if desktop
@@ -73,12 +71,11 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 
 		persistentUpdate = persistentDraw = true;
 
-		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('hotline/menu/bg'), 0.2, 0.2, true, false);
+		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('hotline/menu/bg'), 0.2, 0.2, true, false, -30);
 		bg.scrollFactor.set();
-		bg.setGraphicSize(Std.int(bg.width * 1.175));
+		//bg.setGraphicSize(Std.int(bg.width * 1.475));
 		bg.velocity.x = -90;
 		bg.updateHitbox();
-		bg.screenCenter();
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
 
@@ -91,7 +88,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 
 		for (i in 0...optionShit.length)
 		{
-			var item:FlxSprite = new FlxSprite((670*i)+230, 0);
+			var item:FlxSprite = new FlxSprite((300*i) + 30, 100);
 			item.frames = Paths.getSparrowAtlas('hotline/menu/' + optionShit[i]);
 			item.antialiasing = ClientPrefs.globalAntialiasing;
 			//item.screenCenter(X);
@@ -126,7 +123,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		//creditsImage.updateHitbox();
 		add(creditsImage);
 
-		creditsHitbox = new FlxObject(0, 0, 175, 25);
+		creditsHitbox = new FlxObject(512, 684, 175, 25);
 		creditsHitbox.setPosition(512, 684);
 		add(creditsHitbox);
 
@@ -239,18 +236,20 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 
 					if (item.ID == curSelected)
 					{
-						FlxFlicker.flicker(item, 0.4, 0.06, false, false, function(flicker:FlxFlicker)
-						{
-							switch(daChoice)
+						if(daChoice != 'story_mode'){
+							FlxFlicker.flicker(item, 0.4, 0.06, false, false, function(flicker:FlxFlicker)
 							{
-								case 'freeplay':
-									MusicBeatState.switchState(new FreeplayState());
-								case 'extras':
-									MusicBeatState.switchState(new ExtrasScreen());
-									case 'options':
-										LoadingState.loadAndSwitchState(new options.OptionsState());
-							}
-						});
+								switch(daChoice)
+								{
+									case 'freeplay':
+										MusicBeatState.switchState(new FreeplayState());
+									case 'extras':
+										MusicBeatState.switchState(new ExtrasScreen());
+										case 'options':
+											LoadingState.loadAndSwitchState(new options.OptionsState());
+								}
+							});
+						}
 					}
 					else
 					{
@@ -278,13 +277,6 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 					creditsImage.color = 0xFFFFFFFF;
 				}
 			}
-			#if (desktop) // only on pc lol
-			else if (FlxG.keys.anyJustPressed(debugKeys))
-			{
-				selectedSomethin = true;
-				MusicBeatState.switchState(new MasterEditorMenu());
-			}
-			#end
 		}
 
 		super.update(elapsed);
@@ -317,44 +309,5 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 					item.animation.play('agorausamaisnao');
 				}
 			}
-			if(huh == 1)
-			{
-				canSelect = false;
-				FlxTween.tween(menuItems, {x: menuItems.x + 480}, 0.25, {
-					ease: FlxEase.expoOut,
-					onComplete: function(twn:FlxTween)
-					{
-						canSelect = true;
-					}
-				});
-			}
-			if(huh == -1)
-			{
-				canSelect = false;
-				FlxTween.tween(menuItems, {x: menuItems.x - 480}, 0.5, {onComplete: function(twn:FlxTween)
-					{
-						canSelect = true;
-					}
-				});
-			}
-			if(curSelected > optionShit.length && curSelected < optionShit.length)
-			{
-				if(huh == 1)
-				{
-					canSelect = false;
-					FlxTween.tween(menuItems, {x: menuItems.x - 1920}, 0.5, {onComplete: function(twn:FlxTween)
-					{
-						canSelect = true;
-					}});
-				}
-				if(huh == -1)
-				{
-					canSelect = false;
-					FlxTween.tween(menuItems, {x: menuItems.x + 1920}, 0.5, {onComplete: function(twn:FlxTween)
-					{
-						canSelect = true;
-					}});
-				}
-		}
 	}
 }

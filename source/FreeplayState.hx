@@ -47,7 +47,7 @@ class FreeplayState extends MusicBeatState
 	var intendedColor:Int;
 	var colorTween:FlxTween;
 
-	private var grpSongs:FlxTypedGroup<Alphabet>;
+	private var grpSongs:FlxTypedGroup<FreeplayText>;
 	private var curPlaying:Bool = false;
 
 	var bg2:FlxSprite;
@@ -119,7 +119,7 @@ class FreeplayState extends MusicBeatState
 
 		FlxTween.tween(nicu, {y: nicu.y + 10}, 1.74, {ease: FlxEase.quadInOut, type: PINGPONG});
 
-		grpSongs = new FlxTypedGroup<Alphabet>();
+		grpSongs = new FlxTypedGroup<FreeplayText>();
 		add(grpSongs);
 
 		for (i in 0...songs.length)
@@ -127,7 +127,8 @@ class FreeplayState extends MusicBeatState
 			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
 			songText.isMenuItem = true;
 			songText.targetY = i;
-			grpSongs.add(songText);
+			songText.alpha = 0;
+			//grpSongs.add(songText);
 
 			if (songText.width > 980)
 			{
@@ -145,6 +146,15 @@ class FreeplayState extends MusicBeatState
 			// songText.x += 40;
 			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
 			// songText.screenCenter(X);
+
+			var port:FreeplayText = new FreeplayText(310, 200, songs[i].songName.toLowerCase());
+			port.y += ((port.width - 300) * i);
+			port.targetY = i;
+			port.setGraphicSize(Std.int(port.width * 1.1));
+			port.alpha = 1;
+
+			port.antialiasing = ClientPrefs.globalAntialiasing;
+			grpSongs.add(port);
 		}
 		WeekData.setDirectoryFromWeek();
 
@@ -238,6 +248,12 @@ class FreeplayState extends MusicBeatState
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
+
+		for (port in grpSongs.members)
+			{
+		port.angle = 5 * port.targetY;
+		//port.x = port.targetY * 50;
+			}
 
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, CoolUtil.boundTo(elapsed * 24, 0, 1)));
 		lerpRating = FlxMath.lerp(lerpRating, intendedRating, CoolUtil.boundTo(elapsed * 12, 0, 1));
