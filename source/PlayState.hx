@@ -113,7 +113,8 @@ class PlayState extends MusicBeatState
 	public var songSpeed(default, set):Float = 1;
 	public var songSpeedType:String = "multiplicative";
 	public var noteKillOffset:Float = 350;
-	
+	//public var xval:Int = 90;
+
 	public var boyfriendGroup:FlxSpriteGroup;
 	public var dadGroup:FlxSpriteGroup;
 	public var gfGroup:FlxSpriteGroup;
@@ -4192,6 +4193,7 @@ class PlayState extends MusicBeatState
 			nikkuOctagon.animation.play('idle', true);
 			nikkuOctagon.setGraphicSize(Std.int(650.0),Std.int(777.0));
 			nikkuOctagon.antialiasing = ClientPrefs.globalAntialiasing;
+			nikkuOctagon.updateHitbox();
 			nikkuOctagon.cameras = [camCutsceneMidSong];
 			add(nikkuOctagon);
 			//nikkuOctagon.visible = false;
@@ -4204,6 +4206,7 @@ class PlayState extends MusicBeatState
 			bubbleText.loadGraphic(Paths.image('skatepark/octagon/textbox'));
 			bubbleText.scale.set(0.0001, 0.0001);
 			bubbleText.antialiasing = ClientPrefs.globalAntialiasing;
+			bubbleText.updateHitbox();
 			bubbleText.cameras = [camCutsceneMidSong];
 			add(bubbleText);
 
@@ -4213,6 +4216,7 @@ class PlayState extends MusicBeatState
 				textOctagon.scale.set(0.4, 0.4);
 				textOctagon.antialiasing = ClientPrefs.globalAntialiasing;
 				textOctagon.alpha = 0;
+				textOctagon.updateHitbox();
 				textOctagon.cameras = [camCutsceneMidSong];
 				add(textOctagon);
 
@@ -4250,7 +4254,7 @@ class PlayState extends MusicBeatState
 							FlxTween.tween(nikkuOctagon, {x: -48.0, y:39.6}, 0.015, {
 								onComplete:function(twn:FlxTween)
 								{
-									FlxTween.tween(bubbleText, {"scale.x": 1.4, "scale.y": 1.4}, 0.015, {
+									FlxTween.tween(bubbleText, {"scale.x": 1.4, "scale.y": 1.4}, 0.005, {
 										onComplete:function(twn:FlxTween)
 										{
 											textOctagon.alpha = 1;
@@ -4275,17 +4279,22 @@ class PlayState extends MusicBeatState
 		flash.cameras = [camCutsceneMidSong];
 		add(flash);
 
-		FlxTween.tween(nikkuOctagon, {x: 346.3}, 0.15, {
+		FlxTween.tween(nikkuOctagon, {x: 346.3}, 0.098, {
 			onComplete: function(twn:FlxTween)
 			{
 				nikkuOctagon.y = 210.6; // haxeflixel debugger console my beloved
 				nikkuOctagon.animation.play('lastFrame', true);
 				FlxTween.tween(nikkuOctagon, {"scale.x":1.5, "scale.y":1.5}, 1.20, {
 					onComplete:function(twn:FlxTween){
-						removeOctaCut();
+						//removeOctaCut();
 					}
 				});
 			}
+		});
+
+		new FlxTimer().start(2, function(tmr:FlxTimer)
+		{
+			removeOctaCut();
 		});
 	}
 
