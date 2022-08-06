@@ -373,7 +373,7 @@ class FreeplayState extends MusicBeatState
 					}
 					else
 					{
-						FlxFlicker.flicker(item,0.4,0.06,false,false,function(flicker:FlxFlicker)
+						FlxFlicker.flicker(item,1,0.10,false,false,function(flicker:FlxFlicker)
 						{
 							switch(songslct){
 								case 'killer-queen':
