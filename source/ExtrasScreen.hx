@@ -26,6 +26,7 @@ class ExtrasScreen extends MusicBeatState
 		'button1',
 		'button2'
 	];
+	var creditsButt:String = ""; //
 	var extrasslct:Bool = true;
 	var coverslct:Bool = false;
 	var bg:FlxSprite;
@@ -81,10 +82,6 @@ class ExtrasScreen extends MusicBeatState
 
 		coversButton = new FlxSprite().loadGraphic(Paths.image('hotline/menu/extras/coversButton'));
 		coversButton.antialiasing = ClientPrefs.globalAntialiasing;
-		if(coverslct)
-			coversButton.color = 0xFFFFFFFF;
-		else
-			coversButton.color = 0xFF363636;
 		coversButton.screenCenter();
 
 		text = new FlxSprite().loadGraphic(Paths.image('hotline/menu/extras/extrasButton'));
@@ -110,6 +107,13 @@ class ExtrasScreen extends MusicBeatState
 	}
 	override function update(elapsed:Float)
 	{
+		if(coverslct){
+			coversButton.color = 0xFFFFFFFF;
+		}
+		else{
+			coversButton.color = 0xFF363636;
+		}
+
 		for (touch in FlxG.touches.list) {
 			if (touch.overlaps(buttonLock) && FlxG.mouse.overlaps(buttonLock)) {
 				buttonLock.color = 0xFFFFFFFF;
@@ -136,17 +140,21 @@ class ExtrasScreen extends MusicBeatState
 		if (controls.UI_UP_P)
 		{
 			FlxG.sound.play(Paths.sound('selectsfx'));
-			xd(-1);
+			if(coverslct){
+				xd(-1);
+			}
 		}
-		if (controls.UI_DOWN_P)
-		{
-			FlxG.sound.play(Paths.sound('selectsfx'));
-			xd(1);
-		}
-		if (controls.BACK)
-		{
-			FlxG.sound.play(Paths.sound('backsfx'));
-			MusicBeatState.switchState(new MainMenuState());
+		if(coverslct && extrasslct){
+			if (controls.UI_DOWN_P)
+			{
+				FlxG.sound.play(Paths.sound('selectsfx'));
+				xd(1);
+			}
+			if (controls.BACK)
+			{
+				FlxG.sound.play(Paths.sound('backsfx'));
+				MusicBeatState.switchState(new MainMenuState());
+			}
 		}
 		if (controls.ACCEPT)
 		{
@@ -185,9 +193,9 @@ class ExtrasScreen extends MusicBeatState
 	
 					if (curSelected < 0)
 	
-				curSelected = buttonGrp.length - 1;
+				curSelected = buttonList.length - 1;
 	
-			if (curSelected >= buttonGrp.length)
+			if (curSelected >= buttonList.length)
 				curSelected = 0;
 		}
 
