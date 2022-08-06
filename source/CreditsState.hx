@@ -82,8 +82,9 @@ class CreditsState extends MusicBeatState
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
 			['Hotline 024 Port'], //creditos, agora o mayko vai adicionar o dele kkkkk
-			['Aly-Ant',		'aly',	'Coder of the Recreation',			'https://twitter.com/AlyAntlol',		'C0AFFF'],
+			['Aly-Ant',		'aly',	'Recreation Owner, Coder of the Recreation',			'https://twitter.com/AlyAntlol',		'C0AFFF'],
 			['THE-MAYKOLLYOUTUBE',		'may',	'Helper coder  Tester  bug fixer lol',		'https://youtube.com/channel/UC7zIWAVRqtZioMeDI7unXSQ',		'404072'],
+			['MatheusX02', 'matheus', 'Another Coder', 'https://www.google.com/search?q=matheusx02&oq=matheusx02&aqs=chrome..69i57.2922j0j4&sourceid=chrome-mobile&ie=UTF-8#sbfbu=1&pi=matheusx02', 'FFFFFF'],
 			['Peppy',		'Elpepe',	'Helper peppy god',		'https://youtube.com/c/PeppyWall',		'4DA5FF'],
 			[''],
 			['Psych Engine Android'],
