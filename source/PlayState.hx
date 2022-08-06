@@ -4985,7 +4985,7 @@ class PlayState extends MusicBeatState
 	public var showCombo:Bool = true;
 	public var showRating:Bool = true;
 
-	private function popUpScore(note:Note = null)
+	private function popUpScore(note:Note = null):Void
 	{
 		//trace(noteDiff, ' ' + Math.abs(note.strumTime - Conductor.songPosition));
 
@@ -5543,7 +5543,7 @@ class PlayState extends MusicBeatState
 				if(combo > 9999) combo = 9999;
 				combo++;
 			}
-			else if (popUpScore(note)) {
+			else if (!note.isSustainNote) {
 				comboTmr.start(3.5, function(tm:FlxTimer){
 					isComboTime = true;
 					//combo = 0;
