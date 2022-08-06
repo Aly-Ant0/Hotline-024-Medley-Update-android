@@ -144,12 +144,14 @@ class ExtrasScreen extends MusicBeatState
 				xd(-1);
 			}
 		}
-		if(coverslct && extrasslct){
 			if (controls.UI_DOWN_P)
 			{
 				FlxG.sound.play(Paths.sound('selectsfx'));
-				xd(1);
+				if(extrasslct){
+					xd(1);
+				}
 			}
+		if(coverslct && extrasslct){
 			if (controls.BACK)
 			{
 				FlxG.sound.play(Paths.sound('backsfx'));
