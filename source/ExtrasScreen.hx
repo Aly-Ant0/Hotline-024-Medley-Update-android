@@ -67,7 +67,7 @@ class ExtrasScreen extends MusicBeatState
 			var butt:FlxSprite = new FlxSprite().loadGraphic(Paths.image('hotline/menu/extras/button1'));
 			//button1.setGraphicSize(Std.int(button1.width * 0.5));
 			butt.screenCenter();
-			butt.ID = i:
+			butt.ID = i;
 			butt.scale.x -= 0.3;
 			butt.scale.y -= 0.3;
 			butt.antialiasing = ClientPrefs.globalAntialiasing;
