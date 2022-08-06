@@ -24,7 +24,8 @@ class ExtrasScreen extends MusicBeatState
 {
 	var buttonList:Array<String> = [
 		'button1',
-		'button2'
+		'button2',
+		'coversButton'
 	];
 	var creditsButt:String = ""; //
 	var extrasslct:Bool = true;
@@ -80,10 +81,6 @@ class ExtrasScreen extends MusicBeatState
 		buttonLock.antialiasing = ClientPrefs.globalAntialiasing;
 		buttonLock.color = 0xFF363636;
 
-		coversButton = new FlxSprite().loadGraphic(Paths.image('hotline/menu/extras/coversButton'));
-		coversButton.antialiasing = ClientPrefs.globalAntialiasing;
-		coversButton.screenCenter();
-
 		text = new FlxSprite().loadGraphic(Paths.image('hotline/menu/extras/extrasButton'));
 		text.antialiasing = ClientPrefs.globalAntialiasing;
 		text.screenCenter();
@@ -91,14 +88,13 @@ class ExtrasScreen extends MusicBeatState
 		add(bg);
 		add(bars);
 		add(bars2);
-		add(buttonGrp);
 		add(cubes);
-		add(coversButton);
+		add(buttonGrp);
 		add(text);
 		add(buttonLock);
 
 		changeExtra();
-		xd();
+		//xd();
 		super.create();
 
 		#if android
@@ -137,32 +133,14 @@ class ExtrasScreen extends MusicBeatState
 			FlxG.sound.play(Paths.sound('selectsfx'));
 			changeExtra(1);
 		}
-		if (controls.UI_UP_P)
+		if (controls.BACK)
 		{
-			FlxG.sound.play(Paths.sound('selectsfx'));
-			if(coverslct){
-				xd(-1);
-			}
-		}
-			if (controls.UI_DOWN_P)
-			{
-				FlxG.sound.play(Paths.sound('selectsfx'));
-				if(extrasslct){
-					xd(1);
-				}
-			}
-		if(coverslct && extrasslct){
-			if (controls.BACK)
-			{
 				FlxG.sound.play(Paths.sound('backsfx'));
 				MusicBeatState.switchState(new MainMenuState());
-			}
 		}
 		if (controls.ACCEPT)
 		{
 			var extraChoice:String = buttonList[curSelected];
-			if (extrasslct)
-			{
 				FlxG.sound.play(Paths.sound('entersfx'));
 				switch(extraChoice)
 				{
@@ -180,17 +158,16 @@ class ExtrasScreen extends MusicBeatState
 						{
 							LoadingState.loadAndSwitchState(new PlayState());
 						});
+					case 'creditsButton'
+						MusicBeatState.switchState(new CoversScreen());
 				}
-			}
-			if(coverslct){
-				MusicBeatState.switchState(new CoversScreen());
-			}
+			
+
 		}
 		super.update(elapsed);
 	}
 	function changeExtra(change:Int = 0)
 	{
-		if(extrasslct){
 			curSelected += change;
 	
 					if (curSelected < 0)
@@ -199,7 +176,6 @@ class ExtrasScreen extends MusicBeatState
 	
 			if (curSelected >= buttonList.length)
 				curSelected = 0;
-		}
 
 		/*var extraSelected:FlxGraphic = Paths.image('hotline/menu/extras/' + buttonList[curSelected]);
 		var extra:FlxGraphic = Paths.image('hotline/menu/extras/' + buttonList);*/
@@ -232,16 +208,5 @@ class ExtrasScreen extends MusicBeatState
 			}
 
 			buttonList[curSelected].alpha = 1;*/
-	}
-
-	function xd(value:Int = 0){
-		if(value == -1){
-			coverslct = false;
-			extrasslct = true;
-		}
-		if(value == 1){
-			coverslct = true;
-			extrasslct = false;
-		}
 	}
 }
