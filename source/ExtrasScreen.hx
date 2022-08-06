@@ -64,7 +64,7 @@ class ExtrasScreen extends MusicBeatState
 
 		for (i in buttonGrp.length)
 		{
-			var butt:FlxSprite = new FlxSprite().loadGraphic(Paths.image('hotline/menu/extras/button1'));
+			var butt:FlxSprite = new FlxSprite().loadGraphic(Paths.image('hotline/menu/extras/' + buttonList[i]));
 			//button1.setGraphicSize(Std.int(button1.width * 0.5));
 			butt.screenCenter();
 			butt.ID = i;
