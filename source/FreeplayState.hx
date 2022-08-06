@@ -112,7 +112,7 @@ class FreeplayState extends MusicBeatState
 		for (i in 0...songs.length)
 		{
 			var port:FreeplayText = new FreeplayText(310, 200, songs[i]);
-			port.y += ((port.width - 220) * i);
+			port.y += ((port.width - 350) + 50 * i);
 			port.targetY = i;
 			port.ID = i;
 			port.setGraphicSize(Std.int(port.width * 1.2));
@@ -131,7 +131,7 @@ class FreeplayState extends MusicBeatState
 		textChapter.antialiasing = ClientPrefs.globalAntialiasing;
 		add(textChapter);
 
-		scoreText = new FlxText(500, 660, 0, '', 32);
+		scoreText = new FlxText(0, 640, 0, '', 32);
 		scoreText.setFormat(Paths.font('LEMONMILK-Bold.otf'), 32, FlxColor.WHITE, RIGHT);
 		scoreText.alignment = CENTER;
 		add(scoreText);
@@ -179,7 +179,7 @@ class FreeplayState extends MusicBeatState
 
 	function weekIsLocked(name:String):Bool {
 		var leWeek:WeekData = WeekData.weeksLoaded.get(name);
-		return (!leWeek.startUnlocked && leWeek.weekBefore.length > 0 && (!StoryMenuState.weekCompleted.exists(leWeek.weekBefore) || !StoryMenuState.weekCompleted.get(leWeek.weekBefore)));
+		 (!leWeek.startUnlocked && leWeek.weekBefore.length > 0 && (!StoryMenuState.weekCompleted.exists(leWeek.weekBefore) || !StoryMenuState.weekCompleted.get(leWeek.weekBefore)));
 	}
 
 	/*public function addWeek(songs:Array<String>, weekNum:Int, weekColor:Int, ?songCharacters:Array<String>)
@@ -210,8 +210,8 @@ class FreeplayState extends MusicBeatState
 
 		for (port in grpSongs.members)
 		{
-			port.angle = 6 * port.targetY;
-			//port.x = port.targetY * 50;
+			port.angle = 5 * port.targetY;
+			port.x = 12 * port.targetY;
 		}
 
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, CoolUtil.boundTo(elapsed * 24, 0, 1)));
