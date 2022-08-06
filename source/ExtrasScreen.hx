@@ -62,7 +62,7 @@ class ExtrasScreen extends MusicBeatState
 
 		buttonGrp = new FlxTypedGroup<FlxSprite>();
 
-		for (i in buttonGrp.length)
+		for (i in 0...buttonGrp.length)
 		{
 			var butt:FlxSprite = new FlxSprite().loadGraphic(Paths.image('hotline/menu/extras/' + buttonList[i]));
 			//button1.setGraphicSize(Std.int(button1.width * 0.5));
@@ -180,14 +180,16 @@ class ExtrasScreen extends MusicBeatState
 	}
 	function changeExtra(change:Int = 0)
 	{
-		curSelected += change;
-
-				if (curSelected < 0)
-
-			curSelected = buttonGrp.length - 1;
-
-		if (curSelected >= buttonGrp.length)
-			curSelected = 0;
+		if(extrasslct){
+			curSelected += change;
+	
+					if (curSelected < 0)
+	
+				curSelected = buttonGrp.length - 1;
+	
+			if (curSelected >= buttonGrp.length)
+				curSelected = 0;
+		}
 
 		/*var extraSelected:FlxGraphic = Paths.image('hotline/menu/extras/' + buttonList[curSelected]);
 		var extra:FlxGraphic = Paths.image('hotline/menu/extras/' + buttonList);*/
