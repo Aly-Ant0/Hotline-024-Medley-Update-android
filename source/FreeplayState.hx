@@ -112,12 +112,11 @@ class FreeplayState extends MusicBeatState
 		for (i in 0...songs.length)
 		{
 			var port:FreeplayText = new FreeplayText(310, 200, songs[i]);
-			port.y += ((port.width - 300) * i);
+			port.y += ((port.width - 450) * i);
 			port.targetY = i;
 			port.ID = i;
-			port.setGraphicSize(Std.int(port.width * 1.4));
-			port.alpha = 1;
-
+			port.setGraphicSize(Std.int(port.width * 1.2));
+			//port.alpha = 1;
 			port.antialiasing = ClientPrefs.globalAntialiasing;
 			grpSongs.add(port);
 		}
@@ -211,7 +210,7 @@ class FreeplayState extends MusicBeatState
 
 		for (port in grpSongs.members)
 		{
-			port.angle = 8 * port.targetY;
+			port.angle = 6 * port.targetY;
 			//port.x = port.targetY * 50;
 		}
 
@@ -247,7 +246,7 @@ class FreeplayState extends MusicBeatState
 		}
 
 		scoreText.text = 'PERSONAL BEST: ' + lerpScore + ' (' + ratingSplit.join('.') + '%)';
-		positionHighscore();
+		//positionHighscore();
 
 		var upP = controls.UI_UP_P;
 		var downP = controls.UI_DOWN_P;
@@ -425,7 +424,7 @@ class FreeplayState extends MusicBeatState
 		#end
 
 		PlayState.storyDifficulty = curDifficulty;
-		positionHighscore();
+		//positionHighscore();
 	}
 
 	function changeSelection(change:Int = 0, playSound:Bool = true)
@@ -502,9 +501,9 @@ class FreeplayState extends MusicBeatState
 		}
 	}
 
-	private function positionHighscore() {
+	/*private function positionHighscore() {
 		scoreText.x = FlxG.width - scoreText.width - 6;
-	}
+	}*/
 }
 
 class SongMetadata
