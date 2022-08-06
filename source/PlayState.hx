@@ -5546,11 +5546,10 @@ class PlayState extends MusicBeatState
 				comboTmr.start(3.5, function(tm:FlxTimer){
 						isComboTime = true;
 						//combo = 0;
-						if (note.isSustainNote){
-							comboTmr.reset(3.5);
-						}
 				});
-				return;
+				if (note.isSustainNote){
+					comboTmr.reset(3.5);
+				}
 			}
 
 			health += note.hitHealth * healthGain;
