@@ -313,7 +313,7 @@ class FreeplayState extends MusicBeatState
 				#if PRELOAD_ALL
 				destroyFreeplayVocals();
 				FlxG.sound.music.volume = 0;
-				Paths.currentModDirectory = songs[curSelected].folder;
+				//Paths.currentModDirectory = songs[curSelected];
 				var poop:String = Highscore.formatSong(songs[curSelected].toLowerCase(), curDifficulty);
 				PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].toLowerCase());
 				if (PlayState.SONG.needsVoices)
@@ -460,9 +460,6 @@ class FreeplayState extends MusicBeatState
 				item.alpha = 1;
 			}
 		}
-
-		Paths.currentModDirectory = songs[curSelected];
-		PlayState.storyWeek = songs[curSelected];
 
 		CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
 		var diffStr:String = WeekData.getCurrentWeek().difficulties;
