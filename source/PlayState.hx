@@ -4985,7 +4985,7 @@ class PlayState extends MusicBeatState
 	public var showCombo:Bool = true;
 	public var showRating:Bool = true;
 
-	private function popUpScore(note:Note = null):Void
+	private function popUpScore(note:Note = null)
 	{
 		//trace(noteDiff, ' ' + Math.abs(note.strumTime - Conductor.songPosition));
 
