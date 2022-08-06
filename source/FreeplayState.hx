@@ -112,7 +112,7 @@ class FreeplayState extends MusicBeatState
 		for (i in 0...songs.length)
 		{
 			var port:FreeplayText = new FreeplayText(310, 200, songs[i]);
-			port.y += ((port.width - 550) * i);
+			port.y += ((port.width - 220) * i);
 			port.targetY = i;
 			port.ID = i;
 			port.setGraphicSize(Std.int(port.width * 1.2));
