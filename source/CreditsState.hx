@@ -85,7 +85,7 @@ class CreditsState extends MusicBeatState
 			['Aly-Ant',		'aly',	'Recreation Owner, Main Coder of the Recreation',			'https://twitter.com/AlyAntlol',		'C0AFFF'],
 			['THE-MAYKOLLYOUTUBE',		'may',	'Coding,\n i guess',		'https://youtube.com/channel/UC7zIWAVRqtZioMeDI7unXSQ',		'404072'],
 			['MatheusX02', 'matx02', 'Cutscenes Coder and only it,\n i guess', 'https://www.google.com/search?q=matheusx02&oq=matheusx02&aqs=chrome..69i57.2922j0j4&sourceid=chrome-mobile&ie=UTF-8#sbfbu=1&pi=matheusx02', 'FFFFFF'],
-			['Peppy',		'Elpepe',	'Menu Coding Helper and in the Gameplay',		'https://youtube.com/c/PeppyWall',		'4DA5FF'],
+			['Peppy',		'Elpepe',	'Menu Coding Helper and in the Gameplay\n Peppy God',		'https://youtube.com/c/PeppyWall',		'4DA5FF'],
 			[''],
 			['Psych Engine Android'],
 			['Saw (M.A. Jigsaw)',	'saw',				'Main Programmer of Psych Engine Android',					'https://www.youtube.com/channel/UC2Sk7vtPzOvbVzdVTWrribQ', 	'F73838'],
