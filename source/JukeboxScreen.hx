@@ -55,7 +55,7 @@ class JukeboxScreen extends MusicBeatState
 		jukebox.antialiasing = alias;
 		add(jukebox);
 
-		textGrp = new FlxTypedSpriteGroup<FreeplayText>();
+		textGrp = new FlxTypedGroup<FreeplayText>();
 		add(textGrp);
 
 		for (i in 0...songList.length)
