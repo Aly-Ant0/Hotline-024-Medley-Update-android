@@ -131,7 +131,7 @@ class FreeplayState extends MusicBeatState
 		textChapter.antialiasing = ClientPrefs.globalAntialiasing;
 		add(textChapter);
 
-		scoreText = new FlxText(0, 640, 0, '', 32);
+		scoreText = new FlxText(FlxG.width + 500, 640 - 15, 0, '', 32);
 		scoreText.setFormat(Paths.font('LEMONMILK-Bold.otf'), 32, FlxColor.WHITE, RIGHT);
 		scoreText.alignment = CENTER;
 		add(scoreText);
@@ -203,7 +203,7 @@ class FreeplayState extends MusicBeatState
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
 
-		for (port in grpSongs.members)
+		for (port in grpSongs.members) // the angle tween
 		{
 				var lerpVal:Float = CoolUtil.boundTo(elapsed * 7, 0, 1);
 				if(port.targetY == 0)
@@ -211,13 +211,13 @@ class FreeplayState extends MusicBeatState
 					var lastAngle:Float = port.angle;
 					var lastX:Float = port.x;
 					//item.screenCenter(X);
-					port.angle = FlxMath.lerp(lastAngle, 2, lerpVal);
+					port.angle = FlxMath.lerp(lastAngle, 0 * port.targetY, lerpVal);
 					port.x = FlxMath.lerp(lastX, 310, lerpVal);
 				}
 				else
 				{
-					port.angle = FlxMath.lerp(port.angle, 6 * Math.abs(port.targetY), lerpVal);
-					port.x = FlxMath.lerp(port.x, 1 + 5 * Math.abs(port.targetY), lerpVal);
+					port.angle = FlxMath.lerp(port.angle, 6 * port.targetY, lerpVal);
+					port.x = FlxMath.lerp(port.x, 295 * port.targetY, lerpVal);
 				}
 		}
 
