@@ -32,7 +32,7 @@ class JukeboxScreen extends MusicBeatState
 		'sugarcrush',
 		'smokebomb'
 	];
-	var textGrp:FlxTypedSpriteGroup<FreeplayText>;
+	var textGrp:FlxTypedGroup<FreeplayText>;
 	var bg:FlxSprite;
 	var bars:FlxSprite;
 	var jukebox:FlxSprite;
@@ -66,7 +66,7 @@ class JukeboxScreen extends MusicBeatState
 			port.ID = i;
 			port.setGraphicSize(Std.int(port.width * 1.2));
 			//port.alpha = 1;
-			grpSongs.add(port);
+			textGrp.add(port);
 		}
 
 		bars = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox/bars'));
@@ -84,7 +84,7 @@ class JukeboxScreen extends MusicBeatState
 	}
 	override function update(elapsed:Float)
 	{
-		for (port in grpSongs.members) // the angle tween
+		for (port in textGrp.members) // the angle tween
 		{
 				var lerpVal:Float = CoolUtil.boundTo(elapsed * 7, 0, 1);
 				if(port.targetY == 0)
@@ -127,8 +127,8 @@ class JukeboxScreen extends MusicBeatState
 		curSelected += change;
 
 		if (curSelected < 0)
-			curSelected = textGrp.length - 1;
-		if (curSelected >= textGrp.length)
+			curSelected = songList.length - 1;
+		if (curSelected >= songList.length)
 			curSelected = 0;
 
 		var bullShit:Int = 0;
