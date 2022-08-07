@@ -60,7 +60,7 @@ class JukeboxScreen extends MusicBeatState
 
 		for (i in 0...songList.length)
 		{
-			var port:FreeplayText = new FreeplayText(310, 200, songs[i]);
+			var port:FreeplayText = new FreeplayText(50, 200, songList[i]);
 			port.y += ((port.width - 350) + 50 * i);
 			port.targetY = i;
 			port.ID = i;
