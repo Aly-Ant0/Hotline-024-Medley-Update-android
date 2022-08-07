@@ -151,7 +151,7 @@ class ExtrasScreen extends MusicBeatState
 						{
 							LoadingState.loadAndSwitchState(new PlayState());
 						});
-					case 'creditsButton':
+					case 'coversButton':
 						MusicBeatState.switchState(new CoversScreen());
 				}
 		}
