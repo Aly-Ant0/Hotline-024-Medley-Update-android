@@ -27,7 +27,7 @@ class ExtrasScreen extends MusicBeatState
 		'button2',
 		'coversButton'
 	];
-	var creditsButt:String = ""; //
+	var creditsButt:String = ""; // i confussed coverbutt with creditsbutt lmao
 	var extrasslct:Bool = true;
 	var coverslct:Bool = false;
 	var bg:FlxSprite;
@@ -70,8 +70,8 @@ class ExtrasScreen extends MusicBeatState
 			//button1.setGraphicSize(Std.int(button1.width * 0.5));
 			butt.screenCenter();
 			butt.ID = i;
-			butt.scale.x -= 0.3;
-			butt.scale.y -= 0.3;
+			butt.scale.x -= 0.10;
+			butt.scale.y -= 0.10;
 			butt.antialiasing = ClientPrefs.globalAntialiasing;
 			buttonGrp.add(butt);
 		}
@@ -98,7 +98,7 @@ class ExtrasScreen extends MusicBeatState
 		super.create();
 
 		#if android
-		addVirtualPad(FULL, A_B);
+		addVirtualPad(LEFT_RIGHT, A_B);
 		#end
 	}
 	override function update(elapsed:Float)
@@ -179,20 +179,23 @@ class ExtrasScreen extends MusicBeatState
 		}*/
 
 		//sadness
-		//0xFF363636 0xFFFFFFFF
+		//gray(not selected): 0xFF363636
+		//white(transparent and selected): 0xFFFFFFFF
 		for (item in buttonGrp.members)
 		{
 			if(curSelected != item.ID){
 				item.color = 0xFF363636;
 				item.alpha = 0.4;
-				FlxTween.tween(item, {"scale.x": 0.7, "scale.y": 0.7}, 0.2, {ease: FlxEase.expoOut});
+				FlxTween.tween(item, {"scale.x": 0.90, "scale.y": 0.90}, 0.15, {ease: FlxEase.expoOut});
 			}
 			else{
 				item.color = 0xFFFFFFFF;
 				item.alpha = 1;
-				FlxTween.tween(item, {"scale.x": 1, "scale.y": 1}, 0.2, {ease: FlxEase.expoOut});
+				FlxTween.tween(item, {"scale.x": 0.90, "scale.y": 0.90}, 0.15, {ease: FlxEase.expoOut});
 			}
 		}
+		buttonGrp.members[2].scale.x = 1;
+		buttonGrp.members[2].scale.y = 1;
 			/*for (i in 0...buttonList.length)
 			{
 				buttonList.alpha = 0.5;
