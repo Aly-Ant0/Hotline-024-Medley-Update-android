@@ -34,8 +34,10 @@ class FlashingState extends MusicBeatState
 			"hey you! \n
 			before for playing this port, \n
 			this recreation is made by \n
-			MAYKOLLYOUTUBE \n
-			and Aly-Ant, \n
+			Aly-Ant, \n
+			MAYKOLLYOUTUBE, \n
+			Peppy \n
+			and MatheusX02,
 			the original creators of hotline 024 credits are in the credits menu, \n
 			press A to continue. \n
 			also you can disable the shaders in graphic options \n
