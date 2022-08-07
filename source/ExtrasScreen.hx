@@ -64,7 +64,7 @@ class ExtrasScreen extends MusicBeatState
 
 		buttonGrp = new FlxTypedGroup<FlxSprite>();
 
-		for (i in 0...buttonGrp.length)
+		for (i in 0...buttonList.length)
 		{
 			var butt:FlxSprite = new FlxSprite().loadGraphic(Paths.image('hotline/menu/extras/' + buttonList[i]));
 			//button1.setGraphicSize(Std.int(button1.width * 0.5));
@@ -103,13 +103,6 @@ class ExtrasScreen extends MusicBeatState
 	}
 	override function update(elapsed:Float)
 	{
-		if(coverslct){
-			coversButton.color = 0xFFFFFFFF;
-		}
-		else{
-			coversButton.color = 0xFF363636;
-		}
-
 		for (touch in FlxG.touches.list) {
 			if (touch.overlaps(buttonLock) && FlxG.mouse.overlaps(buttonLock)) {
 				buttonLock.color = 0xFFFFFFFF;
@@ -140,7 +133,7 @@ class ExtrasScreen extends MusicBeatState
 		}
 		if (controls.ACCEPT)
 		{
-			var extraChoice:String = buttonList[curSelected];
+				var extraChoice:String = buttonList[curSelected];
 				FlxG.sound.play(Paths.sound('entersfx'));
 				switch(extraChoice)
 				{
@@ -161,8 +154,6 @@ class ExtrasScreen extends MusicBeatState
 					case 'creditsButton'
 						MusicBeatState.switchState(new CoversScreen());
 				}
-			
-
 		}
 		super.update(elapsed);
 	}
@@ -172,9 +163,9 @@ class ExtrasScreen extends MusicBeatState
 	
 					if (curSelected < 0)
 	
-				curSelected = buttonList.length - 1;
+				curSelected = buttonGrp.length - 1;
 	
-			if (curSelected >= buttonList.length)
+			if (curSelected >= buttonGrp.length)
 				curSelected = 0;
 
 		/*var extraSelected:FlxGraphic = Paths.image('hotline/menu/extras/' + buttonList[curSelected]);
