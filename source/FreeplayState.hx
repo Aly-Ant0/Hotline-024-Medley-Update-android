@@ -211,13 +211,13 @@ class FreeplayState extends MusicBeatState
 					var lastAngle:Float = port.angle;
 					var lastX:Float = port.x;
 					//item.screenCenter(X);
-					port.angle = FlxMath.lerp(lastAngle, 0 * port.targetY, lerpVal);
+					port.angle = FlxMath.lerp(lastAngle, 1 * port.targetY, lerpVal);
 					port.x = FlxMath.lerp(lastX, 310, lerpVal);
 				}
 				else
 				{
 					port.angle = FlxMath.lerp(port.angle, 6 * port.targetY, lerpVal);
-					port.x = FlxMath.lerp(port.x, 295 * port.targetY, lerpVal);
+					port.x = FlxMath.lerp(port.x, 295, lerpVal);
 				}
 		}
 
