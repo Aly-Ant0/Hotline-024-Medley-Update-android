@@ -205,8 +205,20 @@ class FreeplayState extends MusicBeatState
 
 		for (port in grpSongs.members)
 		{
-			port.angle = 5 * port.targetY;
-			port.x = 12 * port.targetY;
+				var lerpVal:Float = CoolUtil.boundTo(elapsed * 7, 0, 1);
+				if(item.targetY == 0)
+				{
+					var lastAngle:Float = item.angle;
+					var lastX:Float = item.x;
+					//item.screenCenter(X);
+					item.angle = FlxMath.lerp(lastAngle, 6, lerpVal);
+					item.x = FlxMath.lerp(lastX, 310, lerpVal);
+				}
+				else
+				{
+					item.angle = FlxMath.lerp(item.angle, 6 * Math.abs(item.targetY), lerpVal);
+					item.x = FlxMath.lerp(item.x, 20 + 5 * Math.abs(item.targetY), lerpVal);
+				}
 		}
 
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, CoolUtil.boundTo(elapsed * 24, 0, 1)));
