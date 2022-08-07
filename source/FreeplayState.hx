@@ -208,16 +208,16 @@ class FreeplayState extends MusicBeatState
 				var lerpVal:Float = CoolUtil.boundTo(elapsed * 7, 0, 1);
 				if(port.targetY == 0)
 				{
-					var lastAngle:Float = item.angle;
-					var lastX:Float = item.x;
+					var lastAngle:Float = port.angle;
+					var lastX:Float = port.x;
 					//item.screenCenter(X);
 					port.angle = FlxMath.lerp(lastAngle, 2, lerpVal);
 					port.x = FlxMath.lerp(lastX, 310, lerpVal);
 				}
 				else
 				{
-					port.angle = FlxMath.lerp(port.angle, 6 * Math.abs(item.targetY), lerpVal);
-					port.x = FlxMath.lerp(port.x, 1 + 5 * Math.abs(item.targetY), lerpVal);
+					port.angle = FlxMath.lerp(port.angle, 6 * Math.abs(port.targetY), lerpVal);
+					port.x = FlxMath.lerp(port.x, 1 + 5 * Math.abs(port.targetY), lerpVal);
 				}
 		}
 
