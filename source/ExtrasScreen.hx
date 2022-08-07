@@ -191,7 +191,7 @@ class ExtrasScreen extends MusicBeatState
 			else{
 				item.color = 0xFFFFFFFF;
 				item.alpha = 1;
-				FlxTween.tween(item, {"scale.x": 0.90, "scale.y": 0.90}, 0.15, {ease: FlxEase.expoOut});
+				FlxTween.tween(item, {"scale.x": 1, "scale.y": 1}, 0.15, {ease: FlxEase.expoOut});
 			}
 		}
 		buttonGrp.members[2].scale.x = 1;
