@@ -32,7 +32,7 @@ class JukeboxScreen extends MusicBeatState
 		'sugarcrush',
 		'smokebomb'
 	];
-	var textGrp:FlxTypedSpriteGroup<FlxSprite>;
+	var textGrp:FlxTypedSpriteGroup<FreeplayText>;
 	var bg:FlxSprite;
 	var bars:FlxSprite;
 	var jukebox:FlxSprite;
@@ -55,27 +55,18 @@ class JukeboxScreen extends MusicBeatState
 		jukebox.antialiasing = alias;
 		add(jukebox);
 
-		textGrp = new FlxTypedSpriteGroup<FlxSprite>();
+		textGrp = new FlxTypedSpriteGroup<FreeplayText>();
 		add(textGrp);
 
 		for (i in 0...songList.length)
 		{
-			var text:FlxSprite = new FlxSprite(0, i * 160 + 40).loadGraphic(Paths.image('freeplaySongText/' + songList[i], 'shared'));
-			text.screenCenter(X);
-			text.antialiasing = alias;
-			//text.scale.set(0.6, 0.8);
-			text.ID = i;
-			//text.angle -= i;
-			text.x -= 60;
-			if (text.ID == curSelected)
-			{
-				text.angle = 6;
-			}
-			else
-			{
-				text.angle -= 6;
-			}
-			textGrp.add(text);
+			var port:FreeplayText = new FreeplayText(310, 200, songs[i]);
+			port.y += ((port.width - 350) + 50 * i);
+			port.targetY = i;
+			port.ID = i;
+			port.setGraphicSize(Std.int(port.width * 1.2));
+			//port.alpha = 1;
+			grpSongs.add(port);
 		}
 
 		bars = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox/bars'));
@@ -93,6 +84,24 @@ class JukeboxScreen extends MusicBeatState
 	}
 	override function update(elapsed:Float)
 	{
+		for (port in grpSongs.members) // the angle tween
+		{
+				var lerpVal:Float = CoolUtil.boundTo(elapsed * 7, 0, 1);
+				if(port.targetY == 0)
+				{
+					var lastAngle:Float = port.angle;
+					//var lastX:Float = port.x;
+					//item.screenCenter(X);
+					port.angle = FlxMath.lerp(lastAngle, 1 * port.targetY, lerpVal);
+					//port.x = FlxMath.lerp(lastX, 310, lerpVal);
+				}
+				else
+				{
+					port.angle = FlxMath.lerp(port.angle, 6 * port.targetY, lerpVal);
+					//port.x = FlxMath.lerp(port.x, 295, lerpVal);
+				}
+		}
+
 		if (controls.UI_UP_P)
 		{
 			//FlxG.sound.play(Paths.sound('selectsfx'));
@@ -125,44 +134,12 @@ class JukeboxScreen extends MusicBeatState
 		var bullShit:Int = 0;
 		for (item in textGrp.members)
 		{
-			item.y = bullShit - curSelected;
+			item.targetY = bullShit - curSelected;
 			bullShit++;
-			if(item.ID == curSelected)
+			item.alpha = 0.6;
+			if(item.targetY == 0)
 			{
 				item.alpha = 1;
-				//var lastAngle:Float = text.angle;
-				if(change == 1)
-				{
-					FlxTween.angle(item, item.angle, 5, 0.5, {ease: FlxEase.expoOut});
-					FlxTween.tween(item, {x: item.x + 15}, 0.5, {ease: FlxEase.expoOut});
-				}
-				if(change == -1)
-				{
-					FlxTween.angle(item, item.angle, 5, 0.5, {ease: FlxEase.expoOut});
-					FlxTween.tween(item, {x: item.x + 15}, 0.5, {ease: FlxEase.expoOut});
-				}
-			}
-			else
-			{
-				item.alpha = 0.5;
-				if(change == 1)
-				{
-					FlxTween.angle(item, item.angle, item.angle - 5, 0.5, {ease: FlxEase.expoOut});
-					FlxTween.tween(item, {x: item.x - 15}, 0.5, {ease: FlxEase.expoOut});
-				}
-				if(change == -1)
-				{
-					FlxTween.angle(item, item.angle, item.angle + 5, 0.5, {ease: FlxEase.expoOut});
-					FlxTween.tween(item, {x: item.x - 15}, 0.5, {ease: FlxEase.expoOut});
-				}
-			}
-			if (change == 1)
-			{
-				FlxTween.tween(item, {y: textGrp.y + 140 + 60}, 0.5, {ease: FlxEase.expoOut});
-			}
-			if(change == -1)
-			{
-				FlxTween.tween(item, {y: textGrp.y - 140 + 60}, 0.5, {ease: FlxEase.expoOut});
 			}
 		}
 	}
