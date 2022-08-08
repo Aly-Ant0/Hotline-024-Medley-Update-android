@@ -217,7 +217,7 @@ class FreeplayState extends MusicBeatState
 				else
 				{
 					port.angle = FlxMath.lerp(port.angle, 6 * port.targetY, lerpVal);
-					port.x = FlxMath.lerp(port.x, 295, lerpVal);
+					port.x = FlxMath.lerp(port.x, port.x - 15, lerpVal);
 				}
 		}
 
