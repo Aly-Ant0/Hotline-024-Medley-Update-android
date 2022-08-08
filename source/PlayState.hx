@@ -786,7 +786,7 @@ class PlayState extends MusicBeatState
 					part.antialiasing = ClientPrefs.globalAntialiasing;
 					part.scrollFactor.set(0.92, 0.92);
 					//part.active = false;
-					TweenParticles(part, part.x, 120, part.y-2000, 0, (Math.random()*5+3),0, FlxEase.quadInOut);
+					TweenParticles(part, part.x, 120, part.y-2000, 0, (Math.random()*5+3),0.2, FlxEase.quadInOut);
 					add(part);
 				}
 	
@@ -4000,7 +4000,7 @@ class PlayState extends MusicBeatState
 			type: FlxTween.LOOPING,
 			loopDelay:delayTime});
 
-			FlxTween.tween(go, {"scale.x": newalpha, "scale.y": newalpha}, 3.9, {
+			FlxTween.tween(go, {"scale.x": newalpha, "scale.y": newalpha}, (Math.random()*5+3), {
 			ease: newEase,
 			type: FlxTween.LOOPING,
 			loopDelay:delayTime});
@@ -5550,6 +5550,7 @@ class PlayState extends MusicBeatState
 				if (note.isSustainNote){
 					comboTmr.reset(3.5);
 				}
+				continue;
 			}
 
 			health += note.hitHealth * healthGain;
