@@ -5550,7 +5550,7 @@ class PlayState extends MusicBeatState
 				if (note.isSustainNote){
 					comboTmr.reset(3.5);
 				}
-				continue;
+				if(isComboTime) continue;
 			}
 
 			health += note.hitHealth * healthGain;
