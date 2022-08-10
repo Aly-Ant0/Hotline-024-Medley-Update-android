@@ -267,6 +267,7 @@ class AllCodes extends MusicBeatState
 			if (FlxG.save.data.showcodes) { // show all codes of the musics
 				CodeScreen.showallcodes = true;
 				ClientPrefs.saveSettings();
+				FlxG.save.flush();
 			}
 		}
 
