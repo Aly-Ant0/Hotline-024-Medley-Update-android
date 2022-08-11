@@ -131,7 +131,7 @@ class FreeplayState extends MusicBeatState
 		textChapter.antialiasing = ClientPrefs.globalAntialiasing;
 		add(textChapter);
 
-		scoreText = new FlxText(FlxG.width + 500, 640 - 15, 0, '', 32);
+		scoreText = new FlxText(FlxG.width + 100, 630, 0, '', 32);
 		scoreText.setFormat(Paths.font('LEMONMILK-Bold.otf'), 32, FlxColor.WHITE, RIGHT);
 		scoreText.alignment = CENTER;
 		add(scoreText);
@@ -211,13 +211,13 @@ class FreeplayState extends MusicBeatState
 					var lastAngle:Float = port.angle;
 					var lastX:Float = port.x;
 					//item.screenCenter(X);
-					port.angle = FlxMath.lerp(lastAngle, 1 * port.targetY, lerpVal);
+					port.angle = FlxMath.lerp(lastAngle, 3 * port.targetY, lerpVal);
 					port.x = FlxMath.lerp(lastX, 310, lerpVal);
 				}
 				else
 				{
 					port.angle = FlxMath.lerp(port.angle, 6 * port.targetY, lerpVal);
-					port.x = FlxMath.lerp(port.x, port.x - 15, lerpVal);
+					port.x = FlxMath.lerp(port.x, port.x - 10 + 5, lerpVal);
 				}
 		}
 
