@@ -1872,7 +1872,7 @@ class PlayState extends MusicBeatState
 			add(songTxt);
 	
 			//var content:String = Paths.txt(songName + '/info');
-		if(FileSystem.exists(Paths.txt(songName + '/info')) {
+		if(FileSystem.exists(Paths.txt(songName + '/info'))) {
 				text = File.getContent(Paths.txt(songName + '/info'));
 				//var content:String = directory + 'info.txt';
 				//var get:String = c
