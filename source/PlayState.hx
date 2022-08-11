@@ -1856,28 +1856,33 @@ class PlayState extends MusicBeatState
 				comboGlow.visible = false;
 			}
 
-		/*
-		bar = new FlxSprite().makeGraphic(1, 90, FlxColor.BLACK);
-		bar.alpha = 0.34;
-		bar.scale.x = FlxG.width - songTxt.x + 15;
-		bar.x -= 20;
-		bar.y -= 420;
-		add(bar);
+			var text:String = "";
+			songTxt = new FlxText(FlxG.width + 12, bar.y + 5, 0, text, 37);
+			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 32, FlxColor.WHITE, RIGHT)
 
-		songTxt = new FlxText(FlxG.width + 12, bar.y + 10, 0, "", 37);
-		songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 32, FlxColor.WHITE, RIGHT);
-		add(songTxt);
+			bar = new FlxSprite().makeGraphic(1, 90, FlxColor.BLACK);
+			bar.alpha = 0.34;
+			bar.scale.x = FlxG.width - songTxt.x + 15;
+			bar.x -= 20;
+			bar.y -= 420;
+	
+			add(bar);
+			add(songTxt);
+	
+			//var content:String = Paths.txt(songName + '/info');
+		if(FileSystem.exists(text)) {
+			text = File.getContent(Paths.txt(songName + '/info'));
+			//var content:String = directory + 'info.txt';
+			//var get:String = c
 
-		var content:String = Paths.txt(songName + '/info');
-		//var content:String = directory + 'info.txt';
-		//var get:String = c
-		if(OpenFlAssets.exists(content)) {
-			songTxt.text = CoolUtil.coolTextFile(SUtil.getPath() + content);
+			if(songName == 'extraterrestrial'){
+				songText.visible = false;
+				bar.visible = false;
+			}
 		}
 		else {
 			songTxt.text = 'null';
 		}
-		*/
 
 		if (songName == 'uncanny-valley') {
 			iconP2.visible = false;
@@ -2737,10 +2742,10 @@ class PlayState extends MusicBeatState
 				return;
 			}
 
-			/*new FlxTimer().start(0.65, function(tmr:FlxTimer)
+			new FlxTimer().start(0.65, function(tmr:FlxTimer)
 			{
 				songSlide();
-			});*/
+			});
 			startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
 			{
 				if (gf != null && tmr.loopsLeft % Math.round(gfSpeed * gf.danceEveryNumBeats) == 0 && gf.animation.curAnim != null && !gf.animation.curAnim.name.startsWith("sing") && !gf.stunned)
