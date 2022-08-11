@@ -1857,31 +1857,33 @@ class PlayState extends MusicBeatState
 			}
 
 			var text:String = "";
-			songTxt = new FlxText(FlxG.width + 12, bar.y + 5, 0, text, 37);
-			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 32, FlxColor.WHITE, RIGHT)
+			songTxt = new FlxText(FlxG.width + 12, 0, 0, text, 37);
+			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 32, FlxColor.WHITE, RIGHT);
 
 			bar = new FlxSprite().makeGraphic(1, 90, FlxColor.BLACK);
 			bar.alpha = 0.34;
 			bar.scale.x = FlxG.width - songTxt.x + 15;
 			bar.x -= 20;
 			bar.y -= 420;
+
+			songTxt.y = bar.y + 5;
 	
 			add(bar);
 			add(songTxt);
 	
 			//var content:String = Paths.txt(songName + '/info');
-		if(FileSystem.exists(text)) {
-			text = File.getContent(Paths.txt(songName + '/info'));
-			//var content:String = directory + 'info.txt';
-			//var get:String = c
+		if(FileSystem.exists(Paths.txt(songName + '/info')) {
+				text = File.getContent(Paths.txt(songName + '/info'));
+				//var content:String = directory + 'info.txt';
+				//var get:String = c
 
-			if(songName == 'extraterrestrial'){
-				songText.visible = false;
-				bar.visible = false;
+				if(songName == 'extraterrestrial'){
+					songText.visible = false;
+					bar.visible = false;
 			}
 		}
 		else {
-			songTxt.text = 'null';
+			songTxt.text = 'put the info.txt right now!!!!!!!!!!!!!!!!!!!!!!!!';
 		}
 
 		if (songName == 'uncanny-valley') {
