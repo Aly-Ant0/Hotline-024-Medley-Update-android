@@ -77,13 +77,6 @@ class Main extends Sprite
 		initialState = TitleState;
 		#end
 
-		// debugging stuff
-		FlxG.console.registerObject("Paths", Paths);
-		FlxG.console.registerObject("Conductor", Conductor);
-		FlxG.console.registerObject("PlayState", PlayState);
-		FlxG.console.registerObject("Note", Note);
-		FlxG.console.registerObject("MainMenuState", MainMenuState);
-
 
 		ClientPrefs.loadDefaultKeys();
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
