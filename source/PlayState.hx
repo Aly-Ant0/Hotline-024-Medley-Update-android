@@ -5510,7 +5510,7 @@ class PlayState extends MusicBeatState
 	{
 		comboTmr = new FlxTimer();
 
-		if(isComboTime) return;
+		if(isComboTime) return false; // fix?
 
 		if (!note.wasGoodHit)
 		{
