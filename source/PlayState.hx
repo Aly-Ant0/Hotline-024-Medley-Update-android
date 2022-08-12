@@ -292,7 +292,7 @@ class PlayState extends MusicBeatState
 	var rocks:BGSprite;
 
 	// do stage da gostosa la
-	var momogogoBG:FlxBackdrop;
+	var momogogoBG:FlxTiledSprite;
 
 	// da ultima musica la a astral projection
 	var matzuBG:BGSprite;
@@ -926,13 +926,12 @@ class PlayState extends MusicBeatState
 					rocks.updateHitbox();
 			case 'momogogo':
 				//var bg:FlxBackdrop;
-				momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), 0.2, 0.2);
+				momogogoBG = new FlxTiledSprite(Paths.image('momogogo/bg'), 4800, 1080, true, true);
 				momogogoBG.x = -1000;
-				momogogoBG.y = -230;
+				momogogoBG.y = -320;
 				momogogoBG.scale.set(1.25, 1.25);
 				momogogoBG.updateHitbox();
 				momogogoBG.antialiasing = ClientPrefs.globalAntialiasing;
-				momogogoBG.offset.x = 0;
 				momogogoBG.velocity.set(120, 0);
 				add(momogogoBG);
 
