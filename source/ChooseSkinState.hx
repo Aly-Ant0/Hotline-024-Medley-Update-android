@@ -135,9 +135,17 @@ class ChooseSkinState extends MusicBeatState
 			if (controls.BACK)
 			{
 				FlxG.sound.play(Paths.sound('backsfx'));
-				if (PlayState.isCovers)
-				{
+				var covers:Bool = PlayState.isCovers;
+				var code:Bool = PlayState.isCode;
+				var extras:Bool = PlayState.isExtras;
+				if (covers){
 					MusicBeatState.switchState(new CoversScreen());
+				}
+				if (code){
+					MusicBeatState.switchState(new CodeScreen());
+				}
+				if (extras){
+					MusicBeatState.switchState(new ExtrasScreen());
 				}
 				else
 				{
@@ -184,7 +192,6 @@ class ChooseSkinState extends MusicBeatState
 				FlxTween.tween(skinS, {x: skinS.x + 50}, 0.55, {ease: FlxEase.expoOut, onComplete: function(twn:FlxTween)
 				{
 					skinS.x = 0;
-					canSelect = true;
 				}});
 			}
 			if (change == -1) {
@@ -193,7 +200,6 @@ class ChooseSkinState extends MusicBeatState
 				FlxTween.tween(skinS, {x: skinS.x - 50}, 0.55, {ease: FlxEase.expoOut, onComplete: function(twn:FlxTween)
 				{
 					skinS.x = 0;
-					canSelect = true;
 				}});
 			}
 		}
