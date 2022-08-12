@@ -23,6 +23,7 @@ import flixel.addons.effects.chainable.FlxEffectSprite;
 import flixel.addons.effects.chainable.FlxWaveEffect;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.graphics.atlas.FlxAtlas;
+import flixel.addons.display.FlxTiledSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
@@ -1860,9 +1861,9 @@ class PlayState extends MusicBeatState
 			songTxt = new FlxText(FlxG.width + 12, 0, 0, text, 37);
 			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 32, FlxColor.WHITE, RIGHT);
 
-			bar = new FlxSprite().makeGraphic(1, 90, FlxColor.BLACK);
-			bar.alpha = 0.34;
-			bar.scale.x = FlxG.width - songTxt.x + 15;
+			bar = new FlxSprite().makeGraphic(1, 100, FlxColor.BLACK);
+			bar.alpha = 0.40;
+			bar.scale.x = songTxt.width + 20;
 			bar.x -= 20;
 			bar.y -= 420;
 
@@ -1871,19 +1872,17 @@ class PlayState extends MusicBeatState
 			add(bar);
 			add(songTxt);
 	
-			//var content:String = Paths.txt(songName + '/info');
+		// o texto vai pegar o conteudo do txt
 		if(FileSystem.exists(Paths.txt(songName + '/info'))) {
 				text = File.getContent(Paths.txt(songName + '/info'));
-				//var content:String = directory + 'info.txt';
-				//var get:String = c
 
 				if(songName == 'extraterrestrial'){
-					songText.visible = false;
+					songTxt.visible = false;
 					bar.visible = false;
 			}
 		}
 		else {
-			songTxt.text = 'put the info.txt right now!!!!!!!!!!!!!!!!!!!!!!!!';
+			text = 'tu é mano?';
 		}
 
 		if (songName == 'uncanny-valley') {
@@ -5557,6 +5556,7 @@ class PlayState extends MusicBeatState
 				if (note.isSustainNote){
 					comboTmr.reset(3.5);
 				}
+				return false;
 			}
 
 			health += note.hitHealth * healthGain;
