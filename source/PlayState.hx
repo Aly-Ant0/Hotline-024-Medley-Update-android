@@ -5510,6 +5510,8 @@ class PlayState extends MusicBeatState
 	{
 		comboTmr = new FlxTimer();
 
+		if(isComboTime) return;
+
 		if (!note.wasGoodHit)
 		{
 			if (ClientPrefs.hitsoundVolume > 0 && !note.hitsoundDisabled)
@@ -5556,7 +5558,6 @@ class PlayState extends MusicBeatState
 				if (note.isSustainNote){
 					comboTmr.reset(3.5);
 				}
-				return false;
 			}
 
 			health += note.hitHealth * healthGain;
