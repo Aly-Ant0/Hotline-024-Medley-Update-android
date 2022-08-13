@@ -113,9 +113,10 @@ class FreeplayState extends MusicBeatState
 		for (i in 0...songs.length)
 		{
 			var port:FreeplayText = new FreeplayText(310, 200, songs[i]);
-			port.y += ((port.width - 350) + 50 * i);
+			port.y += ((port.width - 450) + 100 * i);
 			port.targetY = i;
 			port.ID = i;
+			port.angle = -3;
 			port.setGraphicSize(Std.int(port.width * 1.2));
 			//port.alpha = 1;
 			port.antialiasing = ClientPrefs.globalAntialiasing;
@@ -209,24 +210,23 @@ class FreeplayState extends MusicBeatState
 				//var direction:Float = -10; // not used shit
 				var lerpVal:Float = CoolUtil.boundTo(elapsed * 7, 0, 1);
 				var maxSkew:Float = 0; // selected item
-				var minSkew:Float = 10; // not selected item
+				var minSkew:Float = port.skew.x - 5; // not selected item
+				var notSlctVal:Float = port.x - 30;
 				//var directionLeft:Float = -1; // not used shit
 				//var directionRight:Float = 1; // not used shit
 				if(port.targetY == 0)
 				{
 					var lastSkew:Float = port.skew.x;
-					var lastAngle:Float = port.angle;
+					//var lastAngle:Float = port.angle;
 					var lastX:Float = port.x;
 					//item.screenCenter(X);
-					port.angle = FlxMath.lerp(lastAngle, 4 * port.targetY, lerpVal);
 					port.x = FlxMath.lerp(lastX, 310, lerpVal);
-					port.skew.x = FlxMath.lerp(lastSkew, maxSkew * port.targetY, lerpVal); // using flxskewedsprite
+					port.skew.x = FlxMath.lerp(lastSkew, maxSkew, lerpVal); // using flxskewedsprite
 				}
 				else
 				{
-					port.angle = FlxMath.lerp(port.angle, 6 * port.targetY, lerpVal);
-					port.x = FlxMath.lerp(port.x, 210, lerpVal);
-					port.skew.x = FlxMath.lerp(port.skew.x, minSkew * port.targetY, lerpVal);
+					port.x = FlxMath.lerp(port.x, notSlctVal, lerpVal);
+					port.skew.x = FlxMath.lerp(port.skew.x, minSkew, lerpVal);
 				}
 		}
 
