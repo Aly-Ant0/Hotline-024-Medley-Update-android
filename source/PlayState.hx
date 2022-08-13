@@ -781,18 +781,18 @@ class PlayState extends MusicBeatState
 					// particle lol
 				for (i in 0...6) // i get this code from vs afton mod (is coded by fabs too and this is open source tho)
 				{
-					emitter = new FlxEmitter(-2080.5, 1262.4);
-					emitter.launchMode = FlxEmitterMode.SQUARE;
-					emitter.velocity.set(-50, -400, 50, -800, -100, 0, 100, -800);
-					emitter.scale.set(4, 4, 4, 4, 0, 0, 0, 0);
-					emitter.drag.set(0, 0, 0, 0, 5, 5, 10, 10);
-					emitter.width = 4787.45;
-					emitter.alpha.set(1, 1);
-					emitter.lifespan.set(2, 2.5);
-					emitter.loadParticles(Paths.image('expurgated/particle'), 500, 16, true);
+					particleEmitter = new FlxEmitter(-2080.5, 1262.4);
+					particleEmitter.launchMode = FlxEmitterMode.SQUARE;
+					particleEmitter.velocity.set(-50, -400, 50, -800, -100, 0, 100, -800);
+					particleEmitter.scale.set(4, 4, 4, 4, 0, 0, 0, 0);
+					particleEmitter.drag.set(0, 0, 0, 0, 5, 5, 10, 10);
+					particleEmitter.width = 4787.45;
+					particleEmitter.alpha.set(1, 1);
+					particleEmitter.lifespan.set(2, 2.5);
+					particleEmitter.loadParticles(Paths.image('expurgated/particle'), 500, 16, true);
 						
-					emitter.start(false, FlxG.random.float(0.3, 0.4), 100000);
-					add(emitter);
+					particleEmitter.start(false, FlxG.random.float(0.3, 0.4), 100000);
+					add(particleEmitter);
 				}
 	
 					exGround = new BGSprite('expurgated/ground', -2800, -1400, 1, 1);
