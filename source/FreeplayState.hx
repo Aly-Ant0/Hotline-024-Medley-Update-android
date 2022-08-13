@@ -221,12 +221,16 @@ class FreeplayState extends MusicBeatState
 					var lastX:Float = port.x;
 					//item.screenCenter(X);
 					port.x = FlxMath.lerp(lastX, 310, lerpVal);
+					port.forceX = port.x;
 					port.skew.x = FlxMath.lerp(lastSkew, maxSkew, lerpVal); // using flxskewedsprite
+					port.forceSkew = port.skew.x;
 				}
 				else
 				{
-					port.x = FlxMath.lerp(port.x, notSlctVal, lerpVal);
-					port.skew.x = FlxMath.lerp(port.skew.x, minSkew, lerpVal);
+					port.x = FlxMath.lerp(port.x, 280 + -10 * Math.abs(port.targetY), lerpVal);
+					port.forceX = item.x;
+					port.skew.x = FlxMath.lerp(port.skew.x, minSkew*Math.abs(targetY), lerpVal);
+					port.forceSkew = port.skew.x;
 				}
 		}
 
