@@ -255,11 +255,9 @@ class PlayState extends MusicBeatState
 	var exOverlay:BGSprite;
 	var exFront:BGSprite;
 
-	//unseless particle things
-/*
-	var particleEx:FlxParticle;
+	// this is my first time using emitters sorry that i broke something
+	//var particleEx:FlxParticle;
 	var particleEmitter:FlxEmitter;
-*/
 
 	// skate
 	var skateSky:BGSprite;
@@ -781,14 +779,20 @@ class PlayState extends MusicBeatState
 					add(exRock);
 	
 					// particle lol
-				for (i in 0...30)
-				{ // i get this code from x event mod
-					var part:FlxSprite = new FlxSprite(-1200+150*i, 980).loadGraphic(Paths.image('expurgated/particle'));
-					part.antialiasing = ClientPrefs.globalAntialiasing;
-					part.scrollFactor.set(0.92, 0.92);
-					//part.active = false;
-					TweenParticles(part, part.x, 120, part.y-2000, 0, (Math.random()*5+3),0.2, FlxEase.quadInOut);
-					add(part);
+				for (i in 0...6) // i get this code from vs afton mod (is coded by fabs too and this is open source tho)
+				{
+					emitter = new FlxEmitter(-2080.5, 1262.4);
+					emitter.launchMode = FlxEmitterMode.SQUARE;
+					emitter.velocity.set(-50, -400, 50, -800, -100, 0, 100, -800);
+					emitter.scale.set(4, 4, 4, 4, 0, 0, 0, 0);
+					emitter.drag.set(0, 0, 0, 0, 5, 5, 10, 10);
+					emitter.width = 4787.45;
+					emitter.alpha.set(1, 1);
+					emitter.lifespan.set(2, 2.5);
+					emitter.loadParticles(Paths.image('expurgated/particle'), 500, 16, true);
+						
+					emitter.start(false, FlxG.random.float(0.3, 0.4), 100000);
+					add(emitter);
 				}
 	
 					exGround = new BGSprite('expurgated/ground', -2800, -1400, 1, 1);
@@ -1871,17 +1875,17 @@ class PlayState extends MusicBeatState
 			add(bar);
 			add(songTxt);
 	
-		// o texto vai pegar o conteudo do txt
+		// o texto vai pegar o conteudo do txt & if the txt file exists the txt string will get the file content
 		if(FileSystem.exists(Paths.txt(songName + '/info'))) {
 				text = File.getContent(Paths.txt(songName + '/info'));
 
 				if(songName == 'extraterrestrial'){
 					songTxt.visible = false;
 					bar.visible = false;
-			}
+				}
 		}
 		else {
-			text = 'tu é mano?';
+			text = 'NO BITCHES?';
 		}
 
 		if (songName == 'uncanny-valley') {
@@ -1906,8 +1910,8 @@ class PlayState extends MusicBeatState
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 		botplayTxt.cameras = [camHUD];
-		//bar.cameras = [camHUD];
-		//songTxt.cameras = [camHUD];
+		bar.cameras = [camHUD];
+		songTxt.cameras = [camHUD];
 		timeBar.cameras = [camHUD];
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
@@ -2667,7 +2671,7 @@ class PlayState extends MusicBeatState
 	//var songTwn:FlxTween;
 	public function songSlide():Void
 	{
-		new FlxTimer().start(0.01, function(tmr:FlxTimer) {
+		new FlxTimer().start(1, function(tmr:FlxTimer) {
 			FlxTween.tween(songTxt, {x:500}, 0.28, {ease: FlxEase.expoOut});
 		});
 		new FlxTimer().start(4, function(tmr:FlxTimer) 
@@ -2679,7 +2683,7 @@ class PlayState extends MusicBeatState
 				}
 			});
 		});
-		new FlxTimer().start(0.01, function(tmr:FlxTimer) {
+		new FlxTimer().start(1, function(tmr:FlxTimer) {
 			FlxTween.tween(bar, {x:500}, 0.28, {ease: FlxEase.expoOut});
 		});
 		new FlxTimer().start(4, function(tmr:FlxTimer) 
@@ -2742,10 +2746,10 @@ class PlayState extends MusicBeatState
 				return;
 			}
 
-			new FlxTimer().start(0.65, function(tmr:FlxTimer)
+			/*new FlxTimer().start(0.65, function(tmr:FlxTimer)
 			{
 				songSlide();
-			});
+			});*/
 			startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
 			{
 				if (gf != null && tmr.loopsLeft % Math.round(gfSpeed * gf.danceEveryNumBeats) == 0 && gf.animation.curAnim != null && !gf.animation.curAnim.name.startsWith("sing") && !gf.stunned)
@@ -2926,35 +2930,49 @@ class PlayState extends MusicBeatState
 	var lastReportedPlayheadPosition:Int = 0;
 	var songTime:Float = 0;
 
-	function cu(durationIn:Float = 1, durationOut:Float = 1)
+	/*function cu(durationIn:Float = 1, durationOut:Float = 1) // another function for song name bar lmao
 	{
 		var songName:String = Paths.formatToSongPath(SONG.song);
 
-		var leBox:FlxSprite = new FlxSprite(-550, 300).makeGraphic(1, 180, FlxColor.BLACK);
-		leBox.scrollFactor.set();
-		leBox.cameras = [camHUD];
-		add(leBox);
+		var text:String = "";
+			songTxt = new FlxText(FlxG.width + 12, 0, 0, text, 37);
+			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 32, FlxColor.WHITE, RIGHT);
 
-		var leSongName:FlxText = new FlxText(-200, 320, 0, "", 60);
-		leSongName.scrollFactor.set();
-		leSongName.cameras = [camHUD];
-		leSongName.text = Assets.getText(Paths.txt(songName + '/info.txt'));
-		leSongName.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.tff"), 60, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(leSongName);
+			bar = new FlxSprite().makeGraphic(1, 100, FlxColor.BLACK);
+			bar.alpha = 0.40;
+			bar.scale.x = songTxt.width + 20;
+			bar.x -= 20;
+			bar.y -= 420;
 
-		leBox.scale.x += leSongName.x + 25;
+			songTxt.y = bar.y + 5;
+	
+			add(bar);
+			add(songTxt);
+	
+		// o texto vai pegar o conteudo do txt
+		if(FileSystem.exists(Paths.txt(songName + '/info'))) {
+				text = File.getContent(Paths.txt(songName + '/info'));
+
+				if(songName == 'extraterrestrial'){
+					songTxt.visible = false;
+					bar.visible = false;
+			}
+		}
+		else {
+			text = 'tu é mano?';
+		}
 
 		new FlxTimer().start(1, function(tmr:FlxTimer)
 		{
-			FlxTween.tween(leBox, {x: -100}, durationIn, {type:PERSIST, ease:FlxEase.backInOut});
-			FlxTween.tween(leSongName, {x: 100}, durationIn, {type:PERSIST, ease:FlxEase.backInOut});
+			FlxTween.tween(bar, {x: -100}, durationIn, {type:PERSIST, ease:FlxEase.backInOut});
+			FlxTween.tween(songTxt, {x: 100}, durationIn, {type:PERSIST, ease:FlxEase.backInOut});
 		});
 		new FlxTimer().start(6, function(tmr:FlxTimer)
 		{
-			FlxTween.tween(leSongName, {x: -200}, durationOut, {type:PERSIST, ease:FlxEase.backInOut});
-			FlxTween.tween(leBox, {x: -550}, durationOut, {type:PERSIST, ease:FlxEase.backInOut});
+			FlxTween.tween(songTxt, {x: -200}, durationOut, {type:PERSIST, ease:FlxEase.backInOut});
+			FlxTween.tween(bar, {x: -550}, durationOut, {type:PERSIST, ease:FlxEase.backInOut});
 		});
-	}
+	}*/
 
 	function startSong():Void
 	{
@@ -2964,6 +2982,8 @@ class PlayState extends MusicBeatState
 		lastReportedPlayheadPosition = 0;
 
 		//cu(1, 1);
+
+		songSlide();
 
 		FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 1, false);
 		FlxG.sound.music.onComplete = onSongComplete;
@@ -3605,6 +3625,11 @@ class PlayState extends MusicBeatState
 		if (isComboTime) {
 			scoreCount = Math.floor(FlxMath.lerp(scoreCount, 0, CoolUtil.boundTo(1 - (elapsed * 24), 1, 0)));
 			songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (elapsed * 24), 0, 1)));
+		}
+
+		if (curStage == 'momogogo')
+		{
+			momogogoBG.x += 90 * elapsed; // easy isn't?
 		}
 
 		super.update(elapsed);
@@ -5508,8 +5533,6 @@ class PlayState extends MusicBeatState
 	function goodNoteHit(note:Note):Void
 	{
 		comboTmr = new FlxTimer();
-
-		if(isComboTime) return isComboTime != true; // fix?
 
 		if (!note.wasGoodHit)
 		{
