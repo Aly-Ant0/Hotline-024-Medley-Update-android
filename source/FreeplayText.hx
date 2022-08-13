@@ -2,6 +2,7 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.addons.effects.FlxSkewedSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.math.FlxMath;
 import flixel.util.FlxColor;
@@ -14,7 +15,7 @@ class FreeplayText extends FlxSprite
 	public function new(x:Float, y:Float, portName:String = '')
 	{
 		super(x, y);
-        loadGraphic(Paths.image('freeplaySongText/' + portName, 'shared'));
+		loadGraphic(Paths.image('freeplaySongText/' + portName, 'shared'));
 		//trace('Test added: ' + WeekData.getWeekNumber(weekNum) + ' (' + weekNum + ')');
 		antialiasing = ClientPrefs.globalAntialiasing;
 	}
