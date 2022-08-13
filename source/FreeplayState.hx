@@ -11,6 +11,7 @@ import flixel.effects.FlxFlicker;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.addons.effects.FlxSkewedSprite;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
@@ -203,14 +204,14 @@ class FreeplayState extends MusicBeatState
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
 
-		for (port in grpSongs.members) // the angle tween and skew tween
+		for (port in grpSongs.members) // the angle tween and skew test
 		{
-				var direction:Float = -10; // not used tho
+				//var direction:Float = -10; // not used shit
 				var lerpVal:Float = CoolUtil.boundTo(elapsed * 7, 0, 1);
 				var maxSkew:Float = 0; // selected item
 				var minSkew:Float = 10; // not selected item
-				var directionLeft:Float = -1; // not used 
-				var directionRight:Float = 1; // not used
+				//var directionLeft:Float = -1; // not used shit
+				//var directionRight:Float = 1; // not used shit
 				if(port.targetY == 0)
 				{
 					var lastSkew:Float = port.skew;
