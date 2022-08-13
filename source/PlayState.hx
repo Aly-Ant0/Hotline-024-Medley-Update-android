@@ -781,9 +781,9 @@ class PlayState extends MusicBeatState
 					// particle lol
 				for (i in 0...6) // i get this code from vs afton mod (is coded by fabs too and this is open source tho)
 				{
-					particleEmitter = new FlxEmitter(-2080.5, 1262.4);
+					particleEmitter = new FlxEmitter(-2080.5, -862.4);
 					particleEmitter.launchMode = FlxEmitterMode.SQUARE;
-					particleEmitter.velocity.set(-50, -400, 50, -800, -100, 0, 100, -800);
+					particleEmitter.velocity.set(-50, -200, 50, -600, -90, 0, 90, -600);
 					particleEmitter.scale.set(4, 4, 4, 4, 0, 0, 0, 0);
 					particleEmitter.drag.set(0, 0, 0, 0, 5, 5, 10, 10);
 					particleEmitter.width = 4787.45;
