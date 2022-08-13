@@ -7,7 +7,7 @@ import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.math.FlxMath;
 import flixel.util.FlxColor;
 
-class FreeplayText extends FlxSprite
+class FreeplayText extends FlxSkewedSprite
 {
 	public var targetY:Float = 0;
 	public var flashingInt:Int = 0;
