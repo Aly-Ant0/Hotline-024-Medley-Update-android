@@ -203,21 +203,29 @@ class FreeplayState extends MusicBeatState
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
 
-		for (port in grpSongs.members) // the angle tween
+		for (port in grpSongs.members) // the angle tween and skew tween
 		{
+				var direction:Float = -10;
 				var lerpVal:Float = CoolUtil.boundTo(elapsed * 7, 0, 1);
+				var maxSkew:Float = 0; // selected item
+				var minSkew:Float = 10; // not selected item
+				var directionLeft:Float = -1;
+				var directionRight:Float = 1;
 				if(port.targetY == 0)
 				{
+					var lastSkew:Float = port.skew;
 					var lastAngle:Float = port.angle;
 					var lastX:Float = port.x;
 					//item.screenCenter(X);
-					port.angle = FlxMath.lerp(lastAngle, 3 * port.targetY, lerpVal);
+					port.angle = FlxMath.lerp(lastAngle, 4 * port.targetY, lerpVal);
 					port.x = FlxMath.lerp(lastX, 310, lerpVal);
+					port.skew.x = FlxMath.lerp(lastSkew, maxSkew * targetY, lerpVal); // using flxskewedsprite
 				}
 				else
 				{
 					port.angle = FlxMath.lerp(port.angle, 6 * port.targetY, lerpVal);
-					port.x = FlxMath.lerp(port.x, port.x - 10 + 5, lerpVal);
+					port.x = FlxMath.lerp(port.x, 210, lerpVal);
+					port.skew.x = FlxMath.lerp(port.skew.x, minSkew * targetY, lerpVal);
 				}
 		}
 
