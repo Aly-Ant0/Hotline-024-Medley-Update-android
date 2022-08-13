@@ -228,8 +228,8 @@ class FreeplayState extends MusicBeatState
 				else
 				{
 					port.x = FlxMath.lerp(port.x, 280 + -10 * Math.abs(port.targetY), lerpVal);
-					port.forceX = item.x;
-					port.skew.x = FlxMath.lerp(port.skew.x, minSkew*Math.abs(targetY), lerpVal);
+					port.forceX = port.x;
+					port.skew.x = FlxMath.lerp(port.skew.x, minSkew*Math.abs(port.targetY), lerpVal);
 					port.forceSkew = port.skew.x;
 				}
 		}
