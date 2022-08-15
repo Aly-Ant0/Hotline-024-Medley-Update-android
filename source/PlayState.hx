@@ -5881,7 +5881,7 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-	function flash() {
+	function flash() { // probably not used shit
 		var huh:FlxSprite = new FlxSprite().makeGraphic(1280, 720, FlxColor.WHITE);
 		huh.updateHitbox();
 		huh.cameras = [camCutsceneMidSong];
@@ -5911,6 +5911,7 @@ class PlayState extends MusicBeatState
 		{
 			// TERMINAR
 			//cuts1.visible = true; //Esse é o comando
+			// eu sei mateusx9
 		}
 		if (curSong == 'Broadcasting')
 		{
