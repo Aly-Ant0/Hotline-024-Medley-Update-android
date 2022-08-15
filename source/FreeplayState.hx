@@ -105,7 +105,7 @@ class FreeplayState extends MusicBeatState
 		nicu.screenCenter();
 		add(nicu);
 
-		FlxTween.tween(nicu, {y: nicu.y + 15}, 1.74, {ease: FlxEase.quadInOut, type: PINGPONG});
+		FlxTween.tween(nicu, {y: nicu.y + 19}, 1.74, {ease: FlxEase.quadInOut, type: PINGPONG});
 
 		grpSongs = new FlxTypedGroup<FreeplayText>();
 		add(grpSongs);
@@ -207,35 +207,35 @@ class FreeplayState extends MusicBeatState
 
 		for (port in grpSongs.members) // the angle tween and skew test
 		{
-			for (i in 0...grpSongs.length){ // probably not helpful lmao
-				//var direction:Float = -10; // not used shit
-				var lerpVal:Float = CoolUtil.boundTo(elapsed * 7, 0, 1);
-				var maxSkew:Float = 0; // selected item
-				var minSkew:Float = -5; // not selected item
-				var dir:Float = 1; // means direction lmao and not used shit
-				//var notSlctVal:Float = port.x - 30; // not used
-				//var directionLeft:Float = -1; // not used shit
-				//var directionRight:Float = 1; // not used shit
-				if(port.targetY == 0)
-				{
+			//var direction:Float = -10; // not used shit
+			var lerpVal:Float = CoolUtil.boundTo(elapsed * 7, 0, 1);
+			var maxSkew:Float = 0; // selected item
+			var minSkew:Float = -5; // not selected item
+			var dir:Float = 1; // means direction and not used shit lmao
+			//var notSlctVal:Float = port.x - 30; // not used
+			//var directionLeft:Float = -1; // not used shit
+			//var directionRight:Float = 1; // not used shit
+			if(port.targetY == 0)
+			{
 					//var lastSkew:Float = port.skew.x;
 					var lastAngle:Float = port.angle;
 					var lastX:Float = port.x;
 					//item.screenCenter(X);
 					port.x = FlxMath.lerp(lastX, 310, lerpVal);
 					port.forceX = port.x;
-					FlxTween.tween(port.skew, {x: 0}, 0.4, {ease: FlxEase.expoOut});
+					port.skew.x = FlxMath.lerp(port.skew.x, 0, lerpVal); // flxmath my beloved
+					//FlxTween.tween(port.skew, {x: 0}, 0.4, {ease: FlxEase.expoOut});
 					port.angle = FlxMath.lerp(lastAngle, -3, lerpVal);
 					//port.forceSkew = port.skew.x;
-				}
-				else
-				{
+			}
+			else
+			{
 					port.x = FlxMath.lerp(port.x, port.x - port.x * port.angle, lerpVal); // fix x value?
 					port.forceX = port.x;
-					FlxTween.tween(port.skew, {x: port.skew.x - 4}, 0.4, {ease: FlxEase.expoOut});
+					//FlxTween.tween(port.skew, {x: -4}, 0.4, {ease: FlxEase.expoOut}); com flxtween fico um cu
+					port.skew.x = FlxMath.lerp(port.skew.x, -5, lerpVal); // flxmath my beloved
 					//port.forceSkew = port.skew.x;
-					port.angle = FlxMath.lerp(port.angle, 7* port.targetY, lerpVal);
-				}
+					port.angle = FlxMath.lerp(port.angle, 6* port.targetY, lerpVal);
 			}
 		}
 
