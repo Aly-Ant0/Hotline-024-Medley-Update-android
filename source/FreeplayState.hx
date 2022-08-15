@@ -207,7 +207,7 @@ class FreeplayState extends MusicBeatState
 
 		for (port in grpSongs.members) // the angle tween and skew test
 		{
-			for (i in grpSongs.length){
+			for (i in 0...grpSongs.length){ // probably not helpful lmao
 				//var direction:Float = -10; // not used shit
 				var lerpVal:Float = CoolUtil.boundTo(elapsed * 7, 0, 1);
 				var maxSkew:Float = 0; // selected item
