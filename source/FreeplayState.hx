@@ -113,7 +113,7 @@ class FreeplayState extends MusicBeatState
 		for (i in 0...songs.length)
 		{
 			var port:FreeplayText = new FreeplayText(310, 200, songs[i]);
-			port.y += ((port.width - 500) + 150 * i);
+			port.y += ((port.width - 550) + 200 * i);
 			port.targetY = i; // basically a first id variable lmao
 			port.ID = i;
 			port.angle = -3;
@@ -207,33 +207,36 @@ class FreeplayState extends MusicBeatState
 
 		for (port in grpSongs.members) // the angle tween and skew test
 		{
+			for (i in grpSongs.length){
 				//var direction:Float = -10; // not used shit
 				var lerpVal:Float = CoolUtil.boundTo(elapsed * 7, 0, 1);
 				var maxSkew:Float = 0; // selected item
-				var minSkew:Float = -3; // not selected item
-				var notSlctVal:Float = port.x - 30;
+				var minSkew:Float = -5; // not selected item
+				var dir:Float = 1; // means direction lmao and not used shit
+				//var notSlctVal:Float = port.x - 30; // not used
 				//var directionLeft:Float = -1; // not used shit
 				//var directionRight:Float = 1; // not used shit
 				if(port.targetY == 0)
 				{
-					var lastSkew:Float = port.skew.x;
+					//var lastSkew:Float = port.skew.x;
 					var lastAngle:Float = port.angle;
 					var lastX:Float = port.x;
 					//item.screenCenter(X);
 					port.x = FlxMath.lerp(lastX, 310, lerpVal);
 					port.forceX = port.x;
-					port.skew.x = FlxMath.lerp(lastSkew, maxSkew, lerpVal); // using flxskewedsprite
+					FlxTween.tween(port.skew, {x: 0}, 0.4, {ease: FlxEase.expoOut});
 					port.angle = FlxMath.lerp(lastAngle, -3, lerpVal);
 					//port.forceSkew = port.skew.x;
 				}
 				else
 				{
-					port.x = FlxMath.lerp(port.x, 280 + -10 * Math.abs(port.targetY), lerpVal);
+					port.x = FlxMath.lerp(port.x, port.x - port.x * port.angle, lerpVal); // fix x value?
 					port.forceX = port.x;
-					port.skew.x = FlxMath.lerp(port.skew.x, minSkew*Math.abs(port.targetY), lerpVal);
+					FlxTween.tween(port.skew, {x: port.skew.x - 4}, 0.4, {ease: FlxEase.expoOut});
 					//port.forceSkew = port.skew.x;
-					port.angle = FlxMath.lerp(port.angle, -6 + -3 * port.targetY, lerpVal);
+					port.angle = FlxMath.lerp(port.angle, 7* port.targetY, lerpVal);
 				}
+			}
 		}
 
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, CoolUtil.boundTo(elapsed * 24, 0, 1)));
