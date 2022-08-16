@@ -217,20 +217,20 @@ class FreeplayState extends MusicBeatState
 			//var directionRight:Float = 1; // not used shit
 			if(port.targetY == 0)
 			{
-					//var lastSkew:Float = port.skew.x;
+					var lastSkew:Float = port.skew.x;
 					var lastAngle:Float = port.angle;
 					var lastX:Float = port.x;
 					//item.screenCenter(X);
 					port.x = FlxMath.lerp(lastX, 310, lerpVal);
 					port.forceX = port.x;
-					port.skew.x = FlxMath.lerp(port.skew.x, 0, lerpVal); // flxmath my beloved
+					port.skew.x = FlxMath.lerp(lastSkew, -2, lerpVal); // flxmath my beloved
 					//FlxTween.tween(port.skew, {x: 0}, 0.4, {ease: FlxEase.expoOut});
 					port.angle = FlxMath.lerp(lastAngle, -3, lerpVal);
 					//port.forceSkew = port.skew.x;
 			}
 			else
 			{
-					port.x = FlxMath.lerp(port.x, port.x - port.x * port.angle, lerpVal); // fix x value?
+					port.x = FlxMath.lerp(port.x, port.x * port.angle, lerpVal); // fix x value?
 					port.forceX = port.x;
 					//FlxTween.tween(port.skew, {x: -4}, 0.4, {ease: FlxEase.expoOut}); com flxtween fico um cu
 					port.skew.x = FlxMath.lerp(port.skew.x, -5, lerpVal); // flxmath my beloved
