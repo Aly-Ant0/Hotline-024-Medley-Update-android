@@ -778,7 +778,7 @@ class PlayState extends MusicBeatState
 				///exRock.antialiasing = ClientPrefs.globalAntialiasing;
 					add(exRock);
 
-					// i get this code from vs afton mod (is code by fabs and others coders too, and is open source and getting from haxeflixel and some changes)
+					// i get this code from vs afton mod (is code by fabs and others coders too, and is open source and getting from haxeflixel API)
 					particleEmitter = new FlxEmitter(-2080.5, 1512.4);
 					particleEmitter.launchMode = FlxEmitterMode.SQUARE;
 					particleEmitter.velocity.set(-50, -200, 50, -600, -90, 0, 90, -600);
@@ -789,7 +789,7 @@ class PlayState extends MusicBeatState
 					particleEmitter.lifespan.set(1.9, 4.9);
 					particleEmitter.loadParticles(Paths.image('expurgated/particle'), 500, 16, true);
 						
-					particleEmitter.start(false, FlxG.random.float(.035, .058), 100000);
+					particleEmitter.start(false, FlxG.random.float(.0065, .0198), 1000000);
 					add(particleEmitter);
 
 					exGround = new BGSprite('expurgated/ground', -2800, -1400, 1, 1);
