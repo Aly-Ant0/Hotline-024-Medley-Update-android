@@ -290,7 +290,7 @@ class PlayState extends MusicBeatState
 	var rocks:BGSprite;
 
 	// do stage da gostosa la
-	var momogogoBG:FlxTiledSprite;
+	var momogogoBG:FlxBackdrop;
 
 	// da ultima musica la a astral projection
 	var matzuBG:BGSprite;
@@ -927,7 +927,7 @@ class PlayState extends MusicBeatState
 					rocks.updateHitbox();
 			case 'momogogo':
 				//var bg:FlxBackdrop;
-				momogogoBG = new FlxTiledSprite(Paths.image('momogogo/bg'), 4800, 1080, true, true);
+				momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), true, true, -30);
 				momogogoBG.x = -1000;
 				momogogoBG.y = -320;
 				momogogoBG.scale.set(1.25, 1.25);
@@ -940,56 +940,56 @@ class PlayState extends MusicBeatState
 				//if(!ClientPrefs.dontShowBG)
 					matzuBG = new BGSprite('matzu/BG', 0, 0, 0.1, 0.1);
 					//matzuBG.updateHitbox();
-					matzuBG.screenCenter();
+					matzuBG.screenCenter(XY);
 					add(matzuBG);
 	
 					matzuDESK = new BGSprite('matzu/DES', 0, 0, 0, 0);
 					matzuDESK.updateHitbox();
-					matzuDESK.screenCenter();
+					matzuDESK.screenCenter(XY);
 	
 					asPlantadaMinhaMae = new BGSprite('matzu/PLAMTS', 0, 0, 1.1, 1.1);
 					asPlantadaMinhaMae.updateHitbox();
-					asPlantadaMinhaMae.screenCenter();
+					asPlantadaMinhaMae.screenCenter(XY);
 	
 					// quando ta tudo fucked twisted
 					matzuFudida1 = new BGSprite('matzu/2/BG1', 0, 0, 0.1, 0.1);
-					matzuFudida1.screenCenter();
+					matzuFudida1.screenCenter(XY);
 					matzuFudida1.updateHitbox();
 					matzuFudida1.visible = false;
 					add(matzuFudida1);
 	
 					matzuFudida2 = new BGSprite('matzu/2/idk', 0, 0, 0, 0);
 					matzuFudida2.updateHitbox();
-					matzuFudida2.screenCenter();
+					matzuFudida2.screenCenter(XY);
 					matzuFudida2.visible = false;
 					add(matzuFudida2);
 	
 					matzuFudida3 = new BGSprite('matzu/2/ground', 0, 0, 0, 0);
 					matzuFudida3.updateHitbox();
-					matzuFudida3.screenCenter();
+					matzuFudida3.screenCenter(XY);
 					matzuFudida3.visible = false;
 					add(matzuFudida3);
 	
 					matzuFudida4 = new BGSprite('matzu/2/messages', 0, 0, 0.4, 0.4);
-					matzuFudida4.screenCenter();
+					matzuFudida4.screenCenter(XY);
 					matzuFudida4.updateHitbox();
 					matzuFudida4.visible = false;
 					add(matzuFudida4);
 	
 					matzuFudida5 = new BGSprite('matzu/2/door', 0, 0, 0.4, 0.4);
 					matzuFudida5.updateHitbox();
-					matzuFudida5.screenCenter();
+					matzuFudida5.screenCenter(XY);
 					matzuFudida5.visible = false;
 					add(matzuFudida5);
 	
 					matzuFudida6 = new BGSprite('matzu/2/desk2', 0, 0, 0, 0);
 					matzuFudida6.updateHitbox();
-					matzuFudida6.screenCenter();
+					matzuFudida6.screenCenter(XY);
 					matzuFudida6.visible = false;
 	
 					matzuFudida7 = new BGSprite('matzu/2/plamts2', 0, 0, 1.1, 1.1);
 					matzuFudida7.updateHitbox();
-					matzuFudida7.screenCenter();
+					matzuFudida7.screenCenter(XY);
 					matzuFudida7.visible = false;
 			case 'ena':
 				//if(!ClientPrefs.dontShowBG)
@@ -1013,31 +1013,35 @@ class PlayState extends MusicBeatState
 					idkWhatIsthat.updateHitbox();
 
 			case 'nikkuMall':
-				var bg:BGSprite  = new BGSprite('nikkuMall/back', -975, -570, 0.9, 0.9);
+				var bg:BGSprite  = new BGSprite('nikkuMall/back', 0, 0, 0.9, 0.9);
 				bg.updateHitbox();
+				bg.screenCenter(XY);
 				bg.scale.set(2.4, 2.4);
 				add(bg);
 
-				var front:BGSprite = new BGSprite('nikkuMall/front', -975, -545, 0, 0);
+				var front:BGSprite = new BGSprite('nikkuMall/front', 0, 0, 0, 0);
 				front.updateHitbox();
+				front.screenCenter(XY);
 				front.scale.set(2.4, 2.4);
 				add(front);
 
-				oscabodomeucu = new BGSprite('nikkuMall/cables', -975, -400, 1.1, 1.1);
+				oscabodomeucu = new BGSprite('nikkuMall/cables', 0, 0, 1.1, 1.1);
 				oscabodomeucu.scale.set(2.4, 2.4);
+				oscabodomeucu.screenCenter(XY);
 				oscabodomeucu.updateHitbox();
 
-				nicuLight = new BGSprite('nikkuMall/light', -975, -545, 1.1, 1.1);
+				nicuLight = new BGSprite('nikkuMall/light', 0, 0, 1.1, 1.1);
 				nicuLight.blend = ADD;
+				nicuLight.screenCenter(XY);
 				nicuLight.scale.set(2.4, 2.4);
 				nicuLight.updateHitbox();
 
 				nicuPlants = new BGSprite('nikkuMall/plants', -975, -500, 1.1, 1.1);
 				nicuPlants.scale.set(2.4, 2.4);
-				nicuPlants.screenCenter();
+				nicuPlants.screenCenter(XY);
 				nicuPlants.updateHitbox();
 
-			case 'jojo': //PODE TROCAR O NOME DPS - matheusx02 part 1 e nunca mais fez alguma no port e fodase
+			case 'jojo': //PODE TROCAR O NOME DPS - mateusx02 part 1 e nunca mais fez alguma na recriacao e fodase
 				var cuts1:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('optim/1'));
 				cuts1.scrollFactor.set(0, 0);
 				cuts1.updateHitbox();
@@ -1625,7 +1629,7 @@ class PlayState extends MusicBeatState
 				bfshade.flipY = true;
 				bfshade.blend = ADD;
 				bfshade.alpha = 0.5;
-				bfshade.y = boyfriend.y + 200;
+				bfshade.y = boyfriend.y + 400;
 				bfshade.animation.play(boyfriend.animation.curAnim.name);
 				insert(members.indexOf(boyfriendGroup), bfshade);
 			case 'limo':
@@ -1719,19 +1723,19 @@ class PlayState extends MusicBeatState
 		generateSong(SONG.song);
 		#if LUA_ALLOWED
 		for (notetype in noteTypeMap.keys()) {
-                        var luaToLoad:String = 'custom_notetypes/' + notetype + '.lua';
-                    luaToLoad = Paths.getPreloadPath(luaToLoad);
-                        if(OpenFlAssets.exists(luaToLoad)) {
-                                luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad)));
-                        }
-                }
-                for (event in eventPushedMap.keys()) {
-                        var luaToLoad:String = 'custom_events/' + event + '.lua';
-                        luaToLoad = Paths.getPreloadPath(luaToLoad);    
+			var luaToLoad:String = 'custom_notetypes/' + notetype + '.lua';
+			luaToLoad = Paths.getPreloadPath(luaToLoad);
 			if(OpenFlAssets.exists(luaToLoad)) {
-                                luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad)));
-                        }
-                }
+				luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad)));
+			}
+		}
+		for (event in eventPushedMap.keys()) {
+			var luaToLoad:String = 'custom_events/' + event + '.lua';
+			luaToLoad = Paths.getPreloadPath(luaToLoad);    
+			if(OpenFlAssets.exists(luaToLoad)) {
+				luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad)));
+			}
+		}
 		#end
 		noteTypeMap.clear();
 		noteTypeMap = null;
