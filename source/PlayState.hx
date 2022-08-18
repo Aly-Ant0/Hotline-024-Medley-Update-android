@@ -5586,7 +5586,7 @@ class PlayState extends MusicBeatState
 			note.destroy();
 		}
 	}
-	var startedC:Bool = false;
+	//var startedC:Bool = false; its already declared
 	function goodNoteHit(note:Note):Void
 	{
 		//comboTmr = new FlxTimer(); its already declared lol
