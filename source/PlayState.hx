@@ -1810,7 +1810,7 @@ class PlayState extends MusicBeatState
 		add(iconP2);
 		reloadHealthBarColors();
 
-		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 34);
+		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 33);
 		scoreTxt.setFormat(Paths.font("goodbyeDespair.ttf"), 30, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.25;
@@ -1831,7 +1831,7 @@ class PlayState extends MusicBeatState
 			add(comboGlow);
 
 			combotxt1 = new FlxText();
-			combotxt1.size = 32;
+			combotxt1.size = 33;
 			combotxt1.color = FlxColor.WHITE;
 			
 			combotxt1.setPosition(579, 80);
@@ -1847,16 +1847,20 @@ class PlayState extends MusicBeatState
 			combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt2.scrollFactor.set();
 			combotxt2.borderSize = 1.25;
-			combotxt2.size = 26;
+			combotxt2.size = 33;
 			//combotxt2.setPosition(579, 0);
 			combotxt2.y = combotxt1.y + 20;
 			combotxt2.cameras = [camHUD];
 			combotxt2.alpha = 0;
 			add(combotxt2);
 
-			if(!showCombo2){
+			if(showCombo2){
 				combotxt1.alpha = 1;
-				combotxt1.alpha = 1;
+				combotxt2.alpha = 1;
+			}
+			else{
+				combotxt1.alpha = 0;
+				combotxt2.alpha = 0;
 			}
 
 			if(ClientPrefs.downScroll) {
@@ -2711,40 +2715,35 @@ class PlayState extends MusicBeatState
 
 	//var comboNum:Int = 0;
 	var startedC:Bool = false;
-	var resetC:Bool = false;
+	//var resetC:Bool = false;
 	//var finishState:Bool = false;
-	function comboPopup(note:Note = null):Void
+	//endCombo = false;
+	function comboStart(note:Note = null):Void
 	{
 		var pressedKey2:Bool = note.isSustainNote;
 		showCombo2 = true;
-		startedC = true;
-		resetC = false;
-		endCombo = false;
-		comboNum++;
-
-		if (pressedKey2){
-			//startedC = true; // the finish bool is [not] for the issustainnote if expression.
-			comboTmr.start(comboTmr2, function(tmr:FlxTimer){
+		//resetC = false;
+		//comboNum++;
+		comboTmr.start(comboTmr2, function(tmr:FlxTimer){
 				//finishState = true;
+				//startedC = true;
 				finishCombo();
-			});
-		}
-		if(pressedKey2 && startedC){
-			resetCombo();
-		}
+		});
+		//resetCombo();
 	}
 
 	function resetCombo(){
-		if (startedC){
-			comboTmr.reset(comboTmr2);
-		}
+		return comboTmr.reset(comboTmr2);
 		//reseted = true;
 	}
 
 	function finishCombo()
 	{
-		if(startedC)
-			endCombo = true;
+		return endCombo;
+	}
+
+	function popUpCombo(){
+		return comboNum++;
 	}
 
 	var startTimer:FlxTimer;
@@ -5587,7 +5586,7 @@ class PlayState extends MusicBeatState
 			note.destroy();
 		}
 	}
-
+	var startedC:Bool = false;
 	function goodNoteHit(note:Note):Void
 	{
 		//comboTmr = new FlxTimer(); its already declared lol
@@ -5629,7 +5628,13 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
-				comboPopup(note);
+				startedC = true;
+				if(startedC){
+					comboStart(note);
+				}
+				if(!note.isSustainNote && startedC){
+					resetCombo();
+				}
 			}
 
 			health += note.hitHealth * healthGain;
