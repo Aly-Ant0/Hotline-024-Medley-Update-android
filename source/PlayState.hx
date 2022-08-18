@@ -2725,8 +2725,8 @@ class PlayState extends MusicBeatState
 		//comboNum++;
 
 		if (pressedKey2){
+			startedC = true; // the finish bool is [not] for the issustainnote if expression.
 			comboTmr.start(comboTmr2, function(tmr:FlxTimer){
-				startedC = true; // the finish bool is [not] for the issustainnote if expression.
 				//finishState = true;
 				finishCombo();
 			});
