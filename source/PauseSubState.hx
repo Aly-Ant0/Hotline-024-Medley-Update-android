@@ -50,8 +50,7 @@ class PauseSubState extends MusicBeatSubstate
 		pauseMusic = new FlxSound();
 		pauseMusic.loadEmbedded(Paths.music('memories'), true, true);
 		pauseMusic.play(false, FlxG.random.int(0, Std.int(pauseMusic.length / 2)));
-		pauseMusic.fadeIn(4, 0, 0.36);
-
+		pauseMusic.volume = 0.5;
 		FlxG.sound.list.add(pauseMusic);
 
 		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
@@ -64,7 +63,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		var cubes1:FlxSprite = new FlxSprite().loadGraphic(Paths.image('pause/cubes1', 'shared'));
 		cubes1.screenCenter();
-		cubes1.x -= FlxG.width * 1.8;
+		//cubes1.x -= FlxG.width * 1.8;
 		add(cubes1);
 
 		var cubes2:FlxSprite = new FlxSprite().loadGraphic(Paths.image('pause/cubes2', 'shared'));
@@ -80,7 +79,7 @@ class PauseSubState extends MusicBeatSubstate
 		for (i in 0...3) {
 			if (firstStart)
 				for (item in bgstuff.members) {
-					FlxTween.tween(item, {x: 0}, 0.15, {ease: FlxEase.linear, onComplete: function(twn:FlxTween) // i get this code from kade engine main menu
+					FlxTween.tween(item, {x: 0}, 0.085, {ease: FlxEase.linear, onComplete: function(twn:FlxTween) // i get this code from kade engine main menu
 					{
 						//finishedFunnyMove = true; 
 						changeSelection();
@@ -131,13 +130,13 @@ class PauseSubState extends MusicBeatSubstate
 					close();
 				case 'practice':
 					PlayState.instance.practiceMode = !PlayState.instance.practiceMode;
-					PlayState.changedDifficulty = true;
+					//PlayState.changedDifficulty = true;
 					practiceText.visible = PlayState.instance.practiceMode;
 				case "restart":
 					restartSong();
 				case 'boyplay':
 					PlayState.instance.cpuControlled = !PlayState.instance.cpuControlled;
-					PlayState.changedDifficulty = true;
+					//PlayState.changedDifficulty = true;
 					PlayState.instance.botplayTxt.visible = PlayState.instance.cpuControlled;
 					PlayState.instance.botplayTxt.alpha = 1;
 					PlayState.instance.botplaySine = 0;
@@ -164,7 +163,7 @@ class PauseSubState extends MusicBeatSubstate
 						FlxG.sound.music.fadeIn(4, 0, 0.8);
 					}
 					PlayState.cancelMusicFadeTween();
-					PlayState.changedDifficulty = false;
+					//PlayState.changedDifficulty = false;
 					PlayState.chartingMode = false;
 			}
 		}
