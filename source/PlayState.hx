@@ -130,7 +130,7 @@ class PlayState extends MusicBeatState
 	public static var storyWeek:Int = 0;
 	public static var storyPlaylist:Array<String> = [];
 	public static var storyDifficulty:Int = 1;
-	public static var isComboTime:Bool = false;
+	//public static var endCombo:Bool = false;
 
 	public var vocals:FlxSound;
 
@@ -214,7 +214,7 @@ class PlayState extends MusicBeatState
 	public var iconP2:HealthIcon;
 	public var camHUD:FlxCamera;
 	public var camGame:FlxCamera;
-	public var camCutsceneMidSong:FlxCamera;
+	public var cutCam:FlxCamera;
 	public var camOther:FlxCamera;
 	public var cameraSpeed:Float = 1;
 
@@ -359,21 +359,27 @@ class PlayState extends MusicBeatState
 	public var songHits:Int = 0;
 	public var songMisses:Int = 0;
 	public var lerpScore:Int = 0;
-	public var intendedScore:Int = 0;
+	public var scoreTarget:Int = 0;
 	public var lerpScore2:Int = 0;
-	public var intendedScore2:Int = 0;
+	public var scoreTarget2:Int = 0;
 	public var scoreTxt:FlxText;
+	var scoreTxtTween:FlxTween;
+	var score:Int = 350;
+
+	//combo stuff
 	public var comboGlow:FlxSprite;
 	public var combotxt1:FlxText;
 	public var combotxt2:FlxText;
-	public var scoreCount:Int = 0;
-	var score:Int = 350;
+	public var comboScore:Int = 0;
+	var pressedKey:Bool = false;
+	var endCombo:Bool = false;
+	var showCombo:Bool = false;
 	var timeTxt:FlxText;
 	var comboTwn:FlxTween;
 	var comboTwn2:FlxTween;
 	var comboTwn3:FlxTween;
-	var scoreTxtTween:FlxTween;
-	var comboTmr:FlxTimer;
+	var comboTmr:FlxTimer = new FlxTimer();
+	var comboTmr2:Float = 4.5;
 
 	public static var campaignScore:Int = 0;
 	public static var campaignMisses:Int = 0;
@@ -458,15 +464,15 @@ class PlayState extends MusicBeatState
 
 		// var gameCam:FlxCamera = FlxG.camera;
 		camGame = new FlxCamera();
-		camCutsceneMidSong = new FlxCamera();
+		cutCam = new FlxCamera();
 		camHUD = new FlxCamera();
 		camOther = new FlxCamera();
-		camCutsceneMidSong.bgColor.alpha = 0;
+		cutCam.bgColor.alpha = 0;
 		camHUD.bgColor.alpha = 0;
 		camOther.bgColor.alpha = 0;
 
 		FlxG.cameras.reset(camGame);
-		FlxG.cameras.add(camCutsceneMidSong);
+		FlxG.cameras.add(cutCam);
 		FlxG.cameras.add(camHUD);
 		FlxG.cameras.add(camOther);
 		grpNoteSplashes = new FlxTypedGroup<NoteSplash>();
@@ -789,7 +795,7 @@ class PlayState extends MusicBeatState
 					particleEmitter.lifespan.set(1.9, 4.9);
 					particleEmitter.loadParticles(Paths.image('expurgated/particle'), 500, 16, true);
 						
-					particleEmitter.start(false, FlxG.random.float(.0065, .0198), 1000000);
+					particleEmitter.start(false, FlxG.random.float(.00987, .0298), 1000000);
 					add(particleEmitter);
 
 					exGround = new BGSprite('expurgated/ground', -2800, -1400, 1, 1);
@@ -927,9 +933,9 @@ class PlayState extends MusicBeatState
 					rocks.updateHitbox();
 			case 'momogogo':
 				//var bg:FlxBackdrop;
-				momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), true, true, -30);
+				momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), true, false, 10);
 				momogogoBG.x = -1000;
-				momogogoBG.y = -320;
+				momogogoBG.y = -270;
 				momogogoBG.scale.set(1.25, 1.25);
 				momogogoBG.updateHitbox();
 				momogogoBG.antialiasing = ClientPrefs.globalAntialiasing;
@@ -1843,10 +1849,15 @@ class PlayState extends MusicBeatState
 			combotxt2.size = 26;
 			//combotxt2.setPosition(579, 0);
 			combotxt2.y = combotxt1.y + 20;
-			combotxt2.text = "" + scoreCount;
+			combotxt2.text = "" + comboScore;
 			combotxt2.cameras = [camHUD];
 			combotxt2.alpha = 0;
 			add(combotxt2);
+
+			if(!showCombo){
+				combotxt1.alpha = 1;
+				combotxt1.alpha = 1;
+			}
 
 			if(ClientPrefs.downScroll) {
 				combotxt1.setPosition(579, 585);
@@ -2696,6 +2707,52 @@ class PlayState extends MusicBeatState
 				}
 			});
 		});
+	}
+
+	var comboNum:Int = 0;
+	var startedC:Bool = false;
+	var resetC:Bool = false;
+	//var finishState:Bool = false;
+	function comboPopup(note:Note = null):Void
+	{
+		var pressedKey2:Bool = note.isSustainNote;
+		showCombo = true;
+		startedC = true;
+		resetC = false;
+		endCombo = false;
+
+		updateText(1);
+		//comboNum++;
+
+		if (pressedKey2){
+			comboTmr.start(comboTmr2, function(tmr:FlxTimer){
+				startedC = true; // the finish bool is [not] for the issustainnote if expression.
+				//finishState = true;
+				finishCombo();
+			});
+		}
+		if(pressedKey2 && startedC){
+			resetCombo();
+		}
+	}
+
+	function resetCombo(){
+		if (startedC){
+			comboTmr.reset(comboTmr2);
+		}
+		//reseted = true;
+	}
+
+	function updateText(bruh:Int = 0)
+	{
+		comboNum += bruh;
+		combotxt1.text = '${rating}! x$comboNum';
+	}
+
+	function finishCombo()
+	{
+		if(startedC)
+			endCombo = true;
 	}
 
 	var startTimer:FlxTimer;
@@ -3623,9 +3680,9 @@ class PlayState extends MusicBeatState
 				boyfriendIdleTime = 0;	
 			}	
 		}
-		if (isComboTime) {
-			scoreCount = Math.floor(FlxMath.lerp(scoreCount, 0, CoolUtil.boundTo(1 - (elapsed * 24), 1, 0)));
-			songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (elapsed * 24), 0, 1)));
+		if (endCombo) {
+			comboScore = Math.floor(FlxMath.lerp(comboScore, 0, CoolUtil.boundTo(1 - (elapsed * 24), 1, 0)));
+			songScore = Math.floor(FlxMath.lerp(songScore, scoreTarget, CoolUtil.boundTo(1 - (elapsed * 24), 0, 1)));
 		}
 
 		if (curStage == 'momogogo')
@@ -3635,7 +3692,7 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		//intendedScore = songScore;
+		//scoreTarget = songScore;
 
 		scoreTxt.text = 'Score: ' + songScore + ' | Misses: ' + songMisses + ' | Rating: ' + ratingName;
 		if(ratingName != '?')
@@ -4042,7 +4099,7 @@ class PlayState extends MusicBeatState
 		// first scene
 		var jojobg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('jojo/cutscene1/bg', 'h24'));
 		jojobg.antialiasing = ClientPrefs.globalAntialiasing;
-		jojobg.cameras = [camCutsceneMidSong];
+		jojobg.cameras = [cutCam];
 		jojobg.setGraphicSize(Std.int(jojobg.width * 2.5), Std.int(jojobg.height * 2.5));
 		jojobg.screenCenter();
 		jojobg.scrollFactor.set();
@@ -4050,7 +4107,7 @@ class PlayState extends MusicBeatState
 
 		var bfjojo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('jojo/cutscene1/bf_virou_hetero', 'h24'));
 		bfjojo.antialiasing = ClientPrefs.globalAntialiasing;
-		bfjojo.cameras = [camCutsceneMidSong];
+		bfjojo.cameras = [cutCam];
 		bfjojo.screenCenter();
 		bfjojo.setGraphicSize(Std.int(bfjojo.width * 2.5), Std.int(bfjojo.height * 2.5));
 		bfjojo.scrollFactor.set();
@@ -4059,7 +4116,7 @@ class PlayState extends MusicBeatState
 		// second scene
 		var bg2:FlxSprite = new FlxSprite().loadGraphic(Paths.image('jojo/cutscene1/bg2', 'h24'));
 		bg2.antialiasing = ClientPrefs.globalAntialiasing;
-		bg2.cameras = [camCutsceneMidSong];
+		bg2.cameras = [cutCam];
 		bg2.screenCenter();
 		bg2.setGraphicSize(Std.int(bg2.width * 2.5), Std.int(bg2.height * 2.5));
 		bg2.scrollFactor.set();
@@ -4068,7 +4125,7 @@ class PlayState extends MusicBeatState
 
 		var gfchocada:FlxSprite = new FlxSprite().loadGraphic(Paths.image('jojo/cutscene1/krl_isso_e_uma_mulher_ou_um_homem', 'h24'));
 		gfchocada.antialiasing = ClientPrefs.globalAntialiasing;
-		gfchocada.cameras = [camCutsceneMidSong];
+		gfchocada.cameras = [cutCam];
 		gfchocada.screenCenter();
 		gfchocada.scrollFactor.set();
 		gfchocada.setGraphicSize(Std.int(gfchocada.width * 2.5), Std.int(gfchocada.height * 2.5));
@@ -4078,7 +4135,7 @@ class PlayState extends MusicBeatState
 		// third scene
 		var nicueyes:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('jojo/cutscene1/os_zoi_da_nicu', 'h24'));
 		nicueyes.antialiasing = ClientPrefs.globalAntialiasing;
-		nicueyes.cameras = [camCutsceneMidSong];
+		nicueyes.cameras = [cutCam];
 		nicueyes.screenCenter(X);
 		nicueyes.setGraphicSize(Std.int(nicueyes.width * 2.5), Std.int(nicueyes.height * 2.5));
 		nicueyes.visible = false;
@@ -4087,7 +4144,7 @@ class PlayState extends MusicBeatState
 
 		var bfheteroEyes:FlxSprite = new FlxSprite(0, nicueyes.y + 390).loadGraphic(Paths.image('jojo/cutscene/os_zoi_do_bf', 'h24'));
 		bfheteroEyes.antialiasing = ClientPrefs.globalAntialiasing;
-		bfheteroEyes.cameras = [camCutsceneMidSong];
+		bfheteroEyes.cameras = [cutCam];
 		bfheteroEyes.setGraphicSize(Std.int(bfheteroEyes.width * 2.5), Std.int(bfheteroEyes.height * 2.5));
 		bfheteroEyes.scrollFactor.set();
 		bfheteroEyes.screenCenter(X);
@@ -4097,7 +4154,7 @@ class PlayState extends MusicBeatState
 		// hands scene
 		var bg3:FlxSprite = new FlxSprite().loadGraphic(Paths.image('jojo/cutscene/bg3', 'h24'));
 		bg3.antialiasing = ClientPrefs.globalAntialiasing;
-		bg3.cameras = [camCutsceneMidSong];
+		bg3.cameras = [cutCam];
 		bg3.scrollFactor.set();
 		bg3.screenCenter();
 		bg3.visible = false;
@@ -4105,7 +4162,7 @@ class PlayState extends MusicBeatState
 
 		var bfhands:FlxSprite = new FlxSprite(139.3,  -198.3).loadGraphic(Paths.image('jojo/cutscene/as_mao_do_bf', 'h24'));
 		bfhands.antialiasing = ClientPrefs.globalAntialiasing;
-		bfhands.cameras = [camCutsceneMidSong];
+		bfhands.cameras = [cutCam];
 		bfhands.scrollFactor.set();
 		//bfhands.screenCenter();
 		bfhands.setGraphicSize(Std.int(778.5), Std.int(960.4));
@@ -4114,7 +4171,7 @@ class PlayState extends MusicBeatState
 
 		var nicuhands:FlxSprite = new FlxSprite().loadGraphic(Paths.image('jojo/cutscene/as_mao_do_bf', 'h24'));
 		nicuhands.antialiasing = ClientPrefs.globalAntialiasing;
-		nicuhands.cameras = [camCutsceneMidSong];
+		nicuhands.cameras = [cutCam];
 		nicuhands.scrollFactor.set();
 		//nicuhands.screenCenter();
 		nicuhands.setGraphicSize(Std.int(735.1), Std.int(963.5));
@@ -4123,7 +4180,7 @@ class PlayState extends MusicBeatState
 
 		// flash lol
 		var flash:FlxSprite = new FlxSprite().makeGraphic(Std.int(FlxG.width * 3.2), Std.int(FlxG.height * 3.2), FlxColor.WHITE);
-		flash.cameras = [camCutsceneMidSong];
+		flash.cameras = [cutCam];
 		flash.scrollFactor.set();
 		flash.visible = false;
 		add(flash);
@@ -4175,7 +4232,7 @@ class PlayState extends MusicBeatState
 			octagonBG.screenCenter(XY);
 			octagonBG.scrollFactor.set(0, 0);
 			octagonBG.scale.set(1.4, 1.4);
-			octagonBG.cameras = [camCutsceneMidSong];
+			octagonBG.cameras = [cutCam];
 			octagonBG.alpha = 0;
 			add(octagonBG);
 
@@ -4184,7 +4241,7 @@ class PlayState extends MusicBeatState
 			octagonBG2.screenCenter(XY);
 			octagonBG2.scrollFactor.set(0, 0);
 			octagonBG2.scale.set(1.4, 1.4);
-			octagonBG2.cameras = [camCutsceneMidSong];
+			octagonBG2.cameras = [cutCam];
 			add(octagonBG2);
 
 			// analfabeto do caralho
@@ -4193,7 +4250,7 @@ class PlayState extends MusicBeatState
 			numbahEiti.y = 0;
 			//numbahEiti.scale.set(1.3, 1.3);
 			numbahEiti.scrollFactor.set(0, 0);
-			numbahEiti.cameras = [camCutsceneMidSong];
+			numbahEiti.cameras = [cutCam];
 		//	numbahEiti.offset.y = 20000000;
 			numbahEiti.velocity.x = -60;
 			add(numbahEiti);
@@ -4206,7 +4263,7 @@ class PlayState extends MusicBeatState
 			numbahEiti2.scrollFactor.set(0, 0);
 		//	numbahEiti2.offset.y += 20000000;
 			numbahEiti2.velocity.set(60, 0);
-			numbahEiti2.cameras = [camCutsceneMidSong];
+			numbahEiti2.cameras = [cutCam];
 			add(numbahEiti2);
 
 			numbahEiti3 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false, 0, Std.int(1900));
@@ -4218,7 +4275,7 @@ class PlayState extends MusicBeatState
 
 		//	numbahEiti3.offset.y += 20000000;
 			numbahEiti3.velocity.set(-60, 0);
-			numbahEiti3.cameras = [camCutsceneMidSong];
+			numbahEiti3.cameras = [cutCam];
 			add(numbahEiti3);
 
 			nikkuOctagon = new FlxSprite(-611.8,632.5);
@@ -4229,7 +4286,7 @@ class PlayState extends MusicBeatState
 			nikkuOctagon.setGraphicSize(Std.int(650.0),Std.int(777.0));
 			nikkuOctagon.antialiasing = ClientPrefs.globalAntialiasing;
 			nikkuOctagon.updateHitbox();
-			nikkuOctagon.cameras = [camCutsceneMidSong];
+			nikkuOctagon.cameras = [cutCam];
 			add(nikkuOctagon);
 			//nikkuOctagon.visible = false;
 
@@ -4242,7 +4299,7 @@ class PlayState extends MusicBeatState
 			bubbleText.scale.set(0.0001, 0.0001);
 			bubbleText.antialiasing = ClientPrefs.globalAntialiasing;
 			bubbleText.updateHitbox();
-			bubbleText.cameras = [camCutsceneMidSong];
+			bubbleText.cameras = [cutCam];
 			add(bubbleText);
 
 			textOctagon = new FlxSprite(613.7,144.0);
@@ -4252,7 +4309,7 @@ class PlayState extends MusicBeatState
 				textOctagon.antialiasing = ClientPrefs.globalAntialiasing;
 				textOctagon.alpha = 0;
 				textOctagon.updateHitbox();
-				textOctagon.cameras = [camCutsceneMidSong];
+				textOctagon.cameras = [cutCam];
 				add(textOctagon);
 
 				hereme = new FlxSprite().loadGraphic(Paths.image('skatepark/octagon/hereletme', 'h24')); //tween y: 250
@@ -4269,11 +4326,11 @@ class PlayState extends MusicBeatState
 				octagon.updateHitbox();
 				octagon.antialiasing = ClientPrefs.globalAntialiasing;
 				octagon.visible = false;
-				octagon.cameras = [camCutsceneMidSong];
+				octagon.cameras = [cutCam];
 				add(octagon);
 
 				var blackStart:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
-				blackStart.cameras = [camCutsceneMidSong];
+				blackStart.cameras = [cutCam];
 				add(blackStart);
 
 				new FlxTimer().start(0.015, function(tmr:FlxTimer)
@@ -4311,7 +4368,7 @@ class PlayState extends MusicBeatState
 		//nikkuOctagon.y = 200;
 		var flash:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.WHITE);
 		flash.visible = false;
-		flash.cameras = [camCutsceneMidSong];
+		flash.cameras = [cutCam];
 		add(flash);
 
 		FlxTween.tween(nikkuOctagon, {x: 346.3}, 0.098, {
@@ -5069,8 +5126,8 @@ class PlayState extends MusicBeatState
 		}
 		
 		if (!practiceMode && !cpuControlled) {
-			scoreCount += score;
-			intendedScore += score;
+			comboScore += score;
+			scoreTarget += score;
 			//songScore += score;
 		}
 			if(!note.ratingDisabled)
@@ -5124,7 +5181,7 @@ class PlayState extends MusicBeatState
 				combotxt2.alpha = 1;
 			}
 				// eu tenho que pensar num bagui que faz que apartir do primeiro combo nao spawna mais combo glow pq meu cell quase morreu dps de eu testar lol
-						if (isComboTime) {
+						if (endCombo) {
 						// se tiver visível é claro né meu fi ou fia sla
 							combo = 0;
 							FlxFlicker.flicker(combotxt1, 1.5, 0.10, false, false);
@@ -5132,7 +5189,8 @@ class PlayState extends MusicBeatState
 								ease: FlxEase.quadInOut,
 								onComplete: function(twn:FlxTween)
 								{
-									combotxt1.alpha = 0;
+									combotxt1.kill();
+									showCombo = false;
 								}
 							});
 							FlxFlicker.flicker(combotxt2, 1.5, 0.10, false, false);
@@ -5140,25 +5198,27 @@ class PlayState extends MusicBeatState
 								ease: FlxEase.quadInOut,
 								onComplete: function(twn:FlxTween)
 								{
-									combotxt2.alpha = 0;
+									combotxt2.kill();
+									showCombo = false;
 								}
 							});
 							FlxTween.tween(comboGlow, {alpha: 0}, 1.5, {
 								ease: FlxEase.quadInOut,
 								onComplete: function(twn:FlxTween)
 								{
-									comboGlow.alpha = 0;
+									comboGlow.kill();
+									showCombo = false;
 								}
 							});
-							if (FlxG.random.bool(25.5))
+							if (bads > 4 && shits > 0)
 							{
 								combotxt1.text = 'whoops...';
 							}
-							if (FlxG.random.bool(90))
+							if (sicks > 9)
 							{
 								combotxt1.text = 'Perfect!';
 							}
-							if (FlxG.random.bool(70))
+							if (goods > 2)
 							{
 								combotxt1.text = 'Great!';
 							}
@@ -5194,13 +5254,13 @@ class PlayState extends MusicBeatState
 		// add(coolText);
 	}
 
-	function resetCombo():Void // combo thing not used for now
+	/*function resetCombo():Void // combo thing not used for now
 	{
-		//intendedScore = scoreCount;
+		//scoreTarget = comboScore;
 		var elapsed:Float = 0;
-		scoreCount = Math.floor(FlxMath.lerp(scoreCount, lerpScore, CoolUtil.boundTo(1 - (elapsed * 30), 1, 0)));
-		songScore = Math.floor(FlxMath.lerp(songScore, intendedScore, CoolUtil.boundTo(1 - (elapsed * 30), 0, 1)));
-	}
+		comboScore = Math.floor(FlxMath.lerp(comboScore, lerpScore, CoolUtil.boundTo(1 - (elapsed * 30), 1, 0)));
+		songScore = Math.floor(FlxMath.lerp(songScore, scoreTarget, CoolUtil.boundTo(1 - (elapsed * 30), 0, 1)));
+	}*/
 
 	private function onKeyPress(event:KeyboardEvent):Void
 	{
@@ -5533,7 +5593,7 @@ class PlayState extends MusicBeatState
 
 	function goodNoteHit(note:Note):Void
 	{
-		comboTmr = new FlxTimer();
+		//comboTmr = new FlxTimer(); its already declared lol
 
 		if (!note.wasGoodHit)
 		{
@@ -5572,15 +5632,7 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
-				combo++;
-
-				comboTmr.start(3.5, function(tm:FlxTimer){
-						isComboTime = true;
-						//combo = 0;
-				});
-				if (note.isSustainNote){
-					comboTmr.reset(3.5);
-				}
+				comboPopup(note);
 			}
 
 			health += note.hitHealth * healthGain;
@@ -5888,7 +5940,7 @@ class PlayState extends MusicBeatState
 	function flash() { // probably not used shit
 		var huh:FlxSprite = new FlxSprite().makeGraphic(1280, 720, FlxColor.WHITE);
 		huh.updateHitbox();
-		huh.cameras = [camCutsceneMidSong];
+		huh.cameras = [cutCam];
 		huh.visible = false;
 		add(huh);
 
