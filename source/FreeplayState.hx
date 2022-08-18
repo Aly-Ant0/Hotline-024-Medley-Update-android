@@ -117,6 +117,7 @@ class FreeplayState extends MusicBeatState
 			port.targetY = i; // basically a first id variable lmao
 			port.ID = i;
 			port.angle = -3;
+			port.skew.x = -1;
 			port.setGraphicSize(Std.int(port.width * 1.2));
 			//port.alpha = 1;
 			port.antialiasing = ClientPrefs.globalAntialiasing;
@@ -211,7 +212,7 @@ class FreeplayState extends MusicBeatState
 			var lerpVal:Float = CoolUtil.boundTo(elapsed * 7, 0, 1);
 			var maxSkew:Float = 0; // selected item
 			var minSkew:Float = -5; // not selected item
-			var dir:Float = 1; // means direction and not used shit lmao
+			var skewDir:Float = 1; // lmao
 			//var notSlctVal:Float = port.x - 30; // not used
 			//var directionLeft:Float = -1; // not used shit
 			//var directionRight:Float = 1; // not used shit
@@ -223,19 +224,25 @@ class FreeplayState extends MusicBeatState
 					//item.screenCenter(X);
 					port.x = FlxMath.lerp(lastX, 310, lerpVal);
 					port.forceX = port.x;
-					port.skew.x = FlxMath.lerp(lastSkew, -2, lerpVal); // flxmath my beloved
+					//port.skew.x = FlxMath.lerp(lastSkew, -2, lerpVal); // flxmath my beloved
 					//FlxTween.tween(port.skew, {x: 0}, 0.4, {ease: FlxEase.expoOut});
 					port.angle = FlxMath.lerp(lastAngle, -3, lerpVal);
 					//port.forceSkew = port.skew.x;
 			}
 			else
 			{
-					port.x = FlxMath.lerp(port.x, port.x * port.angle, lerpVal); // fix x value?
 					port.forceX = port.x;
 					//FlxTween.tween(port.skew, {x: -4}, 0.4, {ease: FlxEase.expoOut}); com flxtween fico um cu
-					port.skew.x = FlxMath.lerp(port.skew.x, -5, lerpVal); // flxmath my beloved
+					//port.skew.x = FlxMath.lerp(port.skew.x, -5, lerpVal); // flxmath my beloved but not lmfao
 					//port.forceSkew = port.skew.x;
-					port.angle = FlxMath.lerp(port.angle, 6* port.targetY, lerpVal);
+					if (port.targetY>0){
+						port.angle -= FlxMath.lerp(port.angle, 4, lerpVal);
+						port.x -= FlxMath.lerp(port.x, 4, lerpVal); // fix x value?
+					}
+					if(port.targetY<0){
+						port.angle += FlxMath.lerp(port.angle, 4, lerpVal);
+						port.x += FlxMath.lerp(port.x, 4, lerpVal); // fix x value?
+					}
 			}
 		}
 
