@@ -371,9 +371,10 @@ class PlayState extends MusicBeatState
 	public var combotxt1:FlxText;
 	public var combotxt2:FlxText;
 	public var comboScore:Int = 0;
+	public var comboNum:Int = 0;
 	var pressedKey:Bool = false;
 	var endCombo:Bool = false;
-	var showCombo:Bool = false;
+	var showCombo2:Bool = false;
 	var timeTxt:FlxText;
 	var comboTwn:FlxTween;
 	var comboTwn2:FlxTween;
@@ -1832,7 +1833,7 @@ class PlayState extends MusicBeatState
 			combotxt1 = new FlxText();
 			combotxt1.size = 32;
 			combotxt1.color = FlxColor.WHITE;
-			combotxt1.text = rating + " x" + combo;
+			
 			combotxt1.setPosition(579, 80);
 			combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt1.scrollFactor.set();
@@ -1849,12 +1850,11 @@ class PlayState extends MusicBeatState
 			combotxt2.size = 26;
 			//combotxt2.setPosition(579, 0);
 			combotxt2.y = combotxt1.y + 20;
-			combotxt2.text = "" + comboScore;
 			combotxt2.cameras = [camHUD];
 			combotxt2.alpha = 0;
 			add(combotxt2);
 
-			if(!showCombo){
+			if(!showCombo2){
 				combotxt1.alpha = 1;
 				combotxt1.alpha = 1;
 			}
@@ -2709,23 +2709,21 @@ class PlayState extends MusicBeatState
 		});
 	}
 
-	var comboNum:Int = 0;
+	//var comboNum:Int = 0;
 	var startedC:Bool = false;
 	var resetC:Bool = false;
 	//var finishState:Bool = false;
 	function comboPopup(note:Note = null):Void
 	{
 		var pressedKey2:Bool = note.isSustainNote;
-		showCombo = true;
+		showCombo2 = true;
 		startedC = true;
 		resetC = false;
 		endCombo = false;
-
-		updateText(1);
-		//comboNum++;
+		comboNum++;
 
 		if (pressedKey2){
-			startedC = true; // the finish bool is [not] for the issustainnote if expression.
+			//startedC = true; // the finish bool is [not] for the issustainnote if expression.
 			comboTmr.start(comboTmr2, function(tmr:FlxTimer){
 				//finishState = true;
 				finishCombo();
@@ -2741,12 +2739,6 @@ class PlayState extends MusicBeatState
 			comboTmr.reset(comboTmr2);
 		}
 		//reseted = true;
-	}
-
-	function updateText(bruh:Int = 0)
-	{
-		comboNum += bruh;
-		combotxt1.text = '${rating}! x$comboNum';
 	}
 
 	function finishCombo()
@@ -3509,6 +3501,9 @@ class PlayState extends MusicBeatState
 			iconP1.swapOldIcon();
 		}*/
 
+		combotxt1.text = rating + " x" + comboNum;
+		combotxt2.text = Std.string(comboScore);
+
 		callOnLuas('onUpdate', [elapsed]);
 
 		switch (curStage)
@@ -3683,12 +3678,14 @@ class PlayState extends MusicBeatState
 		if (endCombo) {
 			comboScore = Math.floor(FlxMath.lerp(comboScore, 0, CoolUtil.boundTo(1 - (elapsed * 24), 1, 0)));
 			songScore = Math.floor(FlxMath.lerp(songScore, scoreTarget, CoolUtil.boundTo(1 - (elapsed * 24), 0, 1)));
+			if (Math.abs(songScore - scoreTarget) <= 10)
+				songScore = scoreTarget;
 		}
 
-		if (curStage == 'momogogo')
+		/*if (curStage == 'momogogo')
 		{
 			momogogoBG.x += 90 * elapsed; // easy isn't?
-		}
+		}*/
 
 		super.update(elapsed);
 
@@ -5183,14 +5180,14 @@ class PlayState extends MusicBeatState
 				// eu tenho que pensar num bagui que faz que apartir do primeiro combo nao spawna mais combo glow pq meu cell quase morreu dps de eu testar lol
 						if (endCombo) {
 						// se tiver visível é claro né meu fi ou fia sla
-							combo = 0;
+							comboNum = 0;
 							FlxFlicker.flicker(combotxt1, 1.5, 0.10, false, false);
 							FlxTween.tween(combotxt1, {alpha: 0}, 1.5, {
 								ease: FlxEase.quadInOut,
 								onComplete: function(twn:FlxTween)
 								{
 									combotxt1.kill();
-									showCombo = false;
+									showCombo2 = false;
 								}
 							});
 							FlxFlicker.flicker(combotxt2, 1.5, 0.10, false, false);
@@ -5199,7 +5196,7 @@ class PlayState extends MusicBeatState
 								onComplete: function(twn:FlxTween)
 								{
 									combotxt2.kill();
-									showCombo = false;
+									showCombo2 = false;
 								}
 							});
 							FlxTween.tween(comboGlow, {alpha: 0}, 1.5, {
@@ -5207,7 +5204,7 @@ class PlayState extends MusicBeatState
 								onComplete: function(twn:FlxTween)
 								{
 									comboGlow.kill();
-									showCombo = false;
+									showCombo2 = false;
 								}
 							});
 							if (bads > 4 && shits > 0)
