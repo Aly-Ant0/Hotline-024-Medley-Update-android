@@ -5193,15 +5193,15 @@ class PlayState extends MusicBeatState
 									comboGlow.kill();
 					}
 				});
-				if (bads => 5 && shits => 3)
+				if (bads >= 5 && shits >= 3)
 				{
 								combotxt1.text = 'whoops...';
 				}
-				if (sicks => 15)
+				if (sicks >= 15)
 				{
 								combotxt1.text = 'Perfect!';
 				}
-				if (goods => 4)
+				if (goods >= 4)
 				{
 								combotxt1.text = 'Great!';
 				}
@@ -5622,7 +5622,7 @@ class PlayState extends MusicBeatState
 				combotxt2.alpha = 1;
 				comboGlow.alpha = 0.3;
 				popUpScore(note);
-				popUpCombo(note);
+				popUpCombo();
 				if(combo > 9999) combo = 9999;
 				//startedC = true;
 				comboTmr.cancel();
