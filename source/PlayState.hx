@@ -72,6 +72,8 @@ class PlayState extends MusicBeatState
 {
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
+	public static var COMBO_X = 544;
+	public static var COMBO_Y = 40;
 
 	public static var ratingStuff:Array<Dynamic> = [
 		['You Suck!', 0.2], //From 0% to 19%
@@ -178,7 +180,6 @@ class PlayState extends MusicBeatState
 	public var gfSpeed:Int = 1;
 	public var health:Float = 1;
 	public var combo:Int = 0;
-
 
 	private var healthBarBG:AttachedSprite;
 	public var healthBar:FlxBar;
@@ -371,7 +372,8 @@ class PlayState extends MusicBeatState
 	public var combotxt1:FlxText;
 	public var combotxt2:FlxText;
 	public var comboScore:Int = 0;
-	public var comboNum:Int = 0;
+	public var comboNum:Int = 0; // its the fake combo :trollface:
+	public var comboState:Int = 0;
 	var pressedKey:Bool = false;
 	var endCombo:Bool = false;
 	var showCombo2:Bool = false;
@@ -380,7 +382,8 @@ class PlayState extends MusicBeatState
 	var comboTwn2:FlxTween;
 	var comboTwn3:FlxTween;
 	var comboTmr:FlxTimer = new FlxTimer();
-	var comboTmr2:Float = 4.5;
+	var stopPls:FlxTimer = new FlxTimer();
+	var comboTmr2:Float = 3.5;
 
 	public static var campaignScore:Int = 0;
 	public static var campaignMisses:Int = 0;
@@ -1825,8 +1828,10 @@ class PlayState extends MusicBeatState
 		add(botplayTxt);
 
 			comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
-			comboGlow.setPosition(579, 80);
+			comboGlow.x = COMBO_X;
+			comboGlow.y = COMBO_Y;
 			comboGlow.alpha = 0;
+			comboGlow.blend = ADD;
 			comboGlow.cameras = [camHUD];
 			add(comboGlow);
 
@@ -1834,7 +1839,8 @@ class PlayState extends MusicBeatState
 			combotxt1.size = 33;
 			combotxt1.color = FlxColor.WHITE;
 			
-			combotxt1.setPosition(579, 80);
+			combotxt1.x = COMBO_X + 1;
+			combotxt1.y = COMBO_Y + 45;
 			combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt1.scrollFactor.set();
 			combotxt1.borderSize = 1.25;
@@ -1849,31 +1855,20 @@ class PlayState extends MusicBeatState
 			combotxt2.borderSize = 1.25;
 			combotxt2.size = 33;
 			//combotxt2.setPosition(579, 0);
-			combotxt2.y = combotxt1.y + 20;
+			combotxt2.x = COMBO_X - 4;
+			combotxt2.y = COMBO_Y + 70;
 			combotxt2.cameras = [camHUD];
 			combotxt2.alpha = 0;
 			add(combotxt2);
 
-			if(showCombo2){
-				combotxt1.alpha = 1;
-				combotxt2.alpha = 1;
-			}
-			else{
-				combotxt1.alpha = 0;
-				combotxt2.alpha = 0;
-			}
-
 			if(ClientPrefs.downScroll) {
-				combotxt1.setPosition(579, 585);
-				//combotxt2.setPosition(579, 600);
-				comboGlow.setPosition(579, 585);
+				COMBO_Y = COMBO_Y + 520;
 			}
 			if(ClientPrefs.middleScroll) {
-				combotxt1.x = 90000;
-				combotxt2.x = 90000;
-				combotxt1.visible = false;
-				combotxt2.visible = false;
-				comboGlow.visible = false;
+				COMBO_Y = COMBO_Y + 120;
+			}
+			if(ClientPrefs.middleScroll && ClientPrefs.downScroll){
+				COMBO_Y = COMBO_Y + 455;
 			}
 
 			var text:String = "";
@@ -2732,14 +2727,14 @@ class PlayState extends MusicBeatState
 		//resetCombo();
 	}
 
-	function resetCombo(){
+	function resetCombo(){ //unused
 		return comboTmr.reset(comboTmr2);
 		//reseted = true;
 	}
 
 	function finishCombo()
 	{
-		return endCombo;
+		return comboState = 1;
 	}
 
 	function popUpCombo(){
@@ -3500,8 +3495,10 @@ class PlayState extends MusicBeatState
 			iconP1.swapOldIcon();
 		}*/
 
-		combotxt1.text = rating + " x" + comboNum;
-		combotxt2.text = Std.string(comboScore);
+		if (comboState == 0){
+			combotxt1.text = rating + " x" + comboNum;
+			combotxt2.text = Std.string(comboScore);
+		}
 
 		callOnLuas('onUpdate', [elapsed]);
 
@@ -3674,7 +3671,7 @@ class PlayState extends MusicBeatState
 				boyfriendIdleTime = 0;	
 			}	
 		}
-		if (endCombo) {
+		if (comboState == 1) {
 			comboScore = Math.floor(FlxMath.lerp(comboScore, 0, CoolUtil.boundTo(1 - (elapsed * 24), 1, 0)));
 			songScore = Math.floor(FlxMath.lerp(songScore, scoreTarget, CoolUtil.boundTo(1 - (elapsed * 24), 0, 1)));
 			if (Math.abs(songScore - scoreTarget) <= 10)
@@ -4994,7 +4991,7 @@ class PlayState extends MusicBeatState
 				MusicBeatState.switchState(new CoversScreen());
 				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
 				FlxG.sound.music.fadeIn(4, 0, 0.8);
-				changedDifficulty = false;
+				//changedDifficulty = false;
 			}
 			if (isExtras)
 			{
@@ -5005,7 +5002,7 @@ class PlayState extends MusicBeatState
 				MusicBeatState.switchState(new ExtrasScreen());
 				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
 				FlxG.sound.music.fadeIn(4, 0, 0.8);
-				changedDifficulty = false;
+				//changedDifficulty = false;
 			}
 			if (isCode) {
 				cancelMusicFadeTween();
@@ -5015,7 +5012,7 @@ class PlayState extends MusicBeatState
 				MusicBeatState.switchState(new CodeScreen());
 				FlxG.sound.playMusic(Paths.music('codemenu'), 0);
 				FlxG.sound.music.fadeIn(4, 0, 0.8);
-				changedDifficulty = false;
+				//changedDifficulty = false;
 			}
 			else
 			{
@@ -5027,7 +5024,7 @@ class PlayState extends MusicBeatState
 				MusicBeatState.switchState(new FreeplayState());
 				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
 				FlxG.sound.music.fadeIn(4, 0, 0.8);
-				changedDifficulty = false;
+				//changedDifficulty = false;
 			}
 			transitioning = true;
 		}
@@ -5094,24 +5091,24 @@ class PlayState extends MusicBeatState
 				totalNotesHit += 0;
 				note.ratingMod = 0;
 				score = 50;
-				rating = "Shit!";
+				rating = "SHIT!";
 				if(!note.ratingDisabled) shits++;
 			case "bad": // bad
 				totalNotesHit += 0.5;
 				note.ratingMod = 0.5;
 				score = 100;
-				rating = "bad!";
+				rating = "BAD!";
 				if(!note.ratingDisabled) bads++;
 			case "good": // good
 				totalNotesHit += 0.75;
 				note.ratingMod = 0.75;
 				score = 200;
-				rating = "good!";
+				rating = "GOOD!";
 				if(!note.ratingDisabled) goods++;
 			case "sick": // sick
 				totalNotesHit += 1;
 				note.ratingMod = 1;
-				rating = "sick!";
+				rating = "SICK!";
 				if(!note.ratingDisabled) sicks++;
 		}
 		note.rating = daRating;
@@ -5168,78 +5165,70 @@ class PlayState extends MusicBeatState
 			//add(combotxt1);
 			//add(combotxt2);
 			
-		for (i in seperatedScore)
-		{
-			//if (combo >= 10 || combo == 0)
-			if (combo > 1) { // vai ser add msm fds
-				comboGlow.alpha = 0.70;
-				combotxt1.alpha = 1;
-				combotxt2.alpha = 1;
-			}
-				// eu tenho que pensar num bagui que faz que apartir do primeiro combo nao spawna mais combo glow pq meu cell quase morreu dps de eu testar lol
-						if (endCombo) {
-						// se tiver visível é claro né meu fi ou fia sla
-							comboNum = 0;
-							FlxFlicker.flicker(combotxt1, 1.5, 0.10, false, false);
-							FlxTween.tween(combotxt1, {alpha: 0}, 1.5, {
-								ease: FlxEase.quadInOut,
-								onComplete: function(twn:FlxTween)
-								{
+			if (comboState == 1) {
+				// se tiver visível é claro né meu fi ou fia sla
+				comboNum = 0;
+				FlxFlicker.flicker(combotxt1, 0.8, 0.10, false, false);
+				FlxTween.tween(combotxt1, {alpha: 0}, 0.8, {
+					ease: FlxEase.quadInOut,
+					onComplete: function(twn:FlxTween)
+					{
+									//comboState = 1;
+					}
+				});
+				FlxFlicker.flicker(combotxt2, 0.8, 0.10, false, false);
+				FlxTween.tween(combotxt2, {alpha: 0},0.8, {
+					ease: FlxEase.quadInOut,
+					onComplete: function(twn:FlxTween)
+					{
+									//do nothing lmao
+					}
+				});
+				FlxTween.tween(comboGlow, {alpha: 0}, 0.8, {
+					ease: FlxEase.quadInOut,
+					onComplete: function(twn:FlxTween)
+					{
 									combotxt1.kill();
-									showCombo2 = false;
-								}
-							});
-							FlxFlicker.flicker(combotxt2, 1.5, 0.10, false, false);
-							FlxTween.tween(combotxt2, {alpha: 0}, 1.5, {
-								ease: FlxEase.quadInOut,
-								onComplete: function(twn:FlxTween)
-								{
 									combotxt2.kill();
-									showCombo2 = false;
-								}
-							});
-							FlxTween.tween(comboGlow, {alpha: 0}, 1.5, {
-								ease: FlxEase.quadInOut,
-								onComplete: function(twn:FlxTween)
-								{
 									comboGlow.kill();
-									showCombo2 = false;
-								}
-							});
-							if (bads > 4 && shits > 0)
-							{
+					}
+				});
+				if (bads => 5 && shits => 3)
+				{
 								combotxt1.text = 'whoops...';
-							}
-							if (sicks > 9)
-							{
+				}
+				if (sicks => 15)
+				{
 								combotxt1.text = 'Perfect!';
-							}
-							if (goods > 2)
-							{
+				}
+				if (goods => 4)
+				{
 								combotxt1.text = 'Great!';
-							}
-						}
-				if (comboTwn != null) {
+				}
+				stopPls.start(0.81, function(tmr:FlxTimer){
+								comboState = 0;
+				});
+			}
+			if (comboTwn != null) {
 					comboTwn.cancel();
-				}
-					combotxt1.scale.x += 0.485;
-					combotxt1.scale.y += 0.485;
-					comboTwn = FlxTween.tween(combotxt1.scale, {x: 1, y: 1}, 0.2, {
-						onComplete: function(twn:FlxTween) {
+			}
+			combotxt1.scale.x += 0.0185;
+			combotxt1.scale.y += 0.0185;
+			comboTwn = FlxTween.tween(combotxt1.scale, {x: 1, y: 1}, 0.2, {
+				onComplete: function(twn:FlxTween) {
 							comboTwn = null;
-						}
-					});
-				if (comboTwn2 != null) {
-					comboTwn2.cancel();
 				}
-					combotxt2.scale.x += 0.485;
-					combotxt2.scale.y += 0.485;
-					comboTwn2 = FlxTween.tween(combotxt2.scale, {x: 1, y: 1}, 0.2, {
-						onComplete: function(twn:FlxTween) {
-							comboTwn2 = null;
-						}
-					});
-		}
+			});
+			if (comboTwn2 != null) {
+					comboTwn2.cancel();
+			}
+			combotxt2.scale.x += 0.0185;
+			combotxt2.scale.y += 0.0185;
+			comboTwn2 = FlxTween.tween(combotxt2.scale, {x: 1, y: 1}, 0.2, {
+				onComplete: function(twn:FlxTween) {
+						comboTwn2 = null;
+				}
+			});
 
 		 /* 
 			trace(combo);
@@ -5534,6 +5523,8 @@ class PlayState extends MusicBeatState
 		}
 	}
 
+	
+
 	function opponentNoteHit(note:Note):Void
 	{
 		if (Paths.formatToSongPath(SONG.song) != 'tutorial')
@@ -5626,15 +5617,21 @@ class PlayState extends MusicBeatState
 
 			if (!note.isSustainNote)
 			{
+				comboState = 0;
+				combotxt1.alpha = 1;
+				combotxt2.alpha = 1;
+				comboGlow.alpha = 0.3;
 				popUpScore(note);
+				popUpCombo(note);
 				if(combo > 9999) combo = 9999;
-				startedC = true;
-				if(startedC){
-					comboStart(note);
-				}
-				if(!note.isSustainNote && startedC){
-					resetCombo();
-				}
+				//startedC = true;
+				comboTmr.cancel();
+				comboTmr.start(comboTmr2, function(tmr:FlxTimer){
+					//finishState = true;
+					//startedC = true;
+					finishCombo();
+				});
+				//startedC = true;
 			}
 
 			health += note.hitHealth * healthGain;
