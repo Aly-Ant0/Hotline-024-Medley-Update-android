@@ -1961,63 +1961,10 @@ class PlayState extends MusicBeatState
 		#end
 		
 		var daSong:String = Paths.formatToSongPath(curSong);
-		if (isStoryMode && isCode && !seenCutscene)
+		if (isCode && !seenCutscene)
 		{
 			switch (daSong)
 			{
-				case "monster":
-					var whiteScreen:FlxSprite = new FlxSprite(0, 0).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.WHITE);
-					add(whiteScreen);
-					whiteScreen.scrollFactor.set();
-					whiteScreen.blend = ADD;
-					camHUD.visible = false;
-					snapCamFollowToPos(dad.getMidpoint().x + 150, dad.getMidpoint().y - 100);
-					inCutscene = true;
-
-					FlxTween.tween(whiteScreen, {alpha: 0}, 1, {
-						startDelay: 0.1,
-						ease: FlxEase.linear,
-						onComplete: function(twn:FlxTween)
-						{
-							camHUD.visible = true;
-							remove(whiteScreen);
-							startCountdown();
-						}
-					});
-					FlxG.sound.play(Paths.soundRandom('thunder_', 1, 2));
-					if(gf != null) gf.playAnim('scared', true);
-					boyfriend.playAnim('scared', true);
-
-				case "winter-horrorland":
-					var blackScreen:FlxSprite = new FlxSprite().makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
-					add(blackScreen);
-					blackScreen.scrollFactor.set();
-					camHUD.visible = false;
-					inCutscene = true;
-
-					FlxTween.tween(blackScreen, {alpha: 0}, 0.7, {
-						ease: FlxEase.linear,
-						onComplete: function(twn:FlxTween) {
-							remove(blackScreen);
-						}
-					});
-					FlxG.sound.play(Paths.sound('Lights_Turn_On'));
-					snapCamFollowToPos(400, -2050);
-					FlxG.camera.focusOn(camFollow);
-					FlxG.camera.zoom = 1.5;
-
-					new FlxTimer().start(0.8, function(tmr:FlxTimer)
-					{
-						camHUD.visible = true;
-						remove(blackScreen);
-						FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 2.5, {
-							ease: FlxEase.quadInOut,
-							onComplete: function(twn:FlxTween)
-							{
-								startCountdown();
-							}
-						});
-					});
 				case 'satellite-picnic':
 					boyfriend.alpha = 0;
 					dad.alpha = 0;
@@ -2076,14 +2023,6 @@ class PlayState extends MusicBeatState
 						camHUD.visible = true;
 						startCountdown();
 					});
-
-				case 'senpai' | 'roses' | 'thorns':
-					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
-					schoolIntro(doof);
-
-				case 'ugh' | 'guns' | 'stress':
-					tankIntro();
-
 				default:
 					startCountdown();
 			}
@@ -2709,10 +2648,11 @@ class PlayState extends MusicBeatState
 
 	//var comboNum:Int = 0;
 	var startedC:Bool = false;
+	var hasStart:Bool = false;
 	//var resetC:Bool = false;
 	//var finishState:Bool = false;
 	//endCombo = false;
-	function comboStart(note:Note = null):Void
+	function comboStart(note:Note = null):Void // unused
 	{
 		var pressedKey2:Bool = note.isSustainNote;
 		showCombo2 = true;
@@ -2726,7 +2666,7 @@ class PlayState extends MusicBeatState
 		//resetCombo();
 	}
 
-	function resetCombo(){ //unused
+	function resetCombo(){ //unused too
 		return comboTmr.reset(comboTmr2);
 		//reseted = true;
 	}
@@ -2738,6 +2678,11 @@ class PlayState extends MusicBeatState
 
 	function popUpCombo(){
 		return comboNum++;
+	}
+	function spawnCombo(){
+		combotxt1.alpha = 1;
+		combotxt2.alpha = 1;
+		comboGlow.alpha = 0.3;
 	}
 
 	var startTimer:FlxTimer;
@@ -5216,8 +5161,8 @@ class PlayState extends MusicBeatState
 			if (comboTwn != null) {
 					comboTwn.cancel();
 			}
-			combotxt1.scale.x += 0.0185;
-			combotxt1.scale.y += 0.0185;
+			combotxt1.scale.x += 0.0485;
+			combotxt1.scale.y += 0.0485;
 			comboTwn = FlxTween.tween(combotxt1.scale, {x: 1, y: 1}, 0.2, {
 				onComplete: function(twn:FlxTween) {
 							comboTwn = null;
@@ -5226,8 +5171,8 @@ class PlayState extends MusicBeatState
 			if (comboTwn2 != null) {
 					comboTwn2.cancel();
 			}
-			combotxt2.scale.x += 0.0185;
-			combotxt2.scale.y += 0.0185;
+			combotxt2.scale.x += 0.0485;
+			combotxt2.scale.y += 0.0485;
 			comboTwn2 = FlxTween.tween(combotxt2.scale, {x: 1, y: 1}, 0.2, {
 				onComplete: function(twn:FlxTween) {
 						comboTwn2 = null;
@@ -5581,6 +5526,7 @@ class PlayState extends MusicBeatState
 			note.destroy();
 		}
 	}
+
 	//var startedC:Bool = false; its already declared
 	function goodNoteHit(note:Note):Void
 	{
@@ -5622,17 +5568,19 @@ class PlayState extends MusicBeatState
 			if (!note.isSustainNote)
 			{
 				comboState = 0;
-				combotxt1.alpha = 1;
-				combotxt2.alpha = 1;
-				comboGlow.alpha = 0.3;
+				if (hasStart){
+					spawnCombo();
+				}
+				hasStart = true;
 				popUpScore(note);
 				popUpCombo();
 				if(combo > 9999) combo = 9999;
 				//startedC = true;
 				comboTmr.cancel();
-				comboTmr.start(3, function(tmr:FlxTimer){
+				comboTmr.start(2, function(tmr:FlxTimer){
 					//finishState = true;
 					//startedC = true;
+					hasStart = false;
 					finishCombo();
 				});
 				//startedC = true;
