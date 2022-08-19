@@ -383,7 +383,7 @@ class PlayState extends MusicBeatState
 	var comboTwn3:FlxTween;
 	var comboTmr:FlxTimer = new FlxTimer();
 	var stopPls:FlxTimer = new FlxTimer();
-	var comboTmr2:Float = 3.5;
+	var comboTmr2:Float = 3.5; // unused shit
 
 	public static var campaignScore:Int = 0;
 	public static var campaignMisses:Int = 0;
@@ -792,14 +792,14 @@ class PlayState extends MusicBeatState
 					particleEmitter = new FlxEmitter(-2080.5, 1512.4);
 					particleEmitter.launchMode = FlxEmitterMode.SQUARE;
 					particleEmitter.velocity.set(-50, -200, 50, -600, -90, 0, 90, -600);
-					particleEmitter.scale.set(4, 4, 4, 4, 0, 0, 0, 0);
+					particleEmitter.scale.set(4, 4, 4, 4, 4, 0, 0, 0);
 					particleEmitter.drag.set(0, 0, 0, 0, 5, 5, 10, 10);
 					particleEmitter.width = 4787.45;
 					particleEmitter.alpha.set(1, 1);
 					particleEmitter.lifespan.set(1.9, 4.9);
 					particleEmitter.loadParticles(Paths.image('expurgated/particle'), 500, 16, true);
 						
-					particleEmitter.start(false, FlxG.random.float(.00987, .0298), 1000000);
+					particleEmitter.start(false, FlxG.random.float(.01097, .0308), 1000000);
 					add(particleEmitter);
 
 					exGround = new BGSprite('expurgated/ground', -2800, -1400, 1, 1);
@@ -1828,15 +1828,14 @@ class PlayState extends MusicBeatState
 		add(botplayTxt);
 
 			comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
-			comboGlow.x = COMBO_X;
-			comboGlow.y = COMBO_Y;
+			comboGlow.screenCenter(X);
 			comboGlow.alpha = 0;
 			comboGlow.blend = ADD;
 			comboGlow.cameras = [camHUD];
 			add(comboGlow);
 
 			combotxt1 = new FlxText();
-			combotxt1.size = 33;
+			combotxt1.size = 27;
 			combotxt1.color = FlxColor.WHITE;
 			
 			combotxt1.x = COMBO_X + 1;
@@ -2734,7 +2733,7 @@ class PlayState extends MusicBeatState
 
 	function finishCombo()
 	{
-		return comboState = 1;
+		comboState = 1;
 	}
 
 	function popUpCombo(){
@@ -3498,6 +3497,52 @@ class PlayState extends MusicBeatState
 		if (comboState == 0){
 			combotxt1.text = rating + " x" + comboNum;
 			combotxt2.text = Std.string(comboScore);
+		}
+		if (comboState == 1){
+				// se tiver visível é claro né meu fi ou fia sla
+				comboNum = 0;
+				FlxFlicker.flicker(combotxt1, 0.8, 0.05, false, false);
+				FlxTween.tween(combotxt1, {alpha: 0}, 0.8, {
+					ease: FlxEase.linear,
+					onComplete: function(twn:FlxTween)
+					{
+									//comboState = 1;
+									combotxt1.kill();
+					}
+				});
+				FlxFlicker.flicker(combotxt2, 0.8, 0.05, false, false);
+				FlxTween.tween(combotxt2, {alpha: 0},0.8, {
+					ease: FlxEase.linear,
+					onComplete: function(twn:FlxTween)
+					{
+									combotxt2.kill();
+					}
+				});
+				FlxTween.tween(comboGlow, {alpha: 0}, 0.8, {
+					ease: FlxEase.linear,
+					onComplete: function(twn:FlxTween)
+					{
+									comboGlow.kill();
+					}
+				});
+				if (bads >= 5 && shits >= 3)
+				{
+								combotxt1.text = 'whoops...';
+				}
+				if (sicks >= 15)
+				{
+								combotxt1.text = 'nice!';
+				}
+				if (sicks >= 20){
+								combotxt1.text = 'perfect!'
+				}
+				if (goods >= 4)
+				{
+								combotxt1.text = 'Great!';
+				}
+				stopPls.start(0.81, function(tmr:FlxTimer){
+								comboState = 0;
+				});
 		}
 
 		callOnLuas('onUpdate', [elapsed]);
@@ -5166,48 +5211,7 @@ class PlayState extends MusicBeatState
 			//add(combotxt2);
 			
 			if (comboState == 1) {
-				// se tiver visível é claro né meu fi ou fia sla
-				comboNum = 0;
-				FlxFlicker.flicker(combotxt1, 0.8, 0.10, false, false);
-				FlxTween.tween(combotxt1, {alpha: 0}, 0.8, {
-					ease: FlxEase.quadInOut,
-					onComplete: function(twn:FlxTween)
-					{
-									//comboState = 1;
-					}
-				});
-				FlxFlicker.flicker(combotxt2, 0.8, 0.10, false, false);
-				FlxTween.tween(combotxt2, {alpha: 0},0.8, {
-					ease: FlxEase.quadInOut,
-					onComplete: function(twn:FlxTween)
-					{
-									//do nothing lmao
-					}
-				});
-				FlxTween.tween(comboGlow, {alpha: 0}, 0.8, {
-					ease: FlxEase.quadInOut,
-					onComplete: function(twn:FlxTween)
-					{
-									combotxt1.kill();
-									combotxt2.kill();
-									comboGlow.kill();
-					}
-				});
-				if (bads >= 5 && shits >= 3)
-				{
-								combotxt1.text = 'whoops...';
-				}
-				if (sicks >= 15)
-				{
-								combotxt1.text = 'Perfect!';
-				}
-				if (goods >= 4)
-				{
-								combotxt1.text = 'Great!';
-				}
-				stopPls.start(0.81, function(tmr:FlxTimer){
-								comboState = 0;
-				});
+
 			}
 			if (comboTwn != null) {
 					comboTwn.cancel();
@@ -5626,7 +5630,7 @@ class PlayState extends MusicBeatState
 				if(combo > 9999) combo = 9999;
 				//startedC = true;
 				comboTmr.cancel();
-				comboTmr.start(comboTmr2, function(tmr:FlxTimer){
+				comboTmr.start(3, function(tmr:FlxTimer){
 					//finishState = true;
 					//startedC = true;
 					finishCombo();
