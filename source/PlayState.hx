@@ -316,6 +316,15 @@ class PlayState extends MusicBeatState
 	var oscabodomeucu:BGSprite;
 	var nicuPlants:BGSprite;
 
+	// xigmund
+	var planet:BGSprite;
+	var planet2:BGSprite;
+	var sun:BGSprite;
+	var sun2:BGSprite;
+	var asteroidEmitter1:FlxEmitter;
+	var asteroidEmitter2:FlxEmitter;
+	var asteroidEmitter3:FlxEmitter;
+
 	var halloweenBG:BGSprite;
 	var halloweenWhite:BGSprite;
 
@@ -777,12 +786,12 @@ class PlayState extends MusicBeatState
 					majinTV.updateHitbox();
 			case 'expurgated':
 				//if(!ClientPrefs.dontShowBG)
-					exSky = new BGSprite('expurgated/sky', -1300, -650, 0.1, 0.1);
+					exSky = new BGSprite('expurgated/sky', -1300, -650, 0.15, 0.15);
 					exSky.scale.set(2, 2);
 					exSky.updateHitbox();
 					add(exSky);
 	
-					exRock = new BGSprite('expurgated/rock2', -2300, -1100, 0.6, 0.6);
+					exRock = new BGSprite('expurgated/rock2', -2300, -1100, 0.7, 0.7);
 					exRock.scale.set(2.5, 2.5);
 					exRock.updateHitbox();
 				///exRock.antialiasing = ClientPrefs.globalAntialiasing;
@@ -792,13 +801,13 @@ class PlayState extends MusicBeatState
 					particleEmitter = new FlxEmitter(-2080.5, 1512.4);
 					particleEmitter.launchMode = FlxEmitterMode.SQUARE;
 					particleEmitter.velocity.set(-50, -200, 50, -600, -90, 0, 90, -600);
-					particleEmitter.scale.set(4, 4, 4, 4, 4, 0, 0, 0);
+					particleEmitter.scale.set(4, 4, 4, 4, 0, 0, 0, 0);
 					particleEmitter.drag.set(0, 0, 0, 0, 5, 5, 10, 10);
 					particleEmitter.width = 4787.45;
 					particleEmitter.alpha.set(1, 1);
 					particleEmitter.lifespan.set(1.9, 4.9);
 					particleEmitter.loadParticles(Paths.image('expurgated/particle'), 500, 16, true);
-						
+
 					particleEmitter.start(false, FlxG.random.float(.01097, .0308), 1000000);
 					add(particleEmitter);
 
@@ -814,7 +823,7 @@ class PlayState extends MusicBeatState
 					exOverlay.updateHitbox();
 					//exOverlay.antialiasing = ClientPrefs.globalAntialiasing;
 	
-					exFront = new BGSprite('expurgated/signfront', 1, 1);
+					exFront = new BGSprite('expurgated/signfront', -2800, -1400, 1.15, 1.15);
 					exFront.scale.set(2.5, 2.5);
 					exFront.updateHitbox();
 					//exFront.antialiasing = ClientPrefs.globalAntialiasing;
@@ -1094,7 +1103,28 @@ class PlayState extends MusicBeatState
 				cuts4.visible = false;
 				cuts5.visible = false;
 
+			case 'xigmund':
+				var bg:BGSprite = new BGSprite('xigmund/bg', -300, -480, 0, 0);
+				add(bg);
 
+				planet = new BGSprite('xigmund/PlaBlue', -700, 200, 0.1, 0.1);
+				add(planet);
+
+				sun = new BGSprite('xigmund/SUM', 200, -480, 0.1, 0.1);
+				add(sun);
+
+				planet2 = new BGSprite('xigmund/PlamRed', 1000, -480, 0.4, 0.4);
+				add(planet2);
+
+				sun2 = new BGSprite('xigmund/SUM', 200, -480, 0.3, 0.3);
+				add(sun2);
+
+				asteroidEmitter1 = new FlxEmitter();
+				asteroidEmitter1.drag.set(0,0,0,0,200,300,500,750);
+				asteroidEmitter1.launchMode = FlxEmitterMode.SQUARE;
+				asteroidEmitter1.lifespan.set(500, 1000);
+				asteroidEmitter1.loadParticles(Paths.image('xigmund/ast1'), 500, 16, true);
+				asteroidEmitter1.start(false, 15, 1500);
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
 					halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
@@ -1475,6 +1505,10 @@ class PlayState extends MusicBeatState
 				add(nicuLight);
 				add(oscabodomeucu);
 				add(nicuPlants);
+			}
+
+			if (curStage == 'xigmund'){
+				add(asteroidEmitter1);
 			}
 
 
@@ -3452,7 +3486,7 @@ class PlayState extends MusicBeatState
 					onComplete: function(twn:FlxTween)
 					{
 									//comboState = 1;
-									combotxt1.kill();
+									//combotxt1.kill();
 					}
 				});
 				FlxFlicker.flicker(combotxt2, 0.8, 0.05, false, false);
@@ -3460,14 +3494,14 @@ class PlayState extends MusicBeatState
 					ease: FlxEase.linear,
 					onComplete: function(twn:FlxTween)
 					{
-									combotxt2.kill();
+									//combotxt2.kill();
 					}
 				});
 				FlxTween.tween(comboGlow, {alpha: 0}, 0.8, {
 					ease: FlxEase.linear,
 					onComplete: function(twn:FlxTween)
 					{
-									comboGlow.kill();
+									//comboGlow.kill();
 					}
 				});
 				if (bads >= 5 && shits >= 3)
@@ -5568,10 +5602,7 @@ class PlayState extends MusicBeatState
 			if (!note.isSustainNote)
 			{
 				comboState = 0;
-				if (hasStart){
-					spawnCombo();
-				}
-				hasStart = true;
+				spawnCombo();
 				popUpScore(note);
 				popUpCombo();
 				if(combo > 9999) combo = 9999;
@@ -5580,7 +5611,7 @@ class PlayState extends MusicBeatState
 				comboTmr.start(2, function(tmr:FlxTimer){
 					//finishState = true;
 					//startedC = true;
-					hasStart = false;
+					//hasStart = false;
 					finishCombo();
 				});
 				//startedC = true;
