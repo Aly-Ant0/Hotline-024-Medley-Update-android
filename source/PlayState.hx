@@ -1113,7 +1113,7 @@ class PlayState extends MusicBeatState
 				sun = new BGSprite('xigmund/SUM', 200, -480, 0.1, 0.1);
 				add(sun);
 
-				planet2 = new BGSprite('xigmund/PlamRed', 1000, -480, 0.4, 0.4);
+				planet2 = new BGSprite('xigmund/PlaRed', 1000, -480, 0.4, 0.4);
 				add(planet2);
 
 				sun2 = new BGSprite('xigmund/SUM', 200, -480, 0.3, 0.3);
@@ -1122,9 +1122,10 @@ class PlayState extends MusicBeatState
 				asteroidEmitter1 = new FlxEmitter();
 				asteroidEmitter1.drag.set(0,0,0,0,200,300,500,750);
 				asteroidEmitter1.launchMode = FlxEmitterMode.SQUARE;
+				asteroidEmitter1.velocity.set(-200, -200, -800, -800, 40, 40);
 				asteroidEmitter1.lifespan.set(500, 1000);
 				asteroidEmitter1.loadParticles(Paths.image('xigmund/ast1'), 500, 16, true);
-				asteroidEmitter1.start(false, 15, 1500);
+				asteroidEmitter1.start(false, FlxG.random.float(12, 18), FlxG.random.float(1000, 1000000);
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
 					halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
@@ -3480,7 +3481,7 @@ class PlayState extends MusicBeatState
 		if (comboState == 1){
 				// se tiver visível é claro né meu fi ou fia sla
 				comboNum = 0;
-				FlxFlicker.flicker(combotxt1, 0.8, 0.05, false, false);
+				FlxFlicker.flicker(combotxt1, 0.8, 0.05, true, false);
 				FlxTween.tween(combotxt1, {alpha: 0}, 0.8, {
 					ease: FlxEase.linear,
 					onComplete: function(twn:FlxTween)
@@ -3489,7 +3490,7 @@ class PlayState extends MusicBeatState
 									//combotxt1.kill();
 					}
 				});
-				FlxFlicker.flicker(combotxt2, 0.8, 0.05, false, false);
+				FlxFlicker.flicker(combotxt2, 0.8, 0.05, true, false);
 				FlxTween.tween(combotxt2, {alpha: 0},0.8, {
 					ease: FlxEase.linear,
 					onComplete: function(twn:FlxTween)
