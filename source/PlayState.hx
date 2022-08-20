@@ -325,6 +325,15 @@ class PlayState extends MusicBeatState
 	var asteroidEmitter2:FlxEmitter;
 	var asteroidEmitter3:FlxEmitter;
 
+	// sus
+	var osCaboSUS:BGSprite;
+
+	// nicu vs a turma da monica so que nao
+	var naoseiseissoecabomasfds:BGSprite;
+
+	// nightland
+	var blurBg:BGSprite;
+
 	var halloweenBG:BGSprite;
 	var halloweenWhite:BGSprite;
 
@@ -1116,16 +1125,56 @@ class PlayState extends MusicBeatState
 				planet2 = new BGSprite('xigmund/PlaRed', 1000, -480, 0.4, 0.4);
 				add(planet2);
 
-				sun2 = new BGSprite('xigmund/SUM', 200, -480, 0.3, 0.3);
+				sun2 = new BGSprite('xigmund/SUM-2', 200, -480, 0.3, 0.3);
 				add(sun2);
 
 				asteroidEmitter1 = new FlxEmitter();
 				asteroidEmitter1.drag.set(0,0,0,0,200,300,500,750);
 				asteroidEmitter1.launchMode = FlxEmitterMode.SQUARE;
-				asteroidEmitter1.velocity.set(-200, -200, -800, -800, 40, 40);
-				asteroidEmitter1.lifespan.set(500, 1000);
+				asteroidEmitter1.velocity.set(-800, -800, -800, -800, -800, -800);
+				asteroidEmitter1.lifespan.set(1.9, 8.9);
 				asteroidEmitter1.loadParticles(Paths.image('xigmund/ast1'), 500, 16, true);
 				asteroidEmitter1.start(false, FlxG.random.float(12, 18), FlxG.random.int(1000, 10000));
+
+			case 'sus':
+				var bg1:BGSprite = new BGSprite('sus/SUS1', 0, 0, 0.1, 0.1);
+				add(bg1);
+
+				var bg2:BGSprite = new BGSprite('sus/SUS2', 0, 0, 0.2, 0.23);
+				add(bg2);
+
+				osCaboSUS = new BGSprite('sus/SUS3', 0, 0, 0.9, 0.9);
+
+			case 'ddto':
+				var bg1:BGSprite = new BGSprite('ddto/DDLC-1', 0, 0, .1, .1);
+				add(bg1);
+
+				naoseiseissoecabomasfds = new BGSprite('ddto/DDLC-2', 0, 0, .1, .1);
+
+			case 'nightland':
+				var bg1:BGSprite = new BGSprite('nightland/BG1', -1100, -600, .15, .15);
+				bg1.scale.set(1.6, 1.6);
+				add(bg1);
+				
+				var bg2:BGSprite = new BGSprite('nightland/BAC2', -1400, -1200, .65, .8);
+				bg2.scale.set(1.7, 1.7);
+				add(bg2);
+				
+				var bg3:BGSprite = new BGSprite('nightland/ROC3', -1930, -1000, .9, 1);
+				bg3.scale.set(1.6, 1.5);
+				add(bg3);
+				
+				var bg4:BGSprite = new BGSprite('nightland/TREE4', -1730, -1050, .15, .15);
+				bg4.scale.set(1.6, 1.5);
+				add(bg4);
+
+				var bg5:BGSprite = new BGSprite('nightland/TREE4', -2000, -1150, .018, .018);
+				bg5.scale.set(1.7, 1.6);
+				add(bg5);
+
+				blurBg = new BGSprite('nightland/TREE4', -2000, -1150, .018, .018);
+				blurBg.scale.set(1.7, 1.6);
+
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
 					halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
@@ -1510,6 +1559,18 @@ class PlayState extends MusicBeatState
 
 			if (curStage == 'xigmund'){
 				add(asteroidEmitter1);
+			}
+
+			if (curStage == 'sus'){
+				add(osCaboSUS);
+			}
+
+			if (curStage == 'ddto'){
+				add(naoseiseissoecabomasfds);
+			}
+
+			if (curStage == 'nightland'){
+				add(blurBg);
 			}
 
 
