@@ -1125,7 +1125,7 @@ class PlayState extends MusicBeatState
 				asteroidEmitter1.velocity.set(-200, -200, -800, -800, 40, 40);
 				asteroidEmitter1.lifespan.set(500, 1000);
 				asteroidEmitter1.loadParticles(Paths.image('xigmund/ast1'), 500, 16, true);
-				asteroidEmitter1.start(false, FlxG.random.float(12, 18), FlxG.random.float(1000, 1000000));
+				asteroidEmitter1.start(false, FlxG.random.float(12, 18), FlxG.random.int(1000, 10000));
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
 					halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
