@@ -213,6 +213,7 @@ class FreeplayState extends MusicBeatState
 		{
 			//var direction:Float = -10; // not used shit
 			var lerpVal:Float = CoolUtil.boundTo(elapsed * 7, 0, 1);
+			var angleSpeed:Float = 0.2;
 			var maxSkew:Float = -2; // selected item
 			var minSkew:Float = -5; // not selected item
 			var skewDirection:Int = 1; // lmao
@@ -222,12 +223,12 @@ class FreeplayState extends MusicBeatState
 			{
 					var lastSkew:Float = port.skew.x;
 					var lastAngle:Float = port.angle;
-					var lastX:Float = port.x;
+					//var lastX:Float = port.x;
 					//item.screenCenter(X);
 
 					port.skew.x = skewDirection * skewSpeed * elapsed; // i get this code from flxskewedsprite demo
-					port.x = FlxMath.lerp(lastX, 310, lerpVal);
-					port.forceX = port.x;
+					//port.x = FlxMath.lerp(lastX, 310, lerpVal);
+					//port.forceX = port.x;
 					//port.skew.x = FlxMath.lerp(lastSkew, -2, lerpVal); // flxmath my beloved
 					//FlxTween.tween(port.skew, {x: 0}, 0.4, {ease: FlxEase.expoOut});
 					port.angle = FlxMath.lerp(lastAngle, -3, lerpVal);
@@ -235,21 +236,12 @@ class FreeplayState extends MusicBeatState
 			}
 			else
 			{
-					port.skew.x -= skewDirection * skewSpeed * elapsed;
 					//FlxTween.tween(port.skew, {x: -4}, 0.4, {ease: FlxEase.expoOut}); com flxtween fico um cu
 					//port.skew.x = FlxMath.lerp(port.skew.x, -5, lerpVal); // flxmath my beloved but not lmfao
 					//port.forceSkew = port.skew.x;
-						port.angle = FlxMath.lerp(port.angle, 5 + -5 * port.targetY, lerpVal);
-						port.x = FlxMath.lerp(port.x, 295 + -15, lerpVal); // fix x value?
+						port.angle -= 5 * angleSpeed * port.targetY * elapsed;
+						//port.x = FlxMath.lerp(port.x, 295 + -15, lerpVal); // fix x value?
 						port.forceX = port.x;
-			}
-			if (port.skew.x > maxSkew){
-				port.skew.x = maxSkew;
-				skewDirection = 1;
-			}
-			else if (port.skew.x < minSkew){
-				port.skew.x = minSkew;
-				skewDirection = 1;
 			}
 		}
 
