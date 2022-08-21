@@ -174,8 +174,8 @@ class PlayState extends MusicBeatState
 	// song bar idk
 	var bar:FlxSprite;
 	var songTxt:FlxText;
-	var songlol:FlxTypedSpriteGroup<FlxSprite>;
-	var whiteLol:FlxSprite;
+	var songlol:FlxTypedSpriteGroup<FlxSprite>; //unused
+	var whiteLol:FlxSprite; //unused
 
 	public var gfSpeed:Int = 1;
 	public var health:Float = 1;
@@ -187,13 +187,13 @@ class PlayState extends MusicBeatState
 
 	private var timeBarBG:AttachedSprite;
 	public var timeBar:FlxBar;
-	
+
 	public var sicks:Int = 0;
 	public var goods:Int = 0;
 	public var bads:Int = 0;
 	public var shits:Int = 0;
 	var rating:String = "";
-	
+
 	private var generatedMusic:Bool = false;
 	public var endingSong:Bool = false;
 	public var startingSong:Bool = false;
@@ -1138,41 +1138,52 @@ class PlayState extends MusicBeatState
 
 			case 'sus':
 				var bg1:BGSprite = new BGSprite('sus/SUS1', 0, 0, 0.1, 0.1);
+				bg1.updateHitbox();
 				add(bg1);
 
 				var bg2:BGSprite = new BGSprite('sus/SUS2', 0, 0, 0.2, 0.23);
+				bg2.updateHitbox();
 				add(bg2);
 
 				osCaboSUS = new BGSprite('sus/SUS3', 0, 0, 0.9, 0.9);
+				osCaboSUS.updateHitbox();
 
 			case 'ddto':
 				var bg1:BGSprite = new BGSprite('ddto/DDLC-1', 0, 0, .1, .1);
+				bg1.updateHitbox();
 				add(bg1);
 
 				naoseiseissoecabomasfds = new BGSprite('ddto/DDLC-2', 0, 0, .1, .1);
+				naoseiseissoecabomasfds.updateHitbox();
 
 			case 'nightland':
 				var bg1:BGSprite = new BGSprite('nightland/BG1', -1100, -600, .15, .15);
 				bg1.scale.set(1.6, 1.6);
+				bg1.updateHitbox();
 				add(bg1);
 				
 				var bg2:BGSprite = new BGSprite('nightland/BAC2', -1400, -1200, .65, .8);
 				bg2.scale.set(1.7, 1.7);
+				bg2.updateHitbox();
 				add(bg2);
 				
 				var bg3:BGSprite = new BGSprite('nightland/ROC3', -1930, -1000, .9, 1);
 				bg3.scale.set(1.6, 1.5);
+				bg3.updateHitbox();
 				add(bg3);
 				
 				var bg4:BGSprite = new BGSprite('nightland/TREE4', -1730, -1050, .15, .15);
 				bg4.scale.set(1.6, 1.5);
+				bg4.updateHitbox();
 				add(bg4);
 
 				var bg5:BGSprite = new BGSprite('nightland/TREE4', -2000, -1150, .018, .018);
 				bg5.scale.set(1.7, 1.6);
+				bg5.updateHitbox();
 				add(bg5);
 
 				blurBg = new BGSprite('nightland/TREE4', -2000, -1150, .018, .018);
+				blurBg.updateHitbox();
 				blurBg.scale.set(1.7, 1.6);
 
 			case 'spooky': //Week 2
