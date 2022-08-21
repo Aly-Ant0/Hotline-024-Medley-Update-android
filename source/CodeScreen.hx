@@ -47,6 +47,8 @@ class CodeScreen extends MusicBeatState
 
 		PlayState.isStoryMode = false;
 		PlayState.isCode = true;
+		PlayState.isCovers = false;
+		PlayState.isExtras = false;
 		//PlayState.noSkins = true; // no skins?
 
 		bg = new FlxSprite().loadGraphic(Paths.image('hotline/menu/code/bg'));
@@ -123,7 +125,7 @@ class CodeScreen extends MusicBeatState
 			numbersSpr.add(button);
 		}
 
-		code = new FlxText(565, 161, 0, "", 28);
+		code = new FlxText(500, 120, 0, "", 16);
 		code.setFormat(Paths.font("LEMONMILK-Bold.otf"), 80, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		code.text = '';
 		//code.textField = 0.40;
