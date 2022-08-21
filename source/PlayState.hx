@@ -1177,12 +1177,12 @@ class PlayState extends MusicBeatState
 				bg4.updateHitbox();
 				add(bg4);
 
-				var bg5:BGSprite = new BGSprite('nightland/TREE4', -2000, -1150, .018, .018);
+				var bg5:BGSprite = new BGSprite('nightland/GROUMD5', -2000, -1150, .018, .018);
 				bg5.scale.set(1.7, 1.6);
 				bg5.updateHitbox();
 				add(bg5);
 
-				blurBg = new BGSprite('nightland/TREE4', -2000, -1150, .018, .018);
+				blurBg = new BGSprite('nightland/BLURROC6', -2000, -1150, .018, .018);
 				blurBg.updateHitbox();
 				blurBg.scale.set(1.7, 1.6);
 
