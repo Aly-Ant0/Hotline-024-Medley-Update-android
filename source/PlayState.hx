@@ -1137,32 +1137,32 @@ class PlayState extends MusicBeatState
 				asteroidEmitter1.start(false, FlxG.random.float(12, 18), FlxG.random.int(1000, 10000));
 
 			case 'sus':
-				var bg1:BGSprite = new BGSprite('sus/SUS1', 0, 0, 0.1, 0.1);
+				var bg1:BGSprite = new BGSprite('sus/SUS1', 0, 50, 0.1, 0.1);
 				bg1.updateHitbox();
 				add(bg1);
 
-				var bg2:BGSprite = new BGSprite('sus/SUS2', 0, 0, 0.2, 0.23);
+				var bg2:BGSprite = new BGSprite('sus/SUS2', 0, 0, 0, 0);
 				bg2.updateHitbox();
 				add(bg2);
 
-				osCaboSUS = new BGSprite('sus/SUS3', 0, 0, 0.9, 0.9);
+				osCaboSUS = new BGSprite('sus/SUS3', 0, 0, 0.2, 0.2);
 				osCaboSUS.updateHitbox();
 
 			case 'ddto':
-				var bg1:BGSprite = new BGSprite('ddto/DDLC-1', 0, 0, .1, .1);
+				var bg1:BGSprite = new BGSprite('ddto/DDLC-1', 0, 0, 0, 0);
 				bg1.updateHitbox();
 				add(bg1);
 
-				naoseiseissoecabomasfds = new BGSprite('ddto/DDLC-2', 0, 0, .1, .1);
+				naoseiseissoecabomasfds = new BGSprite('ddto/DDLC-2', 0, 0, 0, 0);
 				naoseiseissoecabomasfds.updateHitbox();
 
 			case 'nightland':
-				var bg1:BGSprite = new BGSprite('nightland/BG1', -1100, -600, .15, .15);
+				var bg1:BGSprite = new BGSprite('nightland/BG1', -1300, -1000, .15, .15);
 				bg1.scale.set(1.6, 1.6);
 				bg1.updateHitbox();
 				add(bg1);
 				
-				var bg2:BGSprite = new BGSprite('nightland/BAC2', -1400, -1200, .65, .8);
+				var bg2:BGSprite = new BGSprite('nightland/BAC2', -1700,-1200, .6, .6);
 				bg2.scale.set(1.7, 1.7);
 				bg2.updateHitbox();
 				add(bg2);
@@ -1177,7 +1177,7 @@ class PlayState extends MusicBeatState
 				bg4.updateHitbox();
 				add(bg4);
 
-				var bg5:BGSprite = new BGSprite('nightland/GROUMD5', -2000, -1150, .018, .018);
+				var bg5:BGSprite = new BGSprite('nightland/GROUMD5', -2000, -1300);
 				bg5.scale.set(1.7, 1.6);
 				bg5.updateHitbox();
 				add(bg5);
@@ -1936,17 +1936,17 @@ class PlayState extends MusicBeatState
 
 			comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
 			comboGlow.screenCenter(X);
+			comboGlow.y = COMBO_Y;
 			comboGlow.alpha = 0;
 			comboGlow.blend = ADD;
 			comboGlow.cameras = [camHUD];
 			add(comboGlow);
 
 			combotxt1 = new FlxText();
-			combotxt1.size = 27;
+			combotxt1.size = 32;
 			combotxt1.color = FlxColor.WHITE;
-			
-			combotxt1.x = COMBO_X + 1;
-			combotxt1.y = COMBO_Y + 45;
+			combotxt1.x = comboGlow.x;
+			combotxt1.y = comboGlow.y + 45;
 			combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt1.scrollFactor.set();
 			combotxt1.borderSize = 1.25;
@@ -1959,22 +1959,22 @@ class PlayState extends MusicBeatState
 			combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt2.scrollFactor.set();
 			combotxt2.borderSize = 1.25;
-			combotxt2.size = 33;
+			combotxt2.size = 32;
 			//combotxt2.setPosition(579, 0);
-			combotxt2.x = COMBO_X - 4;
-			combotxt2.y = COMBO_Y + 70;
+			combotxt2.x = combotxt1.x;
+			combotxt2.y = combotxt1.y + 95;
 			combotxt2.cameras = [camHUD];
 			combotxt2.alpha = 0;
 			add(combotxt2);
 
-			if(ClientPrefs.downScroll) {
-				COMBO_Y = COMBO_Y + 520;
+			if(ClientPrefs.middleScroll && !ClientPrefs.downScroll) {
+				COMBO_Y = 160;
 			}
-			if(ClientPrefs.middleScroll) {
-				COMBO_Y = COMBO_Y + 120;
+			else if(ClientPrefs.middleScroll && ClientPrefs.downScroll){
+				COMBO_Y =  495;
 			}
-			if(ClientPrefs.middleScroll && ClientPrefs.downScroll){
-				COMBO_Y = COMBO_Y + 455;
+			else if(ClientPrefs.downScroll) {
+				COMBO_Y = 560;
 			}
 
 			var text:String = "";
