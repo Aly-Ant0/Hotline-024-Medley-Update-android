@@ -117,7 +117,7 @@ class FreeplayState extends MusicBeatState
 		{
 			var port:FreeplayText = new FreeplayText(310, 200, songs[i]);
 			port.y += ((port.width - 550) + 310 * i);
-			port.targetY = i; // basically a first id variable lmao
+			port.targetY = i; // basically a id variable lmao
 			port.ID = i;
 			port.angle = -3;
 			port.skew.x = -1;
