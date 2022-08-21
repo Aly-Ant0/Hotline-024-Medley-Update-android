@@ -74,7 +74,7 @@ class FreeplayState extends MusicBeatState
 		PlayState.isCovers = false;
 		PlayState.isCode = false;
 		PlayState.isExtras = false;
-		WeekData.reloadWeekFiles(false);
+		//WeekData.reloadWeekFiles(false);
 
 		#if desktop
 		// Updating Discord Rich Presence
@@ -108,7 +108,7 @@ class FreeplayState extends MusicBeatState
 		nicu.screenCenter();
 		add(nicu);
 
-		FlxTween.tween(nicu, {y: nicu.y + 19}, 1.74, {ease: FlxEase.quadInOut, type: PINGPONG});
+		FlxTween.tween(nicu, {y: nicu.y + 17}, 1.74, {ease: FlxEase.quadInOut, type: PINGPONG});
 
 		grpSongs = new FlxTypedGroup<FreeplayText>();
 		add(grpSongs);
@@ -116,7 +116,7 @@ class FreeplayState extends MusicBeatState
 		for (i in 0...songs.length)
 		{
 			var port:FreeplayText = new FreeplayText(310, 200, songs[i]);
-			port.y += ((port.width - 550) + 200 * i);
+			port.y += ((port.width - 550) + 310 * i);
 			port.targetY = i; // basically a first id variable lmao
 			port.ID = i;
 			port.angle = -3;
@@ -239,13 +239,13 @@ class FreeplayState extends MusicBeatState
 					//FlxTween.tween(port.skew, {x: -4}, 0.4, {ease: FlxEase.expoOut}); com flxtween fico um cu
 					//port.skew.x = FlxMath.lerp(port.skew.x, -5, lerpVal); // flxmath my beloved but not lmfao
 					//port.forceSkew = port.skew.x;
-						port.angle = FlxMath.lerp(port.angle, 4 * port.targetY, lerpVal);
-						port.x = FlxMath.lerp(port.x, 295, lerpVal); // fix x value?
+						port.angle = FlxMath.lerp(port.angle, 5 + -5 * port.targetY, lerpVal);
+						port.x = FlxMath.lerp(port.x, 295 + -15, lerpVal); // fix x value?
 						port.forceX = port.x;
 			}
 			if (port.skew.x > maxSkew){
 				port.skew.x = maxSkew;
-				skewDirection = -1;
+				skewDirection = 1;
 			}
 			else if (port.skew.x < minSkew){
 				port.skew.x = minSkew;
