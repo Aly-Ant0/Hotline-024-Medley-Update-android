@@ -45,7 +45,11 @@ class ExtrasScreen extends MusicBeatState
 	{
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
+
 		PlayState.noSkins = true;
+		PlayState.isCovers = false;
+		PlayState.isCode = false;
+		PlayState.isExtras = true;
 
 		bg = new FlxSprite().loadGraphic(Paths.image('hotline/menu/extras/bg'));
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
@@ -186,13 +190,27 @@ class ExtrasScreen extends MusicBeatState
 			if(curSelected != item.ID){
 				item.color = 0xFF363636;
 				item.alpha = 0.4;
-				FlxTween.tween(item, {"scale.x": 0.90, "scale.y": 0.90}, 0.15, {ease: FlxEase.expoOut});
 			}
 			else{
 				item.color = 0xFFFFFFFF;
 				item.alpha = 1;
-				FlxTween.tween(item, {"scale.x": 1, "scale.y": 1}, 0.15, {ease: FlxEase.expoOut});
 			}
+		}
+		switch(curSelected){
+			case 0:
+				FlxTween.tween(buttonGrp.members[0], {"scale.x": 1, "scale.y": 1}, 0.15, {ease: FlxEase.expoOut});
+
+				FlxTween.tween(buttonGrp.members[1], {"scale.x": 0.90, "scale.y": 0.90}, 0.15, {ease: FlxEase.expoOut});
+				case 1:
+					FlxTween.tween(buttonGrp.members[1], {"scale.x": 1, "scale.y": 1}, 0.15, {ease: FlxEase.expoOut});
+
+					FlxTween.tween(buttonGrp.members[0], {"scale.x": 0.90, "scale.y": 0.90}, 0.15, {ease: FlxEase.expoOut});
+				case 2:
+					// just tween the other buttons.
+
+					FlxTween.tween(buttonGrp.members[1], {"scale.x": 0.90, "scale.y": 0.90}, 0.15, {ease: FlxEase.expoOut});
+
+					FlxTween.tween(buttonGrp.members[0], {"scale.x": 0.90, "scale.y": 0.90}, 0.15, {ease: FlxEase.expoOut});
 		}
 		buttonGrp.members[2].scale.x = 1;
 		buttonGrp.members[2].scale.y = 1;
