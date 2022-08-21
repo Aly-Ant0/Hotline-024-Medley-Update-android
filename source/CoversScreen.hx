@@ -38,7 +38,12 @@ class CoversScreen extends MusicBeatState
 	{
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
+
+
 		PlayState.noSkins = false;
+		PlayState.isCovers = true;
+		PlayState.isCode = false;
+		PlayState.isExtras = false;
 
 		text = new FlxSprite().loadGraphic(Paths.image('hotline/menu/covers/text'));
 		text.screenCenter();
