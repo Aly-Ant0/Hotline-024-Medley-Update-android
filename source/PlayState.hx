@@ -387,6 +387,7 @@ class PlayState extends MusicBeatState
 
 	//combo stuff
 	public var comboGlow:FlxSprite;
+	public var combotxtscoreplus:FlxText;
 	public var combotxt1:FlxText;
 	public var combotxt2:FlxText;
 	public var comboScore:Int = 0;
@@ -955,7 +956,7 @@ class PlayState extends MusicBeatState
 					rocks.updateHitbox();
 			case 'momogogo':
 				//var bg:FlxBackdrop;
-				momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), true, false, 10);
+				momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), true, false, 15);
 				momogogoBG.x = -1000;
 				momogogoBG.y = -270;
 				momogogoBG.scale.set(1.25, 1.25);
@@ -1128,7 +1129,7 @@ class PlayState extends MusicBeatState
 				sun2 = new BGSprite('xigmund/SUM-2', 200, -480, 0.3, 0.3);
 				add(sun2);
 
-				asteroidEmitter1 = new FlxEmitter();
+				asteroidEmitter1 = new FlxEmitter(0,200);
 				asteroidEmitter1.drag.set(0,0,0,0,200,300,500,750);
 				asteroidEmitter1.launchMode = FlxEmitterMode.SQUARE;
 				asteroidEmitter1.velocity.set(-800, -800, -800, -800, -800, -800);
@@ -1500,8 +1501,8 @@ class PlayState extends MusicBeatState
 		if (curStage == 'limo')
 			add(limo);
 
-		add(dadGroup);
 		add(boyfriendGroup);
+		add(dadGroup);
 
 		//if(!ClientPrefs.dontShowBG) {
 			if (curStage == 'space')
@@ -1935,10 +1936,10 @@ class PlayState extends MusicBeatState
 		add(botplayTxt);
 
 			comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
-			comboGlow.screenCenter(X);
+			comboGlow.screenCenter(X); // nao botei o combo_x pq preguiça vou chorar
 			comboGlow.y = COMBO_Y;
 			comboGlow.alpha = 0;
-			comboGlow.blend = ADD;
+			comboGlow.blend = ADD; // nao me perguntem o pq o blend ta em add
 			comboGlow.cameras = [camHUD];
 			add(comboGlow);
 
@@ -1954,15 +1955,26 @@ class PlayState extends MusicBeatState
 			combotxt1.alpha = 0;
 			add(combotxt1);
 
+			combotxtscoreplus = new FlxText();
+			combotxtscoreplus.size = 32;
+			combotxtscoreplus.color = FlxColor.WHITE;
+			combotxtscoreplus.y = combotxt1.y + 25;
+			combotxtscoreplus.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			combotxtscoreplus.scrollFactor.set();
+			combotxtscoreplus.borderSize = 1.25;
+			combotxtscoreplus.cameras = [camHUD];
+			combotxtscoreplus.alpha = 0;
+			add(combotxtscoreplus);
+
 			// combo score lerp
 			combotxt2 = new FlxText();
 			combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt2.scrollFactor.set();
 			combotxt2.borderSize = 1.25;
 			combotxt2.size = 32;
-			//combotxt2.setPosition(579, 0);
+			//combotxt2.setPosition(579, 0); // ibis paint coordinates moment :nerdanimechar:
 			combotxt2.x = combotxt1.x;
-			combotxt2.y = combotxt1.y + 95;
+			combotxt2.y = combotxt1.y + 65;
 			combotxt2.cameras = [camHUD];
 			combotxt2.alpha = 0;
 			add(combotxt2);
@@ -1977,38 +1989,40 @@ class PlayState extends MusicBeatState
 				COMBO_Y = 560;
 			}
 
-			var text:String = "";
-			songTxt = new FlxText(FlxG.width + 12, 0, 0, text, 37);
-			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 32, FlxColor.WHITE, RIGHT);
+			var songString:String = "";
 
 			bar = new FlxSprite().makeGraphic(1, 100, FlxColor.BLACK);
 			bar.alpha = 0.40;
 			bar.scale.x = songTxt.width + 20;
 			bar.x -= 20;
 			bar.y -= 420;
-
-			songTxt.y = bar.y + 5;
-	
+			bar.cameras = [camHUD];
+			bar.scrollFactor.set();
 			add(bar);
+
+			songTxt = new FlxText(bar.x + 10, bar.y + 5, 0, "", 37);
+			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 32, FlxColor.WHITE, RIGHT);
+			songTxt.cameras = [camHUD];
+			songTxt.scrollFactor.set();
 			add(songTxt);
 	
 		// o texto vai pegar o conteudo do txt & if the txt file exists the txt string will get the file content
 		if(FileSystem.exists(Paths.txt(songName + '/info'))) {
-				text = File.getContent(Paths.txt(songName + '/info'));
+			text = File.getContent(Paths.txt(songName + '/info'));
 
-				if(songName == 'extraterrestrial'){
-					songTxt.visible = false;
-					bar.visible = false;
-				}
+			if(songName == 'extraterrestrial'){
+				songTxt.visible = false;
+				bar.visible = false;
+			}
 		}
 		else {
 			text = 'NO BITCHES?';
 		}
 
-		if (songName == 'uncanny-valley') {
+		if (songName == 'ena') {
 			iconP2.visible = false;
 		}
-		if (songName == 'astral-projection') {
+		if (curStage == 'astral') {
 			iconP1.visible = false;
 			iconP2.visible = false;
 			healthBarBG.visible = false;
@@ -2027,8 +2041,6 @@ class PlayState extends MusicBeatState
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 		botplayTxt.cameras = [camHUD];
-		bar.cameras = [camHUD];
-		songTxt.cameras = [camHUD];
 		timeBar.cameras = [camHUD];
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
@@ -2759,7 +2771,7 @@ class PlayState extends MusicBeatState
 	//var resetC:Bool = false;
 	//var finishState:Bool = false;
 	//endCombo = false;
-	function comboStart(note:Note = null):Void // unused
+	function comboStart(note:Note = null):Void // unused and combo moment 4
 	{
 		var pressedKey2:Bool = note.isSustainNote;
 		showCombo2 = true;
@@ -2773,22 +2785,23 @@ class PlayState extends MusicBeatState
 		//resetCombo();
 	}
 
-	function resetCombo(){ //unused too
+	function resetCombo(){ //unused too and combo moment 5
 		return comboTmr.reset(comboTmr2);
 		//reseted = true;
 	}
 
-	function finishCombo()
+	function finishCombo() // combo moment 6
 	{
 		comboState = 1;
 	}
 
-	function popUpCombo(){
+	function popUpCombo(){ // combo moment 7
 		return comboNum++;
 	}
-	function spawnCombo(){
+	function spawnCombo(){ // combo moment 8
 		combotxt1.alpha = 1;
 		combotxt2.alpha = 1;
+		combotxtscoreplus.alpha = 1;
 		comboGlow.alpha = 0.3;
 	}
 
@@ -3546,37 +3559,36 @@ class PlayState extends MusicBeatState
 			iconP1.swapOldIcon();
 		}*/
 
-		if (comboState == 0){
+		if (comboState == 0){ // combo moment 
 			combotxt1.text = rating + " x" + comboNum;
 			combotxt2.text = Std.string(comboScore);
+			combotxtscoreplus.text = "+" + score;
 		}
-		if (comboState == 1){
-				// se tiver visível é claro né meu fi ou fia sla
+		if (comboState == 1){ // combo moment 2
 				comboNum = 0;
+				goods = 0;
+				sicks = 0;
+				bads = 0;
+				shits = 0;
+
+				// lerp momento
+				var toZero:Int = 0;
+				comboScore = Math.floor(FlxMath.lerp(comboScore, toZero, CoolUtil.boundTo(1 - (elapsed * 24), 1, 0)));
+				songScore = Math.floor(FlxMath.lerp(songScore, scoreTarget, CoolUtil.boundTo(1 - (elapsed * 24), 0, 1)));
+				if (Math.abs(songScore - scoreTarget) <= 10)
+					songScore = scoreTarget;
+					if (Math.abs(comboScore - toZero) <= 10)
+					comboScore = toZero; // caso fica zero :trollface:
+
+				// se tiver visível é claro né meu fi ou fia sla
+
+				// pra qm nao entendeu o sentido dessa msg aq em cima é pq tinha uma condição q se tiver no middlescroll os bagui do combo nao aparecia
 				FlxFlicker.flicker(combotxt1, 0.8, 0.05, true, false);
-				FlxTween.tween(combotxt1, {alpha: 0}, 0.8, {
-					ease: FlxEase.linear,
-					onComplete: function(twn:FlxTween)
-					{
-									//comboState = 1;
-									//combotxt1.kill();
-					}
-				});
 				FlxFlicker.flicker(combotxt2, 0.8, 0.05, true, false);
-				FlxTween.tween(combotxt2, {alpha: 0},0.8, {
-					ease: FlxEase.linear,
-					onComplete: function(twn:FlxTween)
-					{
-									//combotxt2.kill();
-					}
-				});
-				FlxTween.tween(comboGlow, {alpha: 0}, 0.8, {
-					ease: FlxEase.linear,
-					onComplete: function(twn:FlxTween)
-					{
-									//comboGlow.kill();
-					}
-				});
+				comboGlow.alpha = 0 * 1.5 * elapsed;
+				combotxt1.alpha = 0 * 1.5 * elapsed;
+				combotxt2.alpha = 0 * 1.5 * elapsed;
+				combotxtscoreplus.alpha = 0 * 1.5 * elapsed;
 				if (bads >= 5 && shits >= 3)
 				{
 								combotxt1.text = 'whoops...';
@@ -3592,9 +3604,6 @@ class PlayState extends MusicBeatState
 				{
 								combotxt1.text = 'Great!';
 				}
-				stopPls.start(0.81, function(tmr:FlxTimer){
-								comboState = 0;
-				});
 		}
 
 		callOnLuas('onUpdate', [elapsed]);
@@ -3768,17 +3777,13 @@ class PlayState extends MusicBeatState
 				boyfriendIdleTime = 0;	
 			}	
 		}
-		if (comboState == 1) {
-			comboScore = Math.floor(FlxMath.lerp(comboScore, 0, CoolUtil.boundTo(1 - (elapsed * 24), 1, 0)));
-			songScore = Math.floor(FlxMath.lerp(songScore, scoreTarget, CoolUtil.boundTo(1 - (elapsed * 24), 0, 1)));
-			if (Math.abs(songScore - scoreTarget) <= 10)
-				songScore = scoreTarget;
-		}
 
 		/*if (curStage == 'momogogo')
 		{
-			momogogoBG.x += 90 * elapsed; // easy isn't?
+			momogogoBG.x += 90 * elapsed; // easy huh?
 		}*/
+
+		songTxt.text = '${text}';
 
 		super.update(elapsed);
 
@@ -5672,7 +5677,7 @@ class PlayState extends MusicBeatState
 				return;
 			}
 
-			if (!note.isSustainNote)
+			if (!note.isSustainNote) // combo moment 3
 			{
 				comboState = 0;
 				spawnCombo();
