@@ -1947,7 +1947,7 @@ class PlayState extends MusicBeatState
 			combotxt1 = new FlxText();
 			combotxt1.size = 32;
 			combotxt1.color = FlxColor.WHITE;
-			combotxt1.x = comboGlow.x;
+			combotxt1.x = comboGlow.x + 21;
 			combotxt1.y = comboGlow.y + 45;
 			combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt1.scrollFactor.set();
@@ -1959,6 +1959,7 @@ class PlayState extends MusicBeatState
 			combotxtscoreplus = new FlxText();
 			combotxtscoreplus.size = 32;
 			combotxtscoreplus.color = FlxColor.WHITE;
+			combotxtscoreplus.x = combotxt1.x;
 			combotxtscoreplus.y = combotxt1.y + 25;
 			combotxtscoreplus.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxtscoreplus.scrollFactor.set();
@@ -3584,10 +3585,10 @@ class PlayState extends MusicBeatState
 				// pra qm nao entendeu o sentido dessa msg aq em cima é pq tinha uma condição q se tiver no middlescroll os bagui do combo nao aparecia
 				FlxFlicker.flicker(combotxt1, 0.8, 0.05, true, false);
 				FlxFlicker.flicker(combotxt2, 0.8, 0.05, true, false);
-				comboGlow.alpha = 0 * 1.5 * elapsed;
-				combotxt1.alpha = 0 * 1.5 * elapsed;
-				combotxt2.alpha = 0 * 1.5 * elapsed;
-				combotxtscoreplus.alpha = 0 * 1.5 * elapsed;
+				comboGlow.alpha = FlxMath.lerp(comboGlow.alpha, 0, CoolUtil.boundTo(1 - (elapsed * 1.2), 1, 0));
+				combotxt1.alpha = FlxMath.lerp(combotxt1.alpha, 0, CoolUtil.boundTo(1 - (elapsed * 1.2), 1, 0));
+				combotxt2.alpha = FlxMath.lerp(combotxt2.alpha, 0, CoolUtil.boundTo(1 - (elapsed * 1.2), 1, 0));
+				combotxtscoreplus.alpha = FlxMath.lerp(combotxtscoreplus.alpha, 0, CoolUtil.boundTo(1 - (elapsed * 1.2), 1, 0));
 				if (bads >= 5 && shits >= 3)
 				{
 								combotxt1.text = 'whoops...';
