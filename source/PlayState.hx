@@ -174,6 +174,7 @@ class PlayState extends MusicBeatState
 	// song bar idk
 	var bar:FlxSprite = new FlxSprite();
 	var songTxt:FlxText;
+	var songString:String = "";
 	var songlol:FlxTypedSpriteGroup<FlxSprite>; //unused
 	var whiteLol:FlxSprite; //unused
 
@@ -1989,7 +1990,6 @@ class PlayState extends MusicBeatState
 				COMBO_Y = 560;
 			}
 
-			public var songString:String = "";
 			songTxt = new FlxText(bar.x + 10, bar.y + 5, 0, "", 37); // it mentions the bar variable cuz its already declared
 			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 32, FlxColor.WHITE, RIGHT);
 			songTxt.cameras = [camHUD];
