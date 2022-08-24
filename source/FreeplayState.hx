@@ -241,7 +241,7 @@ class FreeplayState extends MusicBeatState
 					//port.skew.x = FlxMath.lerp(port.skew.x, -5, lerpVal); // flxmath my beloved but not lmfao
 					//port.forceSkew = port.skew.x;
 						port.skew.x = skewDirection * skewSpeed * elapsed;
-						port.angle = 5 + 5 * angleSpeed * port.targetY * elapsed;
+						port.angle = FlxMath.lerp(port.angle, 5 + 5 * port.targetY, lerpVal); // vo mimir -aly ant
 						//port.x = FlxMath.lerp(port.x, 295 + -15, lerpVal); // fix x value?
 						port.forceX = port.x;
 			}
