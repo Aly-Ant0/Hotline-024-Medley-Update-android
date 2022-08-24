@@ -232,7 +232,7 @@ class FreeplayState extends MusicBeatState
 					//port.forceX = port.x;
 					//port.skew.x = FlxMath.lerp(lastSkew, -2, lerpVal); // flxmath my beloved
 					//FlxTween.tween(port.skew, {x: 0}, 0.4, {ease: FlxEase.expoOut});
-					port.angle = FlxMath.lerp(lastAngle, -3, lerpVal);
+					port.angle = FlxMath.lerp(lastAngle, -3, lerpVal); // aq ta com lerp e o outro ta linear memo fodase
 					//port.forceSkew = port.skew.x;
 			}
 			else
@@ -240,10 +240,20 @@ class FreeplayState extends MusicBeatState
 					//FlxTween.tween(port.skew, {x: -4}, 0.4, {ease: FlxEase.expoOut}); com flxtween fico um cu
 					//port.skew.x = FlxMath.lerp(port.skew.x, -5, lerpVal); // flxmath my beloved but not lmfao
 					//port.forceSkew = port.skew.x;
-						port.angle -= 5 * angleSpeed * port.targetY * elapsed;
+						port.skew.x = skewDirection * skewSpeed * elapsed;
+						port.angle = 5 + 5 * angleSpeed * port.targetY * elapsed;
 						//port.x = FlxMath.lerp(port.x, 295 + -15, lerpVal); // fix x value?
 						port.forceX = port.x;
 			}
+			if (port.skew.x > maxSkew){ // no caso é oq ta selecionando
+				port.skew.x = maxSkew;
+				skewDirection = 1;
+			}
+			else if (port.skew.x > minSkew){ // no caso é oq nao ta selecionando
+				port.skew.x = minSkew;
+				skewDirection = -1;
+			}
+			// aly ant portuguesse from brazil moment e meu pau na sua mao
 		}
 
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, CoolUtil.boundTo(elapsed * 24, 0, 1)));
