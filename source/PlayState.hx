@@ -172,7 +172,7 @@ class PlayState extends MusicBeatState
 	private var curSong:String = "";
 
 	// song bar idk
-	var bar:FlxSprite;
+	var bar:FlxSprite = new FlxSprite();
 	var songTxt:FlxText;
 	var songlol:FlxTypedSpriteGroup<FlxSprite>; //unused
 	var whiteLol:FlxSprite; //unused
@@ -1990,21 +1990,20 @@ class PlayState extends MusicBeatState
 			}
 
 			var songString:String = "";
-
-			bar = new FlxSprite().makeGraphic(1, 100, FlxColor.BLACK);
-			bar.alpha = 0.40;
-			bar.scale.x = songTxt.width + 20;
-			bar.x -= 20;
-			bar.y -= 420;
-			bar.cameras = [camHUD];
-			bar.scrollFactor.set();
-			add(bar);
-
-			songTxt = new FlxText(bar.x + 10, bar.y + 5, 0, "", 37);
+			songTxt = new FlxText(bar.x + 10, bar.y + 5, 0, "", 37); // it mentions the bar variable cuz its already declared
 			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 32, FlxColor.WHITE, RIGHT);
 			songTxt.cameras = [camHUD];
 			songTxt.scrollFactor.set();
 			add(songTxt);
+
+			bar.makeGraphic(1, 100, FlxColor.BLACK);
+			bar.alpha = 0.40;
+			bar.scale.x = songTxt.width + 20;
+			bar.x = -20;
+			bar.y = 190;
+			bar.cameras = [camHUD];
+			bar.scrollFactor.set();
+			add(bar);
 	
 		// o texto vai pegar o conteudo do txt & if the txt file exists the txt string will get the file content
 		if(FileSystem.exists(Paths.txt(songName + '/info'))) {
