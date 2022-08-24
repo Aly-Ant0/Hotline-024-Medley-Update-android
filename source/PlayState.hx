@@ -1989,7 +1989,7 @@ class PlayState extends MusicBeatState
 				COMBO_Y = 560;
 			}
 
-			var songString:String = "";
+			public var songString:String = "";
 			songTxt = new FlxText(bar.x + 10, bar.y + 5, 0, "", 37); // it mentions the bar variable cuz its already declared
 			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 32, FlxColor.WHITE, RIGHT);
 			songTxt.cameras = [camHUD];
@@ -2007,7 +2007,7 @@ class PlayState extends MusicBeatState
 	
 		// o texto vai pegar o conteudo do txt & if the txt file exists the txt string will get the file content
 		if(FileSystem.exists(Paths.txt(songName + '/info'))) {
-			text = File.getContent(Paths.txt(songName + '/info'));
+			songString = File.getContent(Paths.txt(songName + '/info'));
 
 			if(songName == 'extraterrestrial'){
 				songTxt.visible = false;
@@ -2015,7 +2015,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 		else {
-			text = 'NO BITCHES?';
+			songString = 'NO BITCHES?';
 		}
 
 		if (curStage == 'ena') {
@@ -3782,7 +3782,7 @@ class PlayState extends MusicBeatState
 			momogogoBG.x += 90 * elapsed; // easy huh?
 		}*/
 
-		songTxt.text = '${text}';
+		songTxt.text = '${songString}';
 
 		super.update(elapsed);
 
