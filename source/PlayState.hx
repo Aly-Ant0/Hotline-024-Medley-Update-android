@@ -2018,7 +2018,7 @@ class PlayState extends MusicBeatState
 			text = 'NO BITCHES?';
 		}
 
-		if (songName == 'ena') {
+		if (curStage == 'ena') {
 			iconP2.visible = false;
 		}
 		if (curStage == 'astral') {
