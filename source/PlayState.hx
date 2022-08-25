@@ -2001,7 +2001,7 @@ class PlayState extends MusicBeatState
 		// o texto vai pegar o conteudo do txt & if the txt file exists the txt string will get the file content
 		var file:String = Paths.txt(songName + '/' + 'info');
 		if(OpenFlAssets.exists(file)) { // info file fix?
-			songString = OpenFlAssets.getBytes(SUtil.getPath() + file);
+			songString = OpenFlAssets.getText(SUtil.getPath() + file);
 
 			if(songName == 'extraterrestrial'){
 				songTxt.visible = false;
