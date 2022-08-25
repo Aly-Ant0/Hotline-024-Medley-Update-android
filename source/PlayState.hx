@@ -1,4 +1,4 @@
-package;
+package; // sexy code -aly ant
 
 import flixel.graphics.FlxGraphic;
 #if desktop
@@ -961,8 +961,9 @@ class PlayState extends MusicBeatState
 				momogogoBG.x = -1000;
 				momogogoBG.y = -270;
 				momogogoBG.scale.set(1.25, 1.25);
-				momogogoBG.updateHitbox();
+				//momogogoBG.updateHitbox(); maybe fixing
 				momogogoBG.antialiasing = ClientPrefs.globalAntialiasing;
+				momogogoBG.scrollFactor.set(0,0);
 				momogogoBG.velocity.set(120, 0);
 				add(momogogoBG);
 
@@ -1133,7 +1134,7 @@ class PlayState extends MusicBeatState
 				asteroidEmitter1 = new FlxEmitter(0,200);
 				asteroidEmitter1.drag.set(0,0,0,0,200,300,500,750);
 				asteroidEmitter1.launchMode = FlxEmitterMode.SQUARE;
-				asteroidEmitter1.velocity.set(-800, -800, -800, -800, -800, -800);
+				asteroidEmitter1.velocity.set(-1300, -1300, -1300, -1300, -1300, -1300);
 				asteroidEmitter1.lifespan.set(1.9, 8.9);
 				asteroidEmitter1.loadParticles(Paths.image('xigmund/ast1'), 500, 16, true);
 				asteroidEmitter1.start(false, FlxG.random.float(12, 18), FlxG.random.int(1000, 10000));
@@ -1922,7 +1923,7 @@ class PlayState extends MusicBeatState
 		add(iconP2);
 		reloadHealthBarColors();
 
-		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 33);
+		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 32);
 		scoreTxt.setFormat(Paths.font("goodbyeDespair.ttf"), 30, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.25;
@@ -1944,11 +1945,8 @@ class PlayState extends MusicBeatState
 			comboGlow.cameras = [camHUD];
 			add(comboGlow);
 
-			combotxt1 = new FlxText();
-			combotxt1.size = 32;
+			combotxt1 = new FlxText(comboGlow.x + 15, comboGlow.y + 15, FlxG.width, "", 32);
 			combotxt1.color = FlxColor.WHITE;
-			combotxt1.x = comboGlow.x + 21;
-			combotxt1.y = comboGlow.y + 45;
 			combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt1.scrollFactor.set();
 			combotxt1.borderSize = 1.25;
@@ -1956,11 +1954,8 @@ class PlayState extends MusicBeatState
 			combotxt1.alpha = 0;
 			add(combotxt1);
 
-			combotxtscoreplus = new FlxText();
-			combotxtscoreplus.size = 32;
+			combotxtscoreplus = new FlxText(combotxt1.x, combotxt1.y + 15, FlxG.width, "", 27);
 			combotxtscoreplus.color = FlxColor.WHITE;
-			combotxtscoreplus.x = combotxt1.x;
-			combotxtscoreplus.y = combotxt1.y + 25;
 			combotxtscoreplus.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxtscoreplus.scrollFactor.set();
 			combotxtscoreplus.borderSize = 1.25;
@@ -1969,14 +1964,11 @@ class PlayState extends MusicBeatState
 			add(combotxtscoreplus);
 
 			// combo score lerp
-			combotxt2 = new FlxText();
+			combotxt2 = new FlxText(combotxt1.x, combotxtscoreplus.y + 19, FlxG.width, "", 32);
 			combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt2.scrollFactor.set();
 			combotxt2.borderSize = 1.25;
-			combotxt2.size = 32;
 			//combotxt2.setPosition(579, 0); // ibis paint coordinates moment :nerdanimechar:
-			combotxt2.x = combotxt1.x;
-			combotxt2.y = combotxt1.y + 65;
 			combotxt2.cameras = [camHUD];
 			combotxt2.alpha = 0;
 			add(combotxt2);
@@ -1999,16 +1991,17 @@ class PlayState extends MusicBeatState
 
 			bar.makeGraphic(1, 100, FlxColor.BLACK);
 			bar.alpha = 0.40;
-			bar.scale.x = songTxt.width + 20;
-			bar.x = -20;
-			bar.y = 190;
+			bar.scale.x = songTxt.x + 20;
+			bar.x = -60;
+			bar.y = 410;
 			bar.cameras = [camHUD];
 			bar.scrollFactor.set();
 			add(bar);
 	
 		// o texto vai pegar o conteudo do txt & if the txt file exists the txt string will get the file content
-		if(FileSystem.exists(Paths.txt(songName + '/info'))) {
-			songString = File.getContent(Paths.txt(songName + '/info'));
+		var file:String = Paths.txt(songName + '/' + 'info');
+		if(OpenFlAssets.exists(file)) { // info file fix?
+			songString = OpenFlAssets.getBytes(SUtil.getPath() + file);
 
 			if(songName == 'extraterrestrial'){
 				songTxt.visible = false;
@@ -2022,12 +2015,14 @@ class PlayState extends MusicBeatState
 		if (curStage == 'ena') {
 			iconP2.visible = false;
 		}
+
 		if (curStage == 'astral') {
 			iconP1.visible = false;
 			iconP2.visible = false;
 			healthBarBG.visible = false;
 			healthBar.visible = false;
 		}
+
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
 		}
