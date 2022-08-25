@@ -88,6 +88,10 @@ class CreditsState extends MusicBeatState
 			['MateusX02', 'matx02', 'Cutscenes Coder and only it,\n i guess', 'https://www.youtube.com/channel/UCPh9ueTFJh50NRlF2CLsbbA', 'FFFFFF'],
 			['Peppy',		'Elpepe',	'Menu Coding Helper and in the Gameplay\n Peppy God',		'https://youtube.com/c/PeppyWall',		'4DA5FF'],
 			[''],
+			['Hotline 024 Recreation Builders\nwhen git actions dont works'],
+			['Vegeth', 'vege', 'First Builder of Recreation\ncuz i dont have a PC', 'https://seinao', '4DA5FF'],
+			['Random', 'random', 'Second Builder of Recreation\nand PE 0.5.2h no mod folder creator', 'https://seinao', '4DA5FF'], // idk what color lol
+			[''],
 			['Psych Engine Android'],
 			['Saw (M.A. Jigsaw)',	'saw',				'Main Programmer of Psych Engine Android',					'https://www.youtube.com/channel/UC2Sk7vtPzOvbVzdVTWrribQ', 	'F73838'],
 			[''],
