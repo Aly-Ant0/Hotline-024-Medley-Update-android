@@ -114,7 +114,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		add(jukeboxText);
 
 		jukeHitbox = new FlxObject(0, 0, 175, 25);
-		jukeHitbox.setPosition(512, 9);
+		jukeHitbox.setPosition(532, 9);
 		add(jukeHitbox);
 
 		creditsImage = new FlxSprite().loadGraphic(Paths.image('hotline/menu/credits'));
@@ -123,8 +123,8 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		//creditsImage.updateHitbox();
 		add(creditsImage);
 
-		creditsHitbox = new FlxObject(512, 684, 175, 25);
-		creditsHitbox.setPosition(512, 684);
+		creditsHitbox = new FlxObject(532, 684, 175, 25);
+		creditsHitbox.setPosition(532, 684);
 		add(creditsHitbox);
 
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
@@ -218,7 +218,6 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 
 			if (controls.ACCEPT)
 			{
-				FlxG.sound.play(Paths.sound('entersfx'));
 				if (optionShit[curSelected] == 'story_mode')
 				{
 					for (item in menuItems)
@@ -226,7 +225,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 						if(item.ID == curSelected)
 						{
 							FlxG.sound.play(Paths.sound('errorsfx'));
-							FlxFlicker.flicker(item, 0.4, 0.06, false);
+							FlxFlicker.flicker(item, 0.4, 0.06, true);
 						}
 					}
 				}
@@ -242,10 +241,13 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 								switch(daChoice)
 								{
 									case 'freeplay':
+										FlxG.sound.play(Paths.sound('entersfx'));
 										MusicBeatState.switchState(new FreeplayState());
 									case 'extras':
 										MusicBeatState.switchState(new ExtrasScreen());
+										FlxG.sound.play(Paths.sound('entersfx'));
 										case 'options':
+											FlxG.sound.play(Paths.sound('entersfx'));
 											LoadingState.loadAndSwitchState(new options.OptionsState());
 								}
 							});
