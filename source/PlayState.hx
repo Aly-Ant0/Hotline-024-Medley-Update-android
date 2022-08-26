@@ -769,7 +769,7 @@ class PlayState extends MusicBeatState
 				function update()
 				{
 				bfReflextion.animation.frameIndex = boyfriend.animation.frameIndex;
-				}*
+				}*/
 				
 
 			case 'mazin-mall': //fun is infinite
@@ -1753,7 +1753,6 @@ class PlayState extends MusicBeatState
 				bfreflect.blend = ADD;
 				bfreflect.alpha = 0.5;
 				bfreflect.y = boyfriend.y + 320;
-				bfreflect.animation.animationIndex = boyfriend.animation.animationIndex;
 				insert(members.indexOf(boyfriendGroup), bfreflect);
 			case 'limo':
 				resetFastCar();
@@ -3541,6 +3540,9 @@ class PlayState extends MusicBeatState
 		{
 			iconP1.swapOldIcon();
 		}*/
+		if (curStage == 'covers'){
+			bfreflect.animation.frameIndex = boyfriend.animation.frameIndex;
+		}
 
 		if (comboState == 0){ // combo moment 
 			combotxt1.text = rating + " x" + comboNum;
