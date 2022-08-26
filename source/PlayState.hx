@@ -250,6 +250,8 @@ class PlayState extends MusicBeatState
 	var coverBG8:BGSprite;
 	var coverBG9:BGSprite;
 
+	var bfreflect:FlxSprite = new FlxSprite();
+
 	// expurgated
 	var exSky:BGSprite;
 	var exRock:BGSprite;
@@ -767,7 +769,8 @@ class PlayState extends MusicBeatState
 				function update()
 				{
 				bfReflextion.animation.frameIndex = boyfriend.animation.frameIndex;
-				}*/
+				}*
+				
 
 			case 'mazin-mall': //fun is infinite
 				//if(!ClientPrefs.dontShowBG)
@@ -829,7 +832,7 @@ class PlayState extends MusicBeatState
 					add(exGround);
 	
 					exOverlay = new BGSprite('expurgated/gradoverlay', -1440, -650, 0, 0);
-					exOverlay.blend = ADD;
+					exOverlay.blend = ADD; // how anyone didnt get it?
 					exOverlay.scale.set(2.5, 2.5);
 					exOverlay.updateHitbox();
 					//exOverlay.antialiasing = ClientPrefs.globalAntialiasing;
@@ -1744,14 +1747,14 @@ class PlayState extends MusicBeatState
 		switch(curStage)
 		{
 			case 'covers':
-				var bfshade = new FlxSprite(boyfriend.x, boyfriend.y); //bf reflect test
-				bfshade.frames = boyfriend.frames;
-				bfshade.flipY = true;
-				bfshade.blend = ADD;
-				bfshade.alpha = 0.5;
-				bfshade.y = boyfriend.y + 400;
-				bfshade.animation.play(boyfriend.animation.curAnim.name);
-				insert(members.indexOf(boyfriendGroup), bfshade);
+				//bfreflect = new FlxSprite(boyfriend.x, boyfriend.y); //bf reflect test wait its already declared
+				bfreflect.frames = boyfriend.frames;
+				bfreflect.flipY = true;
+				bfreflect.blend = ADD;
+				bfreflect.alpha = 0.5;
+				bfreflect.y = boyfriend.y + 320;
+				bfreflect.animation.animationIndex = boyfriend.animation.animationIndex;
+				insert(members.indexOf(boyfriendGroup), bfreflect);
 			case 'limo':
 				resetFastCar();
 				insert(members.indexOf(gfGroup) - 1, fastCar);
@@ -3568,7 +3571,7 @@ class PlayState extends MusicBeatState
 				combotxtscoreplus.alpha = 0;
 				FlxTween.tween(combotxt1, {alpha:0}, 1);
 				FlxTween.tween(combotxt2, {alpha:0}, 1);
-				if (bads>=5&&!shits>=3)
+				if (bads>=5&&shits>=3)
 				{
 								combotxt1.text = 'whoops...';
 				}
