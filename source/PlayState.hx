@@ -1143,12 +1143,11 @@ class PlayState extends MusicBeatState
 				asteroidEmitter1.start(false, FlxG.random.float(12, 18), FlxG.random.int(1000, 10000));
 
 			case 'sus': // now im using the flash 8 coordinates 
-				var bg1:BGSprite = new BGSprite('sus/SUS1', 0, 50, 0.1, 0.1);
+				var bg1:BGSprite = new BGSprite('sus/SUS1', 0, 50, 0.3, 0.3);
 				//bg1.updateHitbox();
 				add(bg1);
 
-				var bg2:BGSprite = new BGSprite('sus/SUS2', -246.
-				1, -327.3, 0, 0);
+				var bg2:BGSprite = new BGSprite('sus/SUS2', -246.1, -327.3, 0.1, 0);
 				//bg2.updateHitbox();
 				add(bg2);
 
@@ -1753,6 +1752,7 @@ class PlayState extends MusicBeatState
 				bfreflect.flipY = true;
 				bfreflect.blend = ADD;
 				bfreflect.alpha = 0.5;
+				bfreflect.x = boyfriend.x;
 				bfreflect.y = boyfriend.y + 320;
 				insert(members.indexOf(boyfriendGroup), bfreflect);
 			case 'limo':
@@ -1948,18 +1948,18 @@ class PlayState extends MusicBeatState
 			comboGlow.cameras = [camHUD];
 			add(comboGlow);
 
-			combotxt1 = new FlxText(comboGlow.x + 15, comboGlow.y + 15, FlxG.width, "", 32);
+			combotxt1 = new FlxText(comboGlow.x + 15, comboGlow.y + 15, 0, "", 33);
 			combotxt1.color = FlxColor.WHITE;
-			combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 33, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt1.scrollFactor.set();
 			combotxt1.borderSize = 1.25;
 			combotxt1.cameras = [camHUD];
 			combotxt1.alpha = 0;
 			add(combotxt1);
 
-			combotxtscoreplus = new FlxText(combotxt1.x, combotxt1.y + 15, FlxG.width, "", 27);
+			combotxtscoreplus = new FlxText(combotxt1.x, combotxt1.y + 15, FlxG.width, "", 23);
 			combotxtscoreplus.color = FlxColor.WHITE;
-			combotxtscoreplus.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			combotxtscoreplus.setFormat(Paths.font("goodbyeDespair.ttf"), 23, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxtscoreplus.scrollFactor.set();
 			combotxtscoreplus.borderSize = 1.25;
 			combotxtscoreplus.cameras = [camHUD];
@@ -1967,8 +1967,8 @@ class PlayState extends MusicBeatState
 			add(combotxtscoreplus);
 
 			// combo score lerp
-			combotxt2 = new FlxText(combotxt1.x, combotxtscoreplus.y + 19, FlxG.width, "", 32);
-			combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			combotxt2 = new FlxText(combotxt1.x, combotxtscoreplus.y + 19, 0, "", 34);
+			combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 34, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt2.scrollFactor.set();
 			combotxt2.borderSize = 1.25;
 			//combotxt2.setPosition(579, 0); // ibis paint coordinates moment :nerdanimechar:
@@ -1979,7 +1979,7 @@ class PlayState extends MusicBeatState
 			if(ClientPrefs.middleScroll && !ClientPrefs.downScroll) {
 				COMBO_Y = 160;
 			}
-			else if(ClientPrefs.middleScroll && ClientPrefs.downScroll){
+			if(ClientPrefs.middleScroll && ClientPrefs.downScroll){
 				COMBO_Y =  495;
 			}
 			else if(ClientPrefs.downScroll) {
@@ -1990,7 +1990,7 @@ class PlayState extends MusicBeatState
 			add(songnameBoxGrp);
 
 			songTxt = new FlxText(bar.x + 10, bar.y + 5, 0, "", 37); // it mentions the bar variable cuz its already declared look at the line 175
-			songTxt.setFormat(Paths.font("Coco-Sharp-Heavyc -Italic-trial.ttf"), 32, FlxColor.WHITE, RIGHT);
+			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 37, FlxColor.WHITE, RIGHT);
 			songTxt.cameras = [camHUD];
 			songTxt.scrollFactor.set();
 			songnameBoxGrp.add(songTxt);
@@ -2040,6 +2040,7 @@ class PlayState extends MusicBeatState
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 		botplayTxt.cameras = [camHUD];
+		songnameBoxGrp.cameras = [camHUD];
 		timeBar.cameras = [camHUD];
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
