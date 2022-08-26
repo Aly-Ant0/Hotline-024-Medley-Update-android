@@ -175,7 +175,7 @@ class PlayState extends MusicBeatState
 	var bar:FlxSprite = new FlxSprite();
 	var songTxt:FlxText;
 	var songString:String = "";
-	var songlol:FlxTypedSpriteGroup<FlxSprite>; //unused
+	var songnameBoxGrp:FlxTypedSpriteGroup<FlxSprite>;
 	var whiteLol:FlxSprite; //unused
 
 	public var gfSpeed:Int = 1;
@@ -1983,20 +1983,21 @@ class PlayState extends MusicBeatState
 				COMBO_Y = 560;
 			}
 
-			songTxt = new FlxText(bar.x + 10, bar.y + 5, 0, "", 37); // it mentions the bar variable cuz its already declared
-			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 32, FlxColor.WHITE, RIGHT);
+			songnameBoxGrp = new FlxTypedSpriteGroup<FlxSprite>();
+			add(songnameBoxGrp);
+
+			songTxt = new FlxText(bar.x + 10, bar.y + 5, 0, "", 37); // it mentions the bar variable cuz its already declared look at the line 175
+			songTxt.setFormat(Paths.font("Coco-Sharp-Heavyc -Italic-trial.ttf"), 32, FlxColor.WHITE, RIGHT);
 			songTxt.cameras = [camHUD];
 			songTxt.scrollFactor.set();
-			add(songTxt);
+			songnameBoxGrp.add(songTxt);
 
 			bar.makeGraphic(1, 100, FlxColor.BLACK);
 			bar.alpha = 0.40;
 			bar.scale.x = songTxt.x + 20;
-			bar.x = -60;
-			bar.y = 410;
 			bar.cameras = [camHUD];
 			bar.scrollFactor.set();
-			add(bar);
+			songnameBoxGrp.add(bar);
 	
 		// o texto vai pegar o conteudo do txt & if the txt file exists the txt string will get the file content
 		var file:String = Paths.txt(songName + '/' + 'info');
@@ -2735,26 +2736,14 @@ class PlayState extends MusicBeatState
 	public function songSlide():Void
 	{
 		new FlxTimer().start(1, function(tmr:FlxTimer) {
-			FlxTween.tween(songTxt, {x:500}, 0.28, {ease: FlxEase.expoOut});
+			FlxTween.tween(songnameBoxGrp, {x:500}, 0.28, {ease: FlxEase.expoOut});
 		});
 		new FlxTimer().start(4, function(tmr:FlxTimer) 
 		{
-			FlxTween.tween(songTxt, {x:0}, 0.28, {ease: FlxEase.expoIn,
+			FlxTween.tween(songnameBoxGrp, {x:0}, 0.28, {ease: FlxEase.expoIn,
 				onComplete: function(twn:FlxTween)
 				{
-					songTxt.alpha = 0;
-				}
-			});
-		});
-		new FlxTimer().start(1, function(tmr:FlxTimer) {
-			FlxTween.tween(bar, {x:500}, 0.28, {ease: FlxEase.expoOut});
-		});
-		new FlxTimer().start(4, function(tmr:FlxTimer) 
-		{
-			FlxTween.tween(bar, {x:0}, 0.28, {ease: FlxEase.expoIn,
-				onComplete: function(twn:FlxTween)
-				{
-					bar.alpha = 0;
+					songnameBoxGrp.alpha = 0;
 				}
 			});
 		});
@@ -2849,10 +2838,8 @@ class PlayState extends MusicBeatState
 				return;
 			}
 
-			/*new FlxTimer().start(0.65, function(tmr:FlxTimer)
-			{
-				songSlide();
-			});*/
+			songSlide();
+
 			startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
 			{
 				if (gf != null && tmr.loopsLeft % Math.round(gfSpeed * gf.danceEveryNumBeats) == 0 && gf.animation.curAnim != null && !gf.animation.curAnim.name.startsWith("sing") && !gf.stunned)
@@ -3085,8 +3072,6 @@ class PlayState extends MusicBeatState
 		lastReportedPlayheadPosition = 0;
 
 		//cu(1, 1);
-
-		songSlide();
 
 		FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 1, false);
 		FlxG.sound.music.onComplete = onSongComplete;
@@ -3568,8 +3553,8 @@ class PlayState extends MusicBeatState
 
 				// lerp momento
 				var toZero:Int = 0;
-				comboScore = Math.floor(FlxMath.lerp(comboScore, toZero, CoolUtil.boundTo(1 - (elapsed * 24), 1, 0)));
-				songScore = Math.floor(FlxMath.lerp(songScore, scoreTarget, CoolUtil.boundTo(1 - (elapsed * 24), 0, 1)));
+				comboScore = Math.floor(FlxMath.lerp(comboScore, toZero, CoolUtil.boundTo(1 - (elapsed * 32), 1, 0)));
+				songScore = Math.floor(FlxMath.lerp(songScore, scoreTarget, CoolUtil.boundTo(1 - (elapsed * 32), 0, 1)));
 				if (Math.abs(songScore - scoreTarget) <= 10)
 					songScore = scoreTarget;
 					if (Math.abs(comboScore - toZero) <= 10)
@@ -3578,24 +3563,23 @@ class PlayState extends MusicBeatState
 				// se tiver visível é claro né meu fi ou fia sla
 
 				// pra qm nao entendeu o sentido dessa msg aq em cima é pq tinha uma condição q se tiver no middlescroll os bagui do combo nao aparecia
-				FlxFlicker.flicker(combotxt1, 0.8, 0.05, true, false);
-				FlxFlicker.flicker(combotxt2, 0.8, 0.05, true, false);
-				comboGlow.alpha = FlxMath.lerp(comboGlow.alpha, 0, CoolUtil.boundTo(1 - (elapsed * 1.2), 1, 0));
-				combotxt1.alpha = FlxMath.lerp(combotxt1.alpha, 0, CoolUtil.boundTo(1 - (elapsed * 1.2), 1, 0));
-				combotxt2.alpha = FlxMath.lerp(combotxt2.alpha, 0, CoolUtil.boundTo(1 - (elapsed * 1.2), 1, 0));
-				combotxtscoreplus.alpha = FlxMath.lerp(combotxtscoreplus.alpha, 0, CoolUtil.boundTo(1 - (elapsed * 1.2), 1, 0));
-				if (bads >= 5 && shits >= 3)
+				FlxFlicker.flicker(combotxt1, 1, 0.05, true, false);
+				FlxFlicker.flicker(combotxt2, 1, 0.05, true, false);
+				combotxtscoreplus.alpha = 0;
+				FlxTween.tween(combotxt1, {alpha:0}, 1);
+				FlxTween.tween(combotxt2, {alpha:0}, 1);
+				if (bads>=5&&!shits>=3)
 				{
 								combotxt1.text = 'whoops...';
 				}
-				if (sicks >= 15)
+				else if (sicks>=15)
 				{
 								combotxt1.text = 'nice!';
 				}
-				if (sicks >= 20){
+				else if (sicks>=20){
 								combotxt1.text = 'perfect!';
 				}
-				if (goods >= 4)
+				else if (goods>=5)
 				{
 								combotxt1.text = 'Great!';
 				}
@@ -5689,7 +5673,6 @@ class PlayState extends MusicBeatState
 				});
 				//startedC = true;
 			}
-
 			health += note.hitHealth * healthGain;
 
 			if(!note.noAnimation) {
