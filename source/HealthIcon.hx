@@ -31,7 +31,7 @@ class HealthIcon extends FlxSprite
 
 	public function swapOldIcon() {
 		if(isOldIcon = !isOldIcon) changeIcon('bf-old');
-		else changeIcon('bf');
+		else changeIcon('bf'); //soy una zorra
 	}
 
 	private var iconOffsets:Array<Float> = [0, 0];
