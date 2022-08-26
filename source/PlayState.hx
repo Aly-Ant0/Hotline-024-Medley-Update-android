@@ -1957,7 +1957,7 @@ class PlayState extends MusicBeatState
 			combotxt1.alpha = 0;
 			add(combotxt1);
 
-			combotxtscoreplus = new FlxText(combotxt1.x, combotxt1.y + 15, FlxG.width, "", 23);
+			combotxtscoreplus = new FlxText(combotxt1.x, combotxt1.y + 15, 0, "", 23);
 			combotxtscoreplus.color = FlxColor.WHITE;
 			combotxtscoreplus.setFormat(Paths.font("goodbyeDespair.ttf"), 23, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxtscoreplus.scrollFactor.set();
