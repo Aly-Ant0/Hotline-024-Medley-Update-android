@@ -1142,25 +1142,26 @@ class PlayState extends MusicBeatState
 				asteroidEmitter1.loadParticles(Paths.image('xigmund/ast1'), 500, 16, true);
 				asteroidEmitter1.start(false, FlxG.random.float(12, 18), FlxG.random.int(1000, 10000));
 
-			case 'sus':
+			case 'sus': // now im using the flash 8 coordinates 
 				var bg1:BGSprite = new BGSprite('sus/SUS1', 0, 50, 0.1, 0.1);
-				bg1.updateHitbox();
+				//bg1.updateHitbox();
 				add(bg1);
 
-				var bg2:BGSprite = new BGSprite('sus/SUS2', 0, 0, 0, 0);
-				bg2.updateHitbox();
+				var bg2:BGSprite = new BGSprite('sus/SUS2', -246.
+				1, -327.3, 0, 0);
+				//bg2.updateHitbox();
 				add(bg2);
 
-				osCaboSUS = new BGSprite('sus/SUS3', 0, 0, 0.2, 0.2);
-				osCaboSUS.updateHitbox();
+				osCaboSUS = new BGSprite('sus/SUS3', -517.0, -6.6, 0.8, 0.8);
+				//osCaboSUS.updateHitbox();
 
 			case 'ddto':
 				var bg1:BGSprite = new BGSprite('ddto/DDLC-1', 0, 0, 0, 0);
-				bg1.updateHitbox();
+				//bg1.updateHitbox();
 				add(bg1);
 
 				naoseiseissoecabomasfds = new BGSprite('ddto/DDLC-2', 0, 0, 0, 0);
-				naoseiseissoecabomasfds.updateHitbox();
+				//naoseiseissoecabomasfds.updateHitbox();
 
 			case 'nightland':
 				var bg1:BGSprite = new BGSprite('nightland/BG1', -1300, -1000, .15, .15);
@@ -1183,14 +1184,14 @@ class PlayState extends MusicBeatState
 				bg4.updateHitbox();
 				add(bg4);
 
-				var bg5:BGSprite = new BGSprite('nightland/GROUMD5', -2000, -1300);
+				var bg5:BGSprite = new BGSprite('nightland/GROUMD5', -2000, -1450, 0.2, 0.2);
 				bg5.scale.set(1.7, 1.6);
 				bg5.updateHitbox();
 				add(bg5);
 
-				blurBg = new BGSprite('nightland/BLURROC6', -2000, -1150, .018, .018);
-				blurBg.updateHitbox();
+				blurBg = new BGSprite('nightland/BLURROC6', -2000, -690, .018, .018);
 				blurBg.scale.set(1.7, 1.6);
+				blurBg.updateHitbox();
 
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
