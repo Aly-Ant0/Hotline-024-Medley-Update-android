@@ -47,9 +47,7 @@ class FreeplayText extends FlxSkewedSprite
 		y = FlxMath.lerp(y, (targetY * 150) - -10, CoolUtil.boundTo(elapsed * 32, 0, 1));
 
 		if(notSlct){
-			var lastAngle:Float = lastAngle;
-
-			angle = FlxMath.lerp(lastAngle, 2 + 3 * targetY, CoolUtil.boundTo(elapsed * 27, 0, 1));
+			angle = FlxMath.lerp(angle, 2 + 3 * targetY, CoolUtil.boundTo(elapsed * 27, 0, 1));
 			skew.x = skewDirection * skewSpeed * elapsed;
 			forceSkew = skew.x;
 
@@ -64,8 +62,9 @@ class FreeplayText extends FlxSkewedSprite
 			}
 		}
 		if(select){
+			var lastAngle:Float = angle;
 			skew.x = skewDirection * skewSpeed * elapsed;
-			port.angle = FlxMath.lerp(port.angle, -1, lerpVal);
+			angle = FlxMath.lerp(lastAngle, -1, lerpVal);
 		}
 		//x = x * (targetY - 0.5);
 	}
