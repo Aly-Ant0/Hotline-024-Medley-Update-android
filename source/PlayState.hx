@@ -377,6 +377,8 @@ class PlayState extends MusicBeatState
 	var tankmanRun:FlxTypedGroup<TankmenBG>;
 	var foregroundSprites:FlxTypedGroup<BGSprite>;
 
+	var deeznut:Int = 0; // just a random thing for the flxg log lmao
+
 	//score stuff
 	public var songScore:Int = 0;
 	public var songHits:Int = 0;
@@ -397,9 +399,9 @@ class PlayState extends MusicBeatState
 	public var comboScore:Int = 0;
 	public var comboNum:Int = 0; // its the fake combo :trollface:
 	public var comboState:Int = 0;
-	var pressedKey:Bool = false;
-	var endCombo:Bool = false;
-	var showCombo2:Bool = false;
+	var pressedKey:Bool = false; // unused
+	var endCombo:Bool = false; // unused
+	var showCombo2:Bool = false; // unused
 	var timeTxt:FlxText;
 	var comboTwn:FlxTween;
 	var comboTwn2:FlxTween;
@@ -1164,32 +1166,32 @@ class PlayState extends MusicBeatState
 				//naoseiseissoecabomasfds.updateHitbox();
 
 			case 'nightland':
-				var bg1:BGSprite = new BGSprite('nightland/BG1', -606.5, -253.8, .15, .15);
+				var bg1:BGSprite = new BGSprite('nightland/BG1', -2131.4, -878.8, .15, .15);
 				bg1.scale.set(1.6, 1.6);
 				bg1.updateHitbox();
 				add(bg1);
 				
-				var bg2:BGSprite = new BGSprite('nightland/BAC2', -526.1,-306.6, .6, .6);
+				var bg2:BGSprite = new BGSprite('nightland/BAC2', -2197.4,-1033.6, .6, .6);
 				bg2.scale.set(1.7, 1.7);
 				bg2.updateHitbox();
 				add(bg2);
 				
-				var bg3:BGSprite = new BGSprite('nightland/ROC3', -123.3, -105.6, .9, 1);
+				var bg3:BGSprite = new BGSprite('nightland/ROC3', -2208.3, -528.7, .9, 1);
 				bg3.scale.set(1.6, 1.5);
 				bg3.updateHitbox();
 				add(bg3);
 				
-				var bg4:BGSprite = new BGSprite('nightland/TREE4', -481.3, -319.8, .15, .15);
+				var bg4:BGSprite = new BGSprite('nightland/TREE4', -1806.2, -854.0, .15, .15);
 				bg4.scale.set(1.6, 1.5);
 				bg4.updateHitbox();
 				add(bg4);
 
-				var bg5:BGSprite = new BGSprite('nightland/GROUMD5', -237.4, -311.7, 0.2, 0.2);
+				var bg5:BGSprite = new BGSprite('nightland/GROUMD5', -2096.3, -875.9, 0.2, 0.2);
 				bg5.scale.set(1.7, 1.6);
 				bg5.updateHitbox();
 				add(bg5);
 
-				blurBg = new BGSprite('nightland/BLURROC6', -143.3, -17.5, .018, .018);
+				blurBg = new BGSprite('nightland/BLURROC6', -2058.0, -664.9, .018, .018);
 				blurBg.scale.set(1.7, 1.6);
 				blurBg.updateHitbox();
 
@@ -1968,7 +1970,7 @@ class PlayState extends MusicBeatState
 			add(combotxtscoreplus);
 
 			// combo score lerp
-			combotxt2 = new FlxText(combotxt1.x + 5, combotxtscoreplus.y + 19, 0, "", 34);
+			combotxt2 = new FlxText(combotxt1.x + 15, combotxtscoreplus.y + 25, 0, "", 34);
 			combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 34, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt2.scrollFactor.set();
 			combotxt2.borderSize = 1.25;
@@ -3572,20 +3574,25 @@ class PlayState extends MusicBeatState
 				combotxtscoreplus.alpha = 0;
 				FlxTween.tween(combotxt1, {alpha:0}, 1);
 				FlxTween.tween(combotxt2, {alpha:0}, 1);
-				if (bads>=5&&shits>=3)
-				{
-								combotxt1.text = 'whoops...';
+				FlxTween.tween(combotxt1, {alpha:0}, 1);
+				FlxTween.tween(comboGlow, {alpha:0}, 1);
+
+				if (sicks>=20){
+								combotxt1.text = 'PERFECT!';
 				}
 				else if (sicks>=15)
 				{
-								combotxt1.text = 'nice!';
-				}
-				else if (sicks>=20){
-								combotxt1.text = 'perfect!';
+								combotxt1.text = 'NICE!';
 				}
 				else if (goods>=5)
 				{
-								combotxt1.text = 'Great!';
+								combotxt1.text = 'GREAT!';
+				}
+				else if (bads>=5&&shits>=3)
+				{
+								combotxt1.text = 'WHOOPS...';
+								FlxG.log.add('deez nuts part: ' + deeznut);
+								deeznut++;
 				}
 		}
 
@@ -6034,7 +6041,7 @@ class PlayState extends MusicBeatState
 				case 49:
 					FlxTween.tween(cutsceneBG, {alpha: 0}, 0.43);
 					FlxTween.tween(cutsceneLogo, {alpha: 0}, 0.43);
-				case 52:
+				case 52: // eu podia fazer isso com flxflicker mas fds
 					text1.visible = true;
 				case 53:
 					text1.visible = false;
