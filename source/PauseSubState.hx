@@ -157,7 +157,7 @@ class PauseSubState extends MusicBeatSubstate
 						MusicBeatState.switchState(new CoversScreen());
 						FlxG.sound.playMusic(Paths.music('nightlight'), 0);
 						FlxG.sound.music.fadeIn(4, 0, 0.8);
-					} else {
+					} if (PlayState.isFreeplay) {
 						MusicBeatState.switchState(new FreeplayState());
 						FlxG.sound.playMusic(Paths.music('nightlight'), 0);
 						FlxG.sound.music.fadeIn(4, 0, 0.8);
