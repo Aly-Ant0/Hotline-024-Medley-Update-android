@@ -118,10 +118,9 @@ class FreeplayState extends MusicBeatState
 		for (i in 0...songs.length)
 		{
 			var port:FreeplayText = new FreeplayText(310, 200, songs[i]);
-			port.y += ((port.width - 550) + 250 * i);
+			port.y += ((port.width - 620) + 150 * i);
 			port.targetY = i; // basically a id variable lmao
 			port.ID = i;
-			port.angle = -3;
 			port.skew.x = -1;
 			port.setGraphicSize(Std.int(port.width * 1.2));
 			//port.alpha = 1;
@@ -228,32 +227,14 @@ class FreeplayState extends MusicBeatState
 					//var lastX:Float = port.x;
 					//item.screenCenter(X);
 
-					port.skew.x = skewDirection * skewSpeed * elapsed; // i get this code from flxskewedsprite demo
-					//port.x = FlxMath.lerp(lastX, 310, lerpVal);
-					//port.forceX = port.x;
-					//port.skew.x = FlxMath.lerp(lastSkew, -2, lerpVal); // flxmath my beloved
-					//FlxTween.tween(port.skew, {x: 0}, 0.4, {ease: FlxEase.expoOut});
-					port.angle = FlxMath.lerp(lastAngle, -3, lerpVal); // aq ta com lerp e o outro ta linear memo fodase
-					//port.forceSkew = port.skew.x;
+					port.select = true;
+					port.notSlct = false;
 			}
 			else
 			{
-					//FlxTween.tween(port.skew, {x: -4}, 0.4, {ease: FlxEase.expoOut}); com flxtween fico um cu
-					//port.skew.x = FlxMath.lerp(port.skew.x, -5, lerpVal); // flxmath my beloved but not lmfao
-					//port.forceSkew = port.skew.x;
-						port.skew.x = skewDirection * skewSpeed * elapsed;
-						port.angle = FlxMath.lerp(port.angle, 2 + 2 * port.targetY, lerpVal); // vo mimir -aly ant
-						//port.x = FlxMath.lerp(port.x, 295 + -15, lerpVal); // fix x value?
-						port.forceX = port.x;
-			}
-			if (port.skew.x > maxSkew){ // no caso é oq ta selecionando
-				port.skew.x = maxSkew;
-				skewDirection = 1;
-			}
-			else if (port.skew.x > minSkew){ // no caso é oq nao ta selecionando
-				port.skew.x = minSkew;
-				skewDirection = -1;
-			}
+					port.select = false;
+					port.notSlct = true;
+			
 			// aly ant portuguesse from brazil moment e meu pau na sua mao
 		}
 
