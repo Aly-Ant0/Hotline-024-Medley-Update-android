@@ -4421,7 +4421,7 @@ class PlayState extends MusicBeatState
 					FlxTween.tween(numbahEiti3, {alpha: 1}, 0.005, {
 						onComplete:function(twn:FlxTween)
 						{
-							FlxTween.tween(nikkuOctagon, {x: -48.0, y:39.6}, 0.015, {
+							FlxTween.tween(nikkuOctagon, {x: -48.0, y:39.6}, 0.005, {
 								onComplete:function(twn:FlxTween)
 								{
 									FlxTween.tween(bubbleText, {"scale.x": 1.4, "scale.y": 1.4}, 0.005, {
@@ -4429,9 +4429,11 @@ class PlayState extends MusicBeatState
 										{
 											textOctagon.alpha = 1;
 											textOctagon.animation.play('text');
-											textOctagon.animation.finishCallback = function(){
-												octaMoment2();
-											}
+											textOctagon.animation.finishCallback = function(name:String){
+												if (name == 'text'){
+													octaMoment2();
+												}
+											};
 										}
 									});
 								}
