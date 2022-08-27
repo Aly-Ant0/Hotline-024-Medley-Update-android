@@ -234,7 +234,7 @@ class FreeplayState extends MusicBeatState
 			{
 					port.select = false;
 					port.notSlct = true;
-			
+			}
 			// aly ant portuguesse from brazil moment e meu pau na sua mao
 		}
 
