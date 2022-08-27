@@ -50,6 +50,7 @@ class ExtrasScreen extends MusicBeatState
 		PlayState.isCovers = false;
 		PlayState.isCode = false;
 		PlayState.isExtras = true;
+		PlayState.isFreeplay = false;
 
 		bg = new FlxSprite().loadGraphic(Paths.image('hotline/menu/extras/bg'));
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
