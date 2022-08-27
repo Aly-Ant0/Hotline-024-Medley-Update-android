@@ -128,6 +128,7 @@ class PlayState extends MusicBeatState
 	public static var isCovers:Bool = false;
 	public static var isExtras:Bool = false;
 	public static var isCode:Bool = false;
+	public static var isFreeplay:Bool = false;
 	public static var noSkins:Bool = false; // no skins?
 	public static var storyWeek:Int = 0;
 	public static var storyPlaylist:Array<String> = [];
@@ -1147,7 +1148,7 @@ class PlayState extends MusicBeatState
 				//bg1.updateHitbox();
 				add(bg1);
 
-				var bg2:BGSprite = new BGSprite('sus/SUS2', -246.1, -327.3, 0.1, 0);
+				var bg2:BGSprite = new BGSprite('sus/SUS2', -250.1, -327.3, 0.1, 0);
 				//bg2.updateHitbox();
 				add(bg2);
 
@@ -1163,32 +1164,32 @@ class PlayState extends MusicBeatState
 				//naoseiseissoecabomasfds.updateHitbox();
 
 			case 'nightland':
-				var bg1:BGSprite = new BGSprite('nightland/BG1', -1300, -1000, .15, .15);
+				var bg1:BGSprite = new BGSprite('nightland/BG1', -606.5, -253.8, .15, .15);
 				bg1.scale.set(1.6, 1.6);
 				bg1.updateHitbox();
 				add(bg1);
 				
-				var bg2:BGSprite = new BGSprite('nightland/BAC2', -1700,-1200, .6, .6);
+				var bg2:BGSprite = new BGSprite('nightland/BAC2', -526.1,-306.6, .6, .6);
 				bg2.scale.set(1.7, 1.7);
 				bg2.updateHitbox();
 				add(bg2);
 				
-				var bg3:BGSprite = new BGSprite('nightland/ROC3', -1930, -1000, .9, 1);
+				var bg3:BGSprite = new BGSprite('nightland/ROC3', -123.3, -105.6, .9, 1);
 				bg3.scale.set(1.6, 1.5);
 				bg3.updateHitbox();
 				add(bg3);
 				
-				var bg4:BGSprite = new BGSprite('nightland/TREE4', -1730, -1050, .15, .15);
+				var bg4:BGSprite = new BGSprite('nightland/TREE4', -481.3, -319.8, .15, .15);
 				bg4.scale.set(1.6, 1.5);
 				bg4.updateHitbox();
 				add(bg4);
 
-				var bg5:BGSprite = new BGSprite('nightland/GROUMD5', -2000, -1450, 0.2, 0.2);
+				var bg5:BGSprite = new BGSprite('nightland/GROUMD5', -237.4, -311.7, 0.2, 0.2);
 				bg5.scale.set(1.7, 1.6);
 				bg5.updateHitbox();
 				add(bg5);
 
-				blurBg = new BGSprite('nightland/BLURROC6', -2000, -690, .018, .018);
+				blurBg = new BGSprite('nightland/BLURROC6', -143.3, -17.5, .018, .018);
 				blurBg.scale.set(1.7, 1.6);
 				blurBg.updateHitbox();
 
@@ -1927,7 +1928,7 @@ class PlayState extends MusicBeatState
 		reloadHealthBarColors();
 
 		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 32);
-		scoreTxt.setFormat(Paths.font("goodbyeDespair.ttf"), 30, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scoreTxt.setFormat(Paths.font("goodbyeDespair.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.25;
 		scoreTxt.visible = !ClientPrefs.hideHud;
@@ -1967,7 +1968,7 @@ class PlayState extends MusicBeatState
 			add(combotxtscoreplus);
 
 			// combo score lerp
-			combotxt2 = new FlxText(combotxt1.x, combotxtscoreplus.y + 19, 0, "", 34);
+			combotxt2 = new FlxText(combotxt1.x + 5, combotxtscoreplus.y + 19, 0, "", 34);
 			combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 34, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt2.scrollFactor.set();
 			combotxt2.borderSize = 1.25;
@@ -3553,10 +3554,6 @@ class PlayState extends MusicBeatState
 		}
 		if (comboState == 1){ // combo moment 2
 				comboNum = 0;
-				goods = 0;
-				sicks = 0;
-				bads = 0;
-				shits = 0;
 
 				// lerp momento
 				var toZero:Int = 0;
@@ -4159,7 +4156,7 @@ class PlayState extends MusicBeatState
 		return pressed;
 	}
 
-	public static function TweenParticles(go:FlxSprite, newx:Float,  amp:Float, newy:Float, newalpha:Float, tweenTime:Float, delayTime:Float, newEase:Float->Float, ?baseScale:Float=1):Void{
+	public static function TweenParticles(go:FlxSprite, newx:Float,  amp:Float, newy:Float, newalpha:Float, tweenTime:Float, delayTime:Float, newEase:Float->Float, ?baseScale:Float=1):Void{ // unused becuz its kinda buggy
 
 		var randomScale = 0.4 + Math.random()*baseScale;
 
@@ -4416,12 +4413,12 @@ class PlayState extends MusicBeatState
 
 				new FlxTimer().start(0.015, function(tmr:FlxTimer)
 				{
-					FlxTween.tween(blackStart, {alpha:0}, 0.015);
-					FlxTween.tween(octagonBG, {alpha: 1}, 0.015);
-					FlxTween.tween(octagonBG2, {alpha: 1}, 0.015);
-					FlxTween.tween(numbahEiti, {alpha: 1}, 0.015);
-					FlxTween.tween(numbahEiti2, {alpha: 1}, 0.015);
-					FlxTween.tween(numbahEiti3, {alpha: 1}, 0.015, {
+					FlxTween.tween(blackStart, {alpha:0}, 0.005);
+					FlxTween.tween(octagonBG, {alpha: 1}, 0.005);
+					FlxTween.tween(octagonBG2, {alpha: 1}, 0.005);
+					FlxTween.tween(numbahEiti, {alpha: 1}, 0.005);
+					FlxTween.tween(numbahEiti2, {alpha: 1}, 0.005);
+					FlxTween.tween(numbahEiti3, {alpha: 1}, 0.005, {
 						onComplete:function(twn:FlxTween)
 						{
 							FlxTween.tween(nikkuOctagon, {x: -48.0, y:39.6}, 0.015, {
@@ -4432,16 +4429,15 @@ class PlayState extends MusicBeatState
 										{
 											textOctagon.alpha = 1;
 											textOctagon.animation.play('text');
+											textOctagon.animation.finishCallback = function(){
+												octaMoment2();
+											}
 										}
 									});
 								}
 							});
 						}
 					});
-				});
-				new FlxTimer().start(11, function(tmr:FlxTimer)
-				{
-					octaMoment2();
 				});
 	}
 	function octaMoment2():Void // pre-end of the cutscene
@@ -4465,7 +4461,12 @@ class PlayState extends MusicBeatState
 			}
 		});
 
-		new FlxTimer().start(2, function(tmr:FlxTimer)
+		new FlxTimer().start(1, function(tmr:FlxTimer){
+			flash.visible = true;
+			FlxFlicker.flicker(flash, 0.5, 0.05, false, false);
+		});
+
+		new FlxTimer().start(0.5, function(tmr:FlxTimer)
 		{
 			removeOctaCut();
 		});
@@ -5102,7 +5103,7 @@ class PlayState extends MusicBeatState
 				FlxG.sound.music.fadeIn(4, 0, 0.8);
 				//changedDifficulty = false;
 			}
-			else
+			if (isFreeplay)
 			{
 				trace('WENT BACK TO FREEPLAY??');
 				cancelMusicFadeTween();
@@ -5196,6 +5197,7 @@ class PlayState extends MusicBeatState
 			case "sick": // sick
 				totalNotesHit += 1;
 				note.ratingMod = 1;
+				score = 350;
 				rating = "SICK!";
 				if(!note.ratingDisabled) sicks++;
 		}
