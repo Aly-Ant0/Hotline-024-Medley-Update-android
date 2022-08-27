@@ -49,6 +49,7 @@ class CodeScreen extends MusicBeatState
 		PlayState.isCode = true;
 		PlayState.isCovers = false;
 		PlayState.isExtras = false;
+		PlayState.isFreeplay = false;
 		//PlayState.noSkins = true; // no skins?
 
 		bg = new FlxSprite().loadGraphic(Paths.image('hotline/menu/code/bg'));
