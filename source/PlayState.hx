@@ -2820,10 +2820,10 @@ class PlayState extends MusicBeatState
 		return comboNum++;
 	}
 	function spawnCombo(){ // combo moment 8
-		combotxt1.alpha = 1;
-		combotxt2.alpha = 1;
+		FlxTween.tween(combotxt1, {alpha:1}, 0.01);
+		FlxTween.tween(combotxt2, {alpha:1}, 0.01);
+		FlxTween.tween(comboGlow, {alpha:1}, 0.01);
 		combotxtscoreplus.alpha = 1;
-		comboGlow.alpha = 0.3;
 	}
 
 	var startTimer:FlxTimer;
@@ -3603,13 +3603,10 @@ class PlayState extends MusicBeatState
 				FlxFlicker.flicker(combotxt1, 1, 0.05, true, false);
 				FlxFlicker.flicker(combotxt2, 1, 0.05, true, false);
 				combotxtscoreplus.alpha = 0;
-				comboAlphaTwn =FlxTween.tween(combotxt1, {alpha:0}, 1);
-				comboAlphaTwn2 = FlxTween.tween(combotxt2, {alpha:0}, 1);
+				FlxTween.tween(combotxt1, {alpha:0}, 1);
+				FlxTween.tween(combotxt2, {alpha:0}, 1);
 				//FlxTween.tween(combotxt1, {alpha:0}, 1);
-				comboGlowAlphaTwn = FlxTween.tween(comboGlow, {alpha:0}, 1);
-				comboGlowAlphaTwn.start();
-				comboAlphaTwn.start();
-				comboAlphaTwn2.start();
+				FlxTween.tween(comboGlow, {alpha:0}, 1);
 
 				if (sicks>=20){
 								combotxt1.text = 'PERFECT!';
@@ -5716,9 +5713,6 @@ class PlayState extends MusicBeatState
 				popUpCombo();
 				if(combo > 9999) combo = 9999;
 				//startedC = true;
-				comboGlowAlphaTwn.cancel();
-				comboAlphaTwn.cancel();
-				comboAlphaTwn2.cancel();
 				comboTmr.cancel();
 				comboTmr.start(2, function(tmr:FlxTimer){
 					//finishState = true;
