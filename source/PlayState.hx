@@ -2115,7 +2115,7 @@ class PlayState extends MusicBeatState
 			switch (daSong)
 			{
 				case 'satellite-picnic':
-					strumLineNotes.members.alpha = 0;
+					notes.members.alpha = 0;
 					var cutscenePhone:FlxSound;
 					cutscenePhone = new FlxSound().loadEmbedded(Paths.sound('panicPhone'));
 					cutscenePhone.play();
