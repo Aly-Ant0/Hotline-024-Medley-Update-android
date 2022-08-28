@@ -492,7 +492,7 @@ class PlayState extends MusicBeatState
 			keysPressed.push(false);	
 		}	
 		FlxG.mouse.visible = false;	
-		FlxG.debugger.visible = true;
+		//FlxG.debugger.visible = true;
 
 		if (FlxG.sound.music != null)	
 			FlxG.sound.music.stop();	
@@ -903,14 +903,14 @@ class PlayState extends MusicBeatState
 	
 					hallLuzinha = new BGSprite('hallway/grad', -810, -1060, 1, 1);
 					hallLuzinha.blend = ADD;
-					hallLuzinha.updateHitbox();
 					//jojoLuzinha.antialiasing = ClientPrefs.globalAntialiasing;
 					hallLuzinha.scale.set(1.6, 1.6);
+					hallLuzinha.updateHitbox();
 					
 					hallFG = new BGSprite('hallway/fg', -810, -790, 1, 1);
-					hallFG.updateHitbox();
 					//jojoFG.antialiasing = ClientPrefs.globalAntialiasing;
 					hallFG.scale.set(1.6, 1.6);
+					hallFG.updateHitbox();
 					
 					/*SANESSS = new FlxSprite(0, 0);
 					SANESSS.frames = AtlasFrameMaker.construct('hallway/cutscene1');
@@ -976,11 +976,10 @@ class PlayState extends MusicBeatState
 					rocks.updateHitbox();
 			case 'momogogo':
 				//var bg:FlxBackdrop;
-				momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), true, false, 15);
-				momogogoBG.x = -1000;
+				momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), true, false, 10);
 				momogogoBG.y = -270;
 				momogogoBG.scale.set(1.25, 1.25);
-				//momogogoBG.updateHitbox(); maybe fixing
+				momogogoBG.updateHitbox();
 				momogogoBG.antialiasing = ClientPrefs.globalAntialiasing;
 				momogogoBG.scrollFactor.set(0,0);
 				momogogoBG.velocity.set(120, 0);
@@ -1990,7 +1989,7 @@ class PlayState extends MusicBeatState
 			combotxt1.alpha = 0;
 			add(combotxt1);
 
-			combotxtscoreplus = new FlxText(combotxt1.x + 25, combotxt1.y + 25, 0, "", 23);
+			combotxtscoreplus = new FlxText(combotxt1.x + 35, combotxt1.y + 25, 0, "", 23);
 			combotxtscoreplus.color = FlxColor.WHITE;
 			combotxtscoreplus.setFormat(Paths.font("goodbyeDespair.ttf"), 23, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxtscoreplus.scrollFactor.set();
@@ -2000,7 +1999,7 @@ class PlayState extends MusicBeatState
 			add(combotxtscoreplus);
 
 			// combo score lerp
-			combotxt2 = new FlxText(combotxt1.x + 25, combotxtscoreplus.y + 25, 0, "", 34);
+			combotxt2 = new FlxText(combotxt1.x + 25, combotxtscoreplus.y + 20, 0, "", 34);
 			combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 34, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt2.scrollFactor.set();
 			combotxt2.borderSize = 1.25;
@@ -2009,11 +2008,12 @@ class PlayState extends MusicBeatState
 			combotxt2.alpha = 0;
 			add(combotxt2);
 
-			if(ClientPrefs.middleScroll && !ClientPrefs.downScroll) {
+			if(ClientPrefs.middleScroll) {
 				COMBO_Y = 160;
-			}
-			if(ClientPrefs.middleScroll && ClientPrefs.downScroll){
-				COMBO_Y =  495;
+
+				if (ClientPrefs.downScroll){
+					COMBO_Y = 495;
+				}
 			}
 			else if(ClientPrefs.downScroll) {
 				COMBO_Y = 560;
@@ -2022,13 +2022,13 @@ class PlayState extends MusicBeatState
 			songnameBoxGrp = new FlxTypedSpriteGroup<FlxSprite>();
 			add(songnameBoxGrp);
 
-			songTxt = new FlxText(bar.x + 10, bar.y + 5, 0, "", 37); // it mentions the bar variable cuz its already declared look at the line 175
-			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 37, FlxColor.WHITE, RIGHT);
+			songTxt = new FlxText(bar.x + 10, bar.y + 5, 0, "", 38); // it mentions the bar variable cuz its already declared look at the line 175
+			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 38, FlxColor.WHITE, RIGHT);
 			songTxt.cameras = [camHUD];
 			songTxt.scrollFactor.set();
 			songnameBoxGrp.add(songTxt);
 
-			bar.makeGraphic(1, 100, FlxColor.BLACK);
+			bar.makeGraphic(120, 100, FlxColor.BLACK);
 			bar.alpha = 0.40;
 			bar.scale.x = songTxt.x + 20;
 			bar.cameras = [camHUD];
@@ -2039,14 +2039,11 @@ class PlayState extends MusicBeatState
 		var file:String = Paths.txt(songName + '/' + 'info');
 		if(OpenFlAssets.exists(file)) { // info file fix?
 			songString = OpenFlAssets.getText(SUtil.getPath() + file);
-
-			if(songName == 'extraterrestrial'){
-				songTxt.visible = false;
-				bar.visible = false;
-			}
 		}
 		else {
-			songString = 'NO BITCHES?';
+			songnameBoxGrp.alpha = 0
+			songString = 'NO BITCHES?'; // for prevent crash
+			// and yes, no bitches.
 		}
 
 		if (curStage == 'ena') {
@@ -2118,63 +2115,39 @@ class PlayState extends MusicBeatState
 			switch (daSong)
 			{
 				case 'satellite-picnic':
-					boyfriend.alpha = 0;
-					dad.alpha = 0;
-					camHUD.visible = false;
+					strumLineNotes.members.alpha = 0;
 					var cutscenePhone:FlxSound;
 					cutscenePhone = new FlxSound().loadEmbedded(Paths.sound('panicPhone'));
 					cutscenePhone.play();
 					FlxG.sound.list.add(cutscenePhone);
-
-					var nikkuBoo:FlxSprite;
-					nikkuBoo = new FlxSprite(boyfriend.x, boyfriend.y);
-					nikkuBoo.frames = Paths.getSparrowAtlas('characters/NikkuSatPanicV1', 'shared');
-					nikkuBoo.animation.addByPrefix('sit', 'Nikku_Sit instance 1', 24, false);
-					nikkuBoo.animation.addByPrefix('1shock', 'Nikku_Shock instance 1', 24, false);
-					nikkuBoo.animation.addByPrefix('2shock', 'Nikku_Shock2 instance 1', 24, false);
-					nikkuBoo.animation.addByPrefix('3shock', 'Nikku_Shock3 instance 1', 24, false);
-					nikkuBoo.animation.play('sit');
-					add(nikkuBoo);
-
-					var booCutscene:FlxSprite;
-					booCutscene = new FlxSprite(dad.x, dad.y);
-					booCutscene.frames = Paths.getSparrowAtlas('characters/BooSatPanicV1', 'shared');
-					booCutscene.animation.addByPrefix('1shock', 'BooIntro1 instance 1', 24, false);
-					booCutscene.animation.addByPrefix('2shock', 'BooIntro2 instance 1', 24, false);
-					booCutscene.animation.addByPrefix('3shock', 'BooIntro3 instance 1', 24, false);
-					add(booCutscene);
-					snapCamFollowToPos(dad.x + 10, dad.y + 10);
-					FlxG.camera.focusOn(camFollow);
-					inCutscene = true;
-					
-					new FlxTimer().start(0.01, function(tmr:FlxTimer)
-					{
-						booCutscene.animation.play('1shock');
-						nikkuBoo.animation.play('sit');
-					});
-					new FlxTimer().start(3, function(tmr:FlxTimer)
-					{
-						nikkuBoo.animation.play('1shock');
-					});
-					new FlxTimer().start(0.1, function(tmr1:FlxTimer)
-					{
-						booCutscene.animation.play('2shock');
-						nikkuBoo.animation.play('2shock');
-					});
-					new FlxTimer().start(2, function(tmr2:FlxTimer)
-					{
-						booCutscene.animation.play('3shock');
-						nikkuBoo.animation.play('3shock');
-					});
-					new FlxTimer().start(9, function(tmr4:FlxTimer)
-					{
-						remove(nikkuBoo);
-						boyfriend.alpha = 1;
-						remove(booCutscene);
-						dad.alpha = 1;
-						camHUD.visible = true;
-						startCountdown();
-					});
+					boyfriend.playAnim('sit');
+					dad.playAnim('1shock');
+					dad.animation.finishCallback = function(name:String){
+						if(name == '1shock'){
+							dad.playAnim('2shock');
+							dad.animation.finishCallback = function(name:String){
+								if(name == '2shock'){
+									dad.playAnim('3shock');
+									boyfriend.playAnim('1shock');
+									boyfriend.animation.finishCallback = function(name:String){
+										if(name == '1shock'){
+											boyfriend.playAnim('2shock');
+											boyfriend.animation.finishCallback = function(name:String){
+												if(name == '2shock'){
+													boyfriend.playAnim('3shock');
+												}
+											};
+										}
+									};
+									dad.animation.finishCallback = function(name:String){
+										if(name == '3shock'){
+											startCountdown();
+										}
+									};
+								}
+							};
+						}
+					};
 				default:
 					startCountdown();
 			}
@@ -2772,12 +2745,13 @@ class PlayState extends MusicBeatState
 	//var songTwn:FlxTween;
 	public function songSlide():Void
 	{
+		songnameBoxGrp.x -= 100;
 		new FlxTimer().start(1, function(tmr:FlxTimer) {
-			FlxTween.tween(songnameBoxGrp, {x:500}, 0.28, {ease: FlxEase.expoOut});
+			FlxTween.tween(songnameBoxGrp, {x:0}, 0.28, {ease: FlxEase.expoOut});
 		});
 		new FlxTimer().start(4, function(tmr:FlxTimer) 
 		{
-			FlxTween.tween(songnameBoxGrp, {x:0}, 0.28, {ease: FlxEase.expoIn,
+			FlxTween.tween(songnameBoxGrp, {x:-100}, 0.28, {ease: FlxEase.expoIn,
 				onComplete: function(twn:FlxTween)
 				{
 					songnameBoxGrp.alpha = 0;
@@ -2822,7 +2796,7 @@ class PlayState extends MusicBeatState
 	function spawnCombo(){ // combo moment 8
 		FlxTween.tween(combotxt1, {alpha:1}, 0.01);
 		FlxTween.tween(combotxt2, {alpha:1}, 0.01);
-		FlxTween.tween(comboGlow, {alpha:1}, 0.01);
+		FlxTween.tween(comboGlow, {alpha:0.3}, 0.01);
 		combotxtscoreplus.alpha = 1;
 	}
 
@@ -3603,10 +3577,16 @@ class PlayState extends MusicBeatState
 				FlxFlicker.flicker(combotxt1, 1, 0.05, true, false);
 				FlxFlicker.flicker(combotxt2, 1, 0.05, true, false);
 				combotxtscoreplus.alpha = 0;
-				FlxTween.tween(combotxt1, {alpha:0}, 1);
-				FlxTween.tween(combotxt2, {alpha:0}, 1);
-				//FlxTween.tween(combotxt1, {alpha:0}, 1);
-				FlxTween.tween(comboGlow, {alpha:0}, 1);
+				FlxTween.tween(combotxt1, {alpha:0}, 1, {onComplete: function(twn:FlxTween){
+					combotxt1.alpha = 0;
+				}});
+				FlxTween.tween(combotxt2, {alpha:0}, 1, {onComplete: function(twn:FlxTween){
+					combotxt2.alpha = 0;
+				}});
+				//FlxTween.tween(combotxt1, {alpha:0}, 1); // bruh
+				FlxTween.tween(comboGlow, {alpha:0}, 1, {onComplete:function(twn:FlxTween){
+					comboGlow.alpha = 0;
+				}});
 
 				if (sicks>=20){
 								combotxt1.text = 'PERFECT!';
