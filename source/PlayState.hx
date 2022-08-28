@@ -2041,7 +2041,7 @@ class PlayState extends MusicBeatState
 			songString = OpenFlAssets.getText(SUtil.getPath() + file);
 		}
 		else {
-			songnameBoxGrp.alpha = 0
+			songnameBoxGrp.alpha = 0;
 			songString = 'NO BITCHES?'; // for prevent crash
 			// and yes, no bitches.
 		}
