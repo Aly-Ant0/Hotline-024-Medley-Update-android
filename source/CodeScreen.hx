@@ -127,7 +127,7 @@ class CodeScreen extends MusicBeatState
 		}
 
 		code = new FlxText(500, 120, 0, "", 16);
-		code.setFormat(Paths.font("LEMONMILK-Bold.otf"), 80, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		code.setFormat(Paths.font("LEMONMILK-Bold.otf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		code.text = '';
 		//code.textField = 0.40;
 		code.screenCenter(X);
