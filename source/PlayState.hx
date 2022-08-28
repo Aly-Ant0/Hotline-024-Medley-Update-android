@@ -337,6 +337,14 @@ class PlayState extends MusicBeatState
 
 	// nightland
 	var blurBg:BGSprite;
+	// bg coordinates 
+	// haxeflixel debugger my beloved (delete in the release!)
+	var nightbg1Coords:FlxText;
+	var nightbg2Coords:FlxText;
+	var nightbg3Coords:FlxText;
+	var nightbg4Coords:FlxText;
+	var nightbg5Coords:FlxText;
+	var nightbg6Coords:FlxText;
 
 	var halloweenBG:BGSprite;
 	var halloweenWhite:BGSprite;
@@ -406,6 +414,10 @@ class PlayState extends MusicBeatState
 	var comboTwn:FlxTween;
 	var comboTwn2:FlxTween;
 	var comboTwn3:FlxTween;
+	var comboGlowAlphaTwn:FlxTween;
+	var comboAlphaTwn:FlxTween;
+	var comboAlphaTwn2:FlxTween;
+	var comboAlphaTwn3:FlxTween;
 	var comboTmr:FlxTimer = new FlxTimer();
 	var stopPls:FlxTimer = new FlxTimer();
 	var comboTmr2:Float = 3.5; // unused shit
@@ -480,6 +492,7 @@ class PlayState extends MusicBeatState
 			keysPressed.push(false);	
 		}	
 		FlxG.mouse.visible = false;	
+		FlxG.debugger.visible = true;
 
 		if (FlxG.sound.music != null)	
 			FlxG.sound.music.stop();	
@@ -1150,11 +1163,11 @@ class PlayState extends MusicBeatState
 				//bg1.updateHitbox();
 				add(bg1);
 
-				var bg2:BGSprite = new BGSprite('sus/SUS2', -250.1, -327.3, 0.1, 0);
+				var bg2:BGSprite = new BGSprite('sus/SUS2', -250, -340, 0.1, 0);
 				//bg2.updateHitbox();
 				add(bg2);
 
-				osCaboSUS = new BGSprite('sus/SUS3', -517.0, -6.6, 0.8, 0.8);
+				osCaboSUS = new BGSprite('sus/SUS3', -517, -6, 0.8, 0.8);
 				//osCaboSUS.updateHitbox();
 
 			case 'ddto':
@@ -1195,6 +1208,23 @@ class PlayState extends MusicBeatState
 				blurBg.scale.set(1.7, 1.6);
 				blurBg.updateHitbox();
 
+				FlxG.watch.addQuick("bg 1 x: ", bg1.x);
+				FlxG.watch.addQuick("bg 1 y: ", bg1.y);
+
+				FlxG.watch.addQuick("bg 2 x: ", bg2.x);
+				FlxG.watch.addQuick("bg 2 y: ", bg2.y);
+
+				FlxG.watch.addQuick("bg 3 x: ", bg3.x);
+				FlxG.watch.addQuick("bg 3 y: ", bg3.y);
+
+				FlxG.watch.addQuick("bg 4 x: ", bg4.x);
+				FlxG.watch.addQuick("bg 4 y: ", bg4.y);
+
+				FlxG.watch.addQuick("bg 5 x: ", bg5.x);
+				FlxG.watch.addQuick("bg 5 y: ", bg5.y);
+				
+				FlxG.watch.addQuick("bg 6 x: ", bg6.x);
+				FlxG.watch.addQuick("bg 6 y: ", bg6.y);
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
 					halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
@@ -3564,7 +3594,7 @@ class PlayState extends MusicBeatState
 				if (Math.abs(songScore - scoreTarget) <= 10)
 					songScore = scoreTarget;
 					if (Math.abs(comboScore - toZero) <= 10)
-					comboScore = toZero; // caso fica zero :trollface:
+					comboScore = toZero; // no caso fica zero :trollface:
 
 				// se tiver visível é claro né meu fi ou fia sla
 
@@ -3572,10 +3602,13 @@ class PlayState extends MusicBeatState
 				FlxFlicker.flicker(combotxt1, 1, 0.05, true, false);
 				FlxFlicker.flicker(combotxt2, 1, 0.05, true, false);
 				combotxtscoreplus.alpha = 0;
-				FlxTween.tween(combotxt1, {alpha:0}, 1);
-				FlxTween.tween(combotxt2, {alpha:0}, 1);
-				FlxTween.tween(combotxt1, {alpha:0}, 1);
-				FlxTween.tween(comboGlow, {alpha:0}, 1);
+				comboAlphaTwn =FlxTween.tween(combotxt1, {alpha:0}, 1);
+				comboAlphaTwn2 = FlxTween.tween(combotxt2, {alpha:0}, 1);
+				//FlxTween.tween(combotxt1, {alpha:0}, 1);
+				comboGlowAlphaTwn = FlxTween.tween(comboGlow, {alpha:0}, 1);
+				comboGlowAlphaTwn.start();
+				comboAlphaTwn.start();
+				comboAlphaTwn2.start();
 
 				if (sicks>=20){
 								combotxt1.text = 'PERFECT!';
@@ -5682,6 +5715,9 @@ class PlayState extends MusicBeatState
 				popUpCombo();
 				if(combo > 9999) combo = 9999;
 				//startedC = true;
+				comboGlowAlphaTwn.cancel();
+				comboAlphaTwn.cancel();
+				comboAlphaTwn2.cancel();
 				comboTmr.cancel();
 				comboTmr.start(2, function(tmr:FlxTimer){
 					//finishState = true;
