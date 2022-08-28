@@ -2125,8 +2125,6 @@ class PlayState extends MusicBeatState
 
 					boyfriend.playAnim('sit');
 					dad.playAnim('1shock');
-
-					camFollow.setPosition
 					dad.animation.finishCallback = function(name:String){
 						if(name == '1shock'){
 							dad.playAnim('2shock');
@@ -4476,7 +4474,6 @@ class PlayState extends MusicBeatState
 		FlxTween.tween(nikkuOctagon, {x: 346.3}, 0.098, {
 			onComplete: function(twn:FlxTween)
 			{
-				nikkuOctagon.y = 210.6; // haxeflixel debugger console my beloved
 				nikkuOctagon.animation.play('lastFrame', true);
 				FlxTween.tween(nikkuOctagon, {"scale.x":1.5, "scale.y":1.5}, 1.20, {
 					onComplete:function(twn:FlxTween){
