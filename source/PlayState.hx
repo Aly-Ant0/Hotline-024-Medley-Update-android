@@ -2115,8 +2115,6 @@ class PlayState extends MusicBeatState
 			switch (daSong)
 			{
 				case 'satellite-picnic':
-					opponentStrums.members.alpha = 0;
-					playerStrums.members.alpha = 0;
 					snapCamFollowToPos(dad.x - 5, dad.y - 25);
 					var cutscenePhone:FlxSound;
 					cutscenePhone = new FlxSound().loadEmbedded(Paths.sound('panicPhone'));
