@@ -158,7 +158,7 @@
 	<haxedef name="FLX_NO_FOCUS_LOST_SCREEN" />
 
 	<!--Disable the Flixel core debugger. Automatically gets set whenever you compile in release mode!-->
-	<haxedef name="FLX_NO_DEBUG" unless="debug" />
+	<!--<haxedef name="FLX_NO_DEBUG" unless="debug" />-->
 
 	<!-- make's game use less ram 
 	<haxedef name="HXCPP_GC_BIG_BLOCKS"/> -->
