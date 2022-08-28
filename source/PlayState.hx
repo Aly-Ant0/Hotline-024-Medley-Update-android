@@ -1223,8 +1223,8 @@ class PlayState extends MusicBeatState
 				FlxG.watch.addQuick("bg 5 x: ", bg5.x);
 				FlxG.watch.addQuick("bg 5 y: ", bg5.y);
 				
-				FlxG.watch.addQuick("bg 6 x: ", bg6.x);
-				FlxG.watch.addQuick("bg 6 y: ", bg6.y);
+				FlxG.watch.addQuick("bg 6 x: ", blurBg.x);
+				FlxG.watch.addQuick("bg 6 y: ", blurBg.y);
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
 					halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
@@ -1786,7 +1786,7 @@ class PlayState extends MusicBeatState
 				bfreflect.blend = ADD;
 				bfreflect.alpha = 0.5;
 				bfreflect.x = boyfriend.x;
-				bfreflect.y = boyfriend.y + 320;
+				bfreflect.y = boyfriend.y + 420;
 				insert(members.indexOf(boyfriendGroup), bfreflect);
 			case 'limo':
 				resetFastCar();
@@ -1990,7 +1990,7 @@ class PlayState extends MusicBeatState
 			combotxt1.alpha = 0;
 			add(combotxt1);
 
-			combotxtscoreplus = new FlxText(combotxt1.x, combotxt1.y + 15, 0, "", 23);
+			combotxtscoreplus = new FlxText(combotxt1.x + 25, combotxt1.y + 25, 0, "", 23);
 			combotxtscoreplus.color = FlxColor.WHITE;
 			combotxtscoreplus.setFormat(Paths.font("goodbyeDespair.ttf"), 23, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxtscoreplus.scrollFactor.set();
@@ -2000,7 +2000,7 @@ class PlayState extends MusicBeatState
 			add(combotxtscoreplus);
 
 			// combo score lerp
-			combotxt2 = new FlxText(combotxt1.x + 15, combotxtscoreplus.y + 25, 0, "", 34);
+			combotxt2 = new FlxText(combotxt1.x + 25, combotxtscoreplus.y + 25, 0, "", 34);
 			combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 34, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt2.scrollFactor.set();
 			combotxt2.borderSize = 1.25;
@@ -3577,6 +3577,7 @@ class PlayState extends MusicBeatState
 		}*/
 		if (curStage == 'covers'){
 			bfreflect.animation.frameIndex = boyfriend.animation.frameIndex;
+			bfreflect.offset.set(boyfriend.offset.x, boyfriend.offset.y);
 		}
 
 		if (comboState == 0){ // combo moment 
