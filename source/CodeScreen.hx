@@ -126,8 +126,8 @@ class CodeScreen extends MusicBeatState
 			numbersSpr.add(button);
 		}
 
-		code = new FlxText(500, 120, 0, "", 22);
-		code.setFormat(Paths.font("LEMONMILK-Bold.otf"), 22, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		code = new FlxText(500, 120, 0, "", 34);
+		code.setFormat(Paths.font("LEMONMILK-Bold.otf"), 34, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		code.text = '';
 		//code.textField = 0.40;
 		code.screenCenter(X);
@@ -162,7 +162,7 @@ class CodeScreen extends MusicBeatState
 						//FlxG.sound.play(Paths.sound('codeHover'));
 						spr.color = 0xFF363636;
 
-						if(code.text.length < 4)
+						if(code.text.length < 12)
 							if(touch.justPressed) {
 								code.text += '  ' + spr.ID;
 								FlxG.sound.play(Paths.sound('codeUp'));
