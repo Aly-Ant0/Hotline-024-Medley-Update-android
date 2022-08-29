@@ -2022,15 +2022,15 @@ class PlayState extends MusicBeatState
 			songnameBoxGrp = new FlxTypedSpriteGroup<FlxSprite>();
 			add(songnameBoxGrp);
 
-			songTxt = new FlxText(bar.x + 10, bar.y + 5, 0, "", 38); // it mentions the bar variable cuz its already declared look at the line 175
+			songTxt = new FlxText(bar.x + 10, bar.y, 0, "", 38); // it mentions the bar variable cuz its already declared look at the line 175
 			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 38, FlxColor.WHITE, RIGHT);
 			songTxt.cameras = [camHUD];
 			songTxt.scrollFactor.set();
 			songnameBoxGrp.add(songTxt);
 
-			bar.makeGraphic(1, 100, FlxColor.BLACK);
+			bar.makeGraphic(50, 100, FlxColor.BLACK);
 			bar.alpha = 0.40;
-			bar.width = songTxt.x + 250;
+			bar.scale.x = songTxt.scale.x + 50;
 			bar.cameras = [camHUD];
 			bar.scrollFactor.set();
 			songnameBoxGrp.add(bar);
@@ -2056,6 +2056,8 @@ class PlayState extends MusicBeatState
 			healthBarBG.visible = false;
 			healthBar.visible = false;
 		}
+
+		songnameBoxGrp.y = healthBarBG.y + 270;
 
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
@@ -2747,7 +2749,6 @@ class PlayState extends MusicBeatState
 	public function songSlide():Void
 	{
 		songnameBoxGrp.x -= 100;
-		songnameBoxGrp.y = 440;
 		new FlxTimer().start(0.5, function(tmr:FlxTimer) {
 			FlxTween.tween(songnameBoxGrp, {x:0}, 0.28, {ease: FlxEase.expoOut});
 		});
@@ -3588,6 +3589,10 @@ class PlayState extends MusicBeatState
 				//FlxTween.tween(combotxt1, {alpha:0}, 1); // bruh
 				FlxTween.tween(comboGlow, {alpha:0}, 1, {onComplete:function(twn:FlxTween){
 					comboGlow.alpha = 0;
+					sicks = 0;
+					goods = 0;
+					bads = 0;
+					shits = 0;
 				}});
 
 				if (sicks>=20){
@@ -3604,8 +3609,8 @@ class PlayState extends MusicBeatState
 				else if (bads>=5&&shits>=3)
 				{
 								combotxt1.text = 'WHOOPS...';
+								deeznut++; // nao tem nenhuma utilidade, é so pro log memo fds
 								FlxG.log.add('deez nuts part: ' + deeznut);
-								deeznut++;
 				}
 		}
 
