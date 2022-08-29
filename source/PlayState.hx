@@ -1150,11 +1150,11 @@ class PlayState extends MusicBeatState
 				asteroidEmitter1.start(false, FlxG.random.float(12, 18), FlxG.random.int(1000, 10000));
 
 			case 'sus': // now im using the flash 8 coordinates 
-				var bg1:BGSprite = new BGSprite('sus/SUS1', 0, 50, 0.3, 0.3);
+				var bg1:BGSprite = new BGSprite('sus/SUS1', 5, 105, 0.3, 0.3);
 				//bg1.updateHitbox();
 				add(bg1);
 
-				var bg2:BGSprite = new BGSprite('sus/SUS2', -250, -340, 0.2, 0.2);
+				var bg2:BGSprite = new BGSprite('sus/SUS2', 25, 50, 0.2, 0.2);
 				//bg2.updateHitbox();
 				add(bg2);
 
