@@ -2799,7 +2799,7 @@ class PlayState extends MusicBeatState
 	}
 
 	function spawnCombo(){ // combo moment 8
-		if (tweening){
+		if (tweenMoment){
 			FlxTween.tween(combotxt1, {alpha:1}, 0.01);
 			FlxTween.tween(combotxt2, {alpha:1}, 0.01);
 			FlxTween.tween(comboGlow, {alpha:0.3}, 0.01);
