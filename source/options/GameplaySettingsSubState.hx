@@ -51,6 +51,13 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			'bool', //Variable type
 			false); //Default value
 		addOption(option);
+		
+		var option:Option = new Option('Hitbox Texture (M.A Jigsaw)', //Name
+			'If disabled, the texture will be the hitbox texture of LuckyDog7.', //Description
+			'HitboxJigsaw', //Save data variable name
+			'bool', //Variable type
+			true); //Default value
+		addOption(option);
 
 		var option:Option = new Option('Middlescroll',
 			'If checked, your notes get centered.',
