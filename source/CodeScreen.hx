@@ -174,66 +174,66 @@ class CodeScreen extends MusicBeatState
 				}
 			}
 				switch(code.text) {
-					case '2480' | '2448' | '5141' | '2020' | '2151' | '1921' | '1391' | '8989' | '6120' | '2119':
+					case '  2  4  8  0' | '  2  4  4  8' | '  5  1  4  1' | '  2  0  2  0' | '  2  1  5  1' | '  1  9  2  1' | '  1  3  9  1' | '  8  9  8  9' | '  6  1  2  0' | '  2  1  1  9':
 						code.color = 0xFF00FF1D;
 				}
 
 			if(controls.ACCEPT) {
 				switch(code.text)
 				{
-					case '2480': // code to show all the others codes
+					case '  2  4  8  0': // code to show all the others codes
 						MusicBeatState.switchState(new AllCodes());
 						FlxG.mouse.visible = false;
 						FlxG.sound.play(Paths.sound('entersfx'));
-					case '2448': //naitilendi
+					case '  2  4  4  8': //naitilendi
 						PlayState.SONG = Song.loadFromJson('nightland', 'nightland');
 						PlayState.noSkins = false;
 						FlxG.sound.play(Paths.sound('entersfx'));
 						MusicBeatState.switchState(new ChooseSkinState());
 						FlxG.mouse.visible = false;
-					case '5141': // ema
+					case '  5  1  4  1': // ema
 						PlayState.SONG = Song.loadFromJson('uncanny-valley', 'uncanny-valley');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
 						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
-					case '2020': // extraterrestre
+					case '  2  0  2  0': // extraterrestre
 						PlayState.SONG = Song.loadFromJson('extraterrestrial', 'extraterrestrial');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
 						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
-					case '2151': // spooki
+					case '  2  1  5  1': // spooki
 						PlayState.SONG = Song.loadFromJson('satellite-picnic', 'satellite-picnic');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
 						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
-					case '1921': // sus
+					case '  1  9  2  1': // sus
 						PlayState.SONG = Song.loadFromJson('sussy-pussy', 'sussy-pussy');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
 						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
-					case '1391': // i gonna shoot maself
+					case '  1  3  9  1': // i gonna shoot maself
 						PlayState.SONG = Song.loadFromJson('close-chuckle', 'close-chuckle');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
 						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
-					case '8989': // nicu vs turma da mônica so que nao
+					case '  8  9  8  9': // nicu vs turma da mônica so que nao
 						PlayState.SONG = Song.loadFromJson('deep-poems', 'deep-poems');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
 						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
-					case '6120': // fun is infinite
+					case '  6  1  2  0': // fun is infinite
 						PlayState.SONG = Song.loadFromJson('majin', 'majin');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
 						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
-					case '2119': // final song
+					case '  2  1  1  9': // final song
 						PlayState.SONG = Song.loadFromJson('astral-projection', 'astral-projection');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
