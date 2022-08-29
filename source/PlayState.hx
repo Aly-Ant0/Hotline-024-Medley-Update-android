@@ -337,14 +337,6 @@ class PlayState extends MusicBeatState
 
 	// nightland
 	var blurBg:BGSprite;
-	// bg coordinates 
-	// haxeflixel debugger my beloved (delete in the release!)
-	var nightbg1Coords:FlxText;
-	var nightbg2Coords:FlxText;
-	var nightbg3Coords:FlxText;
-	var nightbg4Coords:FlxText;
-	var nightbg5Coords:FlxText;
-	var nightbg6Coords:FlxText;
 
 	var halloweenBG:BGSprite;
 	var halloweenWhite:BGSprite;
@@ -2026,14 +2018,14 @@ class PlayState extends MusicBeatState
 			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 38, FlxColor.WHITE, RIGHT);
 			songTxt.cameras = [camHUD];
 			songTxt.scrollFactor.set();
-			songnameBoxGrp.add(songTxt);
 
-			bar.makeGraphic(50, 100, FlxColor.BLACK);
+			bar.makeGraphic(5, 100, FlxColor.BLACK);
 			bar.alpha = 0.40;
-			bar.scale.x = songTxt.scale.x + 50;
+			bar.scale.x = songTxt.scale.x + 5;
 			bar.cameras = [camHUD];
 			bar.scrollFactor.set();
 			songnameBoxGrp.add(bar);
+			songnameBoxGrp.add(songTxt);
 	
 		// o texto vai pegar o conteudo do txt & if the txt file exists the txt string will get the file content
 		var file:String = Paths.txt(songName + '/' + 'info');
@@ -2057,7 +2049,7 @@ class PlayState extends MusicBeatState
 			healthBar.visible = false;
 		}
 
-		songnameBoxGrp.y = healthBarBG.y + 270;
+		songnameBoxGrp.y = healthBarBG.y + 160;
 
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
