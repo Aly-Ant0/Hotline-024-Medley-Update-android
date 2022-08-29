@@ -31,7 +31,11 @@ class FlxHitbox extends FlxSpriteGroup {
 		hitbox.add(add(buttonRight = createhitbox(960, 0, "right")));
 
 		var hints:FlxSprite = new FlxSprite(0, 0);
+		if(ClientPrefs.HitboxJigsaw) {
 		hints.loadGraphic(Paths.image('androidcontrols/hitbox_hint'));
+		} else {
+		hints.loadGraphic(Paths.image('androidcontrols/hitbox_hintOld'));
+		}
 		hints.antialiasing = ClientPrefs.globalAntialiasing;
 		hints.alpha = 0.75;
 		add(hints);
@@ -60,8 +64,11 @@ class FlxHitbox extends FlxSpriteGroup {
 		return button;
 	}
 
-	public function getFrames():FlxAtlasFrames {
+	public function getFrames():FlxAtlasFrames {  //test
+		if(ClientPrefs.HitboxJigsaw) {
 		return Paths.getSparrowAtlas('androidcontrols/hitbox');
+		} else {
+		return Paths.getSparrowAtlas('androidcontrols/hitboxOld');
 	}
 
 	override public function destroy():Void {
