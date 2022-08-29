@@ -1162,7 +1162,7 @@ class PlayState extends MusicBeatState
 				//bg1.updateHitbox();
 				add(bg1);
 
-				var bg2:BGSprite = new BGSprite('sus/SUS2', -250, -340, 0.1, 0);
+				var bg2:BGSprite = new BGSprite('sus/SUS2', -250, -340, 0.2, 0.2);
 				//bg2.updateHitbox();
 				add(bg2);
 
@@ -1611,7 +1611,7 @@ class PlayState extends MusicBeatState
 			}
 
 			if (curStage == 'sus'){
-				add(osCaboSUS);
+				//add(osCaboSUS);
 			}
 
 			if (curStage == 'ddto'){
@@ -1785,7 +1785,7 @@ class PlayState extends MusicBeatState
 				bfreflect.blend = ADD;
 				bfreflect.alpha = 0.5;
 				bfreflect.x = boyfriend.x;
-				bfreflect.y = boyfriend.y + 420;
+				bfreflect.y = boyfriend.y + 390;
 				insert(members.indexOf(boyfriendGroup), bfreflect);
 			case 'limo':
 				resetFastCar();
@@ -1999,7 +1999,7 @@ class PlayState extends MusicBeatState
 			add(combotxtscoreplus);
 
 			// combo score lerp
-			combotxt2 = new FlxText(combotxt1.x + 25, combotxtscoreplus.y + 20, 0, "", 34);
+			combotxt2 = new FlxText(combotxt1.x + 15, combotxtscoreplus.y + 20, 0, "", 34);
 			combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 34, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt2.scrollFactor.set();
 			combotxt2.borderSize = 1.25;
@@ -2028,9 +2028,9 @@ class PlayState extends MusicBeatState
 			songTxt.scrollFactor.set();
 			songnameBoxGrp.add(songTxt);
 
-			bar.makeGraphic(120, 100, FlxColor.BLACK);
+			bar.makeGraphic(1, 100, FlxColor.BLACK);
 			bar.alpha = 0.40;
-			bar.scale.x = songTxt.x + 20;
+			bar.width = songTxt.x + 250;
 			bar.cameras = [camHUD];
 			bar.scrollFactor.set();
 			songnameBoxGrp.add(bar);
@@ -2115,7 +2115,7 @@ class PlayState extends MusicBeatState
 			switch (daSong)
 			{
 				case 'satellite-picnic':
-					snapCamFollowToPos(dad.x - 5, dad.y - 25);
+					snapCamFollowToPos(dad.x + 300, dad.y - 25);
 					var cutscenePhone:FlxSound;
 					cutscenePhone = new FlxSound().loadEmbedded(Paths.sound('panicPhone'));
 					cutscenePhone.play();
@@ -2747,10 +2747,11 @@ class PlayState extends MusicBeatState
 	public function songSlide():Void
 	{
 		songnameBoxGrp.x -= 100;
-		new FlxTimer().start(1, function(tmr:FlxTimer) {
+		songnameBoxGrp.y = 440;
+		new FlxTimer().start(0.5, function(tmr:FlxTimer) {
 			FlxTween.tween(songnameBoxGrp, {x:0}, 0.28, {ease: FlxEase.expoOut});
 		});
-		new FlxTimer().start(4, function(tmr:FlxTimer) 
+		new FlxTimer().start(4.5, function(tmr:FlxTimer) 
 		{
 			FlxTween.tween(songnameBoxGrp, {x:-100}, 0.28, {ease: FlxEase.expoIn,
 				onComplete: function(twn:FlxTween)
@@ -3085,7 +3086,7 @@ class PlayState extends MusicBeatState
 
 		//cu(1, 1);
 
-		FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 1, false);
+		FlxG.sound.playMusic(Paths.insjt(PlayState.SONG.song), 1, false);
 		FlxG.sound.music.onComplete = onSongComplete;
 		vocals.play();
 
