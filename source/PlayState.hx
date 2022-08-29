@@ -230,7 +230,7 @@ class PlayState extends MusicBeatState
 	var cutsceneEnd:BGSprite;
 	var cutsceneLogo:BGSprite;
 	var black:FlxSprite;
-	var text1:BGSprite;
+	var text1:BGSprite; // and yes, this is a image :trollface:
 	var text2:BGSprite;
 
 	// fun is infinite
@@ -1199,7 +1199,7 @@ class PlayState extends MusicBeatState
 				blurBg.scale.set(1.7, 1.6);
 				blurBg.updateHitbox();
 
-				FlxG.watch.addQuick("bg 1 x: ", bg1.x);
+				/*FlxG.watch.addQuick("bg 1 x: ", bg1.x);
 				FlxG.watch.addQuick("bg 1 y: ", bg1.y);
 
 				FlxG.watch.addQuick("bg 2 x: ", bg2.x);
@@ -1215,7 +1215,7 @@ class PlayState extends MusicBeatState
 				FlxG.watch.addQuick("bg 5 y: ", bg5.y);
 				
 				FlxG.watch.addQuick("bg 6 x: ", blurBg.x);
-				FlxG.watch.addQuick("bg 6 y: ", blurBg.y);
+				FlxG.watch.addQuick("bg 6 y: ", blurBg.y);*/
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
 					halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
@@ -1991,7 +1991,7 @@ class PlayState extends MusicBeatState
 			add(combotxtscoreplus);
 
 			// combo score lerp
-			combotxt2 = new FlxText(combotxt1.x + 15, combotxtscoreplus.y + 20, 0, "", 34);
+			combotxt2 = new FlxText(combotxt1.x + 20, combotxtscoreplus.y + 20, 0, "", 34);
 			combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 34, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt2.scrollFactor.set();
 			combotxt2.borderSize = 1.25;
@@ -2002,7 +2002,6 @@ class PlayState extends MusicBeatState
 
 			if(ClientPrefs.middleScroll) {
 				COMBO_Y = 160;
-
 				if (ClientPrefs.downScroll){
 					COMBO_Y = 475;
 				}
@@ -2014,7 +2013,7 @@ class PlayState extends MusicBeatState
 			songnameBoxGrp = new FlxTypedSpriteGroup<FlxSprite>();
 			add(songnameBoxGrp);
 
-			songTxt = new FlxText(bar.x + 10, bar.y, 0, "", 38); // it mentions the bar variable cuz its already declared look at the line 175
+			songTxt = new FlxText(bar.x + 10, bar.y + 10, 0, "", 38); // it mentions the bar variable cuz its already declared look at the line 175
 			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 38, FlxColor.WHITE, RIGHT);
 			songTxt.cameras = [camHUD];
 			songTxt.scrollFactor.set();
@@ -2115,34 +2114,44 @@ class PlayState extends MusicBeatState
 					cutscenePhone.play();
 					FlxG.sound.list.add(cutscenePhone);
 
+					var blackStart:FlxSprite = new FlxSprite().makeGraphic(Std.int(FlxG.width*4),Std.int(FlxG.height*4),FlxColor.BLACK);
+					add(blackStart);
+
 					boyfriend.playAnim('sit');
-					dad.playAnim('1shock');
-					dad.animation.finishCallback = function(name:String){
-						if(name == '1shock'){
-							dad.playAnim('2shock');
-							dad.animation.finishCallback = function(name:String){
-								if(name == '2shock'){
-									dad.playAnim('3shock');
-									boyfriend.playAnim('1shock');
-									boyfriend.animation.finishCallback = function(name:String){
-										if(name == '1shock'){
-											boyfriend.playAnim('2shock');
-											boyfriend.animation.finishCallback = function(name:String){
-												if(name == '2shock'){
-													boyfriend.playAnim('3shock');
-												}
-											};
-										}
-									};
-									dad.animation.finishCallback = function(name:String){
-										if(name == '3shock'){
-											startCountdown();
-										}
-									};
-								}
-							};
-						}
-					};
+					new FlxTimer().start(1, function(tmr:FlxTimer){
+						dad.playAnim('1shock');
+						FlxTween.tween(blackStart, {alpha: 0}, 0.7, {
+							onComplete: function(twn:FlxTween){
+									blackStart.kill();
+							}
+						});
+						dad.animation.finishCallback = function(name:String){
+							if(name == '1shock'){
+								dad.playAnim('2shock');
+								dad.animation.finishCallback = function(name:String){
+									if(name == '2shock'){
+										dad.playAnim('3shock');
+										boyfriend.playAnim('1shock');
+										boyfriend.animation.finishCallback = function(name:String){
+											if(name == '1shock'){
+												boyfriend.playAnim('2shock');
+												boyfriend.animation.finishCallback = function(name:String){
+													if(name == '2shock'){
+														boyfriend.playAnim('3shock');
+													}
+												};
+											}
+										};
+										dad.animation.finishCallback = function(name:String){
+											if(name == '3shock'){
+												startCountdown();
+											}
+										};
+									}
+								};
+							}
+						};
+					}
 				default:
 					startCountdown();
 			}
@@ -2742,11 +2751,11 @@ class PlayState extends MusicBeatState
 	{
 		songnameBoxGrp.x -= 100;
 		new FlxTimer().start(0.5, function(tmr:FlxTimer) {
-			FlxTween.tween(songnameBoxGrp, {x:0}, 0.28, {ease: FlxEase.expoOut});
+			FlxTween.tween(songnameBoxGrp, {x:0}, 0.58, {ease: FlxEase.expoOut});
 		});
 		new FlxTimer().start(4.5, function(tmr:FlxTimer) 
 		{
-			FlxTween.tween(songnameBoxGrp, {x:-100}, 0.28, {ease: FlxEase.expoIn,
+			FlxTween.tween(songnameBoxGrp, {x:-100}, 0.58, {ease: FlxEase.expoIn,
 				onComplete: function(twn:FlxTween)
 				{
 					songnameBoxGrp.alpha = 0;
@@ -2782,7 +2791,7 @@ class PlayState extends MusicBeatState
 
 	function finishCombo() // combo moment 6
 	{
-		comboState = 1;
+		return comboState = 1;
 	}
 
 	function popUpCombo(){ // combo moment 7
@@ -3549,6 +3558,7 @@ class PlayState extends MusicBeatState
 			bfreflect.offset.set(boyfriend.offset.x, boyfriend.offset.y);
 		}
 
+		var tweening:Bool = false;
 		if (comboState == 0){ // combo moment 
 			combotxt1.text = rating + " x" + comboNum;
 			combotxt2.text = Std.string(comboScore);
@@ -3559,12 +3569,12 @@ class PlayState extends MusicBeatState
 
 				// lerp momento
 				var toZero:Int = 0;
-				comboScore = Math.floor(FlxMath.lerp(comboScore, toZero, CoolUtil.boundTo(1 - (elapsed * 32), 1, 0)));
+				comboScore = Math.floor(FlxMath.lerp(comboScore, toZero, CoolUtil.boundTo(1 - (elapsed * 32), 0, 1)));
 				songScore = Math.floor(FlxMath.lerp(songScore, scoreTarget, CoolUtil.boundTo(1 - (elapsed * 32), 0, 1)));
 				if (Math.abs(songScore - scoreTarget) <= 10)
 					songScore = scoreTarget;
 					if (Math.abs(comboScore - toZero) <= 10)
-					comboScore = toZero; // no caso fica zero :trollface:
+						comboScore = toZero; // no caso fica zero :trollface:
 
 				// se tiver visível é claro né meu fi ou fia sla
 
@@ -3572,11 +3582,13 @@ class PlayState extends MusicBeatState
 				FlxFlicker.flicker(combotxt1, 1, 0.05, true, false);
 				FlxFlicker.flicker(combotxt2, 1, 0.05, true, false);
 				combotxtscoreplus.alpha = 0;
+				tweening = true;
 				FlxTween.tween(combotxt1, {alpha:0}, 1, {onComplete: function(twn:FlxTween){
 					combotxt1.alpha = 0;
 				}});
 				FlxTween.tween(combotxt2, {alpha:0}, 1, {onComplete: function(twn:FlxTween){
 					combotxt2.alpha = 0;
+					tweening = false;
 				}});
 				//FlxTween.tween(combotxt1, {alpha:0}, 1); // bruh
 				FlxTween.tween(comboGlow, {alpha:0}, 1, {onComplete:function(twn:FlxTween){
@@ -3590,18 +3602,18 @@ class PlayState extends MusicBeatState
 				if (sicks>=20){
 								combotxt1.text = 'PERFECT!';
 				}
-				else if (sicks>=15)
+				else
 				{
 								combotxt1.text = 'NICE!';
 				}
-				else if (goods>=5)
+				if (goods>=5)
 				{
 								combotxt1.text = 'GREAT!';
 				}
-				else if (bads>=5&&shits>=3)
+				else
 				{
 								combotxt1.text = 'WHOOPS...';
-								deeznut++; // nao tem nenhuma utilidade, é so pro log memo fds
+								deeznut++; // nao tem nenhuma utilidade, é so pro log memo pq eu to entediado
 								FlxG.log.add('deez nuts part: ' + deeznut);
 				}
 		}
@@ -3784,6 +3796,7 @@ class PlayState extends MusicBeatState
 		}*/
 
 		songTxt.text = '${songString}';
+		bar.scale.x = songTxt.scale.x + 5;
 
 		super.update(elapsed);
 
