@@ -37,7 +37,7 @@ class FlashingState extends MusicBeatState
 			Aly-Ant, \n
 			MAYKOLLYOUTUBE, \n
 			Peppy \n
-			and MatheusX02,
+			and MateusX02, \n //bruh 
 			the original creators of hotline 024 credits are in the credits menu, \n
 			press A to continue. \n
 			also you can disable the shaders in graphic options \n
