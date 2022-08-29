@@ -2797,10 +2797,18 @@ class PlayState extends MusicBeatState
 	function popUpCombo(){ // combo moment 7
 		return comboNum++;
 	}
+
 	function spawnCombo(){ // combo moment 8
-		FlxTween.tween(combotxt1, {alpha:1}, 0.01);
-		FlxTween.tween(combotxt2, {alpha:1}, 0.01);
-		FlxTween.tween(comboGlow, {alpha:0.3}, 0.01);
+		if (tweening){
+			FlxTween.tween(combotxt1, {alpha:1}, 0.01);
+			FlxTween.tween(combotxt2, {alpha:1}, 0.01);
+			FlxTween.tween(comboGlow, {alpha:0.3}, 0.01);
+		}
+		else{ // a mesma condição :trollface:
+			FlxTween.tween(combotxt1, {alpha:1}, 0.01);
+			FlxTween.tween(combotxt2, {alpha:1}, 0.01);
+			FlxTween.tween(comboGlow, {alpha:0.3}, 0.01);
+		}
 		combotxtscoreplus.alpha = 1;
 	}
 
@@ -3546,6 +3554,7 @@ class PlayState extends MusicBeatState
 	var startedCountdown:Bool = false;
 	var canPause:Bool = true;
 	var limoSpeed:Float = 0;
+	var tweenMoment:Bool = false;
 
 	override public function update(elapsed:Float)
 	{
@@ -3558,7 +3567,6 @@ class PlayState extends MusicBeatState
 			bfreflect.offset.set(boyfriend.offset.x, boyfriend.offset.y);
 		}
 
-		var tweening:Bool = false;
 		if (comboState == 0){ // combo moment 
 			combotxt1.text = rating + " x" + comboNum;
 			combotxt2.text = Std.string(comboScore);
@@ -3582,13 +3590,13 @@ class PlayState extends MusicBeatState
 				FlxFlicker.flicker(combotxt1, 1, 0.05, true, false);
 				FlxFlicker.flicker(combotxt2, 1, 0.05, true, false);
 				combotxtscoreplus.alpha = 0;
-				tweening = true;
+				tweenMoment = true;
 				FlxTween.tween(combotxt1, {alpha:0}, 1, {onComplete: function(twn:FlxTween){
 					combotxt1.alpha = 0;
 				}});
 				FlxTween.tween(combotxt2, {alpha:0}, 1, {onComplete: function(twn:FlxTween){
 					combotxt2.alpha = 0;
-					tweening = false;
+					tweenMoment = false;
 				}});
 				//FlxTween.tween(combotxt1, {alpha:0}, 1); // bruh
 				FlxTween.tween(comboGlow, {alpha:0}, 1, {onComplete:function(twn:FlxTween){
