@@ -11,6 +11,7 @@ class ClientPrefs {
 	public static var middleScroll:Bool = false;
 	public static var showFPS:Bool = #if android false #else true #end;
 	public static var flashing:Bool = true;
+	public static var HitboxJigsaw:Bool = true;
 
 	// optimization options
 	public static var dontShowGF:Bool = false; 
@@ -98,6 +99,7 @@ class ClientPrefs {
 	}
 
 	public static function saveSettings() {
+		FlxG.save.data.HitboxJigsaw = HitboxJigsaw;
 		FlxG.save.data.downScroll = downScroll;
 		FlxG.save.data.middleScroll = middleScroll;
 		FlxG.save.data.showFPS = showFPS;
@@ -145,6 +147,9 @@ class ClientPrefs {
 	}
 
 	public static function loadPrefs() {
+		if(FlxG.save.data.HitboxJigsaw != null) {
+			HitboxJigsaw = FlxG.save.data.HitboxJigsaw;
+		}
 		if(FlxG.save.data.downScroll != null) {
 			downScroll = FlxG.save.data.downScroll;
 		}
