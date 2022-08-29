@@ -2012,7 +2012,7 @@ class PlayState extends MusicBeatState
 				COMBO_Y = 160;
 
 				if (ClientPrefs.downScroll){
-					COMBO_Y = 495;
+					COMBO_Y = 475;
 				}
 			}
 			else if(ClientPrefs.downScroll) {
