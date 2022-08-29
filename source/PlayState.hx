@@ -2151,7 +2151,7 @@ class PlayState extends MusicBeatState
 								};
 							}
 						};
-					}
+					});
 				default:
 					startCountdown();
 			}
