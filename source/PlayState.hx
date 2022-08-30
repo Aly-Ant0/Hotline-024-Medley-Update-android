@@ -2157,14 +2157,14 @@ class PlayState extends MusicBeatState
 			}
 			seenCutscene = true;
 		}
+		else
+		{
+			startCountdown();
+		}
 		switch(daSong){
 			case 'broadcasting':
 				camGame.visible = false;
 				camHUD.visible = false;
-		}
-		else
-		{
-			startCountdown();
 		}
 		RecalculateRating();
 
