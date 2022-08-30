@@ -260,7 +260,7 @@ class PlayState extends MusicBeatState
 	var exOverlay:BGSprite;
 	var exFront:BGSprite;
 
-	// this is my first time using emitters sorry that i broke something
+	// this is my first time using emitters sorry if i broke something
 	//var particleEx:FlxParticle;
 	var particleEmitter:FlxEmitter;
 
@@ -845,7 +845,7 @@ class PlayState extends MusicBeatState
 					exOverlay.updateHitbox();
 					//exOverlay.antialiasing = ClientPrefs.globalAntialiasing;
 	
-					exFront = new BGSprite('expurgated/signfront', -2800, -1400, 1.15, 1.15);
+					exFront = new BGSprite('expurgated/signfront', -2460, -1400, 1.15, 1.15);
 					exFront.scale.set(2.5, 2.5);
 					exFront.updateHitbox();
 					//exFront.antialiasing = ClientPrefs.globalAntialiasing;
@@ -988,7 +988,7 @@ class PlayState extends MusicBeatState
 					matzuDESK.updateHitbox();
 					matzuDESK.screenCenter(XY);
 	
-					asPlantadaMinhaMae = new BGSprite('matzu/PLAMTS', 0, 0, 1.1, 1.1);
+					asPlantadaMinhaMae = new BGSprite('matzu/PLAMTS', 0, 0, 0.5, 0.6);
 					asPlantadaMinhaMae.updateHitbox();
 					asPlantadaMinhaMae.screenCenter(XY);
 	
@@ -1154,7 +1154,7 @@ class PlayState extends MusicBeatState
 				//bg1.updateHitbox();
 				add(bg1);
 
-				var bg2:BGSprite = new BGSprite('sus/SUS2', 25, 50, 0.2, 0.2);
+				var bg2:BGSprite = new BGSprite('sus/SUS2', 25, 50, 0, 0);
 				//bg2.updateHitbox();
 				add(bg2);
 
@@ -2799,7 +2799,7 @@ class PlayState extends MusicBeatState
 	}
 
 	function spawnCombo(){ // combo moment 8
-		if (tweenMoment){
+		if (combotxt1.alpha == 0 || comboGlow.alpha == 0 || combotxt2.alpha == 0){
 			FlxTween.tween(combotxt1, {alpha:1}, 0.01);
 			FlxTween.tween(combotxt2, {alpha:1}, 0.01);
 			FlxTween.tween(comboGlow, {alpha:0.3}, 0.01);
@@ -3564,12 +3564,12 @@ class PlayState extends MusicBeatState
 		}*/
 		if (curStage == 'covers'){
 			bfreflect.animation.frameIndex = boyfriend.animation.frameIndex;
-			bfreflect.offset.set(boyfriend.offset.x, boyfriend.offset.y);
+			bfreflect.offset.set(boyfriend.offset.x, boyfriend.offset.y*bfreflect.y);
 		}
 
 		if (comboState == 0){ // combo moment 
 			combotxt1.text = rating + " x" + comboNum;
-			combotxt2.text = Std.string(comboScore);
+			combotxt2.text =/* Std.string(comboScore)*/ ""+comboScore;
 			combotxtscoreplus.text = "+" + score;
 		}
 		if (comboState == 1){ // combo moment 2
@@ -3610,19 +3610,20 @@ class PlayState extends MusicBeatState
 				if (sicks>=20){
 								combotxt1.text = 'PERFECT!';
 				}
-				else
+				else if (sicks>=10||goods>=10)
 				{
 								combotxt1.text = 'NICE!';
 				}
-				if (goods>=5)
+				if (goods>=5||sicks>=5)
 				{
 								combotxt1.text = 'GREAT!';
 				}
 				else
 				{
 								combotxt1.text = 'WHOOPS...';
-								deeznut++; // nao tem nenhuma utilidade, é so pro log memo pq eu to entediado
-								FlxG.log.add('deez nuts part: ' + deeznut);
+								/*deeznut++; // nao tem nenhuma utilidade, é so pro log memo pq eu to entediado
+								FlxG.log.add('deez nuts part: ' + deeznut);*/
+								// na vdd tem sim, para lagar o jogo.
 				}
 		}
 
@@ -3804,7 +3805,7 @@ class PlayState extends MusicBeatState
 		}*/
 
 		songTxt.text = '${songString}';
-		bar.scale.x = songTxt.scale.x + 5;
+		bar.scale.x = FlxG.width + songTxt.x + 15;
 
 		super.update(elapsed);
 
