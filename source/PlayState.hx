@@ -2157,9 +2157,11 @@ class PlayState extends MusicBeatState
 			}
 			seenCutscene = true;
 		}
-		case 'broadcasting':
-			camGame.visible = false;
-			camHUD.visible = false;
+		switch(daSong){
+			case 'broadcasting':
+				camGame.visible = false;
+				camHUD.visible = false;
+		}
 		else
 		{
 			startCountdown();
