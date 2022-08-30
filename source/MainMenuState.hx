@@ -321,10 +321,10 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		switch (curSelected) // code from musk (i requested the main menu code just for the buttons lmao)
 		{
 			case 0:
-				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.quadOut});
-				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 2)}, 0.31, {ease: FlxEase.quadOut});
-				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 0)}, 0.31, {ease: FlxEase.quadOut});
-				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 0)}, 0.31, {ease: FlxEase.quadOut});
+				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 2)}, 0.31, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 0)}, 0.31, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 0)}, 0.31, {ease: FlxEase.expoOut});
 
 				menuItems.members[0].visible = true;
 				menuItems.members[1].visible = true;
@@ -332,10 +332,10 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 				menuItems.members[3].visible = true;
 
 			case 1:
-				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 0)}, 0.31, {ease: FlxEase.quadOut});
-				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.quadOut});
-				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 2)}, 0.31, {ease: FlxEase.quadOut});
-				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.quadOut});
+				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 0)}, 0.31, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 2)}, 0.31, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.expoOut});
 
 				menuItems.members[0].visible = true;
 				menuItems.members[1].visible = true;
@@ -343,10 +343,10 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 				menuItems.members[3].visible = false;
 
 			case 2:
-				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.quadOut});
-				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 0)}, 0.31, {ease: FlxEase.quadOut});
-				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.quadOut});
-				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 2)}, 0.31, {ease: FlxEase.quadOut});
+				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 0)}, 0.31, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 2)}, 0.31, {ease: FlxEase.expoOut});
 
 				menuItems.members[0].visible = false;
 				menuItems.members[1].visible = true;
@@ -356,10 +356,10 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 			case 3:
 				menuItems.members[2].x = 100 + (370 * 1);
 
-				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 2)}, 0.31, {ease: FlxEase.quadOut});
-				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.quadOut});
-				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 0)}, 0.31, {ease: FlxEase.quadOut});
-				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.quadOut});
+				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 2)}, 0.31, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 0)}, 0.31, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.expoOut});
 
 				menuItems.members[0].visible = true;
 				menuItems.members[1].visible = false;
