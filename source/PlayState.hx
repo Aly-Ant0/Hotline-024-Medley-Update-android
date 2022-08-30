@@ -1144,7 +1144,7 @@ class PlayState extends MusicBeatState
 				asteroidEmitter1 = new FlxEmitter(0,200);
 				asteroidEmitter1.drag.set(0,0,0,0,200,300,500,750);
 				asteroidEmitter1.launchMode = FlxEmitterMode.SQUARE;
-				asteroidEmitter1.velocity.set(-1300, -1300, -1300, -1300, -1300, -1300);
+				asteroidEmitter1.velocity.set(-3400, -3400, -3400, -3400, -3400, -3400);
 				asteroidEmitter1.lifespan.set(1.9, 8.9);
 				asteroidEmitter1.loadParticles(Paths.image('xigmund/ast1'), 500, 16, true);
 				asteroidEmitter1.start(false, FlxG.random.float(12, 18), FlxG.random.int(1000, 10000));
