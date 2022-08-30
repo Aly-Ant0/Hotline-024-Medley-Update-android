@@ -11,6 +11,15 @@ import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.util.FlxTimer;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
+import flixel.util.FlxColor; //isso que dá roubar código
+
+/*
+Enfim, tchau
+Estou fazendo tarefa e daqui a pouco vou dormir.
+tá tarde.
+
+- MateusX02 - 22:00h
+*/
 
 import openfl.utils.Assets;
 import lime.utils.Assets as LimeAssets;
