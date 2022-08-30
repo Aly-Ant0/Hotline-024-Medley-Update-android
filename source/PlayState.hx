@@ -697,30 +697,36 @@ class PlayState extends MusicBeatState
 			//}
 				cutsceneBG = new BGSprite('stage3/cutscene/bg', 0,0,0,0);
 				cutsceneBG.screenCenter(XY);
+				cutsceneBG.cameras = [cutCam];
 				cutsceneBG.alpha = 0;
 
 				cutsceneEnd = new BGSprite('stage3/cutscene/bgEnd', 0,0,0,0);
 				cutsceneEnd.screenCenter(XY);
+				cutsceneEnd.cameras = [cutCam];
 				cutsceneEnd.visible = false;
 				
 				cutsceneLogo = new BGSprite('stage3/cutscene/logo', 0,0,0,0);
 				cutsceneLogo.screenCenter(XY);
 				cutsceneLogo.scale.set(1.6, 1.6);
+				cutsceneLogo.cameras = [cutCam];
 				cutsceneLogo.alpha = 0;
 
 				black = new FlxSprite().makeGraphic(2280, 1920, FlxColor.BLACK);
 				black.screenCenter(XY);
 				black.scrollFactor.set(0, 0);
 				black.visible = false;
+				black.cameras = [cutCam];
 				black.scale.set(1.8, 1.8);
 
 			  text1 = new BGSprite('stage3/cutscene/text1', 311.6, 294.8, 0, 0);
 			  text1.scale.set(1.8, 1.8);
 			  text1.screenCenter(XY);
+			  text1.cameras = [cutCam];
 				text1.visible = false;
 
 				text2 = new BGSprite('stage3/cutscene/text2', 439.4, text1.y + 85, 0, 0);
 				text2.scale.set(1.8, 1.8);
+				text2.cameras = [cutCam];
 				text2.visible = false;
 
 			case 'covers': // covers
@@ -968,12 +974,11 @@ class PlayState extends MusicBeatState
 					rocks.updateHitbox();
 			case 'momogogo':
 				//var bg:FlxBackdrop;
-				momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), true, false, 10);
+				momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'),0.3, 0.3,  true, false); // fuck i forgor the scroll value
 				momogogoBG.y = -270;
 				momogogoBG.scale.set(1.25, 1.25);
 				momogogoBG.updateHitbox();
 				momogogoBG.antialiasing = ClientPrefs.globalAntialiasing;
-				momogogoBG.scrollFactor.set(0,0);
 				momogogoBG.velocity.set(120, 0);
 				add(momogogoBG);
 
@@ -1149,12 +1154,14 @@ class PlayState extends MusicBeatState
 				asteroidEmitter1.loadParticles(Paths.image('xigmund/ast1'), 500, 16, true);
 				asteroidEmitter1.start(false, FlxG.random.float(12, 18), FlxG.random.int(1000, 10000));
 
-			case 'sus': // now im using the flash 8 coordinates 
-				var bg1:BGSprite = new BGSprite('sus/SUS1', 5, 105, 0.3, 0.3);
+			case 'sus':
+				var bg1:BGSprite = new BGSprite('sus/SUS1', -200, -100, 1, 1);
+				bg1.setGraphicSize(Std.int(bg1.width * 1.5));
 				//bg1.updateHitbox();
 				add(bg1);
 
-				var bg2:BGSprite = new BGSprite('sus/SUS2', 25, 50, 0, 0);
+				var bg2:BGSprite = new BGSprite('sus/SUS2', -50, -80, 1, 1);
+				bg2.setGraphicSize(Std.int(bg2.width * 1.1));
 				//bg2.updateHitbox();
 				add(bg2);
 
@@ -1162,41 +1169,42 @@ class PlayState extends MusicBeatState
 				//osCaboSUS.updateHitbox();
 
 			case 'ddto':
-				var bg1:BGSprite = new BGSprite('ddto/DDLC-1', 0, 0, 0, 0);
+				var bg1:BGSprite = new BGSprite('ddto/DDLC-1', -50, -80, 1, 1);
 				//bg1.updateHitbox();
+				bg1.setGraphicSize(Std.int(bg1.width * 1.1));
 				add(bg1);
 
 				naoseiseissoecabomasfds = new BGSprite('ddto/DDLC-2', 0, 0, 0, 0);
 				//naoseiseissoecabomasfds.updateHitbox();
 
 			case 'nightland':
-				var bg1:BGSprite = new BGSprite('nightland/BG1', -2131.4, -878.8, .15, .15);
+				var bg1:BGSprite = new BGSprite('nightland/BG1', -1150, -750, .2, .2);
 				bg1.scale.set(1.6, 1.6);
 				bg1.updateHitbox();
 				add(bg1);
 				
-				var bg2:BGSprite = new BGSprite('nightland/BAC2', -2197.4,-1033.6, .6, .6);
-				bg2.scale.set(1.7, 1.7);
+				var bg2:BGSprite = new BGSprite('nightland/BAC2', -1150,-850, .3, .3);
+				bg2.scale.set(1.6, 1.6);
 				bg2.updateHitbox();
 				add(bg2);
 				
-				var bg3:BGSprite = new BGSprite('nightland/ROC3', -2208.3, -528.7, .9, 1);
-				bg3.scale.set(1.6, 1.5);
+				var bg3:BGSprite = new BGSprite('nightland/ROC3', -1150, -750, .3, 3);
+				bg3.scale.set(1.6, 1.6);
 				bg3.updateHitbox();
 				add(bg3);
 				
-				var bg4:BGSprite = new BGSprite('nightland/TREE4', -1806.2, -854.0, .15, .15);
-				bg4.scale.set(1.6, 1.5);
+				var bg4:BGSprite = new BGSprite('nightland/TREE4', -1900, -1150, 1, 1);
+				bg4.scale.set(1.6, 1.6);
 				bg4.updateHitbox();
 				add(bg4);
 
-				var bg5:BGSprite = new BGSprite('nightland/GROUMD5', -2096.3, -875.9, 0.2, 0.2);
-				bg5.scale.set(1.7, 1.6);
+				var bg5:BGSprite = new BGSprite('nightland/GROUMD5', -1900, -1150, 1, 1);
+				bg5.scale.set(1.6, 1.6);
 				bg5.updateHitbox();
 				add(bg5);
 
-				blurBg = new BGSprite('nightland/BLURROC6', -2058.0, -664.9, .018, .018);
-				blurBg.scale.set(1.7, 1.6);
+				blurBg = new BGSprite('nightland/BLURROC6', -1900, -1150, 1, 1);
+				blurBg.scale.set(1.6, 1.6);
 				blurBg.updateHitbox();
 
 				/*FlxG.watch.addQuick("bg 1 x: ", bg1.x);
