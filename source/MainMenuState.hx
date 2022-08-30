@@ -38,9 +38,9 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 	
 	var optionShit:Array<String> = [
 		'story_mode',
-		'freeplay',
 		'extras',
-		'options'
+		'options',
+		'freeplay'
 	];
 	var jukeboxText:FlxSprite;
 	var creditsImage:FlxSprite;
@@ -86,20 +86,29 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 			scale = 6 / optionShit.length;
 		}*/ // nao precisa por sinal
 
-		for (i in 0...optionShit.length)
+		for (i in 0...optionShit.length) // code from musk
 		{
-			var item:FlxSprite = new FlxSprite((300*i) + 30, 100);
-			item.frames = Paths.getSparrowAtlas('hotline/menu/' + optionShit[i]);
-			item.antialiasing = ClientPrefs.globalAntialiasing;
-			//item.screenCenter(X);
-			item.animation.addByPrefix('meuamigousacalsinhaescondido', "glow");
-			item.animation.addByPrefix('agorausamaisnao', "normal");
-			item.animation.play('agorausamaisnao');
-			item.setGraphicSize(311, 550);
-			item.ID = i;
-			item.updateHitbox();
-			menuItems.add(item);
+			var menuItem:FlxSprite = new FlxSprite(100 + (370 * i), 60);
+			menuItem.frames = Paths.getSparrowAtlas('hotline/menu/' + optionShit[i]);
+			menuItem.animation.addByPrefix('idle', "normal", 24);
+			menuItem.animation.addByPrefix('selected', "glow", 24);
+			menuItem.animation.play('idle');
+			menuItem.scale.set(0.66, 0.66);
+			menuItem.antialiasing = ClientPrefs.globalAntialiasing;
+			menuItem.updateHitbox();
+			menuItem.ID = i;
+			menuItems.add(menuItem);
 		}
+
+		remove(menuItems.members[0]);
+		remove(menuItems.members[1]);
+		remove(menuItems.members[2]);
+		remove(menuItems.members[3]);
+
+		add(menuItems.members[3]);
+		add(menuItems.members[1]);
+		add(menuItems.members[0]);
+		add(menuItems.members[2]);
 
 		var bars:FlxSprite = new FlxSprite().loadGraphic(Paths.image('hotline/menu/bars'));
 		bars.updateHitbox();
@@ -114,7 +123,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		add(jukeboxText);
 
 		jukeHitbox = new FlxObject(0, 0, 175, 25);
-		jukeHitbox.setPosition(532, 9);
+		jukeHitbox.setPosition(552, 9);
 		add(jukeHitbox);
 
 		creditsImage = new FlxSprite().loadGraphic(Paths.image('hotline/menu/credits'));
@@ -124,7 +133,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		add(creditsImage);
 
 		creditsHitbox = new FlxObject(532, 684, 175, 25);
-		creditsHitbox.setPosition(532, 684);
+		creditsHitbox.setPosition(552, 684);
 		add(creditsHitbox);
 
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
@@ -298,18 +307,64 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 
 			FlxG.sound.play(Paths.sound('selectsfx'));
 
-			for (item in menuItems.members)
+		menuItems.forEach(function(spr:FlxSprite)
+		{
+			spr.animation.play('idle');
+			spr.updateHitbox();
+
+			if (spr.ID == curSelected)
 			{
-				if (item.ID == curSelected)
-				{
-					item.alpha = 1;
-					item.animation.play('meuamigousacalsinhaescondido');
-				}
-				else
-				{
-					item.alpha = 0.35;
-					item.animation.play('agorausamaisnao');
-				}
+				spr.animation.play('selected');
+				spr.centerOffsets();
 			}
+		});
+		switch (curSelected) // code from musk (i requested the main menu code just for the buttons lmao)
+		{
+			case 0:
+				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.quadOut});
+				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 2)}, 0.31, {ease: FlxEase.quadOut});
+				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 0)}, 0.31, {ease: FlxEase.quadOut});
+				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 0)}, 0.31, {ease: FlxEase.quadOut});
+
+				menuItems.members[0].visible = true;
+				menuItems.members[1].visible = true;
+				menuItems.members[2].visible = false;
+				menuItems.members[3].visible = true;
+
+			case 1:
+				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 0)}, 0.31, {ease: FlxEase.quadOut});
+				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.quadOut});
+				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 2)}, 0.31, {ease: FlxEase.quadOut});
+				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.quadOut});
+
+				menuItems.members[0].visible = true;
+				menuItems.members[1].visible = true;
+				menuItems.members[2].visible = true;
+				menuItems.members[3].visible = false;
+
+			case 2:
+				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.quadOut});
+				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 0)}, 0.31, {ease: FlxEase.quadOut});
+				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.quadOut});
+				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 2)}, 0.31, {ease: FlxEase.quadOut});
+
+				menuItems.members[0].visible = false;
+				menuItems.members[1].visible = true;
+				menuItems.members[2].visible = true;
+				menuItems.members[3].visible = true;
+
+			case 3:
+				menuItems.members[2].x = 100 + (370 * 1);
+
+				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 2)}, 0.31, {ease: FlxEase.quadOut});
+				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.quadOut});
+				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 0)}, 0.31, {ease: FlxEase.quadOut});
+				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.quadOut});
+
+				menuItems.members[0].visible = true;
+				menuItems.members[1].visible = false;
+				menuItems.members[2].visible = true;
+				menuItems.members[3].visible = true;
+		}
 	}
 }
