@@ -41,7 +41,7 @@ class LoadingState extends MusicBeatState
 	var loadBar:FlxSprite;
 	override function create()
 	{
-		FlxG.log.add('tá na função CREATE(): ' + HOTLINE024 RECREATION);
+		FlxG.log.add('tá indo (loading)');
 
 		shitz = new FlxText(12, 12, 0, "HOTLINE024 ANDROID RECREATION\nAly-Ant, Peppy, Maykoll, MateusX02", 12);
 		shitz.scrollFactor.set();
