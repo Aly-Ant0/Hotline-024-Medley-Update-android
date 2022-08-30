@@ -2157,6 +2157,9 @@ class PlayState extends MusicBeatState
 			}
 			seenCutscene = true;
 		}
+		case 'broadcasting':
+			camGame.visible = false;
+			camHUD.visible = false;
 		else
 		{
 			startCountdown();
@@ -6092,6 +6095,7 @@ class PlayState extends MusicBeatState
 					cutsceneLogo.visible = false;
 					cutsceneBG.visible = false;
 					camHUD.visible = true;
+					camGame.visible = true;
 			}
 		}
 		if (curSong == 'Fandomania')
