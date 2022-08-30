@@ -126,7 +126,7 @@ class CodeScreen extends MusicBeatState
 			numbersSpr.add(button);
 		}
 
-		code = new FlxText(500, 120, 0, "", 34);
+		code = new FlxText(480, 270, 0, "", 34);
 		code.setFormat(Paths.font("LEMONMILK-Bold.otf"), 34, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		code.text = '';
 		//code.textField = 0.40;
