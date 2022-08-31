@@ -851,7 +851,7 @@ class PlayState extends MusicBeatState
 					exOverlay.updateHitbox();
 					//exOverlay.antialiasing = ClientPrefs.globalAntialiasing;
 	
-					exFront = new BGSprite('expurgated/signfront', -2460, -1400, 1.15, 1.15);
+					exFront = new BGSprite('expurgated/signfront', -2660, -1400, 1.15, 1.15);
 					exFront.scale.set(2.5, 2.5);
 					exFront.updateHitbox();
 					//exFront.antialiasing = ClientPrefs.globalAntialiasing;
