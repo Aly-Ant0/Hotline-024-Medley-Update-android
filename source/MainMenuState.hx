@@ -45,7 +45,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 	var jukeboxText:FlxSprite;
 	var creditsImage:FlxSprite;
 	var selected:Bool = false;
-	var jukeHitbox:FlxObject;
+	var jukeClickArea:FlxObject;
 	var creditsHitbox:FlxObject;
 
 	override function create()
@@ -88,7 +88,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 
 		for (i in 0...optionShit.length) // code from musk
 		{
-			var menuItem:FlxSprite = new FlxSprite(100 + (370 * i), 60);
+			var menuItem:FlxSprite = new FlxSprite(150 + (400 * i), 60);
 			menuItem.frames = Paths.getSparrowAtlas('hotline/menu/' + optionShit[i]);
 			menuItem.animation.addByPrefix('idle', "normal", 24);
 			menuItem.animation.addByPrefix('selected', "glow", 24);
@@ -122,9 +122,9 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		//jukeboxText.updateHitbox();
 		add(jukeboxText);
 
-		jukeHitbox = new FlxObject(0, 0, 175, 25);
-		jukeHitbox.setPosition(552, 9);
-		add(jukeHitbox);
+		jukeClickArea = new FlxObject(0, 0, 175, 25);
+		jukeClickArea.setPosition(552, 9);
+		add(jukeClickArea);
 
 		creditsImage = new FlxSprite().loadGraphic(Paths.image('hotline/menu/credits'));
 		creditsImage.screenCenter();
@@ -190,7 +190,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 
 		for (touch in FlxG.touches.list)
 		{
-			if(touch.overlaps(jukeHitbox))
+			if(touch.overlaps(jukeClickArea))
 			{
 				jukeboxText.color = 0xFF363636;
 				if(touch.justPressed)
@@ -318,13 +318,13 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 				spr.centerOffsets();
 			}
 		});
-		switch (curSelected) // code from musk (i requested the main menu code just for the buttons lmao)
+		switch (curSelected) // code from musk but with some changes (i requested the main menu code for him just for the buttons lmao)
 		{
 			case 0:
-				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 2)}, 0.31, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 0)}, 0.31, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 0)}, 0.31, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[0], {x: 150 + (400 * 1)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[1], {x: 150 + (400 * 2)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[2], {x: 150 + (400 * 0)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[3], {x: 150 + (400 * 0)}, 0.41, {ease: FlxEase.expoOut});
 
 				menuItems.members[0].visible = true;
 				menuItems.members[1].visible = true;
@@ -332,10 +332,10 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 				menuItems.members[3].visible = true;
 
 			case 1:
-				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 0)}, 0.31, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 2)}, 0.31, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[0], {x: 150 + (400 * 0)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[1], {x: 150 + (400 * 1)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[2], {x: 150 + (400 * 2)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[3], {x: 150 + (400 * 1)}, 0.41, {ease: FlxEase.expoOut});
 
 				menuItems.members[0].visible = true;
 				menuItems.members[1].visible = true;
@@ -343,10 +343,10 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 				menuItems.members[3].visible = false;
 
 			case 2:
-				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 0)}, 0.31, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 2)}, 0.31, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[0], {x: 150 + (400 * 1)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[1], {x: 150 + (400 * 0)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[2], {x: 150 + (400 * 1)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[3], {x: 150 + (400 * 2)}, 0.41, {ease: FlxEase.expoOut});
 
 				menuItems.members[0].visible = false;
 				menuItems.members[1].visible = true;
@@ -354,12 +354,12 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 				menuItems.members[3].visible = true;
 
 			case 3:
-				menuItems.members[2].x = 100 + (370 * 1);
+				menuItems.members[2].x = 150 + (400 * 1);
 
-				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 2)}, 0.31, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 0)}, 0.31, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 1)}, 0.31, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[0], {x: 150 + (400 * 2)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[1], {x: 150 + (400 * 1)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[2], {x: 150 + (400 * 0)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[3], {x: 150 + (400 * 1)}, 0.41, {ease: FlxEase.expoOut});
 
 				menuItems.members[0].visible = true;
 				menuItems.members[1].visible = false;
