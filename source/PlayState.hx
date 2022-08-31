@@ -697,36 +697,36 @@ class PlayState extends MusicBeatState
 			//}
 				cutsceneBG = new BGSprite('stage3/cutscene/bg', 0,0,0,0);
 				cutsceneBG.screenCenter(XY);
-				cutsceneBG.cameras = [cutCam];
+				//cutsceneBG.cameras = [cutCam];
 				cutsceneBG.alpha = 0;
 
 				cutsceneEnd = new BGSprite('stage3/cutscene/bgEnd', 0,0,0,0);
 				cutsceneEnd.screenCenter(XY);
-				cutsceneEnd.cameras = [cutCam];
+				//cutsceneEnd.cameras = [cutCam];
 				cutsceneEnd.visible = false;
 				
 				cutsceneLogo = new BGSprite('stage3/cutscene/logo', 0,0,0,0);
 				cutsceneLogo.screenCenter(XY);
 				cutsceneLogo.scale.set(1.6, 1.6);
-				cutsceneLogo.cameras = [cutCam];
+				//cutsceneLogo.cameras = [cutCam];
 				cutsceneLogo.alpha = 0;
 
 				black = new FlxSprite().makeGraphic(2280, 1920, FlxColor.BLACK);
 				black.screenCenter(XY);
 				black.scrollFactor.set(0, 0);
 				black.visible = false;
-				black.cameras = [cutCam];
+				//black.cameras = [cutCam];
 				black.scale.set(1.8, 1.8);
 
 			  text1 = new BGSprite('stage3/cutscene/text1', 311.6, 294.8, 0, 0);
 			  text1.scale.set(1.8, 1.8);
 			  text1.screenCenter(XY);
-			  text1.cameras = [cutCam];
+			  //text1.cameras = [cutCam];
 				text1.visible = false;
 
 				text2 = new BGSprite('stage3/cutscene/text2', 439.4, text1.y + 85, 0, 0);
 				text2.scale.set(1.8, 1.8);
-				text2.cameras = [cutCam];
+				//text2.cameras = [cutCam];
 				text2.visible = false;
 
 			case 'covers': // covers
@@ -1157,21 +1157,21 @@ class PlayState extends MusicBeatState
 			case 'sus':
 				var bg1:BGSprite = new BGSprite('sus/SUS1', -200, -100, 1, 1);
 				bg1.setGraphicSize(Std.int(bg1.width * 1.5));
-				//bg1.updateHitbox();
+				bg1.updateHitbox();
 				add(bg1);
 
 				var bg2:BGSprite = new BGSprite('sus/SUS2', -50, -80, 1, 1);
 				bg2.setGraphicSize(Std.int(bg2.width * 1.1));
-				//bg2.updateHitbox();
+				bg2.updateHitbox();
 				add(bg2);
 
 				osCaboSUS = new BGSprite('sus/SUS3', -517, -6, 0.8, 0.8);
 				//osCaboSUS.updateHitbox();
 
 			case 'ddto':
-				var bg1:BGSprite = new BGSprite('ddto/DDLC-1', -50, -80, 1, 1);
-				//bg1.updateHitbox();
+				var bg1:BGSprite = new BGSprite('ddto/DDLC-1', -140, -120, 1, 1);
 				bg1.setGraphicSize(Std.int(bg1.width * 1.1));
+				bg1.updateHitbox();
 				add(bg1);
 
 				naoseiseissoecabomasfds = new BGSprite('ddto/DDLC-2', 0, 0, 0, 0);
@@ -1203,7 +1203,7 @@ class PlayState extends MusicBeatState
 				bg5.updateHitbox();
 				add(bg5);
 
-				blurBg = new BGSprite('nightland/BLURROC6', -1900, -1150, 1, 1);
+				blurBg = new BGSprite('nightland/BLURROC6', -1850, -1150, 1, 1);
 				blurBg.scale.set(1.6, 1.6);
 				blurBg.updateHitbox();
 
@@ -1615,7 +1615,7 @@ class PlayState extends MusicBeatState
 			}
 
 			if (curStage == 'ddto'){
-				add(naoseiseissoecabomasfds);
+				//add(naoseiseissoecabomasfds); esqueci
 			}
 
 			if (curStage == 'nightland'){
@@ -2028,7 +2028,7 @@ class PlayState extends MusicBeatState
 
 			bar.makeGraphic(5, 100, FlxColor.BLACK);
 			bar.alpha = 0.40;
-			bar.scale.x = songTxt.scale.x + 5;
+			//bar.scale.x = songTxt.scale.x + 5;
 			bar.cameras = [camHUD];
 			bar.scrollFactor.set();
 			songnameBoxGrp.add(bar);
@@ -2171,7 +2171,8 @@ class PlayState extends MusicBeatState
 		}
 		switch(daSong){
 			case 'broadcasting':
-				camGame.visible = false;
+				black.visible = true;
+				//camGame.visible = false; // kinda buggy
 				camHUD.visible = false;
 		}
 		RecalculateRating();
@@ -3577,7 +3578,7 @@ class PlayState extends MusicBeatState
 		}*/
 		if (curStage == 'covers'){
 			bfreflect.animation.frameIndex = boyfriend.animation.frameIndex;
-			bfreflect.offset.set(boyfriend.offset.x, boyfriend.offset.y*bfreflect.y);
+			bfreflect.offset.set(boyfriend.offset.x); // apenas o x
 		}
 
 		if (comboState == 0){ // combo moment 
@@ -3818,7 +3819,7 @@ class PlayState extends MusicBeatState
 		}*/
 
 		songTxt.text = '${songString}';
-		bar.scale.x = FlxG.width + songTxt.x + 15;
+		bar.scale.x = FlxG.width - songTxt.x + 15;
 
 		super.update(elapsed);
 
@@ -6067,15 +6068,15 @@ class PlayState extends MusicBeatState
 		{
 			// TERMINAR
 			//cuts1.visible = true; //Esse é o comando
-			// eu sei mateusx9
+			// eu sei mateusx9 - aly-ant
 		}
 		if (curSong == 'Broadcasting')
 		{
 			switch(curStep)
 			{
 				case 1:
-					camHUD.visible = false;
-					black.visible = true;
+					//nothing removed -aly ant
+					//aka aly
 				case 13:
 					FlxTween.tween(cutsceneBG, {alpha:1}, 1);
 					FlxTween.tween(cutsceneLogo, {alpha:1}, 1);
@@ -6105,7 +6106,7 @@ class PlayState extends MusicBeatState
 					cutsceneLogo.visible = false;
 					cutsceneBG.visible = false;
 					camHUD.visible = true;
-					camGame.visible = true;
+					//camGame.visible = true;
 			}
 		}
 		if (curSong == 'Fandomania')
