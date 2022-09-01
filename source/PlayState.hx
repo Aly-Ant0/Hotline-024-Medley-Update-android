@@ -173,11 +173,10 @@ class PlayState extends MusicBeatState
 	private var curSong:String = "";
 
 	// song bar idk
-	var bar:FlxSprite = new FlxSprite();
+	var bar:FlxSprite = new AttachedSprite(null); // dont loads a image. :lmao:
 	var songTxt:FlxText;
 	var songString:String = "";
-	var songnameBoxGrp:FlxTypedSpriteGroup<FlxSprite>;
-	var whiteLol:FlxSprite; //unused
+	var songnameBoxGrp:FlxTypedSpriteGroup<FlxSprite>; // btw have an flxtext variable (aka var) cuz it extends with flxsprite.
 
 	public var gfSpeed:Int = 1;
 	public var health:Float = 1;
@@ -1980,7 +1979,7 @@ class PlayState extends MusicBeatState
 			comboGlow.cameras = [camHUD];
 			add(comboGlow);
 
-			combotxt1 = new FlxText(comboGlow.x + 15, comboGlow.y + 15, 0, "", 33);
+			combotxt1 = new FlxText(comboGlow.x + 25, comboGlow.y + 15, 0, "", 33);
 			combotxt1.color = FlxColor.WHITE;
 			combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 33, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt1.scrollFactor.set();
@@ -3819,7 +3818,10 @@ class PlayState extends MusicBeatState
 		}*/
 
 		songTxt.text = '${songString}';
-		bar.scale.x = FlxG.width - songTxt.x + 15;
+		if(FlxG.random.bool(0.4)){
+			songTxt.text += ' BITCH.'; // :trollface:
+		}
+		bar.scale.x = FlxG.width - songTxt.x + 35;
 
 		super.update(elapsed);
 
