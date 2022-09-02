@@ -2831,16 +2831,12 @@ class PlayState extends MusicBeatState
 	}
 
 	function spawnCombo(){ // combo moment 8
-		if (combotxt1.alpha == 0 || comboGlow.alpha == 0 || combotxt2.alpha == 0){
-			FlxTween.tween(combotxt1, {alpha:1}, 0.01);
-			FlxTween.tween(combotxt2, {alpha:1}, 0.01);
-			FlxTween.tween(comboGlow, {alpha:0.3}, 0.01);
-		}
-		else{ // a mesma condição :trollface:
-			FlxTween.tween(combotxt1, {alpha:1}, 0.01);
-			FlxTween.tween(combotxt2, {alpha:1}, 0.01);
-			FlxTween.tween(comboGlow, {alpha:0.3}, 0.01);
-		}
+		combotxt1.alpha = 1;
+		combotxt2.alpha = 1;
+		comboGlow.alpha = 0.3;
+		FlxTween.cancelTweensOf(combotxt1);
+		FlxTween.cancelTweensOf(combotxt2);
+		FlxTween.cancelTweensOf(comboGlow);
 		combotxtscoreplus.alpha = 1;
 	}
 
