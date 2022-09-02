@@ -38,7 +38,7 @@ class CodeScreen extends MusicBeatState
 	var clickButton:Bool = false;
 
 	var canSelect:Bool = true;
-	public static var showallcodes:Bool = false;
+	public static var showallcodes:Bool = ClientPrefs.showcodes;
 	var isCorrect:Bool = false;
 
 	override function create()
@@ -60,7 +60,7 @@ class CodeScreen extends MusicBeatState
 
 		paineudicontroli = new FlxSprite().loadGraphic(Paths.image('hotline/menu/code/panel'));
 		paineudicontroli.screenCenter();
-		//paineudicontroli.alpha = 0;
+		paineudicontroli.alpha = 0;
 		paineudicontroli.antialiasing = ClientPrefs.globalAntialiasing;
 		add(paineudicontroli);
 
@@ -73,6 +73,7 @@ class CodeScreen extends MusicBeatState
 		new FlxTimer().start(1.35, function(tmr:FlxTimer)
 		{
 			FlxTween.tween(bg, {alpha: 1}, 0.98, {ease: FlxEase.quadOut});
+			FlxTween.tween(paineudicontroli, {alpha: 1}, 0.98, {ease: FlxEase.quadOut});
 			if (showallcodes) {
 				FlxTween.tween(codes, {alpha: 1}, 0.98, {ease: FlxEase.quadOut});
 			}
@@ -126,7 +127,7 @@ class CodeScreen extends MusicBeatState
 			numbersSpr.add(button);
 		}
 
-		code = new FlxText(480, 270, 0, "", 34);
+		code = new FlxText(450, -15, 0, "", 34);
 		code.setFormat(Paths.font("LEMONMILK-Bold.otf"), 34, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		code.text = '';
 		//code.textField = 0.40;
@@ -182,7 +183,7 @@ class CodeScreen extends MusicBeatState
 				switch(code.text)
 				{
 					case '  2  4  8  0': // code to show all the others codes
-						MusicBeatState.switchState(new AllCodes());
+						LoadingState.loadAndSwitchState(new AllCodes());
 						FlxG.mouse.visible = false;
 						FlxG.sound.play(Paths.sound('entersfx'));
 					case '  2  4  4  8': //naitilendi
@@ -195,49 +196,49 @@ class CodeScreen extends MusicBeatState
 						PlayState.SONG = Song.loadFromJson('uncanny-valley', 'uncanny-valley');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
-						LoadingState.loadAndSwitchState(new PlayState());
+						MusicBeatState.switchState(new PlayState());
 						FlxG.mouse.visible = false;
 					case '  2  0  2  0': // extraterrestre
 						PlayState.SONG = Song.loadFromJson('extraterrestrial', 'extraterrestrial');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
-						LoadingState.loadAndSwitchState(new PlayState());
+						MusicBeatState.switchState(new PlayState());
 						FlxG.mouse.visible = false;
 					case '  2  1  5  1': // spooki
 						PlayState.SONG = Song.loadFromJson('satellite-picnic', 'satellite-picnic');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
-						LoadingState.loadAndSwitchState(new PlayState());
+						MusicBeatState.switchState(new PlayState());
 						FlxG.mouse.visible = false;
 					case '  1  9  2  1': // sus
 						PlayState.SONG = Song.loadFromJson('sussy-pussy', 'sussy-pussy');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
-						LoadingState.loadAndSwitchState(new PlayState());
+						MusicBeatState.switchState(new PlayState());
 						FlxG.mouse.visible = false;
 					case '  1  3  9  1': // i gonna shoot maself
 						PlayState.SONG = Song.loadFromJson('close-chuckle', 'close-chuckle');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
-						LoadingState.loadAndSwitchState(new PlayState());
+						MusicBeatState.switchState(new PlayState());
 						FlxG.mouse.visible = false;
 					case '  8  9  8  9': // nicu vs turma da mônica so que nao
 						PlayState.SONG = Song.loadFromJson('deep-poems', 'deep-poems');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
-						LoadingState.loadAndSwitchState(new PlayState());
+						MusicBeatState.switchState(new PlayState());
 						FlxG.mouse.visible = false;
 					case '  6  1  2  0': // fun is infinite
 						PlayState.SONG = Song.loadFromJson('majin', 'majin');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
-						LoadingState.loadAndSwitchState(new PlayState());
+						MusicBeatState.switchState(new PlayState());
 						FlxG.mouse.visible = false;
 					case '  2  1  1  9': // final song
 						PlayState.SONG = Song.loadFromJson('astral-projection', 'astral-projection');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
-						LoadingState.loadAndSwitchState(new PlayState());
+						MusicBeatState.switchState(new PlayState());
 						FlxG.mouse.visible = false;
 					default:
 						FlxG.sound.play(Paths.sound('errorsfx'));
@@ -266,12 +267,9 @@ class AllCodes extends MusicBeatState
 	override function update(elapsed:Float) {
 		if (controls.BACK) {
 			FlxG.sound.play(Paths.sound('backsfx'));
-			MusicBeatState.switchState(new CodeScreen());
-			if (FlxG.save.data.showcodes) { // show all codes of the musics
-				CodeScreen.showallcodes = true;
-				ClientPrefs.saveSettings();
-				FlxG.save.flush();
-			}
+			LoadingState.loadAndSwitchState(new CodeScreen());
+			ClientPrefs.saveSettings();
+			FlxG.save.flush();
 		}
 
 		super.update(elapsed);
