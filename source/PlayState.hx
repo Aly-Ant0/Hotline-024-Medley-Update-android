@@ -3605,7 +3605,7 @@ class PlayState extends MusicBeatState
 
 			dadreflect.animation.frameIndex = dad.animation.frameIndex;
 			dadreflect.offset.set(dad.offset.x); // apenas o x
-			dadreflect.y = (Math.sin(reflectFloatMoment) * 1.1; // i need learn sin and cos cuz im dumb in math
+			dadreflect.y = Math.sin(reflectFloatMoment) * 1.1; // i need learn sin and cos cuz im dumb in math (and pi too)
 		}
 
 		if (comboState == 0){ // combo moment 
