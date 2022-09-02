@@ -1803,7 +1803,7 @@ class PlayState extends MusicBeatState
 				dadreflect.blend = ADD; // por isso q no mod os reflexo é mt lindo q da ate vontade de chorar
 				dadreflect.alpha = .8;
 				dadreflect.x = dad.x;
-				dadreflect.y = dad.y + 500; // the same shit than the bf ig
+				//dadreflect.y = dad.y + 500; // the same shit than the bf ig
 				insert(members.indexOf(dadGroup), dadreflect);
 			case 'limo':
 				resetFastCar();
@@ -3586,7 +3586,8 @@ class PlayState extends MusicBeatState
 	var startedCountdown:Bool = false;
 	var canPause:Bool = true;
 	var limoSpeed:Float = 0;
-	var tweenMoment:Bool = false;
+	var tweenMoment:Bool = false; // the worst thing that i made
+	var reflectFloatMoment:Float = 0;
 
 	override public function update(elapsed:Float)
 	{
@@ -3595,6 +3596,7 @@ class PlayState extends MusicBeatState
 			iconP1.swapOldIcon();
 		}*/
 		if (curStage == 'covers'){
+			reflectFloatMoment += 0.04;
 			bfreflect.animation.frameIndex = boyfriend.animation.frameIndex;
 			bfreflect.offset.set(boyfriend.offset.x); // apenas o x
 
@@ -3603,8 +3605,7 @@ class PlayState extends MusicBeatState
 
 			dadreflect.animation.frameIndex = dad.animation.frameIndex;
 			dadreflect.offset.set(dad.offset.x); // apenas o x
-			dadreflect.y = Math.sin(dad.y * -1);
-
+			dadreflect.y = (Math.sin(reflectFloatMoment) * 1.1; // i need learn sin and cos cuz im dumb in math
 		}
 
 		if (comboState == 0){ // combo moment 
