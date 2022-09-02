@@ -3631,15 +3631,15 @@ class PlayState extends MusicBeatState
 				FlxFlicker.flicker(combotxt2, 1, 0.05, true, false);
 				combotxtscoreplus.alpha = 0;
 				tweenMoment = true;
-				FlxTween.tween(combotxt1, {alpha:0}, 1, {onComplete: function(twn:FlxTween){
+				FlxTween.tween(combotxt1, {alpha:0}, 1, {ease: FlxEase.linear, onComplete: function(twn:FlxTween){
 					combotxt1.alpha = 0;
 				}});
-				FlxTween.tween(combotxt2, {alpha:0}, 1, {onComplete: function(twn:FlxTween){
+				FlxTween.tween(combotxt2, {alpha:0}, 1, {ease: FlxEase.linear, onComplete: function(twn:FlxTween){
 					combotxt2.alpha = 0;
 					tweenMoment = false;
 				}});
 				//FlxTween.tween(combotxt1, {alpha:0}, 1); // bruh
-				FlxTween.tween(comboGlow, {alpha:0}, 1, {onComplete:function(twn:FlxTween){
+				FlxTween.tween(comboGlow, {alpha:0}, 1, {ease: FlxEase.linear, onComplete:function(twn:FlxTween){
 					comboGlow.alpha = 0;
 					sicks = 0;
 					goods = 0;
