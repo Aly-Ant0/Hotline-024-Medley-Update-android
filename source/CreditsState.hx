@@ -82,7 +82,7 @@ class CreditsState extends MusicBeatState
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
 			['Hotline 024 Recreation'], //creditos, agora o mayko vai adicionar o dele kkkkk
-			['Aly-Ant',		'aly',	'Recreation Owner, Main Coder of the Recreation',			'https://twitter.com/AlyAntlol',		'C0AFFF'],
+			['Aly-Ant',		'aly',	'Recreation Owner, Satellite Picnic Cutscene Coder, Main Coder of the Recreation',			'https://twitter.com/AlyAntlol',		'C0AFFF'],
 			['THE-MAYKOLLYOUTUBE',		'may',	'Coding,\n i guess',		'https://youtube.com/channel/UC7zIWAVRqtZioMeDI7unXSQ',		'404072'],
 			//Just a lil' fix, my name dont have a "H". - MateusX02
 			['MateusX02', 'matx02', 'Cutscenes Coder and only it,\n i guess', 'https://www.youtube.com/channel/UCPh9ueTFJh50NRlF2CLsbbA', 'FFFFFF'],
