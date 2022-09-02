@@ -44,14 +44,13 @@ jobs:
 
       - name: Install haxelib stuff
         run: |
-          haxelib --quiet install lime
-          haxelib --quiet install openfl 9.2.0
+          haxelib --quiet install lime 7.9.0
+          haxelib --quiet install openfl 9.1.0
           haxelib --quiet install flixel
-          haxelib --quiet --always run lime setup flixel
-          haxelib install flixel-tools --quiet
-          haxelib install flixel-ui --quiet
-          haxelib install hscript --quiet
-          haxelib install flixel-addons 2.10.0 --quiet
+          haxelib --quiet --never run lime setup
+          haxelib --quiet install hscript
+          haxelib --quiet install flixel-ui
+          haxelib --quiet install flixel-addons
           haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc --quiet
           haxelib git extension-androidtools https://github.com/MAJigsaw77/extension-androidtools.git --quiet
           haxelib git extension-webview https://github.com/Aly-Ant0/extension-webview.git --quiet
@@ -61,16 +60,18 @@ jobs:
       - name: Config Lime stuff
         run: |
           haxelib run lime setup -alias -y
-          lime config ANDROID_SDK $ANDROID_HOME
-          lime config ANDROID_NDK_ROOT $ANDROID_NDK_HOME
-          lime config JAVA_HOME $JAVA_HOME
-          lime config ANDROID_SETUP true
-          lime config
+          haxelib run lime config ANDROID_SDK $ANDROID_HOME
+          haxelib run lime config ANDROID_NDK_ROOT $ANDROID_NDK_HOME
+          haxelib run lime config JAVA_HOME $JAVA_HOME
+          haxelib run lime config ANDROID_SETUP true
+          haxelib set lime 7.9.0
+          haxelib set openfl 9.1.0
+          haxelib list
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - name: Compile the APK
-        run: lime build android -final
+        run: lime build android -release
       
       - name: Upload Artifact
         uses: actions/upload-artifact@v2.2.2
