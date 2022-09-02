@@ -173,7 +173,7 @@ class PlayState extends MusicBeatState
 	private var curSong:String = "";
 
 	// song bar idk
-	var bar:FlxSprite = new AttachedSprite(null); // dont loads a image. :lmao:
+	var bar:AttachedSprite = new AttachedSprite(null); // dont loads a image. :lmao:
 	var songTxt:FlxText;
 	var songString:String = "";
 	var songnameBoxGrp:FlxTypedSpriteGroup<FlxSprite>; // btw have an flxtext variable (aka var) cuz it extends with flxsprite.
@@ -1784,7 +1784,7 @@ class PlayState extends MusicBeatState
 				bfreflect.frames = boyfriend.frames;
 				bfreflect.flipY = true;
 				bfreflect.blend = ADD;
-				bfreflect.alpha = .8;
+				bfreflect.alpha = .7;
 				bfreflect.x = boyfriend.x;
 				bfreflect.y = boyfriend.y + 390;
 				insert(members.indexOf(boyfriendGroup), bfreflect);
@@ -1794,7 +1794,7 @@ class PlayState extends MusicBeatState
 				gfreflect.blend = ADD;
 				gfreflect.alpha = .8;
 				gfreflect.x = gf.x;
-				gfreflect.y = gf.y + 500; // the same shit than the bf ig
+				gfreflect.y = gf.height*1;
 				gfreflect.scale.set(gf.scale.x, gf.scale.y);
 				insert(members.indexOf(gfGroup), gfreflect);
 
@@ -1803,7 +1803,7 @@ class PlayState extends MusicBeatState
 				dadreflect.blend = ADD; // por isso q no mod os reflexo é mt lindo q da ate vontade de chorar
 				dadreflect.alpha = .8;
 				dadreflect.x = dad.x;
-				//dadreflect.y = dad.y + 500; // the same shit than the bf ig
+				dadreflect.y = dad.height*1; // the same shit than the bf ig
 				insert(members.indexOf(dadGroup), dadreflect);
 			case 'limo':
 				resetFastCar();
@@ -4382,6 +4382,7 @@ class PlayState extends MusicBeatState
 			flash.visible = false;
 		});
 	}
+
 	function octaMoment():Void
 	{
 			FlxG.debugger.visible = true;
