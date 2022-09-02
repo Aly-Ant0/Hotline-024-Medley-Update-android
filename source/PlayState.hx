@@ -1061,20 +1061,20 @@ class PlayState extends MusicBeatState
 
 			case 'nikkuMall':
 				var bg:BGSprite  = new BGSprite('nikkuMall/back', 0, 0, 0.9, 0.9);
+				bg.scale.set(2.4, 2.4);
 				bg.updateHitbox();
 				bg.screenCenter(XY);
-				bg.scale.set(2.4, 2.4);
 				add(bg);
 
 				var front:BGSprite = new BGSprite('nikkuMall/front', 0, 0, 0, 0);
+				front.scale.set(2.4, 2.4);
 				front.updateHitbox();
 				front.screenCenter(XY);
-				front.scale.set(2.4, 2.4);
 				add(front);
 
 				oscabodomeucu = new BGSprite('nikkuMall/cables', 0, 0, 1.1, 1.1);
-				oscabodomeucu.scale.set(2.4, 2.4);
 				oscabodomeucu.screenCenter(XY);
+				oscabodomeucu.scale.set(2.4, 2.4);
 				oscabodomeucu.updateHitbox();
 
 				nicuLight = new BGSprite('nikkuMall/light', 0, 0, 1.1, 1.1);
@@ -1084,8 +1084,8 @@ class PlayState extends MusicBeatState
 				nicuLight.updateHitbox();
 
 				nicuPlants = new BGSprite('nikkuMall/plants', -975, -500, 1.1, 1.1);
-				nicuPlants.scale.set(2.4, 2.4);
 				nicuPlants.screenCenter(XY);
+				nicuPlants.scale.set(2.4, 2.4);
 				nicuPlants.updateHitbox();
 
 			case 'jojo': //PODE TROCAR O NOME DPS - mateusx02 part 1 e nunca mais fez alguma na recriacao e fodase
@@ -1794,7 +1794,8 @@ class PlayState extends MusicBeatState
 				gfreflect.blend = ADD;
 				gfreflect.alpha = .8;
 				gfreflect.x = gf.x;
-				gfreflect.y = gf.y + 390; // the same shit than the bf ig
+				gfreflect.y = gf.y + 500; // the same shit than the bf ig
+				gfreflect.scale.set(gf.scale.x, gf.scale.y);
 				insert(members.indexOf(gfGroup), gfreflect);
 
 				dadreflect.frames = dad.frames;
@@ -1802,7 +1803,7 @@ class PlayState extends MusicBeatState
 				dadreflect.blend = ADD; // por isso q no mod os reflexo é mt lindo q da ate vontade de chorar
 				dadreflect.alpha = .8;
 				dadreflect.x = dad.x;
-				dadreflect.y = dad.y + 390; // the same shit than the bf ig
+				dadreflect.y = dad.y + 500; // the same shit than the bf ig
 				insert(members.indexOf(dadGroup), dadreflect);
 			case 'limo':
 				resetFastCar();
@@ -3602,8 +3603,8 @@ class PlayState extends MusicBeatState
 
 			dadreflect.animation.frameIndex = dad.animation.frameIndex;
 			dadreflect.offset.set(dad.offset.x); // apenas o x
+			dadreflect.y = Math.sin(dad.y * -1)
 
-			dadreflect.y = Math.sin(dad.y * 1); // no caso fica positivo se nao eu botar negativo, e sim sou matematico so q nao lmao
 		}
 
 		if (comboState == 0){ // combo moment 
