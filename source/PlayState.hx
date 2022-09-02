@@ -144,7 +144,7 @@ class PlayState extends MusicBeatState
 	public var dad:Character = null;
 	public var dadReflect:Character = null; // unused
 	// gf
-	public var gf:Character = null;
+	public var gf:Character = null; // pensei q a variavel era girlfriend
 	public var gfReflect:Character = null; // unused shit
 	// bf
 	public var boyfriend:Boyfriend = null;
@@ -1789,12 +1789,12 @@ class PlayState extends MusicBeatState
 				bfreflect.y = boyfriend.y + 390;
 				insert(members.indexOf(boyfriendGroup), bfreflect);
 
-				gfreflect.frames = girlfriend.frames;
+				gfreflect.frames = gf.frames;
 				gfreflect.flipY = true;
 				gfreflect.blend = ADD;
 				gfreflect.alpha = .8;
-				gfreflect.x = girlfriend.x;
-				gfreflect.y = girlfriend.y + 390; // the same shit than the bf ig
+				gfreflect.x = gf.x;
+				gfreflect.y = gf.y + 390; // the same shit than the bf ig
 				insert(members.indexOf(gfGroup), gfreflect);
 
 				dadreflect.frames = dad.frames;
@@ -3597,8 +3597,8 @@ class PlayState extends MusicBeatState
 			bfreflect.animation.frameIndex = boyfriend.animation.frameIndex;
 			bfreflect.offset.set(boyfriend.offset.x); // apenas o x
 
-			gfreflect.animation.frameIndex = girlfriend.animation.frameIndex;
-			gfreflect.offset.set(girlfriend.offset.x); // apenas o x
+			gfreflect.animation.frameIndex = gf.animation.frameIndex;
+			gfreflect.offset.set(gf.offset.x); // apenas o x
 
 			dadreflect.animation.frameIndex = dad.animation.frameIndex;
 			dadreflect.offset.set(dad.offset.x); // apenas o x
