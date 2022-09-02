@@ -284,7 +284,8 @@ class MainMenuState extends MusicBeatState
 					creditsImage.color = 0xFFFFFFFF;
 				}
 			}
-			switch(menuState){ // original code from musk i just change the flxtween to flxmath and i just get the coords lmao
+		}
+		switch(menuState){ // original code from musk i just change the flxtween to flxmath and i just get the coords lmao
 				var area1:Float = 150 + (400 * 1);
 				var area2:Float = 150 + (400 * 2);
 				var area3:Float = 150 + (400 * 0);
@@ -331,7 +332,6 @@ class MainMenuState extends MusicBeatState
 					menuItems.members[2].visible = true;
 					menuItems.members[3].visible = true;
 		}
-
 		super.update(elapsed);
 	}
 
