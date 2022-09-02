@@ -281,35 +281,32 @@ class MainMenuState extends MusicBeatState
 				}
 		}
 		switch(menuState){ // original code from musk i just change the flxtween to flxmath and i just get the coords lmao
-				var area1:Float = 150 + (400 * 1);
-				var area2:Float = 150 + (400 * 2);
-				var area3:Float = 150 + (400 * 0);
 				var lerpVal:Float = CoolUtil.boundTo(elapsed * 9, 0, 1);
 				case 0:
-					FlxMath.lerp(menuItems.members[0].x, area1, lerpVal);
-					FlxMath.lerp(menuItems.members[1].x, area2, lerpVal);
-					FlxMath.lerp(menuItems.members[2].x, area3, lerpVal);
-					FlxMath.lerp(menuItems.members[3].x, area3, lerpVal);
+					FlxMath.lerp(menuItems.members[0].x, 150 + (400 * 1), lerpVal);
+					FlxMath.lerp(menuItems.members[1].x, 150 + (400 * 2), lerpVal);
+					FlxMath.lerp(menuItems.members[2].x, 150 + (400 * 0), lerpVal);
+					FlxMath.lerp(menuItems.members[3].x, 150 + (400 * 0), lerpVal);
 
 					menuItems.members[0].visible = true;
 					menuItems.members[1].visible = true;
 					menuItems.members[2].visible = false;
 					menuItems.members[3].visible = true;
 				case 1:
-					FlxMath.lerp(menuItems.members[0].x, area3, lerpVal);
-					FlxMath.lerp(menuItems.members[1].x, area1, lerpVal);
-					FlxMath.lerp(menuItems.members[2].x, area2, lerpVal);
-					FlxMath.lerp(menuItems.members[3].x, area1, lerpVal);
+					FlxMath.lerp(menuItems.members[0].x, 150 + (400 * 0), lerpVal);
+					FlxMath.lerp(menuItems.members[1].x, 150 + (400 * 1), lerpVal);
+					FlxMath.lerp(menuItems.members[2].x, 150 + (400 * 2), lerpVal);
+					FlxMath.lerp(menuItems.members[3].x, 150 + (400 * 1), lerpVal);
 
 					menuItems.members[0].visible = true;
 					menuItems.members[1].visible = true;
 					menuItems.members[2].visible = true;
 					menuItems.members[3].visible = false;
 				case 2:
-					FlxMath.lerp(menuItems.members[0].x, area1, lerpVal);
-					FlxMath.lerp(menuItems.members[1].x, area3, lerpVal);
-					FlxMath.lerp(menuItems.members[2].x, area1, lerpVal);
-					FlxMath.lerp(menuItems.members[3].x, area2, lerpVal);
+					FlxMath.lerp(menuItems.members[0].x, 150 + (400 * 1), lerpVal);
+					FlxMath.lerp(menuItems.members[1].x, 150 + (400 * 0), lerpVal);
+					FlxMath.lerp(menuItems.members[2].x, 150 + (400 * 1), lerpVal);
+					FlxMath.lerp(menuItems.members[3].x, 150 + (400 * 2), lerpVal);
 
 					menuItems.members[0].visible = false;
 					menuItems.members[1].visible = true;
@@ -317,10 +314,10 @@ class MainMenuState extends MusicBeatState
 					menuItems.members[3].visible = true;
 				case 3:
 					menuItems.members[2].x = 150 + (400 * 1);
-					FlxMath.lerp(menuItems.members[0].x, area2, lerpVal);
-					FlxMath.lerp(menuItems.members[1].x, area1, lerpVal);
-					FlxMath.lerp(menuItems.members[2].x, area3, lerpVal);
-					FlxMath.lerp(menuItems.members[3].x, area1, lerpVal);
+					FlxMath.lerp(menuItems.members[0].x, 150 + (400 * 2), lerpVal);
+					FlxMath.lerp(menuItems.members[1].x, 150 + (400 * 1), lerpVal);
+					FlxMath.lerp(menuItems.members[2].x, 150 + (400 * 0), lerpVal);
+					FlxMath.lerp(menuItems.members[3].x, 150 + (400 * 1), lerpVal);
 
 					menuItems.members[0].visible = true;
 					menuItems.members[1].visible = false;
