@@ -114,7 +114,7 @@ class ExtrasScreen extends MusicBeatState
 
 				if (touch.justPressed && FlxG.mouse.justPressed) {
 					FlxG.sound.play(Paths.sound('selectsfx'));
-					MusicBeatState.switchState(new CodeScreen());
+					LoadingState.loadAndSwitchState(new CodeScreen());
 				}
 			}
 			else {
