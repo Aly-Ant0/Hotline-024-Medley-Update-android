@@ -3603,7 +3603,7 @@ class PlayState extends MusicBeatState
 
 			dadreflect.animation.frameIndex = dad.animation.frameIndex;
 			dadreflect.offset.set(dad.offset.x); // apenas o x
-			dadreflect.y = Math.sin(dad.y * -1)
+			dadreflect.y = Math.sin(dad.y * -1);
 
 		}
 
