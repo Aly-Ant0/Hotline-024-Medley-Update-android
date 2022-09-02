@@ -142,13 +142,13 @@ class PlayState extends MusicBeatState
 
 	// dad
 	public var dad:Character = null;
-	public var dadReflect:Character = null;
+	public var dadReflect:Character = null; // unused
 	// gf
 	public var gf:Character = null;
-	public var gfReflect:Character = null;
+	public var gfReflect:Character = null; // unused shit
 	// bf
 	public var boyfriend:Boyfriend = null;
-	public var bfThing:Boyfriend = null;
+	public var bfThing:Boyfriend = null; // unused shit
 
 	public var notes:FlxTypedGroup<Note>;
 	public var unspawnNotes:Array<Note> = [];
@@ -251,6 +251,8 @@ class PlayState extends MusicBeatState
 	var coverBG9:BGSprite;
 
 	var bfreflect:FlxSprite = new FlxSprite();
+	var dadreflect:FlxSprite = new FlxSprite();
+	var gfreflect:FlxSprite = new FlxSprite(); // GOSTOSA AAAA (zoas)
 
 	// expurgated
 	var exSky:BGSprite;
@@ -1089,7 +1091,7 @@ class PlayState extends MusicBeatState
 			case 'jojo': //PODE TROCAR O NOME DPS - mateusx02 part 1 e nunca mais fez alguma na recriacao e fodase
 				var cuts1:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('optim/1'));
 				cuts1.scrollFactor.set(0, 0);
-				cuts1.updateHitbox();
+				cuts1.updateHitbox(); // vc so usa isso so quando muda o tamanho
 				cuts1.screenCenter();
 				cuts1.antialiasing = ClientPrefs.globalAntialiasing;
 				add(cuts1);
@@ -1782,10 +1784,26 @@ class PlayState extends MusicBeatState
 				bfreflect.frames = boyfriend.frames;
 				bfreflect.flipY = true;
 				bfreflect.blend = ADD;
-				bfreflect.alpha = 0.5;
+				bfreflect.alpha = .8;
 				bfreflect.x = boyfriend.x;
 				bfreflect.y = boyfriend.y + 390;
 				insert(members.indexOf(boyfriendGroup), bfreflect);
+
+				gfreflect.frames = girlfriend.frames;
+				gfreflect.flipY = true;
+				gfreflect.blend = ADD;
+				gfreflect.alpha = .8;
+				gfreflect.x = girlfriend.x;
+				gfreflect.y = girlfriend.y + 390; // the same shit than the bf ig
+				insert(members.indexOf(gfGroup), gfreflect);
+
+				dadreflect.frames = dad.frames;
+				dadreflect.flipY = true;
+				dadreflect.blend = ADD; // por isso q no mod os reflexo é mt lindo q da ate vontade de chorar
+				dadreflect.alpha = .8;
+				dadreflect.x = dad.x;
+				dadreflect.y = dad.y + 390; // the same shit than the bf ig
+				insert(members.indexOf(dadGroup), dadreflect);
 			case 'limo':
 				resetFastCar();
 				insert(members.indexOf(gfGroup) - 1, fastCar);
@@ -3578,6 +3596,14 @@ class PlayState extends MusicBeatState
 		if (curStage == 'covers'){
 			bfreflect.animation.frameIndex = boyfriend.animation.frameIndex;
 			bfreflect.offset.set(boyfriend.offset.x); // apenas o x
+
+			gfreflect.animation.frameIndex = girlfriend.animation.frameIndex;
+			gfreflect.offset.set(girlfriend.offset.x); // apenas o x
+
+			dadreflect.animation.frameIndex = dad.animation.frameIndex;
+			dadreflect.offset.set(dad.offset.x); // apenas o x
+
+			dadreflect.y = Math.sin(dad.y * 1); // no caso fica positivo se nao eu botar negativo, e sim sou matematico so q nao lmao
 		}
 
 		if (comboState == 0){ // combo moment 
@@ -6008,7 +6034,7 @@ class PlayState extends MusicBeatState
 			tankGround.y = 1300 + 1100 * Math.sin(Math.PI / 180 * (1 * tankAngle + 180));
 		}
 	}
-//	Math.sin(Math.PI / 20) * 75 + 400;
+//	Math.sin(Math.PI / 180) * 75 + 400;
 
 	private var preventLuaRemove:Bool = false;
 	override function destroy() {
