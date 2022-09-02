@@ -63,7 +63,7 @@ class Achievements {
 				henchmenDeath = FlxG.save.data.henchmenDeath;
 			}
 		}
-	}
+	}//end
 }
 
 class AttachedAchievement extends FlxSprite {
