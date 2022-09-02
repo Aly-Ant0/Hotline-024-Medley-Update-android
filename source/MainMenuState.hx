@@ -48,7 +48,6 @@ class MainMenuState extends MusicBeatState
 	var creditsImage:FlxSprite;
 	var jukeClickArea:FlxObject;
 	var creditsClickArea:FlxObject;
-
 	var menuState:Int = 0; // menu items position -aly ant
 
 	override function create()
@@ -206,26 +205,25 @@ class MainMenuState extends MusicBeatState
 				jukeboxText.color = 0xFFFFFFFF;
 			}
 		}
-			if (controls.UI_LEFT_P)
+		if (controls.UI_LEFT_P)
 			{
 				//FlxG.sound.play(Paths.sound('selectsfx'));
 				changeItem(-1);
 			}
 
-			if (controls.UI_RIGHT_P)
+		if (controls.UI_RIGHT_P)
 			{
 				//FlxG.sound.play(Paths.sound('selectsfx'));
 				changeItem(1);
 			}
 
-			if (controls.BACK)
-			{
-				selectedSomethin = true;
+		if (controls.BACK)
+		{
 				FlxG.sound.play(Paths.sound('backsfx'));
 				MusicBeatState.switchState(new TitleState());
-			}
+		}
 
-			if (controls.ACCEPT)
+		if (controls.ACCEPT)
 			{
 				for (item in menuItems.members)
 				{
@@ -236,9 +234,9 @@ class MainMenuState extends MusicBeatState
 							FlxFlicker.flicker(item, 0.4, 0.06, true, false);
 						}
 					}
-					else
+					if (daChoice!='story_mode')
 					{
-						if(daChoice!='story_mode'){
+						if(item.ID == curSelected){
 							FlxFlicker.flicker(item, 0.4, 0.06, false, false, function(flicker:FlxFlicker)
 							{
 								switch(daChoice)
@@ -255,20 +253,20 @@ class MainMenuState extends MusicBeatState
 								}
 							});
 						}
-					}
-					if (daChoice != 'story_mode')
-					{
-						FlxTween.tween(item, {alpha: 0}, 0.5, {
-							onComplete:function(twn:FlxTween)
-							{
-								item.kill();
-							}
-						});
+						else
+						{
+							FlxTween.tween(item, {alpha: 0}, 0.5, {
+								onComplete:function(twn:FlxTween)
+								{
+									item.kill();
+								}
+							});
+						}
 					}
 				}
-			}
-			for (touch in FlxG.touches.list)
-			{
+		}
+		for (touch in FlxG.touches.list)
+		{
 				if (touch.overlaps(creditsClickArea)) {
 					creditsImage.color = 0xFF363636;
 					if(touch.justPressed)
@@ -281,7 +279,7 @@ class MainMenuState extends MusicBeatState
 				{
 					creditsImage.color = 0xFFFFFFFF;
 				}
-			}
+		}
 		switch(menuState){ // original code from musk i just change the flxtween to flxmath and i just get the coords lmao
 				var area1:Float = 150 + (400 * 1);
 				var area2:Float = 150 + (400 * 2);
