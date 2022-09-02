@@ -206,8 +206,6 @@ class MainMenuState extends MusicBeatState
 				jukeboxText.color = 0xFFFFFFFF;
 			}
 		}
-		if (!selectedSomethin && canSelect)
-		{
 			if (controls.UI_LEFT_P)
 			{
 				//FlxG.sound.play(Paths.sound('selectsfx'));
@@ -284,7 +282,6 @@ class MainMenuState extends MusicBeatState
 					creditsImage.color = 0xFFFFFFFF;
 				}
 			}
-		}
 		switch(menuState){ // original code from musk i just change the flxtween to flxmath and i just get the coords lmao
 				var area1:Float = 150 + (400 * 1);
 				var area2:Float = 150 + (400 * 2);
