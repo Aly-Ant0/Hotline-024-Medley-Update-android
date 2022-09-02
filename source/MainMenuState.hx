@@ -353,7 +353,7 @@ class MainMenuState extends MusicBeatState
 
 			if (spr.ID == curSelected)
 			{
-				spr.animation.play'agora_usa_mais_nao');
+				spr.animation.play('agora_usa_mais_nao');
 				spr.centerOffsets();
 			}
 		});
