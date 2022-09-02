@@ -81,14 +81,14 @@ class CreditsState extends MusicBeatState
 		#end
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
-			['Hotline 024 Port'], //creditos, agora o mayko vai adicionar o dele kkkkk
+			['Hotline 024 Recreation'], //creditos, agora o mayko vai adicionar o dele kkkkk
 			['Aly-Ant',		'aly',	'Recreation Owner, Main Coder of the Recreation',			'https://twitter.com/AlyAntlol',		'C0AFFF'],
 			['THE-MAYKOLLYOUTUBE',		'may',	'Coding,\n i guess',		'https://youtube.com/channel/UC7zIWAVRqtZioMeDI7unXSQ',		'404072'],
 			//Just a lil' fix, my name dont have a "H". - MateusX02
 			['MateusX02', 'matx02', 'Cutscenes Coder and only it,\n i guess', 'https://www.youtube.com/channel/UCPh9ueTFJh50NRlF2CLsbbA', 'FFFFFF'],
 			['Peppy',		'Elpepe',	'Menu Coding Helper and in the Gameplay\n Peppy God',		'https://youtube.com/c/PeppyWall',		'4DA5FF'],
 			[''],
-			['Hotline 024 Recreation Builders\nwhen git actions dont works'],
+			['Hotline 024 Recreation Builders'],
 			['Vegeth', 'vege', 'First Builder of Recreation\ncuz i dont have a PC', 'https://seinao', '4DA5FF'],
 			['Random', 'random', 'Second Builder of Recreation\nand PE 0.5.2h no mod folder creator', 'https://seinao', '4DA5FF'], // idk what color lol
 			[''],
