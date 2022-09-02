@@ -288,9 +288,7 @@ class MainMenuState extends MusicBeatState
 				var area1:Float = 150 + (400 * 1);
 				var area2:Float = 150 + (400 * 2);
 				var area3:Float = 150 + (400 * 0);
-
 				var lerpVal:Float = CoolUtil.boundTo(elapsed * 9, 0, 1);
-	
 				case 0:
 					FlxMath.lerp(menuItems.members[0].x, area1, lerpVal);
 					FlxMath.lerp(menuItems.members[1].x, area2, lerpVal);
@@ -332,7 +330,6 @@ class MainMenuState extends MusicBeatState
 					menuItems.members[1].visible = false;
 					menuItems.members[2].visible = true;
 					menuItems.members[3].visible = true;
-			}
 		}
 
 		super.update(elapsed);
