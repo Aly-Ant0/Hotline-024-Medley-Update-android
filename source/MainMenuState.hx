@@ -133,7 +133,7 @@ class MainMenuState extends MusicBeatState
 		//creditsImage.updateHitbox();
 		add(creditsImage);
 
-		creditsClickArea = new FlxObject(532, 684, 175, 25);
+		creditsClickArea = new FlxObject(0, 0, 175, 25);
 		creditsClickArea.setPosition(552, 684);
 		add(creditsClickArea);
 
@@ -184,11 +184,6 @@ class MainMenuState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		if (FlxG.sound.music.volume < 0.8)
-		{
-			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
-		}
-
 		for (touch in FlxG.touches.list)
 		{
 			if(touch.overlaps(jukeClickArea))
@@ -224,13 +219,13 @@ class MainMenuState extends MusicBeatState
 		}
 
 		if (controls.ACCEPT)
-			{
+		{
 				for (item in menuItems.members)
 				{
 					var daChoice:String = optionShit[curSelected];
 					if (daChoice=='story_mode'){
+						FlxG.sound.play(Paths.sound('errorsfx'));
 						if (item.ID==curSelected){
-							FlxG.sound.play(Paths.sound('errorsfx'));
 							FlxFlicker.flicker(item, 0.4, 0.06, true, false);
 						}
 					}
@@ -280,9 +275,10 @@ class MainMenuState extends MusicBeatState
 					creditsImage.color = 0xFFFFFFFF;
 				}
 		}
-		switch(menuState){ // original code from musk i just change the flxtween to flxmath and i just get the coords lmao
+		switch (menuState) // original code from musk i just change the flxtween to flxmath and i just get the coords lmao
+		{
 				var lerpVal:Float = CoolUtil.boundTo(elapsed * 9, 0, 1);
-				case 0:
+				/*case 0:
 					FlxMath.lerp(menuItems.members[0].x, 150 + (400 * 1), lerpVal);
 					FlxMath.lerp(menuItems.members[1].x, 150 + (400 * 2), lerpVal);
 					FlxMath.lerp(menuItems.members[2].x, 150 + (400 * 0), lerpVal);
@@ -322,7 +318,7 @@ class MainMenuState extends MusicBeatState
 					menuItems.members[0].visible = true;
 					menuItems.members[1].visible = false;
 					menuItems.members[2].visible = true;
-					menuItems.members[3].visible = true;
+					menuItems.members[3].visible = true;*/
 		}
 		super.update(elapsed);
 	}
