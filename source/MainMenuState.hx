@@ -147,11 +147,8 @@ class MainMenuState extends MusicBeatState
 	var canSelect:Bool = true;
 	override function update(elapsed:Float)
 	{
-		switch (menuState) // original code from musk i just change the flxtween to flxmath and i just get the coords lmao
-		{
-				var lerpVal:Float = CoolUtil.boundTo(elapsed * 9, 0, 1);
-
-				case 0:
+		var lerpVal:Float = CoolUtil.boundTo(elapsed * 9, 0, 1);
+		if (menuState == 0){
 					FlxMath.lerp(menuItems.members[0].x, 150 + (400 * 1), lerpVal);
 					FlxMath.lerp(menuItems.members[1].x, 150 + (400 * 2), lerpVal);
 					FlxMath.lerp(menuItems.members[2].x, 150 + (400 * 0), lerpVal);
@@ -161,32 +158,35 @@ class MainMenuState extends MusicBeatState
 					menuItems.members[1].visible = true;
 					menuItems.members[2].visible = false;
 					menuItems.members[3].visible = true;
-				case 1:
-					FlxMath.lerp(menuItems.members[0].x, 150 + (400 * 0), lerpVal);
-					FlxMath.lerp(menuItems.members[1].x, 150 + (400 * 1), lerpVal);
-					FlxMath.lerp(menuItems.members[2].x, 150 + (400 * 2), lerpVal);
-					FlxMath.lerp(menuItems.members[3].x, 150 + (400 * 1), lerpVal);
+		}
+		if (menuState == 1){
+					FlxMath.lerp(menuItems.members[0].x, 100 + (400 * 0), lerpVal);
+					FlxMath.lerp(menuItems.members[1].x, 100 + (400 * 1), lerpVal);
+					FlxMath.lerp(menuItems.members[2].x, 100 + (400 * 2), lerpVal);
+					FlxMath.lerp(menuItems.members[3].x, 100 + (400 * 1), lerpVal);
 
 					menuItems.members[0].visible = true;
 					menuItems.members[1].visible = true;
 					menuItems.members[2].visible = true;
 					menuItems.members[3].visible = false;
-				case 2:
-					FlxMath.lerp(menuItems.members[0].x, 150 + (400 * 1), lerpVal);
-					FlxMath.lerp(menuItems.members[1].x, 150 + (400 * 0), lerpVal);
-					FlxMath.lerp(menuItems.members[2].x, 150 + (400 * 1), lerpVal);
-					FlxMath.lerp(menuItems.members[3].x, 150 + (400 * 2), lerpVal);
+		}
+		if (menuState == 2){
+					FlxMath.lerp(menuItems.members[0].x, 100 + (400 * 1), lerpVal);
+					FlxMath.lerp(menuItems.members[1].x, 100 + (400 * 0), lerpVal);
+					FlxMath.lerp(menuItems.members[2].x, 100 + (400 * 1), lerpVal);
+					FlxMath.lerp(menuItems.members[3].x, 100 + (400 * 2), lerpVal);
 
 					menuItems.members[0].visible = false;
 					menuItems.members[1].visible = true;
 					menuItems.members[2].visible = true;
 					menuItems.members[3].visible = true;
-				case 3:
-					menuItems.members[2].x = 150 + (400 * 1);
-					FlxMath.lerp(menuItems.members[0].x, 150 + (400 * 2), lerpVal);
-					FlxMath.lerp(menuItems.members[1].x, 150 + (400 * 1), lerpVal);
-					FlxMath.lerp(menuItems.members[2].x, 150 + (400 * 0), lerpVal);
-					FlxMath.lerp(menuItems.members[3].x, 150 + (400 * 1), lerpVal);
+		}
+		if (menuState == 3){
+					menuItems.members[2].x = 100 + (400 * 1);
+					FlxMath.lerp(menuItems.members[0].x, 100 + (400 * 2), lerpVal);
+					FlxMath.lerp(menuItems.members[1].x, 100 + (400 * 1), lerpVal);
+					FlxMath.lerp(menuItems.members[2].x, 100 + (400 * 0), lerpVal);
+					FlxMath.lerp(menuItems.members[3].x, 100 + (400 * 1), lerpVal);
 
 					menuItems.members[0].visible = true;
 					menuItems.members[1].visible = false;
@@ -214,8 +214,8 @@ class MainMenuState extends MusicBeatState
 
 		if (controls.ACCEPT)
 		{
-				for (item in menuItems.members)
-				{
+			for (item in menuItems.members)
+			{
 					var daChoice:String = optionShit[curSelected];
 					if (daChoice=='story_mode'){
 						FlxG.sound.play(Paths.sound('errorsfx'));
@@ -223,9 +223,9 @@ class MainMenuState extends MusicBeatState
 							FlxFlicker.flicker(item, 0.4, 0.06, true, false);
 						}
 					}
-					if (daChoice!='story_mode')
+					else
 					{
-						if(item.ID == curSelected){
+						if(item.ID==curSelected){
 							FlxFlicker.flicker(item, 0.4, 0.06, false, false, function(flicker:FlxFlicker)
 							{
 								switch(daChoice)
@@ -242,7 +242,7 @@ class MainMenuState extends MusicBeatState
 								}
 							});
 						}
-						else
+						if(item.ID!=curSelected)
 						{
 							FlxTween.tween(item, {alpha: 0}, 0.5, {
 								onComplete:function(twn:FlxTween)
@@ -252,7 +252,7 @@ class MainMenuState extends MusicBeatState
 							});
 						}
 					}
-				}
+			}
 		}
 		for (touch in FlxG.touches.list)
 		{
