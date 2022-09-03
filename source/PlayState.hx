@@ -1232,7 +1232,7 @@ class PlayState extends MusicBeatState
 				add(floor2);
 			case 'smiling':
 				var bg:BGSprite = new BGSprite('smiling/smile', -690, -490, 1, 1);
-				bg.setGraphicSize(Std.ine(bg.width * 0.7));
+				bg.setGraphicSize(Std.int(bg.width * 0.7));
 				bg.updateHitbox();
 				add(bg);
 			case 'stage4':
