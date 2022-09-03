@@ -67,7 +67,7 @@ class MainMenuState extends MusicBeatState
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
 
-		menuItems = new FlxTypedSpriteGroup<FlxSprite>();
+		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
 
 		/*if(optionShit.length > 6) {
