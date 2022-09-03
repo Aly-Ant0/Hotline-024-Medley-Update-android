@@ -1231,8 +1231,8 @@ class PlayState extends MusicBeatState
 				floor2.updateHitbox();
 				add(floor2);
 			case 'smiling':
-				var bg:BGSprite = new BGSprite('smiling/smile', -690, -490, 1, 1);
-				bg.setGraphicSize(Std.int(bg.width * 0.7));
+				var bg:BGSprite = new BGSprite('smiling/bg', -690, -490, 1, 1);
+				bg.setGraphicSize(Std.ine(bg.width * 0.7));
 				bg.updateHitbox();
 				add(bg);
 			case 'stage4':
@@ -1251,7 +1251,7 @@ class PlayState extends MusicBeatState
 				buildings2.updateHitbox();
 				add(buildings2);
 
-				var ground:BGSprite=new BGSprite('stage4/ground', -2250, -1400, 1, 1);
+				var ground:BGSprite=new BGSprite('stage4/ground', -2250, -1550, 1, 1);
 				ground.setGraphicSize(Std.int(ground.width * 2));
 				ground.updateHitbox();
 				add(ground);
@@ -1654,7 +1654,7 @@ class PlayState extends MusicBeatState
 			}
 
 			if (curStage == 'whitty'){
-				var fg3:BGSprite=new BGSprite('whitty/wall', -350, -260, 1, 1);
+				var fg3:BGSprite=new BGSprite('whitty/fg', -350, -260, 1, 1);
 				fg3.setGraphicSize(Std.int(fg3.width * 1.3));
 				fg3.updateHitbox();
 				add(fg3);
@@ -1855,7 +1855,7 @@ class PlayState extends MusicBeatState
 				gfreflect.blend = ADD;
 				gfreflect.alpha = .8;
 				gfreflect.x = gf.x;
-				gfreflect.y = gf.height*1;
+				gfreflect.y = gf.y*gf.height;
 				gfreflect.scale.set(gf.scale.x, gf.scale.y);
 				insert(members.indexOf(gfGroup), gfreflect);
 
@@ -1864,7 +1864,7 @@ class PlayState extends MusicBeatState
 				dadreflect.blend = ADD; // por isso q no mod os reflexo é mt lindo q da ate vontade de chorar
 				dadreflect.alpha = .8;
 				dadreflect.x = dad.x;
-				dadreflect.y = dad.height*1; // the same shit than the bf ig
+				dadreflect.y = dad.y*dad.height;
 				insert(members.indexOf(dadGroup), dadreflect);
 			case 'limo':
 				resetFastCar();
@@ -3644,7 +3644,6 @@ class PlayState extends MusicBeatState
 	var canPause:Bool = true;
 	var limoSpeed:Float = 0;
 	var tweenMoment:Bool = false; // the worst thing that i made
-	var reflectFloatMoment:Float = 0;
 
 	override public function update(elapsed:Float)
 	{
@@ -3653,7 +3652,6 @@ class PlayState extends MusicBeatState
 			iconP1.swapOldIcon();
 		}*/
 		if (curStage == 'covers'){
-			reflectFloatMoment += 0.04;
 			bfreflect.animation.frameIndex = boyfriend.animation.frameIndex;
 			bfreflect.offset.set(boyfriend.offset.x); // apenas o x
 
@@ -3662,7 +3660,8 @@ class PlayState extends MusicBeatState
 
 			dadreflect.animation.frameIndex = dad.animation.frameIndex;
 			dadreflect.offset.set(dad.offset.x); // apenas o x
-			dadreflect.y = Math.sin(reflectFloatMoment) * 1.1; // i need learn sin and cos cuz im dumb in math (and pi too)
+
+			FlxTween.tween(dadreflect, {y: dadreflect + 400}, 2, {ease:FlxEase.quadInOut, type: PINGPONG});
 		}
 
 		if (comboState == 0){ // combo moment 
