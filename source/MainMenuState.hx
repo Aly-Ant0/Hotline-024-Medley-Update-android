@@ -283,6 +283,7 @@ class MainMenuState extends MusicBeatState
 					jukeboxText.color = 0xFFFFFFFF;
 				}
 		}
+
 		super.update(elapsed);
 	}
 
@@ -316,13 +317,10 @@ class MainMenuState extends MusicBeatState
 		{
 			case 0:
 				menuState = 0;
-
 			case 1:
 				menuState = 1;
-
 			case 2:
 				menuState = 2;
-
 			case 3:
 				menuState = 3;
 		}
