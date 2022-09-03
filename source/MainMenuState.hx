@@ -33,10 +33,7 @@ class MainMenuState extends MusicBeatState
 	//fodase
 	public static var curSelected:Int = 0;
 
-	var menuItems:FlxTypedSpriteGroup<FlxSprite>;
-	private var camGame:FlxCamera;
-	private var camAchievement:FlxCamera;
-	
+	var menuItems:FlxTypedGroup<FlxSprite>;
 	var optionShit:Array<String> = [
 		'story_mode',
 		'extras',
@@ -60,17 +57,6 @@ class MainMenuState extends MusicBeatState
 		#end
 		//debugKeys = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_1'));
 
-		camGame = new FlxCamera();
-		camAchievement = new FlxCamera();
-		camAchievement.bgColor.alpha = 0;
-
-		FlxG.cameras.reset(camGame);
-		FlxG.cameras.add(camAchievement);
-		FlxCamera.defaultCameras = [camGame];
-
-		transIn = FlxTransitionableState.defaultTransIn;
-		transOut = FlxTransitionableState.defaultTransOut;
-
 		persistentUpdate = persistentDraw = true;
 
 		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('hotline/menu/bg'), 0.2, 0.2, true, false, -30);
@@ -92,9 +78,9 @@ class MainMenuState extends MusicBeatState
 		{
 			var menuItem:FlxSprite = new FlxSprite(100 + (400 * i), 60);
 			menuItem.frames = Paths.getSparrowAtlas('hotline/menu/' + optionShit[i]);
-			menuItem.animation.addByPrefix('meu_amigo_usa_calcinha_escondido', "normal", 24);
-			menuItem.animation.addByPrefix('agora_usa_mais_nao', "glow", 24);
-			menuItem.animation.play('meu_amigo_usa_calcinha_escondido');
+			menuItem.animation.addByPrefix('meuamigousacalcinhaescondido', "normal", 24);
+			menuItem.animation.addByPrefix('agorausamaisnao', "glow", 24);
+			menuItem.animation.play('meuamigousacalcinhaescondido');
 			menuItem.setGraphicSize(Std.int(menuItem.width*0.6));
 			menuItem.antialiasing = ClientPrefs.globalAntialiasing;
 			menuItem.updateHitbox();
@@ -150,19 +136,6 @@ class MainMenuState extends MusicBeatState
 
 		changeItem();
 
-		#if ACHIEVEMENTS_ALLOWED
-		Achievements.loadAchievements();
-		var leDate = Date.now();
-		if (leDate.getDay() == 5 && leDate.getHours() >= 18) {
-			var achieveID:Int = Achievements.getAchievementIndex('friday_night_play');
-			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) { //It's a friday night. WEEEEEEEEEEEEEEEEEE
-				Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
-				giveAchievement();
-				ClientPrefs.saveSettings();
-			}
-		}
-		#end
-
 		#if android
 		addVirtualPad(LEFT_RIGHT, A_B); // no editors since idk what will happen honestly edit: nothing but dont will have editors menu lol
 		#end
@@ -170,36 +143,57 @@ class MainMenuState extends MusicBeatState
 		super.create();
 	}
 
-	#if ACHIEVEMENTS_ALLOWED
-	// Unlocks "Freaky on a Friday Night" achievement
-	function giveAchievement() {
-		add(new AchievementObject('friday_night_play', camAchievement));
-		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-		trace('Giving achievement "friday_night_play"');
-	}
-	#end
-
 	var selectedSomethin:Bool = false;
 	var canSelect:Bool = true;
-
 	override function update(elapsed:Float)
 	{
-		for (touch in FlxG.touches.list)
+		switch (menuState) // original code from musk i just change the flxtween to flxmath and i just get the coords lmao
 		{
-			if(touch.overlaps(jukeClickArea))
-			{
-				jukeboxText.color = 0xFF363636;
-				if(touch.justPressed)
-				{
-					MusicBeatState.switchState(new JukeboxScreen());
-					FlxG.sound.play(Paths.sound('entersfx'));
-				}
-			}
-			else
-			{
-				jukeboxText.color = 0xFFFFFFFF;
-			}
+				var lerpVal:Float = CoolUtil.boundTo(elapsed * 9, 0, 1);
+
+				case 0:
+					FlxMath.lerp(menuItems.members[0].x, 150 + (400 * 1), lerpVal);
+					FlxMath.lerp(menuItems.members[1].x, 150 + (400 * 2), lerpVal);
+					FlxMath.lerp(menuItems.members[2].x, 150 + (400 * 0), lerpVal);
+					FlxMath.lerp(menuItems.members[3].x, 150 + (400 * 0), lerpVal);
+
+					menuItems.members[0].visible = true;
+					menuItems.members[1].visible = true;
+					menuItems.members[2].visible = false;
+					menuItems.members[3].visible = true;
+				case 1:
+					FlxMath.lerp(menuItems.members[0].x, 150 + (400 * 0), lerpVal);
+					FlxMath.lerp(menuItems.members[1].x, 150 + (400 * 1), lerpVal);
+					FlxMath.lerp(menuItems.members[2].x, 150 + (400 * 2), lerpVal);
+					FlxMath.lerp(menuItems.members[3].x, 150 + (400 * 1), lerpVal);
+
+					menuItems.members[0].visible = true;
+					menuItems.members[1].visible = true;
+					menuItems.members[2].visible = true;
+					menuItems.members[3].visible = false;
+				case 2:
+					FlxMath.lerp(menuItems.members[0].x, 150 + (400 * 1), lerpVal);
+					FlxMath.lerp(menuItems.members[1].x, 150 + (400 * 0), lerpVal);
+					FlxMath.lerp(menuItems.members[2].x, 150 + (400 * 1), lerpVal);
+					FlxMath.lerp(menuItems.members[3].x, 150 + (400 * 2), lerpVal);
+
+					menuItems.members[0].visible = false;
+					menuItems.members[1].visible = true;
+					menuItems.members[2].visible = true;
+					menuItems.members[3].visible = true;
+				case 3:
+					menuItems.members[2].x = 150 + (400 * 1);
+					FlxMath.lerp(menuItems.members[0].x, 150 + (400 * 2), lerpVal);
+					FlxMath.lerp(menuItems.members[1].x, 150 + (400 * 1), lerpVal);
+					FlxMath.lerp(menuItems.members[2].x, 150 + (400 * 0), lerpVal);
+					FlxMath.lerp(menuItems.members[3].x, 150 + (400 * 1), lerpVal);
+
+					menuItems.members[0].visible = true;
+					menuItems.members[1].visible = false;
+					menuItems.members[2].visible = true;
+					menuItems.members[3].visible = true;
 		}
+
 		if (controls.UI_LEFT_P)
 			{
 				//FlxG.sound.play(Paths.sound('selectsfx'));
@@ -274,51 +268,20 @@ class MainMenuState extends MusicBeatState
 				{
 					creditsImage.color = 0xFFFFFFFF;
 				}
-		}
-		switch (menuState) // original code from musk i just change the flxtween to flxmath and i just get the coords lmao
-		{
-				var lerpVal:Float = CoolUtil.boundTo(elapsed * 9, 0, 1);
-				/*case 0:
-					FlxMath.lerp(menuItems.members[0].x, 150 + (400 * 1), lerpVal);
-					FlxMath.lerp(menuItems.members[1].x, 150 + (400 * 2), lerpVal);
-					FlxMath.lerp(menuItems.members[2].x, 150 + (400 * 0), lerpVal);
-					FlxMath.lerp(menuItems.members[3].x, 150 + (400 * 0), lerpVal);
 
-					menuItems.members[0].visible = true;
-					menuItems.members[1].visible = true;
-					menuItems.members[2].visible = false;
-					menuItems.members[3].visible = true;
-				case 1:
-					FlxMath.lerp(menuItems.members[0].x, 150 + (400 * 0), lerpVal);
-					FlxMath.lerp(menuItems.members[1].x, 150 + (400 * 1), lerpVal);
-					FlxMath.lerp(menuItems.members[2].x, 150 + (400 * 2), lerpVal);
-					FlxMath.lerp(menuItems.members[3].x, 150 + (400 * 1), lerpVal);
-
-					menuItems.members[0].visible = true;
-					menuItems.members[1].visible = true;
-					menuItems.members[2].visible = true;
-					menuItems.members[3].visible = false;
-				case 2:
-					FlxMath.lerp(menuItems.members[0].x, 150 + (400 * 1), lerpVal);
-					FlxMath.lerp(menuItems.members[1].x, 150 + (400 * 0), lerpVal);
-					FlxMath.lerp(menuItems.members[2].x, 150 + (400 * 1), lerpVal);
-					FlxMath.lerp(menuItems.members[3].x, 150 + (400 * 2), lerpVal);
-
-					menuItems.members[0].visible = false;
-					menuItems.members[1].visible = true;
-					menuItems.members[2].visible = true;
-					menuItems.members[3].visible = true;
-				case 3:
-					menuItems.members[2].x = 150 + (400 * 1);
-					FlxMath.lerp(menuItems.members[0].x, 150 + (400 * 2), lerpVal);
-					FlxMath.lerp(menuItems.members[1].x, 150 + (400 * 1), lerpVal);
-					FlxMath.lerp(menuItems.members[2].x, 150 + (400 * 0), lerpVal);
-					FlxMath.lerp(menuItems.members[3].x, 150 + (400 * 1), lerpVal);
-
-					menuItems.members[0].visible = true;
-					menuItems.members[1].visible = false;
-					menuItems.members[2].visible = true;
-					menuItems.members[3].visible = true;*/
+				if(touch.overlaps(jukeClickArea))
+				{
+					jukeboxText.color = 0xFF363636;
+					if(touch.justPressed)
+					{
+						MusicBeatState.switchState(new JukeboxScreen());
+						FlxG.sound.play(Paths.sound('entersfx'));
+					}
+				}
+				else
+				{
+					jukeboxText.color = 0xFFFFFFFF;
+				}
 		}
 		super.update(elapsed);
 	}
@@ -339,12 +302,12 @@ class MainMenuState extends MusicBeatState
 
 		menuItems.forEach(function(spr:FlxSprite)
 		{
-			spr.animation.play('meu_amigo_usa_calcinha_escondido');
+			spr.animation.play('meuamigousacalcinhaescondido');
 			spr.updateHitbox();
 
 			if (spr.ID == curSelected)
 			{
-				spr.animation.play('agora_usa_mais_nao');
+				spr.animation.play('agorausamaisnao');
 				spr.centerOffsets();
 			}
 		});
