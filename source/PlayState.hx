@@ -1060,31 +1060,26 @@ class PlayState extends MusicBeatState
 					idkWhatIsthat.updateHitbox();
 
 			case 'nikkuMall':
-				var bg:BGSprite  = new BGSprite('nikkuMall/back', 0, 0, 0.9, 0.9);
+				var bg:BGSprite  = new BGSprite('nikkuMall/back', -950, -550, 1, 1);
 				bg.scale.set(2.4, 2.4);
 				bg.updateHitbox();
-				bg.screenCenter(XY);
 				add(bg);
 
-				var front:BGSprite = new BGSprite('nikkuMall/front', 0, 0, 0, 0);
+				var front:BGSprite = new BGSprite('nikkuMall/front', -950, -550, 1, 1);
 				front.scale.set(2.4, 2.4);
 				front.updateHitbox();
-				front.screenCenter(XY);
 				add(front);
 
-				oscabodomeucu = new BGSprite('nikkuMall/cables', 0, 0, 1.1, 1.1);
-				oscabodomeucu.screenCenter(XY);
+				oscabodomeucu = new BGSprite('nikkuMall/cables', -950, -200, 1, 1);
 				oscabodomeucu.scale.set(2.4, 2.4);
 				oscabodomeucu.updateHitbox();
 
-				nicuLight = new BGSprite('nikkuMall/light', 0, 0, 1.1, 1.1);
+				nicuLight = new BGSprite('nikkuMall/light', -950, -550, 1, 1);
 				nicuLight.blend = ADD;
-				nicuLight.screenCenter(XY);
 				nicuLight.scale.set(2.4, 2.4);
 				nicuLight.updateHitbox();
 
 				nicuPlants = new BGSprite('nikkuMall/plants', -975, -500, 1.1, 1.1);
-				nicuPlants.screenCenter(XY);
 				nicuPlants.scale.set(2.4, 2.4);
 				nicuPlants.updateHitbox();
 
@@ -1204,7 +1199,7 @@ class PlayState extends MusicBeatState
 				bg5.updateHitbox();
 				add(bg5);
 
-				blurBg = new BGSprite('nightland/BLURROC6', -1850, -1150, 1, 1);
+				blurBg = new BGSprite('nightland/BLURROC6', -2040, -1150, 1, 1);
 				blurBg.scale.set(1.6, 1.6);
 				blurBg.updateHitbox();
 
@@ -1225,6 +1220,41 @@ class PlayState extends MusicBeatState
 				
 				FlxG.watch.addQuick("bg 6 x: ", blurBg.x);
 				FlxG.watch.addQuick("bg 6 y: ", blurBg.y);*/
+			case 'whitty':
+				var bg1:BGSprite=new BGSprite('whitty/wall', -350, -260, 1, 1);
+				bg1.setGraphicSize(Std.int(bg1.width * 1.3));
+				bg1.updateHitbox();
+				add(bg1);
+
+				var floor2:BGSprite=new BGSprite('whitty/floor', -350, -260, 1, 1);
+				floor2.setGraphicSize(Std.int(floor2.width * 1.3));
+				floor2.updateHitbox();
+				add(floor2);
+			case 'smiling':
+				var bg:BGSprite = new BGSprite('smiling/smile', -690, -490, 1, 1);
+				bg.setGraphicSize(Std.ine(bg.width * 0.7));
+				bg.updateHitbox();
+				add(bg);
+			case 'stage4':
+				var bg1:BGSprite=new BGSprite('stage4/bg', -2250, -1400, 1, 1);
+				bg1.setGraphicSize(Std.int(bg1.width * 2));
+				bg1.updateHitbox();
+				add(bg1);
+
+				var buildings:BGSprite=new BGSprite('stage4/buildings', -2250, -1400, 1, 1);
+				buildings.setGraphicSize(Std.int(buildings.width * 2));
+				buildings.updateHitbox();
+				add(buildings);
+
+				var buildings2:BGSprite=new BGSprite('stage4/buildings2', -2250, -1400, 1, 1);
+				buildings2.setGraphicSize(Std.int(buildings2.width * 2));
+				buildings2.updateHitbox();
+				add(buildings2);
+
+				var ground:BGSprite=new BGSprite('stage4/ground', -2250, -1400, 1, 1);
+				ground.setGraphicSize(Std.int(ground.width * 2));
+				ground.updateHitbox();
+				add(ground);
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
 					halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
@@ -1623,6 +1653,37 @@ class PlayState extends MusicBeatState
 				add(blurBg);
 			}
 
+			if (curStage == 'whitty'){
+				var fg3:BGSprite=new BGSprite('whitty/wall', -350, -260, 1, 1);
+				fg3.setGraphicSize(Std.int(fg3.width * 1.3));
+				fg3.updateHitbox();
+				add(fg3);
+			}
+
+			if (curStage == 'stage4'){
+				var overlay1:BGSprite=new BGSprite('stage4/overlay1', -2350, -1500, 1, 1);
+				overlay1.setGraphicSize(Std.int(overlay1.width * 2));
+				overlay1.updateHitbox();
+				overlay1.blend = ADD;
+				add(overlay1);
+
+				var overlay2:BGSprite=new BGSprite('stage4/overlay2', -2350, -1500, 1, 1);
+				overlay2.setGraphicSize(Std.int(overlay2.width * 2));
+				overlay2.updateHitbox();
+				overlay2.blend = ADD;
+				add(overlay2);
+	
+				var overlay3:BGSprite=new BGSprite('stage4/overlay3', -2350, -900, 1, 1);
+				overlay3.setGraphicSize(Std.int(overlay3.width * 2));
+				overlay3.updateHitbox();
+				overlay3.blend = ADD;
+				add(overlay3);
+				
+				var bushes:BGSprite=new BGSprite('stage4/bushes', -2350, -1500, 1, 1);
+				bushes.setGraphicSize(Std.int(bushes.width * 2));
+				bushes.updateHitbox();
+				add(bushes);
+			}
 
 		switch(curStage)
 		{
