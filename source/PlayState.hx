@@ -1855,7 +1855,7 @@ class PlayState extends MusicBeatState
 				gfreflect.blend = ADD;
 				gfreflect.alpha = .8;
 				gfreflect.x = gf.x;
-				gfreflect.y = gf.y*gf.height;
+				gfreflect.y = gf.height;
 				gfreflect.scale.set(gf.scale.x, gf.scale.y);
 				insert(members.indexOf(gfGroup), gfreflect);
 
@@ -1864,7 +1864,7 @@ class PlayState extends MusicBeatState
 				dadreflect.blend = ADD; // por isso q no mod os reflexo é mt lindo q da ate vontade de chorar
 				dadreflect.alpha = .8;
 				dadreflect.x = dad.x;
-				dadreflect.y = dad.y*dad.height;
+				dadreflect.y = dad.height;
 				insert(members.indexOf(dadGroup), dadreflect);
 			case 'limo':
 				resetFastCar();
@@ -2898,6 +2898,8 @@ class PlayState extends MusicBeatState
 		FlxTween.cancelTweensOf(combotxt1);
 		FlxTween.cancelTweensOf(combotxt2);
 		FlxTween.cancelTweensOf(comboGlow);
+		FlxFlicker.stopFlickering(combotxt1);
+		FlxFlicker.stopFlickering(combotxt2);
 		combotxtscoreplus.alpha = 1;
 	}
 
