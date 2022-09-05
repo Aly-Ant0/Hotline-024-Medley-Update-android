@@ -1701,7 +1701,7 @@ class PlayState extends MusicBeatState
 				add(bushes);
 			}
 
-			if (curStage == 'jojo''){
+			if (curStage == 'jojo'){
 				var grad:BGSprite=new BGSprite('jojo/grad', -2700, -1900, 0.7, 0.7);
 				grad.setGraphicSize(Std.int(grad.width * 2));
 				grad.updateHitbox();
@@ -2138,9 +2138,6 @@ class PlayState extends MusicBeatState
 			if (ClientPrefs.middleScroll && ClientPrefs.downScroll)
 			{
 				COMBO_Y = 475;
-			}
-			if(ClientPrefs.downScroll) {
-				COMBO_Y = 560;
 			}
 
 			songnameBoxGrp = new FlxTypedSpriteGroup<FlxSprite>();
