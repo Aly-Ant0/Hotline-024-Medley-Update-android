@@ -2077,7 +2077,7 @@ class PlayState extends MusicBeatState
 
 			comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
 			comboGlow.screenCenter(X); // nao botei o combo_x pq preguiça vou chorar
-			comboGlow.y = COMBO_Y;
+			comboGlow.y = 40;
 			comboGlow.alpha = 0;
 			comboGlow.blend = ADD; // nao me perguntem o pq o blend ta em add
 			comboGlow.cameras = [camHUD];
@@ -2133,26 +2133,27 @@ class PlayState extends MusicBeatState
 				a mesma coisa com o "Aly", ai quer dizer que, toda vez que ta falando "Aly", vc ta literalmente falando "Alysson".
 				eu pensei nesse nome dps de quando eu tive um sonho.
 				*/
-				COMBO_Y = 160;
+				comboGlow.y = 160;
 			}
-			if (ClientPrefs.middleScroll && ClientPrefs.downScroll)
+			else if (ClientPrefs.middleScroll && ClientPrefs.downScroll)
 			{
-				COMBO_Y = 475;
+				comboGlow.y = 475;
 			}
 
 			songnameBoxGrp = new FlxTypedSpriteGroup<FlxSprite>();
 			add(songnameBoxGrp);
 
-			songTxt = new FlxText(bar.x + 10, bar.y + 10, 0, "", 38); // it mentions the bar variable cuz its already declared look at the line 175
-			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 38, FlxColor.WHITE, RIGHT);
+			songTxt = new FlxText(bar.x + 10, bar.y + 10, 0, "", 42); // it mentions the bar variable cuz its already declared look at the line 175
+			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 42, FlxColor.WHITE, RIGHT);
 			songTxt.cameras = [camHUD];
 			songTxt.scrollFactor.set();
 
-			bar.makeGraphic(5, 90, FlxColor.BLACK);
-			bar.alpha = 0.40;
-			bar.scale.x = songTxt.size + 5;
+
+			bar.makeGraphic(songTxt.width+songTxt.size, 90, FlxColor.BLACK);
+			bar.alpha = 0.70;
 			bar.cameras = [camHUD];
 			bar.scrollFactor.set();
+
 			songnameBoxGrp.add(bar);
 			songnameBoxGrp.add(songTxt);
 	
@@ -2183,7 +2184,7 @@ class PlayState extends MusicBeatState
 
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
-			COMBO_Y = 560;
+			comboGlow.y = 560;
 		}
 
 		strumLineNotes.cameras = [camHUD];
