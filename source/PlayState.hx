@@ -2183,6 +2183,7 @@ class PlayState extends MusicBeatState
 
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
+			COMBO_Y = 560;
 		}
 
 		strumLineNotes.cameras = [camHUD];
