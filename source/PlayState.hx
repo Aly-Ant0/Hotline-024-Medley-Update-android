@@ -852,7 +852,7 @@ class PlayState extends MusicBeatState
 					exOverlay.updateHitbox();
 					//exOverlay.antialiasing = ClientPrefs.globalAntialiasing;
 	
-					exFront = new BGSprite('expurgated/signfront', -2660, -1400, 1.15, 1.15);
+					exFront = new BGSprite('expurgated/signfront', -2750, -1400, 1.15, 1.15);
 					exFront.scale.set(2.5, 2.5);
 					exFront.updateHitbox();
 					//exFront.antialiasing = ClientPrefs.globalAntialiasing;
@@ -1251,10 +1251,26 @@ class PlayState extends MusicBeatState
 				buildings2.updateHitbox();
 				add(buildings2);
 
-				var ground:BGSprite=new BGSprite('stage4/ground', -2250, -1550, 1, 1);
+				var ground:BGSprite=new BGSprite('stage4/ground', -2250, -1600, 1, 1);
 				ground.setGraphicSize(Std.int(ground.width * 2));
 				ground.updateHitbox();
 				add(ground);
+			case 'jojo':
+				//var jojoLibrary:String = 'jojo/'; // eu realmente nao sei o pq eu fiz essa porra
+				var bg:BGSprite=new BGSprite('jojo/bg', -2700, -1900, 0.7, 0.7);
+				bg.setGraphicSize(Std.int(bg.width * 2));
+				bg.updateHitbox();
+				add(bg);
+
+				var bg2:BGSprite=new BGSprite('jojo/building', -2700, -1800, 1, 1);
+				bg2.setGraphicSize(Std.int(bg2.width * 2));
+				bg2.updateHitbox();
+				add(bg2);
+
+				var bg3:BGSprite=new BGSprite('jojo/floor', -2700, -1799, 1, 1);
+				bg3.setGraphicSize(Std.int(bg2.width * 2));
+				bg3.updateHitbox();
+				add(bg3);
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
 					halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
@@ -1685,6 +1701,14 @@ class PlayState extends MusicBeatState
 				add(bushes);
 			}
 
+			if (curStage == 'jojo''){
+				var grad:BGSprite=new BGSprite('jojo/grad', -2700, -1900, 0.7, 0.7);
+				grad.setGraphicSize(Std.int(grad.width * 2));
+				grad.updateHitbox();
+				grad.blend = ADD;
+				add(grad);
+			}
+
 		switch(curStage)
 		{
 			case 'spooky':
@@ -1855,7 +1879,7 @@ class PlayState extends MusicBeatState
 				gfreflect.blend = ADD;
 				gfreflect.alpha = .8;
 				gfreflect.x = gf.x;
-				gfreflect.y = gf.height;
+				gfreflect.y = gf.y + 550; // talvez poder a altura tb
 				gfreflect.scale.set(gf.scale.x, gf.scale.y);
 				insert(members.indexOf(gfGroup), gfreflect);
 
@@ -1864,7 +1888,7 @@ class PlayState extends MusicBeatState
 				dadreflect.blend = ADD; // por isso q no mod os reflexo é mt lindo q da ate vontade de chorar
 				dadreflect.alpha = .8;
 				dadreflect.x = dad.x;
-				dadreflect.y = dad.height;
+				dadreflect.y = dad.y + 450;
 				insert(members.indexOf(dadGroup), dadreflect);
 			case 'limo':
 				resetFastCar();
@@ -2068,7 +2092,7 @@ class PlayState extends MusicBeatState
 			combotxt1.alpha = 0;
 			add(combotxt1);
 
-			combotxtscoreplus = new FlxText(combotxt1.x + 35, combotxt1.y + 25, 0, "", 23);
+			combotxtscoreplus = new FlxText(combotxt1.x + 50, combotxt1.y + 25, 0, "", 23);
 			combotxtscoreplus.color = FlxColor.WHITE;
 			combotxtscoreplus.setFormat(Paths.font("goodbyeDespair.ttf"), 23, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxtscoreplus.scrollFactor.set();
@@ -2078,7 +2102,7 @@ class PlayState extends MusicBeatState
 			add(combotxtscoreplus);
 
 			// combo score lerp
-			combotxt2 = new FlxText(combotxt1.x + 20, combotxtscoreplus.y + 20, 0, "", 34);
+			combotxt2 = new FlxText(combotxtscoreplus.x, combotxtscoreplus.y + 20, 0, "", 34);
 			combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 34, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt2.scrollFactor.set();
 			combotxt2.borderSize = 1.25;
@@ -2087,13 +2111,35 @@ class PlayState extends MusicBeatState
 			combotxt2.alpha = 0;
 			add(combotxt2);
 
-			if(ClientPrefs.middleScroll) {
-				COMBO_Y = 160;
-				if (ClientPrefs.downScroll){
-					COMBO_Y = 475;
+			if(ClientPrefs.middleScroll && !ClientPrefs.downScroll) {
+				// so para ajudar qm iniciante em haxe ou pode ter em alguma outra linguagem de programação alem do haxe sla
+				/*para vocês que são iniciantes, o sinal de exclamação, significa nao, e so funciona em variaveis do tipo bool
+				por exemplo 
+				if(!algumacoisa){ // a exclamação quer dizer "não".
+					// a condiçao
 				}
+				else{
+					// a condiçao quando é alguma coisa
+				}
+				espero que tenha ajudado.
+
+				-Aly-Ant - 10:47(brazil timezone) 9/4/2022
+
+				e pros cara que faz piada com formiga pq tem ant no final:
+				não galerinha, o ant no final nao quer dizer formiga
+				é q meu nome real é "ALYsson ANTônio",
+				ai se vc separar as tres letras iniciais do nome e do sobrenome, fica ALY ANT,
+				quer dizer que toda vez que vc fala "Aly-Ant", vc ta literalmente falando alysson antonio
+				a mesma coisa com o "Aly", ai quer dizer que, toda vez que ta falando "Aly", vc ta literalmente falando "Alysson".
+				eu pensei nesse nome dps de quando eu tive um sonho.
+				*/
+				COMBO_Y = 160;
 			}
-			else if(ClientPrefs.downScroll) {
+			if (ClientPrefs.middleScroll && ClientPrefs.downScroll)
+			{
+				COMBO_Y = 475;
+			}
+			if(ClientPrefs.downScroll) {
 				COMBO_Y = 560;
 			}
 
@@ -2105,9 +2151,9 @@ class PlayState extends MusicBeatState
 			songTxt.cameras = [camHUD];
 			songTxt.scrollFactor.set();
 
-			bar.makeGraphic(5, 100, FlxColor.BLACK);
+			bar.makeGraphic(5, 90, FlxColor.BLACK);
 			bar.alpha = 0.40;
-			//bar.scale.x = songTxt.scale.x + 5;
+			bar.scale.x = songTxt.size + 5;
 			bar.cameras = [camHUD];
 			bar.scrollFactor.set();
 			songnameBoxGrp.add(bar);
@@ -2136,6 +2182,7 @@ class PlayState extends MusicBeatState
 		}
 
 		songnameBoxGrp.y = healthBarBG.y + 160;
+		songnameBoxGrp.x -= 100;
 
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
@@ -2842,13 +2889,12 @@ class PlayState extends MusicBeatState
 	//var songTwn:FlxTween;
 	public function songSlide():Void
 	{
-		songnameBoxGrp.x -= 100;
 		new FlxTimer().start(0.5, function(tmr:FlxTimer) {
-			FlxTween.tween(songnameBoxGrp, {x:0}, 0.58, {ease: FlxEase.expoOut});
+			FlxTween.tween(songnameBoxGrp, {x:0}, 1, {ease: FlxEase.expoOut});
 		});
 		new FlxTimer().start(4.5, function(tmr:FlxTimer) 
 		{
-			FlxTween.tween(songnameBoxGrp, {x:-100}, 0.58, {ease: FlxEase.expoIn,
+			FlxTween.tween(songnameBoxGrp, {x:-100}, 1, {ease: FlxEase.expoIn,
 				onComplete: function(twn:FlxTween)
 				{
 					songnameBoxGrp.alpha = 0;
@@ -3645,7 +3691,7 @@ class PlayState extends MusicBeatState
 	var startedCountdown:Bool = false;
 	var canPause:Bool = true;
 	var limoSpeed:Float = 0;
-	var tweenMoment:Bool = false; // the worst thing that i made
+	var tweenMoment:Bool = false; // the worst thing that i made lmao.
 
 	override public function update(elapsed:Float)
 	{
@@ -3663,7 +3709,7 @@ class PlayState extends MusicBeatState
 			dadreflect.animation.frameIndex = dad.animation.frameIndex;
 			dadreflect.offset.set(dad.offset.x); // apenas o x
 
-			FlxTween.tween(dadreflect, {y: dadreflect.y + 400}, 2, {ease:FlxEase.quadInOut, type: PINGPONG});
+			FlxTween.tween(dadreflect, {y: dadreflect.y + 75}, 2, {ease:FlxEase.quadInOut, type: PINGPONG});
 		}
 
 		if (comboState == 0){ // combo moment 
@@ -3904,11 +3950,10 @@ class PlayState extends MusicBeatState
 		}*/
 
 		songTxt.text = '${songString}';
-		if(FlxG.random.bool(0.4)){
+		// not funny anymore.
+		/*if(FlxG.random.bool(0.4)){
 			songTxt.text += ' BITCH.'; // :trollface:
-		}
-		bar.scale.x = FlxG.width - songTxt.x + 35;
-
+		}*/
 		super.update(elapsed);
 
 		//scoreTarget = songScore;
