@@ -4630,7 +4630,7 @@ class PlayState extends MusicBeatState
 	function sonicEZEMoment(){ // taporra o sonio ponto eze
 		camHUD.alpha = 0;
 
-		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('skatepark/cutscene/background'), 0.3, 0.3, true, false)
+		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('skatepark/cutscene/background'), 0.3, 0.3, true, false);
 		bg.antialiasing = false;
 		bg.y = -85;
 		bg.velocity.set(-75, 0);
@@ -4639,7 +4639,7 @@ class PlayState extends MusicBeatState
 		bg.cameras = [cutCam];
 		add(bg);
 
-		var ground:FlxBackdrop = new FlxBackdrop(Paths.image('skatepark/cutscene/ground'), 0.3, 0.3, true, false)
+		var ground:FlxBackdrop = new FlxBackdrop(Paths.image('skatepark/cutscene/ground'), 0.3, 0.3, true, false);
 		ground.antialiasing = false;
 		ground.y = -85;
 		ground.velocity.set(-85, 0);
@@ -4662,7 +4662,7 @@ class PlayState extends MusicBeatState
 		eze.updateHitbox();
 		add(eze);
 
-		var gostosa:FlxBackdrop = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves'), 0.3, 0.3, true, false)
+		var gostosa:FlxBackdrop = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves'), 0.3, 0.3, true, false);
 		gostosa.antialiasing = false;
 		gostosa.y = -85;
 		gostosa.velocity.set(-170, 0);
