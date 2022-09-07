@@ -4448,7 +4448,7 @@ class PlayState extends MusicBeatState
 
 	function octaMoment():Void
 	{
-			FlxG.debugger.visible = true;
+			//FlxG.debugger.visible = true;
 			octagonBG = new FlxSprite().makeGraphic(1980, 1080, FlxColor.WHITE);
 			octagonBG.screenCenter(XY);
 			octagonBG.scrollFactor.set(0, 0);
@@ -4499,23 +4499,24 @@ class PlayState extends MusicBeatState
 			numbahEiti3.cameras = [cutCam];
 			add(numbahEiti3);
 
-			nikkuOctagon = new FlxSprite(-611.8,632.5);
+			nikkuOctagon = new FlxSprite(50, 90);
 			nikkuOctagon.frames = Paths.getSparrowAtlas('skatepark/octagon/nikku');
 			nikkuOctagon.animation.addByPrefix('idle', 'Nikku Move 1', 24, true);
 			nikkuOctagon.animation.addByPrefix('lastFrame', 'Nikku Last Frame', 24, true);
 			nikkuOctagon.animation.play('idle', true);
-			nikkuOctagon.setGraphicSize(Std.int(650.0),Std.int(777.0));
-			nikkuOctagon.antialiasing = ClientPrefs.globalAntialiasing;
+			nikkuOctagon.setGraphicSize(Std.int(nikkuOctagon.width * 1.9));
 			nikkuOctagon.updateHitbox();
+			nikkuOctagon.antialiasing = ClientPrefs.globalAntialiasing;
 			nikkuOctagon.cameras = [cutCam];
 			add(nikkuOctagon);
 			//nikkuOctagon.visible = false;
 
+			// idk
 			FlxG.watch.add(nikkuOctagon, "x");
 			FlxG.watch.add(nikkuOctagon, "y");
 			FlxG.watch.add(nikkuOctagon, "scale");
 
-			bubbleText = new FlxSprite(513.9,56.3);
+			bubbleText = new FlxSprite(515, 55);
 			bubbleText.loadGraphic(Paths.image('skatepark/octagon/textbox'));
 			bubbleText.scale.set(0.0001, 0.0001);
 			bubbleText.antialiasing = ClientPrefs.globalAntialiasing;
@@ -4523,10 +4524,10 @@ class PlayState extends MusicBeatState
 			bubbleText.cameras = [cutCam];
 			add(bubbleText);
 
-			textOctagon = new FlxSprite(613.7,144.0);
+			textOctagon = new FlxSprite(bubbleText.x + 20, bubbleText.y + 80);
 				textOctagon.frames = Paths.getSparrowAtlas('skatepark/octagon/text', 'h24');
 				textOctagon.animation.addByPrefix('text', 'Text', 24, false);
-				textOctagon.scale.set(0.4, 0.4);
+				textOctagon.setGraphicSize(Std.int(textOctagon.width*0.6))
 				textOctagon.antialiasing = ClientPrefs.globalAntialiasing;
 				textOctagon.alpha = 0;
 				textOctagon.updateHitbox();
@@ -4554,7 +4555,7 @@ class PlayState extends MusicBeatState
 				blackStart.cameras = [cutCam];
 				add(blackStart);
 
-				new FlxTimer().start(0.015, function(tmr:FlxTimer)
+				new FlxTimer().start(0.005, function(tmr:FlxTimer)
 				{
 					FlxTween.tween(blackStart, {alpha:0}, 0.005);
 					FlxTween.tween(octagonBG, {alpha: 1}, 0.005);
@@ -4593,10 +4594,10 @@ class PlayState extends MusicBeatState
 		flash.cameras = [cutCam];
 		add(flash);
 
-		FlxTween.tween(nikkuOctagon, {x: 346.3}, 0.098, {
+		FlxTween.tween(nikkuOctagon, {x: 500}, 0.25, {
 			onComplete: function(twn:FlxTween)
 			{
-				nikkuOctagon.animation.play('lastFrame', true);
+				nikkuOctagon.animation.play('lastFrame');
 				FlxTween.tween(nikkuOctagon, {"scale.x":1.5, "scale.y":1.5}, 1.20, {
 					onComplete:function(twn:FlxTween){
 						//removeOctaCut();
@@ -4605,18 +4606,15 @@ class PlayState extends MusicBeatState
 			}
 		});
 
-		new FlxTimer().start(1, function(tmr:FlxTimer){
+		new FlxTimer().start(0.3, function(tmr:FlxTimer){
 			flash.visible = true;
-			FlxFlicker.flicker(flash, 0.5, 0.05, false, false);
-		});
-
-		new FlxTimer().start(0.5, function(tmr:FlxTimer)
-		{
-			removeOctaCut();
+			FlxFlicker.flicker(flash, 0.5, 0.05, false, false, function(flick:FlxFlicker{
+				removeOctaCut();
+			}));
 		});
 	}
 
-	function removeOctaCut():Void //end btw is in function cuz lazyless lmao
+	function removeOctaCut():Void //end
 	{
 		octagonBG.alpha = 0;
 		octagonBG2.alpha = 0;
@@ -4627,6 +4625,79 @@ class PlayState extends MusicBeatState
 		bubbleText.alpha = 0;
 		textOctagon.alpha = 0;
 		//octagon.
+	}
+
+	function sonicEZEMoment(){ // taporra o sonio ponto eze
+		camHUD.alpha = 0;
+
+		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('skatepark/cutscene/background'), 0.3, 0.3, true, false)
+		bg.antialiasing = false;
+		bg.y = -85;
+		bg.velocity.set(-75, 0);
+		bg.setGraphicSize(Std.int(bg.width * 4.2));
+		bg.updateHitbox();
+		bg.cameras = [cutCam];
+		add(bg);
+
+		var ground:FlxBackdrop = new FlxBackdrop(Paths.image('skatepark/cutscene/ground'), 0.3, 0.3, true, false)
+		ground.antialiasing = false;
+		ground.y = -85;
+		ground.velocity.set(-85, 0);
+		ground.setGraphicSize(Std.int(ground.width * 5.35));
+		ground.updateHitbox();
+		ground.cameras = [cutCam];
+		add(ground);
+
+		var nicu:FlxSprite = new FlxSprite(525, 155).loadGraphic(Paths.image('skatepark/cutscene/nikku', 'h24'));
+		nicu.antialiasing = false;
+		nicu.setGraphicSize(Std.int(nicu.width * 3.3));
+		nicu.updateHitbox();
+		nicu.cameras = [cutCam];
+		add(nicu);
+
+		var eze:FlxSprite = new FlxSprite(-350, 155).loadGraphic(Paths.image('skatepark/cutscene/exe', 'h24'));
+		eze.antialiasing = false;
+		eze.setGraphicSize(Std.int(eze.width * 3.1));
+		eze.cameras = [cutCam];
+		eze.updateHitbox();
+		add(eze);
+
+		var gostosa:FlxBackdrop = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves'), 0.3, 0.3, true, false)
+		gostosa.antialiasing = false;
+		gostosa.y = -85;
+		gostosa.velocity.set(-170, 0);
+		gostosa.setGraphicSize(Std.int(gostosa.width * 4.8));
+		gostosa.updateHitbox();
+		gostosa.cameras = [cutCam];
+		add(gostosa);
+
+		var blackStart:FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
+		blackStart.cameras = [cutCam];
+		add(blackStart);
+
+		var flash:FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
+		flash.cameras = [cutCam];
+		flash.visible = false;
+		add(flash);
+
+		FlxTween.tween(blackStart, {alpha:0}, 0.1, {
+			onComplete: function(twn:FlxTween){
+				blackStart.kill();
+			}
+		});
+		FlxTween.tween(eze, {x: nicu.x - 30}, 5);
+		FlxTween.tween(nicu, {y: nicu.y + 5}, 0.2, {type:PINGPONG});
+
+		if (eze.x > nicu.x - 20){
+			flash.visible = true;
+			FlxFlicker.flicker(flash, false, false, 1, 0.010, function(flicker:FlxFlicker){
+				bg.alpha = 0;
+				ground.alpha=0;
+				nicu.alpha=0;
+				eze.alpha=0;
+				gostosa.alpha=0;
+			});
+		}
 	}
 
 	public function triggerEventNote(eventName:String, value1:String, value2:String) {
@@ -4762,6 +4833,8 @@ class PlayState extends MusicBeatState
 				//}
 			case 'Sugarcrush Octagon Cutscene':
 				octaMoment();
+			case 'Sonic.EXE Cutscene':
+				sonicEZEMoment();
 
 			case 'Add Camera Zoom':
 				if(ClientPrefs.camZooms && FlxG.camera.zoom < 1.35) {
