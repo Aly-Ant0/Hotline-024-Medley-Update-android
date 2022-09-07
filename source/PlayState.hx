@@ -4690,7 +4690,7 @@ class PlayState extends MusicBeatState
 
 		if (eze.x > nicu.x - 20){
 			flash.visible = true;
-			FlxFlicker.flicker(flash, false, false, 1, 0.010, function(flicker:FlxFlicker){
+			FlxFlicker.flicker(flash, 1, 0.010, false, false, function(flicker:FlxFlicker){
 				bg.alpha = 0;
 				ground.alpha=0;
 				nicu.alpha=0;
