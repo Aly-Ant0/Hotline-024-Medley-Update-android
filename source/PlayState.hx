@@ -4665,17 +4665,17 @@ class PlayState extends MusicBeatState
 		var gostosa:FlxBackdrop = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves'), 0.3, 0.3, true, false);
 		gostosa.antialiasing = false;
 		gostosa.y = 375;
-		gostosa.velocity.set(-170, 0);
+		gostosa.velocity.set(-140, 0);
 		gostosa.setGraphicSize(Std.int(gostosa.width * 4.8));
 		gostosa.updateHitbox();
 		gostosa.cameras = [cutCam];
 		add(gostosa);
 
-		var blackStart:FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
+		var blackStart:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
 		blackStart.cameras = [cutCam];
 		add(blackStart);
 
-		var flash:FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
+		var flash:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
 		flash.cameras = [cutCam];
 		flash.visible = false;
 		add(flash);
