@@ -4519,8 +4519,8 @@ class PlayState extends MusicBeatState
 			bubbleText = new FlxSprite(515, 55);
 			bubbleText.loadGraphic(Paths.image('skatepark/octagon/textbox'));
 			bubbleText.scale.set(0.0001, 0.0001);
-			bubbleText.antialiasing = ClientPrefs.globalAntialiasing;
 			bubbleText.updateHitbox();
+			bubbleText.antialiasing = ClientPrefs.globalAntialiasing;
 			bubbleText.cameras = [cutCam];
 			add(bubbleText);
 
@@ -4528,9 +4528,9 @@ class PlayState extends MusicBeatState
 				textOctagon.frames = Paths.getSparrowAtlas('skatepark/octagon/text', 'h24');
 				textOctagon.animation.addByPrefix('text', 'Text', 24, false);
 				textOctagon.setGraphicSize(Std.int(textOctagon.width*0.6))
+				textOctagon.updateHitbox();
 				textOctagon.antialiasing = ClientPrefs.globalAntialiasing;
 				textOctagon.alpha = 0;
-				textOctagon.updateHitbox();
 				textOctagon.cameras = [cutCam];
 				add(textOctagon);
 
@@ -4641,7 +4641,7 @@ class PlayState extends MusicBeatState
 
 		var ground:FlxBackdrop = new FlxBackdrop(Paths.image('skatepark/cutscene/ground'), 0.3, 0.3, true, false);
 		ground.antialiasing = false;
-		ground.y = -85;
+		ground.y = 470;
 		ground.velocity.set(-85, 0);
 		ground.setGraphicSize(Std.int(ground.width * 5.35));
 		ground.updateHitbox();
@@ -4664,7 +4664,7 @@ class PlayState extends MusicBeatState
 
 		var gostosa:FlxBackdrop = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves'), 0.3, 0.3, true, false);
 		gostosa.antialiasing = false;
-		gostosa.y = -85;
+		gostosa.y = 375;
 		gostosa.velocity.set(-170, 0);
 		gostosa.setGraphicSize(Std.int(gostosa.width * 4.8));
 		gostosa.updateHitbox();
