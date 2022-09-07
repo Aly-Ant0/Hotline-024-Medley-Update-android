@@ -4608,9 +4608,9 @@ class PlayState extends MusicBeatState
 
 		new FlxTimer().start(0.3, function(tmr:FlxTimer){
 			flash.visible = true;
-			FlxFlicker.flicker(flash, 0.5, 0.05, false, false, function(flick:FlxFlicker{
+			FlxFlicker.flicker(flash, 0.5, 0.05, false, false, function(flick:FlxFlicker){
 				removeOctaCut();
-			}));
+			});
 		});
 	}
 
