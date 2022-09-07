@@ -4684,7 +4684,7 @@ class PlayState extends MusicBeatState
 		add(flash);
 
 		FlxTween.tween(blackStart, {alpha:0}, 0.1, {
-			onComplete: function(twn:FFlxTween
+			onComplete: function(twn:FlxTween)
 			{
 				blackStart.kill();
 			}
