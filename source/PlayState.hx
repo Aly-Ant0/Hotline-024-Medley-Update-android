@@ -4627,46 +4627,49 @@ class PlayState extends MusicBeatState
 		//octagon.
 	}
 
-	function sonicEZEMoment(){ // taporra o sonio ponto eze
+	function sonicEZEMoment() // taporra o sonio ponto eze
+	{
+		// flash 8 coords lmao
 		camHUD.alpha = 0;
+		//var library:String = 'skatepark/cutscene/'; // lazy
 
-		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('skatepark/cutscene/background'), 0.3, 0.3, true, false);
+		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('skatepark/cutscene/background', 'h24'), 0.3, 0.3, true, false);
 		bg.antialiasing = false;
 		bg.y = -85;
-		bg.velocity.set(-75, 0);
-		bg.setGraphicSize(Std.int(bg.width * 4.2));
+		bg.velocity.set(-155, 0);
+		bg.setGraphicSize(Std.int(bg.width * 7.2)); // to larger cuz its pixel and its low quality
 		bg.updateHitbox();
 		bg.cameras = [cutCam];
 		add(bg);
 
-		var ground:FlxBackdrop = new FlxBackdrop(Paths.image('skatepark/cutscene/ground'), 0.3, 0.3, true, false);
+		var ground:FlxBackdrop = new FlxBackdrop(Paths.image('skatepark/cutscene/ground', 'h24'), 0.3, 0.3, true, false);
 		ground.antialiasing = false;
 		ground.y = 470;
-		ground.velocity.set(-85, 0);
-		ground.setGraphicSize(Std.int(ground.width * 5.35));
+		ground.velocity.set(-165, 0);
+		ground.setGraphicSize(Std.int(ground.width * 5.73));
 		ground.updateHitbox();
 		ground.cameras = [cutCam];
 		add(ground);
 
-		var nicu:FlxSprite = new FlxSprite(525, 155).loadGraphic(Paths.image('skatepark/cutscene/nikku', 'h24'));
+		var nicu:FlxSprite = new FlxSprite(565, 180).loadGraphic(Paths.image('skatepark/cutscene/nikku', 'h24')); // pqp me dexa em paz seu porra da o cu na esquina chupa rola
 		nicu.antialiasing = false;
-		nicu.setGraphicSize(Std.int(nicu.width * 3.3));
+		nicu.setGraphicSize(Std.int(nicu.width * 5.1));
 		nicu.updateHitbox();
 		nicu.cameras = [cutCam];
 		add(nicu);
 
-		var eze:FlxSprite = new FlxSprite(-350, 155).loadGraphic(Paths.image('skatepark/cutscene/exe', 'h24'));
+		var eze:FlxSprite = new FlxSprite(-350, 245).loadGraphic(Paths.image('skatepark/cutscene/exe', 'h24')); // é hj q eu te pego gostosa kkkkkk
 		eze.antialiasing = false;
-		eze.setGraphicSize(Std.int(eze.width * 3.1));
+		eze.setGraphicSize(Std.int(eze.width * 3.9));
 		eze.cameras = [cutCam];
 		eze.updateHitbox();
 		add(eze);
 
-		var gostosa:FlxBackdrop = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves'), 0.3, 0.3, true, false);
+		var gostosa:FlxBackdrop = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves', 'h24'), 0.3, 0.3, true, false);
 		gostosa.antialiasing = false;
 		gostosa.y = 375;
-		gostosa.velocity.set(-140, 0);
-		gostosa.setGraphicSize(Std.int(gostosa.width * 4.8));
+		gostosa.velocity.set(-260, 0);
+		gostosa.setGraphicSize(Std.int(gostosa.width * 6.25));
 		gostosa.updateHitbox();
 		gostosa.cameras = [cutCam];
 		add(gostosa);
@@ -4681,23 +4684,27 @@ class PlayState extends MusicBeatState
 		add(flash);
 
 		FlxTween.tween(blackStart, {alpha:0}, 0.1, {
-			onComplete: function(twn:FlxTween){
+			onComplete: function(twn:FFlxTween
+			{
 				blackStart.kill();
 			}
 		});
-		FlxTween.tween(eze, {x: nicu.x - 30}, 5);
-		FlxTween.tween(nicu, {y: nicu.y + 5}, 0.2, {type:PINGPONG});
+		FlxTween.tween(eze, {x: nicu.x - 50}, 7);
+		FlxTween.tween(nicu, {y: nicu.y + 5}, 0.1, {type:PINGPONG});
 
-		if (eze.x > nicu.x - 20){
+		new FlxTimer().start(6.5, function(pussy:FlxTimer) // uhhhhhh
+		{
 			flash.visible = true;
-			FlxFlicker.flicker(flash, 1, 0.010, false, false, function(flicker:FlxFlicker){
+			FlxFlicker.flicker(flash, 0.5, 0.015, false, false, function(flicker:FlxFlicker)
+			{
 				bg.alpha = 0;
 				ground.alpha=0;
 				nicu.alpha=0;
 				eze.alpha=0;
 				gostosa.alpha=0;
+				camHUD.alpha = 1;
 			});
-		}
+		});
 	}
 
 	public function triggerEventNote(eventName:String, value1:String, value2:String) {
@@ -4831,9 +4838,11 @@ class PlayState extends MusicBeatState
 				//if(!ClientPrefs.dontShowBG) {
 					changeAstralBG();
 				//}
+
 			case 'Sugarcrush Octagon Cutscene':
 				octaMoment();
-			case 'Sonic.EXE Cutscene':
+
+			case 'Sonic.EXE Cutscene': // eita bixo o sonio ponto eze
 				sonicEZEMoment();
 
 			case 'Add Camera Zoom':
