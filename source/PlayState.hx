@@ -174,6 +174,7 @@ class PlayState extends MusicBeatState
 
 	// song bar idk
 	var bar:AttachedSprite = new AttachedSprite(null); // dont loads a image. :lmao:
+	var barWidth:Float = 20; // i will use this variable for the bar graphic
 	var songTxt:FlxText;
 	var songString:String = "";
 	var songnameBoxGrp:FlxTypedSpriteGroup<FlxSprite>; // btw have an flxtext variable (aka var) cuz it extends with flxsprite.
@@ -1082,49 +1083,6 @@ class PlayState extends MusicBeatState
 				nicuPlants = new BGSprite('nikkuMall/plants', -975, -500, 1.1, 1.1);
 				nicuPlants.scale.set(2.4, 2.4);
 				nicuPlants.updateHitbox();
-
-			case 'jojo': //PODE TROCAR O NOME DPS - mateusx02 part 1 e nunca mais fez alguma na recriacao e fodase
-				var cuts1:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('optim/1'));
-				cuts1.scrollFactor.set(0, 0);
-				cuts1.updateHitbox(); // vc so usa isso so quando muda o tamanho
-				cuts1.screenCenter();
-				cuts1.antialiasing = ClientPrefs.globalAntialiasing;
-				add(cuts1);
-		
-				var cuts2:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('optim/2'));
-				cuts2.scrollFactor.set(0, 0);
-				cuts2.updateHitbox();
-				cuts2.screenCenter();
-				cuts2.antialiasing = ClientPrefs.globalAntialiasing;
-				add(cuts2);
-		
-				var cuts3:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('optim/3'));
-				cuts3.scrollFactor.set(0, 0);
-				cuts3.updateHitbox();
-				cuts3.screenCenter();
-				cuts3.antialiasing = ClientPrefs.globalAntialiasing;
-				add(cuts3);
-		
-				var cuts4:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('optim/4'));
-				cuts4.scrollFactor.set(0, 0);
-				cuts4.updateHitbox();
-				cuts4.screenCenter();
-				cuts4.antialiasing = ClientPrefs.globalAntialiasing;
-				add(cuts4);
-		
-				var cuts5:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('optim/5'));
-				cuts5.scrollFactor.set(0, 0);
-				cuts5.updateHitbox();
-				cuts5.screenCenter();
-				cuts5.antialiasing = ClientPrefs.globalAntialiasing;
-				add(cuts5);
-		
-				// Agora a gambiarra
-				cuts1.visible = false;
-				cuts2.visible = false;
-				cuts3.visible = false;
-				cuts4.visible = false;
-				cuts5.visible = false;
 
 			case 'xigmund':
 				var bg:BGSprite = new BGSprite('xigmund/bg', -300, -480, 0, 0);
@@ -2148,8 +2106,8 @@ class PlayState extends MusicBeatState
 			songTxt.cameras = [camHUD];
 			songTxt.scrollFactor.set();
 
-			bar.makeGraphic(Std.int(songTxt.width+songTxt.size), 90, FlxColor.BLACK);
-			bar.alpha = 0.70;
+			bar.makeGraphic(Std.int(barWidth), 90, FlxColor.BLACK);
+			bar.alpha = 0.60;
 			bar.cameras = [camHUD];
 			bar.scrollFactor.set();
 
