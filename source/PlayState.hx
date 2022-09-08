@@ -4461,7 +4461,6 @@ class PlayState extends MusicBeatState
 			octagonBG2.alpha = 0;
 			octagonBG2.screenCenter(XY);
 			octagonBG2.scrollFactor.set(0, 0);
-			octagonBG2.scale.set(1.4, 1.4);
 			octagonBG2.cameras = [cutCam];
 			add(octagonBG2);
 
@@ -4477,7 +4476,7 @@ class PlayState extends MusicBeatState
 			add(numbahEiti);
 
 			numbahEiti2 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false, 0, 1900);
-			//numbahEiti2.alpha = 0;
+			numbahEiti2.alpha = 0;
 			numbahEiti2.y = 246.3;
 			numbahEiti2.alpha = 0;
 		//	numbahEiti2.scale.set(1, 1);
@@ -4499,12 +4498,12 @@ class PlayState extends MusicBeatState
 			numbahEiti3.cameras = [cutCam];
 			add(numbahEiti3);
 
-			nikkuOctagon = new FlxSprite(50, 90);
+			nikkuOctagon = new FlxSprite(-425, 465);
 			nikkuOctagon.frames = Paths.getSparrowAtlas('skatepark/octagon/nikku');
 			nikkuOctagon.animation.addByPrefix('idle', 'Nikku Move 1', 24, true);
 			nikkuOctagon.animation.addByPrefix('lastFrame', 'Nikku Last Frame', 24, true);
 			nikkuOctagon.animation.play('idle', true);
-			nikkuOctagon.setGraphicSize(Std.int(nikkuOctagon.width * 1.9));
+			nikkuOctagon.setGraphicSize(Std.int(nikkuOctagon.width * 1.82));
 			nikkuOctagon.updateHitbox();
 			nikkuOctagon.antialiasing = ClientPrefs.globalAntialiasing;
 			nikkuOctagon.cameras = [cutCam];
@@ -4526,7 +4525,7 @@ class PlayState extends MusicBeatState
 
 			textOctagon = new FlxSprite(bubbleText.x + 20, bubbleText.y + 80);
 				textOctagon.frames = Paths.getSparrowAtlas('skatepark/octagon/text', 'h24');
-				textOctagon.animation.addByPrefix('text', 'Text', 24, false);
+				textOctagon.animation.addByPrefix('text', 'text', 23, false);
 				textOctagon.setGraphicSize(Std.int(textOctagon.width*0.6));
 				textOctagon.updateHitbox();
 				textOctagon.antialiasing = ClientPrefs.globalAntialiasing;
@@ -4545,7 +4544,6 @@ class PlayState extends MusicBeatState
 				add(showYou);
 
 				octagon = new FlxSprite().loadGraphic(Paths.image('skatepark/octagon/octagon', 'h24')); // tween x:295 tween 2 x: 1238
-				octagon.updateHitbox();
 				octagon.antialiasing = ClientPrefs.globalAntialiasing;
 				octagon.visible = false;
 				octagon.cameras = [cutCam];
@@ -4565,10 +4563,10 @@ class PlayState extends MusicBeatState
 					FlxTween.tween(numbahEiti3, {alpha: 1}, 0.005, {
 						onComplete:function(twn:FlxTween)
 						{
-							FlxTween.tween(nikkuOctagon, {x: -48.0, y:39.6}, 0.005, {
-								onComplete:function(twn:FlxTween)
+							FlxTween.tween(nikkuOctagon, {x:50,y:90}, 0.005, { // ata é por isso que tava do lado da tela saporra
+								onComplete:function(twn:FlxTween) 
 								{
-									FlxTween.tween(bubbleText, {"scale.x": 1.4, "scale.y": 1.4}, 0.005, {
+									FlxTween.tween(bubbleText, {"scale.x": 1, "scale.y": 1}, 0.005, {
 										onComplete:function(twn:FlxTween)
 										{
 											textOctagon.alpha = 1;
@@ -4598,7 +4596,7 @@ class PlayState extends MusicBeatState
 			onComplete: function(twn:FlxTween)
 			{
 				nikkuOctagon.animation.play('lastFrame');
-				FlxTween.tween(nikkuOctagon, {"scale.x":1.5, "scale.y":1.5}, 1.20, {
+				FlxTween.tween(nikkuOctagon, {"scale.x":1.5, "scale.y":1.5}, 2.2, {
 					onComplete:function(twn:FlxTween){
 						//removeOctaCut();
 					}
@@ -4637,7 +4635,7 @@ class PlayState extends MusicBeatState
 		bg.antialiasing = false;
 		bg.y = -85;
 		bg.velocity.set(-155, 0);
-		bg.setGraphicSize(Std.int(bg.width * 7.2)); // to larger cuz its pixel and its low quality
+		bg.setGraphicSize(Std.int(bg.width * 8)); // to larger cuz its pixel and its low quality
 		bg.updateHitbox();
 		bg.cameras = [cutCam];
 		add(bg);
@@ -4646,10 +4644,18 @@ class PlayState extends MusicBeatState
 		ground.antialiasing = false;
 		ground.y = 470;
 		ground.velocity.set(-165, 0);
-		ground.setGraphicSize(Std.int(ground.width * 5.73));
+		ground.setGraphicSize(Std.int(ground.width * 6.73));
 		ground.updateHitbox();
 		ground.cameras = [cutCam];
 		add(ground);
+
+
+		var eze:FlxSprite = new FlxSprite(-350, 245).loadGraphic(Paths.image('skatepark/cutscene/exe', 'h24')); // é hj q eu te pego gostosa kkkkkk
+		eze.antialiasing = false;
+		eze.setGraphicSize(Std.int(eze.width * 5.4));
+		eze.cameras = [cutCam];
+		eze.updateHitbox();
+		add(eze);
 
 		var nicu:FlxSprite = new FlxSprite(565, 180).loadGraphic(Paths.image('skatepark/cutscene/nikku', 'h24')); // pqp me dexa em paz seu porra da o cu na esquina chupa rola
 		nicu.antialiasing = false;
@@ -4658,18 +4664,11 @@ class PlayState extends MusicBeatState
 		nicu.cameras = [cutCam];
 		add(nicu);
 
-		var eze:FlxSprite = new FlxSprite(-350, 245).loadGraphic(Paths.image('skatepark/cutscene/exe', 'h24')); // é hj q eu te pego gostosa kkkkkk
-		eze.antialiasing = false;
-		eze.setGraphicSize(Std.int(eze.width * 3.9));
-		eze.cameras = [cutCam];
-		eze.updateHitbox();
-		add(eze);
-
 		var gostosa:FlxBackdrop = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves', 'h24'), 0.3, 0.3, true, false);
 		gostosa.antialiasing = false;
 		gostosa.y = 375;
 		gostosa.velocity.set(-260, 0);
-		gostosa.setGraphicSize(Std.int(gostosa.width * 6.25));
+		gostosa.setGraphicSize(Std.int(gostosa.width * 8.35));
 		gostosa.updateHitbox();
 		gostosa.cameras = [cutCam];
 		add(gostosa);
@@ -4687,15 +4686,16 @@ class PlayState extends MusicBeatState
 			onComplete: function(twn:FlxTween)
 			{
 				blackStart.kill();
+				FlxTween.tween(eze, {x: nicu.x - 50}, 5.5);
 			}
 		});
-		FlxTween.tween(eze, {x: nicu.x - 50}, 7);
-		FlxTween.tween(nicu, {y: nicu.y + 5}, 0.1, {type:PINGPONG});
+		FlxTween.tween(nicu, {y: nicu.y + 5}, 0.075, {ease:FlxEase.quadInOut, type:PINGPONG});
+		FlxTween.tween(eze, {y: eze.y + 5}, 0.075, {ease:FlxEase.quadInOut, type:PINGPONG});
 
-		new FlxTimer().start(6.5, function(pussy:FlxTimer) // uhhhhhh
+		new FlxTimer().start(5, function(pussy:FlxTimer) // uhhhhhh
 		{
 			flash.visible = true;
-			FlxFlicker.flicker(flash, 0.5, 0.015, false, false, function(flicker:FlxFlicker)
+			FlxFlicker.flicker(flash, 0.5/*pra formar 5.5 segundos*/, 0.015, false, false, function(flicker:FlxFlicker)
 			{
 				bg.alpha = 0;
 				ground.alpha=0;
