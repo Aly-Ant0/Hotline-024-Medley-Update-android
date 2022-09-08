@@ -2107,7 +2107,6 @@ class PlayState extends MusicBeatState
 				a mesma coisa com o "Aly", ai quer dizer que, toda vez que ta falando "Aly", vc ta literalmente falando "Alysson".
 				eu pensei nesse nome dps de quando eu tive um sonho.
 				*/
-				COMBO_Y = 160;
 
 			songnameBoxGrp = new FlxTypedSpriteGroup<FlxSprite>();
 			add(songnameBoxGrp);
@@ -3687,7 +3686,7 @@ class PlayState extends MusicBeatState
 				comboNum = 0;
 
 				// lerp momento
-				var toZero:Int = 0;
+				var toZero:Int = comboScore - 32550;
 				comboScore = Math.floor(FlxMath.lerp(comboScore, toZero, CoolUtil.boundTo(1 - (elapsed * 32), 0, 1)));
 				songScore = Math.floor(FlxMath.lerp(songScore, scoreTarget, CoolUtil.boundTo(1 - (elapsed * 32), 0, 1)));
 				if (Math.abs(songScore - scoreTarget) <= 10)
