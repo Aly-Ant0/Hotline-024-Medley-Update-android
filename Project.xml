@@ -177,13 +177,18 @@
 	<android permission="android.permission.WRITE_EXTERNAL_STORAGE"/>
 	<android permission="android.permission.READ_EXTERNAL_STORAGE"/>
 
-	<!--ganhamo-->
-	<android permission="android.permission.CAPTURE_AUDIO_OUTPUT" />
+	<!-- record internal audio support without changing the target sdk in android editor -->
+	<!-- vege my beloved -->
+	<android target-sdk-version="29" />
+	<android gradle-version="5.4.1" />
+	<android gradle-plugin="3.5.0" /> 
 
+	<!--ganhamo so q nao
+	<android permission="android.permission.CAPTURE_AUDIO_OUTPUT" />
+	-->
 	<!-- _________________________________ Custom _______________________________ -->
 
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
-	
 	<icon path="art/icon16.png" size='16'/>
 	<icon path="art/icon32.png" size='32'/>
 	<icon path="art/icon64.png" size='64'/>
