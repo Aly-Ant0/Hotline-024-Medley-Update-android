@@ -274,6 +274,13 @@ class PlayState extends MusicBeatState
 	var skateTreess:BGSprite;
 	var skateBuches:BGSprite;
 
+	// sonio ponto eze variables
+	var gostosa:FlxBackdrop;
+	var bgExe:FlxBackdrop;
+	var groundExe:FlxBackdrop;
+	var nicuEze:FlxSprite;
+	var eze:FlxSprite;
+
 	// octagon cutscene variables
 	var octagonBG:FlxSprite;
 	var octagonBG2:FlxSprite;
@@ -464,6 +471,16 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
+		if (ClientPrefs.middleScroll && !ClientPrefs.downScroll){
+			COMBO_Y = 160;
+		}
+		else if (ClientPrefs.middleScroll && ClientPrefs.downScroll){
+			COMBO_Y = 475;
+		}
+		else if (ClientPrefs.downScroll){
+			COMBO_Y = 560;
+		}
+
 		Paths.clearStoredMemory();
 
 		// for lua
@@ -976,7 +993,7 @@ class PlayState extends MusicBeatState
 					rocks.updateHitbox();
 			case 'momogogo':
 				//var bg:FlxBackdrop;
-				momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'),0.3, 0.3,  true, false); // fuck i forgor the scroll value
+				momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), 1, 1); // fuck i forgor the scroll value
 				momogogoBG.y = -270;
 				momogogoBG.scale.set(1.25, 1.25);
 				momogogoBG.updateHitbox();
@@ -1157,7 +1174,7 @@ class PlayState extends MusicBeatState
 				bg5.updateHitbox();
 				add(bg5);
 
-				blurBg = new BGSprite('nightland/BLURROC6', -2040, -1150, 1, 1);
+				blurBg = new BGSprite('nightland/BLURROC6', -2010, -1150, 1, 1);
 				blurBg.scale.set(1.6, 1.6);
 				blurBg.updateHitbox();
 
@@ -1226,7 +1243,7 @@ class PlayState extends MusicBeatState
 				add(bg2);
 
 				var bg3:BGSprite=new BGSprite('jojo/floor', -2700, -1799, 1, 1);
-				bg3.setGraphicSize(Std.int(bg2.width * 2));
+				bg3.setGraphicSize(Std.int(bg3.width * 2));
 				bg3.updateHitbox();
 				add(bg3);
 			case 'spooky': //Week 2
@@ -2035,13 +2052,13 @@ class PlayState extends MusicBeatState
 
 			comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
 			comboGlow.screenCenter(X); // nao botei o combo_x pq preguiça vou chorar
-			comboGlow.y = 40;
+			comboGlow.y = COMBO_Y;
 			comboGlow.alpha = 0;
 			comboGlow.blend = ADD; // nao me perguntem o pq o blend ta em add
 			comboGlow.cameras = [camHUD];
 			add(comboGlow);
 
-			combotxt1 = new FlxText(comboGlow.x + 25, comboGlow.y + 15, 0, "", 33);
+			combotxt1 = new FlxText(comboGlow.x + 25, COMBO_Y + 15, 0, "", 33);
 			combotxt1.color = FlxColor.WHITE;
 			combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 33, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt1.scrollFactor.set();
@@ -2069,7 +2086,6 @@ class PlayState extends MusicBeatState
 			combotxt2.alpha = 0;
 			add(combotxt2);
 
-			if(ClientPrefs.middleScroll && !ClientPrefs.downScroll) {
 				// so para ajudar qm iniciante em haxe ou pode ter em alguma outra linguagem de programação alem do haxe sla
 				/*para vocês que são iniciantes, o sinal de exclamação, significa nao, e so funciona em variaveis do tipo bool
 				por exemplo 
@@ -2091,12 +2107,7 @@ class PlayState extends MusicBeatState
 				a mesma coisa com o "Aly", ai quer dizer que, toda vez que ta falando "Aly", vc ta literalmente falando "Alysson".
 				eu pensei nesse nome dps de quando eu tive um sonho.
 				*/
-				comboGlow.y = 160;
-			}
-			else if (ClientPrefs.middleScroll && ClientPrefs.downScroll)
-			{
-				comboGlow.y = 475;
-			}
+				COMBO_Y = 160;
 
 			songnameBoxGrp = new FlxTypedSpriteGroup<FlxSprite>();
 			add(songnameBoxGrp);
@@ -2137,11 +2148,10 @@ class PlayState extends MusicBeatState
 		}
 
 		songnameBoxGrp.y = healthBarBG.y + 160;
-		songnameBoxGrp.x -= 100;
+		songnameBoxGrp.x -= 500;
 
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
-			comboGlow.y = 560;
 		}
 
 		strumLineNotes.cameras = [camHUD];
@@ -4630,41 +4640,39 @@ class PlayState extends MusicBeatState
 		// flash 8 coords lmao
 		camHUD.alpha = 0;
 		//var library:String = 'skatepark/cutscene/'; // lazy
+		bgExe = new FlxBackdrop(Paths.image('skatepark/cutscene/background', 'h24'), 0.3, 0.3, true, false);
+		bgExe.antialiasing = false;
+		bgExe.y = -85;
+		bgExe.velocity.set(-155, 0);
+		bgExe.setGraphicSize(Std.int(bgExe.width * 8)); // to larger cuz its pixel and its low quality
+		bgExe.updateHitbox();
+		bgExe.cameras = [cutCam];
+		add(bgExe);
 
-		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('skatepark/cutscene/background', 'h24'), 0.3, 0.3, true, false);
-		bg.antialiasing = false;
-		bg.y = -85;
-		bg.velocity.set(-155, 0);
-		bg.setGraphicSize(Std.int(bg.width * 8)); // to larger cuz its pixel and its low quality
-		bg.updateHitbox();
-		bg.cameras = [cutCam];
-		add(bg);
+		groundExe = new FlxBackdrop(Paths.image('skatepark/cutscene/ground', 'h24'), 0.3, 0.3, true, false);
+		groundExe.antialiasing = false;
+		groundExe.y = 470;
+		groundExe.velocity.set(-165, 0);
+		groundExe.setGraphicSize(Std.int(groundExe.width * 6.73));
+		groundExe.updateHitbox();
+		groundExe.cameras = [cutCam];
+		add(groundExe);
 
-		var ground:FlxBackdrop = new FlxBackdrop(Paths.image('skatepark/cutscene/ground', 'h24'), 0.3, 0.3, true, false);
-		ground.antialiasing = false;
-		ground.y = 470;
-		ground.velocity.set(-165, 0);
-		ground.setGraphicSize(Std.int(ground.width * 6.73));
-		ground.updateHitbox();
-		ground.cameras = [cutCam];
-		add(ground);
-
-
-		var eze:FlxSprite = new FlxSprite(-350, 245).loadGraphic(Paths.image('skatepark/cutscene/exe', 'h24')); // é hj q eu te pego gostosa kkkkkk
+		eze=new FlxSprite(-350, 245).loadGraphic(Paths.image('skatepark/cutscene/exe', 'h24')); // é hj q eu te pego gostosa kkkkkk
 		eze.antialiasing = false;
 		eze.setGraphicSize(Std.int(eze.width * 5.4));
 		eze.cameras = [cutCam];
 		eze.updateHitbox();
 		add(eze);
 
-		var nicu:FlxSprite = new FlxSprite(565, 180).loadGraphic(Paths.image('skatepark/cutscene/nikku', 'h24')); // pqp me dexa em paz seu porra da o cu na esquina chupa rola
-		nicu.antialiasing = false;
-		nicu.setGraphicSize(Std.int(nicu.width * 5.1));
-		nicu.updateHitbox();
-		nicu.cameras = [cutCam];
-		add(nicu);
+		nicuEze = new FlxSprite(565, 180).loadGraphic(Paths.image('skatepark/cutscene/nikku', 'h24')); // pqp me dexa em paz seu porra da o cu na esquina chupa rola
+		nicuEze.antialiasing = false;
+		nicuEze.setGraphicSize(Std.int(nicuEze.width * 5.1));
+		nicuEze.updateHitbox();
+		nicuEze.cameras = [cutCam];
+		add(nicuEze);
 
-		var gostosa:FlxBackdrop = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves', 'h24'), 0.3, 0.3, true, false);
+		gostosa = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves', 'h24'), 0.3, 0.3, true, false);
 		gostosa.antialiasing = false;
 		gostosa.y = 375;
 		gostosa.velocity.set(-260, 0);
@@ -4686,22 +4694,22 @@ class PlayState extends MusicBeatState
 			onComplete: function(twn:FlxTween)
 			{
 				blackStart.kill();
-				FlxTween.tween(eze, {x: nicu.x - 50}, 5.5);
+				FlxTween.tween(eze, {x: nicuEze.x - 100}, 6.150);
 			}
 		});
-		FlxTween.tween(nicu, {y: nicu.y + 5}, 0.075, {ease:FlxEase.quadInOut, type:PINGPONG});
-		FlxTween.tween(eze, {y: eze.y + 5}, 0.075, {ease:FlxEase.quadInOut, type:PINGPONG});
+		FlxTween.tween(nicuEze, {y: nicuEze.y + 5}, 0.1550, {ease:FlxEase.quadInOut, type:PINGPONG});
+		FlxTween.tween(eze, {y: eze.y + 5}, 0.127, {ease:FlxEase.quadInOut, type:PINGPONG});
 
-		new FlxTimer().start(5, function(pussy:FlxTimer) // uhhhhhh
+		new FlxTimer().start(5.8, function(pussy:FlxTimer) // uhhhhhh
 		{
 			flash.visible = true;
-			FlxFlicker.flicker(flash, 0.5/*pra formar 5.5 segundos*/, 0.015, false, false, function(flicker:FlxFlicker)
+			FlxFlicker.flicker(flash, 0.350/*pra formar 6.150 segundos*/, 0.015, false, false, function(flicker:FlxFlicker)
 			{
-				bg.alpha = 0;
-				ground.alpha=0;
-				nicu.alpha=0;
-				eze.alpha=0;
-				gostosa.alpha=0;
+				bgExe.kill();
+				groundExe.kill();
+				nicuEze.kill();
+				eze.kill();
+				gostosa.kill();
 				camHUD.alpha = 1;
 			});
 		});
