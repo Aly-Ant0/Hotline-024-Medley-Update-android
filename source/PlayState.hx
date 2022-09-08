@@ -3686,13 +3686,14 @@ class PlayState extends MusicBeatState
 				comboNum = 0;
 
 				// lerp momento
-				var toZero:Int = comboScore - 32550;
+				var toZero:Int = 90;
 				comboScore = Math.floor(FlxMath.lerp(comboScore, toZero, CoolUtil.boundTo(1 - (elapsed * 32), 0, 1)));
 				songScore = Math.floor(FlxMath.lerp(songScore, scoreTarget, CoolUtil.boundTo(1 - (elapsed * 32), 0, 1)));
 				if (Math.abs(songScore - scoreTarget) <= 10)
 					songScore = scoreTarget;
 					if (Math.abs(comboScore - toZero) <= 10)
-						comboScore = toZero; // no caso fica zero :trollface:
+						comboScore = toZero;
+						comboScore = 0; // agora fica zero :trollface:
 
 				// se tiver visível é claro né meu fi ou fia sla
 
