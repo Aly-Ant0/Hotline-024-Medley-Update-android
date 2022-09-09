@@ -142,7 +142,7 @@ class PlayState extends MusicBeatState
 
 	// dad
 	public var dad:Character = null;
-	public var dadReflect:Character = null; // unused
+	public var dadReflect:Character = null; // sexy but unused
 	// gf
 	public var gf:Character = null; // pensei q a variavel era girlfriend
 	public var gfReflect:Character = null; // unused shit
@@ -174,7 +174,8 @@ class PlayState extends MusicBeatState
 
 	// song bar idk
 	var bar:AttachedSprite = new AttachedSprite(null); // dont loads a image. :lmao:
-	var barWidth:Float = 20; // i will use this variable for the bar graphic
+	var minWidth:Int = 20; // i will use these variables for the bar graphic
+	var maxWidth:Int = FlxG.width; // lmao
 	var songTxt:FlxText;
 	var songString:String = "";
 	var songnameBoxGrp:FlxTypedSpriteGroup<FlxSprite>; // btw have an flxtext variable (aka var) cuz it extends with flxsprite.
@@ -2111,19 +2112,22 @@ class PlayState extends MusicBeatState
 			songnameBoxGrp = new FlxTypedSpriteGroup<FlxSprite>();
 			add(songnameBoxGrp);
 
-			songTxt = new FlxText(bar.x + 10, bar.y + 10, 0, "", 42); // it mentions the bar variable cuz its already declared look at the line 175
+			songTxt = new FlxText(bar.x + 10, bar.y + 10, 0, "", 42); // it mentions the bar variable cuz its already declared look at the line 176
 			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 42, FlxColor.WHITE, RIGHT);
 			songTxt.cameras = [camHUD];
 			songTxt.scrollFactor.set();
 
-			bar.makeGraphic(Std.int(barWidth), 90, FlxColor.BLACK);
+			bar.makeGraphic(songTxt.width + songTxt.x + 25, 90, FlxColor.BLACK);
 			bar.alpha = 0.60;
 			bar.cameras = [camHUD];
 			bar.scrollFactor.set();
 
+			if (bar.width > maxWidth){
+				bar.width = maxWidth;
+			}
+
 			songnameBoxGrp.add(bar);
 			songnameBoxGrp.add(songTxt);
-	
 		// o texto vai pegar o conteudo do txt & if the txt file exists the txt string will get the file content
 		var file:String = Paths.txt(songName + '/' + 'info');
 		if(OpenFlAssets.exists(file)) { // info file fix?
@@ -2133,6 +2137,9 @@ class PlayState extends MusicBeatState
 			songnameBoxGrp.alpha = 0;
 			songString = 'NO BITCHES?'; // for prevent crash
 			// and yes, no bitches.
+			if (FlxG.random.bool(0.1)){
+				songString += '\nYES, NO BITCHES.';
+			}
 		}
 
 		if (curStage == 'ena') {
