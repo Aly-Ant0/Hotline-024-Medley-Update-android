@@ -118,7 +118,7 @@ class FreeplayState extends MusicBeatState
 		for (i in 0...songs.length)
 		{
 			var port:FreeplayText = new FreeplayText(310, 200, songs[i]);
-			port.y = 150 + (890 * i); // sorry peppy - aly ant 9/2/2022 7:57 (brazil timezone)
+			port.y = 240 + (1180 * i); // sorry peppy - aly ant 9/2/2022 7:57 (brazil timezone)
 			port.targetY = i; // basically a id variable lmao
 			port.ID = i;
 			port.skew.x = -1;
@@ -141,6 +141,9 @@ class FreeplayState extends MusicBeatState
 		scoreText = new FlxText(500, 650, 0, '', 32);
 		scoreText.setFormat(Paths.font('LEMONMILK-Bold.otf'), 32, FlxColor.WHITE, RIGHT);
 		scoreText.alignment = CENTER;
+		if(FlxG.random.bool(0.1)){
+			scoreText.text += 'BITCH.';
+		}
 		add(scoreText);
 
 		if(lastDifficultyName == '')
@@ -232,6 +235,7 @@ class FreeplayState extends MusicBeatState
 			}
 			else
 			{
+					port.x = FlxMath.lerp(port.x, 280 * port.targetY * -1, CoolUtil.boundTo(elapsed * 4, 0, 1));
 					port.select = false;
 					port.notSlct = true;
 			}
