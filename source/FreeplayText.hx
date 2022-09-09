@@ -58,7 +58,7 @@ class FreeplayText extends FlxSkewedSprite
 			}
 
 			else if (skew.x > minSkew){ // no caso é oq nao ta selecionando
-					skew.x = minSkew - 4; // im fucking genious
+					skew.x = minSkew - 5; // holy shit
 					skewDirection = -1;
 			}
 		}
