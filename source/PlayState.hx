@@ -2855,11 +2855,11 @@ class PlayState extends MusicBeatState
 	public function songSlide():Void
 	{
 		new FlxTimer().start(0.5, function(tmr:FlxTimer) {
-			FlxTween.tween(songnameBoxGrp, {x:0}, 1, {ease: FlxEase.expoOut});
+			FlxTween.tween(songnameBoxGrp, {x:0}, 1, {ease: FlxEase.cubeInOut});
 		});
 		new FlxTimer().start(4.5, function(tmr:FlxTimer) 
 		{
-			FlxTween.tween(songnameBoxGrp, {x:-100}, 1, {ease: FlxEase.expoIn,
+			FlxTween.tween(songnameBoxGrp, {x:-100}, 1, {ease: FlxEase.cubeInOut,
 				onComplete: function(twn:FlxTween)
 				{
 					songnameBoxGrp.alpha = 0;
@@ -4487,7 +4487,7 @@ class PlayState extends MusicBeatState
 
 			numbahEiti2 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false, 0, 1900);
 			numbahEiti2.alpha = 0;
-			numbahEiti2.y = 246.3;
+			numbahEiti2.y = 245;
 			numbahEiti2.alpha = 0;
 		//	numbahEiti2.scale.set(1, 1);
 			numbahEiti2.scrollFactor.set(0, 0);
@@ -4499,7 +4499,7 @@ class PlayState extends MusicBeatState
 			numbahEiti3 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false, 0, Std.int(1900));
 			numbahEiti3.alpha = 0;
 			numbahEiti3.screenCenter(X);
-			numbahEiti3.y = 480.0;
+			numbahEiti3.y = 480;
 			//numbahEiti3.scale.set(1, 1);
 			numbahEiti3.scrollFactor.set(0, 0);
 
@@ -4520,13 +4520,9 @@ class PlayState extends MusicBeatState
 			add(nikkuOctagon);
 			//nikkuOctagon.visible = false;
 
-			// idk
-			FlxG.watch.add(nikkuOctagon, "x");
-			FlxG.watch.add(nikkuOctagon, "y");
-			FlxG.watch.add(nikkuOctagon, "scale");
-
-			bubbleText = new FlxSprite(515, 55);
+			bubbleText = new FlxSprite();
 			bubbleText.loadGraphic(Paths.image('skatepark/octagon/textbox'));
+			bubbleText.screenCenter();
 			bubbleText.scale.set(0.0001, 0.0001);
 			bubbleText.updateHitbox();
 			bubbleText.antialiasing = ClientPrefs.globalAntialiasing;
