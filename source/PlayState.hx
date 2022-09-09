@@ -2117,7 +2117,7 @@ class PlayState extends MusicBeatState
 			songTxt.cameras = [camHUD];
 			songTxt.scrollFactor.set();
 
-			bar.makeGraphic(songTxt.width + songTxt.x + 25, 90, FlxColor.BLACK);
+			bar.makeGraphic(Std.int(songTxt.width + songTxt.x + 25), 90, FlxColor.BLACK);
 			bar.alpha = 0.60;
 			bar.cameras = [camHUD];
 			bar.scrollFactor.set();
