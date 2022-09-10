@@ -2115,11 +2115,11 @@ class PlayState extends MusicBeatState
 			songTxt.cameras = [camHUD];
 			songTxt.scrollFactor.set();
 
-			bar.makeGraphic(1, 90, FlxColor.BLACK);
+			bar.makeGraphic(1, 1, FlxColor.BLACK);
 			bar.alpha = 0.60;
 			bar.xAdd = -10;
 			bar.sprTracker = songTxt;
-			bar.setGraphicSize(Std.int(songTxt.width + 30));
+			bar.setGraphicSize(Std.int(songTxt.width + 30), Std.int(songTxt.height + 20));
 			bar.updateHitbox(); // song shit fix size???
 			bar.cameras = [camHUD];
 			bar.scrollFactor.set();
@@ -6245,7 +6245,7 @@ class PlayState extends MusicBeatState
 		}
 
 		// step hit
-		if (curSong == 'Killer Queen') //anime pls don't kill me lololol
+		if (curSong == 'Killer Queen')
 		{
 			// TERMINAR
 			//cuts1.visible = true; //Esse é o comando
