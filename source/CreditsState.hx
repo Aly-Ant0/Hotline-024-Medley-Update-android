@@ -53,6 +53,7 @@ class CreditsState extends MusicBeatState
 		bg.screenCenter();
 
 		gradient = new FlxSprite().loadGraphic(Paths.h024Menu('gradient', 'CREDITS'));
+		gradient.alpha = 0.4;
 		add(gradient);
 		gradient.screenCenter();
 
@@ -97,12 +98,12 @@ class CreditsState extends MusicBeatState
 			['Aly-Ant',		'aly',	'Recreation Owner, Satellite Picnic Cutscene Coder, Main Coder of the Recreation\nfabs segundo',			'https://twitter.com/AlyAntlol',		'C0AFFF'],
 			['THE-MAYKOLLYOUTUBE',		'may',	'Coding,\n i guess',		'https://youtube.com/channel/UC7zIWAVRqtZioMeDI7unXSQ',		'404072'],
 			//Just a lil' fix, my name dont have a "H". - MateusX02
-			['MateusX02', 'matx02', 'Cutscenes Coder and only it,\n i guess', 'https://www.youtube.com/channel/UCPh9ueTFJh50NRlF2CLsbbA', 'FFFFFF'],
+			['MateusX02', 'matx02', 'Cutscenes Coder and only it,\n i guess', 'https://www.youtube.com/channel/UCPh9ueTFJh50NRlF2CLsbbA', '35804D'],
 			['Peppy',		'Elpepe',	'Menu Coding Helper and in the Gameplay\n Peppy God',		'https://youtube.com/c/PeppyWall',		'4DA5FF'],
 			[''],
 			['Hotline 024 Recreation Builders'],
-			['Vegeth', 'vege', 'First Builder of Recreation\ncuz i dont have a PC', 'https://seinao', '4DA5FF'],
-			['Random', 'random', 'Second Builder of Recreation\nand PE 0.5.2h no mod folder creator', 'https://seinao', '4DA5FF'], // idk what color lol
+			['Vegeth', 'vege', 'First Builder of Recreation\ncuz i dont have a PC', 'https://seinao', '0000FF'],
+			['Random', 'random', 'Second Builder of Recreation\nand PE 0.5.2h no mod folder creator', 'https://seinao', '60FCBD'], // idk what color lol
 			[''],
 			['Psych Engine Android'],
 			['Saw (M.A. Jigsaw)',	'saw',				'Main Programmer of Psych Engine Android',					'https://www.youtube.com/channel/UC2Sk7vtPzOvbVzdVTWrribQ', 	'F73838'],
