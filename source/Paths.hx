@@ -241,8 +241,44 @@ class Paths
 		return returnAsset;
 	}
 
-	inline static public function h024Menu(key:String, menuLibrary:String){
-		return image('hotline/menu/$menuLibrary/$key', 'preload');
+	// im fucking dumbass
+	// -aly ant
+	inline static public function h024Menu(key:String, menuLibrary:String)
+	{
+		var shit:String = '';
+
+		if (menuLibrary == 'CREDITS'){ // credits mneu
+			shit = 'hotline/menu/credits';
+		}
+
+		if (menuLibrary == 'NONE'){ // none
+			shit = 'hotline/menu/';
+		}
+
+		if (menuLibrary == 'JUKE'){ // jukebox menu
+			shit = 'hotline/menu/jukebox';
+		}
+
+		if ( menuLibrary == 'SKIN'){ // skins menu
+			shit = 'hotline/menu/skins';
+		}
+
+		if (menuLibrary == 'OPTION'){ // options menu
+			shit = 'hotline/menu/options';
+		}
+
+		if (menuLibrary == 'EXTRA'){ // extras menu
+			shit = 'hotline/menu/extras';
+		}
+
+		if (menuLibrary == 'FREEPLAY'){
+			shit = 'hotline/menu/freeplay'
+		}
+		// freeplay menu gopicoyeayeagopicooh
+		/*else {
+			shit = 'ah, enfia no teu cu ent';
+		}*/
+		return image('$shit/$key', 'preload');
 	}
 
 	static public function getTextFromFile(key:String, ?ignoreMods:Bool = false):String
