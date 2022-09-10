@@ -2,15 +2,15 @@
 
 <p align="center">this recreation it's made by these persons
 
-(https://github.com/Aly-Ant0/Hotline-024-Medley-Update-android/blob/main/assets/preload/images/credits/aly.png) Aly-ant - owner of the recreation
+<p align="center">Aly-ant - owner of the recreation
 
-(https://github.com/Aly-Ant0/Hotline-024-Medley-Update-android/blob/main/assets/preload/images/credits/may.png) THE-MAYKOLLYOUTUBE - coder i guess
+<p align="center">THE-MAYKOLLYOUTUBE - coder i guess
 
-Peppy -  coder of freeplay and the menu
+<p align="center">Peppy -  coder of freeplay and the menu
 
-MateusX02 - coder of killer queen
+<p align="center">MateusX02 - coder of killer queen
 
-ben ok hohoho - idk
+<p align="center">ben ok hohoho - idk
 
-discord Server:
-https://discord.gg/xQ7PEUMEbw
+<p align="center">discord Server:
+xQ7PEUMEbw
