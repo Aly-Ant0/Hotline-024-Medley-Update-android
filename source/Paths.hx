@@ -272,7 +272,7 @@ class Paths
 		}
 
 		if (menuLibrary == 'FREEPLAY'){
-			shit = 'hotline/menu/freeplay'
+			shit = 'hotline/menu/freeplay';
 		}
 		// freeplay menu gopicoyeayeagopicooh
 		/*else {
