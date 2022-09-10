@@ -150,9 +150,9 @@ class CreditsState extends MusicBeatState
 			}
 		}
 
-		bar = new FlxSprite().loadGraphic(Paths.h024Menu('bar', 'CREDITS'));
-		add(bar);
-		bar.screenCenter();
+		bars = new FlxSprite().loadGraphic(Paths.h024Menu('bars', 'CREDITS'));
+		add(bars);
+		bars.screenCenter();
 
 		descBox = new AttachedSprite();
 		descBox.makeGraphic(1, 1, FlxColor.BLACK);
