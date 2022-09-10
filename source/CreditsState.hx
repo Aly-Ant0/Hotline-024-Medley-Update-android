@@ -32,7 +32,7 @@ class CreditsState extends MusicBeatState
 	var bg:FlxSprite;
 	var gradient:FlxSprite;
 	var grd3:FlxSprite;
-	var bars:FlxSprite
+	var bars:FlxSprite;
 	var descText:FlxText;
 	var intendedColor:Int;
 	var colorTween:FlxTween;
@@ -48,25 +48,19 @@ class CreditsState extends MusicBeatState
 		#end
 
 		persistentUpdate = true;
-		bg = new FlxSprite().loadGraphic(Paths.image('images/menu/credits/bg'));
+		bg = new FlxSprite().loadGraphic(Paths.h024Menu('bg', 'CREDITS'));
 		add(bg);
 		bg.screenCenter();
-		
-		persistentUpdate = true;
-		gradient = new FlxSprite().loadGraphic(Paths.image('images/menu/credits/gradient'));
+
+		gradient = new FlxSprite().loadGraphic(Paths.h024Menu('gradient', 'CREDITS'));
 		add(gradient);
 		gradient.screenCenter();
-		
-		persistentUpdate = true;
-		grd3 = new FlxSprite().loadGraphic(Paths.image('images/menu/credits/grd3'));
+
+		grd3 = new FlxSprite().loadGraphic(Paths.h024Menu('grd3', 'CREDITS'));
+		//grd3.blend = ADD; // :trollface:
 		add(grd3);
 		grd3.screenCenter();
-   
-		persistentUpdate = true;
-		bar = new FlxSprite().loadGraphic(Paths.image('images/menu/credits/bar'));
-		add(bar);
-		bar.screenCenter();
-		
+
 		grpOptions = new FlxTypedGroup<Alphabet>();
 		add(grpOptions);
 
@@ -100,7 +94,7 @@ class CreditsState extends MusicBeatState
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
 			['Hotline 024 Recreation'], //creditos, agora o mayko vai adicionar o dele kkkkk
-			['Aly-Ant',		'aly',	'Recreation Owner, Satellite Picnic Cutscene Coder, Main Coder of the Recreation',			'https://twitter.com/AlyAntlol',		'C0AFFF'],
+			['Aly-Ant',		'aly',	'Recreation Owner, Satellite Picnic Cutscene Coder, Main Coder of the Recreation\nfabs segundo',			'https://twitter.com/AlyAntlol',		'C0AFFF'],
 			['THE-MAYKOLLYOUTUBE',		'may',	'Coding,\n i guess',		'https://youtube.com/channel/UC7zIWAVRqtZioMeDI7unXSQ',		'404072'],
 			//Just a lil' fix, my name dont have a "H". - MateusX02
 			['MateusX02', 'matx02', 'Cutscenes Coder and only it,\n i guess', 'https://www.youtube.com/channel/UCPh9ueTFJh50NRlF2CLsbbA', 'FFFFFF'],
@@ -113,9 +107,9 @@ class CreditsState extends MusicBeatState
 			['Psych Engine Android'],
 			['Saw (M.A. Jigsaw)',	'saw',				'Main Programmer of Psych Engine Android',					'https://www.youtube.com/channel/UC2Sk7vtPzOvbVzdVTWrribQ', 	'F73838'],
 			[''],
-			['Hotline 024 devs'],
-			['Sakury', 'saru',        'Director, Musician'         'https://twitter.com/Saruky__',     '2833E7'],
-			['VaChildish', 'BigBand',        'Artist, Jojo Nikku`s Assets',         'https://twitter.com/VaChildish',     'FF0069'],
+			['Hotline 024 Devs'],
+			['Sakury', 'saru', 'Director, Musician', 'https://twitter.com/Saruky__', '2833E7'],
+			['VaChildish', 'BigBand', 'Artist, Jojo Nikku`s Assets', 'https://twitter.com/VaChildish', 'FF0069']
 		];
 		
 		for(i in pisspoop){
@@ -155,7 +149,11 @@ class CreditsState extends MusicBeatState
 				if(curSelected == -1) curSelected = i;
 			}
 		}
-		
+
+		bar = new FlxSprite().loadGraphic(Paths.h024Menu('bar', 'CREDITS'));
+		add(bar);
+		bar.screenCenter();
+
 		descBox = new AttachedSprite();
 		descBox.makeGraphic(1, 1, FlxColor.BLACK);
 		descBox.xAdd = -10;
