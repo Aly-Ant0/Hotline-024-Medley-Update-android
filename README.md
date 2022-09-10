@@ -1,6 +1,6 @@
-# hotline 024 Android recreation
+# <p align="center">hotline 024 Android recreation
 
-this recreation it's made by these persons
+<p align="center">this recreation it's made by these persons
 
 (https://github.com/Aly-Ant0/Hotline-024-Medley-Update-android/blob/main/assets/preload/images/credits/aly.png) Aly-ant - owner of the recreation
 
