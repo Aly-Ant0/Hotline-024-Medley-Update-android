@@ -10,6 +10,6 @@
 
 <p align="right">MateusX02 - coder of killer queen
 
-<p align="center">ben ok hohoho - idk
+<p align="left">ben ok hohoho - idk
 
-<p align="center">https://discord.gg/xQ7PEUMEbw
+<p align="center">Discord server: https://discord.gg/xQ7PEUMEbw
