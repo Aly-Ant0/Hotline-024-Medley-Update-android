@@ -240,7 +240,11 @@ class Paths
 		var returnAsset:FlxGraphic = returnGraphic(key, library);
 		return returnAsset;
 	}
-	
+
+	inline static public function h024Menu(key:String, menuLibrary:String){
+		return image('hotline/menu/$menuLibrary/$key', 'preload');
+	}
+
 	static public function getTextFromFile(key:String, ?ignoreMods:Bool = false):String
 	{
 		#if MODS_ALLOWED
