@@ -2,7 +2,7 @@
 
 this recreation it's made by these persons
 
-Aly-ant - owner of the recreation
+[alt text](https://github.com/Aly-Ant0/Hotline-024-Medley-Update-android/blob/main/assets/preload/images/credits/aly.png) Aly-ant - owner of the recreation
 
 THE-MAYKOLLYOUTUBE - coder i guess
 
