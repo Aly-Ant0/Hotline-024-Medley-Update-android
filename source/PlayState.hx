@@ -6245,7 +6245,7 @@ class PlayState extends MusicBeatState
 		}
 
 		// step hit
-		if (curSong == 'Killer Queen')
+		if (curSong == 'Killer Queen') //anime pls don't kill me lololol
 		{
 			// TERMINAR
 			//cuts1.visible = true; //Esse é o comando
