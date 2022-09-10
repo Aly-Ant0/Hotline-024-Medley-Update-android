@@ -2864,7 +2864,7 @@ class PlayState extends MusicBeatState
 		});
 		new FlxTimer().start(4.5, function(tmr:FlxTimer) 
 		{
-			FlxTween.tween(songnameBoxGrp, {x:-100}, 1, {ease: FlxEase.cubeInOut,
+			FlxTween.tween(songnameBoxGrp, {x:-500}, 1, {ease: FlxEase.cubeInOut,
 				onComplete: function(twn:FlxTween)
 				{
 					songnameBoxGrp.alpha = 0;
