@@ -174,8 +174,6 @@ class PlayState extends MusicBeatState
 
 	// song bar idk
 	var bar:AttachedSprite = new AttachedSprite(null); // dont loads a image. :lmao:
-	var minWidth:Int = 20; // i will use these variables for the bar graphic
-	var maxWidth:Int = FlxG.width; // lmao
 	var songTxt:FlxText;
 	var songString:String = "";
 	var songnameBoxGrp:FlxTypedSpriteGroup<FlxSprite>; // btw have an flxtext variable (aka var) cuz it extends with flxsprite.
@@ -2117,18 +2115,18 @@ class PlayState extends MusicBeatState
 			songTxt.cameras = [camHUD];
 			songTxt.scrollFactor.set();
 
-			bar.makeGraphic(Std.int(songTxt.width + songTxt.x + 25), 90, FlxColor.BLACK);
+			bar.makeGraphic(1, 90, FlxColor.BLACK);
 			bar.alpha = 0.60;
+			bar.xAdd = -10;
+			bar.sprTracker = songTxt;
+			bar.setGraphicSize(Std.int(songTxt.width + 30));
+			bar.updateHitbox(); // song shit fix size???
 			bar.cameras = [camHUD];
 			bar.scrollFactor.set();
 
-			if (bar.width > maxWidth){
-				bar.width = maxWidth;
-			}
-
 			songnameBoxGrp.add(bar);
 			songnameBoxGrp.add(songTxt);
-		// o texto vai pegar o conteudo do txt & if the txt file exists the txt string will get the file content
+		// if the txt file exists the txt string will get the file text
 		var file:String = Paths.txt(songName + '/' + 'info');
 		if(OpenFlAssets.exists(file)) { // info file fix?
 			songString = OpenFlAssets.getText(SUtil.getPath() + file);
