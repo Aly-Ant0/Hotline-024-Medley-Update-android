@@ -20,4 +20,4 @@
 
 <p align="center">Discord server: https://discord.gg/xQ7PEUMEbw
 
-* [Hotline 024 Original Mod Gamejolt Link](https://seinao)
+* [Hotline 024 Original Mod Gamejolt Link](https://gamejolt.com/games/FNFh024/645043)
