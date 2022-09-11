@@ -98,7 +98,7 @@ class CreditsState extends MusicBeatState
 			['Aly-Ant',		'aly',	'Recreation Owner, Satellite Picnic Cutscene Coder, Main Coder of the Recreation\nfabs segundo',			'https://twitter.com/AlyAntlol',		'C0AFFF'],
 			['THE-MAYKOLLYOUTUBE',		'may',	'Coding,\n i guess',		'https://youtube.com/channel/UC7zIWAVRqtZioMeDI7unXSQ',		'404072'],
 			//Just a lil' fix, my name dont have a "H". - MateusX02
-			['MateusX02', 'matx02', 'Cutscenes Coder and only it,\n i guess', 'https://www.youtube.com/channel/UCPh9ueTFJh50NRlF2CLsbbA', '35804D'],
+			['MateusX02', 'matx02', 'Coder and only it', 'https://www.youtube.com/channel/UCPh9ueTFJh50NRlF2CLsbbA', '35804D'],
 			['Peppy',		'Elpepe',	'Menu Coding Helper and in the Gameplay\n Peppy God',		'https://youtube.com/c/PeppyWall',		'4DA5FF'],
 			[''],
 			['Hotline 024 Recreation Builders'],
