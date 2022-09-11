@@ -8,7 +8,7 @@
 
 <p align="left">Peppy - Additional Coding, Freeplay Menu Coder
 
-<p align="right">MateusX02 - Coder for Killer Queen
+<p align="right">MateusX02 - Coder
 
 <p align="left">ben ok hohoho - idk
 
