@@ -1,4 +1,4 @@
-<p align="center">hotline 024 Android recreation
+<p align="center">Hotline 024 Android Recreation
 
 # <p align="center">This recreation it's made by these persons
 
@@ -6,7 +6,7 @@
 
 <p align="right">THE-MAYKOLLYOUTUBE - coder i guess
 
-<p align="left">Peppy - Additional Coding
+<p align="left">Peppy - Additional Coding, Freeplay Menu Coder
 
 <p align="right">MateusX02 - Coder for Killer Queen
 
