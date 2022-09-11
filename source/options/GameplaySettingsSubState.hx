@@ -55,8 +55,9 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		var option:Option = new Option('Hitbox Texture (M.A Jigsaw)', //Name
 			'If disabled, the texture will be the hitbox texture of LuckyDog7.', //Description
 			'HitboxJigsaw', //Save data variable name
-			'bool', //Variable type
-			true); //Default value
+			'string',
+			'M.A Jigsaw texture',
+			['M.A Jigsaw texture', 'LuckyDog7 texture']);
 		addOption(option);
 
 		var option:Option = new Option('Middlescroll',
