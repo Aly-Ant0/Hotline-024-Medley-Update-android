@@ -31,7 +31,7 @@ class FlxHitbox extends FlxSpriteGroup {
 		hitbox.add(add(buttonRight = createhitbox(960, 0, "right")));
 
 		var hints:FlxSprite = new FlxSprite(0, 0);
-		if(ClientPrefs.HitboxJigsaw) {
+		if(ClientPrefs.HitboxJigsaw == 'M.A Jigsaw texture') {
 		hints.loadGraphic(Paths.image('androidcontrols/hitbox_hint'));
 		} else {
 		hints.loadGraphic(Paths.image('androidcontrols/hitbox_hintOld'));
@@ -65,7 +65,7 @@ class FlxHitbox extends FlxSpriteGroup {
 	}
 
 	public function getFrames():FlxAtlasFrames {  //test
-		if(ClientPrefs.HitboxJigsaw) {
+		if(ClientPrefs.HitboxJigsaw == 'M.A Jigsaw texture') {
 			return Paths.getSparrowAtlas('androidcontrols/hitbox');
 		} else {
 			return Paths.getSparrowAtlas('androidcontrols/hitboxOld');
