@@ -638,909 +638,912 @@ class PlayState extends MusicBeatState
 
 		switch (curStage)
 		{
-			case 'stage': //Week 1
-				var bg:BGSprite = new BGSprite('stageback', -600, -200, 0.9, 0.9);
-				add(bg);
-
-				var stageFront:BGSprite = new BGSprite('stagefront', -650, 600, 0.9, 0.9);
-				stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
-				stageFront.updateHitbox();
-				add(stageFront);
-				if(!ClientPrefs.lowQuality) {
-					var stageLight:BGSprite = new BGSprite('stage_light', -125, -100, 0.9, 0.9);
-					stageLight.setGraphicSize(Std.int(stageLight.width * 1.1));
-					stageLight.updateHitbox();
-					add(stageLight);
-					var stageLight:BGSprite = new BGSprite('stage_light', 1225, -100, 0.9, 0.9);
-					stageLight.setGraphicSize(Std.int(stageLight.width * 1.1));
-					stageLight.updateHitbox();
-					stageLight.flipX = true;
-					add(stageLight);
-
-					var stageCurtains:BGSprite = new BGSprite('stagecurtains', -500, -300, 1.3, 1.3);
-					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
-					stageCurtains.updateHitbox();
-					add(stageCurtains);
-				}
-		case 'space': //they are in the space but, HOW THEY CAN LIVE WITHOUT IN THE EARTH????
-			//if(!ClientPrefs.dontShowBG) {
-				var bg:BGSprite = new BGSprite('stage3/s1', -1300, -500, 0.2, 0.2);
-				bg.scale.set(1.8, 1.8);
-				bg.updateHitbox();
-				add(bg);
-
-				var bg2:BGSprite = new BGSprite('stage3/s2', -1700, -600, 0.3, 0.3);
-				bg2.scale.set(1.8, 1.8);
-				bg2.updateHitbox();
-				add(bg2);
-				
-				var bg3:BGSprite = new BGSprite('stage3/s3', -1700, -600,0.3,0.3);
-				bg3.scale.set(1.8, 1.8);
-				bg3.updateHitbox();
-				add(bg3);
-
-				var bg4:BGSprite = new BGSprite('stage3/s4', -1700, -600, 0.4, 0.4);
-				bg4.scale.set(1.8, 1.8);
-				bg4.updateHitbox();
-				add(bg4);
-
-				var bg5:BGSprite = new BGSprite('stage3/s5', -1700, -800, 0.5, 0.5);
-				bg5.scale.set(1.8, 1.8);
-				bg5.updateHitbox();
-				add(bg5);
-				
-				var bg6:BGSprite = new BGSprite('stage3/s6', -1700, -800,0.6,0.6);
-				bg6.scale.set(1.8, 1.8);
-				bg6.updateHitbox();
-				add(bg6);
-
-				var bg7:BGSprite = new BGSprite('stage3/s7', -1700, -800, 0.7, 0.7);
-				bg7.scale.set(1.8, 1.8);
-				bg7.updateHitbox();
-				add(bg7);
-
-				var bg8:BGSprite = new BGSprite('stage3/s8', -1950, -950, 1, 1);
-				bg8.scale.set(1.8, 1.8);
-				bg8.updateHitbox();
-				add(bg8);
-
-				var bg9:BGSprite = new BGSprite('stage3/s9', -2050, -1050, 1, 1);
-				bg9.scale.set(1.8, 1.8);
-				bg9.updateHitbox();
-				add(bg9);
-
-				bg10 = new BGSprite('stage3/s10', -2250, -725, 1, 1);
-				bg10.scale.set(1.8, 1.8);
-				bg10.updateHitbox();
-			//}
-				cutsceneBG = new BGSprite('stage3/cutscene/bg', 0,0,0,0);
-				cutsceneBG.screenCenter(XY);
-				//cutsceneBG.cameras = [cutCam];
-				cutsceneBG.alpha = 0;
-
-				cutsceneEnd = new BGSprite('stage3/cutscene/bgEnd', 0,0,0,0);
-				cutsceneEnd.screenCenter(XY);
-				//cutsceneEnd.cameras = [cutCam];
-				cutsceneEnd.visible = false;
-				
-				cutsceneLogo = new BGSprite('stage3/cutscene/logo', 0,0,0,0);
-				cutsceneLogo.screenCenter(XY);
-				cutsceneLogo.scale.set(1.6, 1.6);
-				//cutsceneLogo.cameras = [cutCam];
-				cutsceneLogo.alpha = 0;
-
-				black = new FlxSprite().makeGraphic(2280, 1920, FlxColor.BLACK);
-				black.screenCenter(XY);
-				black.scrollFactor.set(0, 0);
-				black.visible = false;
-				//black.cameras = [cutCam];
-				black.scale.set(1.8, 1.8);
-
-			  text1 = new BGSprite('stage3/cutscene/text1', 311.6, 294.8, 0, 0);
-			  text1.scale.set(1.8, 1.8);
-			  text1.screenCenter(XY);
-			  //text1.cameras = [cutCam];
-				text1.visible = false;
-
-				text2 = new BGSprite('stage3/cutscene/text2', 439.4, text1.y + 85, 0, 0);
-				text2.scale.set(1.8, 1.8);
-				//text2.cameras = [cutCam];
-				text2.visible = false;
-
-			case 'covers': // covers
-				//if(!ClientPrefs.dontShowBG)
-					coverBG1 = new BGSprite('covers/bg', -960, -250, 0.1, 0.1);
-					coverBG1.scale.set(1.4, 1.2);
-					coverBG1.updateHitbox();
-					add(coverBG1);
-	
-					coverBG2 = new BGSprite('covers/sun', -1200, -450, 0.1, 0.1);
-					coverBG2.scale.set(1.3, 1.3);
-					coverBG2.updateHitbox();
-					add(coverBG2);
-	
-					coverBG9 = new BGSprite('covers/clouds', -1200, 0, 0.1, 0.1);
-					coverBG9.updateHitbox();
-					add(coverBG9);
-	
-					coverBG3 = new BGSprite('covers/castle', -1100, -250,  0.3, 0.3);
-					coverBG3.scale.set(1.4, 1.2);
-					coverBG3.updateHitbox();
-					add(coverBG3);
-	
-					coverBG4 = new BGSprite('covers/buildings', -1000, -150,  0.5, 0.5);
-					coverBG4.scale.set(1.4, 1.2);
-					coverBG4.updateHitbox();
-					add(coverBG4);
-	
-					coverBG5 = new BGSprite('covers/hills', -600, -150, 1, 1);
-					coverBG5.scale.set(1.3, 1.3);
-					coverBG5.updateHitbox();
-					add(coverBG5);
-
-					coverBG6 = new BGSprite('covers/ground', -260, -140, 1, 1);
-					coverBG6.scale.set(1.2, 1.2);
-					coverBG6.updateHitbox();
-					add(coverBG6);
-	
-					coverBG7 = new BGSprite('covers/light', -260, -140,  1.1, 1.1);
-					coverBG7.scale.set(1.2, 1.2);
-					coverBG7.updateHitbox();
-					coverBG7.blend = ADD;
-					add(coverBG7);
-	
-					coverBG8 = new BGSprite('covers/cables', -260, -140, 1.2, 1.2);
-					coverBG8.scale.set(1.2, 1);
-					coverBG8.updateHitbox();
-					add(coverBG8);
-
-				/*var bfReflextion:FlxSprite = new FlxSprite(boyfriend.x, boyfriend.y);
-				bfReflextion.frames = boyfriend.frames;
-				bfReflextion.alpha = 0.38;
-				bfReflextion.blend = ADD;
-				function update()
-				{
-				bfReflextion.animation.frameIndex = boyfriend.animation.frameIndex;
-				}*/
-				
-
-			case 'mazin-mall': //fun is infinite
-				//if(!ClientPrefs.dontShowBG)
-					majinOverlay = new BGSprite('mazin/overlay', -360, -90, 0, 0);
-					majinOverlay.scale.set(1.5, 1.5);
-					majinOverlay.updateHitbox();
-					majinOverlay.blend = ADD;
-
-					majinBG = new BGSprite('mazin/back', -400, -150, 1, 1);
-					majinBG.scale.set(1.4, 1.4);
-					majinBG.updateHitbox();
-					add(majinBG);
-
-					majinGround = new BGSprite('mazin/ground', -400, -70, 1, 1);
-					majinGround.scale.set(1.4, 1.4);
-					majinGround.updateHitbox();
-					add(majinGround);
-
-					majinTVBG = new BGSprite('mazin/mazin_mall_BG_tv', -50, 90, ['BG tv']);
-					majinTVBG.animation.addByPrefix('idle', 'BG tv', 24, false);
-					majinTVBG.scale.set(1, 1);
-					majinTVBG.updateHitbox();
-					add(majinTVBG);
-	
-					majinTV = new BGSprite('mazin/tv', -500, 130, 1, 1);
-					majinTV.scale.set(1.1, 1.1);
-					majinTV.updateHitbox();
-			case 'expurgated':
-				//if(!ClientPrefs.dontShowBG)
-					exSky = new BGSprite('expurgated/sky', -1300, -650, 0.15, 0.15);
-					exSky.scale.set(2, 2);
-					exSky.updateHitbox();
-					add(exSky);
-	
-					exRock = new BGSprite('expurgated/rock2', -2300, -1100, 0.7, 0.7);
-					exRock.scale.set(2.5, 2.5);
-					exRock.updateHitbox();
-				///exRock.antialiasing = ClientPrefs.globalAntialiasing;
-					add(exRock);
-
-					// i get this code from vs afton mod (is code by fabs and others coders too, and is open source and getting from haxeflixel API)
-					particleEmitter = new FlxEmitter(-2080.5, 1512.4);
-					particleEmitter.launchMode = FlxEmitterMode.SQUARE;
-					particleEmitter.velocity.set(-50, -200, 50, -600, -90, 0, 90, -600);
-					particleEmitter.scale.set(4, 4, 4, 4, 0, 0, 0, 0);
-					particleEmitter.drag.set(0, 0, 0, 0, 5, 5, 10, 10);
-					particleEmitter.width = 4787.45;
-					particleEmitter.alpha.set(1, 1);
-					particleEmitter.lifespan.set(1.9, 4.9);
-					particleEmitter.loadParticles(Paths.image('expurgated/particle'), 500, 16, true);
-
-					particleEmitter.start(false, FlxG.random.float(.01097, .0308), 1000000);
-					add(particleEmitter);
-
-					exGround = new BGSprite('expurgated/ground', -2800, -1400, 1, 1);
-					exGround.scale.set(2.5, 2.5);
-					exGround.updateHitbox();
-					//exGround.antialiasing = ClientPrefs.globalAntialiasing;
-					add(exGround);
-	
-					exOverlay = new BGSprite('expurgated/gradoverlay', -1440, -650, 0, 0);
-					exOverlay.blend = ADD; // how anyone didnt get it?
-					exOverlay.scale.set(2.5, 2.5);
-					exOverlay.updateHitbox();
-					//exOverlay.antialiasing = ClientPrefs.globalAntialiasing;
-	
-					exFront = new BGSprite('expurgated/signfront', -2750, -1400, 1.15, 1.15);
-					exFront.scale.set(2.5, 2.5);
-					exFront.updateHitbox();
-					//exFront.antialiasing = ClientPrefs.globalAntialiasing;
-			case 'skatepark':
-				//if(!ClientPrefs.dontShowBG) {
-					skateSky = new BGSprite('skatepark/sky', -100, -200, 0.4, 0.4);
-					skateSky.scale.set(1, 1);
-					skateSky.updateHitbox();
-					//skateSky.antialiasing = ClientPrefs.globalAntialiasing;
-					add(skateSky);
-	
-					skateBuildings = new BGSprite('skatepark/buildings', 150, 70, 0.8, 0.8);
-					skateBuildings.scale.set(0.9, 0.9);
-					skateBuildings.updateHitbox();
-					//skateBuildings.antialiasing = ClientPrefs.globalAntialiasing;
-					add(skateBuildings);
-	
-					skateTreess = new BGSprite('skatepark/trees', 100, 50, 1, 1);
-					skateTreess.scale.set(1, 1);
-					skateTreess.updateHitbox();
-					add(skateTreess);
-	
-					skateFloor = new BGSprite('skatepark/floor', 10, 0, 1, 1);
-					skateFloor.scale.set(1, 1);
-					skateFloor.updateHitbox();
-					//skateFloor.antialiasing = ClientPrefs.globalAntialiasing;
-					add(skateFloor);
-	
-					skateLight = new BGSprite('skatepark/light', -20, -70, 1, 1);
-					skateLight.updateHitbox();
-					skateLight.blend = ADD;
-					///skateLight.antialiasing = ClientPrefs.globalAntialiasing;
-					skateLight.scale.set(1.1, 1.1);
-	
-					skateBuches = new BGSprite('skatepark/buches', 100, 100, 1, 1);
-					skateBuches.scale.set(1.2, 1.2);
-					skateBuches.updateHitbox();
-					//skateBuches.antialiasing = ClientPrefs.globalAntialiasing;
-				//}
-			case 'hallway':
-				//if(!ClientPrefs.dontShowBG)
-					hallBG = new BGSprite('hallway/bg', -810, -790, 1, 1);
-					hallBG.scale.set(1.6, 1.6);
-					hallBG.updateHitbox();
-					//jojoBG.antialiasing = ClientPrefs.globalAntialiasing;
-					add(hallBG);
-	
-					hallLuzinha = new BGSprite('hallway/grad', -810, -1060, 1, 1);
-					hallLuzinha.blend = ADD;
-					//jojoLuzinha.antialiasing = ClientPrefs.globalAntialiasing;
-					hallLuzinha.scale.set(1.6, 1.6);
-					hallLuzinha.updateHitbox();
-					
-					hallFG = new BGSprite('hallway/fg', -810, -790, 1, 1);
-					//jojoFG.antialiasing = ClientPrefs.globalAntialiasing;
-					hallFG.scale.set(1.6, 1.6);
-					hallFG.updateHitbox();
-					
-					/*SANESSS = new FlxSprite(0, 0);
-					SANESSS.frames = AtlasFrameMaker.construct('hallway/cutscene1');
-					SANESSS.animation.addByPrefix('idle', 'cutscene' 24, false);
-					SANESSS.screenCenter();
-					SANESSS.updateHitbox();
-					SANESSS.scale.set(1.7, 1.7);
-					SANESSS.visible = false;*/
-			case 'boo':
-				//if(!ClientPrefs.dontShowBG)
-					var booBG:BGSprite = new BGSprite('boo/Boo-1', -50, -70, 0.7, 0.7);
-					booBG.updateHitbox();
-				//	booBG.antialiasing = ClientPrefs.globalAntialiasing;
-					add(booBG);
-	
-					var booBG2:BGSprite = new BGSprite('boo/Boo-2', 25, 50, 0.85, 0.85);
-					booBG2.updateHitbox();
-				//	booBG2.antialiasing = ClientPrefs.globalAntialiasing;
-					add(booBG2);
-	
-					var booBG3:BGSprite = new BGSprite('boo/Boo-3', 25, 50, 0.85, 0.85);
-					booBG3.updateHitbox();
-				//	booBG3.antialiasing = ClientPrefs.globalAntialiasing;
-					add(booBG3);
-	
-					var booBG4:BGSprite = new BGSprite('boo/Boo-4', -25, 0, 0.9, 0.9);
-					booBG4.updateHitbox();
-				//	booBG4.antialiasing = ClientPrefs.globalAntialiasing;
-					add(booBG4);
-					
-					var booBG5:BGSprite = new BGSprite('boo/Boo-5', -25, 0, 0.95, 0.95);
-					booBG5.updateHitbox();
-				//	booBG5.antialiasing = ClientPrefs.globalAntialiasing;
-					add(booBG5);
-					
-					var booBG6:BGSprite = new BGSprite('boo/Boo-6', 50, 0, 1, 1);
-					booBG6.updateHitbox();
-					//booBG.antialiasing = ClientPrefs.globalAntialiasing;
-					add(booBG6);
-			case 'amarged': //armageddom
-					var bg:BGSprite = new BGSprite('amarged/background', -100, -50, 0.9, 0.9);
-					bg.updateHitbox();
-					//bg.antialiasing = ClientPrefs.globalAntialiasing;
-					add(bg);
-	
-					var thing:BGSprite = new BGSprite('amarged/build2', -100, -50, 0.9, 0.9);
-					thing.updateHitbox();
-					//thing.antialiasing = ClientPrefs.globalAntialiasing;
-					add(thing);
-					
-					var hidratacao:BGSprite = new BGSprite('amarged/water', -100, -50, 0.9, 0.9);
-					hidratacao.updateHitbox();
-				//	hidratacao.antialiasing = ClientPrefs.globalAntialiasing;
-					add(hidratacao);
-					
-					bars = new BGSprite('amarged/bars', 0, 0, 1, 1);
-					bars.updateHitbox();
-				//	bars.antialiasing = ClientPrefs.globalAntialiasing;
-					add(bars);
-					
-					rocks = new BGSprite('amarged/rocks', 0, 0, 1.1, 1.1);
-					//rocks.antialiasing = ClientPrefs.globalAntialiasing;
-					rocks.updateHitbox();
-			case 'momogogo':
-				//var bg:FlxBackdrop;
-				momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), 1, 1); // fuck i forgor the scroll value
-				momogogoBG.y = -270;
-				momogogoBG.scale.set(1.25, 1.25);
-				momogogoBG.updateHitbox();
-				momogogoBG.antialiasing = ClientPrefs.globalAntialiasing;
-				momogogoBG.velocity.set(120, 0);
-				add(momogogoBG);
-
-			case 'astral': // pq as planta da minha mãe ta aqui
-				//if(!ClientPrefs.dontShowBG)
-					matzuBG = new BGSprite('matzu/BG', 0, 0, 0.1, 0.1);
-					//matzuBG.updateHitbox();
-					matzuBG.screenCenter(XY);
-					add(matzuBG);
-	
-					matzuDESK = new BGSprite('matzu/DES', 0, 0, 0, 0);
-					matzuDESK.updateHitbox();
-					matzuDESK.screenCenter(XY);
-	
-					asPlantadaMinhaMae = new BGSprite('matzu/PLAMTS', 0, 0, 0.5, 0.6);
-					asPlantadaMinhaMae.updateHitbox();
-					asPlantadaMinhaMae.screenCenter(XY);
-	
-					// quando ta tudo fucked twisted
-					matzuFudida1 = new BGSprite('matzu/2/BG1', 0, 0, 0.1, 0.1);
-					matzuFudida1.screenCenter(XY);
-					matzuFudida1.updateHitbox();
-					matzuFudida1.visible = false;
-					add(matzuFudida1);
-	
-					matzuFudida2 = new BGSprite('matzu/2/idk', 0, 0, 0, 0);
-					matzuFudida2.updateHitbox();
-					matzuFudida2.screenCenter(XY);
-					matzuFudida2.visible = false;
-					add(matzuFudida2);
-	
-					matzuFudida3 = new BGSprite('matzu/2/ground', 0, 0, 0, 0);
-					matzuFudida3.updateHitbox();
-					matzuFudida3.screenCenter(XY);
-					matzuFudida3.visible = false;
-					add(matzuFudida3);
-	
-					matzuFudida4 = new BGSprite('matzu/2/messages', 0, 0, 0.4, 0.4);
-					matzuFudida4.screenCenter(XY);
-					matzuFudida4.updateHitbox();
-					matzuFudida4.visible = false;
-					add(matzuFudida4);
-	
-					matzuFudida5 = new BGSprite('matzu/2/door', 0, 0, 0.4, 0.4);
-					matzuFudida5.updateHitbox();
-					matzuFudida5.screenCenter(XY);
-					matzuFudida5.visible = false;
-					add(matzuFudida5);
-	
-					matzuFudida6 = new BGSprite('matzu/2/desk2', 0, 0, 0, 0);
-					matzuFudida6.updateHitbox();
-					matzuFudida6.screenCenter(XY);
-					matzuFudida6.visible = false;
-	
-					matzuFudida7 = new BGSprite('matzu/2/plamts2', 0, 0, 1.1, 1.1);
-					matzuFudida7.updateHitbox();
-					matzuFudida7.screenCenter(XY);
-					matzuFudida7.visible = false;
-			case 'ena':
-				//if(!ClientPrefs.dontShowBG)
-					var enaBG1:BGSprite = new BGSprite('ena/ENA-1', -150, 0, 0.7, 0.7);
-					enaBG1.updateHitbox();
-					add(enaBG1);
-	
-					var enaBG2:BGSprite = new BGSprite('ena/ENA-2', -150, 0, 0.8, 0.8);
-					enaBG2.updateHitbox();
-					add(enaBG2);
-	
-					var enaBG3:BGSprite = new BGSprite('ena/ENA-3', -150, 0, 0.9, 0.9);
-					enaBG3.updateHitbox();
-					add(enaBG3);
-	
-					enaOverlay = new BGSprite('ena/OERLAY-4', 0, 0, 0, 0);
-					enaOverlay.blend = ADD;
-					enaOverlay.updateHitbox();
-	
-					idkWhatIsthat = new BGSprite('ena/ENA-5', 0, 20, 1.1, 1.1);
-					idkWhatIsthat.updateHitbox();
-
-			case 'nikkuMall':
-				var bg:BGSprite  = new BGSprite('nikkuMall/back', -950, -550, 1, 1);
-				bg.scale.set(2.4, 2.4);
-				bg.updateHitbox();
-				add(bg);
-
-				var front:BGSprite = new BGSprite('nikkuMall/front', -950, -550, 1, 1);
-				front.scale.set(2.4, 2.4);
-				front.updateHitbox();
-				add(front);
-
-				oscabodomeucu = new BGSprite('nikkuMall/cables', -950, -200, 1, 1);
-				oscabodomeucu.scale.set(2.4, 2.4);
-				oscabodomeucu.updateHitbox();
-
-				nicuLight = new BGSprite('nikkuMall/light', -950, -550, 1, 1);
-				nicuLight.blend = ADD;
-				nicuLight.scale.set(2.4, 2.4);
-				nicuLight.updateHitbox();
-
-				nicuPlants = new BGSprite('nikkuMall/plants', -975, -500, 1.1, 1.1);
-				nicuPlants.scale.set(2.4, 2.4);
-				nicuPlants.updateHitbox();
-
-			case 'xigmund':
-				var bg:BGSprite = new BGSprite('xigmund/bg', -300, -480, 0, 0);
-				add(bg);
-
-				planet = new BGSprite('xigmund/PlaBlue', -700, 200, 0.1, 0.1);
-				add(planet);
-
-				sun = new BGSprite('xigmund/SUM', 200, -480, 0.1, 0.1);
-				add(sun);
-
-				planet2 = new BGSprite('xigmund/PlaRed', 1000, -480, 0.4, 0.4);
-				add(planet2);
-
-				sun2 = new BGSprite('xigmund/SUM-2', 200, -480, 0.3, 0.3);
-				add(sun2);
-
-				asteroidEmitter1 = new FlxEmitter(0,200);
-				asteroidEmitter1.drag.set(0,0,0,0,200,300,500,750);
-				asteroidEmitter1.launchMode = FlxEmitterMode.SQUARE;
-				asteroidEmitter1.velocity.set(-7400, -7400, -7400, -7400, -7400, -7400);
-				asteroidEmitter1.lifespan.set(1.9, 8.9);
-				asteroidEmitter1.loadParticles(Paths.image('xigmund/ast1'), 500, 16, true);
-				asteroidEmitter1.start(false, FlxG.random.float(12, 18), FlxG.random.int(1000, 10000));
-
-			case 'sus':
-				var bg1:BGSprite = new BGSprite('sus/SUS1', -200, -100, 1, 1);
-				bg1.setGraphicSize(Std.int(bg1.width * 1.5));
-				bg1.updateHitbox();
-				add(bg1);
-
-				var bg2:BGSprite = new BGSprite('sus/SUS2', -50, -80, 1, 1);
-				bg2.setGraphicSize(Std.int(bg2.width * 1.1));
-				bg2.updateHitbox();
-				add(bg2);
-
-				osCaboSUS = new BGSprite('sus/SUS3', -517, -6, 0.8, 0.8);
-				//osCaboSUS.updateHitbox();
-
-			case 'ddto':
-				var bg1:BGSprite = new BGSprite('ddto/DDLC-1', -140, -120, 1, 1);
-				bg1.setGraphicSize(Std.int(bg1.width * 1.1));
-				bg1.updateHitbox();
-				add(bg1);
-
-				naoseiseissoecabomasfds = new BGSprite('ddto/DDLC-2', 0, 0, 0, 0);
-				//naoseiseissoecabomasfds.updateHitbox();
-
-			case 'nightland':
-				var bg1:BGSprite = new BGSprite('nightland/BG1', -1150, -750, .2, .2);
-				bg1.scale.set(1.6, 1.6);
-				bg1.updateHitbox();
-				add(bg1);
-				
-				var bg2:BGSprite = new BGSprite('nightland/BAC2', -1150,-850, .3, .3);
-				bg2.scale.set(1.6, 1.6);
-				bg2.updateHitbox();
-				add(bg2);
-				
-				var bg3:BGSprite = new BGSprite('nightland/ROC3', -1150, -750, .3, 3);
-				bg3.scale.set(1.6, 1.6);
-				bg3.updateHitbox();
-				add(bg3);
-				
-				var bg4:BGSprite = new BGSprite('nightland/TREE4', -1900, -1150, 1, 1);
-				bg4.scale.set(1.6, 1.6);
-				bg4.updateHitbox();
-				add(bg4);
-
-				var bg5:BGSprite = new BGSprite('nightland/GROUMD5', -1900, -1150, 1, 1);
-				bg5.scale.set(1.6, 1.6);
-				bg5.updateHitbox();
-				add(bg5);
-
-				blurBg = new BGSprite('nightland/BLURROC6', -2010, -1150, 1, 1);
-				blurBg.scale.set(1.6, 1.6);
-				blurBg.updateHitbox();
-
-				/*FlxG.watch.addQuick("bg 1 x: ", bg1.x);
-				FlxG.watch.addQuick("bg 1 y: ", bg1.y);
-
-				FlxG.watch.addQuick("bg 2 x: ", bg2.x);
-				FlxG.watch.addQuick("bg 2 y: ", bg2.y);
-
-				FlxG.watch.addQuick("bg 3 x: ", bg3.x);
-				FlxG.watch.addQuick("bg 3 y: ", bg3.y);
-
-				FlxG.watch.addQuick("bg 4 x: ", bg4.x);
-				FlxG.watch.addQuick("bg 4 y: ", bg4.y);
-
-				FlxG.watch.addQuick("bg 5 x: ", bg5.x);
-				FlxG.watch.addQuick("bg 5 y: ", bg5.y);
-				
-				FlxG.watch.addQuick("bg 6 x: ", blurBg.x);
-				FlxG.watch.addQuick("bg 6 y: ", blurBg.y);*/
-			case 'whitty':
-				var bg1:BGSprite=new BGSprite('whitty/wall', -350, -260, 1, 1);
-				bg1.setGraphicSize(Std.int(bg1.width * 1.3));
-				bg1.updateHitbox();
-				add(bg1);
-
-				var floor2:BGSprite=new BGSprite('whitty/floor', -350, -260, 1, 1);
-				floor2.setGraphicSize(Std.int(floor2.width * 1.3));
-				floor2.updateHitbox();
-				add(floor2);
-			case 'smiling':
-				var bg:BGSprite = new BGSprite('smiling/bg', -690, -490, 1, 1);
-				bg.setGraphicSize(Std.int(bg.width * 0.7));
-				bg.updateHitbox();
-				add(bg);
-			case 'stage4':
-				var bg1:BGSprite=new BGSprite('stage4/bg', -2250, -1400, 1, 1);
-				bg1.setGraphicSize(Std.int(bg1.width * 2));
-				bg1.updateHitbox();
-				add(bg1);
-
-				var buildings:BGSprite=new BGSprite('stage4/buildings', -2250, -1400, 1, 1);
-				buildings.setGraphicSize(Std.int(buildings.width * 2));
-				buildings.updateHitbox();
-				add(buildings);
-
-				var buildings2:BGSprite=new BGSprite('stage4/buildings2', -2250, -1400, 1, 1);
-				buildings2.setGraphicSize(Std.int(buildings2.width * 2));
-				buildings2.updateHitbox();
-				add(buildings2);
-
-				var ground:BGSprite=new BGSprite('stage4/ground', -2250, -1600, 1, 1);
-				ground.setGraphicSize(Std.int(ground.width * 2));
-				ground.updateHitbox();
-				add(ground);
-			case 'jojo':
-				//var jojoLibrary:String = 'jojo/'; // eu realmente nao sei o pq eu fiz essa porra
-				var bg:BGSprite=new BGSprite('jojo/bg', -2700, -1900, 0.7, 0.7);
-				bg.setGraphicSize(Std.int(bg.width * 2));
-				bg.updateHitbox();
-				add(bg);
-
-				var bg2:BGSprite=new BGSprite('jojo/building', -2700, -1800, 1, 1);
-				bg2.setGraphicSize(Std.int(bg2.width * 2));
-				bg2.updateHitbox();
-				add(bg2);
-
-				var bg3:BGSprite=new BGSprite('jojo/floor', -2700, -1799, 1, 1);
-				bg3.setGraphicSize(Std.int(bg3.width * 2));
-				bg3.updateHitbox();
-				add(bg3);
-			case 'spooky': //Week 2
-				if(!ClientPrefs.lowQuality) {
-					halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
-				} else {
-					halloweenBG = new BGSprite('halloween_bg_low', -200, -100);
-				}
-				add(halloweenBG);
-
-				halloweenWhite = new BGSprite(null, -FlxG.width, -FlxG.height, 0, 0);
-				halloweenWhite.makeGraphic(Std.int(FlxG.width * 3), Std.int(FlxG.height * 3), FlxColor.WHITE);
-				halloweenWhite.alpha = 0;
-				halloweenWhite.blend = ADD;
-
-				//PRECACHE SOUNDS
-				precacheList.set('thunder_1', 'sound');
-				precacheList.set('thunder_2', 'sound');
-
-			case 'philly': //Week 3
-				if(!ClientPrefs.lowQuality) {
-					var bg:BGSprite = new BGSprite('philly/sky', -100, 0, 0.1, 0.1);
-					add(bg);
-				}
-				
-				var city:BGSprite = new BGSprite('philly/city', -10, 0, 0.3, 0.3);
-				city.setGraphicSize(Std.int(city.width * 0.85));
-				city.updateHitbox();
-				add(city);
-
-				phillyLightsColors = [0xFF31A2FD, 0xFF31FD8C, 0xFFFB33F5, 0xFFFD4531, 0xFFFBA633];
-				phillyWindow = new BGSprite('philly/window', city.x, city.y, 0.3, 0.3);
-				phillyWindow.setGraphicSize(Std.int(phillyWindow.width * 0.85));
-				phillyWindow.updateHitbox();
-				add(phillyWindow);
-				phillyWindow.alpha = 0;
-
-				if(!ClientPrefs.lowQuality) {
-					var streetBehind:BGSprite = new BGSprite('philly/behindTrain', -40, 50);
-					add(streetBehind);
-				}
-
-				phillyTrain = new BGSprite('philly/train', 2000, 360);
-				add(phillyTrain);
-
-				trainSound = new FlxSound().loadEmbedded(Paths.sound('train_passes'));
-				FlxG.sound.list.add(trainSound);
-
-				phillyStreet = new BGSprite('philly/street', -40, 50);
-				add(phillyStreet);
-
-			case 'limo': //Week 4
-				var skyBG:BGSprite = new BGSprite('limo/limoSunset', -120, -50, 0.1, 0.1);
-				add(skyBG);
-
-				if(!ClientPrefs.lowQuality) {
-					limoMetalPole = new BGSprite('gore/metalPole', -500, 220, 0.4, 0.4);
-					add(limoMetalPole);
-
-					bgLimo = new BGSprite('limo/bgLimo', -150, 480, 0.4, 0.4, ['background limo pink'], true);
-					add(bgLimo);
-
-					limoCorpse = new BGSprite('gore/noooooo', -500, limoMetalPole.y - 130, 0.4, 0.4, ['Henchmen on rail'], true);
-					add(limoCorpse);
-
-					limoCorpseTwo = new BGSprite('gore/noooooo', -500, limoMetalPole.y, 0.4, 0.4, ['henchmen death'], true);
-					add(limoCorpseTwo);
-
-					grpLimoDancers = new FlxTypedGroup<BackgroundDancer>();
-					add(grpLimoDancers);
-
-					for (i in 0...5)
-					{
-						var dancer:BackgroundDancer = new BackgroundDancer((370 * i) + 130, bgLimo.y - 400);
-						dancer.scrollFactor.set(0.4, 0.4);
-						grpLimoDancers.add(dancer);
-					}
-
-					limoLight = new BGSprite('gore/coldHeartKiller', limoMetalPole.x - 180, limoMetalPole.y - 80, 0.4, 0.4);
-					add(limoLight);
-
-					grpLimoParticles = new FlxTypedGroup<BGSprite>();
-					add(grpLimoParticles);
-
-					//PRECACHE BLOOD
-					var particle:BGSprite = new BGSprite('gore/stupidBlood', -400, -400, 0.4, 0.4, ['blood'], false);
-					particle.alpha = 0.01;
-					grpLimoParticles.add(particle);
-					resetLimoKill();
-
-					//PRECACHE SOUND
-					precacheList.set('dancerdeath', 'sound');
-				}
-
-				limo = new BGSprite('limo/limoDrive', -120, 550, 1, 1, ['Limo stage'], true);
-
-				fastCar = new BGSprite('limo/fastCarLol', -300, 160);
-				fastCar.active = true;
-				limoKillingState = 0;
-
-			case 'mall': //Week 5 - Cocoa, Eggnog
-				var bg:BGSprite = new BGSprite('christmas/bgWalls', -1000, -500, 0.2, 0.2);
-				bg.setGraphicSize(Std.int(bg.width * 0.8));
-				bg.updateHitbox();
-				add(bg);
-
-				if(!ClientPrefs.lowQuality) {
-					upperBoppers = new BGSprite('christmas/upperBop', -240, -90, 0.33, 0.33, ['Upper Crowd Bob']);
-					upperBoppers.setGraphicSize(Std.int(upperBoppers.width * 0.85));
-					upperBoppers.updateHitbox();
-					add(upperBoppers);
-
-					var bgEscalator:BGSprite = new BGSprite('christmas/bgEscalator', -1100, -600, 0.3, 0.3);
-					bgEscalator.setGraphicSize(Std.int(bgEscalator.width * 0.9));
-					bgEscalator.updateHitbox();
-					add(bgEscalator);
-				}
-
-				var tree:BGSprite = new BGSprite('christmas/christmasTree', 370, -250, 0.40, 0.40);
-				add(tree);
-
-				bottomBoppers = new BGSprite('christmas/bottomBop', -300, 140, 0.9, 0.9, ['Bottom Level Boppers Idle']);
-				bottomBoppers.animation.addByPrefix('hey', 'Bottom Level Boppers HEY', 24, false);
-				bottomBoppers.setGraphicSize(Std.int(bottomBoppers.width * 1));
-				bottomBoppers.updateHitbox();
-				add(bottomBoppers);
-
-				var fgSnow:BGSprite = new BGSprite('christmas/fgSnow', -600, 700);
-				add(fgSnow);
-
-				santa = new BGSprite('christmas/santa', -840, 150, 1, 1, ['santa idle in fear']);
-				add(santa);
-				precacheList.set('Lights_Shut_off', 'sound');
-
-			case 'mallEvil': //Week 5 - Winter Horrorland
-				var bg:BGSprite = new BGSprite('christmas/evilBG', -400, -500, 0.2, 0.2);
-				bg.setGraphicSize(Std.int(bg.width * 0.8));
-				bg.updateHitbox();
-				add(bg);
-
-				var evilTree:BGSprite = new BGSprite('christmas/evilTree', 300, -300, 0.2, 0.2);
-				add(evilTree);
-
-				var evilSnow:BGSprite = new BGSprite('christmas/evilSnow', -200, 700);
-				add(evilSnow);
-
-			case 'school': //Week 6 - Senpai, Roses
-				GameOverSubstate.deathSoundName = 'fnf_loss_sfx-pixel';
-				GameOverSubstate.loopSoundName = 'gameOver-pixel';
-				GameOverSubstate.endSoundName = 'gameOverEnd-pixel';
-				GameOverSubstate.characterName = 'bf-pixel-dead';
-
-				var bgSky:BGSprite = new BGSprite('weeb/weebSky', 0, 0, 0.1, 0.1);
-				add(bgSky);
-				bgSky.antialiasing = false;
-
-				var repositionShit = -200;
-
-				var bgSchool:BGSprite = new BGSprite('weeb/weebSchool', repositionShit, 0, 0.6, 0.90);
-				add(bgSchool);
-				bgSchool.antialiasing = false;
-
-				var bgStreet:BGSprite = new BGSprite('weeb/weebStreet', repositionShit, 0, 0.95, 0.95);
-				add(bgStreet);
-				bgStreet.antialiasing = false;
-
-				var widShit = Std.int(bgSky.width * 6);
-				if(!ClientPrefs.lowQuality) {
-					var fgTrees:BGSprite = new BGSprite('weeb/weebTreesBack', repositionShit + 170, 130, 0.9, 0.9);
-					fgTrees.setGraphicSize(Std.int(widShit * 0.8));
-					fgTrees.updateHitbox();
-					add(fgTrees);
-					fgTrees.antialiasing = false;
-				}
-
-				var bgTrees:FlxSprite = new FlxSprite(repositionShit - 380, -800);
-				bgTrees.frames = Paths.getPackerAtlas('weeb/weebTrees');
-				bgTrees.animation.add('treeLoop', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], 12);
-				bgTrees.animation.play('treeLoop');
-				bgTrees.scrollFactor.set(0.85, 0.85);
-				add(bgTrees);
-				bgTrees.antialiasing = false;
-
-				if(!ClientPrefs.lowQuality) {
-					var treeLeaves:BGSprite = new BGSprite('weeb/petals', repositionShit, -40, 0.85, 0.85, ['PETALS ALL'], true);
-					treeLeaves.setGraphicSize(widShit);
-					treeLeaves.updateHitbox();
-					add(treeLeaves);
-					treeLeaves.antialiasing = false;
-				}
-
-				bgSky.setGraphicSize(widShit);
-				bgSchool.setGraphicSize(widShit);
-				bgStreet.setGraphicSize(widShit);
-				bgTrees.setGraphicSize(Std.int(widShit * 1.4));
-
-				bgSky.updateHitbox();
-				bgSchool.updateHitbox();
-				bgStreet.updateHitbox();
-				bgTrees.updateHitbox();
-
-				if(!ClientPrefs.lowQuality) {
-					bgGirls = new BackgroundGirls(-100, 190);
-					bgGirls.scrollFactor.set(0.9, 0.9);
-
-					bgGirls.setGraphicSize(Std.int(bgGirls.width * daPixelZoom));
-					bgGirls.updateHitbox();
-					add(bgGirls);
-				}
-
-			case 'schoolEvil': //Week 6 - Thorns
-				GameOverSubstate.deathSoundName = 'fnf_loss_sfx-pixel';
-				GameOverSubstate.loopSoundName = 'gameOver-pixel';
-				GameOverSubstate.endSoundName = 'gameOverEnd-pixel';
-				GameOverSubstate.characterName = 'bf-pixel-dead';
-
-				/*if(!ClientPrefs.lowQuality) { //Does this even do something?
-					var waveEffectBG = new FlxWaveEffect(FlxWaveMode.ALL, 2, -1, 3, 2);
-					var waveEffectFG = new FlxWaveEffect(FlxWaveMode.ALL, 2, -1, 5, 2);
-				}*/
-				var posX = 400;
-				var posY = 200;
-				if(!ClientPrefs.lowQuality) {
-					var bg:BGSprite = new BGSprite('weeb/animatedEvilSchool', posX, posY, 0.8, 0.9, ['background 2'], true);
-					bg.scale.set(6, 6);
-					bg.antialiasing = false;
-					add(bg);
-
-					bgGhouls = new BGSprite('weeb/bgGhouls', -100, 190, 0.9, 0.9, ['BG freaks glitch instance'], false);
-					bgGhouls.setGraphicSize(Std.int(bgGhouls.width * daPixelZoom));
-					bgGhouls.updateHitbox();
-					bgGhouls.visible = false;
-					bgGhouls.antialiasing = false;
-					add(bgGhouls);
-				} else {
-					var bg:BGSprite = new BGSprite('weeb/animatedEvilSchool_low', posX, posY, 0.8, 0.9);
-					bg.scale.set(6, 6);
-					bg.antialiasing = false;
-					add(bg);
-				}
-
-			case 'tank': //Week 7 - Ugh, Guns, Stress
-				var sky:BGSprite = new BGSprite('tankSky', -400, -400, 0, 0);
-				add(sky);
-
-				if(!ClientPrefs.lowQuality)
-				{
-					var clouds:BGSprite = new BGSprite('tankClouds', FlxG.random.int(-700, -100), FlxG.random.int(-20, 20), 0.1, 0.1);
-					clouds.active = true;
-					clouds.velocity.x = FlxG.random.float(5, 15);
-					add(clouds);
-
-					var mountains:BGSprite = new BGSprite('tankMountains', -300, -20, 0.2, 0.2);
-					mountains.setGraphicSize(Std.int(1.2 * mountains.width));
-					mountains.updateHitbox();
-					add(mountains);
-
-					var buildings:BGSprite = new BGSprite('tankBuildings', -200, 0, 0.3, 0.3);
-					buildings.setGraphicSize(Std.int(1.1 * buildings.width));
-					buildings.updateHitbox();
-					add(buildings);
-				}
-
-				var ruins:BGSprite = new BGSprite('tankRuins',-200,0,.35,.35);
-				ruins.setGraphicSize(Std.int(1.1 * ruins.width));
-				ruins.updateHitbox();
-				add(ruins);
-
-				if(!ClientPrefs.lowQuality)
-				{
-					var smokeLeft:BGSprite = new BGSprite('smokeLeft', -200, -100, 0.4, 0.4, ['SmokeBlurLeft'], true);
-					add(smokeLeft);
-					var smokeRight:BGSprite = new BGSprite('smokeRight', 1100, -100, 0.4, 0.4, ['SmokeRight'], true);
-					add(smokeRight);
-
-					tankWatchtower = new BGSprite('tankWatchtower', 100, 50, 0.5, 0.5, ['watchtower gradient color']);
-					add(tankWatchtower);
-				}
-
-				tankGround = new BGSprite('tankRolling', 300, 300, 0.5, 0.5,['BG tank w lighting'], true);
-				add(tankGround);
-
-				tankmanRun = new FlxTypedGroup<TankmenBG>();
-				add(tankmanRun);
-
-				var ground:BGSprite = new BGSprite('tankGround', -420, -150);
-				ground.setGraphicSize(Std.int(1.15 * ground.width));
-				ground.updateHitbox();
-				add(ground);
-				moveTank();
-
-				foregroundSprites = new FlxTypedGroup<BGSprite>();
-				foregroundSprites.add(new BGSprite('tank0', -500, 650, 1.7, 1.5, ['fg']));
-				if(!ClientPrefs.lowQuality) foregroundSprites.add(new BGSprite('tank1', -300, 750, 2, 0.2, ['fg']));
-				foregroundSprites.add(new BGSprite('tank2', 450, 940, 1.5, 1.5, ['foreground']));
-				if(!ClientPrefs.lowQuality) foregroundSprites.add(new BGSprite('tank4', 1300, 900, 1.5, 1.5, ['fg']));
-				foregroundSprites.add(new BGSprite('tank5', 1620, 700, 1.5, 1.5, ['fg']));
-				if(!ClientPrefs.lowQuality) foregroundSprites.add(new BGSprite('tank3', 1300, 1200, 3.5, 2.5, ['fg']));
+			if (!ClientPrefs.dontShowBG)
+			{
+					case 'stage': //Week 1
+						var bg:BGSprite = new BGSprite('stageback', -600, -200, 0.9, 0.9);
+						add(bg);
+		
+						var stageFront:BGSprite = new BGSprite('stagefront', -650, 600, 0.9, 0.9);
+						stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+						stageFront.updateHitbox();
+						add(stageFront);
+						if(!ClientPrefs.lowQuality) {
+							var stageLight:BGSprite = new BGSprite('stage_light', -125, -100, 0.9, 0.9);
+							stageLight.setGraphicSize(Std.int(stageLight.width * 1.1));
+							stageLight.updateHitbox();
+							add(stageLight);
+							var stageLight:BGSprite = new BGSprite('stage_light', 1225, -100, 0.9, 0.9);
+							stageLight.setGraphicSize(Std.int(stageLight.width * 1.1));
+							stageLight.updateHitbox();
+							stageLight.flipX = true;
+							add(stageLight);
+		
+							var stageCurtains:BGSprite = new BGSprite('stagecurtains', -500, -300, 1.3, 1.3);
+							stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
+							stageCurtains.updateHitbox();
+							add(stageCurtains);
+						}
+				case 'space': //they are in the space but, HOW THEY CAN LIVE WITHOUT IN THE EARTH????
+					//if(!ClientPrefs.dontShowBG) {
+						var bg:BGSprite = new BGSprite('stage3/s1', -1300, -500, 0.2, 0.2);
+						bg.scale.set(1.8, 1.8);
+						bg.updateHitbox();
+						add(bg);
+		
+						var bg2:BGSprite = new BGSprite('stage3/s2', -1700, -600, 0.3, 0.3);
+						bg2.scale.set(1.8, 1.8);
+						bg2.updateHitbox();
+						add(bg2);
+						
+						var bg3:BGSprite = new BGSprite('stage3/s3', -1700, -600,0.3,0.3);
+						bg3.scale.set(1.8, 1.8);
+						bg3.updateHitbox();
+						add(bg3);
+		
+						var bg4:BGSprite = new BGSprite('stage3/s4', -1700, -600, 0.4, 0.4);
+						bg4.scale.set(1.8, 1.8);
+						bg4.updateHitbox();
+						add(bg4);
+		
+						var bg5:BGSprite = new BGSprite('stage3/s5', -1700, -800, 0.5, 0.5);
+						bg5.scale.set(1.8, 1.8);
+						bg5.updateHitbox();
+						add(bg5);
+						
+						var bg6:BGSprite = new BGSprite('stage3/s6', -1700, -800,0.6,0.6);
+						bg6.scale.set(1.8, 1.8);
+						bg6.updateHitbox();
+						add(bg6);
+		
+						var bg7:BGSprite = new BGSprite('stage3/s7', -1700, -800, 0.7, 0.7);
+						bg7.scale.set(1.8, 1.8);
+						bg7.updateHitbox();
+						add(bg7);
+		
+						var bg8:BGSprite = new BGSprite('stage3/s8', -1950, -950, 1, 1);
+						bg8.scale.set(1.8, 1.8);
+						bg8.updateHitbox();
+						add(bg8);
+		
+						var bg9:BGSprite = new BGSprite('stage3/s9', -2050, -1050, 1, 1);
+						bg9.scale.set(1.8, 1.8);
+						bg9.updateHitbox();
+						add(bg9);
+		
+						bg10 = new BGSprite('stage3/s10', -2250, -725, 1, 1);
+						bg10.scale.set(1.8, 1.8);
+						bg10.updateHitbox();
+					//}
+						cutsceneBG = new BGSprite('stage3/cutscene/bg', 0,0,0,0);
+						cutsceneBG.screenCenter(XY);
+						//cutsceneBG.cameras = [cutCam];
+						cutsceneBG.alpha = 0;
+		
+						cutsceneEnd = new BGSprite('stage3/cutscene/bgEnd', 0,0,0,0);
+						cutsceneEnd.screenCenter(XY);
+						//cutsceneEnd.cameras = [cutCam];
+						cutsceneEnd.visible = false;
+						
+						cutsceneLogo = new BGSprite('stage3/cutscene/logo', 0,0,0,0);
+						cutsceneLogo.screenCenter(XY);
+						cutsceneLogo.scale.set(1.6, 1.6);
+						//cutsceneLogo.cameras = [cutCam];
+						cutsceneLogo.alpha = 0;
+		
+						black = new FlxSprite().makeGraphic(2280, 1920, FlxColor.BLACK);
+						black.screenCenter(XY);
+						black.scrollFactor.set(0, 0);
+						black.visible = false;
+						//black.cameras = [cutCam];
+						black.scale.set(1.8, 1.8);
+		
+					  text1 = new BGSprite('stage3/cutscene/text1', 311.6, 294.8, 0, 0);
+					  text1.scale.set(1.8, 1.8);
+					  text1.screenCenter(XY);
+					  //text1.cameras = [cutCam];
+						text1.visible = false;
+		
+						text2 = new BGSprite('stage3/cutscene/text2', 439.4, text1.y + 85, 0, 0);
+						text2.scale.set(1.8, 1.8);
+						//text2.cameras = [cutCam];
+						text2.visible = false;
+		
+					case 'covers': // covers
+						//if(!ClientPrefs.dontShowBG)
+							coverBG1 = new BGSprite('covers/bg', -960, -250, 0.1, 0.1);
+							coverBG1.scale.set(1.4, 1.2);
+							coverBG1.updateHitbox();
+							add(coverBG1);
+			
+							coverBG2 = new BGSprite('covers/sun', -1200, -450, 0.1, 0.1);
+							coverBG2.scale.set(1.3, 1.3);
+							coverBG2.updateHitbox();
+							add(coverBG2);
+			
+							coverBG9 = new BGSprite('covers/clouds', -1200, 0, 0.1, 0.1);
+							coverBG9.updateHitbox();
+							add(coverBG9);
+			
+							coverBG3 = new BGSprite('covers/castle', -1100, -250,  0.3, 0.3);
+							coverBG3.scale.set(1.4, 1.2);
+							coverBG3.updateHitbox();
+							add(coverBG3);
+			
+							coverBG4 = new BGSprite('covers/buildings', -1000, -150,  0.5, 0.5);
+							coverBG4.scale.set(1.4, 1.2);
+							coverBG4.updateHitbox();
+							add(coverBG4);
+			
+							coverBG5 = new BGSprite('covers/hills', -600, -150, 1, 1);
+							coverBG5.scale.set(1.3, 1.3);
+							coverBG5.updateHitbox();
+							add(coverBG5);
+		
+							coverBG6 = new BGSprite('covers/ground', -260, -140, 1, 1);
+							coverBG6.scale.set(1.2, 1.2);
+							coverBG6.updateHitbox();
+							add(coverBG6);
+			
+							coverBG7 = new BGSprite('covers/light', -260, -140,  1.1, 1.1);
+							coverBG7.scale.set(1.2, 1.2);
+							coverBG7.updateHitbox();
+							coverBG7.blend = ADD;
+							add(coverBG7);
+			
+							coverBG8 = new BGSprite('covers/cables', -260, -140, 1.2, 1.2);
+							coverBG8.scale.set(1.2, 1);
+							coverBG8.updateHitbox();
+							add(coverBG8);
+		
+						/*var bfReflextion:FlxSprite = new FlxSprite(boyfriend.x, boyfriend.y);
+						bfReflextion.frames = boyfriend.frames;
+						bfReflextion.alpha = 0.38;
+						bfReflextion.blend = ADD;
+						function update()
+						{
+						bfReflextion.animation.frameIndex = boyfriend.animation.frameIndex;
+						}*/
+						
+		
+					case 'mazin-mall': //fun is infinite
+						//if(!ClientPrefs.dontShowBG)
+							majinOverlay = new BGSprite('mazin/overlay', -360, -90, 0, 0);
+							majinOverlay.scale.set(1.5, 1.5);
+							majinOverlay.updateHitbox();
+							majinOverlay.blend = ADD;
+		
+							majinBG = new BGSprite('mazin/back', -400, -150, 1, 1);
+							majinBG.scale.set(1.4, 1.4);
+							majinBG.updateHitbox();
+							add(majinBG);
+		
+							majinGround = new BGSprite('mazin/ground', -400, -70, 1, 1);
+							majinGround.scale.set(1.4, 1.4);
+							majinGround.updateHitbox();
+							add(majinGround);
+		
+							majinTVBG = new BGSprite('mazin/mazin_mall_BG_tv', -50, 90, ['BG tv']);
+							majinTVBG.animation.addByPrefix('idle', 'BG tv', 24, false);
+							majinTVBG.scale.set(1, 1);
+							majinTVBG.updateHitbox();
+							add(majinTVBG);
+			
+							majinTV = new BGSprite('mazin/tv', -500, 130, 1, 1);
+							majinTV.scale.set(1.1, 1.1);
+							majinTV.updateHitbox();
+					case 'expurgated':
+						//if(!ClientPrefs.dontShowBG)
+							exSky = new BGSprite('expurgated/sky', -1300, -650, 0.15, 0.15);
+							exSky.scale.set(2, 2);
+							exSky.updateHitbox();
+							add(exSky);
+			
+							exRock = new BGSprite('expurgated/rock2', -2300, -1100, 0.7, 0.7);
+							exRock.scale.set(2.5, 2.5);
+							exRock.updateHitbox();
+						///exRock.antialiasing = ClientPrefs.globalAntialiasing;
+							add(exRock);
+		
+							// i get this code from vs afton mod (is code by fabs and others coders too, and is open source and getting from haxeflixel API)
+							particleEmitter = new FlxEmitter(-2080.5, 1512.4);
+							particleEmitter.launchMode = FlxEmitterMode.SQUARE;
+							particleEmitter.velocity.set(-50, -200, 50, -600, -90, 0, 90, -600);
+							particleEmitter.scale.set(4, 4, 4, 4, 0, 0, 0, 0);
+							particleEmitter.drag.set(0, 0, 0, 0, 5, 5, 10, 10);
+							particleEmitter.width = 4787.45;
+							particleEmitter.alpha.set(1, 1);
+							particleEmitter.lifespan.set(1.9, 4.9);
+							particleEmitter.loadParticles(Paths.image('expurgated/particle'), 500, 16, true);
+		
+							particleEmitter.start(false, FlxG.random.float(.01097, .0308), 1000000);
+							add(particleEmitter);
+		
+							exGround = new BGSprite('expurgated/ground', -2800, -1400, 1, 1);
+							exGround.scale.set(2.5, 2.5);
+							exGround.updateHitbox();
+							//exGround.antialiasing = ClientPrefs.globalAntialiasing;
+							add(exGround);
+			
+							exOverlay = new BGSprite('expurgated/gradoverlay', -1440, -650, 0, 0);
+							exOverlay.blend = ADD; // how anyone didnt get it?
+							exOverlay.scale.set(2.5, 2.5);
+							exOverlay.updateHitbox();
+							//exOverlay.antialiasing = ClientPrefs.globalAntialiasing;
+			
+							exFront = new BGSprite('expurgated/signfront', -2750, -1400, 1.15, 1.15);
+							exFront.scale.set(2.5, 2.5);
+							exFront.updateHitbox();
+							//exFront.antialiasing = ClientPrefs.globalAntialiasing;
+					case 'skatepark':
+						//if(!ClientPrefs.dontShowBG) {
+							skateSky = new BGSprite('skatepark/sky', -100, -200, 0.4, 0.4);
+							skateSky.scale.set(1, 1);
+							skateSky.updateHitbox();
+							//skateSky.antialiasing = ClientPrefs.globalAntialiasing;
+							add(skateSky);
+			
+							skateBuildings = new BGSprite('skatepark/buildings', 150, 70, 0.8, 0.8);
+							skateBuildings.scale.set(0.9, 0.9);
+							skateBuildings.updateHitbox();
+							//skateBuildings.antialiasing = ClientPrefs.globalAntialiasing;
+							add(skateBuildings);
+			
+							skateTreess = new BGSprite('skatepark/trees', 100, 50, 1, 1);
+							skateTreess.scale.set(1, 1);
+							skateTreess.updateHitbox();
+							add(skateTreess);
+			
+							skateFloor = new BGSprite('skatepark/floor', 10, 0, 1, 1);
+							skateFloor.scale.set(1, 1);
+							skateFloor.updateHitbox();
+							//skateFloor.antialiasing = ClientPrefs.globalAntialiasing;
+							add(skateFloor);
+			
+							skateLight = new BGSprite('skatepark/light', -20, -70, 1, 1);
+							skateLight.updateHitbox();
+							skateLight.blend = ADD;
+							///skateLight.antialiasing = ClientPrefs.globalAntialiasing;
+							skateLight.scale.set(1.1, 1.1);
+			
+							skateBuches = new BGSprite('skatepark/buches', 100, 100, 1, 1);
+							skateBuches.scale.set(1.2, 1.2);
+							skateBuches.updateHitbox();
+							//skateBuches.antialiasing = ClientPrefs.globalAntialiasing;
+						//}
+					case 'hallway':
+						//if(!ClientPrefs.dontShowBG)
+							hallBG = new BGSprite('hallway/bg', -810, -790, 1, 1);
+							hallBG.scale.set(1.6, 1.6);
+							hallBG.updateHitbox();
+							//jojoBG.antialiasing = ClientPrefs.globalAntialiasing;
+							add(hallBG);
+			
+							hallLuzinha = new BGSprite('hallway/grad', -810, -1060, 1, 1);
+							hallLuzinha.blend = ADD;
+							//jojoLuzinha.antialiasing = ClientPrefs.globalAntialiasing;
+							hallLuzinha.scale.set(1.6, 1.6);
+							hallLuzinha.updateHitbox();
+							
+							hallFG = new BGSprite('hallway/fg', -810, -790, 1, 1);
+							//jojoFG.antialiasing = ClientPrefs.globalAntialiasing;
+							hallFG.scale.set(1.6, 1.6);
+							hallFG.updateHitbox();
+							
+							/*SANESSS = new FlxSprite(0, 0);
+							SANESSS.frames = AtlasFrameMaker.construct('hallway/cutscene1');
+							SANESSS.animation.addByPrefix('idle', 'cutscene' 24, false);
+							SANESSS.screenCenter();
+							SANESSS.updateHitbox();
+							SANESSS.scale.set(1.7, 1.7);
+							SANESSS.visible = false;*/
+					case 'boo':
+						//if(!ClientPrefs.dontShowBG)
+							var booBG:BGSprite = new BGSprite('boo/Boo-1', -50, -70, 0.7, 0.7);
+							booBG.updateHitbox();
+						//	booBG.antialiasing = ClientPrefs.globalAntialiasing;
+							add(booBG);
+			
+							var booBG2:BGSprite = new BGSprite('boo/Boo-2', 25, 50, 0.85, 0.85);
+							booBG2.updateHitbox();
+						//	booBG2.antialiasing = ClientPrefs.globalAntialiasing;
+							add(booBG2);
+			
+							var booBG3:BGSprite = new BGSprite('boo/Boo-3', 25, 50, 0.85, 0.85);
+							booBG3.updateHitbox();
+						//	booBG3.antialiasing = ClientPrefs.globalAntialiasing;
+							add(booBG3);
+			
+							var booBG4:BGSprite = new BGSprite('boo/Boo-4', -25, 0, 0.9, 0.9);
+							booBG4.updateHitbox();
+						//	booBG4.antialiasing = ClientPrefs.globalAntialiasing;
+							add(booBG4);
+							
+							var booBG5:BGSprite = new BGSprite('boo/Boo-5', -25, 0, 0.95, 0.95);
+							booBG5.updateHitbox();
+						//	booBG5.antialiasing = ClientPrefs.globalAntialiasing;
+							add(booBG5);
+							
+							var booBG6:BGSprite = new BGSprite('boo/Boo-6', 50, 0, 1, 1);
+							booBG6.updateHitbox();
+							//booBG.antialiasing = ClientPrefs.globalAntialiasing;
+							add(booBG6);
+					case 'amarged': //armageddom
+							var bg:BGSprite = new BGSprite('amarged/background', -100, -50, 0.9, 0.9);
+							bg.updateHitbox();
+							//bg.antialiasing = ClientPrefs.globalAntialiasing;
+							add(bg);
+			
+							var thing:BGSprite = new BGSprite('amarged/build2', -100, -50, 0.9, 0.9);
+							thing.updateHitbox();
+							//thing.antialiasing = ClientPrefs.globalAntialiasing;
+							add(thing);
+							
+							var hidratacao:BGSprite = new BGSprite('amarged/water', -100, -50, 0.9, 0.9);
+							hidratacao.updateHitbox();
+						//	hidratacao.antialiasing = ClientPrefs.globalAntialiasing;
+							add(hidratacao);
+							
+							bars = new BGSprite('amarged/bars', 0, 0, 1, 1);
+							bars.updateHitbox();
+						//	bars.antialiasing = ClientPrefs.globalAntialiasing;
+							add(bars);
+							
+							rocks = new BGSprite('amarged/rocks', 0, 0, 1.1, 1.1);
+							//rocks.antialiasing = ClientPrefs.globalAntialiasing;
+							rocks.updateHitbox();
+					case 'momogogo':
+						//var bg:FlxBackdrop;
+						momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), 1, 1); // fuck i forgor the scroll value
+						momogogoBG.y = -270;
+						momogogoBG.scale.set(1.25, 1.25);
+						momogogoBG.updateHitbox();
+						momogogoBG.antialiasing = ClientPrefs.globalAntialiasing;
+						momogogoBG.velocity.set(120, 0);
+						add(momogogoBG);
+		
+					case 'astral': // pq as planta da minha mãe ta aqui
+						//if(!ClientPrefs.dontShowBG)
+							matzuBG = new BGSprite('matzu/BG', 0, 0, 0.1, 0.1);
+							//matzuBG.updateHitbox();
+							matzuBG.screenCenter(XY);
+							add(matzuBG);
+			
+							matzuDESK = new BGSprite('matzu/DES', 0, 0, 0, 0);
+							matzuDESK.updateHitbox();
+							matzuDESK.screenCenter(XY);
+			
+							asPlantadaMinhaMae = new BGSprite('matzu/PLAMTS', 0, 0, 0.5, 0.6);
+							asPlantadaMinhaMae.updateHitbox();
+							asPlantadaMinhaMae.screenCenter(XY);
+			
+							// quando ta tudo fucked twisted
+							matzuFudida1 = new BGSprite('matzu/2/BG1', 0, 0, 0.1, 0.1);
+							matzuFudida1.screenCenter(XY);
+							matzuFudida1.updateHitbox();
+							matzuFudida1.visible = false;
+							add(matzuFudida1);
+			
+							matzuFudida2 = new BGSprite('matzu/2/idk', 0, 0, 0, 0);
+							matzuFudida2.updateHitbox();
+							matzuFudida2.screenCenter(XY);
+							matzuFudida2.visible = false;
+							add(matzuFudida2);
+			
+							matzuFudida3 = new BGSprite('matzu/2/ground', 0, 0, 0, 0);
+							matzuFudida3.updateHitbox();
+							matzuFudida3.screenCenter(XY);
+							matzuFudida3.visible = false;
+							add(matzuFudida3);
+			
+							matzuFudida4 = new BGSprite('matzu/2/messages', 0, 0, 0.4, 0.4);
+							matzuFudida4.screenCenter(XY);
+							matzuFudida4.updateHitbox();
+							matzuFudida4.visible = false;
+							add(matzuFudida4);
+			
+							matzuFudida5 = new BGSprite('matzu/2/door', 0, 0, 0.4, 0.4);
+							matzuFudida5.updateHitbox();
+							matzuFudida5.screenCenter(XY);
+							matzuFudida5.visible = false;
+							add(matzuFudida5);
+			
+							matzuFudida6 = new BGSprite('matzu/2/desk2', 0, 0, 0, 0);
+							matzuFudida6.updateHitbox();
+							matzuFudida6.screenCenter(XY);
+							matzuFudida6.visible = false;
+			
+							matzuFudida7 = new BGSprite('matzu/2/plamts2', 0, 0, 1.1, 1.1);
+							matzuFudida7.updateHitbox();
+							matzuFudida7.screenCenter(XY);
+							matzuFudida7.visible = false;
+					case 'ena':
+						//if(!ClientPrefs.dontShowBG)
+							var enaBG1:BGSprite = new BGSprite('ena/ENA-1', -150, 0, 0.7, 0.7);
+							enaBG1.updateHitbox();
+							add(enaBG1);
+			
+							var enaBG2:BGSprite = new BGSprite('ena/ENA-2', -150, 0, 0.8, 0.8);
+							enaBG2.updateHitbox();
+							add(enaBG2);
+			
+							var enaBG3:BGSprite = new BGSprite('ena/ENA-3', -150, 0, 0.9, 0.9);
+							enaBG3.updateHitbox();
+							add(enaBG3);
+			
+							enaOverlay = new BGSprite('ena/OERLAY-4', 0, 0, 0, 0);
+							enaOverlay.blend = ADD;
+							enaOverlay.updateHitbox();
+			
+							idkWhatIsthat = new BGSprite('ena/ENA-5', 0, 20, 1.1, 1.1);
+							idkWhatIsthat.updateHitbox();
+		
+					case 'nikkuMall':
+						var bg:BGSprite  = new BGSprite('nikkuMall/back', -950, -550, 1, 1);
+						bg.scale.set(2.4, 2.4);
+						bg.updateHitbox();
+						add(bg);
+		
+						var front:BGSprite = new BGSprite('nikkuMall/front', -950, -550, 1, 1);
+						front.scale.set(2.4, 2.4);
+						front.updateHitbox();
+						add(front);
+		
+						oscabodomeucu = new BGSprite('nikkuMall/cables', -950, -200, 1, 1);
+						oscabodomeucu.scale.set(2.4, 2.4);
+						oscabodomeucu.updateHitbox();
+		
+						nicuLight = new BGSprite('nikkuMall/light', -950, -550, 1, 1);
+						nicuLight.blend = ADD;
+						nicuLight.scale.set(2.4, 2.4);
+						nicuLight.updateHitbox();
+		
+						nicuPlants = new BGSprite('nikkuMall/plants', -975, -500, 1.1, 1.1);
+						nicuPlants.scale.set(2.4, 2.4);
+						nicuPlants.updateHitbox();
+		
+					case 'xigmund':
+						var bg:BGSprite = new BGSprite('xigmund/bg', -300, -480, 0, 0);
+						add(bg);
+		
+						planet = new BGSprite('xigmund/PlaBlue', -700, 200, 0.1, 0.1);
+						add(planet);
+		
+						sun = new BGSprite('xigmund/SUM', 200, -480, 0.1, 0.1);
+						add(sun);
+		
+						planet2 = new BGSprite('xigmund/PlaRed', 1000, -480, 0.4, 0.4);
+						add(planet2);
+		
+						sun2 = new BGSprite('xigmund/SUM-2', 200, -480, 0.3, 0.3);
+						add(sun2);
+		
+						asteroidEmitter1 = new FlxEmitter(0,200);
+						asteroidEmitter1.drag.set(0,0,0,0,200,300,500,750);
+						asteroidEmitter1.launchMode = FlxEmitterMode.SQUARE;
+						asteroidEmitter1.velocity.set(-7400, -7400, -7400, -7400, -7400, -7400);
+						asteroidEmitter1.lifespan.set(1.9, 8.9);
+						asteroidEmitter1.loadParticles(Paths.image('xigmund/ast1'), 500, 16, true);
+						asteroidEmitter1.start(false, FlxG.random.float(12, 18), FlxG.random.int(1000, 10000));
+		
+					case 'sus':
+						var bg1:BGSprite = new BGSprite('sus/SUS1', -200, -100, 1, 1);
+						bg1.setGraphicSize(Std.int(bg1.width * 1.5));
+						bg1.updateHitbox();
+						add(bg1);
+		
+						var bg2:BGSprite = new BGSprite('sus/SUS2', -50, -80, 1, 1);
+						bg2.setGraphicSize(Std.int(bg2.width * 1.1));
+						bg2.updateHitbox();
+						add(bg2);
+		
+						osCaboSUS = new BGSprite('sus/SUS3', -517, -6, 0.8, 0.8);
+						//osCaboSUS.updateHitbox();
+		
+					case 'ddto':
+						var bg1:BGSprite = new BGSprite('ddto/DDLC-1', -140, -120, 1, 1);
+						bg1.setGraphicSize(Std.int(bg1.width * 1.1));
+						bg1.updateHitbox();
+						add(bg1);
+		
+						naoseiseissoecabomasfds = new BGSprite('ddto/DDLC-2', 0, 0, 0, 0);
+						//naoseiseissoecabomasfds.updateHitbox();
+		
+					case 'nightland':
+						var bg1:BGSprite = new BGSprite('nightland/BG1', -1150, -750, .2, .2);
+						bg1.scale.set(1.6, 1.6);
+						bg1.updateHitbox();
+						add(bg1);
+						
+						var bg2:BGSprite = new BGSprite('nightland/BAC2', -1150,-850, .3, .3);
+						bg2.scale.set(1.6, 1.6);
+						bg2.updateHitbox();
+						add(bg2);
+						
+						var bg3:BGSprite = new BGSprite('nightland/ROC3', -1150, -750, .3, 3);
+						bg3.scale.set(1.6, 1.6);
+						bg3.updateHitbox();
+						add(bg3);
+						
+						var bg4:BGSprite = new BGSprite('nightland/TREE4', -1900, -1150, 1, 1);
+						bg4.scale.set(1.6, 1.6);
+						bg4.updateHitbox();
+						add(bg4);
+		
+						var bg5:BGSprite = new BGSprite('nightland/GROUMD5', -1900, -1150, 1, 1);
+						bg5.scale.set(1.6, 1.6);
+						bg5.updateHitbox();
+						add(bg5);
+		
+						blurBg = new BGSprite('nightland/BLURROC6', -2010, -1150, 1, 1);
+						blurBg.scale.set(1.6, 1.6);
+						blurBg.updateHitbox();
+		
+						/*FlxG.watch.addQuick("bg 1 x: ", bg1.x);
+						FlxG.watch.addQuick("bg 1 y: ", bg1.y);
+		
+						FlxG.watch.addQuick("bg 2 x: ", bg2.x);
+						FlxG.watch.addQuick("bg 2 y: ", bg2.y);
+		
+						FlxG.watch.addQuick("bg 3 x: ", bg3.x);
+						FlxG.watch.addQuick("bg 3 y: ", bg3.y);
+		
+						FlxG.watch.addQuick("bg 4 x: ", bg4.x);
+						FlxG.watch.addQuick("bg 4 y: ", bg4.y);
+		
+						FlxG.watch.addQuick("bg 5 x: ", bg5.x);
+						FlxG.watch.addQuick("bg 5 y: ", bg5.y);
+						
+						FlxG.watch.addQuick("bg 6 x: ", blurBg.x);
+						FlxG.watch.addQuick("bg 6 y: ", blurBg.y);*/
+					case 'whitty':
+						var bg1:BGSprite=new BGSprite('whitty/wall', -350, -260, 1, 1);
+						bg1.setGraphicSize(Std.int(bg1.width * 1.3));
+						bg1.updateHitbox();
+						add(bg1);
+		
+						var floor2:BGSprite=new BGSprite('whitty/floor', -350, -260, 1, 1);
+						floor2.setGraphicSize(Std.int(floor2.width * 1.3));
+						floor2.updateHitbox();
+						add(floor2);
+					case 'smiling':
+						var bg:BGSprite = new BGSprite('smiling/bg', -690, -490, 1, 1);
+						bg.setGraphicSize(Std.int(bg.width * 0.7));
+						bg.updateHitbox();
+						add(bg);
+					case 'stage4':
+						var bg1:BGSprite=new BGSprite('stage4/bg', -2250, -1400, 1, 1);
+						bg1.setGraphicSize(Std.int(bg1.width * 2));
+						bg1.updateHitbox();
+						add(bg1);
+		
+						var buildings:BGSprite=new BGSprite('stage4/buildings', -2250, -1400, 1, 1);
+						buildings.setGraphicSize(Std.int(buildings.width * 2));
+						buildings.updateHitbox();
+						add(buildings);
+		
+						var buildings2:BGSprite=new BGSprite('stage4/buildings2', -2250, -1400, 1, 1);
+						buildings2.setGraphicSize(Std.int(buildings2.width * 2));
+						buildings2.updateHitbox();
+						add(buildings2);
+		
+						var ground:BGSprite=new BGSprite('stage4/ground', -2250, -1600, 1, 1);
+						ground.setGraphicSize(Std.int(ground.width * 2));
+						ground.updateHitbox();
+						add(ground);
+					case 'jojo':
+						//var jojoLibrary:String = 'jojo/'; // eu realmente nao sei o pq eu fiz essa porra
+						var bg:BGSprite=new BGSprite('jojo/bg', -2700, -1900, 0.7, 0.7);
+						bg.setGraphicSize(Std.int(bg.width * 2));
+						bg.updateHitbox();
+						add(bg);
+		
+						var bg2:BGSprite=new BGSprite('jojo/building', -2700, -1800, 1, 1);
+						bg2.setGraphicSize(Std.int(bg2.width * 2));
+						bg2.updateHitbox();
+						add(bg2);
+		
+						var bg3:BGSprite=new BGSprite('jojo/floor', -2700, -1799, 1, 1);
+						bg3.setGraphicSize(Std.int(bg3.width * 2));
+						bg3.updateHitbox();
+						add(bg3);
+					case 'spooky': //Week 2
+						if(!ClientPrefs.lowQuality) {
+							halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
+						} else {
+							halloweenBG = new BGSprite('halloween_bg_low', -200, -100);
+						}
+						add(halloweenBG);
+		
+						halloweenWhite = new BGSprite(null, -FlxG.width, -FlxG.height, 0, 0);
+						halloweenWhite.makeGraphic(Std.int(FlxG.width * 3), Std.int(FlxG.height * 3), FlxColor.WHITE);
+						halloweenWhite.alpha = 0;
+						halloweenWhite.blend = ADD;
+		
+						//PRECACHE SOUNDS
+						precacheList.set('thunder_1', 'sound');
+						precacheList.set('thunder_2', 'sound');
+		
+					case 'philly': //Week 3
+						if(!ClientPrefs.lowQuality) {
+							var bg:BGSprite = new BGSprite('philly/sky', -100, 0, 0.1, 0.1);
+							add(bg);
+						}
+						
+						var city:BGSprite = new BGSprite('philly/city', -10, 0, 0.3, 0.3);
+						city.setGraphicSize(Std.int(city.width * 0.85));
+						city.updateHitbox();
+						add(city);
+		
+						phillyLightsColors = [0xFF31A2FD, 0xFF31FD8C, 0xFFFB33F5, 0xFFFD4531, 0xFFFBA633];
+						phillyWindow = new BGSprite('philly/window', city.x, city.y, 0.3, 0.3);
+						phillyWindow.setGraphicSize(Std.int(phillyWindow.width * 0.85));
+						phillyWindow.updateHitbox();
+						add(phillyWindow);
+						phillyWindow.alpha = 0;
+		
+						if(!ClientPrefs.lowQuality) {
+							var streetBehind:BGSprite = new BGSprite('philly/behindTrain', -40, 50);
+							add(streetBehind);
+						}
+		
+						phillyTrain = new BGSprite('philly/train', 2000, 360);
+						add(phillyTrain);
+		
+						trainSound = new FlxSound().loadEmbedded(Paths.sound('train_passes'));
+						FlxG.sound.list.add(trainSound);
+		
+						phillyStreet = new BGSprite('philly/street', -40, 50);
+						add(phillyStreet);
+		
+					case 'limo': //Week 4
+						var skyBG:BGSprite = new BGSprite('limo/limoSunset', -120, -50, 0.1, 0.1);
+						add(skyBG);
+		
+						if(!ClientPrefs.lowQuality) {
+							limoMetalPole = new BGSprite('gore/metalPole', -500, 220, 0.4, 0.4);
+							add(limoMetalPole);
+		
+							bgLimo = new BGSprite('limo/bgLimo', -150, 480, 0.4, 0.4, ['background limo pink'], true);
+							add(bgLimo);
+		
+							limoCorpse = new BGSprite('gore/noooooo', -500, limoMetalPole.y - 130, 0.4, 0.4, ['Henchmen on rail'], true);
+							add(limoCorpse);
+		
+							limoCorpseTwo = new BGSprite('gore/noooooo', -500, limoMetalPole.y, 0.4, 0.4, ['henchmen death'], true);
+							add(limoCorpseTwo);
+		
+							grpLimoDancers = new FlxTypedGroup<BackgroundDancer>();
+							add(grpLimoDancers);
+		
+							for (i in 0...5)
+							{
+								var dancer:BackgroundDancer = new BackgroundDancer((370 * i) + 130, bgLimo.y - 400);
+								dancer.scrollFactor.set(0.4, 0.4);
+								grpLimoDancers.add(dancer);
+							}
+		
+							limoLight = new BGSprite('gore/coldHeartKiller', limoMetalPole.x - 180, limoMetalPole.y - 80, 0.4, 0.4);
+							add(limoLight);
+		
+							grpLimoParticles = new FlxTypedGroup<BGSprite>();
+							add(grpLimoParticles);
+		
+							//PRECACHE BLOOD
+							var particle:BGSprite = new BGSprite('gore/stupidBlood', -400, -400, 0.4, 0.4, ['blood'], false);
+							particle.alpha = 0.01;
+							grpLimoParticles.add(particle);
+							resetLimoKill();
+		
+							//PRECACHE SOUND
+							precacheList.set('dancerdeath', 'sound');
+						}
+		
+						limo = new BGSprite('limo/limoDrive', -120, 550, 1, 1, ['Limo stage'], true);
+		
+						fastCar = new BGSprite('limo/fastCarLol', -300, 160);
+						fastCar.active = true;
+						limoKillingState = 0;
+		
+					case 'mall': //Week 5 - Cocoa, Eggnog
+						var bg:BGSprite = new BGSprite('christmas/bgWalls', -1000, -500, 0.2, 0.2);
+						bg.setGraphicSize(Std.int(bg.width * 0.8));
+						bg.updateHitbox();
+						add(bg);
+		
+						if(!ClientPrefs.lowQuality) {
+							upperBoppers = new BGSprite('christmas/upperBop', -240, -90, 0.33, 0.33, ['Upper Crowd Bob']);
+							upperBoppers.setGraphicSize(Std.int(upperBoppers.width * 0.85));
+							upperBoppers.updateHitbox();
+							add(upperBoppers);
+		
+							var bgEscalator:BGSprite = new BGSprite('christmas/bgEscalator', -1100, -600, 0.3, 0.3);
+							bgEscalator.setGraphicSize(Std.int(bgEscalator.width * 0.9));
+							bgEscalator.updateHitbox();
+							add(bgEscalator);
+						}
+		
+						var tree:BGSprite = new BGSprite('christmas/christmasTree', 370, -250, 0.40, 0.40);
+						add(tree);
+		
+						bottomBoppers = new BGSprite('christmas/bottomBop', -300, 140, 0.9, 0.9, ['Bottom Level Boppers Idle']);
+						bottomBoppers.animation.addByPrefix('hey', 'Bottom Level Boppers HEY', 24, false);
+						bottomBoppers.setGraphicSize(Std.int(bottomBoppers.width * 1));
+						bottomBoppers.updateHitbox();
+						add(bottomBoppers);
+		
+						var fgSnow:BGSprite = new BGSprite('christmas/fgSnow', -600, 700);
+						add(fgSnow);
+		
+						santa = new BGSprite('christmas/santa', -840, 150, 1, 1, ['santa idle in fear']);
+						add(santa);
+						precacheList.set('Lights_Shut_off', 'sound');
+		
+					case 'mallEvil': //Week 5 - Winter Horrorland
+						var bg:BGSprite = new BGSprite('christmas/evilBG', -400, -500, 0.2, 0.2);
+						bg.setGraphicSize(Std.int(bg.width * 0.8));
+						bg.updateHitbox();
+						add(bg);
+		
+						var evilTree:BGSprite = new BGSprite('christmas/evilTree', 300, -300, 0.2, 0.2);
+						add(evilTree);
+		
+						var evilSnow:BGSprite = new BGSprite('christmas/evilSnow', -200, 700);
+						add(evilSnow);
+		
+					case 'school': //Week 6 - Senpai, Roses
+						GameOverSubstate.deathSoundName = 'fnf_loss_sfx-pixel';
+						GameOverSubstate.loopSoundName = 'gameOver-pixel';
+						GameOverSubstate.endSoundName = 'gameOverEnd-pixel';
+						GameOverSubstate.characterName = 'bf-pixel-dead';
+		
+						var bgSky:BGSprite = new BGSprite('weeb/weebSky', 0, 0, 0.1, 0.1);
+						add(bgSky);
+						bgSky.antialiasing = false;
+		
+						var repositionShit = -200;
+		
+						var bgSchool:BGSprite = new BGSprite('weeb/weebSchool', repositionShit, 0, 0.6, 0.90);
+						add(bgSchool);
+						bgSchool.antialiasing = false;
+		
+						var bgStreet:BGSprite = new BGSprite('weeb/weebStreet', repositionShit, 0, 0.95, 0.95);
+						add(bgStreet);
+						bgStreet.antialiasing = false;
+		
+						var widShit = Std.int(bgSky.width * 6);
+						if(!ClientPrefs.lowQuality) {
+							var fgTrees:BGSprite = new BGSprite('weeb/weebTreesBack', repositionShit + 170, 130, 0.9, 0.9);
+							fgTrees.setGraphicSize(Std.int(widShit * 0.8));
+							fgTrees.updateHitbox();
+							add(fgTrees);
+							fgTrees.antialiasing = false;
+						}
+		
+						var bgTrees:FlxSprite = new FlxSprite(repositionShit - 380, -800);
+						bgTrees.frames = Paths.getPackerAtlas('weeb/weebTrees');
+						bgTrees.animation.add('treeLoop', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], 12);
+						bgTrees.animation.play('treeLoop');
+						bgTrees.scrollFactor.set(0.85, 0.85);
+						add(bgTrees);
+						bgTrees.antialiasing = false;
+		
+						if(!ClientPrefs.lowQuality) {
+							var treeLeaves:BGSprite = new BGSprite('weeb/petals', repositionShit, -40, 0.85, 0.85, ['PETALS ALL'], true);
+							treeLeaves.setGraphicSize(widShit);
+							treeLeaves.updateHitbox();
+							add(treeLeaves);
+							treeLeaves.antialiasing = false;
+						}
+		
+						bgSky.setGraphicSize(widShit);
+						bgSchool.setGraphicSize(widShit);
+						bgStreet.setGraphicSize(widShit);
+						bgTrees.setGraphicSize(Std.int(widShit * 1.4));
+		
+						bgSky.updateHitbox();
+						bgSchool.updateHitbox();
+						bgStreet.updateHitbox();
+						bgTrees.updateHitbox();
+		
+						if(!ClientPrefs.lowQuality) {
+							bgGirls = new BackgroundGirls(-100, 190);
+							bgGirls.scrollFactor.set(0.9, 0.9);
+		
+							bgGirls.setGraphicSize(Std.int(bgGirls.width * daPixelZoom));
+							bgGirls.updateHitbox();
+							add(bgGirls);
+						}
+		
+					case 'schoolEvil': //Week 6 - Thorns
+						GameOverSubstate.deathSoundName = 'fnf_loss_sfx-pixel';
+						GameOverSubstate.loopSoundName = 'gameOver-pixel';
+						GameOverSubstate.endSoundName = 'gameOverEnd-pixel';
+						GameOverSubstate.characterName = 'bf-pixel-dead';
+		
+						/*if(!ClientPrefs.lowQuality) { //Does this even do something?
+							var waveEffectBG = new FlxWaveEffect(FlxWaveMode.ALL, 2, -1, 3, 2);
+							var waveEffectFG = new FlxWaveEffect(FlxWaveMode.ALL, 2, -1, 5, 2);
+						}*/
+						var posX = 400;
+						var posY = 200;
+						if(!ClientPrefs.lowQuality) {
+							var bg:BGSprite = new BGSprite('weeb/animatedEvilSchool', posX, posY, 0.8, 0.9, ['background 2'], true);
+							bg.scale.set(6, 6);
+							bg.antialiasing = false;
+							add(bg);
+		
+							bgGhouls = new BGSprite('weeb/bgGhouls', -100, 190, 0.9, 0.9, ['BG freaks glitch instance'], false);
+							bgGhouls.setGraphicSize(Std.int(bgGhouls.width * daPixelZoom));
+							bgGhouls.updateHitbox();
+							bgGhouls.visible = false;
+							bgGhouls.antialiasing = false;
+							add(bgGhouls);
+						} else {
+							var bg:BGSprite = new BGSprite('weeb/animatedEvilSchool_low', posX, posY, 0.8, 0.9);
+							bg.scale.set(6, 6);
+							bg.antialiasing = false;
+							add(bg);
+						}
+		
+					case 'tank': //Week 7 - Ugh, Guns, Stress
+						var sky:BGSprite = new BGSprite('tankSky', -400, -400, 0, 0);
+						add(sky);
+		
+						if(!ClientPrefs.lowQuality)
+						{
+							var clouds:BGSprite = new BGSprite('tankClouds', FlxG.random.int(-700, -100), FlxG.random.int(-20, 20), 0.1, 0.1);
+							clouds.active = true;
+							clouds.velocity.x = FlxG.random.float(5, 15);
+							add(clouds);
+		
+							var mountains:BGSprite = new BGSprite('tankMountains', -300, -20, 0.2, 0.2);
+							mountains.setGraphicSize(Std.int(1.2 * mountains.width));
+							mountains.updateHitbox();
+							add(mountains);
+		
+							var buildings:BGSprite = new BGSprite('tankBuildings', -200, 0, 0.3, 0.3);
+							buildings.setGraphicSize(Std.int(1.1 * buildings.width));
+							buildings.updateHitbox();
+							add(buildings);
+						}
+		
+						var ruins:BGSprite = new BGSprite('tankRuins',-200,0,.35,.35);
+						ruins.setGraphicSize(Std.int(1.1 * ruins.width));
+						ruins.updateHitbox();
+						add(ruins);
+		
+						if(!ClientPrefs.lowQuality)
+						{
+							var smokeLeft:BGSprite = new BGSprite('smokeLeft', -200, -100, 0.4, 0.4, ['SmokeBlurLeft'], true);
+							add(smokeLeft);
+							var smokeRight:BGSprite = new BGSprite('smokeRight', 1100, -100, 0.4, 0.4, ['SmokeRight'], true);
+							add(smokeRight);
+		
+							tankWatchtower = new BGSprite('tankWatchtower', 100, 50, 0.5, 0.5, ['watchtower gradient color']);
+							add(tankWatchtower);
+						}
+		
+						tankGround = new BGSprite('tankRolling', 300, 300, 0.5, 0.5,['BG tank w lighting'], true);
+						add(tankGround);
+		
+						tankmanRun = new FlxTypedGroup<TankmenBG>();
+						add(tankmanRun);
+		
+						var ground:BGSprite = new BGSprite('tankGround', -420, -150);
+						ground.setGraphicSize(Std.int(1.15 * ground.width));
+						ground.updateHitbox();
+						add(ground);
+						moveTank();
+		
+						foregroundSprites = new FlxTypedGroup<BGSprite>();
+						foregroundSprites.add(new BGSprite('tank0', -500, 650, 1.7, 1.5, ['fg']));
+						if(!ClientPrefs.lowQuality) foregroundSprites.add(new BGSprite('tank1', -300, 750, 2, 0.2, ['fg']));
+						foregroundSprites.add(new BGSprite('tank2', 450, 940, 1.5, 1.5, ['foreground']));
+						if(!ClientPrefs.lowQuality) foregroundSprites.add(new BGSprite('tank4', 1300, 900, 1.5, 1.5, ['fg']));
+						foregroundSprites.add(new BGSprite('tank5', 1620, 700, 1.5, 1.5, ['fg']));
+						if(!ClientPrefs.lowQuality) foregroundSprites.add(new BGSprite('tank3', 1300, 1200, 3.5, 2.5, ['fg']));
+			}
 		}
 
 		switch(Paths.formatToSongPath(SONG.song))
@@ -1696,6 +1699,156 @@ class PlayState extends MusicBeatState
 		luaDebugGroup.cameras = [camOther];
 		add(luaDebugGroup);
 		#end
+
+		if (songName == 'sugarcrush') // crush de açuca
+		{
+					//FlxG.debugger.visible = true;
+			octagonBG = new FlxSprite().makeGraphic(1980, 1080, FlxColor.WHITE);
+			octagonBG.screenCenter(XY);
+			octagonBG.scrollFactor.set(0, 0);
+			octagonBG.scale.set(1.4, 1.4);
+			octagonBG.cameras = [cutCam];
+			octagonBG.alpha = 0.0001; // está nesse valor para o jogo entender que o bagui faz parte do stage ai quando acontecer ai o jogo não laga, genial, né?
+			add(octagonBG);
+
+			octagonBG2 = new FlxSprite().makeGraphic(1980, 236, 0xFFFE923D);
+			octagonBG2.alpha = 0.0001;
+			octagonBG2.screenCenter(XY);
+			octagonBG2.scrollFactor.set(0, 0);
+			octagonBG2.cameras = [cutCam];
+			add(octagonBG2);
+
+			// analfabeto do caralho
+			numbahEiti = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false, 0, Std.int(1900));
+			numbahEiti.alpha = .0001;
+			numbahEiti.y = 0;
+			//numbahEiti.scale.set(1.3, 1.3);
+			numbahEiti.scrollFactor.set(0, 0);
+			numbahEiti.cameras = [cutCam];
+		//	numbahEiti.offset.y = 20000000;
+			numbahEiti.velocity.x = -60;
+			add(numbahEiti);
+
+			numbahEiti2 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false, 0, 1900);
+			numbahEiti2.alpha = .0001;
+			numbahEiti2.y = 245;
+			numbahEiti2.alpha = 0.0001;
+		//	numbahEiti2.scale.set(1, 1);
+			numbahEiti2.scrollFactor.set(0, 0);
+		//	numbahEiti2.offset.y += 20000000;
+			numbahEiti2.velocity.set(60, 0);
+			numbahEiti2.cameras = [cutCam];
+			add(numbahEiti2);
+
+			numbahEiti3 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false, 0, Std.int(1900));
+			numbahEiti3.alpha = 0.0001;
+			numbahEiti3.screenCenter(X);
+			numbahEiti3.y = 480;
+			//numbahEiti3.scale.set(1, 1);
+			numbahEiti3.scrollFactor.set(0, 0);
+
+		//	numbahEiti3.offset.y += 20000000;
+			numbahEiti3.velocity.set(-60, 0);
+			numbahEiti3.cameras = [cutCam];
+			add(numbahEiti3);
+
+			nikkuOctagon = new FlxSprite(-425, 465);
+			nikkuOctagon.frames = Paths.getSparrowAtlas('skatepark/octagon/nikku');
+			nikkuOctagon.animation.addByPrefix('idle', 'Nikku Move 1', 24, true);
+			nikkuOctagon.animation.addByPrefix('lastFrame', 'Nikku Last Frame', 24, true);
+			nikkuOctagon.animation.play('idle', true);
+			nikkuOctagon.setGraphicSize(Std.int(nikkuOctagon.width * 2.62));
+			nikkuOctagon.updateHitbox();
+			nikkuOctagon.alpha = 0.0001;
+			nikkuOctagon.antialiasing = ClientPrefs.globalAntialiasing;
+			nikkuOctagon.cameras = [cutCam];
+			add(nikkuOctagon);
+			//nikkuOctagon.visible = false;
+
+			bubbleText = new FlxSprite();
+			bubbleText.loadGraphic(Paths.image('skatepark/octagon/textbox'));
+			bubbleText.screenCenter();
+			bubbleText.scale.set(0.0001, 0.0001);
+			bubbleText.alpha = 0.0001;
+			bubbleText.updateHitbox();
+			bubbleText.antialiasing = ClientPrefs.globalAntialiasing;
+			bubbleText.cameras = [cutCam];
+			add(bubbleText);
+
+			textOctagon = new FlxSprite(bubbleText.x + 20, bubbleText.y + 80);
+				textOctagon.frames = Paths.getSparrowAtlas('skatepark/octagon/text', 'h24');
+				textOctagon.animation.addByPrefix('text', 'text', 23, false);
+				textOctagon.setGraphicSize(Std.int(textOctagon.width*0.6));
+				textOctagon.updateHitbox();
+				textOctagon.antialiasing = ClientPrefs.globalAntialiasing;
+				textOctagon.alpha = 0.0001;
+				textOctagon.cameras = [cutCam];
+				add(textOctagon);
+
+				hereme = new FlxSprite().loadGraphic(Paths.image('skatepark/octagon/hereletme', 'h24')); //tween y: 250
+				hereme.antialiasing = ClientPrefs.globalAntialiasing;
+				hereme.alpha = 0.0001;
+				add(hereme);
+
+				showYou/*here let me show you bitch*/ = new FlxSprite().loadGraphic(Paths.image('skatepark/octagon/showyou', 'h24')); //tween y: 250
+				showYou.antialiasing = ClientPrefs.globalAntialiasing;
+				showYou.alpha = 0.0001;
+				add(showYou);
+
+				octagon = new FlxSprite().loadGraphic(Paths.image('skatepark/octagon/octagon', 'h24')); // tween x:295 tween 2 x: 1238
+				octagon.antialiasing = ClientPrefs.globalAntialiasing;
+				octagon.alpha = 0.0001;
+				octagon.cameras = [cutCam];
+				add(octagon);
+
+				// sonio ponto eze cutscene
+				//var library:String = 'skatepark/cutscene/'; // lazy
+				bgExe = new FlxBackdrop(Paths.image('skatepark/cutscene/background', 'h24'), 0.3, 0.3, true, false);
+				bgExe.antialiasing = false;
+				bgExe.y = -85;
+				bgExe.alpha = 0.0001;
+				bgExe.velocity.set(-155, 0);
+				bgExe.setGraphicSize(Std.int(bgExe.width * 8)); // to larger cuz its pixel and its low quality
+				bgExe.updateHitbox();
+				bgExe.cameras = [cutCam];
+				add(bgExe);
+		
+				groundExe = new FlxBackdrop(Paths.image('skatepark/cutscene/ground', 'h24'), 0.3, 0.3, true, false);
+				groundExe.antialiasing = false;
+				groundExe.y = 470;
+				groundExe.velocity.set(-165, 0);
+				groundExe.setGraphicSize(Std.int(groundExe.width * 6.73));
+				groundExe.updateHitbox();
+				groundExe.alpha = 0.0001;
+				groundExe.cameras = [cutCam];
+				add(groundExe);
+
+				eze=new FlxSprite(-350, 245).loadGraphic(Paths.image('skatepark/cutscene/exe', 'h24')); // é hj q eu te pego gostosa kkkkkk
+				eze.antialiasing = false;
+				eze.setGraphicSize(Std.int(eze.width * 5.4));
+				eze.cameras = [cutCam];
+				eze.alpha = 0.0001;
+				eze.updateHitbox();
+				add(eze);
+
+				nicuEze = new FlxSprite(565, 180).loadGraphic(Paths.image('skatepark/cutscene/nikku', 'h24')); // pqp me dexa em paz seu porra da o cu na esquina chupa rola
+				nicuEze.antialiasing = false;
+				nicuEze.setGraphicSize(Std.int(nicuEze.width * 5.1));
+				nicuEze.updateHitbox();
+				nicuEze.alpha = 0.0001;
+				nicuEze.cameras = [cutCam];
+				add(nicuEze);
+
+				gostosa = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves', 'h24'), 0.3, 0.3, true, false);
+				gostosa.antialiasing = false;
+				gostosa.y = 375;
+				gostosa.velocity.set(-260, 0);
+				gostosa.setGraphicSize(Std.int(gostosa.width * 8.35));
+				gostosa.updateHitbox();
+				gostosa.alpha = 0.0001;
+				gostosa.cameras = [cutCam];
+				add(gostosa);
+		}
 
 		FileSystem.createDirectory(Main.path + "assets"); // saving lines
 
@@ -4463,108 +4616,11 @@ class PlayState extends MusicBeatState
 
 	function octaMoment():Void
 	{
-			//FlxG.debugger.visible = true;
-			octagonBG = new FlxSprite().makeGraphic(1980, 1080, FlxColor.WHITE);
-			octagonBG.screenCenter(XY);
-			octagonBG.scrollFactor.set(0, 0);
-			octagonBG.scale.set(1.4, 1.4);
-			octagonBG.cameras = [cutCam];
-			octagonBG.alpha = 0;
-			add(octagonBG);
+		var blackStart:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
+		blackStart.cameras = [cutCam];
+		add(blackStart);
 
-			octagonBG2 = new FlxSprite().makeGraphic(1980, 236, 0xFFFE923D);
-			octagonBG2.alpha = 0;
-			octagonBG2.screenCenter(XY);
-			octagonBG2.scrollFactor.set(0, 0);
-			octagonBG2.cameras = [cutCam];
-			add(octagonBG2);
-
-			// analfabeto do caralho
-			numbahEiti = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false, 0, Std.int(1900));
-			numbahEiti.alpha = 0;
-			numbahEiti.y = 0;
-			//numbahEiti.scale.set(1.3, 1.3);
-			numbahEiti.scrollFactor.set(0, 0);
-			numbahEiti.cameras = [cutCam];
-		//	numbahEiti.offset.y = 20000000;
-			numbahEiti.velocity.x = -60;
-			add(numbahEiti);
-
-			numbahEiti2 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false, 0, 1900);
-			numbahEiti2.alpha = 0;
-			numbahEiti2.y = 245;
-			numbahEiti2.alpha = 0;
-		//	numbahEiti2.scale.set(1, 1);
-			numbahEiti2.scrollFactor.set(0, 0);
-		//	numbahEiti2.offset.y += 20000000;
-			numbahEiti2.velocity.set(60, 0);
-			numbahEiti2.cameras = [cutCam];
-			add(numbahEiti2);
-
-			numbahEiti3 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false, 0, Std.int(1900));
-			numbahEiti3.alpha = 0;
-			numbahEiti3.screenCenter(X);
-			numbahEiti3.y = 480;
-			//numbahEiti3.scale.set(1, 1);
-			numbahEiti3.scrollFactor.set(0, 0);
-
-		//	numbahEiti3.offset.y += 20000000;
-			numbahEiti3.velocity.set(-60, 0);
-			numbahEiti3.cameras = [cutCam];
-			add(numbahEiti3);
-
-			nikkuOctagon = new FlxSprite(-425, 465);
-			nikkuOctagon.frames = Paths.getSparrowAtlas('skatepark/octagon/nikku');
-			nikkuOctagon.animation.addByPrefix('idle', 'Nikku Move 1', 24, true);
-			nikkuOctagon.animation.addByPrefix('lastFrame', 'Nikku Last Frame', 24, true);
-			nikkuOctagon.animation.play('idle', true);
-			nikkuOctagon.setGraphicSize(Std.int(nikkuOctagon.width * 1.82));
-			nikkuOctagon.updateHitbox();
-			nikkuOctagon.antialiasing = ClientPrefs.globalAntialiasing;
-			nikkuOctagon.cameras = [cutCam];
-			add(nikkuOctagon);
-			//nikkuOctagon.visible = false;
-
-			bubbleText = new FlxSprite();
-			bubbleText.loadGraphic(Paths.image('skatepark/octagon/textbox'));
-			bubbleText.screenCenter();
-			bubbleText.scale.set(0.0001, 0.0001);
-			bubbleText.updateHitbox();
-			bubbleText.antialiasing = ClientPrefs.globalAntialiasing;
-			bubbleText.cameras = [cutCam];
-			add(bubbleText);
-
-			textOctagon = new FlxSprite(bubbleText.x + 20, bubbleText.y + 80);
-				textOctagon.frames = Paths.getSparrowAtlas('skatepark/octagon/text', 'h24');
-				textOctagon.animation.addByPrefix('text', 'text', 23, false);
-				textOctagon.setGraphicSize(Std.int(textOctagon.width*0.6));
-				textOctagon.updateHitbox();
-				textOctagon.antialiasing = ClientPrefs.globalAntialiasing;
-				textOctagon.alpha = 0;
-				textOctagon.cameras = [cutCam];
-				add(textOctagon);
-
-				hereme = new FlxSprite().loadGraphic(Paths.image('skatepark/octagon/hereletme', 'h24')); //tween y: 250
-				hereme.antialiasing = ClientPrefs.globalAntialiasing;
-				hereme.visible = false;
-				add(hereme);
-
-				showYou = new FlxSprite().loadGraphic(Paths.image('skatepark/octagon/showyou', 'h24')); //tween y: 250
-				showYou.antialiasing = ClientPrefs.globalAntialiasing;
-				showYou.visible = false;
-				add(showYou);
-
-				octagon = new FlxSprite().loadGraphic(Paths.image('skatepark/octagon/octagon', 'h24')); // tween x:295 tween 2 x: 1238
-				octagon.antialiasing = ClientPrefs.globalAntialiasing;
-				octagon.visible = false;
-				octagon.cameras = [cutCam];
-				add(octagon);
-
-				var blackStart:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
-				blackStart.cameras = [cutCam];
-				add(blackStart);
-
-				new FlxTimer().start(0.005, function(tmr:FlxTimer)
+				new FlxTimer().start(0.0010, function(tmr:FlxTimer)
 				{
 					FlxTween.tween(blackStart, {alpha:0}, 0.005);
 					FlxTween.tween(octagonBG, {alpha: 1}, 0.005);
@@ -4578,6 +4634,7 @@ class PlayState extends MusicBeatState
 								onComplete:function(twn:FlxTween) 
 								{
 									FlxTween.tween(bubbleText, {"scale.x": 1, "scale.y": 1}, 0.005, {
+										ease: FlxEase.quadInOut,
 										onComplete:function(twn:FlxTween)
 										{
 											textOctagon.alpha = 1;
@@ -4599,10 +4656,11 @@ class PlayState extends MusicBeatState
 	{
 		//nikkuOctagon.y = 200;
 		var flash:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.WHITE);
-		flash.visible = false;
+		flash.alpha = 0.00001;
 		flash.cameras = [cutCam];
 		add(flash);
 
+		FlxTween.tween(bubbleText, {x: FlxG.width * 1.5}, 0.25, {ease:FlxEase.quadInOut});
 		FlxTween.tween(nikkuOctagon, {x: 500}, 0.25, {
 			onComplete: function(twn:FlxTween)
 			{
@@ -4616,7 +4674,7 @@ class PlayState extends MusicBeatState
 		});
 
 		new FlxTimer().start(0.3, function(tmr:FlxTimer){
-			flash.visible = true;
+			flash.alpha = 1;
 			FlxFlicker.flicker(flash, 0.5, 0.05, false, false, function(flick:FlxFlicker){
 				removeOctaCut();
 			});
@@ -4625,14 +4683,14 @@ class PlayState extends MusicBeatState
 
 	function removeOctaCut():Void //end
 	{
-		octagonBG.alpha = 0;
-		octagonBG2.alpha = 0;
-		numbahEiti.alpha = 0;
-		numbahEiti2.alpha = 0;
-		numbahEiti3.alpha = 0;
-		nikkuOctagon.alpha = 0;
-		bubbleText.alpha = 0;
-		textOctagon.alpha = 0;
+		octagonBG.kill();
+		octagonBG2.kill();
+		numbahEiti.kill();
+		numbahEiti2.kill();
+		numbahEiti3.kill();
+		nikkuOctagon.kill();
+		bubbleText.kill();
+		textOctagon.kill();
 		//octagon.
 	}
 
@@ -4640,47 +4698,11 @@ class PlayState extends MusicBeatState
 	{
 		// flash 8 coords lmao
 		camHUD.alpha = 0;
-		//var library:String = 'skatepark/cutscene/'; // lazy
-		bgExe = new FlxBackdrop(Paths.image('skatepark/cutscene/background', 'h24'), 0.3, 0.3, true, false);
-		bgExe.antialiasing = false;
-		bgExe.y = -85;
-		bgExe.velocity.set(-155, 0);
-		bgExe.setGraphicSize(Std.int(bgExe.width * 8)); // to larger cuz its pixel and its low quality
-		bgExe.updateHitbox();
-		bgExe.cameras = [cutCam];
-		add(bgExe);
-
-		groundExe = new FlxBackdrop(Paths.image('skatepark/cutscene/ground', 'h24'), 0.3, 0.3, true, false);
-		groundExe.antialiasing = false;
-		groundExe.y = 470;
-		groundExe.velocity.set(-165, 0);
-		groundExe.setGraphicSize(Std.int(groundExe.width * 6.73));
-		groundExe.updateHitbox();
-		groundExe.cameras = [cutCam];
-		add(groundExe);
-
-		eze=new FlxSprite(-350, 245).loadGraphic(Paths.image('skatepark/cutscene/exe', 'h24')); // é hj q eu te pego gostosa kkkkkk
-		eze.antialiasing = false;
-		eze.setGraphicSize(Std.int(eze.width * 5.4));
-		eze.cameras = [cutCam];
-		eze.updateHitbox();
-		add(eze);
-
-		nicuEze = new FlxSprite(565, 180).loadGraphic(Paths.image('skatepark/cutscene/nikku', 'h24')); // pqp me dexa em paz seu porra da o cu na esquina chupa rola
-		nicuEze.antialiasing = false;
-		nicuEze.setGraphicSize(Std.int(nicuEze.width * 5.1));
-		nicuEze.updateHitbox();
-		nicuEze.cameras = [cutCam];
-		add(nicuEze);
-
-		gostosa = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves', 'h24'), 0.3, 0.3, true, false);
-		gostosa.antialiasing = false;
-		gostosa.y = 375;
-		gostosa.velocity.set(-260, 0);
-		gostosa.setGraphicSize(Std.int(gostosa.width * 8.35));
-		gostosa.updateHitbox();
-		gostosa.cameras = [cutCam];
-		add(gostosa);
+		bgExe.alpha = 1;
+		groundExe.alpha = 1;
+		gostosa.alpha = 1;
+		nicuEze.alpha = 1;
+		eze.alpha = 1;
 
 		var blackStart:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
 		blackStart.cameras = [cutCam];
@@ -4688,22 +4710,22 @@ class PlayState extends MusicBeatState
 
 		var flash:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
 		flash.cameras = [cutCam];
-		flash.visible = false;
+		flash.alpha = 0.0001;
 		add(flash);
 
 		FlxTween.tween(blackStart, {alpha:0}, 0.1, {
 			onComplete: function(twn:FlxTween)
 			{
 				blackStart.kill();
-				FlxTween.tween(eze, {x: nicuEze.x - 100}, 6.150);
+				FlxTween.tween(eze, {x: nicuEze.x - 190}, 6.150);
 			}
 		});
 		FlxTween.tween(nicuEze, {y: nicuEze.y + 5}, 0.1550, {ease:FlxEase.quadInOut, type:PINGPONG});
-		FlxTween.tween(eze, {y: eze.y + 5}, 0.127, {ease:FlxEase.quadInOut, type:PINGPONG});
+		FlxTween.tween(eze, {y: eze.y + 5}, 0.1550, {ease:FlxEase.quadInOut, type:PINGPONG});
 
 		new FlxTimer().start(5.8, function(pussy:FlxTimer) // uhhhhhh
 		{
-			flash.visible = true;
+			flash.alpha = 1;
 			FlxFlicker.flicker(flash, 0.350/*pra formar 6.150 segundos*/, 0.015, false, false, function(flicker:FlxFlicker)
 			{
 				bgExe.kill();
