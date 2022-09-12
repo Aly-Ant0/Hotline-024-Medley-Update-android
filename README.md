@@ -10,7 +10,7 @@
 
 <p align="right">MateusX02 - Coder
 
-<p align="left">ben ok hohoho - idk
+<p align="left">ben ok - idk
 
 <p align="right">Vegeth - First Builder
 
