@@ -262,7 +262,6 @@ class PlayState extends MusicBeatState
 	var exFront:BGSprite;
 
 	// this is my first time using emitters sorry if i broke something
-	//var particleEx:FlxParticle;
 	var particleEmitter:FlxEmitter;
 
 	// skate
@@ -279,6 +278,7 @@ class PlayState extends MusicBeatState
 	var groundExe:FlxBackdrop;
 	var nicuEze:FlxSprite;
 	var eze:FlxSprite;
+	var blackStart:FlxSprite;
 
 	// octagon cutscene variables
 	var octagonBG:FlxSprite;
@@ -292,6 +292,7 @@ class PlayState extends MusicBeatState
 	var nikkuOctagon:FlxSprite;
 	var showYou:FlxSprite;
 	var hereme:FlxSprite;
+	var blackStart2:FlxSprite;
 
 	// hauuei
 	var hallBG:BGSprite;
@@ -1225,7 +1226,7 @@ class PlayState extends MusicBeatState
 						buildings2.updateHitbox();
 						add(buildings2);
 		
-						var ground:BGSprite=new BGSprite('stage4/ground', -2250, -1600, 1, 1);
+						var ground:BGSprite=new BGSprite('stage4/ground', -2250, -1450, 1, 1);
 						ground.setGraphicSize(Std.int(ground.width * 2));
 						ground.updateHitbox();
 						add(ground);
@@ -1845,6 +1846,10 @@ class PlayState extends MusicBeatState
 				gostosa.alpha = 0.0001;
 				gostosa.cameras = [cutCam];
 				add(gostosa);
+
+				blackStart = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
+				blackStart.cameras = [cutCam];
+				add(blackStart);
 		}
 
 		FileSystem.createDirectory(Main.path + "assets"); // saving lines
@@ -4613,24 +4618,23 @@ class PlayState extends MusicBeatState
 
 	function octaMoment():Void
 	{
-		var blackStart:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
-		blackStart.cameras = [cutCam];
-		add(blackStart);
-
+		nikkuOctagon.alpha = 1;
+		blackStart.alpha = 1;
 				new FlxTimer().start(0.0010, function(tmr:FlxTimer)
 				{
-					FlxTween.tween(blackStart, {alpha:0}, 0.005);
-					FlxTween.tween(octagonBG, {alpha: 1}, 0.005);
-					FlxTween.tween(octagonBG2, {alpha: 1}, 0.005);
-					FlxTween.tween(numbahEiti, {alpha: 1}, 0.005);
-					FlxTween.tween(numbahEiti2, {alpha: 1}, 0.005);
-					FlxTween.tween(numbahEiti3, {alpha: 1}, 0.005, {
+					FlxTween.tween(blackStart, {alpha:0}, 0.15);
+					FlxTween.tween(octagonBG, {alpha: 1}, 0.15);
+					FlxTween.tween(octagonBG2, {alpha: 1}, 0.15);
+					FlxTween.tween(numbahEiti, {alpha: 1}, 0.15);
+					FlxTween.tween(numbahEiti2, {alpha: 1}, 0.15);
+					FlxTween.tween(numbahEiti3, {alpha: 1}, 0.15, {
 						onComplete:function(twn:FlxTween)
 						{
-							FlxTween.tween(nikkuOctagon, {x:50,y:90}, 0.005, { // ata é por isso que tava do lado da tela saporra
+							FlxTween.tween(nikkuOctagon, {x:50,y:90}, 0.15, { // ata é por isso que tava do lado da tela saporra
 								onComplete:function(twn:FlxTween) 
 								{
-									FlxTween.tween(bubbleText, {"scale.x": 1, "scale.y": 1}, 0.005, {
+									bubbleText.alpha = 1;
+									FlxTween.tween(bubbleText, {"scale.x": 1, "scale.y": 1}, 0.15, {
 										ease: FlxEase.quadInOut,
 										onComplete:function(twn:FlxTween)
 										{
@@ -4672,7 +4676,7 @@ class PlayState extends MusicBeatState
 
 		new FlxTimer().start(0.3, function(tmr:FlxTimer){
 			flash.alpha = 1;
-			FlxFlicker.flicker(flash, 0.5, 0.05, false, false, function(flick:FlxFlicker){
+			FlxFlicker.flicker(flash, 0.5, 0.25, false, false, function(flick:FlxFlicker){
 				removeOctaCut();
 			});
 		});
@@ -4701,10 +4705,6 @@ class PlayState extends MusicBeatState
 		nicuEze.alpha = 1;
 		eze.alpha = 1;
 
-		var blackStart:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
-		blackStart.cameras = [cutCam];
-		add(blackStart);
-
 		var flash:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
 		flash.cameras = [cutCam];
 		flash.alpha = 0.0001;
@@ -4714,7 +4714,7 @@ class PlayState extends MusicBeatState
 			onComplete: function(twn:FlxTween)
 			{
 				blackStart.kill();
-				FlxTween.tween(eze, {x: nicuEze.x - 190}, 6.150);
+				FlxTween.tween(eze, {x: nicuEze.x - 190}, 6.75);
 			}
 		});
 		FlxTween.tween(nicuEze, {y: nicuEze.y + 5}, 0.1550, {ease:FlxEase.quadInOut, type:PINGPONG});
@@ -4723,7 +4723,7 @@ class PlayState extends MusicBeatState
 		new FlxTimer().start(5.8, function(pussy:FlxTimer) // uhhhhhh
 		{
 			flash.alpha = 1;
-			FlxFlicker.flicker(flash, 0.350/*pra formar 6.150 segundos*/, 0.015, false, false, function(flicker:FlxFlicker)
+			FlxFlicker.flicker(flash, 0.950/*pra formar 6.150 segundos*/, 0.025, false, false, function(flicker:FlxFlicker)
 			{
 				bgExe.kill();
 				groundExe.kill();
