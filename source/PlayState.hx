@@ -993,7 +993,8 @@ class PlayState extends MusicBeatState
 							rocks.updateHitbox();
 					case 'momogogo':
 						//var bg:FlxBackdrop;
-						momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), 1, 1); // fuck i forgor the scroll value
+						momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), 0.2, 0.2, true, false); // fuck i forgor the scroll value
+						momogogoBG.scrollFactor.set();
 						momogogoBG.y = -270;
 						momogogoBG.scale.set(1.25, 1.25);
 						momogogoBG.updateHitbox();
@@ -1020,42 +1021,42 @@ class PlayState extends MusicBeatState
 							matzuFudida1 = new BGSprite('matzu/2/BG1', 0, 0, 0.1, 0.1);
 							matzuFudida1.screenCenter(XY);
 							matzuFudida1.updateHitbox();
-							matzuFudida1.visible = false;
+							matzuFudida1.alpha = 0.00001;
 							add(matzuFudida1);
 			
 							matzuFudida2 = new BGSprite('matzu/2/idk', 0, 0, 0, 0);
 							matzuFudida2.updateHitbox();
 							matzuFudida2.screenCenter(XY);
-							matzuFudida2.visible = false;
+							matzuFudida2.alpha = 0.00001;
 							add(matzuFudida2);
 			
 							matzuFudida3 = new BGSprite('matzu/2/ground', 0, 0, 0, 0);
 							matzuFudida3.updateHitbox();
 							matzuFudida3.screenCenter(XY);
-							matzuFudida3.visible = false;
+							matzuFudida3.alpha = 0.00001;
 							add(matzuFudida3);
 			
 							matzuFudida4 = new BGSprite('matzu/2/messages', 0, 0, 0.4, 0.4);
 							matzuFudida4.screenCenter(XY);
 							matzuFudida4.updateHitbox();
-							matzuFudida4.visible = false;
+							matzuFudida4.alpha = 0.00001;
 							add(matzuFudida4);
 			
 							matzuFudida5 = new BGSprite('matzu/2/door', 0, 0, 0.4, 0.4);
 							matzuFudida5.updateHitbox();
 							matzuFudida5.screenCenter(XY);
-							matzuFudida5.visible = false;
+							matzuFudida5.alpha = 0.00001;
 							add(matzuFudida5);
 			
 							matzuFudida6 = new BGSprite('matzu/2/desk2', 0, 0, 0, 0);
 							matzuFudida6.updateHitbox();
 							matzuFudida6.screenCenter(XY);
-							matzuFudida6.visible = false;
+							matzuFudida6.alpha = 0.00001;
 			
 							matzuFudida7 = new BGSprite('matzu/2/plamts2', 0, 0, 1.1, 1.1);
 							matzuFudida7.updateHitbox();
 							matzuFudida7.screenCenter(XY);
-							matzuFudida7.visible = false;
+							matzuFudida7.alpha = 0.00001;
 					case 'ena':
 						//if(!ClientPrefs.dontShowBG)
 							var enaBG1:BGSprite = new BGSprite('ena/ENA-1', -150, 0, 0.7, 0.7);
@@ -1140,7 +1141,7 @@ class PlayState extends MusicBeatState
 						//osCaboSUS.updateHitbox();
 		
 					case 'ddto':
-						var bg1:BGSprite = new BGSprite('ddto/DDLC-1', -140, -120, 1, 1);
+						var bg1:BGSprite = new BGSprite('ddto/DDLC-1', -150, -135, 1, 1);
 						bg1.setGraphicSize(Std.int(bg1.width * 1.1));
 						bg1.updateHitbox();
 						add(bg1);
@@ -1706,11 +1707,11 @@ class PlayState extends MusicBeatState
 			octagonBG.scrollFactor.set(0, 0);
 			octagonBG.scale.set(1.4, 1.4);
 			octagonBG.cameras = [cutCam];
-			octagonBG.alpha = 0.0001; // está nesse valor para o jogo entender que o bagui faz parte do stage ai quando acontecer ai o jogo não laga, genial, né?
+			octagonBG.alpha = 0.00001; // está nesse valor para o jogo entender que o bagui faz parte do stage ai quando acontecer ai o jogo não laga, genial, né?
 			add(octagonBG);
 
 			octagonBG2 = new FlxSprite().makeGraphic(1980, 236, 0xFFFE923D);
-			octagonBG2.alpha = 0.0001;
+			octagonBG2.alpha = 0.00001;
 			octagonBG2.screenCenter(XY);
 			octagonBG2.scrollFactor.set(0, 0);
 			octagonBG2.cameras = [cutCam];
@@ -1730,7 +1731,7 @@ class PlayState extends MusicBeatState
 			numbahEiti2 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false, 0, 1900);
 			numbahEiti2.alpha = .0001;
 			numbahEiti2.y = 245;
-			numbahEiti2.alpha = 0.0001;
+			numbahEiti2.alpha = 0.00001;
 		//	numbahEiti2.scale.set(1, 1);
 			numbahEiti2.scrollFactor.set(0, 0);
 		//	numbahEiti2.offset.y += 20000000;
@@ -1739,7 +1740,7 @@ class PlayState extends MusicBeatState
 			add(numbahEiti2);
 
 			numbahEiti3 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false, 0, Std.int(1900));
-			numbahEiti3.alpha = 0.0001;
+			numbahEiti3.alpha = 0.00001;
 			numbahEiti3.screenCenter(X);
 			numbahEiti3.y = 480;
 			//numbahEiti3.scale.set(1, 1);
@@ -1755,9 +1756,9 @@ class PlayState extends MusicBeatState
 			nikkuOctagon.animation.addByPrefix('idle', 'Nikku Move 1', 24, true);
 			nikkuOctagon.animation.addByPrefix('lastFrame', 'Nikku Last Frame', 24, true);
 			nikkuOctagon.animation.play('idle', true);
-			nikkuOctagon.setGraphicSize(Std.int(nikkuOctagon.width * 2.62));
+			nikkuOctagon.setGraphicSize(Std.int(nikkuOctagon.width * 3.62));
 			nikkuOctagon.updateHitbox();
-			nikkuOctagon.alpha = 0.0001;
+			nikkuOctagon.alpha = 0.00001;
 			nikkuOctagon.antialiasing = ClientPrefs.globalAntialiasing;
 			nikkuOctagon.cameras = [cutCam];
 			add(nikkuOctagon);
@@ -1766,8 +1767,8 @@ class PlayState extends MusicBeatState
 			bubbleText = new FlxSprite();
 			bubbleText.loadGraphic(Paths.image('skatepark/octagon/textbox'));
 			bubbleText.screenCenter();
-			bubbleText.scale.set(0.0001, 0.0001);
-			bubbleText.alpha = 0.0001;
+			bubbleText.scale.set(0.00001, 0.00001);
+			bubbleText.alpha = 0.00001;
 			bubbleText.updateHitbox();
 			bubbleText.antialiasing = ClientPrefs.globalAntialiasing;
 			bubbleText.cameras = [cutCam];
@@ -1779,23 +1780,23 @@ class PlayState extends MusicBeatState
 				textOctagon.setGraphicSize(Std.int(textOctagon.width*0.6));
 				textOctagon.updateHitbox();
 				textOctagon.antialiasing = ClientPrefs.globalAntialiasing;
-				textOctagon.alpha = 0.0001;
+				textOctagon.alpha = 0.00001;
 				textOctagon.cameras = [cutCam];
 				add(textOctagon);
 
 				hereme = new FlxSprite().loadGraphic(Paths.image('skatepark/octagon/hereletme', 'h24')); //tween y: 250
 				hereme.antialiasing = ClientPrefs.globalAntialiasing;
-				hereme.alpha = 0.0001;
+				hereme.alpha = 0.00001;
 				add(hereme);
 
 				showYou/*here let me show you bitch*/ = new FlxSprite().loadGraphic(Paths.image('skatepark/octagon/showyou', 'h24')); //tween y: 250
 				showYou.antialiasing = ClientPrefs.globalAntialiasing;
-				showYou.alpha = 0.0001;
+				showYou.alpha = 0.00001;
 				add(showYou);
 
 				octagon = new FlxSprite().loadGraphic(Paths.image('skatepark/octagon/octagon', 'h24')); // tween x:295 tween 2 x: 1238
 				octagon.antialiasing = ClientPrefs.globalAntialiasing;
-				octagon.alpha = 0.0001;
+				octagon.alpha = 0.00001;
 				octagon.cameras = [cutCam];
 				add(octagon);
 
@@ -1803,8 +1804,9 @@ class PlayState extends MusicBeatState
 				//var library:String = 'skatepark/cutscene/'; // lazy
 				bgExe = new FlxBackdrop(Paths.image('skatepark/cutscene/background', 'h24'), 0.3, 0.3, true, false);
 				bgExe.antialiasing = false;
+				bgExe.scrollFactor.set();
 				bgExe.y = -85;
-				bgExe.alpha = 0.0001;
+				bgExe.alpha = 0.00001;
 				bgExe.velocity.set(-155, 0);
 				bgExe.setGraphicSize(Std.int(bgExe.width * 8)); // to larger cuz its pixel and its low quality
 				bgExe.updateHitbox();
@@ -1813,42 +1815,47 @@ class PlayState extends MusicBeatState
 		
 				groundExe = new FlxBackdrop(Paths.image('skatepark/cutscene/ground', 'h24'), 0.3, 0.3, true, false);
 				groundExe.antialiasing = false;
+				groundExe.scrollFactor.set();
 				groundExe.y = 470;
 				groundExe.velocity.set(-165, 0);
 				groundExe.setGraphicSize(Std.int(groundExe.width * 6.73));
 				groundExe.updateHitbox();
-				groundExe.alpha = 0.0001;
+				groundExe.alpha = 0.00001;
 				groundExe.cameras = [cutCam];
 				add(groundExe);
 
 				eze=new FlxSprite(-350, 245).loadGraphic(Paths.image('skatepark/cutscene/exe', 'h24')); // é hj q eu te pego gostosa kkkkkk
 				eze.antialiasing = false;
+				eze.scrollFactor.set();
 				eze.setGraphicSize(Std.int(eze.width * 5.4));
 				eze.cameras = [cutCam];
-				eze.alpha = 0.0001;
+				eze.alpha = 0.00001;
 				eze.updateHitbox();
 				add(eze);
 
 				nicuEze = new FlxSprite(565, 180).loadGraphic(Paths.image('skatepark/cutscene/nikku', 'h24')); // pqp me dexa em paz seu porra da o cu na esquina chupa rola
 				nicuEze.antialiasing = false;
+				nicuEze.scrollFactor.set();
 				nicuEze.setGraphicSize(Std.int(nicuEze.width * 5.1));
 				nicuEze.updateHitbox();
-				nicuEze.alpha = 0.0001;
+				nicuEze.alpha = 0.00001;
 				nicuEze.cameras = [cutCam];
 				add(nicuEze);
 
 				gostosa = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves', 'h24'), 0.3, 0.3, true, false);
 				gostosa.antialiasing = false;
 				gostosa.y = 375;
+				gostosa.scrollFactor.set();
 				gostosa.velocity.set(-260, 0);
 				gostosa.setGraphicSize(Std.int(gostosa.width * 8.35));
 				gostosa.updateHitbox();
-				gostosa.alpha = 0.0001;
+				gostosa.alpha = 0.00001;
 				gostosa.cameras = [cutCam];
 				add(gostosa);
 
 				blackStart = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
 				blackStart.cameras = [cutCam];
+				blackStart.alpha = 0.00001;
 				add(blackStart);
 		}
 
@@ -4707,7 +4714,7 @@ class PlayState extends MusicBeatState
 
 		var flash:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
 		flash.cameras = [cutCam];
-		flash.alpha = 0.0001;
+		flash.alpha = 0.00001;
 		add(flash);
 
 		FlxTween.tween(blackStart, {alpha:0}, 0.1, {
@@ -5078,16 +5085,16 @@ class PlayState extends MusicBeatState
 	{
 		if (curStage == 'astral') {
 			FlxG.camera.flash(FlxColor.BLACK, 5, null, true);
-			asPlantadaMinhaMae.visible = false;
-			matzuBG.visible = false;
-			matzuDESK.visible = false;
-			matzuFudida1.visible = true;
-			matzuFudida2.visible = true;
-			matzuFudida3.visible = true;
-			matzuFudida4.visible = true;
-			matzuFudida5.visible = true;
-			matzuFudida6.visible = true;
-			matzuFudida7.visible = true;
+			asPlantadaMinhaMae.alpha = 0.00001;
+			matzuBG.alpha = 0.00001;
+			matzuDESK.alpha = 0.00001;
+			matzuFudida1.alpha = 1;
+			matzuFudida2.alpha = 1;
+			matzuFudida3.alpha = 1;
+			matzuFudida4.alpha = 1;
+			matzuFudida5.alpha=1;
+			matzuFudida6.alpha=1;
+			matzuFudida7.alpha=1;
 		}
 	}
 
