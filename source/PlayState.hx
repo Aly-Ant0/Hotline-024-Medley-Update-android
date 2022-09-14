@@ -1776,7 +1776,7 @@ class PlayState extends MusicBeatState
 
 			textOctagon = new FlxSprite(bubbleText.x + 20, bubbleText.y + 80);
 				textOctagon.frames = Paths.getSparrowAtlas('skatepark/octagon/text', 'h24');
-				textOctagon.animation.addByPrefix('text', 'text', 23, false);
+				textOctagon.animation.addByPrefix('text', 'Text', 24, false);
 				textOctagon.setGraphicSize(Std.int(textOctagon.width*0.6));
 				textOctagon.updateHitbox();
 				textOctagon.antialiasing = ClientPrefs.globalAntialiasing;
