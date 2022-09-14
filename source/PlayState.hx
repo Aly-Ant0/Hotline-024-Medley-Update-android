@@ -6654,3 +6654,4 @@ class PlayState extends MusicBeatState
 	var curLight:Int = -1;
 	var curLightEvent:Int = -1;
 }
+//done nothin' lmao
