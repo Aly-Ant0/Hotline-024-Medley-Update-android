@@ -74,7 +74,7 @@ jobs:
         run: lime build android -final 
       
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2.2.2
+        uses: actions/upload-artifact@v2.2.4
         with:
           name: Hotline Medley update
           path: export/release/android/bin/app/build/outputs/apk/debug
