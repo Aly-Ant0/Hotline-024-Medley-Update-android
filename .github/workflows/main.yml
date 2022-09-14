@@ -70,8 +70,8 @@ jobs:
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
-      - name: Compile the APK
-        run: lime build android -final 
+      - name: Build debug APK
+        run: lime build android -debug
       
       - name: Upload Artifact
         uses: actions/upload-artifact@v2.2.4
