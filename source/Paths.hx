@@ -26,6 +26,7 @@ using StringTools;
 
 class Paths
 {
+	inline public static var menuMusic:String = '';
 	inline public static var SOUND_EXT = #if web "mp3" #else "ogg" #end;
 	inline public static var VIDEO_EXT = "";
 
@@ -279,6 +280,13 @@ class Paths
 			shit = 'ah, enfia no teu cu ent';
 		}*/
 		return image('$shit/$key', 'preload');
+	}
+
+	// for main menu text that the music that are playing
+	inline static public function h024Music(key:String, library:String, txt:String)
+	{
+		menuMusic = message;
+		return music('$key');
 	}
 
 	static public function getTextFromFile(key:String, ?ignoreMods:Bool = false):String
