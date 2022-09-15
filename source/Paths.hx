@@ -286,6 +286,10 @@ class Paths
 	inline static public function h024Music(key:String, library:String, txt:String)
 	{
 		menuMusic = txt;
+		if (txt == null)
+		{
+			menuMusic = 'I FORGOR LMAO';
+		}
 		return music('$key');
 	}
 
