@@ -379,6 +379,15 @@ class Paths
 		return path.toLowerCase().replace(' ', '-');
 	}
 
+	inline static public function h024Song(key:String, shit:String) // for jukebox menu
+	{
+		menuMusic = shit;
+		if (shit == null){
+			menuMusic = 'I FORGOR LMAO PART 2 LETS GOOOO';
+		}
+		return inst('$key');
+	}
+
 	// completely rewritten asset loading? fuck!
 	public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
 	public static function returnGraphic(key:String, ?library:String) {
