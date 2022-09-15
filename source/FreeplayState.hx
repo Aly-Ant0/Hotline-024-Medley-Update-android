@@ -215,30 +215,34 @@ class FreeplayState extends MusicBeatState
 
 		for (port in grpSongs.members) // the angle tween and skew test
 		{
-			//var direction:Float = -10; // not used shit
-			var lerpVal:Float = CoolUtil.boundTo(elapsed * 6, 0, 1);
-			var angleSpeed:Float = 0.2;
-			var maxSkew:Float = -2; // selected item
-			var minSkew:Float = -5; // not selected item
-			var skewDirection:Int = 1; // lmao
-			var skewSpeed:Float = 0.2;
-			if(port.targetY == 0)
+			for (i in 0...songs.length)
 			{
-					var lastSkew:Float = port.skew.x;
-					var lastAngle:Float = port.angle;
-					//var lastX:Float = port.x;
-					//item.screenCenter(X);
+				//var direction:Float = -10; // not used shit
+				var lerpVal:Float = CoolUtil.boundTo(elapsed * 6, 0, 1);
+				var angleSpeed:Float = 0.2;
+				var maxSkew:Float = -2; // selected item
+				var minSkew:Float = -5; // not selected item
+				var skewDirection:Int = 1; // lmao
+				var skewSpeed:Float = 0.2;
+				if(port.targetY == 0)
+				{
+						var lastSkew:Float = port.skew.x;
+						var lastAngle:Float = port.angle;
+						//var lastX:Float = port.x;
+						//item.screenCenter(X);
 
-					port.select = true;
-					port.notSlct = false;
+						port.x = FlxMath.lerp(port.x, 310, lerpVal);
+						port.select = true;
+						port.notSlct = false;
+				}
+				else
+				{
+						port.x = FlxMath.lerp(port.x, 100 + (50 * 2 * i), lerpVal);
+						port.select = false;
+						port.notSlct = true;
+				}
+				// aly ant portuguesse from brazil moment e meu pau na sua mao
 			}
-			else
-			{
-					port.x = FlxMath.lerp(port.x, 280, CoolUtil.boundTo(elapsed * 4, 0, 1));
-					port.select = false;
-					port.notSlct = true;
-			}
-			// aly ant portuguesse from brazil moment e meu pau na sua mao
 		}
 
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, CoolUtil.boundTo(elapsed * 24, 0, 1)));
