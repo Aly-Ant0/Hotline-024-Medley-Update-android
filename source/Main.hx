@@ -15,6 +15,7 @@ import lime.system.System;
 class Main extends Sprite
 {
 	public static var fpsVar:FPS;
+	//public static var songname:String = ''; // will be used in main menu 
 	public static var path:String = System.applicationStorageDirectory;
 
 	// You can pretty much ignore everything from here on - your code should go in your states.
@@ -27,9 +28,7 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
-
- 	        SUtil.gameCrashCheck();
-
+		SUtil.gameCrashCheck();
 		if (stage != null)
 		{
 			init();
@@ -63,6 +62,15 @@ class Main extends Sprite
 		if(fpsVar != null) {
 			fpsVar.visible = ClientPrefs.showFPS;
 		}
+
+		#if debug
+		// debugging shit
+		// and get from indie cross source
+		FlxG.console.registerObject("Paths", Paths);
+		FlxG.console.registerObject("Conductor", Conductor);
+		FlxG.console.registerObject("PlayState", PlayState);
+		FlxG.console.registerObject("MainMenuState", MainMenuState);
+		#end
 
 		#if html5
 		FlxG.autoPause = false;
