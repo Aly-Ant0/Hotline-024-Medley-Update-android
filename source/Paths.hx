@@ -282,7 +282,7 @@ class Paths
 		return image('$shit/$key', 'preload');
 	}
 
-	// for main menu text that the music that are playing
+	// for main menu text that show the music that are playing
 	inline static public function h024Music(key:String, library:String, txt:String)
 	{
 		menuMusic = txt;
