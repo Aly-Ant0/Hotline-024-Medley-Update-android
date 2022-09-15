@@ -190,55 +190,55 @@ class CodeScreen extends MusicBeatState
 						PlayState.SONG = Song.loadFromJson('nightland', 'nightland');
 						PlayState.noSkins = false;
 						FlxG.sound.play(Paths.sound('entersfx'));
-						MusicBeatState.switchState(new ChooseSkinState());
+						LoadingState.loadAndSwitchState(new ChooseSkinState());
 						FlxG.mouse.visible = false;
 					case '  5  1  4  1': // ema
 						PlayState.SONG = Song.loadFromJson('uncanny-valley', 'uncanny-valley');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
-						MusicBeatState.switchState(new PlayState());
+						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
 					case '  2  0  2  0': // extraterrestre
 						PlayState.SONG = Song.loadFromJson('extraterrestrial', 'extraterrestrial');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
-						MusicBeatState.switchState(new PlayState());
+						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
 					case '  2  1  5  1': // spooki
 						PlayState.SONG = Song.loadFromJson('satellite-picnic', 'satellite-picnic');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
-						MusicBeatState.switchState(new PlayState());
+						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
 					case '  1  9  2  1': // sus
 						PlayState.SONG = Song.loadFromJson('sussy-pussy', 'sussy-pussy');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
-						MusicBeatState.switchState(new PlayState());
+						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
 					case '  1  3  9  1': // i gonna shoot maself
 						PlayState.SONG = Song.loadFromJson('close-chuckle', 'close-chuckle');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
-						MusicBeatState.switchState(new PlayState());
+						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
 					case '  8  9  8  9': // nicu vs turma da mônica so que nao
 						PlayState.SONG = Song.loadFromJson('deep-poems', 'deep-poems');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
-						MusicBeatState.switchState(new PlayState());
+						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
 					case '  6  1  2  0': // fun is infinite
 						PlayState.SONG = Song.loadFromJson('majin', 'majin');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
-						MusicBeatState.switchState(new PlayState());
+						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
 					case '  2  1  1  9': // final song
 						PlayState.SONG = Song.loadFromJson('astral-projection', 'astral-projection');
 						PlayState.noSkins = true;
 						FlxG.sound.play(Paths.sound('entersfx'));
-						MusicBeatState.switchState(new PlayState());
+						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
 					default:
 						FlxG.sound.play(Paths.sound('errorsfx'));
@@ -267,7 +267,8 @@ class AllCodes extends MusicBeatState
 	override function update(elapsed:Float) {
 		if (controls.BACK) {
 			FlxG.sound.play(Paths.sound('backsfx'));
-			LoadingState.loadAndSwitchState(new CodeScreen());
+			MusicBeatState.switchState(new CodeScreen());
+			CodeScreen.showallcodes = FlxG.save.data.showcodes;
 			ClientPrefs.saveSettings();
 			FlxG.save.flush();
 		}
