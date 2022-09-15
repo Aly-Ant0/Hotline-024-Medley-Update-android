@@ -21,16 +21,16 @@ import lime.utils.Assets;
 class JukeboxScreen extends MusicBeatState
 {
 	//public static var curSongPlaying:String = 'nightlight';
-	var songList:Array<String> = [
-		'customer-service', 'CUSTOMER SERVICE','MUSIC',
-		'nightlight', 'NIGHTLIGHT','MUSIC',
-		'broadcasting', 'BROADCASTING', 'SONG',
-		'mirror-magic', 'MIRROR MAGIC', 'SONG',
-		'fandomania', 'FANDOMANIA', 'SONG',
-		'killer-queen', 'KILLER QUEEN', 'SONG',
-		'hyperfunk', 'HYPERFUNK', 'SONG',
-		'sugarcrush', 'SUGARCRUSH', 'SONG',
-		'smokebomb', 'SMOKEBOMB', 'SONG'
+	private var songList:Array<Array<String>> = [
+		['customer-service', 'CUSTOMER SERVICE','MUSIC'],
+		['nightlight', 'NIGHTLIGHT','MUSIC'],
+		['broadcasting', 'BROADCASTING', 'SONG'],
+		['mirror-magic', 'MIRROR MAGIC', 'SONG'],
+		['fandomania', 'FANDOMANIA', 'SONG'],
+		['killer-queen', 'KILLER QUEEN', 'SONG'],
+		['hyperfunk', 'HYPERFUNK', 'SONG'],
+		['sugarcrush', 'SUGARCRUSH', 'SONG'],
+		['smokebomb', 'SMOKEBOMB', 'SONG']
 	];
 	var textGrp:FlxTypedGroup<FreeplayText>;
 	var bg:FlxSprite;
@@ -85,7 +85,7 @@ class JukeboxScreen extends MusicBeatState
 	{
 		for (port in textGrp.members) // the angle tween
 		{
-				var lerpVal:Float = CoolUtil.boundTo(elapsed * 7, 0, 1);
+				var lerpVal:Float = CoolUtil.boundTo(elapsed * 6, 0, 1);
 				if(port.targetY == 0)
 				{
 					var lastAngle:Float = port.angle;
@@ -120,11 +120,11 @@ class JukeboxScreen extends MusicBeatState
 		if (controls.ACCEPT)
 		{
 			if (songList[2][curSelected]=='SONG'){
-				FlxG.sound.playMusic(Paths.h024Song('$songList[0][curSelected]', '$songList[2][curSelected]'));
+				FlxG.sound.playMusic(Paths.h024Song(songList[0][curSelected], songList[2][curSelected]));
 			}
 
 			if (songList[2][curSelected]=='MUSIC'){
-				FlxG.sound.playMusic(Paths.h024Music('$songList[0][curSelected]', 'preload', '$songList[2][curSelected]'));
+				FlxG.sound.playMusic(Paths.h024Music(songList[0][curSelected], 'preload', songList[2][curSelected]));
 			}
 		}
 
