@@ -125,6 +125,8 @@ class JukeboxScreen extends MusicBeatState
 					FlxG.sound.playMusic(Paths.h024Song(songList[0][curSelected], songList[1][curSelected]));
 				case 'MUSIC':
 					FlxG.sound.playMusic(Paths.h024Music(songList[0][curSelected], 'preload', songList[2][curSelected]));
+				case 'MUSICSHARED':
+					FlxG.sound.playMusic(Paths.h024Music(songList[0][curSelected], 'shared', songList[2][curSelected]));
 			}
 		}
 
