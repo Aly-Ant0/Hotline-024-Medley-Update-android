@@ -63,7 +63,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		var cubes1:FlxSprite = new FlxSprite().loadGraphic(Paths.image('pause/cubes1', 'shared'));
 		cubes1.screenCenter();
-		//cubes1.x -= FlxG.width * 1.8;
+		cubes1.x = FlxG.width * 1.8;
 		add(cubes1);
 
 		var cubes2:FlxSprite = new FlxSprite().loadGraphic(Paths.image('pause/cubes2', 'shared'));
@@ -78,6 +78,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		for (i in 0...3) {
 			if (firstStart)
+				FlxTween.tween(cubes1, {x: 0}, 0.085, {ease: FlxEase.linear});
 				for (item in bgstuff.members) {
 					FlxTween.tween(item, {x: 0}, 0.085, {ease: FlxEase.linear, onComplete: function(twn:FlxTween) // i get this code from kade engine main menu
 					{
