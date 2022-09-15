@@ -27,15 +27,13 @@ import flixel.input.keyboard.FlxKey;
 
 using StringTools;
 
-class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira programano o menu kkkk
+class MainMenuState extends MusicBeatState
 {
 	public static var psychEngineVersion:String = '0.5.2h'; //This is also used for Discord RPC
 	public static var curSelected:Int = 0;
 
 	var menuItems:FlxTypedSpriteGroup<FlxSprite>;
 	var mainMenuTxt:FlxText;
-	private var camGame:FlxCamera;
-	private var camAchievement:FlxCamera;
 	
 	var optionShit:Array<String> = [
 		'story_mode',
@@ -58,15 +56,6 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		DiscordClient.changePresence("In the Main Menu", null);
 		#end
 		//debugKeys = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_1'));
-
-		camGame = new FlxCamera();
-		camAchievement = new FlxCamera();
-		camAchievement.bgColor.alpha = 0;
-
-		FlxG.cameras.reset(camGame);
-		FlxG.cameras.add(camAchievement);
-		FlxCamera.defaultCameras = [camGame];
-
 		transIn = FlxTransitionableState.defaultTransIn;
 		transOut = FlxTransitionableState.defaultTransOut;
 
@@ -117,7 +106,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		bars.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bars);
 
-		jukeboxText = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox')); // eu nao vou programar o jukebox menu pq nao tem nenhum video que mostra o jukebox menu ent eu nao sei como é o jukebox menu e eu nao tenho pc // sadness
+		jukeboxText = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox'));
 		jukeboxText.screenCenter();
 		jukeboxText.antialiasing = ClientPrefs.globalAntialiasing;
 		//jukeboxText.updateHitbox();
@@ -133,7 +122,7 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 		//creditsImage.updateHitbox();
 		add(creditsImage);
 
-		creditsHitbox = new FlxObject(532, 684, 175, 25);
+		creditsHitbox = new FlxObject(0, 0, 175, 25);
 		creditsHitbox.setPosition(552, 684);
 		add(creditsHitbox);
 
@@ -155,34 +144,12 @@ class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira prog
 
 		changeItem();
 
-		#if ACHIEVEMENTS_ALLOWED
-		Achievements.loadAchievements();
-		var leDate = Date.now();
-		if (leDate.getDay() == 5 && leDate.getHours() >= 18) {
-			var achieveID:Int = Achievements.getAchievementIndex('friday_night_play');
-			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) { //It's a friday night. WEEEEEEEEEEEEEEEEEE
-				Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
-				giveAchievement();
-				ClientPrefs.saveSettings();
-			}
-		}
-		#end
-
 		#if android
 		addVirtualPad(LEFT_RIGHT, A_B); // no editors since idk what will happen honestly edit: nothing but dont will have editors menu lol
 		#end
 
 		super.create();
 	}
-
-	#if ACHIEVEMENTS_ALLOWED
-	// Unlocks "Freaky on a Friday Night" achievement
-	function giveAchievement() {
-		add(new AchievementObject('friday_night_play', camAchievement));
-		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-		trace('Giving achievement "friday_night_play"');
-	}
-	#end
 
 	var selectedSomethin:Bool = false;
 	var canSelect:Bool = true;
