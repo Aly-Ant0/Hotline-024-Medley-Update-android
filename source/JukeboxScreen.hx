@@ -20,17 +20,17 @@ import lime.utils.Assets;
 
 class JukeboxScreen extends MusicBeatState
 {
-	public static var curSongPlaying:String = 'nightlight';
+	//public static var curSongPlaying:String = 'nightlight';
 	var songList:Array<String> = [
-		'customer-service',
-		'nightlight',
-		'broadcasting',
-		'mirror-magic',
-		'fandomania',
-		'killer-queen',
-		'hyperfunk',
-		'sugarcrush',
-		'smokebomb'
+		'customer-service', 'CUSTOMER SERVICE','MUSIC',
+		'nightlight', 'NIGHTLIGHT','MUSIC',
+		'broadcasting', 'BROADCASTING', 'SONG',
+		'mirror-magic', 'MIRROR MAGIC', 'SONG',
+		'fandomania', 'FANDOMANIA', 'SONG',
+		'killer-queen', 'KILLER QUEEN', 'SONG',
+		'hyperfunk', 'HYPERFUNK', 'SONG',
+		'sugarcrush', 'SUGARCRUSH', 'SONG',
+		'smokebomb', 'SMOKEBOMB', 'SONG'
 	];
 	var textGrp:FlxTypedGroup<FreeplayText>;
 	var bg:FlxSprite;
@@ -49,7 +49,7 @@ class JukeboxScreen extends MusicBeatState
 
 		jukebox = new FlxSprite(603, 65);
 		jukebox.frames = Paths.getSparrowAtlas('hotline/menu/jukebox/jukebox_play', 'preload');
-		jukebox.scale.set(1.8, 1.8);
+		jukebox.scale.set(1.6, 1.6);
 		jukebox.animation.addByPrefix('bruh', 'Jukebox', 24, true);
 		jukebox.animation.play('bruh');
 		jukebox.antialiasing = alias;
@@ -60,8 +60,7 @@ class JukeboxScreen extends MusicBeatState
 
 		for (i in 0...songList.length)
 		{
-			var port:FreeplayText = new FreeplayText(50, 200, songList[i]);
-			port.y += ((port.width - 350) + 50 * i);
+			var port:FreeplayText = new FreeplayText(FlxG.width - 1590, 100 + (890*i), songList[i]);
 			port.targetY = i;
 			port.ID = i;
 			port.setGraphicSize(Std.int(port.width * 1.2));
@@ -116,6 +115,17 @@ class JukeboxScreen extends MusicBeatState
 		{
 			FlxG.sound.play(Paths.sound('backsfx'));
 			MusicBeatState.switchState(new MainMenuState());
+		}
+
+		if (controls.ACCEPT)
+		{
+			if (songList[3][curSelected]=='SONG'){
+				FlxG.sound.playMusic(Paths.h024Song('$songList[0][curSelected]', '$songList[2][curSelected]'));
+			}
+
+			if (songList[3][curSelected]=='MUSIC'){
+				FlxG.sound.playMusic(Paths.h024Music('$songList[0][curSelected]', 'preload', '$songList[2][curSelected]'));
+			}
 		}
 
 		super.update(elapsed);
