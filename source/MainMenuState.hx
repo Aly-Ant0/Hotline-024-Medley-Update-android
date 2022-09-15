@@ -27,25 +27,27 @@ import flixel.input.keyboard.FlxKey;
 
 using StringTools;
 
-class MainMenuState extends MusicBeatState
+class MainMenuState extends MusicBeatState // eu fiquei uma amanhã inteira programano o menu kkkk
 {
 	public static var psychEngineVersion:String = '0.5.2h'; //This is also used for Discord RPC
-	//fodase
 	public static var curSelected:Int = 0;
 
-	var menuItems:FlxTypedGroup<FlxSprite>;
+	var menuItems:FlxTypedSpriteGroup<FlxSprite>;
+	var mainMenuTxt:FlxText;
+	private var camGame:FlxCamera;
+	private var camAchievement:FlxCamera;
+	
 	var optionShit:Array<String> = [
 		'story_mode',
 		'extras',
 		'options',
 		'freeplay'
 	];
-
 	var jukeboxText:FlxSprite;
 	var creditsImage:FlxSprite;
+	var selected:Bool = false;
 	var jukeClickArea:FlxObject;
-	var creditsClickArea:FlxObject;
-	var menuState:Int = 0; // menu items position -aly ant
+	var creditsHitbox:FlxObject;
 
 	override function create()
 	{
@@ -57,6 +59,17 @@ class MainMenuState extends MusicBeatState
 		#end
 		//debugKeys = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_1'));
 
+		camGame = new FlxCamera();
+		camAchievement = new FlxCamera();
+		camAchievement.bgColor.alpha = 0;
+
+		FlxG.cameras.reset(camGame);
+		FlxG.cameras.add(camAchievement);
+		FlxCamera.defaultCameras = [camGame];
+
+		transIn = FlxTransitionableState.defaultTransIn;
+		transOut = FlxTransitionableState.defaultTransOut;
+
 		persistentUpdate = persistentDraw = true;
 
 		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('hotline/menu/bg'), 0.2, 0.2, true, false, -30);
@@ -67,31 +80,32 @@ class MainMenuState extends MusicBeatState
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
 
-		menuItems = new FlxTypedGroup<FlxSprite>();
+		menuItems = new FlxTypedSpriteGroup<FlxSprite>();
 		add(menuItems);
 
 		/*if(optionShit.length > 6) {
 			scale = 6 / optionShit.length;
 		}*/ // nao precisa por sinal
 
-		for (i in 0...optionShit.length) // original code from musk but i making some changes of it
+		for (i in 0...optionShit.length) // musk moment
 		{
-			var menuItem:FlxSprite = new FlxSprite(100 + (400 * i), 60);
+			var menuItem:FlxSprite = new FlxSprite(150 + (400 * i), 60);
 			menuItem.frames = Paths.getSparrowAtlas('hotline/menu/' + optionShit[i]);
-			menuItem.animation.addByPrefix('meuamigousacalcinhaescondido', "normal", 24);
-			menuItem.animation.addByPrefix('agorausamaisnao', "glow", 24);
-			menuItem.animation.play('meuamigousacalcinhaescondido');
-			menuItem.setGraphicSize(Std.int(menuItem.width*0.6));
+			menuItem.animation.addByPrefix('idle', "normal", 24);
+			menuItem.animation.addByPrefix('selected', "glow", 24);
+			menuItem.animation.play('idle');
+			menuItem.scale.set(0.66, 0.66);
 			menuItem.antialiasing = ClientPrefs.globalAntialiasing;
 			menuItem.updateHitbox();
 			menuItem.ID = i;
 			menuItems.add(menuItem);
 		}
-		// pra que isso elom maski?
+
 		remove(menuItems.members[0]);
 		remove(menuItems.members[1]);
 		remove(menuItems.members[2]);
 		remove(menuItems.members[3]);
+
 		add(menuItems.members[3]);
 		add(menuItems.members[1]);
 		add(menuItems.members[0]);
@@ -103,7 +117,7 @@ class MainMenuState extends MusicBeatState
 		bars.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bars);
 
-		jukeboxText = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox'));
+		jukeboxText = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox')); // eu nao vou programar o jukebox menu pq nao tem nenhum video que mostra o jukebox menu ent eu nao sei como é o jukebox menu e eu nao tenho pc // sadness
 		jukeboxText.screenCenter();
 		jukeboxText.antialiasing = ClientPrefs.globalAntialiasing;
 		//jukeboxText.updateHitbox();
@@ -119,9 +133,9 @@ class MainMenuState extends MusicBeatState
 		//creditsImage.updateHitbox();
 		add(creditsImage);
 
-		creditsClickArea = new FlxObject(0, 0, 175, 25);
-		creditsClickArea.setPosition(552, 684);
-		add(creditsClickArea);
+		creditsHitbox = new FlxObject(532, 684, 175, 25);
+		creditsHitbox.setPosition(552, 684);
+		add(creditsHitbox);
 
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
 		versionShit.scrollFactor.set();
@@ -132,9 +146,27 @@ class MainMenuState extends MusicBeatState
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
 
+		mainMenuTxt = new FlxText(FlxG.width - 150, FlxG.height - 695, FlxG.width, "", 26);
+		mainMenuTxt.scrollFactor.set();
+		mainMenuTxt.setFormat(Paths.font('LEMONMILK-Bold.otf'), 26, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(mainMenuTxt);
+
 		// NG.core.calls.event.logEvent('swag').send();
 
 		changeItem();
+
+		#if ACHIEVEMENTS_ALLOWED
+		Achievements.loadAchievements();
+		var leDate = Date.now();
+		if (leDate.getDay() == 5 && leDate.getHours() >= 18) {
+			var achieveID:Int = Achievements.getAchievementIndex('friday_night_play');
+			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) { //It's a friday night. WEEEEEEEEEEEEEEEEEE
+				Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
+				giveAchievement();
+				ClientPrefs.saveSettings();
+			}
+		}
+		#end
 
 		#if android
 		addVirtualPad(LEFT_RIGHT, A_B); // no editors since idk what will happen honestly edit: nothing but dont will have editors menu lol
@@ -143,79 +175,78 @@ class MainMenuState extends MusicBeatState
 		super.create();
 	}
 
+	#if ACHIEVEMENTS_ALLOWED
+	// Unlocks "Freaky on a Friday Night" achievement
+	function giveAchievement() {
+		add(new AchievementObject('friday_night_play', camAchievement));
+		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
+		trace('Giving achievement "friday_night_play"');
+	}
+	#end
+
 	var selectedSomethin:Bool = false;
 	var canSelect:Bool = true;
+
 	override function update(elapsed:Float)
 	{
-		var lerpVal:Float = CoolUtil.boundTo(elapsed * 9, 0, 1);
-		if (menuState == 0){
-					FlxMath.lerp(menuItems.members[0].x, 150 + (400 * 1), lerpVal);
-					FlxMath.lerp(menuItems.members[1].x, 150 + (400 * 2), lerpVal);
-					FlxMath.lerp(menuItems.members[2].x, 150 + (400 * 0), lerpVal);
-					FlxMath.lerp(menuItems.members[3].x, 150 + (400 * 0), lerpVal);
-
-					menuItems.members[0].visible = true;
-					menuItems.members[1].visible = true;
-					menuItems.members[2].visible = false;
-					menuItems.members[3].visible = true;
-		}
-		if (menuState == 1){
-					FlxMath.lerp(menuItems.members[0].x, 100 + (400 * 0), lerpVal);
-					FlxMath.lerp(menuItems.members[1].x, 100 + (400 * 1), lerpVal);
-					FlxMath.lerp(menuItems.members[2].x, 100 + (400 * 2), lerpVal);
-					FlxMath.lerp(menuItems.members[3].x, 100 + (400 * 1), lerpVal);
-
-					menuItems.members[0].visible = true;
-					menuItems.members[1].visible = true;
-					menuItems.members[2].visible = true;
-					menuItems.members[3].visible = false;
-		}
-		if (menuState == 2){
-					FlxMath.lerp(menuItems.members[0].x, 100 + (400 * 1), lerpVal);
-					FlxMath.lerp(menuItems.members[1].x, 100 + (400 * 0), lerpVal);
-					FlxMath.lerp(menuItems.members[2].x, 100 + (400 * 1), lerpVal);
-					FlxMath.lerp(menuItems.members[3].x, 100 + (400 * 2), lerpVal);
-
-					menuItems.members[0].visible = false;
-					menuItems.members[1].visible = true;
-					menuItems.members[2].visible = true;
-					menuItems.members[3].visible = true;
-		}
-		if (menuState == 3){
-					menuItems.members[2].x = 100 + (400 * 1);
-					FlxMath.lerp(menuItems.members[0].x, 100 + (400 * 2), lerpVal);
-					FlxMath.lerp(menuItems.members[1].x, 100 + (400 * 1), lerpVal);
-					FlxMath.lerp(menuItems.members[2].x, 100 + (400 * 0), lerpVal);
-					FlxMath.lerp(menuItems.members[3].x, 100 + (400 * 1), lerpVal);
-
-					menuItems.members[0].visible = true;
-					menuItems.members[1].visible = false;
-					menuItems.members[2].visible = true;
-					menuItems.members[3].visible = true;
+		mainMenuTxt.text = Paths.menuMusic;
+		if (FlxG.sound.music.volume < 0.8)
+		{
+			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
 
-		if (controls.UI_LEFT_P)
+		for (touch in FlxG.touches.list)
+		{
+			if(touch.overlaps(jukeClickArea))
+			{
+				jukeboxText.color = 0xFF363636;
+				if(touch.justPressed)
+				{
+					MusicBeatState.switchState(new JukeboxScreen());
+					FlxG.sound.play(Paths.sound('entersfx'));
+				}
+			}
+			else
+			{
+				jukeboxText.color = 0xFFFFFFFF;
+			}
+		}
+		if (!selectedSomethin && canSelect)
+		{
+			if (controls.UI_LEFT_P)
 			{
 				//FlxG.sound.play(Paths.sound('selectsfx'));
 				changeItem(-1);
 			}
 
-		if (controls.UI_RIGHT_P)
+			if (controls.UI_RIGHT_P)
 			{
 				//FlxG.sound.play(Paths.sound('selectsfx'));
 				changeItem(1);
 			}
 
-		if (controls.BACK)
-		{
+			if (controls.BACK)
+			{
+				selectedSomethin = true;
 				FlxG.sound.play(Paths.sound('backsfx'));
 				MusicBeatState.switchState(new TitleState());
-		}
+			}
 
-		if (controls.ACCEPT)
-		{
-			for (item in menuItems.members)
+			if (controls.ACCEPT)
 			{
+				if (optionShit[curSelected] == 'story_mode')
+				{
+					for (item in menuItems)
+					{
+						if(item.ID == curSelected)
+						{
+							FlxG.sound.play(Paths.sound('errorsfx'));
+							FlxFlicker.flicker(item, 0.4, 0.06, true);
+						}
+					}
+				}
+				for (item in menuItems.members)
+				{
 					var daChoice:String = optionShit[curSelected];
 					if (daChoice=='story_mode'){
 						FlxG.sound.play(Paths.sound('errorsfx'));
@@ -252,11 +283,11 @@ class MainMenuState extends MusicBeatState
 							});
 						}
 					}
+				}
 			}
-		}
-		for (touch in FlxG.touches.list)
-		{
-				if (touch.overlaps(creditsClickArea)) {
+			for (touch in FlxG.touches.list)
+			{
+				if (touch.overlaps(creditsHitbox)) {
 					creditsImage.color = 0xFF363636;
 					if(touch.justPressed)
 					{
@@ -268,20 +299,7 @@ class MainMenuState extends MusicBeatState
 				{
 					creditsImage.color = 0xFFFFFFFF;
 				}
-
-				if(touch.overlaps(jukeClickArea))
-				{
-					jukeboxText.color = 0xFF363636;
-					if(touch.justPressed)
-					{
-						MusicBeatState.switchState(new JukeboxScreen());
-						FlxG.sound.play(Paths.sound('entersfx'));
-					}
-				}
-				else
-				{
-					jukeboxText.color = 0xFFFFFFFF;
-				}
+			}
 		}
 
 		super.update(elapsed);
@@ -303,26 +321,62 @@ class MainMenuState extends MusicBeatState
 
 		menuItems.forEach(function(spr:FlxSprite)
 		{
-			spr.animation.play('meuamigousacalcinhaescondido');
+			spr.animation.play('idle');
 			spr.updateHitbox();
 
 			if (spr.ID == curSelected)
 			{
-				spr.animation.play('agorausamaisnao');
+				spr.animation.play('selected');
 				spr.centerOffsets();
 			}
 		});
-
-		switch (curSelected) // code from musk but with some changes (i requested the main menu code for him just for the buttons position lmao)
+		switch (curSelected) // code from musk but with some changes (i requested the main menu code for him just for the buttons lmao)
 		{
 			case 0:
-				menuState = 0;
+				FlxTween.tween(menuItems.members[0], {x: 150 + (400 * 1)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[1], {x: 150 + (400 * 2)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[2], {x: 150 + (400 * 0)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[3], {x: 150 + (400 * 0)}, 0.41, {ease: FlxEase.expoOut});
+
+				menuItems.members[0].visible = true;
+				menuItems.members[1].visible = true;
+				menuItems.members[2].visible = false;
+				menuItems.members[3].visible = true;
+
 			case 1:
-				menuState = 1;
+				FlxTween.tween(menuItems.members[0], {x: 150 + (400 * 0)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[1], {x: 150 + (400 * 1)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[2], {x: 150 + (400 * 2)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[3], {x: 150 + (400 * 1)}, 0.41, {ease: FlxEase.expoOut});
+
+				menuItems.members[0].visible = true;
+				menuItems.members[1].visible = true;
+				menuItems.members[2].visible = true;
+				menuItems.members[3].visible = false;
+
 			case 2:
-				menuState = 2;
+				FlxTween.tween(menuItems.members[0], {x: 150 + (400 * 1)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[1], {x: 150 + (400 * 0)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[2], {x: 150 + (400 * 1)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[3], {x: 150 + (400 * 2)}, 0.41, {ease: FlxEase.expoOut});
+
+				menuItems.members[0].visible = false;
+				menuItems.members[1].visible = true;
+				menuItems.members[2].visible = true;
+				menuItems.members[3].visible = true;
+
 			case 3:
-				menuState = 3;
+				menuItems.members[2].x = 150 + (400 * 1);
+
+				FlxTween.tween(menuItems.members[0], {x: 150 + (400 * 2)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[1], {x: 150 + (400 * 1)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[2], {x: 150 + (400 * 0)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[3], {x: 150 + (400 * 1)}, 0.41, {ease: FlxEase.expoOut});
+
+				menuItems.members[0].visible = true;
+				menuItems.members[1].visible = false;
+				menuItems.members[2].visible = true;
+				menuItems.members[3].visible = true;
 		}
 	}
 }
