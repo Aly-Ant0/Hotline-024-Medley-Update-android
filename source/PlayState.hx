@@ -2005,7 +2005,7 @@ class PlayState extends MusicBeatState
 				bfreflect.frames = boyfriend.frames;
 				bfreflect.flipY = true;
 				bfreflect.blend = ADD;
-				bfreflect.alpha = .7;
+				bfreflect.alpha = .55;
 				bfreflect.x = boyfriend.x;
 				bfreflect.y = boyfriend.y + 390;
 				insert(members.indexOf(boyfriendGroup), bfreflect);
@@ -2015,7 +2015,7 @@ class PlayState extends MusicBeatState
 				gfreflect.blend = ADD;
 				gfreflect.alpha = .8;
 				gfreflect.x = gf.x;
-				gfreflect.y = gf.y + gf.height; // talvez poder a altura tb
+				gfreflect.y = gf.y + gfreflect.height; // talvez poder a altura tb
 				gfreflect.scale.set(gf.scale.x, gf.scale.y);
 				insert(members.indexOf(gfGroup), gfreflect);
 
@@ -2024,7 +2024,8 @@ class PlayState extends MusicBeatState
 				dadreflect.blend = ADD; // por isso q no mod os reflexo é mt lindo q da ate vontade de chorar
 				dadreflect.alpha = .8;
 				dadreflect.x = dad.x;
-				dadreflect.y = dad.y + 450;
+				dadreflect.scale.set(dad.scale.x, dad.scale.y);
+				dadreflect.y = dad.y + dadreflect.height;
 				insert(members.indexOf(dadGroup), dadreflect);
 			case 'limo':
 				resetFastCar();
@@ -2278,10 +2279,8 @@ class PlayState extends MusicBeatState
 			songTxt.scrollFactor.set();
 
 			bar.makeGraphic(1, 1, FlxColor.BLACK);
-			bar.alpha = 0.60;
-			bar.xAdd = -10;
-			bar.sprTracker = songTxt;
-			bar.setGraphicSize(Std.int(songTxt.width + 30), Std.int(songTxt.height + 20));
+			bar.alpha = 0.55;
+			bar.setGraphicSize(Std.int(songTxt.x+songTxt.width + 37), Std.int(songTxt.height + 20));
 			bar.updateHitbox(); // song shit fix size???
 			bar.cameras = [camHUD];
 			bar.scrollFactor.set();
@@ -2374,7 +2373,7 @@ class PlayState extends MusicBeatState
 			switch (daSong)
 			{
 				case 'satellite-picnic':
-					snapCamFollowToPos(dad.x + 300, dad.y - 25);
+					snapCamFollowToPos(dad.x + 450, dad.y - 15);
 					var cutscenePhone:FlxSound;
 					cutscenePhone = new FlxSound().loadEmbedded(Paths.sound('panicPhone'));
 					cutscenePhone.play();
@@ -3840,8 +3839,6 @@ class PlayState extends MusicBeatState
 
 			dadreflect.animation.frameIndex = dad.animation.frameIndex;
 			dadreflect.offset.set(dad.offset.x); // apenas o x
-
-			FlxTween.tween(dadreflect, {y: dadreflect.y + 75}, 2, {ease:FlxEase.quadInOut, type: PINGPONG});
 		}
 
 		if (comboState == 0){ // combo moment 
