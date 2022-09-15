@@ -119,11 +119,11 @@ class JukeboxScreen extends MusicBeatState
 
 		if (controls.ACCEPT)
 		{
-			if (songList[3][curSelected]=='SONG'){
+			if (songList[2][curSelected]=='SONG'){
 				FlxG.sound.playMusic(Paths.h024Song('$songList[0][curSelected]', '$songList[2][curSelected]'));
 			}
 
-			if (songList[3][curSelected]=='MUSIC'){
+			if (songList[2][curSelected]=='MUSIC'){
 				FlxG.sound.playMusic(Paths.h024Music('$songList[0][curSelected]', 'preload', '$songList[2][curSelected]'));
 			}
 		}
