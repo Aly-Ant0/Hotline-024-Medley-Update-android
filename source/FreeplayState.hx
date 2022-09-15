@@ -226,20 +226,20 @@ class FreeplayState extends MusicBeatState
 				var skewSpeed:Float = 0.2;
 				if(port.targetY == 0)
 				{
-						var lastSkew:Float = port.skew.x;
 						var lastAngle:Float = port.angle;
-						//var lastX:Float = port.x;
-						//item.screenCenter(X);
-
+						port.angle = FlxMath.lerp(lastAngle, -2, lerpVal);
+						port.skew.x = FlxMath.lerp(port.skew.x, 0 * 1, lerpVal);
+						port.forceSkew = port.skew.x;
 						port.x = FlxMath.lerp(port.x, 310, lerpVal);
-						port.select = true;
-						port.notSlct = false;
+						port.forceX = port.x;
 				}
 				else
 				{
+						port.skew.x = FlxMath.lerp(port.skew.x, 5 * -1, lerpVal);
+						port.forceSkew = port.skew.x;
 						port.x = FlxMath.lerp(port.x, 100 + (50 * 2 * i), lerpVal);
-						port.select = false;
-						port.notSlct = true;
+						port.forceX = port.x;
+						port.angle = FlxMath.lerp(port.angle, 6 * port.targetY, lerpVal);
 				}
 				// aly ant portuguesse from brazil moment e meu pau na sua mao
 			}
