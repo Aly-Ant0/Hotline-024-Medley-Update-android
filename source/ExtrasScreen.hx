@@ -106,7 +106,7 @@ class ExtrasScreen extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		for (touch in FlxG.touches.list) {
-			if (touch.overlaps(buttonLock) | FlxG.mouse.overlaps(buttonLock)) {
+			if (touch.overlaps(buttonLock) || FlxG.mouse.overlaps(buttonLock)) {
 				buttonLock.color = 0xFFFFFFFF;
 
 				if (touch.justPressed || FlxG.mouse.justPressed) {
