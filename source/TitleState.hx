@@ -352,7 +352,7 @@ class TitleState extends MusicBeatState
 			}
 		}
 		#end
-		if(initialized && !transitioning && skippedIntro)
+		if(pressedEnter&&initialized && !transitioning && skippedIntro)
 		{
 			FlxG.sound.music.fadeIn(2, 0, 1, function(fl:FlxTween)
 			{
