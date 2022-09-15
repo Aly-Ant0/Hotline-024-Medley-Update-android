@@ -354,7 +354,7 @@ class TitleState extends MusicBeatState
 		#end
 		if(initialized && !transitioning && skippedIntro)
 		{
-			FlxG.sound.fadeIn(2, 0, 1, function(fl:FlxTween)
+			FlxG.sound.music.fadeIn(2, 0, 1, function()
 			{
 				FlxG.sound.playMusic(Paths.h024Music('nightlight', 'preload', 'NIGHTLIGHT'), 0);
 				FlxTween.num(FlxG.sound.volume, 1, 4);
