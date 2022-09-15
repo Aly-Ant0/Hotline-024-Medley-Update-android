@@ -285,7 +285,7 @@ class Paths
 	// for main menu text that the music that are playing
 	inline static public function h024Music(key:String, library:String, txt:String)
 	{
-		menuMusic = message;
+		menuMusic = txt;
 		return music('$key');
 	}
 
