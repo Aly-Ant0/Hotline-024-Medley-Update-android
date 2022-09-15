@@ -42,14 +42,14 @@ class JukeboxScreen extends MusicBeatState
 
 	override function create()
 	{
-		bg = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox/bg'));
+		bg = new FlxSprite().loadGraphic(Paths.h024Menu('bg', 'JUKE'));
 		bg.screenCenter();
 		bg.antialiasing = alias;
 		add(bg);
 
-		jukebox = new FlxSprite(603, 65);
-		jukebox.frames = Paths.getSparrowAtlas('hotline/menu/jukebox/jukebox_play', 'preload');
-		jukebox.scale.set(1.6, 1.6);
+		jukebox = new FlxSprite(FlxG.width - 530, 65);
+		jukebox.frames = Paths.h024MenuAnim('jukebox_play', 'JUKE');
+		jukebox.scale.set(1.4, 1.4);
 		jukebox.animation.addByPrefix('bruh', 'Jukebox', 24, true);
 		jukebox.animation.play('bruh');
 		jukebox.antialiasing = alias;
@@ -60,7 +60,7 @@ class JukeboxScreen extends MusicBeatState
 
 		for (i in 0...songList.length)
 		{
-			var port:FreeplayText = new FreeplayText(FlxG.width - 1590, 100 + (890*i), songList[i]);
+			var port:FreeplayText = new FreeplayText(-80, 100 + (890*i), songList[0][i]);
 			port.targetY = i;
 			port.ID = i;
 			port.setGraphicSize(Std.int(port.width * 1.2));
@@ -68,7 +68,7 @@ class JukeboxScreen extends MusicBeatState
 			textGrp.add(port);
 		}
 
-		bars = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox/bars'));
+		bars = new FlxSprite().loadGraphic(Paths.h024Menu('bars', 'JUKE'));
 		bars.screenCenter();
 		bars.antialiasing = alias;
 		add(bars);
@@ -124,9 +124,9 @@ class JukeboxScreen extends MusicBeatState
 				case 'SONG':
 					FlxG.sound.playMusic(Paths.h024Song(songList[0][curSelected], songList[1][curSelected]));
 				case 'MUSIC':
-					FlxG.sound.playMusic(Paths.h024Music(songList[0][curSelected], 'preload', songList[2][curSelected]));
+					FlxG.sound.playMusic(Paths.h024Music(songList[0][curSelected], 'preload', songList[1][curSelected]));
 				case 'MUSICSHARED':
-					FlxG.sound.playMusic(Paths.h024Music(songList[0][curSelected], 'shared', songList[2][curSelected]));
+					FlxG.sound.playMusic(Paths.h024Music(songList[0][curSelected], 'shared', songList[1][curSelected]));
 			}
 		}
 
