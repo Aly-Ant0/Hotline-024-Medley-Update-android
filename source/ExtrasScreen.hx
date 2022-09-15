@@ -27,9 +27,6 @@ class ExtrasScreen extends MusicBeatState
 		'button2',
 		'coversButton'
 	];
-	var creditsButt:String = ""; // i confussed coverbutt with creditsbutt lmao
-	var extrasslct:Bool = true;
-	var coverslct:Bool = false;
 	var bg:FlxSprite;
 	var bars:FlxSprite;
 	var bars2:FlxSprite;
@@ -109,10 +106,10 @@ class ExtrasScreen extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		for (touch in FlxG.touches.list) {
-			if (touch.overlaps(buttonLock) && FlxG.mouse.overlaps(buttonLock)) {
+			if (touch.overlaps(buttonLock) | FlxG.mouse.overlaps(buttonLock)) {
 				buttonLock.color = 0xFFFFFFFF;
 
-				if (touch.justPressed && FlxG.mouse.justPressed) {
+				if (touch.justPressed || FlxG.mouse.justPressed) {
 					FlxG.sound.play(Paths.sound('selectsfx'));
 					LoadingState.loadAndSwitchState(new CodeScreen());
 				}
