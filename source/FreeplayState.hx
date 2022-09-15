@@ -118,7 +118,7 @@ class FreeplayState extends MusicBeatState
 		for (i in 0...songs.length)
 		{
 			var port:FreeplayText = new FreeplayText(310, 200, songs[i]);
-			port.y = 240 + (1180 * i); // sorry peppy - aly ant 9/2/2022 7:57 (brazil timezone)
+			port.y = 205 + (1285 * i); // idk spacing lmao - aly ant 9/14/2022 9:07 (brazil timezone)
 			port.targetY = i; // basically a id variable lmao
 			port.ID = i;
 			port.skew.x = -1;
@@ -138,7 +138,7 @@ class FreeplayState extends MusicBeatState
 		textChapter.antialiasing = ClientPrefs.globalAntialiasing;
 		add(textChapter);
 
-		scoreText = new FlxText(500, 650, 0, '', 32);
+		scoreText = new FlxText(FlxG.width - 500, 650, 0, '', 32);
 		scoreText.setFormat(Paths.font('LEMONMILK-Bold.otf'), 32, FlxColor.WHITE, RIGHT);
 		scoreText.alignment = CENTER;
 		if(FlxG.random.bool(0.1)){
@@ -216,12 +216,11 @@ class FreeplayState extends MusicBeatState
 		for (port in grpSongs.members) // the angle tween and skew test
 		{
 			//var direction:Float = -10; // not used shit
-			var lerpVal:Float = CoolUtil.boundTo(elapsed * 7, 0, 1);
+			var lerpVal:Float = CoolUtil.boundTo(elapsed * 6, 0, 1);
 			var angleSpeed:Float = 0.2;
 			var maxSkew:Float = -2; // selected item
 			var minSkew:Float = -5; // not selected item
 			var skewDirection:Int = 1; // lmao
-			var skewDirLeft:Int = -1;
 			var skewSpeed:Float = 0.2;
 			if(port.targetY == 0)
 			{
@@ -235,7 +234,7 @@ class FreeplayState extends MusicBeatState
 			}
 			else
 			{
-					port.x = FlxMath.lerp(port.x, 280 * port.targetY * -1, CoolUtil.boundTo(elapsed * 4, 0, 1));
+					port.x = FlxMath.lerp(port.x, 280, CoolUtil.boundTo(elapsed * 4, 0, 1));
 					port.select = false;
 					port.notSlct = true;
 			}
