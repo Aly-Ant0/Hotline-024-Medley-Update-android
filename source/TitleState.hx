@@ -235,7 +235,7 @@ class TitleState extends MusicBeatState
 			// music.play();
 
 			if(FlxG.sound.music == null) {
-				FlxG.sound.playMusic(Paths.music('customer-service'));
+				FlxG.sound.playMusic(Paths.h024Music('customer-service', 'preload', 'CUSTOMER SERVICE'));
 			}
 		}
 
@@ -354,9 +354,9 @@ class TitleState extends MusicBeatState
 		#end
 		if(initialized && !transitioning && skippedIntro)
 		{
-			FlxTween.num(FlxG.sound.volume, 0, 4, onComplete: function(sus:FlxTween)
+			FlxG.sound.fadeIn(2, 0, 1, function(fl:FlxTween)
 			{
-				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
+				FlxG.sound.playMusic(Paths.h024Music('nightlight', 'preload', 'NIGHTLIGHT'), 0);
 				FlxTween.num(FlxG.sound.volume, 1, 4);
 				MusicBeatState.switchState(new MainMenuState());
 				closedState = true;
