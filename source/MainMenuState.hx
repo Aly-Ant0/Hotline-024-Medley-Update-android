@@ -106,6 +106,11 @@ class MainMenuState extends MusicBeatState
 		bars.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bars);
 
+		var disc:FlxSprite(FlxG.width - 28, FlxG.height - 705);
+		disc.frames = Paths.h024MenuAnim('vinyl', 'NONE');
+		disc.antialiasing = ClientPrefs.globalAntialiasing;
+		add(disc);
+
 		jukeboxText = new FlxSprite().loadGraphic(Paths.image('hotline/menu/jukebox'));
 		jukeboxText.screenCenter();
 		jukeboxText.antialiasing = ClientPrefs.globalAntialiasing;
@@ -135,7 +140,7 @@ class MainMenuState extends MusicBeatState
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
 
-		mainMenuTxt = new FlxText(FlxG.width - 150, FlxG.height - 695, FlxG.width, "", 26);
+		mainMenuTxt = new FlxText(disc.x - 125, disc.y + 5, FlxG.width, "", 26);
 		mainMenuTxt.scrollFactor.set();
 		mainMenuTxt.setFormat(Paths.font('LEMONMILK-Bold.otf'), 26, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(mainMenuTxt);
