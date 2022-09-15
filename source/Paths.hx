@@ -281,6 +281,42 @@ class Paths
 		}*/
 		return image('$shit/$key', 'preload');
 	}
+	inline static public function h024MenuAnim(key:String, menuLibrary:String)
+	{
+		var shit:String = '';
+		if (menuLibrary == 'CREDITS'){ // credits mneu
+			shit = 'hotline/menu/credits';
+		}
+
+		if (menuLibrary == 'NONE'){ // none
+			shit = 'hotline/menu/';
+		}
+
+		if (menuLibrary == 'JUKE'){ // jukebox menu
+			shit = 'hotline/menu/jukebox';
+		}
+
+		if ( menuLibrary == 'SKIN'){ // skins menu
+			shit = 'hotline/menu/skins';
+		}
+
+		if (menuLibrary == 'OPTION'){ // options menu
+			shit = 'hotline/menu/options';
+		}
+
+		if (menuLibrary == 'EXTRA'){ // extras menu
+			shit = 'hotline/menu/extras';
+		}
+
+		if (menuLibrary == 'FREEPLAY'){
+			shit = 'hotline/menu/freeplay';
+		}
+		// freeplay menu gopicoyeayeagopicooh
+		/*else {
+			shit = 'ah, enfia no teu cu ent';
+		}*/
+		return getSparrowAtlas('$shit/$key', 'preload');
+	}
 
 	// for main menu text that show the music that are playing
 	inline static public function h024Music(key:String, library:String, txt:String)
