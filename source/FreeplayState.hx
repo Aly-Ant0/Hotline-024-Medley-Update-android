@@ -138,7 +138,7 @@ class FreeplayState extends MusicBeatState
 		textChapter.antialiasing = ClientPrefs.globalAntialiasing;
 		add(textChapter);
 
-		scoreText = new FlxText(FlxG.width - 500, 650, 0, '', 32);
+		scoreText = new FlxText(0, 650, 500, '', 32);
 		scoreText.setFormat(Paths.font('LEMONMILK-Bold.otf'), 32, FlxColor.WHITE, RIGHT);
 		scoreText.alignment = CENTER;
 		if(FlxG.random.bool(0.1)){
