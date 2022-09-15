@@ -162,25 +162,6 @@ class TitleState extends MusicBeatState
 
 		// IGNORE THIS!!!
 		titleJSON = Json.parse(Paths.getTextFromFile('images/gfDanceTitle.json'));
-		
-		#if TITLE_SCREEN_EASTER_EGG
-		if (FlxG.save.data.psychDevsEasterEgg == null) FlxG.save.data.psychDevsEasterEgg = ''; //Crash prevention
-		switch(FlxG.save.data.psychDevsEasterEgg.toUpperCase())
-		{
-			case 'SHADOW':
-				titleJSON.gfx += 210;
-				titleJSON.gfy += 40;
-			case 'RIVER':
-				titleJSON.gfx += 100;
-				titleJSON.gfy += 20;
-			case 'SHUBS':
-				titleJSON.gfx += 160;
-				titleJSON.gfy -= 10;
-			case 'BBPANZU':
-				titleJSON.gfx += 45;
-				titleJSON.gfy += 100;
-		}
-		#end
 
 		if(!initialized && FlxG.save.data != null && FlxG.save.data.fullscreen)
 		{
@@ -254,105 +235,41 @@ class TitleState extends MusicBeatState
 			// music.play();
 
 			if(FlxG.sound.music == null) {
-				FlxG.sound.playMusic(Paths.music('customer-service'), 0);
-
-				FlxG.sound.music.fadeIn(4, 0, 0.7);
+				FlxG.sound.playMusic(Paths.music('customer-service'));
 			}
 		}
 
-		Conductor.changeBPM(titleJSON.bpm);
+		Conductor.changeBPM(titleJSON.bpm); // idk
 		persistentUpdate = true;
 
-		var bg:FlxSprite = new FlxSprite();
-		
-		if (titleJSON.backgroundSprite != null && titleJSON.backgroundSprite.length > 0 && titleJSON.backgroundSprite != "none"){
-			bg.loadGraphic(Paths.image(titleJSON.backgroundSprite));
-		}else{
-			bg.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-		}
-		
-		// bg.antialiasing = ClientPrefs.globalAntialiasing;
+		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('the'));
+		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		// bg.setGraphicSize(Std.int(bg.width * 0.6));
 		// bg.updateHitbox();
 		add(bg);
 
-		logoBl = new FlxSprite(titleJSON.titlex, titleJSON.titley);
+		logoBl = new FlxSprite(FlxG.width - 395, FlxG.height - 260);
 		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
-		
 		logoBl.antialiasing = ClientPrefs.globalAntialiasing;
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24, false);
 		logoBl.animation.play('bump');
 		logoBl.updateHitbox();
-		
-    logoBl.screenCenter(X);
+		logoBl.screenCenter(X);
 		// logoBl.screenCenter();
 		// logoBl.color = FlxColor.BLACK;
 
 		swagShader = new ColorSwap();
-		gfDance = new FlxSprite(titleJSON.gfx, titleJSON.gfy);
-
-		var easterEgg:String = FlxG.save.data.psychDevsEasterEgg;
-		if(easterEgg == null) easterEgg = ''; //html5 fix
-
-		switch(easterEgg.toUpperCase())
-		{
-			#if TITLE_SCREEN_EASTER_EGG
-			case 'SHADOW':
-				gfDance.frames = Paths.getSparrowAtlas('ShadowBump');
-				gfDance.animation.addByPrefix('danceLeft', 'Shadow Title Bump', 24);
-				gfDance.animation.addByPrefix('danceRight', 'Shadow Title Bump', 24);
-			case 'RIVER':
-				gfDance.frames = Paths.getSparrowAtlas('RiverBump');
-				gfDance.animation.addByIndices('danceLeft', 'River Title Bump', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
-				gfDance.animation.addByIndices('danceRight', 'River Title Bump', [29, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
-			case 'SHUBS':
-				gfDance.frames = Paths.getSparrowAtlas('ShubBump');
-				gfDance.animation.addByPrefix('danceLeft', 'Shub Title Bump', 24, false);
-				gfDance.animation.addByPrefix('danceRight', 'Shub Title Bump', 24, false);
-			case 'BBPANZU':
-				gfDance.frames = Paths.getSparrowAtlas('BBBump');
-				gfDance.animation.addByIndices('danceLeft', 'BB Title Bump', [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27], "", 24, false);
-				gfDance.animation.addByIndices('danceRight', 'BB Title Bump', [27, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], "", 24, false);
-			#end
-
-			default:
-			//EDIT THIS ONE IF YOU'RE MAKING A SOURCE CODE MOD!!!!
-			//EDIT THIS ONE IF YOU'RE MAKING A SOURCE CODE MOD!!!!
-			//EDIT THIS ONE IF YOU'RE MAKING A SOURCE CODE MOD!!!!
-				gfDance.frames = Paths.getSparrowAtlas('gfDanceTitle');
-				gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
-				gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
-		}
-		gfDance.antialiasing = ClientPrefs.globalAntialiasing;
-		
-		add(gfDance);
-		gfDance.shader = swagShader.shader;
 		add(logoBl);
 		logoBl.shader = swagShader.shader;
 
-		titleText = new FlxSprite(titleJSON.startx, titleJSON.starty);
-		#if MODS_ALLOWED
-		var path = SUtil.getPath() + "mods/" + Paths.currentModDirectory + "/images/titleEnter.png";
-		//trace(path, FileSystem.exists(path));
-		if (!FileSystem.exists(path)){
-			path = SUtil.getPath() + "mods/images/titleEnter.png";
-		}
-		//trace(path, FileSystem.exists(path));
-		if (!FileSystem.exists(path)){
-			path = SUtil.getPath() + "assets/images/titleEnter.png";
-		}
-		//trace(path, FileSystem.exists(path));
-		titleText.frames = FlxAtlasFrames.fromSparrow(BitmapData.fromFile(path),File.getContent(StringTools.replace(path,".png",".xml")));
-		#else
-		
+		titleText = new FlxSprite(0, FlxG.height - 98);
 		titleText.frames = Paths.getSparrowAtlas('titleEnter');
-		#end
 		titleText.animation.addByPrefix('idle', "Press Enter to Begin", 24);
 		titleText.animation.addByPrefix('press', "ENTER PRESSED", 24);
 		titleText.antialiasing = ClientPrefs.globalAntialiasing;
 		titleText.animation.play('idle');
 		titleText.updateHitbox();
-		// titleText.screenCenter(X);
+		titleText.screenCenter(X);
 		add(titleText);
 
 		var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
@@ -424,7 +341,6 @@ class TitleState extends MusicBeatState
 			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, CoolUtil.boundTo(1 - (elapsed * 3.125 * camZoomingDecay), 0, 1));
 		}
 
-
 		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER || controls.ACCEPT;
 
 		#if mobile
@@ -436,18 +352,19 @@ class TitleState extends MusicBeatState
 			}
 		}
 		#end
-		if(pressedEnter)
+		if(initialized && !transitioning && skippedIntro)
 		{
-			FlxG.sound.music.fadeIn(7, 1, 0);
-			new FlxTimer().start(7, function(tmr:FlxTimer)
+			FlxTween.num(FlxG.sound.volume, 0, 4, onComplete: function(sus:FlxTween)
 			{
 				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
-				FlxG.sound.music.fadeIn(4, 0, 1);
+				FlxTween.num(FlxG.sound.volume, 1, 4);
+				MusicBeatState.switchState(new MainMenuState());
+				closedState = true;
 			});
+			// idk the flxsound fadein on complete function
 		}
 
 		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
-
 		if (gamepad != null)
 		{
 			if (gamepad.justPressed.START)
@@ -473,16 +390,6 @@ class TitleState extends MusicBeatState
 				transitioning = true;
 				
 				// FlxG.sound.music.stop();
-
-				new FlxTimer().start(1, function(tmr:FlxTimer)
-				{
-					if (mustUpdate) {
-						MusicBeatState.switchState(new OutdatedState());
-					} else {
-						MusicBeatState.switchState(new MainMenuState());
-					}
-					closedState = true;
-				});
 				// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
 			}
 			#if TITLE_SCREEN_EASTER_EGG
@@ -657,7 +564,8 @@ class TitleState extends MusicBeatState
 					FlxG.camera.zoom += 0.25;
 				// credTextShit.text += '\nNight';
 				case 15:
-					addMoreText('Hotline 024', 15); // credTextShit.text += '\nFunkin';
+					deleteCoolText(); // credTextShit.text += '\nFunkin';
+					createCoolText(['Hotline 024'], 15);
 					FlxG.camera.zoom += 0.45;
 				case 16:
 					skipIntro();
@@ -669,11 +577,10 @@ class TitleState extends MusicBeatState
 	var increaseVolume:Bool = false;
 	function skipIntro():Void
 	{
-		if (curBeat % 0 == 1) FlxG.camera.zoom += 0.25;
-		if (curBeat % 0 == 2) FlxG.camera.zoom += 0.45;
 
 		if (!skippedIntro)
 		{
+
 			if (playJingle) //Ignore deez
 			{
 				var easteregg:String = FlxG.save.data.psychDevsEasterEgg;
@@ -696,12 +603,14 @@ class TitleState extends MusicBeatState
 						remove(ngSpr);
 						remove(credGroup);
 						FlxG.camera.flash(FlxColor.WHITE, 2);
+						if (curBeat % 0 == 1) FlxG.camera.zoom += 0.25;
+						if (curBeat % 0 == 2) FlxG.camera.zoom += 0.45;
 						skippedIntro = true;
 						playJingle = false;
+						return;
 						
 						FlxG.sound.playMusic(Paths.music('customer-service'), 0);
 						FlxG.sound.music.fadeIn(4, 0, 0.7);
-						return;
 				}
 
 				transitioning = true;
