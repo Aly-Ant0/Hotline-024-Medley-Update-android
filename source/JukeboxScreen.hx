@@ -21,16 +21,16 @@ import lime.utils.Assets;
 class JukeboxScreen extends MusicBeatState
 {
 	//public static var curSongPlaying:String = 'nightlight';
-	private var songList:Array<Array<String>> = [
-		['customer-service', 'CUSTOMER SERVICE','MUSIC'],
-		['nightlight', 'NIGHTLIGHT','MUSIC'],
-		['broadcasting', 'BROADCASTING', 'SONG'],
-		['mirror-magic', 'MIRROR MAGIC', 'SONG'],
-		['fandomania', 'FANDOMANIA', 'SONG'],
-		['killer-queen', 'KILLER QUEEN', 'SONG'],
-		['hyperfunk', 'HYPERFUNK', 'SONG'],
-		['sugarcrush', 'SUGARCRUSH', 'SONG'],
-		['smokebomb', 'SMOKEBOMB', 'SONG']
+	private var songList:Array<String> = [
+		'customer-service', 'CUSTOMER SERVICE','MUSIC',
+		'nightlight', 'NIGHTLIGHT','MUSIC',
+		'broadcasting', 'BROADCASTING', 'SONG',
+		'mirror-magic', 'MIRROR MAGIC', 'SONG',
+		'fandomania', 'FANDOMANIA', 'SONG',
+		'killer-queen', 'KILLER QUEEN', 'SONG',
+		'hyperfunk', 'HYPERFUNK', 'SONG',
+		'sugarcrush', 'SUGARCRUSH', 'SONG',
+		'smokebomb', 'SMOKEBOMB', 'SONG'
 	];
 	var textGrp:FlxTypedGroup<FreeplayText>;
 	var bg:FlxSprite;
@@ -91,7 +91,7 @@ class JukeboxScreen extends MusicBeatState
 					var lastAngle:Float = port.angle;
 					//var lastX:Float = port.x;
 					//item.screenCenter(X);
-					port.angle = FlxMath.lerp(lastAngle, 1 * port.targetY, lerpVal);
+					port.angle = FlxMath.lerp(lastAngle, -2, lerpVal);
 					//port.x = FlxMath.lerp(lastX, 310, lerpVal);
 				}
 				else
