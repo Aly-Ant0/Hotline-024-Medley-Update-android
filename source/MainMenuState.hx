@@ -106,8 +106,11 @@ class MainMenuState extends MusicBeatState
 		bars.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bars);
 
-		var disc:FlxSprite = new FlxSprite(FlxG.width - 28, FlxG.height - 705);
+		var disc:FlxSprite = new FlxSprite(FlxG.width - 30, FlxG.height - 705);
 		disc.frames = Paths.h024MenuAnim('vinyl', 'NONE');
+		disc.animation.addByPrefix('j', 'vinyl', 24, true);
+		disc.animation.play('j');
+		disc.setGraphicSize(Std.int(0.7*disc.width));
 		disc.antialiasing = ClientPrefs.globalAntialiasing;
 		add(disc);
 
