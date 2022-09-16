@@ -231,14 +231,12 @@ class FreeplayState extends MusicBeatState
 						port.skew.x =  0 * 1 * 6 * elapsed;
 						port.forceSkew = port.skew.x;
 						port.x = FlxMath.lerp(port.x, 310, lerpVal);
-						port.forceX = port.x;
 				}
 				else
 				{
 						port.skew.x = 5 * -1 * 6 * elapsed;
 						port.forceSkew = port.skew.x;
-						port.x = FlxMath.lerp(port.x, 100 + (50 * 1.2 * i * -1), lerpVal);
-						port.forceX = port.x;
+						port.x = FlxMath.lerp(port.x, 100 + (50 * 1.2 * i), lerpVal);
 						port.angle = FlxMath.lerp(port.angle, 6 * port.targetY, lerpVal);
 				}
 				// aly ant portuguesse from brazil moment e meu pau na sua mao
