@@ -64,7 +64,7 @@ class TitleState extends MusicBeatState
 	var credGroup:FlxGroup;
 	var credTextShit:Alphabet;
 	// potions n' spices moment
-	var txt1:FlxText;
+	var txt:FlxText;
 	var txt2:FlxText;
 	// recreator moment
 	var recreatorsArray:Array<String> = [
