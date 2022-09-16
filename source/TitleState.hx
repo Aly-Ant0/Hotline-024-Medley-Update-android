@@ -62,6 +62,7 @@ class TitleState extends MusicBeatState
 	var blackScreen:FlxSprite;
 	var teamLogo:FlxSprite;
 	var credGroup:FlxGroup;
+	var skippedIntro:Bool = false;
 	var credTextShit:Alphabet;
 	// potions n' spices moment
 	var txt:FlxText;
@@ -169,34 +170,6 @@ class TitleState extends MusicBeatState
 		FlxG.save.bind('funkin', 'ninjamuffin99');
 
 		ClientPrefs.loadPrefs();
-		teamLogo = new FlxSprite().loadGraphic(Paths.h024Menu('logo', 'NONE'));
-		teamLogo.antialiasing = ClientPrefs.globalAntialiasing;
-		teamLogo.screenCenter();
-		teamLogo.scale.set(0.3, 0.3);
-		teamLogo.alpha = 0.00001;
-		add(teamLogo);
-
-		recreatorsGroupS = new FlxTypedGroup<FlxSprite>();
-		add(recreatorsGroupS);
-
-		for (i in 0...recreatorsArray.length)
-		{
-			var item:FlxSprite = new FlxSprite((100*i), 0).loadGraphic(Paths.h024Menu(recreatorsArray[i], 'NONE'));
-			item.antialiasing = ClientPrefs.globalAntialiasing;
-			item.screenCenter(Y);
-			item.alpha = 0.0001;
-			add(item);
-		}
-
-		txt = new FlxText(0, FlxG.height * -1, FlxG.width, "Original Mod by", 32);
-		txt.setFormat(Paths.font("goodbyeDespair.ttf"), 33, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		txt.alpha = 0.0001;
-		add(txt);
-
-		txt2 = new FlxText(0, FlxG.height - 25, FlxG.width, "The Potions n' Spices Team", 32);
-		txt2.setFormat(Paths.font("goodbyeDespair.ttf"), 33, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		txt2.alpha = 0.0001;
-		add(txt2);
 
 		Highscore.load();
 
@@ -343,6 +316,35 @@ class TitleState extends MusicBeatState
 		ngSpr.screenCenter(X);
 		ngSpr.antialiasing = ClientPrefs.globalAntialiasing;
 
+		teamLogo = new FlxSprite().loadGraphic(Paths.h024Menu('logo', 'NONE'));
+		teamLogo.antialiasing = ClientPrefs.globalAntialiasing;
+		teamLogo.screenCenter();
+		teamLogo.scale.set(0.3, 0.3);
+		teamLogo.alpha = 0.00001;
+		add(teamLogo);
+
+		recreatorsGroupS = new FlxTypedGroup<FlxSprite>();
+		add(recreatorsGroupS);
+
+		for (i in 0...recreatorsArray.length)
+		{
+			var item:FlxSprite = new FlxSprite((100*i), 0).loadGraphic(Paths.h024Menu(recreatorsArray[i], 'NONE'));
+			item.antialiasing = ClientPrefs.globalAntialiasing;
+			item.screenCenter(Y);
+			item.alpha = 0.0001;
+			add(item);
+		}
+
+		txt = new FlxText(0, FlxG.height * -1, FlxG.width, "Original Mod by", 32);
+		txt.setFormat(Paths.font("goodbyeDespair.ttf"), 33, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		txt.alpha = 0.0001;
+		add(txt);
+
+		txt2 = new FlxText(0, FlxG.height - 25, FlxG.width, "The Potions n' Spices Team", 32);
+		txt2.setFormat(Paths.font("goodbyeDespair.ttf"), 33, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		txt2.alpha = 0.0001;
+		add(txt2);
+
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
 
 		teamLogo.alpha = 1;
@@ -379,7 +381,7 @@ class TitleState extends MusicBeatState
 		// FlxG.watch.addQuick('amp', FlxG.sound.music.amplitude);
 		FlxTween.tween(txt, {y: txt.y + 25}, 0.25);
 		FlxTween.tween(txt2, {y: FlxG.height - 25}, 0.25);
-		FlxTween.tween(teamLogo, {"scale.x": 0.5, "scale.y": 0.5}, 3.5, {
+		FlxTween.tween(teamLogo, {"scale.x": 1, "scale.y": 1}, 3.5, {
 			ease:FlxEase.expoOut,
 			onComplete: function(twn:FlxTween)
 			{
@@ -488,7 +490,7 @@ class TitleState extends MusicBeatState
 			}
 		}
 
-		if (initialized && pressedEnter && !skippedIntro)
+		if (initialized && pressedEnter && skippedIntro)
 		{
 			skipIntro();
 		}
@@ -557,7 +559,6 @@ class TitleState extends MusicBeatState
 		}
 	}
 
-	var skippedIntro:Bool = false;
 	var increaseVolume:Bool = false;
 	function skipIntro():Void
 	{
