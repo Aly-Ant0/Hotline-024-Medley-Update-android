@@ -138,7 +138,7 @@ class FreeplayState extends MusicBeatState
 		textChapter.antialiasing = ClientPrefs.globalAntialiasing;
 		add(textChapter);
 
-		scoreText = new FlxText(0, 650, 500, '', 32);
+		scoreText = new FlxText(0, 650, FlxG.width, '', 32);
 		scoreText.setFormat(Paths.font('LEMONMILK-Bold.otf'), 32, FlxColor.WHITE, RIGHT);
 		scoreText.alignment = CENTER;
 		if(FlxG.random.bool(0.1)){
@@ -228,16 +228,16 @@ class FreeplayState extends MusicBeatState
 				{
 						var lastAngle:Float = port.angle;
 						port.angle = FlxMath.lerp(lastAngle, -2, lerpVal);
-						port.skew.x = FlxMath.lerp(port.skew.x, 0 * 1, lerpVal);
+						port.skew.x =  0 * 1 * 6 * elapsed;
 						port.forceSkew = port.skew.x;
 						port.x = FlxMath.lerp(port.x, 310, lerpVal);
 						port.forceX = port.x;
 				}
 				else
 				{
-						port.skew.x = FlxMath.lerp(port.skew.x, 5 * -1, lerpVal);
+						port.skew.x = 5 * -1 * 6 * elapsed;
 						port.forceSkew = port.skew.x;
-						port.x = FlxMath.lerp(port.x, 100 + (50 * 2 * i), lerpVal);
+						port.x = FlxMath.lerp(port.x, 100 + (50 * 1.2 * i * -1), lerpVal);
 						port.forceX = port.x;
 						port.angle = FlxMath.lerp(port.angle, 6 * port.targetY, lerpVal);
 				}
