@@ -32,17 +32,12 @@ class FlashingState extends MusicBeatState
 
 		warnText = new FlxText(0, 0, FlxG.width,
 			"hey you! \n
-			before for playing this port, \n
-			this recreation is made by \n
-			Aly-Ant, \n
-			MAYKOLLYOUTUBE, \n
-			Peppy \n
-			and MateusX02, \n //bruh 
+			before for playing this recreation, \n
 			the original creators of hotline 024 credits are in the credits menu, \n
 			press A to continue. \n
 			also you can disable the shaders in graphic options \n
-			and enable the optimization options if you have a low end phone. \n
-			thank you.", 32);
+			and enable the optimization options if you have a low end phone.",
+		32);
 		warnText.setFormat(Paths.font("goodbyeDespair.ttf"), 32, FlxColor.WHITE, CENTER);
 		warnText.screenCenter(Y);
 		add(warnText);
