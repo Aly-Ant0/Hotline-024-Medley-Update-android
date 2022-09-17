@@ -13,7 +13,7 @@ import openfl.utils.AssetType;
 import openfl.utils.Assets as OpenFlAssets;
 import lime.utils.Assets;
 import flixel.FlxSprite;
-#if MODS_ALLOWED
+#if sys
 import sys.io.File;
 import sys.FileSystem;
 #end
@@ -473,7 +473,16 @@ class Paths
 		gottenPath = gottenPath.substring(gottenPath.indexOf(':') + 1, gottenPath.length);
 		// trace(gottenPath);
 		if(!currentTrackedSounds.exists(gottenPath))
+			#if MODS_ALLOWED
 			currentTrackedSounds.set(gottenPath, Sound.fromFile(gottenPath));
+			#else
+			{
+				var folder:String = '';
+				if(path == 'songs') folder = 'songs:';
+	
+				currentTrackedSounds.set(gottenPath, OpenFlAssets.getSound(folder + getPath('$path/$key.$SOUND_EXT', SOUND, library)));
+			}
+			#end
 		
 		localTrackedAssets.push(gottenPath);
 		return currentTrackedSounds.get(gottenPath);
@@ -493,7 +502,7 @@ class Paths
 	}
 
 	inline static public function modsVideo(key:String) {
-		return modFolders('videos/' + key +);
+		return modFolders('videos/' + key + '.' + VIDEO_EXT);
 	}
 
 	inline static public function modsSounds(path:String, key:String) {
