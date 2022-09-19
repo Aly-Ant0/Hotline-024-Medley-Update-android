@@ -10,15 +10,10 @@ import flixel.util.FlxColor;
 class FreeplayText extends FlxSkewedSprite
 {
 	public var targetY:Float = 0;
-	public var forceX:Float = Math.NEGATIVE_INFINITY;
-	public var forceSkew:Float = Math.NEGATIVE_INFINITY;
-	public var notSlct:Bool = false;
-	public var select:Bool = false;
-	public var flashingInt:Int = 0;
-	var maxSkew:Float = -2; // selected item
-	var minSkew:Float = -5; // not selected item
-	var skewDirection:Int = 1; // lmao
-	var skewSpeed:Float = 0.2;
+	public var maxSkew:Float = 15; // selected item
+	public var minSkew:Float = -15; // not selected item
+	public var skewDirection:Int = 1; // lmao
+	public var skewSpeed:Float = 2.3;
 
 	public function new(x:Float, y:Float, portName:String = '')
 	{
@@ -35,15 +30,6 @@ class FreeplayText extends FlxSkewedSprite
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
-
-		if(forceX != Math.NEGATIVE_INFINITY) {
-				x = forceX;
-		}
-
-		if(forceSkew != Math.NEGATIVE_INFINITY) {
-				skew.x = forceSkew;
-		}
-
 		y = FlxMath.lerp(y, (targetY * 150) - -10, CoolUtil.boundTo(elapsed * 6, 0, 1));
 		//x = x * (targetY - 0.5);
 	}
