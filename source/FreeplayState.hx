@@ -219,11 +219,6 @@ class FreeplayState extends MusicBeatState
 			{
 				//var direction:Float = -10; // not used shit
 				var lerpVal:Float = CoolUtil.boundTo(elapsed * 6, 0, 1);
-				var angleSpeed:Float = 0.2;
-				var maxSkew:Float = -2; // selected item
-				var minSkew:Float = -5; // not selected item
-				var skewDirection:Int = 1; // lmao
-				var skewSpeed:Float = 0.2;
 				if(port.targetY == 0)
 				{
 						var lastAngle:Float = port.angle;
