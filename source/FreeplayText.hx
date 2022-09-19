@@ -19,9 +19,6 @@ class FreeplayText extends FlxSkewedSprite
 	{
 		super(x, y);
 
-		forceX = Math.NEGATIVE_INFINITY;
-		forceSkew = Math.NEGATIVE_INFINITY;
-
 		loadGraphic(Paths.image('freeplaySongText/' + portName, 'shared'));
 		//trace('Test added: ' + WeekData.getWeekNumber(weekNum) + ' (' + weekNum + ')');
 		antialiasing = ClientPrefs.globalAntialiasing;
