@@ -224,13 +224,11 @@ class FreeplayState extends MusicBeatState
 						var lastAngle:Float = port.angle;
 						port.angle = FlxMath.lerp(lastAngle, -2, lerpVal);
 						port.skew.x =  0 * 1 * 6 * elapsed;
-						port.forceSkew = port.skew.x;
 						port.x = FlxMath.lerp(port.x, 310, lerpVal);
 				}
 				else
 				{
 						port.skew.x = 5 * -1 * 6 * elapsed;
-						port.forceSkew = port.skew.x;
 						port.x = FlxMath.lerp(port.x, 100 + (50 * 1.2 * i), lerpVal);
 						port.angle = FlxMath.lerp(port.angle, 6 * port.targetY, lerpVal);
 				}
