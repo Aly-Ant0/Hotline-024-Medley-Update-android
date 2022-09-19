@@ -67,12 +67,6 @@ class TitleState extends MusicBeatState
 	// potions n' spices moment
 	var txt:FlxText;
 	var txt2:FlxText;
-	// recreator moment
-	var recreatorsArray:Array<String> = [
-		'alyant', 'maykoll', 'mateusx02', 'peppy', 'ben'
-	];
-	var recreatorsGroupS:FlxTypedGroup<FlxSprite>;
-	var s2txt1:FlxText;
 
 	var textGroup:FlxGroup;
 	var ngSpr:FlxSprite;
@@ -82,16 +76,6 @@ class TitleState extends MusicBeatState
 	public var defaultCamZoom:Float = 1.05;
 
 	var curWacky:Array<String> = [];
-
-	var wackyImage:FlxSprite;
-
-	#if TITLE_SCREEN_EASTER_EGG
-	var easterEggKeys:Array<String> = [
-		'SHADOW', 'RIVER', 'SHUBS', 'BBPANZU'
-	];
-	var allowedKeys:String = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	var easterEggKeysBuffer:String = '';
-	#end
 
 	var mustUpdate:Bool = false;
 	
@@ -320,7 +304,7 @@ class TitleState extends MusicBeatState
 		teamLogo.antialiasing = ClientPrefs.globalAntialiasing;
 		teamLogo.screenCenter();
 		teamLogo.scale.set(0.3, 0.3);
-		teamLogo.alpha = 0.00001;
+		//teamLogo.alpha = 0.00001;
 		add(teamLogo);
 
 		recreatorsGroupS = new FlxTypedGroup<FlxSprite>();
@@ -335,14 +319,14 @@ class TitleState extends MusicBeatState
 			add(item);
 		}
 
-		txt = new FlxText(0, FlxG.height * -1, FlxG.width, "Original Mod by", 32);
+		txt = new FlxText(0, -FlxG.height + 25, FlxG.width, "Original Mod by", 32);
 		txt.setFormat(Paths.font("goodbyeDespair.ttf"), 33, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		txt.alpha = 0.0001;
+		//txt.alpha = 0.0001;
 		add(txt);
 
 		txt2 = new FlxText(0, FlxG.height - 25, FlxG.width, "The Potions n' Spices Team", 32);
 		txt2.setFormat(Paths.font("goodbyeDespair.ttf"), 33, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		txt2.alpha = 0.0001;
+		//txt2.alpha = 0.0001;
 		add(txt2);
 
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
@@ -378,61 +362,6 @@ class TitleState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		// FlxG.watch.addQuick('amp', FlxG.sound.music.amplitude);
-		FlxTween.tween(txt, {y: txt.y + 25}, 0.25);
-		FlxTween.tween(txt2, {y: FlxG.height - 25}, 0.25);
-		FlxTween.tween(teamLogo, {"scale.x": 1, "scale.y": 1}, 3.5, {
-			ease:FlxEase.expoOut,
-			onComplete: function(twn:FlxTween)
-			{
-				FlxTween.tween(teamLogo, {alpha: 0.0001}, 0.1, {
-					onComplete:function(tw:FlxTween)
-					{
-						teamLogo.destroy();
-					}
-				});
-				new FlxTimer().start(0.5, function(tmr:FlxTimer)
-				{
-					FlxTween.tween(txt, {alpha: 0.0001}, 0.1, {
-						onComplete:function(tw:FlxTween)
-						{
-							txt.destroy();
-						}
-					});
-					FlxTween.tween(txt2, {alpha: 0.0001}, 0.1, {
-						onComplete:function(tw:FlxTween)
-						{
-							txt2.destroy();
-						}
-					});
-				});
-			}
-		});
-		new FlxTimer().start(5, function(j:FlxTimer){
-			createCoolText([curWacky[0]], 15);
-		});
-		new FlxTimer().start(1, function(i:FlxTimer){
-			addMoreText(curWacky[0], 15);
-		});
-		new FlxTimer().start(0.5, function(l:FlxTimer){
-			deleteCoolText();
-		});
-		new FlxTimer().start(0.5, function(xvrido:FlxTimer){
-			createCoolText(['Hotline 0'], 15);
-		});
-		new FlxTimer().start(0.5, function(xvrido:FlxTimer){
-			deleteCoolText();
-			FlxG.camera.zoom += 0.25;
-			createCoolText(['Hotline 02'], 15);
-		});
-		new FlxTimer().start(0.5, function(xvrido:FlxTimer){
-			deleteCoolText();
-			FlxG.camera.zoom += 0.45;
-			createCoolText(['Hotline 024'], 15);
-		});
-		new FlxTimer().start(0.5, function(xvrido:FlxTimer){
-			skipIntro();
-		});
 		if (camZooming)
 		{
 			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, CoolUtil.boundTo(1 - (elapsed * 3.125 * camZoomingDecay), 0, 1));
@@ -538,13 +467,13 @@ class TitleState extends MusicBeatState
 
 	private var sickBeats:Int = 0; //Basically curBeat but won't be skipped if you hold the tab or resize the screen
 	public static var closedState:Bool = false;
-	override function beatHit()
+	override function stepHit()
 	{
-		super.beatHit();
+		super.stepHit();
 
 		if (initialized && skippedIntro){
-			if (curBeat % 0 == 1) FlxG.camera.zoom += 0.25;
-			if (curBeat % 0 == 2) FlxG.camera.zoom += 0.45;
+			if (curStep % 0 == 4) FlxG.camera.zoom += 0.25;
+			if (curStep % 0 == 8) FlxG.camera.zoom += 0.45;
 		}
 
 		if(logoBl != null) 
@@ -556,6 +485,52 @@ class TitleState extends MusicBeatState
 				gfDance.animation.play('danceRight');
 			else
 				gfDance.animation.play('danceLeft');
+		}
+
+		switch (curStep) // shit
+		{
+			case 1:
+				FlxTween.tween(txt, {y: -FlxG.height + 25}, 0.25);
+				FlxTween.tween(txt2, {y: FlxG.height - 25}, 0.25);
+				FlxTween.tween(teamLogo, {"scale.x": 1, "scale.y": 1}, 3.5, {ease:FlxEase.expoOut});
+			case 30:
+				FlxTween.tween(teamLogo, {alpha: 0.0001}, 0.1, {
+					onComplete:function(tw:FlxTween)
+					{
+						teamLogo.destroy();
+					}
+				});
+			case 35:
+				FlxTween.tween(txt, {alpha: 0.0001}, 0.1, {
+					onComplete:function(tw:FlxTween)
+					{
+						txt.destroy();
+					}
+				});
+				FlxTween.tween(txt2, {alpha: 0.0001}, 0.1, {
+					onComplete:function(tw:FlxTween)
+					{
+						txt2.destroy();
+					}
+				});
+			case 39:
+				createCoolText([curWacky[0]], 0);
+			case 44:
+				addMoreText(curWacky[1], 0);
+			case 48:
+				deleteCoolText();
+			case 52:
+				createCoolText(['Hotline 0'], 0);
+			case 56:
+				deleteCoolText();
+				FlxG.camera.zoom += 0.25;
+				createCoolText(['Hotline 02'], 0);
+			case 60:
+				deleteCoolText();
+				FlxG.camera.zoom += 0.45;
+				createCoolText(['Hotline 024'], 0);
+			case 64:
+				skipIntro();
 		}
 	}
 
