@@ -1804,7 +1804,7 @@ class PlayState extends MusicBeatState
 
 				// sonio ponto eze cutscene
 				//var library:String = 'skatepark/cutscene/'; // lazy
-				bgExe = new FlxBackdrop(Paths.image('skatepark/cutscene/background', 'h24'), 0.3, 0.3, true, false);
+				bgExe = new FlxBackdrop('assets/h24/images/skatepark/cutscene/background', 0.3, 0.3, true, false);
 				bgExe.antialiasing = false;
 				bgExe.scrollFactor.set();
 				bgExe.y = -85;
@@ -1815,7 +1815,7 @@ class PlayState extends MusicBeatState
 				bgExe.cameras = [cutCam];
 				add(bgExe);
 		
-				groundExe = new FlxBackdrop(Paths.image('skatepark/cutscene/ground', 'h24'), 0.3, 0.3, true, false);
+				groundExe = new FlxBackdrop('assets/h24/images/skatepark/cutscene/ground', 0.3, 0.3, true, false);
 				groundExe.antialiasing = false;
 				groundExe.scrollFactor.set();
 				groundExe.y = 470;
@@ -2231,7 +2231,7 @@ class PlayState extends MusicBeatState
 			combotxt1.alpha = 0;
 			add(combotxt1);
 
-			combotxtscoreplus = new FlxText(0, combotxt1.y + 25, FlxG.widt, "", 23);
+			combotxtscoreplus = new FlxText(0, combotxt1.y + 25, FlxG.width, "", 23);
 			combotxtscoreplus.color = FlxColor.WHITE;
 			combotxtscoreplus.setFormat(Paths.font("goodbyeDespair.ttf"), 23, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxtscoreplus.scrollFactor.set();
@@ -2241,7 +2241,7 @@ class PlayState extends MusicBeatState
 			add(combotxtscoreplus);
 
 			// combo score lerp
-			combotxt2 = new FlxText(0, combotxtscoreplus.y + 20, FlxG.widt, "", 34);
+			combotxt2 = new FlxText(0, combotxtscoreplus.y + 20, FlxG.width, "", 34);
 			combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 34, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt2.scrollFactor.set();
 			combotxt2.borderSize = 1.25;
