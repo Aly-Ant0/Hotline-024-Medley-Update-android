@@ -54,6 +54,12 @@ import editors.CharacterEditorState;
 import flixel.group.FlxSpriteGroup;
 import flixel.input.keyboard.FlxKey;
 import Note.EventNote;
+
+//for reflect
+import nape.geom.Vec2;
+import nape.geom.Vec2List;
+import nape.phys.Body;
+
 import openfl.events.KeyboardEvent;
 import flixel.effects.particles.FlxEmitter;
 import flixel.effects.particles.FlxParticle;
@@ -1127,7 +1133,7 @@ class PlayState extends MusicBeatState
 						asteroidEmitter1.lifespan.set(1.9, 8.9);
 						asteroidEmitter1.loadParticles(Paths.image('xigmund/ast1'), 500, 16, true);
 						asteroidEmitter1.start(false, FlxG.random.float(12, 18), FlxG.random.int(1000, 10000));
-		
+
 					case 'sus':
 						var bg1:BGSprite = new BGSprite('sus/SUS1', -200, -100, 1, 1);
 						bg1.setGraphicSize(Std.int(bg1.width * 1.5));
@@ -1143,7 +1149,7 @@ class PlayState extends MusicBeatState
 						//osCaboSUS.updateHitbox();
 		
 					case 'ddto':
-						var bg1:BGSprite = new BGSprite('ddto/DDLC-1', -150, -135, 1, 1);
+						var bg1:BGSprite = new BGSprite('ddto/DDLC-1', -185, -85, 1, 1);
 						bg1.setGraphicSize(Std.int(bg1.width * 1.1));
 						bg1.updateHitbox();
 						add(bg1);
@@ -1727,7 +1733,7 @@ class PlayState extends MusicBeatState
 			numbahEiti.scrollFactor.set(0, 0);
 			numbahEiti.cameras = [cutCam];
 		//	numbahEiti.offset.y = 20000000;
-			numbahEiti.velocity.x = -60;
+			numbahEiti.velocity.x = -150;
 			add(numbahEiti);
 
 			numbahEiti2 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false, 0, 1900);
@@ -1737,7 +1743,7 @@ class PlayState extends MusicBeatState
 		//	numbahEiti2.scale.set(1, 1);
 			numbahEiti2.scrollFactor.set(0, 0);
 		//	numbahEiti2.offset.y += 20000000;
-			numbahEiti2.velocity.set(60, 0);
+			numbahEiti2.velocity.set(150, 0);
 			numbahEiti2.cameras = [cutCam];
 			add(numbahEiti2);
 
@@ -1749,7 +1755,7 @@ class PlayState extends MusicBeatState
 			numbahEiti3.scrollFactor.set(0, 0);
 
 		//	numbahEiti3.offset.y += 20000000;
-			numbahEiti3.velocity.set(-60, 0);
+			numbahEiti3.velocity.set(-150, 0);
 			numbahEiti3.cameras = [cutCam];
 			add(numbahEiti3);
 
@@ -3825,6 +3831,57 @@ class PlayState extends MusicBeatState
 	var canPause:Bool = true;
 	var limoSpeed:Float = 0;
 	var tweenMoment:Bool = false; // the worst thing that i made lmao.
+
+	/*function doesEdgeCastShadow(start:Vec2, end:Vec2, light:Vec2):Bool
+	{
+		var startToEnd:Vec2 = end.copy();
+		startToEnd.subeq(start);
+
+		var normal:Vec2 = new Vec2(startToEnd.y, -1 * startToEnd.x);
+
+		var lightToStart:Vec2 = start.copy();
+		lightToStart.subeq(light);
+
+		return normal.dot(lightToStart) > 0;
+	}
+
+	public function processShadows():Void
+	{
+		bfreflect.animation.frameIndex = boyfriend.animation.frameIndex;
+	}
+
+	function processShapeVertex(startVertex:Vec2, endVertex:Vec2):Void
+	{
+		var tempLightOrigin:Vec2 = Vec2.get(boyfriend.x + FlxG.random.float(-.3, 3), boyfriend.y + FlxG.random.float(-.3, .3));
+
+		if (doesEdgeCastShadow(startVertex, endVertex, tempLightOrigin))
+		{
+			var projectedPoint:Vec2 = projectPoint(startVertex, tempLightOrigin);
+			var prevProjectedPt:Vec2 = projectPoint(endVertex, tempLightOrigin);
+			var vts:Array<FlxPoint> = [
+				FlxPoint.weak(startVertex.x, startVertex.y),
+				FlxPoint.weak(projectedPoint.x, projectedPoint.y),
+				FlxPoint.weak(prevProjectedPt.x, prevProjectedPt.y),
+				FlxPoint.weak(endVertex.x, endVertex.y)
+			];
+
+			shadowCanvas.drawPolygon(vts, SHADOW_COLOR, lineStyle);
+		}
+	}
+
+	function projectPoint(point:Vec2, light:Vec2):Vec2
+	{
+		var lightToPoint:Vec2 = point.copy();
+		lightToPoint.subeq(light);
+
+		var projectedPoint:Vec2 = point.copy();
+		return projectedPoint.addeq(lightToPoint.muleq(.45));
+	}
+
+	function reflectVec(shit1:Vec2, shit2:Vec2) wip
+	{
+		
+	}*/
 
 	override public function update(elapsed:Float)
 	{
