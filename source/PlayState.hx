@@ -1844,7 +1844,7 @@ class PlayState extends MusicBeatState
 				nicuEze.cameras = [cutCam];
 				add(nicuEze);
 
-				gostosa = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves', 'h24'), 0.3, 0.3, true, false);
+				gostosa = new FlxBackdrop('assets/h24/images/skatepark/cutscene/leaves', 0.3, 0.3, true, false);
 				gostosa.antialiasing = false;
 				gostosa.y = 375;
 				gostosa.scrollFactor.set();
