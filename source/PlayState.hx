@@ -2222,7 +2222,7 @@ class PlayState extends MusicBeatState
 			comboGlow.cameras = [camHUD];
 			add(comboGlow);
 
-			combotxt1 = new FlxText(comboGlow.x + 25, COMBO_Y + 15, 0, "", 33);
+			combotxt1 = new FlxText(0, COMBO_Y + 15, FlxG.width, "", 33);
 			combotxt1.color = FlxColor.WHITE;
 			combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 33, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt1.scrollFactor.set();
@@ -2231,7 +2231,7 @@ class PlayState extends MusicBeatState
 			combotxt1.alpha = 0;
 			add(combotxt1);
 
-			combotxtscoreplus = new FlxText(combotxt1.x + 50, combotxt1.y + 25, 0, "", 23);
+			combotxtscoreplus = new FlxText(0, combotxt1.y + 25, FlxG.widt, "", 23);
 			combotxtscoreplus.color = FlxColor.WHITE;
 			combotxtscoreplus.setFormat(Paths.font("goodbyeDespair.ttf"), 23, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxtscoreplus.scrollFactor.set();
@@ -2241,7 +2241,7 @@ class PlayState extends MusicBeatState
 			add(combotxtscoreplus);
 
 			// combo score lerp
-			combotxt2 = new FlxText(combotxtscoreplus.x, combotxtscoreplus.y + 20, 0, "", 34);
+			combotxt2 = new FlxText(0, combotxtscoreplus.y + 20, FlxG.widt, "", 34);
 			combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 34, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxt2.scrollFactor.set();
 			combotxt2.borderSize = 1.25;
