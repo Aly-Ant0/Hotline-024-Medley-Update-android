@@ -307,18 +307,6 @@ class TitleState extends MusicBeatState
 		//teamLogo.alpha = 0.00001;
 		add(teamLogo);
 
-		recreatorsGroupS = new FlxTypedGroup<FlxSprite>();
-		add(recreatorsGroupS);
-
-		for (i in 0...recreatorsArray.length)
-		{
-			var item:FlxSprite = new FlxSprite((100*i), 0).loadGraphic(Paths.h024Menu(recreatorsArray[i], 'NONE'));
-			item.antialiasing = ClientPrefs.globalAntialiasing;
-			item.screenCenter(Y);
-			item.alpha = 0.0001;
-			add(item);
-		}
-
 		txt = new FlxText(0, -FlxG.height + 25, FlxG.width, "Original Mod by", 32);
 		txt.setFormat(Paths.font("goodbyeDespair.ttf"), 33, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		//txt.alpha = 0.0001;
