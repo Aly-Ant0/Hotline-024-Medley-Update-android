@@ -78,7 +78,7 @@ class MainMenuState extends MusicBeatState
 
 		for (i in 0...optionShit.length) // musk moment
 		{
-			var menuItem:FlxSprite = new FlxSprite(150 + (400 * i), 60);
+			var menuItem:FlxSprite = new FlxSprite(100 + (370 * i), 60);
 			menuItem.frames = Paths.getSparrowAtlas('hotline/menu/' + optionShit[i]);
 			menuItem.animation.addByPrefix('idle', "normal", 24);
 			menuItem.animation.addByPrefix('selected', "glow", 24);
@@ -106,11 +106,12 @@ class MainMenuState extends MusicBeatState
 		bars.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bars);
 
-		var disc:FlxSprite = new FlxSprite(FlxG.width - 30, FlxG.height - 705);
+		var disc:FlxSprite = new FlxSprite(FlxG.width - 30, -FlxG.height - 15);
 		disc.frames = Paths.h024MenuAnim('vinyl', 'NONE');
 		disc.animation.addByPrefix('j', 'vinyl', 24, true);
 		disc.animation.play('j');
 		disc.setGraphicSize(Std.int(0.7*disc.width));
+		disc.updateHitbox();
 		disc.antialiasing = ClientPrefs.globalAntialiasing;
 		add(disc);
 
@@ -143,7 +144,7 @@ class MainMenuState extends MusicBeatState
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
 
-		mainMenuTxt = new FlxText(disc.x - 125, disc.y + 5, FlxG.width, "", 26);
+		mainMenuTxt = new FlxText(disc.x - 125, disc.y + 5, FlxG.width, "", 16);
 		mainMenuTxt.scrollFactor.set();
 		mainMenuTxt.setFormat(Paths.font('LEMONMILK-Bold.otf'), 26, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(mainMenuTxt);
@@ -308,50 +309,55 @@ class MainMenuState extends MusicBeatState
 		switch (curSelected) // code from musk but with some changes (i requested the main menu code for him just for the buttons lmao)
 		{
 			case 0:
-				FlxTween.tween(menuItems.members[0], {x: 150 + (400 * 1)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[1], {x: 150 + (400 * 2)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[2], {x: 150 + (400 * 0)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[3], {x: 150 + (400 * 0)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 1)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 2)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 0)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 0)}, 0.41, {ease: FlxEase.expoOut});
 
 				menuItems.members[0].visible = true;
 				menuItems.members[1].visible = true;
 				menuItems.members[2].visible = false;
 				menuItems.members[3].visible = true;
+				insert(members.indexOf(menuItems) + 1, menuItems.members[0]);
 
 			case 1:
-				FlxTween.tween(menuItems.members[0], {x: 150 + (400 * 0)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[1], {x: 150 + (400 * 1)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[2], {x: 150 + (400 * 2)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[3], {x: 150 + (400 * 1)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 0)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 1)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 2)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 1)}, 0.41, {ease: FlxEase.expoOut});
 
 				menuItems.members[0].visible = true;
 				menuItems.members[1].visible = true;
 				menuItems.members[2].visible = true;
 				menuItems.members[3].visible = false;
 
+				insert(members.indexOf(menuItems) + 1, menuItems.members[1]);
 			case 2:
-				FlxTween.tween(menuItems.members[0], {x: 150 + (400 * 1)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[1], {x: 150 + (400 * 0)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[2], {x: 150 + (400 * 1)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[3], {x: 150 + (400 * 2)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 1)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 0)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 1)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 2)}, 0.41, {ease: FlxEase.expoOut});
 
 				menuItems.members[0].visible = false;
 				menuItems.members[1].visible = true;
 				menuItems.members[2].visible = true;
 				menuItems.members[3].visible = true;
 
+				insert(members.indexOf(menuItems) + 1, menuItems.members[2]);
 			case 3:
 				menuItems.members[2].x = 150 + (400 * 1);
 
-				FlxTween.tween(menuItems.members[0], {x: 150 + (400 * 2)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[1], {x: 150 + (400 * 1)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[2], {x: 150 + (400 * 0)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[3], {x: 150 + (400 * 1)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 2)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 1)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 0)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 1)}, 0.41, {ease: FlxEase.expoOut});
 
 				menuItems.members[0].visible = true;
 				menuItems.members[1].visible = false;
 				menuItems.members[2].visible = true;
 				menuItems.members[3].visible = true;
+				
+				insert(members.indexOf(menuItems) + 1, menuItems.members[3]); // pra ir pra frente
 		}
 	}
 }
