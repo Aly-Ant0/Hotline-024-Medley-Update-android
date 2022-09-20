@@ -67,7 +67,7 @@ import flixel.effects.particles.FlxEmitter;
 import flixel.effects.particles.FlxParticle;
 import flixel.effects.FlxFlicker;
 import flixel.util.FlxSave;
-import animateatlas.AtlasFrameMaker;
+import animateatlas.AtlasFrameMaker; // this kill my phone
 import Achievements;
 import StageData;
 import FunkinLua;
@@ -82,7 +82,7 @@ class PlayState extends MusicBeatState
 {
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
-	public static var COMBO_X = 544;
+	public static var COMBO_X = 544; // unused
 	public static var COMBO_Y = 40;
 
 	public static var ratingStuff:Array<Dynamic> = [
