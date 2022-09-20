@@ -56,9 +56,11 @@ import flixel.input.keyboard.FlxKey;
 import Note.EventNote;
 
 //for reflect
+/*
 import nape.geom.Vec2;
 import nape.geom.Vec2List;
 import nape.phys.Body;
+*/
 
 import openfl.events.KeyboardEvent;
 import flixel.effects.particles.FlxEmitter;
@@ -3847,12 +3849,12 @@ class PlayState extends MusicBeatState
 
 	public function processShadows():Void
 	{
-		bfreflect.animation.frameIndex = boyfriend.animation.frameIndex;
+		dadreflect.animation.frameIndex = dad.animation.frameIndex;
 	}
 
 	function processShapeVertex(startVertex:Vec2, endVertex:Vec2):Void
 	{
-		var tempLightOrigin:Vec2 = Vec2.get(boyfriend.x + FlxG.random.float(-.3, 3), boyfriend.y + FlxG.random.float(-.3, .3));
+		var tempLightOrigin:Vec2 = Vec2.get(dad.x + FlxG.random.float(-.3, 3), dad.y + FlxG.random.float(-.3, .3));
 
 		if (doesEdgeCastShadow(startVertex, endVertex, tempLightOrigin))
 		{
@@ -3876,12 +3878,8 @@ class PlayState extends MusicBeatState
 
 		var projectedPoint:Vec2 = point.copy();
 		return projectedPoint.addeq(lightToPoint.muleq(.45));
-	}
-
-	function reflectVec(shit1:Vec2, shit2:Vec2) wip
-	{
-		
 	}*/
+	// wip
 
 	override public function update(elapsed:Float)
 	{
