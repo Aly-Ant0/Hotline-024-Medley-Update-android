@@ -5225,6 +5225,7 @@ class PlayState extends MusicBeatState
 	{
 		finishSong(false);
 	}
+
 	public function finishSong(?ignoreNoteOffset:Bool = false):Void
 	{
 		var finishCallback:Void->Void = endSong; //In case you want to change it in a specific song.
@@ -6325,6 +6326,14 @@ class PlayState extends MusicBeatState
 		}
 
 		// step hit
+		/*if (curSong == 'No More Innocence')
+		{
+			if (curStep == 570)
+			{
+				//FlxG.log.warn("WHY YOU DON'T GET IT $System.getStringByUsername");
+			}
+		}*/
+		// message test
 		if (curSong == 'Killer Queen')
 		{
 			// TERMINAR
