@@ -360,13 +360,13 @@ class TitleState extends MusicBeatState
 		#if mobile
 		for (touch in FlxG.touches.list)
 		{
-			if (touch.justPressed && !transitioning && skippedIntro)
+			if (touch.justPressed && transitioning && skippedIntro)
 			{
 				pressedEnter = true;
 			}
 		}
 		#end
-		if(pressedEnter && initialized && !transitioning && skippedIntro)
+		if(pressedEnter && initialized && transitioning && skippedIntro)
 		{
 			FlxG.sound.music.fadeIn(2, 0, 1, function(fl:FlxTween)
 			{
@@ -459,7 +459,7 @@ class TitleState extends MusicBeatState
 	{
 		super.stepHit();
 
-		if (initialized && skippedIntro){
+		if (initialized && transitioning && skippedIntro){
 			if (curStep % 0 == 4) FlxG.camera.zoom += 0.25;
 			if (curStep % 0 == 8) FlxG.camera.zoom += 0.45;
 		}
@@ -525,6 +525,7 @@ class TitleState extends MusicBeatState
 	var increaseVolume:Bool = false;
 	function skipIntro():Void
 	{
+		transitioning = true;
 		FlxG.log.add("SKIP INTRO HOLY SHIT!1!1!1!11!");
 		if (!skippedIntro)
 		{
@@ -599,6 +600,7 @@ class TitleState extends MusicBeatState
 				}
 				#end
 			}
+			transitioning = true;
 			skippedIntro = true;
 		}
 	}
