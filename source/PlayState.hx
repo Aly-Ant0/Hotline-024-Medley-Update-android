@@ -1007,7 +1007,7 @@ class PlayState extends MusicBeatState
 					case 'momogogo':
 						//var bg:FlxBackdrop;
 						momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), 0.2, 0.2, true, false); // fuck i forgor the scroll value
-						momogogoBG.scrollFactor.set();
+						momogogoBG.scrollFactor.set(0.8, 0.8);
 						momogogoBG.y = -270;
 						momogogoBG.scale.set(1.25, 1.25);
 						momogogoBG.updateHitbox();
@@ -2026,8 +2026,8 @@ class PlayState extends MusicBeatState
 				gfreflect.blend = ADD;
 				gfreflect.alpha = .8;
 				gfreflect.x = gf.x;
-				gfreflect.y = gf.y + gfreflect.height; // talvez poder a altura tb
 				gfreflect.scale.set(gf.scale.x, gf.scale.y);
+				gfreflect.y = gf.y + gfreflect.height; // talvez poder a altura tb
 				insert(members.indexOf(gfGroup), gfreflect);
 
 				dadreflect.frames = dad.frames;
@@ -2284,15 +2284,19 @@ class PlayState extends MusicBeatState
 			songnameBoxGrp = new FlxTypedSpriteGroup<FlxSprite>();
 			add(songnameBoxGrp);
 
-			songTxt = new FlxText(bar.x + 10, bar.y + 10, 0, "", 42); // it mentions the bar variable cuz its already declared look at the line 176
+			songTxt = new FlxText(bar.x + 10, bar.y + 10, 0, "", 42); // it mentions the bar variable cuz its already declared look at the line 189
 			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 42, FlxColor.WHITE, RIGHT);
 			songTxt.cameras = [camHUD];
 			songTxt.scrollFactor.set();
 
+			// converts to a image
+			/*var songTxtImg:FlxSprite = new FlxSprite(songTxt.x,songTxt.y).loadGraphic(songTxt.pixels);
+			add(songTxtImg);*/
+
 			bar.makeGraphic(1, 1, FlxColor.BLACK);
 			bar.alpha = 0.55;
-			bar.setGraphicSize(Std.int(songTxt.x+songTxt.width + 37), Std.int(songTxt.height + 20));
-			bar.updateHitbox(); // song shit fix size???
+			bar.setGraphicSize(Std.int(songTxt.fieldWidth + 37), Std.int(songTxt.height + 20));
+			bar.updateHitbox(); // song txt bar size fix size???
 			bar.cameras = [camHUD];
 			bar.scrollFactor.set();
 
@@ -3913,9 +3917,8 @@ class PlayState extends MusicBeatState
 				songScore = Math.floor(FlxMath.lerp(songScore, scoreTarget, CoolUtil.boundTo(1 - (elapsed * 32), 0, 1)));
 				if (Math.abs(songScore - scoreTarget) <= 10)
 					songScore = scoreTarget;
-					if (Math.abs(comboScore - toZero) <= 10)
-						comboScore = toZero;
-						comboScore = 0; // agora fica zero :trollface:
+				if (Math.abs(comboScore - toZero) <= 10)
+					combotxt2.text = "0";
 
 				// se tiver visível é claro né meu fi ou fia sla
 
@@ -3941,13 +3944,13 @@ class PlayState extends MusicBeatState
 				}});
 
 				if (sicks>=20){
-								combotxt1.text = 'PERFECT!';
+								combotxt1.text = 'PERFECT!!';
 				}
-				else if (sicks>=10||goods>=10)
+				if (sicks>=10||goods>=10)
 				{
 								combotxt1.text = 'NICE!';
 				}
-				if (goods>=5||sicks>=5)
+				else if (goods>=5||sicks>=5)
 				{
 								combotxt1.text = 'GREAT!';
 				}
