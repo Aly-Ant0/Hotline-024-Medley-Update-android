@@ -1140,12 +1140,12 @@ class PlayState extends MusicBeatState
 						asteroidEmitter1.start(false, FlxG.random.float(12, 18), FlxG.random.int(1000, 10000));
 
 					case 'sus':
-						var bg1:BGSprite = new BGSprite('sus/SUS1', -200, -100, 1, 1);
+						var bg1:BGSprite = new BGSprite('sus/SUS1', -220, -120, 1.2, 1.2);
 						bg1.setGraphicSize(Std.int(bg1.width * 1.5));
 						bg1.updateHitbox();
 						add(bg1);
 		
-						var bg2:BGSprite = new BGSprite('sus/SUS2', -50, -80, 1, 1);
+						var bg2:BGSprite = new BGSprite('sus/SUS2', -50, -80, 1 1);
 						bg2.setGraphicSize(Std.int(bg2.width * 1.1));
 						bg2.updateHitbox();
 						add(bg2);
@@ -1154,7 +1154,7 @@ class PlayState extends MusicBeatState
 						//osCaboSUS.updateHitbox();
 		
 					case 'ddto':
-						var bg1:BGSprite = new BGSprite('ddto/DDLC-1', -185, -85, 1, 1);
+						var bg1:BGSprite = new BGSprite('ddto/DDLC-1', -45, -45, 1.1, 1.1);
 						bg1.setGraphicSize(Std.int(bg1.width * 1.1));
 						bg1.updateHitbox();
 						add(bg1);
@@ -1220,7 +1220,7 @@ class PlayState extends MusicBeatState
 						floor2.updateHitbox();
 						add(floor2);
 					case 'smiling':
-						var bg:BGSprite = new BGSprite('smiling/bg', -690, -490, 1, 1);
+						var bg:BGSprite = new BGSprite('smiling/bg', 0, 0, 1, 1);
 						bg.setGraphicSize(Std.int(bg.width * 0.7));
 						bg.updateHitbox();
 						add(bg);
@@ -2284,7 +2284,7 @@ class PlayState extends MusicBeatState
 			songnameBoxGrp = new FlxTypedSpriteGroup<FlxSprite>();
 			add(songnameBoxGrp);
 
-			songTxt = new FlxText(bar.x + 10, bar.y + 10, 0, "", 42); // it mentions the bar variable cuz its already declared look at the line 189
+			songTxt = new FlxText(0, 0, 0, "", 42); // it mentions the bar variable cuz its already declared look at the line 189
 			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 42, FlxColor.WHITE, RIGHT);
 			songTxt.cameras = [camHUD];
 			songTxt.scrollFactor.set();
@@ -2294,8 +2294,9 @@ class PlayState extends MusicBeatState
 			add(songTxtImg);*/
 
 			bar.makeGraphic(1, 1, FlxColor.BLACK);
+			bar.x = songTxt.width + 25;
 			bar.alpha = 0.55;
-			bar.setGraphicSize(Std.int(songTxt.fieldWidth + 37), Std.int(songTxt.height + 20));
+			bar.setGraphicSize(Std.int(songTxt.x - 25), Std.int(songTxt.height + 20));
 			bar.updateHitbox(); // song txt bar size fix size???
 			bar.cameras = [camHUD];
 			bar.scrollFactor.set();
