@@ -1145,7 +1145,7 @@ class PlayState extends MusicBeatState
 						bg1.updateHitbox();
 						add(bg1);
 		
-						var bg2:BGSprite = new BGSprite('sus/SUS2', -50, -80, 1 1);
+						var bg2:BGSprite = new BGSprite('sus/SUS2', -50, -80, 1, 1);
 						bg2.setGraphicSize(Std.int(bg2.width * 1.1));
 						bg2.updateHitbox();
 						add(bg2);
