@@ -23,7 +23,7 @@ import Achievements;
 import editors.MasterEditorMenu;
 import flixel.input.touch.FlxTouch;
 import flixel.input.touch.FlxTouchManager;
-import flixel.input.keyboard.FlxKey;
+import flixel.util.FlxSort;
 
 using StringTools;
 
@@ -90,16 +90,6 @@ class MainMenuState extends MusicBeatState
 			menuItems.add(menuItem);
 		}
 
-		remove(menuItems.members[0]);
-		remove(menuItems.members[1]);
-		remove(menuItems.members[2]);
-		remove(menuItems.members[3]);
-
-		add(menuItems.members[3]);
-		add(menuItems.members[1]);
-		add(menuItems.members[0]);
-		add(menuItems.members[2]);
-
 		var bars:FlxSprite = new FlxSprite().loadGraphic(Paths.image('hotline/menu/bars'));
 		bars.updateHitbox();
 		bars.screenCenter();
@@ -107,7 +97,7 @@ class MainMenuState extends MusicBeatState
 		add(bars);
 
 		var disc:FlxSprite = new FlxSprite(FlxG.width - 30, -FlxG.height - 15);
-		disc.frames = Paths.h024MenuAnim('vinyl', 'NONE');
+		disc.frames = Paths.getSparrowAtlas('hotline/menu/vinyl', 'NONE');
 		disc.animation.addByPrefix('j', 'vinyl', 24, true);
 		disc.animation.play('j');
 		disc.setGraphicSize(Std.int(0.7*disc.width));
@@ -276,9 +266,25 @@ class MainMenuState extends MusicBeatState
 					creditsImage.color = 0xFFFFFFFF;
 				}
 			}
+
+			for (i in 0...optionShit.length)
+			{
+				menuItems.forEach(function(item:FlxSprite)
+				{
+					if (spr.ID==curSelected)
+					{
+						menuItem.sort(sortItem(menuItems.length + 1, item[curSelected], item[i])); // fica na frente dos outros
+					}
+				});
+			}
 		}
 
 		super.update(elapsed);
+	}
+
+	public function sortItem(order:Int, obj1:FlxSprite, obj2:FlxSprite)
+	{
+		return return FlxSort.byValues(order, obj1, obj2);
 	}
 
 	function changeItem(huh:Int = 0)
@@ -314,36 +320,18 @@ class MainMenuState extends MusicBeatState
 				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 0)}, 0.41, {ease: FlxEase.expoOut});
 				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 0)}, 0.41, {ease: FlxEase.expoOut});
 
-				menuItems.members[0].visible = true;
-				menuItems.members[1].visible = true;
-				menuItems.members[2].visible = false;
-				menuItems.members[3].visible = true;
-				insert(members.indexOf(menuItems) + 1, menuItems.members[0]);
-
 			case 1:
 				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 0)}, 0.41, {ease: FlxEase.expoOut});
 				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 1)}, 0.41, {ease: FlxEase.expoOut});
 				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 2)}, 0.41, {ease: FlxEase.expoOut});
 				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 1)}, 0.41, {ease: FlxEase.expoOut});
 
-				menuItems.members[0].visible = true;
-				menuItems.members[1].visible = true;
-				menuItems.members[2].visible = true;
-				menuItems.members[3].visible = false;
-
-				insert(members.indexOf(menuItems) + 1, menuItems.members[1]);
 			case 2:
 				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 1)}, 0.41, {ease: FlxEase.expoOut});
 				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 0)}, 0.41, {ease: FlxEase.expoOut});
 				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 1)}, 0.41, {ease: FlxEase.expoOut});
 				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 2)}, 0.41, {ease: FlxEase.expoOut});
 
-				menuItems.members[0].visible = false;
-				menuItems.members[1].visible = true;
-				menuItems.members[2].visible = true;
-				menuItems.members[3].visible = true;
-
-				insert(members.indexOf(menuItems) + 1, menuItems.members[2]);
 			case 3:
 				menuItems.members[2].x = 150 + (400 * 1);
 
@@ -351,13 +339,6 @@ class MainMenuState extends MusicBeatState
 				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 1)}, 0.41, {ease: FlxEase.expoOut});
 				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 0)}, 0.41, {ease: FlxEase.expoOut});
 				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 1)}, 0.41, {ease: FlxEase.expoOut});
-
-				menuItems.members[0].visible = true;
-				menuItems.members[1].visible = false;
-				menuItems.members[2].visible = true;
-				menuItems.members[3].visible = true;
-				
-				insert(members.indexOf(menuItems) + 1, menuItems.members[3]); // pra ir pra frente
 		}
 	}
 }
