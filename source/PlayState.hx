@@ -19,8 +19,11 @@ import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.display.FlxBackdrop;
 import flixel.addons.effects.FlxTrail;
 import flixel.addons.effects.FlxTrailArea;
-import flxanimate.*; //i stole this shit from wednesday infidelity source code lmao
+
+// STOLEN FROM WEDNESDAY'S INFIDELITY SOURCE CODE LMAO
+import flxanimate.*;
 import flxanimate.FlxAnimate;
+
 import flixel.addons.effects.chainable.FlxEffectSprite;
 import flixel.addons.effects.chainable.FlxWaveEffect;
 import flixel.addons.transition.FlxTransitionableState;
@@ -1812,22 +1815,21 @@ class PlayState extends MusicBeatState
 
 				// sonio ponto eze cutscene
 				//var library:String = 'skatepark/cutscene/'; // lazy
-				bgExe = new FlxBackdrop('assets/h24/images/skatepark/cutscene/background', 0.3, 0.3, true, false);
+				bgExe = new FlxBackdrop(Paths.image('skatepark/cutscene/background'), 0.3, 0.3, true, false);
 				bgExe.antialiasing = false;
 				bgExe.scrollFactor.set();
+				bgExe.x = -1135;
 				bgExe.y = -85;
 				bgExe.alpha = 0.00001;
-				bgExe.velocity.set(-155, 0);
 				bgExe.setGraphicSize(Std.int(bgExe.width * 8)); // to larger cuz its pixel and its low quality
 				bgExe.updateHitbox();
 				bgExe.cameras = [cutCam];
 				add(bgExe);
 		
-				groundExe = new FlxBackdrop('assets/h24/images/skatepark/cutscene/ground', 0.3, 0.3, true, false);
+				groundExe = new FlxBackdrop(Paths.image('skatepark/cutscene/ground'), 0.3, 0.3, true, false);
 				groundExe.antialiasing = false;
 				groundExe.scrollFactor.set();
 				groundExe.y = 470;
-				groundExe.velocity.set(-165, 0);
 				groundExe.setGraphicSize(Std.int(groundExe.width * 6.73));
 				groundExe.updateHitbox();
 				groundExe.alpha = 0.00001;
@@ -1838,9 +1840,9 @@ class PlayState extends MusicBeatState
 				eze.antialiasing = false;
 				eze.scrollFactor.set();
 				eze.setGraphicSize(Std.int(eze.width * 5.4));
+				eze.updateHitbox();
 				eze.cameras = [cutCam];
 				eze.alpha = 0.00001;
-				eze.updateHitbox();
 				add(eze);
 
 				nicuEze = new FlxSprite(565, 180).loadGraphic(Paths.image('skatepark/cutscene/nikku', 'h24')); // pqp me dexa em paz seu porra da o cu na esquina chupa rola
@@ -1852,11 +1854,10 @@ class PlayState extends MusicBeatState
 				nicuEze.cameras = [cutCam];
 				add(nicuEze);
 
-				gostosa = new FlxBackdrop('assets/h24/images/skatepark/cutscene/leaves', 0.3, 0.3, true, false);
+				gostosa = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves'), 0.3, 0.3, true, false);
 				gostosa.antialiasing = false;
-				gostosa.y = 375;
 				gostosa.scrollFactor.set();
-				gostosa.velocity.set(-260, 0);
+				gostosa.y = 375;
 				gostosa.setGraphicSize(Std.int(gostosa.width * 8.35));
 				gostosa.updateHitbox();
 				gostosa.alpha = 0.00001;
@@ -4765,6 +4766,9 @@ class PlayState extends MusicBeatState
 		gostosa.alpha = 1;
 		nicuEze.alpha = 1;
 		eze.alpha = 1;
+		bgExe.velocity.set(-155, 0);
+		groundExe.velocity.set(-165, 0);
+		gostosa.velocity.set(-260, 0);
 
 		var flash:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
 		flash.cameras = [cutCam];
@@ -5228,6 +5232,8 @@ class PlayState extends MusicBeatState
 
 	public function finishSong(?ignoreNoteOffset:Bool = false):Void
 	{
+		score = scoreTarget;
+
 		var finishCallback:Void->Void = endSong; //In case you want to change it in a specific song.
 
 		updateTime = false;
