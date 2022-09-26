@@ -127,7 +127,7 @@ class CodeScreen extends MusicBeatState
 			numbersSpr.add(button);
 		}
 
-		code = new FlxText(0, FlxG.height - 490, FlxG.width, "", 34);
+		code = new FlxText(0, FlxG.height - 590, FlxG.width, "", 34);
 		code.setFormat(Paths.font("LEMONMILK-Bold.otf"), 34, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		code.text = '';
 		//code.textField = 0.40; dont have this variable lol
@@ -268,7 +268,7 @@ class AllCodes extends MusicBeatState
 		if (controls.BACK) {
 			FlxG.sound.play(Paths.sound('backsfx'));
 			MusicBeatState.switchState(new CodeScreen());
-			CodeScreen.showallcodes = FlxG.save.data.showcodes;
+			FlxG.save.data.showcodes = true;
 			ClientPrefs.saveSettings();
 			FlxG.save.flush();
 		}
