@@ -55,19 +55,19 @@ class LoadingState extends MusicBeatState
 		shitz = new FlxText(12, 12, 0, "HOTLINE024 ANDROID RECREATION\nAly-Ant, Peppy, Maykoll, MateusX02", 12);
 		shitz.scrollFactor.set();
 		shitz.setFormat("LEMON MILK Bold", 32, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(shitz);
+		//add(shitz);
 
 		//RANDOMIZED!!!!!!!!!!!	
 		var bg:FlxSprite = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, 0xffcaff4d);
 		add(bg);
 		var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image('loadings/image-' + FlxG.random.int(1, 3)));
 		menuBG.screenCenter();
-		add(menuBG);
+		//add(menuBG);
 
 		loadBar = new FlxSprite(0, FlxG.height - 30).makeGraphic(FlxG.width, 20, 0xffff16d2);
 		loadBar.screenCenter(X);
 		loadBar.antialiasing = ClientPrefs.globalAntialiasing;
-		add(loadBar);
+		//add(loadBar);
 		
 		initSongsManifest().onComplete
 		(
@@ -124,21 +124,21 @@ class LoadingState extends MusicBeatState
 	{
 		super.update(elapsed);
 
-	     #if android
-                        var justTouched:Bool = false;
+		#if android
+		var justTouched:Bool = false;
 
-		        for (touch in FlxG.touches.list)
-		        {
-			        if (touch.justPressed)
-			        {
-				        justTouched = true;
-			        }
-		        }
-		        #end
-
-			if(PlayerSettings.player1.controls.ACCEPT #if android || justTouched #end) {
-				FlxG.sound.play(Paths.sound('CAVALO'));
+		for (touch in FlxG.touches.list)
+		{
+			if (touch.justPressed)
+			{
+				justTouched = true;
 			}
+		}
+		#end
+
+		if(PlayerSettings.player1.controls.ACCEPT #if android || justTouched #end) {
+				//FlxG.sound.play(Paths.sound('CAVALO'));
+		}
 
 		if(callbacks != null) {
 			targetShit = FlxMath.remapToRange(callbacks.numRemaining / callbacks.length, 1, 0, 0, 1);
