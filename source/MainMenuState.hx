@@ -139,8 +139,6 @@ class MainMenuState extends MusicBeatState
 		mainMenuTxt.setFormat(Paths.font('LEMONMILK-Bold.otf'), 26, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(mainMenuTxt);
 
-		// NG.core.calls.event.logEvent('swag').send();
-
 		changeItem();
 
 		#if android
