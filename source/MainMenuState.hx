@@ -282,11 +282,11 @@ class MainMenuState extends MusicBeatState
 		super.update(elapsed);
 	}
 
-	function sortItem(order:Int, obj1:FlxSprite, obj2:FlxSprite)
+	function sortItem(useless:Int, obj1:FlxSprite, obj2:FlxSprite)
 	{
 		return
 		{
-			FlxSort.byValues(order, obj1.x + obj1.width, obj2.x + obj2.width);
+			FlxSort.byValues(FlxSort.ASCENDING, obj1.y, obj2.y);
 		}
 	}
 
