@@ -273,7 +273,7 @@ class MainMenuState extends MusicBeatState
 				{
 					if (item.ID==curSelected)
 					{
-						menuItems.sort(sortItem(optionShit.length + 1, item[curSelected].x + item[curSelected].width, item[i].x + item[i].width)); // fica na frente dos outros
+						menuItems.sort(sortItem); // fica na frente dos outros
 					}
 				}
 			}
@@ -282,9 +282,12 @@ class MainMenuState extends MusicBeatState
 		super.update(elapsed);
 	}
 
-	@:arrayAcess public function sortItem(order:Int, obj1:Float, obj2:Float)
+	function sortItem(order:Int, obj1:FlxSprite, obj2:FlxSprite)
 	{
-		return FlxSort.byValues(order, obj1, obj2);
+		return
+		{
+			FlxSort.byValues(order, obj1.x + obj1.width, obj2.x + obj2.width);
+		}
 	}
 
 	function changeItem(huh:Int = 0)
