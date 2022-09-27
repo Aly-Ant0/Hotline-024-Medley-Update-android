@@ -271,9 +271,9 @@ class MainMenuState extends MusicBeatState
 			{
 				menuItems.forEach(function(item:FlxSprite)
 				{
-					if (spr.ID==curSelected)
+					if (item.ID==curSelected)
 					{
-						menuItem.sort(sortItem(menuItems.length + 1, item[curSelected], item[i])); // fica na frente dos outros
+						menuItem.sort(sortItem(optionShit.length + 1, item[curSelected], item[i])); // fica na frente dos outros
 					}
 				});
 			}
@@ -282,9 +282,9 @@ class MainMenuState extends MusicBeatState
 		super.update(elapsed);
 	}
 
-	public function sortItem(order:Int, obj1:FlxSprite, obj2:FlxSprite)
+	public function sortItem(order:Float, obj1:FlxSprite, obj2:FlxSprite)
 	{
-		return return FlxSort.byValues(order, obj1, obj2);
+		return FlxSort.byValues(order, obj1, obj2);
 	}
 
 	function changeItem(huh:Int = 0)
@@ -315,30 +315,30 @@ class MainMenuState extends MusicBeatState
 		switch (curSelected) // code from musk but with some changes (i requested the main menu code for him just for the buttons lmao)
 		{
 			case 0:
-				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 1)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 2)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 0)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 0)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 1)}, 0.50, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 2)}, 0.50, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 0)}, 0.50, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 0)}, 0.50, {ease: FlxEase.expoOut});
 
 			case 1:
-				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 0)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 1)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 2)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 1)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 0)}, 0.50, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 1)}, 0.50, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 2)}, 0.50, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 1)}, 0.50, {ease: FlxEase.expoOut});
 
 			case 2:
-				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 1)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 0)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 1)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 2)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 1)}, 0.50, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 0)}, 0.50, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 1)}, 0.50, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 2)}, 0.50, {ease: FlxEase.expoOut});
 
 			case 3:
 				menuItems.members[2].x = 150 + (400 * 1);
 
-				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 2)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 1)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 0)}, 0.41, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 1)}, 0.41, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 2)}, 0.50, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 1)}, 0.50, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 0)}, 0.50, {ease: FlxEase.expoOut});
+				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 1)}, 0.50, {ease: FlxEase.expoOut});
 		}
 	}
 }
