@@ -269,20 +269,20 @@ class MainMenuState extends MusicBeatState
 
 			for (i in 0...optionShit.length)
 			{
-				menuItems.forEach(function(item:FlxSprite)
+				for (item in menuItems.members)
 				{
 					if (item.ID==curSelected)
 					{
 						menuItems.sort(sortItem(optionShit.length + 1, item[curSelected].x + item[curSelected].width, item[i].x + item[i].width)); // fica na frente dos outros
 					}
-				});
+				}
 			}
 		}
 
 		super.update(elapsed);
 	}
 
-	public function sortItem(order:Int, obj1:Float, obj2:Float)
+	@:arrayAcess public function sortItem(order:Int, obj1:Float, obj2:Float)
 	{
 		return FlxSort.byValues(order, obj1, obj2);
 	}
