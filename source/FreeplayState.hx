@@ -118,10 +118,9 @@ class FreeplayState extends MusicBeatState
 		for (i in 0...songs.length)
 		{
 			var port:FreeplayText = new FreeplayText(310, 200, songs[i]);
-			port.y = 205 + (1285 * i); // idk spacing lmao - aly ant 9/14/2022 9:07 (brazil timezone)
+			port.y = (1285 * i); // idk spacing lmao - aly ant 9/14/2022 9:07 (brazil timezone)
 			port.targetY = i; // basically a id variable lmao
 			port.ID = i;
-			port.skew.x = -1;
 			port.setGraphicSize(Std.int(port.width * 1.2));
 			//port.alpha = 1;
 			port.antialiasing = ClientPrefs.globalAntialiasing;
@@ -225,11 +224,13 @@ class FreeplayState extends MusicBeatState
 						port.angle = FlxMath.lerp(lastAngle, -2, lerpVal);
 						port.skew.x =  0 * 1 * 6 * elapsed;
 						port.x = FlxMath.lerp(port.x, 310, lerpVal);
+						port.forceX = port.x;
 				}
 				else
 				{
 						port.skew.x = 5 * -1 * 6 * elapsed;
-						port.x = FlxMath.lerp(port.x, 100 + (50 * 1.2 * i), lerpVal);
+						port.x = FlxMath.lerp(port.x, 100 * (i), lerpVal);
+						port.forceX = port.x;
 						port.angle = FlxMath.lerp(port.angle, 6 * port.targetY, lerpVal);
 				}
 				// aly ant portuguesse from brazil moment e meu pau na sua mao
