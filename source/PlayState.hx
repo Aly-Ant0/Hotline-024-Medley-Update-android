@@ -2294,7 +2294,7 @@ class PlayState extends MusicBeatState
 			add(songTxtImg);*/
 
 			bar.makeGraphic(1, 1, FlxColor.BLACK);
-			bar.x = songTxt.width - 15;
+			bar.x = songTxt.x + songTxt.width + 15;
 			bar.alpha = 0.55;
 			bar.setGraphicSize(Std.int(songTxt.x - 505), Std.int(songTxt.height + 20));
 			bar.updateHitbox(); // song txt bar size fix size???
