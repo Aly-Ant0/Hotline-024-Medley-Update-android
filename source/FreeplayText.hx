@@ -10,6 +10,7 @@ import flixel.util.FlxColor;
 class FreeplayText extends FlxSkewedSprite
 {
 	public var targetY:Float = 0;
+	public var forceX:Float = Math.NEGATIVE_INFINITY;
 	public var maxSkew:Float = 15; // selected item
 	public var minSkew:Float = -15; // not selected item
 	public var skewDirection:Int = 1; // lmao
@@ -18,6 +19,7 @@ class FreeplayText extends FlxSkewedSprite
 	public function new(x:Float, y:Float, portName:String = '')
 	{
 		super(x, y);
+		forceX = Math.NEGATIVE_INFINITY;
 
 		loadGraphic(Paths.image('freeplaySongText/' + portName, 'shared'));
 		//trace('Test added: ' + WeekData.getWeekNumber(weekNum) + ' (' + weekNum + ')');
@@ -29,5 +31,8 @@ class FreeplayText extends FlxSkewedSprite
 		super.update(elapsed);
 		y = FlxMath.lerp(y, (targetY * 150) - -10, CoolUtil.boundTo(elapsed * 6, 0, 1));
 		//x = x * (targetY - 0.5);
+		if(forceX != Math.NEGATIVE_INFINITY) {
+			x = forceX;
+		}
 	}
 }
