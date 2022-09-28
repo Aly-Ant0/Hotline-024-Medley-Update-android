@@ -58,7 +58,7 @@ class LoadingState extends MusicBeatState
 		//add(shitz);
 
 		//RANDOMIZED!!!!!!!!!!!	
-		var bg:FlxSprite = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, 0xffcaff4d);
+		var bg:FlxSprite = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		add(bg);
 		var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image('loadings/image-' + FlxG.random.int(1, 3)));
 		menuBG.screenCenter();
