@@ -9,6 +9,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
+import flixel.system.FlxSound;
 #if android
 import android.Hardware;
 #end
@@ -16,18 +17,15 @@ import android.Hardware;
 class GameOverSubstate extends MusicBeatSubstate
 {
 	public var boyfriend:Boyfriend;
-	var camFollow:FlxPoint;
-	var camFollowPos:FlxObject;
-	var updateCamera:Bool = false;
-	var playingDeathSound:Bool = false;
-
+	var deathSound:FlxSound = new FlxSound();
+	var canCancel:Bool = false;
 	var stageSuffix:String = "";
 
 	public static var characterName:String = 'death';
 	public static var deathSoundName:String = 'fnf_loss_sfx';
 	public static var loopSoundName:String = 'fatal-shot';
 	public static var endSoundName:String = 'selectsfx';
-	public static var vibrationTime:Int = 500;//milliseconds
+	public static var vibrationTime:Int = 1900;//milliseconds
 
 	public static var instance:GameOverSubstate;
 
@@ -36,7 +34,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		deathSoundName = 'fnf_loss_sfx';
 		loopSoundName = 'fatal-shot';
 		endSoundName = 'selectsfx';
-		vibrationTime = 500;
+		vibrationTime = 1900;
 	}
 
 	override function create()
@@ -55,14 +53,23 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		Conductor.songPosition = 0;
 
-		boyfriend = new Boyfriend(x, y, characterName);
-		boyfriend.x += boyfriend.positionArray[0];
-		boyfriend.y += boyfriend.positionArray[1];
+		boyfriend = new Boyfriend(0, 0, characterName);
+		boyfriend.screenCenter();
 		add(boyfriend);
 
-		camFollow = new FlxPoint(boyfriend.getGraphicMidpoint().x, boyfriend.getGraphicMidpoint().y);
+			#if android
+		addVirtualPad(NONE, A_B);
+		addPadCamera();
+		#end
 
-		FlxG.sound.play(Paths.sound(deathSoundName));
+		var blequi:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
+		add(blequi);
+
+		deathSound.play(Paths.sound(deathSoundName));
+		deathSound.onComplete = function(){
+			FlxTween.tween(blequi, {alpha: 0}, 1);
+			coolStartDeath();
+		}
 
 		#if android
 		if(ClientPrefs.vibration)
@@ -70,23 +77,8 @@ class GameOverSubstate extends MusicBeatSubstate
 			Hardware.vibrate(vibrationTime);
 		}
 		#end
-
-		Conductor.changeBPM(100);
 		// FlxG.camera.followLerp = 1;
 		// FlxG.camera.focusOn(FlxPoint.get(FlxG.width / 2, FlxG.height / 2));
-		FlxG.camera.scroll.set();
-		FlxG.camera.target = null;
-
-		boyfriend.playAnim('firstDeath');
-
-		camFollowPos = new FlxObject(0, 0, 1, 1);
-		camFollowPos.setPosition(FlxG.camera.scroll.x + (FlxG.camera.width / 2), FlxG.camera.scroll.y + (FlxG.camera.height / 2));
-		add(camFollowPos);
-
-		#if android
-		addVirtualPad(NONE, A_B);
-		addPadCamera();
-		#end
 	}
 
 	var isFollowingAlready:Bool = false;
@@ -95,81 +87,46 @@ class GameOverSubstate extends MusicBeatSubstate
 		super.update(elapsed);
 
 		PlayState.instance.callOnLuas('onUpdate', [elapsed]);
-		if(updateCamera) {
-			var lerpVal:Float = CoolUtil.boundTo(elapsed * 0.6, 0, 1);
-			camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal));
-		}
 
 		if (controls.ACCEPT)
 		{
-			endBullshit();
+			if (canCancel){
+				endBullshit();
+			}
 		}
 
 		if (controls.BACK)
 		{
-			FlxG.sound.music.stop();
-			PlayState.deathCounter = 0;
-			PlayState.seenCutscene = false;
+			if (canCancel){
+				FlxG.sound.music.stop();
+				PlayState.deathCounter = 0;
 
-			if (PlayState.isCovers)
-			{
-				MusicBeatState.switchState(new CoversScreen());
-				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
-				FlxG.sound.music.fadeIn(4, 0, 0.8);
-			}
-			if (PlayState.isExtras)
-			{
-				MusicBeatState.switchState(new ExtrasScreen());
-				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
-				FlxG.sound.music.fadeIn(4, 0, 0.8);
-			}
-			if (PlayState.isCode)
-			{
-				MusicBeatState.switchState(new CodeScreen());
-				FlxG.sound.playMusic(Paths.music('codemenu'), 0);
-				FlxG.sound.music.fadeIn(4, 0, 0.8);
-			}
-			else
-			{
-				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
-				FlxG.sound.music.fadeIn(4, 0, 0.8);
-				MusicBeatState.switchState(new FreeplayState());
-			}
-
-			PlayState.instance.callOnLuas('onGameOverConfirm', [false]);
-		}
-
-		if (boyfriend.animation.curAnim.name == 'firstDeath')
-		{
-			if(boyfriend.animation.curAnim.curFrame >= 12 && !isFollowingAlready)
-			{
-				FlxG.camera.follow(camFollowPos, LOCKON, 1);
-				updateCamera = true;
-				isFollowingAlready = true;
-			}
-
-			if (boyfriend.animation.curAnim.finished && !playingDeathSound)
-			{
-				if (PlayState.SONG.stage == 'tank')
+				if (PlayState.isCovers)
 				{
-					playingDeathSound = true;
-					//coolStartDeath(0.2);
-					
-					var exclude:Array<Int> = [];
-					//if(!ClientPrefs.cursing) exclude = [1, 3, 8, 13, 17, 21];
-
-					FlxG.sound.play(Paths.sound('jeffGameover/jeffGameover-' + FlxG.random.int(1, 25, exclude)), 1, false, null, true, function() {
-						if(!isEnding)
-						{
-							FlxG.sound.music.fadeIn(0.2, 1, 4);
-						}
-					});
+					MusicBeatState.switchState(new CoversScreen());
+					FlxG.sound.playMusic(Paths.music('nightlight'), 0);
+					FlxG.sound.music.fadeIn(4, 0, 0.8);
 				}
-			}
-			else
-			{
-				coolStartDeath();
-				boyfriend.startedDeath = true;
+				if (PlayState.isExtras)
+				{
+					MusicBeatState.switchState(new ExtrasScreen());
+					FlxG.sound.playMusic(Paths.music('nightlight'), 0);
+					FlxG.sound.music.fadeIn(4, 0, 0.8);
+				}
+				if (PlayState.isCode)
+				{
+					MusicBeatState.switchState(new CodeScreen());
+					FlxG.sound.playMusic(Paths.music('codemenu'), 0);
+					FlxG.sound.music.fadeIn(4, 0, 0.8);
+				}
+				if (PlayState.isFreeplay)
+				{
+					FlxG.sound.playMusic(Paths.music('nightlight'), 0);
+					FlxG.sound.music.fadeIn(4, 0, 0.8);
+					MusicBeatState.switchState(new FreeplayState());
+				}
+
+				PlayState.instance.callOnLuas('onGameOverConfirm', [false]);
 			}
 		}
 
@@ -191,6 +148,8 @@ class GameOverSubstate extends MusicBeatSubstate
 
 	function coolStartDeath():Void
 	{
+		canCancel = true;
+		boyfriend.playAnim('deathLoop');
 		FlxG.sound.playMusic(Paths.music(loopSoundName), 0);
 		FlxG.sound.music.fadeIn(4, 0, 0.8);
 	}
