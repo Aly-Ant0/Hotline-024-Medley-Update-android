@@ -2012,13 +2012,18 @@ class PlayState extends MusicBeatState
 		switch(curStage)
 		{
 			case 'covers':
-				//bfreflect = new FlxSprite(boyfriend.x, boyfriend.y); //bf reflect test wait its already declared
 				bfreflect.frames = boyfriend.frames;
 				bfreflect.flipY = true;
 				bfreflect.blend = ADD;
 				bfreflect.alpha = .55;
 				bfreflect.x = boyfriend.x;
-				bfreflect.y = boyfriend.y + 390;
+				switch(boyfriend.curCharacter)
+				{
+					case 'bf':
+						bfreflect.y = boyfriend.y + 390;
+					default:
+						bfreflect.y = boyfriend.height;
+				}
 				insert(members.indexOf(boyfriendGroup), bfreflect);
 
 				gfreflect.frames = gf.frames;
@@ -2027,7 +2032,7 @@ class PlayState extends MusicBeatState
 				gfreflect.alpha = .8;
 				gfreflect.x = gf.x;
 				gfreflect.scale.set(gf.scale.x, gf.scale.y);
-				gfreflect.y = gf.y + gfreflect.height; // talvez poder a altura tb
+				gfreflect.y = gf.height; // talvez poder a altura tb
 				insert(members.indexOf(gfGroup), gfreflect);
 
 				dadreflect.frames = dad.frames;
@@ -2036,7 +2041,7 @@ class PlayState extends MusicBeatState
 				dadreflect.alpha = .8;
 				dadreflect.x = dad.x;
 				dadreflect.scale.set(dad.scale.x, dad.scale.y);
-				dadreflect.y = dad.y + dadreflect.height;
+				dadreflect.y = dad.height;
 				insert(members.indexOf(dadGroup), dadreflect);
 			case 'limo':
 				resetFastCar();
