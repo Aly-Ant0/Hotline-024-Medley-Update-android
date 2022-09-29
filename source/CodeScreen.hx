@@ -38,7 +38,6 @@ class CodeScreen extends MusicBeatState
 	var clickButton:Bool = false;
 
 	var canSelect:Bool = true;
-	public static var showallcodes:Bool = ClientPrefs.showcodes;
 	var isCorrect:Bool = false;
 
 	override function create()
@@ -51,6 +50,9 @@ class CodeScreen extends MusicBeatState
 		PlayState.isExtras = false;
 		PlayState.isFreeplay = false;
 		//PlayState.noSkins = true; // no skins?
+
+		FlxG.sound.playMusic(Paths.music('codemenu'), 0);
+		FlxG.sound.music.fadeIn(4, 0, 0.8);
 
 		bg = new FlxSprite().loadGraphic(Paths.image('hotline/menu/code/bg'));
 		bg.screenCenter();
@@ -73,8 +75,7 @@ class CodeScreen extends MusicBeatState
 		new FlxTimer().start(1.35, function(tmr:FlxTimer)
 		{
 			FlxTween.tween(bg, {alpha: 1}, 0.98, {ease: FlxEase.quadOut});
-			FlxTween.tween(paineudicontroli, {alpha: 1}, 0.98, {ease: FlxEase.quadOut});
-			if (showallcodes) {
+			if (FlxG.save.data.showcodes) {
 				FlxTween.tween(codes, {alpha: 1}, 0.98, {ease: FlxEase.quadOut});
 			}
 		});
@@ -127,7 +128,7 @@ class CodeScreen extends MusicBeatState
 			numbersSpr.add(button);
 		}
 
-		code = new FlxText(0, FlxG.height - 530, FlxG.width, "", 34);
+		code = new FlxText(0, FlxG.height - 547, FlxG.width, "", 34);
 		code.setFormat(Paths.font("LEMONMILK-Bold.otf"), 34, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		code.text = '';
 		//code.textField = 0.40; dont have this variable lol
@@ -190,7 +191,7 @@ class CodeScreen extends MusicBeatState
 						PlayState.SONG = Song.loadFromJson('nightland', 'nightland');
 						PlayState.noSkins = false;
 						FlxG.sound.play(Paths.sound('entersfx'));
-						LoadingState.loadAndSwitchState(new ChooseSkinState());
+						MusicBeatState.switchState(new ChooseSkinState());
 						FlxG.mouse.visible = false;
 					case '  5  1  4  1': // ema
 						PlayState.SONG = Song.loadFromJson('uncanny-valley', 'uncanny-valley');
@@ -268,7 +269,8 @@ class AllCodes extends MusicBeatState
 		if (controls.BACK) {
 			FlxG.sound.play(Paths.sound('backsfx'));
 			MusicBeatState.switchState(new CodeScreen());
-			FlxG.save.data.showcodes = true;
+			if (FlxG.save.data.showcodes == null)
+				FlxG.save.data.showcodes = true;
 			ClientPrefs.saveSettings();
 			FlxG.save.flush();
 		}
