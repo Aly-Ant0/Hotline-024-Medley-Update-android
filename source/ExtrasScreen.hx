@@ -100,7 +100,7 @@ class ExtrasScreen extends MusicBeatState
 		super.create();
 
 		#if android
-		addVirtualPad(LEFT_RIGHT, A_B);
+		addVirtualPad(UP_DOWN, A_B);
 		#end
 	}
 	override function update(elapsed:Float)
@@ -118,12 +118,12 @@ class ExtrasScreen extends MusicBeatState
 				buttonLock.color = 0xFF363636;
 			}
 		}
-		if (controls.UI_LEFT_P)
+		if (controls.UI_UP_P)
 		{
 			FlxG.sound.play(Paths.sound('selectsfx'));
 			changeExtra(-1);
 		}
-		if (controls.UI_RIGHT_P)
+		if (controls.UI_DOWN_P)
 		{
 			FlxG.sound.play(Paths.sound('selectsfx'));
 			changeExtra(1);
