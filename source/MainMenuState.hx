@@ -97,7 +97,7 @@ class MainMenuState extends MusicBeatState
 		add(bars);
 
 		var disc:FlxSprite = new FlxSprite(FlxG.width - 30, -FlxG.height - 15);
-		disc.frames = Paths.getSparrowAtlas('hotline/menu/vinyl', 'NONE');
+		disc.frames = Paths.getSparrowAtlas('hotline/menu/vinyl');
 		disc.animation.addByPrefix('j', 'vinyl', 24, true);
 		disc.animation.play('j');
 		disc.setGraphicSize(Std.int(0.7*disc.width));
@@ -336,8 +336,6 @@ class MainMenuState extends MusicBeatState
 				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 2)}, 0.50, {ease: FlxEase.expoOut});
 
 			case 3:
-				menuItems.members[2].x = 150 + (400 * 1);
-
 				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 2)}, 0.50, {ease: FlxEase.expoOut});
 				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 1)}, 0.50, {ease: FlxEase.expoOut});
 				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 0)}, 0.50, {ease: FlxEase.expoOut});
