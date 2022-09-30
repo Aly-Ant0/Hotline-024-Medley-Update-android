@@ -250,6 +250,7 @@ class CodeScreen extends MusicBeatState
 class AllCodes extends MusicBeatState
 {
 	var bg:FlxSprite;
+	public static var saved:Bool = true;
 
 	override function create() {
 		bg = new FlxSprite().loadGraphic(Paths.image('hotline/menu/code/buttons/code/fun'));
@@ -266,8 +267,14 @@ class AllCodes extends MusicBeatState
 		if (controls.BACK) {
 			FlxG.sound.play(Paths.sound('backsfx'));
 			MusicBeatState.switchState(new CodeScreen());
-			if (FlxG.save.data.showcodes == null)
+			if (FlxG.save.data.showcodes == null) // save data
+			{
 				FlxG.save.data.showcodes = showcodes;
+			}
+			if (FlxG.save.data.showcodes != null) // load data
+			{
+				FlxG.save.data.showcodes = showcodes;
+			}
 			FlxG.save.flush();
 		}
 
