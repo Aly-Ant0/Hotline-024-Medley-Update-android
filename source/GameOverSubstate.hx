@@ -10,6 +10,7 @@ import flixel.util.FlxTimer;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.system.FlxSound;
+import flixel.FlxSprite;
 #if android
 import android.Hardware;
 #end
@@ -65,11 +66,15 @@ class GameOverSubstate extends MusicBeatSubstate
 		var blequi:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
 		add(blequi);
 
-		deathSound.play(Paths.sound(deathSoundName));
-		deathSound.onComplete = function(){
-			FlxTween.tween(blequi, {alpha: 0}, 1);
+		FlxG.sound.play(Paths.sound(deathSoundName), 1, false, null, true, function()
+		{
+			FlxTween.tween(blequi, {alpha: 0}, 1, {
+				onComplete: function (twn:FlxTween){
+					blequi.kill();
+				}
+			});
 			coolStartDeath();
-		}
+		});
 
 		#if android
 		if(ClientPrefs.vibration)
