@@ -37,6 +37,10 @@ class ExtrasScreen extends MusicBeatState
 	var text:FlxSprite;
 	var buttonLock:FlxSprite;
 	public static var curSelected:Int = 0; // idk why is public but ok
+	// wip stuff
+	var curSelection:Int = 0; // 0 is extras 1 is covers
+	var selectingExtras:Bool; // null value
+	var selectingCoverz:Bool;
 
 	override function create()
 	{
@@ -106,12 +110,12 @@ class ExtrasScreen extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		for (touch in FlxG.touches.list) {
-			if (touch.overlaps(buttonLock) || FlxG.mouse.overlaps(buttonLock)) {
+			if (touch.overlaps(buttonLock)) {
 				buttonLock.color = 0xFFFFFFFF;
 
-				if (touch.justPressed || FlxG.mouse.justPressed) {
+				if (touch.justPressed) {
 					FlxG.sound.play(Paths.sound('selectsfx'));
-					LoadingState.loadAndSwitchState(new CodeScreen());
+					FlxG.switchState(new CodeScreen());
 				}
 			}
 			else {
