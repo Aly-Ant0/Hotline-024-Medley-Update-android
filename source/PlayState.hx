@@ -1073,23 +1073,18 @@ class PlayState extends MusicBeatState
 					case 'ena':
 						//if(!ClientPrefs.dontShowBG)
 							var enaBG1:BGSprite = new BGSprite('ena/ENA-1', -150, 0, 0.7, 0.7);
-							enaBG1.updateHitbox();
 							add(enaBG1);
 			
 							var enaBG2:BGSprite = new BGSprite('ena/ENA-2', -150, 0, 0.8, 0.8);
-							enaBG2.updateHitbox();
 							add(enaBG2);
 			
 							var enaBG3:BGSprite = new BGSprite('ena/ENA-3', -150, 0, 0.9, 0.9);
-							enaBG3.updateHitbox();
 							add(enaBG3);
 			
-							enaOverlay = new BGSprite('ena/OERLAY-4', 0, 0, 0, 0);
+							enaOverlay = new BGSprite('ena/OERLAY-4', -180, 0, 0, 0);
 							enaOverlay.blend = ADD;
-							enaOverlay.updateHitbox();
 			
-							idkWhatIsthat = new BGSprite('ena/ENA-5', 0, 20, 1.1, 1.1);
-							idkWhatIsthat.updateHitbox();
+							idkWhatIsthat = new BGSprite('ena/ENA-5', 145, 115, 1.4, 1.4);
 		
 					case 'nikkuMall':
 						var bg:BGSprite  = new BGSprite('nikkuMall/back', -950, -550, 1, 1);
@@ -1131,14 +1126,16 @@ class PlayState extends MusicBeatState
 						sun2 = new BGSprite('xigmund/SUM-2', 200, -480, 0.3, 0.3);
 						add(sun2);
 		
-						asteroidEmitter1 = new FlxEmitter(0,200);
+					for (i in 0...5)
+					{
+						asteroidEmitter1 = new FlxEmitter();
 						asteroidEmitter1.drag.set(0,0,0,0,200,300,500,750);
 						asteroidEmitter1.launchMode = FlxEmitterMode.SQUARE;
 						asteroidEmitter1.velocity.set(-7400, -7400, -7400, -7400, -7400, -7400);
 						asteroidEmitter1.lifespan.set(1.9, 8.9);
 						asteroidEmitter1.loadParticles(Paths.image('xigmund/ast1'), 500, 16, true);
 						asteroidEmitter1.start(false, FlxG.random.float(12, 18), FlxG.random.int(1000, 10000));
-
+					}
 					case 'sus':
 						var bg1:BGSprite = new BGSprite('sus/SUS1', -220, -120, 1.2, 1.2);
 						bg1.setGraphicSize(Std.int(bg1.width * 1.5));
@@ -1152,7 +1149,6 @@ class PlayState extends MusicBeatState
 		
 						osCaboSUS = new BGSprite('sus/SUS3', -517, -6, 0.8, 0.8);
 						//osCaboSUS.updateHitbox();
-		
 					case 'ddto':
 						var bg1:BGSprite = new BGSprite('ddto/DDLC-1', -45, -45, 1.1, 1.1);
 						bg1.setGraphicSize(Std.int(bg1.width * 1.1));
@@ -1161,60 +1157,41 @@ class PlayState extends MusicBeatState
 		
 						naoseiseissoecabomasfds = new BGSprite('ddto/DDLC-2', 0, 0, 0, 0);
 						//naoseiseissoecabomasfds.updateHitbox();
-		
 					case 'nightland':
 						var bg1:BGSprite = new BGSprite('nightland/BG1', -1150, -750, .2, .2);
-						bg1.scale.set(1.6, 1.6);
+						bg1.setGraphicSize(Std.int(bg1.width * 1.6));
 						bg1.updateHitbox();
 						add(bg1);
 						
 						var bg2:BGSprite = new BGSprite('nightland/BAC2', -1150,-850, .3, .3);
-						bg2.scale.set(1.6, 1.6);
+						bg2.setGraphicSize(Std.int(bg2.width * 1.6));
 						bg2.updateHitbox();
 						add(bg2);
 						
-						var bg3:BGSprite = new BGSprite('nightland/ROC3', -1150, -750, .3, 3);
-						bg3.scale.set(1.6, 1.6);
+						var bg3:BGSprite = new BGSprite('nightland/ROC3', -1150, -850, 0.3, 0.3);
+						bg3.setGraphicSize(Std.int(bg3.width * 1.6));
 						bg3.updateHitbox();
 						add(bg3);
 						
-						var bg4:BGSprite = new BGSprite('nightland/TREE4', -1900, -1150, 1, 1);
-						bg4.scale.set(1.6, 1.6);
+						var bg4:BGSprite = new BGSprite('nightland/TREE4', -1900, -1150, 0.9, 0.9);
+						bg4.setGraphicSize(Std.int(bg4.width * 1.7));
 						bg4.updateHitbox();
 						add(bg4);
 		
 						var bg5:BGSprite = new BGSprite('nightland/GROUMD5', -1900, -1150, 1, 1);
-						bg5.scale.set(1.6, 1.6);
+						bg5.setGraphicSize(Std.int(bg5.width * 1.6));
 						bg5.updateHitbox();
 						add(bg5);
 		
-						blurBg = new BGSprite('nightland/BLURROC6', -2010, -1150, 1, 1);
-						blurBg.scale.set(1.6, 1.6);
+						blurBg = new BGSprite('nightland/BLURROC6', -2520, -1400, 1.35, 1.35);
+						blurBg.setGraphicSize(Std.int(blurBg.width * 1.8));
 						blurBg.updateHitbox();
-		
-						/*FlxG.watch.addQuick("bg 1 x: ", bg1.x);
-						FlxG.watch.addQuick("bg 1 y: ", bg1.y);
-		
-						FlxG.watch.addQuick("bg 2 x: ", bg2.x);
-						FlxG.watch.addQuick("bg 2 y: ", bg2.y);
-		
-						FlxG.watch.addQuick("bg 3 x: ", bg3.x);
-						FlxG.watch.addQuick("bg 3 y: ", bg3.y);
-		
-						FlxG.watch.addQuick("bg 4 x: ", bg4.x);
-						FlxG.watch.addQuick("bg 4 y: ", bg4.y);
-		
-						FlxG.watch.addQuick("bg 5 x: ", bg5.x);
-						FlxG.watch.addQuick("bg 5 y: ", bg5.y);
-						
-						FlxG.watch.addQuick("bg 6 x: ", blurBg.x);
-						FlxG.watch.addQuick("bg 6 y: ", blurBg.y);*/
 					case 'whitty':
 						var bg1:BGSprite=new BGSprite('whitty/wall', -350, -260, 1, 1);
 						bg1.setGraphicSize(Std.int(bg1.width * 1.3));
 						bg1.updateHitbox();
 						add(bg1);
-		
+
 						var floor2:BGSprite=new BGSprite('whitty/floor', -350, -260, 1, 1);
 						floor2.setGraphicSize(Std.int(floor2.width * 1.3));
 						floor2.updateHitbox();
@@ -1250,12 +1227,12 @@ class PlayState extends MusicBeatState
 						bg.setGraphicSize(Std.int(bg.width * 2));
 						bg.updateHitbox();
 						add(bg);
-		
-						var bg2:BGSprite=new BGSprite('jojo/building', -2700, -1800, 1, 1);
-						bg2.setGraphicSize(Std.int(bg2.width * 2));
+
+						var bg2:BGSprite=new BGSprite('jojo/building', -2700, -1800, 0.95, 0.95);
+						bg2.setGraphicSize(Std.int(bg2.width * 2.05));
 						bg2.updateHitbox();
 						add(bg2);
-		
+
 						var bg3:BGSprite=new BGSprite('jojo/floor', -2700, -1799, 1, 1);
 						bg3.setGraphicSize(Std.int(bg3.width * 2));
 						bg3.updateHitbox();
