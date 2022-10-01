@@ -104,8 +104,6 @@ class GameOverSubstate extends MusicBeatSubstate
 		{
 			if (canCancel){
 				FlxG.sound.music.stop();
-				PlayState.deathCounter = 0;
-
 				if (PlayState.isCovers)
 				{
 					MusicBeatState.switchState(new CoversScreen());
