@@ -216,24 +216,42 @@ class FreeplayState extends MusicBeatState
 		{
 			for (i in 0...songs.length)
 			{
+				// depression reasions
 				//var direction:Float = -10; // not used shit
-				var lerpVal:Float = CoolUtil.boundTo(elapsed * 6, 0, 1);
+				//var lerpVal:Float = CoolUtil.boundTo(elapsed * 6, 0, 1);
 				if(port.targetY == 0)
 				{
 						var lastAngle:Float = port.angle;
-						port.angle = FlxMath.lerp(lastAngle, -2, lerpVal);
-						port.skew.x =  0 * 1 * 6 * elapsed;
-						port.x = FlxMath.lerp(port.x, 310, lerpVal);
+						var lastX:Float = port.x;
+						port.angle = FlxMath.lerp(lastAngle, -2, CoolUtil.boundTo(elapsed * 6, 0, 1));
+						port.skew.x =  port.skewDirection * port.skewSpeed * elapsed;
+						port.x = FlxMath.lerp(lastX, 310, CoolUtil.boundTo(elapsed * 6, 0, 1));
 						port.forceX = port.x;
 				}
 				else
 				{
-						port.skew.x = 5 * -1 * 6 * elapsed;
-						port.x = FlxMath.lerp(port.x, 100 * (i), lerpVal);
+						port.skew.x -= port.skewDirection * port.skewSpeed * elapsed;
+						port.x = FlxMath.lerp(port.x, 285 + -55 * Math.abs(port.targetY), CoolUtil.boundTo(elapsed * 6, 0, 1));
 						port.forceX = port.x;
-						port.angle = FlxMath.lerp(port.angle, 6 * port.targetY, lerpVal);
+						port.angle = FlxMath.lerp(port.angle, 6 * port.targetY, CoolUtil.boundTo(elapsed * 6, 0, 1));
 				}
-				// aly ant portuguesse from brazil moment e meu pau na sua mao
+				if (port.skew.x < port.minSkew) // ou seja, se for menor que o minimo é igual ao minimo                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    :trollface:
+				{
+					port.skew.x = port.minSkew;
+					port.skewDirection = -1;
+				}
+				
+				else if (port.skew.x > port.maxSkew)
+				{
+					port.skew.x = port.maxSkew;
+					port.skewDirection = 1;
+				}
+				// oi gostoso
+				// oi
+				// mi comi
+				// vou nao eu to menstruado
+				// Q POHA É ESSA JHONATA
+				// é a lei de retorno sebosa
 			}
 		}
 
