@@ -46,7 +46,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		super.create();
 	}
 
-	public function new(x:Float, y:Float, camX:Float, camY:Float)
+	public function new()
 	{
 		super();
 
@@ -54,7 +54,7 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		Conductor.songPosition = 0;
 
-		boyfriend = new Boyfriend(0, 0, characterName);
+		boyfriend = new Boyfriend(0, 0, 'death');
 		boyfriend.screenCenter();
 		add(boyfriend);
 
@@ -66,7 +66,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		var blequi:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
 		add(blequi);
 
-		FlxG.sound.play(Paths.sound(deathSoundName), 1, false, null, true, function()
+		FlxG.sound.play(Paths.sound('fnf_loss_sfx'), 1, false, null, true, function()
 		{
 			FlxTween.tween(blequi, {alpha: 0}, 1, {
 				onComplete: function (twn:FlxTween){
@@ -79,7 +79,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		#if android
 		if(ClientPrefs.vibration)
 		{
-			Hardware.vibrate(vibrationTime);
+			Hardware.vibrate(1900);
 		}
 		#end
 		// FlxG.camera.followLerp = 1;
@@ -155,7 +155,7 @@ class GameOverSubstate extends MusicBeatSubstate
 	{
 		canCancel = true;
 		boyfriend.playAnim('deathLoop');
-		FlxG.sound.playMusic(Paths.music(loopSoundName), 0);
+		FlxG.sound.playMusic(Paths.music('fatal-shot'), 0);
 		FlxG.sound.music.fadeIn(4, 0, 0.8);
 	}
 
@@ -164,9 +164,9 @@ class GameOverSubstate extends MusicBeatSubstate
 		if (!isEnding)
 		{
 			isEnding = true;
-			boyfriend.playAnim('deathConfirm', true);
+			boyfriend.playAnim('deathConfirm');
 			FlxG.sound.music.stop();
-			FlxG.sound.play(Paths.music(endSoundName));
+			FlxG.sound.play(Paths.music('selectsfx'));
 			new FlxTimer().start(0.7, function(tmr:FlxTimer)
 			{
 				FlxG.camera.fade(FlxColor.BLACK, 2, false, function()
