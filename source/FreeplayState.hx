@@ -231,7 +231,7 @@ class FreeplayState extends MusicBeatState
 				else
 				{
 						port.skew.x -= port.skewDirection * port.skewSpeed * elapsed;
-						port.skewDirection = port.skewDirection * port.targetY;
+						port.skewDirection = port.skewDirection * Std.int(port.targetY);
 						port.x = FlxMath.lerp(port.x, 285 + -55 * Math.abs(port.targetY), CoolUtil.boundTo(elapsed * 0.6, 0, 1));
 						port.forceX = port.x;
 						port.angle = FlxMath.lerp(port.angle, 7 * port.targetY, CoolUtil.boundTo(elapsed * 0.6, 0, 1));
