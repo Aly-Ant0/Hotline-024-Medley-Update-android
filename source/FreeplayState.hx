@@ -117,8 +117,7 @@ class FreeplayState extends MusicBeatState
 
 		for (i in 0...songs.length)
 		{
-			var port:FreeplayText = new FreeplayText(310, 200, songs[i]);
-			port.y = (1285 * i); // idk spacing lmao - aly ant 9/14/2022 9:07 (brazil timezone)
+			var port:FreeplayText = new FreeplayText(310, (1325 * i) + , songs[i]); // idk spacing lmao - aly ant 9/14/2022 9:07 (brazil timezone)
 			port.targetY = i; // basically a id variable lmao
 			port.ID = i;
 			port.setGraphicSize(Std.int(port.width * 1.2));
@@ -223,19 +222,19 @@ class FreeplayState extends MusicBeatState
 				{
 						var lastAngle:Float = port.angle;
 						var lastX:Float = port.x;
-						port.angle = FlxMath.lerp(lastAngle, -2, CoolUtil.boundTo(elapsed * 4, 0, 1));
+						port.angle = FlxMath.lerp(lastAngle, -3, CoolUtil.boundTo(elapsed * 0.6, 0, 1));
 						port.skew.x =  port.skewDirection * port.skewSpeed * elapsed;
 						port.skewDirection = 1;
-						port.x = FlxMath.lerp(lastX, 310, CoolUtil.boundTo(elapsed * 4, 0, 1));
+						port.x = FlxMath.lerp(lastX, 310, CoolUtil.boundTo(elapsed * 0.6, 0, 1));
 						port.forceX = port.x;
 				}
 				else
 				{
 						port.skew.x -= port.skewDirection * port.skewSpeed * elapsed;
-						port.skewDirection = -1;
-						port.x = FlxMath.lerp(port.x, 285 + -55 * Math.abs(port.targetY), CoolUtil.boundTo(elapsed * 4, 0, 1));
+						port.skewDirection = port.skewDirection * port.targetY;
+						port.x = FlxMath.lerp(port.x, 285 + -55 * Math.abs(port.targetY), CoolUtil.boundTo(elapsed * 0.6, 0, 1));
 						port.forceX = port.x;
-						port.angle = FlxMath.lerp(port.angle, 6 * port.targetY, CoolUtil.boundTo(elapsed * 4, 0, 1));
+						port.angle = FlxMath.lerp(port.angle, 6 * port.targetY, CoolUtil.boundTo(elapsed * 0.6, 0, 1));
 				}
 				if (port.skew.x < port.minSkew) // ou seja, se for menor que o minimo é igual ao minimo                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    :trollface:
 				{
