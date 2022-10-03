@@ -11,8 +11,8 @@ class FreeplayText extends FlxSkewedSprite
 {
 	public var targetY:Float = 0;
 	public var forceX:Float = Math.NEGATIVE_INFINITY;
-	public var maxSkew:Float = 15; // selected item
-	public var minSkew:Float = -15; // not selected item
+	public var maxSkew:Float = 5; // selected item
+	public var minSkew:Float = -5; // not selected item
 	public var skewDirection:Float = 0; // lmao
 	public var skewSpeed:Float = 2.3;
 
