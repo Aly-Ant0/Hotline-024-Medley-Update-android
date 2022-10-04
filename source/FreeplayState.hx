@@ -218,7 +218,7 @@ class FreeplayState extends MusicBeatState
 				// depression reasions
 				//var direction:Float = -10; // not used shit
 				//var lerpVal:Float = CoolUtil.boundTo(elapsed * 6, 0, 1);
-				if(port.targetY == 0)
+				if(port.targetY == 0 || port.ID==curSelected)
 				{
 						var lastAngle:Float = port.angle;
 						var lastX:Float = port.x;
@@ -228,10 +228,10 @@ class FreeplayState extends MusicBeatState
 						port.x = FlxMath.lerp(lastX, 310, CoolUtil.boundTo(elapsed * 0.6, 0, 1));
 						port.forceX = port.x;
 				}
-				else
+				if(port.ID!=curSelected)
 				{
 						port.skew.x = port.skewDirection * port.skewSpeed * elapsed;
-						port.skewDirection = port.skewDirection * port.targetY;
+						port.skewDirection = 1 * Math.abs((port.targetY));
 						port.x = FlxMath.lerp(port.x, 285 + -55 * Math.abs(port.targetY), CoolUtil.boundTo(elapsed * 0.6, 0, 1));
 						port.forceX = port.x;
 						port.angle = FlxMath.lerp(port.angle, 7 * port.targetY, CoolUtil.boundTo(elapsed * 0.6, 0, 1));
