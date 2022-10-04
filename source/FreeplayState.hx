@@ -228,11 +228,11 @@ class FreeplayState extends MusicBeatState
 						port.x = FlxMath.lerp(lastX, 310, CoolUtil.boundTo(elapsed * 0.6, 0, 1));
 						port.forceX = port.x;
 				}
-				if(port.ID!=curSelected)
+				if(port.ID!=curSelected||port.targetY!=0)
 				{
 						port.skew.x = port.skewDirection * port.skewSpeed * elapsed;
-						port.skewDirection = 1 * Math.abs(port.targetY);
-						port.x = FlxMath.lerp(port.x, 285 + -55 * Math.abs(port.targetY), CoolUtil.boundTo(elapsed * 0.6, 0, 1));
+						port.skewDirection = 1 * port.targetY;
+						port.x = FlxMath.lerp(port.x, 255 + -55 * Math.abs(port.targetY), CoolUtil.boundTo(elapsed * 0.6, 0, 1));
 						port.forceX = port.x;
 						port.angle = FlxMath.lerp(port.angle, 7 * port.targetY, CoolUtil.boundTo(elapsed * 0.6, 0, 1));
 				}
@@ -392,7 +392,9 @@ class FreeplayState extends MusicBeatState
 			PlayState.isStoryMode = false;
 			PlayState.storyDifficulty = curDifficulty;
 
+			#if debug
 			FlxG.log.add('sex: ' + songLowercase);
+			#end
 			//('CURRENT WEEK: ' + WeekData.getWeekFileName());
 			
 			if (FlxG.keys.pressed.SHIFT #if android || _virtualpad.buttonZ.pressed #end){
