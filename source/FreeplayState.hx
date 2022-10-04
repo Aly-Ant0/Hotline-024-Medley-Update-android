@@ -117,7 +117,7 @@ class FreeplayState extends MusicBeatState
 
 		for (i in 0...songs.length)
 		{
-			var port:FreeplayText = new FreeplayText(310, (1515 * i) + 55, songs[i]); // idk spacing lmao - aly ant 9/14/2022 9:07 (brazil timezone)
+			var port:FreeplayText = new FreeplayText(310, 1515 * i + 55, songs[i]); // idk spacing lmao - aly ant 9/14/2022 9:07 (brazil timezone)
 			port.targetY = i; // basically a id variable lmao
 			port.ID = i;
 			port.setGraphicSize(Std.int(port.width * 1.2));
@@ -231,7 +231,7 @@ class FreeplayState extends MusicBeatState
 				if(port.ID!=curSelected)
 				{
 						port.skew.x = port.skewDirection * port.skewSpeed * elapsed;
-						port.skewDirection = 1 * Math.abs((port.targetY));
+						port.skewDirection = 1 * Math.abs(port.targetY);
 						port.x = FlxMath.lerp(port.x, 285 + -55 * Math.abs(port.targetY), CoolUtil.boundTo(elapsed * 0.6, 0, 1));
 						port.forceX = port.x;
 						port.angle = FlxMath.lerp(port.angle, 7 * port.targetY, CoolUtil.boundTo(elapsed * 0.6, 0, 1));
