@@ -118,7 +118,7 @@ class FreeplayState extends MusicBeatState
 		for (i in 0...songs.length)
 		{
 			var port:FreeplayText = new FreeplayText(310, 0, songs[i]); // idk spacing lmao - aly ant 9/14/2022 9:07 (brazil timezone)
-			port.y += (1515 * i)+ 55
+			port.y += (1515 * i)+ 55;
 			port.targetY = i; // basically a id variable lmao
 			port.ID = i;
 			port.setGraphicSize(Std.int(port.width * 1.2));
