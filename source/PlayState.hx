@@ -4453,7 +4453,8 @@ class PlayState extends MusicBeatState
 		#end
 
 		for (a in 0...notes.length){
-			for (note in notes){
+			notes.forEach(function(note:Note)
+			{
 				var currentBeat = (Conductor.songPosition/1000)*(SONG.bpm/60);
 				if (note[a].noteType == 'Swap Note'){
 					if (note[a].isSustainNote){
@@ -4468,7 +4469,7 @@ class PlayState extends MusicBeatState
 							note[a].offsetX =targetOffsetX;
 						}
 					}
-					else if ((notes[a].strumTime - Conductor.songPosition) < 1200 / SONG.speed & note[a].isSustainNote)
+					else if ((note[a].strumTime - Conductor.songPosition) < 1200 / SONG.speed & note[a].isSustainNote)
 					{
 						if (note[a].offsetX != targetOffsetX2){
 							note[a].offsetX = FlxMath.lerp(note[a].offsetX, targetOffsetX2, CoolUtil.boundTo(elapsed * 10, 0, 1));
@@ -4478,7 +4479,7 @@ class PlayState extends MusicBeatState
 						}
 					}
 				}
-			}
+			});
 		}
 
 		setOnLuas('cameraX', camFollowPos.x);
