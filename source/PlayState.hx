@@ -3919,7 +3919,7 @@ class PlayState extends MusicBeatState
 				songScore = Math.floor(FlxMath.lerp(songScore, scoreTarget, CoolUtil.boundTo(1 - (elapsed * 32), 0, 1)));
 				if (Math.abs(songScore - scoreTarget) <= 10)
 					songScore = scoreTarget;
-				if (comboScore - toZero <= 10)
+				if (Math.abs(comboScore - toZero) <= 10)
 					comboScore = toZero;
 					toZero = 0; // fix?
 
