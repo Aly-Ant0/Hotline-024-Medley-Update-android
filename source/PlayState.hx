@@ -4456,7 +4456,7 @@ class PlayState extends MusicBeatState
 			var currentBeat = (Conductor.songPosition/1000)*(SONG.bpm/60);
 			if (notes[a].noteType == 'Swap Note'){
 				if (notes[a].isSustainNote){
-					notes[a].offsetX += 3 * Math.cos((currentBeat + * 0.15) * Math.PI);
+					notes[a].offsetX += 3 * Math.cos((currentBeat + a * 0.15) * Math.PI);
 				}
 				if ((notes[a].strumTime - Conductor.songPosition) < 1100 / SONG.speed & !notes[a].isSustainNote)
 				{
