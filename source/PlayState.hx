@@ -3898,7 +3898,7 @@ class PlayState extends MusicBeatState
 			iconP1.swapOldIcon();
 		}*/
 		if (curStage == 'covers'){
-			elapsedTime = elapsed * 30;
+			elapsedTime += elapsed * 30;
 			bfreflect.animation.frameIndex = boyfriend.animation.frameIndex;
 			bfreflect.offset.set(boyfriend.offset.x); // apenas o x
 
