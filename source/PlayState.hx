@@ -4456,7 +4456,7 @@ class PlayState extends MusicBeatState
 		}
 		#end
 
-		for (a in 0...notes.length){
+		/*for (a in 0...notes.length){
 			notes.forEach(function(note:Note)
 			{
 				var currentBeat:Int = (Conductor.songPosition/1000)*(SONG.bpm/60);
@@ -4484,7 +4484,8 @@ class PlayState extends MusicBeatState
 					}
 				}
 			});
-		}
+		}*/
+		// wip
 
 		setOnLuas('cameraX', camFollowPos.x);
 		setOnLuas('cameraY', camFollowPos.y);
