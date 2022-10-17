@@ -117,7 +117,8 @@ class FreeplayState extends MusicBeatState
 
 		for (i in 0...songs.length)
 		{
-			var port:FreeplayText = new FreeplayText(310, 1515 * i + 55, songs[i]); // idk spacing lmao - aly ant 9/14/2022 9:07 (brazil timezone)
+			var port:FreeplayText = new FreeplayText(310, 0, songs[i]); // idk spacing lmao - aly ant 9/14/2022 9:07 (brazil timezone)
+			port.y += (1515 * i)+ 55
 			port.targetY = i; // basically a id variable lmao
 			port.ID = i;
 			port.setGraphicSize(Std.int(port.width * 1.2));
@@ -218,7 +219,7 @@ class FreeplayState extends MusicBeatState
 				// depression reasions
 				//var direction:Float = -10; // not used shit
 				//var lerpVal:Float = CoolUtil.boundTo(elapsed * 6, 0, 1);
-				if(port.targetY == 0 || port.ID==curSelected)
+				if(port.targetY == 0)
 				{
 						var lastAngle:Float = port.angle;
 						var lastX:Float = port.x;
@@ -228,10 +229,10 @@ class FreeplayState extends MusicBeatState
 						port.x = FlxMath.lerp(lastX, 310, CoolUtil.boundTo(elapsed * 0.6, 0, 1));
 						port.forceX = port.x;
 				}
-				if(port.ID!=curSelected||port.targetY!=0)
+				else
 				{
 						port.skew.x = port.skewDirection * port.skewSpeed * elapsed;
-						port.skewDirection = 1 * port.targetY;
+						port.skewDirection = 1 * port.angle;
 						port.x = FlxMath.lerp(port.x, 255 + -55 * Math.abs(port.targetY), CoolUtil.boundTo(elapsed * 0.6, 0, 1));
 						port.forceX = port.x;
 						port.angle = FlxMath.lerp(port.angle, 7 * port.targetY, CoolUtil.boundTo(elapsed * 0.6, 0, 1));
