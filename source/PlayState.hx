@@ -2209,7 +2209,7 @@ class PlayState extends MusicBeatState
 			comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
 			comboGlow.screenCenter(X); // nao botei o combo_x pq preguiça vou chorar
 			comboGlow.y = COMBO_Y;
-			comboGlow.alpha = 0;
+			comboGlow.alpha = 0.00001;
 			comboGlow.blend = ADD; // nao me perguntem o pq o blend ta em add
 			comboGlow.cameras = [camHUD];
 			add(comboGlow);
@@ -2220,16 +2220,16 @@ class PlayState extends MusicBeatState
 			combotxt1.scrollFactor.set();
 			combotxt1.borderSize = 1.25;
 			combotxt1.cameras = [camHUD];
-			combotxt1.alpha = 0;
+			combotxt1.alpha = 0.00001;
 			add(combotxt1);
 
-			combotxtscoreplus = new FlxText(0, combotxt1.y + 25, FlxG.width, "", 23);
+			combotxtscoreplus = new FlxText(0, combotxt1.y + 23, FlxG.width, "", 23);
 			combotxtscoreplus.color = FlxColor.WHITE;
 			combotxtscoreplus.setFormat(Paths.font("goodbyeDespair.ttf"), 23, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			combotxtscoreplus.scrollFactor.set();
 			combotxtscoreplus.borderSize = 1.25;
 			combotxtscoreplus.cameras = [camHUD];
-			combotxtscoreplus.alpha = 0;
+			combotxtscoreplus.alpha = 0.00001;
 			add(combotxtscoreplus);
 
 			// combo score lerp
@@ -2239,7 +2239,7 @@ class PlayState extends MusicBeatState
 			combotxt2.borderSize = 1.25;
 			//combotxt2.setPosition(579, 0); // ibis paint coordinates moment :nerdanimechar:
 			combotxt2.cameras = [camHUD];
-			combotxt2.alpha = 0;
+			combotxt2.alpha = 0.00001;
 			add(combotxt2);
 
 				// so para ajudar qm iniciante em haxe ou pode ter em alguma outra linguagem de programação alem do haxe sla
@@ -2267,22 +2267,23 @@ class PlayState extends MusicBeatState
 			songnameBoxGrp = new FlxTypedSpriteGroup<FlxSprite>();
 			add(songnameBoxGrp);
 
-			songTxt = new FlxText(0, 0, 0, "", 42); // it mentions the bar variable cuz its already declared look at the line 189
-			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 42, FlxColor.WHITE, RIGHT);
-			songTxt.cameras = [camHUD];
-			songTxt.scrollFactor.set();
-
 			// converts to a image
 			/*var songTxtImg:FlxSprite = new FlxSprite(songTxt.x,songTxt.y).loadGraphic(songTxt.pixels);
 			add(songTxtImg);*/
 
 			bar.makeGraphic(1, 1, FlxColor.BLACK);
-			bar.x = songTxt.x + songTxt.width + 15;
 			bar.alpha = 0.55;
+			bar.cameras = [camHUD];
+
+			bar.scrollFactor.set();
+
+			songTxt = new FlxText(bar.width - 45, 0, 0, "", 42); // it mentions the bar variable cuz its already declared look at the line 189
+			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 42, FlxColor.WHITE, RIGHT);
+			songTxt.cameras = [camHUD];
+			songTxt.scrollFactor.set();
+
 			bar.setGraphicSize(Std.int(songTxt.x - 505), Std.int(songTxt.height + 20));
 			bar.updateHitbox(); // song txt bar size fix size???
-			bar.cameras = [camHUD];
-			bar.scrollFactor.set();
 
 			songnameBoxGrp.add(bar);
 			songnameBoxGrp.add(songTxt);
@@ -3918,8 +3919,9 @@ class PlayState extends MusicBeatState
 				songScore = Math.floor(FlxMath.lerp(songScore, scoreTarget, CoolUtil.boundTo(1 - (elapsed * 32), 0, 1)));
 				if (Math.abs(songScore - scoreTarget) <= 10)
 					songScore = scoreTarget;
-				if (Math.abs(comboScore - toZero) <= 10)
-					combotxt2.text = "0";
+				if (comboScore - toZero <= 10)
+					comboScore = toZero;
+					toZero = 0; // fix?
 
 				// se tiver visível é claro né meu fi ou fia sla
 
@@ -3927,16 +3929,15 @@ class PlayState extends MusicBeatState
 				FlxFlicker.flicker(combotxt1, 1, 0.05, true, false);
 				FlxFlicker.flicker(combotxt2, 1, 0.05, true, false);
 				combotxtscoreplus.alpha = 0;
-				tweenMoment = true;
-				FlxTween.tween(combotxt1, {alpha:0}, 1, {ease: FlxEase.linear, onComplete: function(twn:FlxTween){
+				FlxTween.tween(combotxt1, {alpha:0.00001}, 1, {ease: FlxEase.linear, onComplete: function(twn:FlxTween){
 					combotxt1.alpha = 0;
 				}});
-				FlxTween.tween(combotxt2, {alpha:0}, 1, {ease: FlxEase.linear, onComplete: function(twn:FlxTween){
+				FlxTween.tween(combotxt2, {alpha:0.00001}, 1, {ease: FlxEase.linear, onComplete: function(twn:FlxTween){
 					combotxt2.alpha = 0;
 					tweenMoment = false;
 				}});
 				//FlxTween.tween(combotxt1, {alpha:0}, 1); // bruh
-				FlxTween.tween(comboGlow, {alpha:0}, 1, {ease: FlxEase.linear, onComplete:function(twn:FlxTween){
+				FlxTween.tween(comboGlow, {alpha:0.00001}, 1, {ease: FlxEase.linear, onComplete:function(twn:FlxTween){
 					comboGlow.alpha = 0;
 					sicks = 0;
 					goods = 0;
@@ -3946,6 +3947,9 @@ class PlayState extends MusicBeatState
 
 				if (sicks>=20){
 								combotxt1.text = 'PERFECT!!';
+								/*if (FlxG.random.bool(0.6)){
+									combotxt1.text = 'GOOD MAN!';
+								}*/
 				}
 				if (sicks>=10||goods>=10)
 				{
