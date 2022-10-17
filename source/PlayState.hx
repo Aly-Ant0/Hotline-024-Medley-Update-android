@@ -4453,27 +4453,29 @@ class PlayState extends MusicBeatState
 		#end
 
 		for (a in 0...notes.length){
-			var currentBeat = (Conductor.songPosition/1000)*(SONG.bpm/60);
-			if (notes[a].noteType == 'Swap Note'){
-				if (notes[a].isSustainNote){
-					notes[a].offsetX += 3 * Math.cos((currentBeat + a * 0.15) * Math.PI);
-				}
-				if ((notes[a].strumTime - Conductor.songPosition) < 1100 / SONG.speed & !notes[a].isSustainNote)
-				{
-					if (notes[a].offsetX != targetOffsetX){
-						notes[a].offsetX = FlxMath.lerp(notes[a].offsetX, targetOffsetX, CoolUtil.boundTo(elapsed * 10, 0, 1));
+			for (note in notes){
+				var currentBeat = (Conductor.songPosition/1000)*(SONG.bpm/60);
+				if (note[a].noteType == 'Swap Note'){
+					if (note[a].isSustainNote){
+						note[a].offsetX += 3 * Math.cos((currentBeat + a * 0.15) * Math.PI);
 					}
-					else if (notes[a].offsetX <= targetOffsetX){
-						notes[a].offsetX =targetOffsetX;
+					if ((note[a].strumTime - Conductor.songPosition) < 1100 / SONG.speed & !note[a].isSustainNote)
+					{
+						if (note[a].offsetX != targetOffsetX){
+							note[a].offsetX = FlxMath.lerp(notes[a].offsetX, targetOffsetX, CoolUtil.boundTo(elapsed * 10, 0, 1));
+						}
+						else if (note[a].offsetX <= targetOffsetX){
+							note[a].offsetX =targetOffsetX;
+						}
 					}
-				}
-				else if ((notes[a].strumTime - Conductor.songPosition) < 1200 / SONG.speed & notes[a].isSustainNote)
-				{
-					if (notes[a].offsetX != targetOffsetX2){
-						notes[a].offsetX = FlxMath.lerp(notes[a].offsetX, targetOffsetX2, CoolUtil.boundTo(elapsed * 10, 0, 1));
-					}
-					else if (notes[a].offsetX <= targetOffsetX2){
-						notes[a].offsetX =targetOffsetX2;
+					else if ((notes[a].strumTime - Conductor.songPosition) < 1200 / SONG.speed & note[a].isSustainNote)
+					{
+						if (note[a].offsetX != targetOffsetX2){
+							note[a].offsetX = FlxMath.lerp(note[a].offsetX, targetOffsetX2, CoolUtil.boundTo(elapsed * 10, 0, 1));
+						}
+						else if (note[a].offsetX <= targetOffsetX2){
+							note[a].offsetX =targetOffsetX2;
+						}
 					}
 				}
 			}
