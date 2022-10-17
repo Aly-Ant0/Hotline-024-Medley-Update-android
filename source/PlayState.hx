@@ -4459,7 +4459,7 @@ class PlayState extends MusicBeatState
 		for (a in 0...notes.length){
 			notes.forEach(function(note:Note)
 			{
-				var currentBeat:Dynamic = (Conductor.songPosition/1000)*(SONG.bpm/60);
+				var currentBeat:Int = (Conductor.songPosition/1000)*(SONG.bpm/60);
 				if (note.noteType == 'Swap Note'){
 					if (note.isSustainNote){
 						note.offsetX += 3 * Math.cos((currentBeat + Std.parseFloat(a) * 0.15) * Math.PI);
