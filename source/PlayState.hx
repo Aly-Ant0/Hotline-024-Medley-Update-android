@@ -2479,7 +2479,7 @@ class PlayState extends MusicBeatState
 		}
 		CustomFadeTransition.nextCamera = camOther;
 
-		for (i in 0...unspawnNotes.length){// lua script rewrite
+		/*for (i in 0...unspawnNotes.length){// lua script rewrite
 			if (unspawnNotes[i].noteType == 'Swap Note'){
 				if (!unspawnNotes[i].isSustainNote){
 					targetOffsetX = unspawnNotes[i].offsetX;
@@ -2494,7 +2494,8 @@ class PlayState extends MusicBeatState
 					unspawnNotes[i].offsetX = unspawnNotes[i].offsetX + 640;
 				}
 			}
-		}
+		}*/
+		// wip
 	}
 
 	function set_songSpeed(value:Float):Float
