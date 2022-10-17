@@ -210,6 +210,8 @@ class PlayState extends MusicBeatState
 	public var bads:Int = 0;
 	public var shits:Int = 0;
 	var rating:String = "";
+	
+	var elapsedTime:Float=0;
 
 	private var generatedMusic:Bool = false;
 	public var endingSong:Bool = false;
@@ -3896,6 +3898,7 @@ class PlayState extends MusicBeatState
 			iconP1.swapOldIcon();
 		}*/
 		if (curStage == 'covers'){
+			elapsedTime = elapsed * 30;
 			bfreflect.animation.frameIndex = boyfriend.animation.frameIndex;
 			bfreflect.offset.set(boyfriend.offset.x); // apenas o x
 
@@ -3904,6 +3907,8 @@ class PlayState extends MusicBeatState
 
 			dadreflect.animation.frameIndex = dad.animation.frameIndex;
 			dadreflect.offset.set(dad.offset.x); // apenas o x
+
+			dadreflect.y = (Math.sin(elapsedTime/20)*-75) + 1400; // trigonometry my beloved
 		}
 
 		if (comboState == 0){ // combo moment 
