@@ -163,9 +163,12 @@ class PlayState extends MusicBeatState
 	public var boyfriend:Boyfriend = null;
 	public var bfThing:Boyfriend = null; // unused shit
 
+	// note stuff
 	public var notes:FlxTypedGroup<Note>;
 	public var unspawnNotes:Array<Note> = [];
 	public var eventNotes:Array<EventNote> = [];
+	var targetOffsetX = 0;
+	var targetOffsetX2= 0;
 
 	private var strumLine:FlxSprite;
 
@@ -2474,6 +2477,23 @@ class PlayState extends MusicBeatState
 			}
 		}
 		CustomFadeTransition.nextCamera = camOther;
+
+		for (i in 0...unspawnNotes.length){// lua script rewrite
+			if (unspawnNotes[i].noteType == 'Swap Note'){
+				if (!unspawnNotes[i].isSustainNote){
+					targetOffsetX = unspawnNotes[i].offsetX;
+				}
+				else{
+					targetOffsetX2 = unspawnNotes[i].offsetX;
+				}
+				if (unspawnNotes[i].mustPress){
+					unspawnNotes[i].offsetX = unspawnNotes[i].offsetX - 640;
+				}
+				else{
+					unspawnNotes[i].offsetX = unspawnNotes[i].offsetX + 640;
+				}
+			}
+		}
 	}
 
 	function set_songSpeed(value:Float):Float
@@ -4432,6 +4452,33 @@ class PlayState extends MusicBeatState
 		}
 		#end
 
+		for (a in notes.length){
+			var currentBeat = (Conductor.songPosition/1000)*(SONG.bpm/60);
+			if (notes[a].noteType == 'Swap Note'){
+				if (notes[a].isSustainNote){
+					notes[a].offsetX += 3 * Math.cos((currentBeat + * 0.15) * Math.PI);
+				}
+				if ((notes[a].strumTime - Conductor.songPosition) < 1100 / SONG.speed & !notes[a].isSustainNote)
+				{
+					if (notes[a].offsetX != targetOffsetX){
+						notes[a].offsetX = FlxMath.lerp(notes[a].offsetX, targetOffsetX, CoolUtil.boundTo(elapsed * 10, 0, 1));
+					}
+					else if (notes[a].offsetX <= targetOffsetX){
+						notes[a].offsetX =targetOffsetX;
+					}
+				}
+				else if ((notes[a].strumTime - Conductor.songPosition) < 1200 / SONG.speed & notes[a].isSustainNote)
+				{
+					if (notes[a].offsetX != targetOffsetX2){
+						notes[a].offsetX = FlxMath.lerp(notes[a].offsetX, targetOffsetX2, CoolUtil.boundTo(elapsed * 10, 0, 1));
+					}
+					else if (notes[a].offsetX <= targetOffsetX2){
+						notes[a].offsetX =targetOffsetX2;
+					}
+				}
+			}
+		}
+
 		setOnLuas('cameraX', camFollowPos.x);
 		setOnLuas('cameraY', camFollowPos.y);
 		setOnLuas('botPlay', cpuControlled);
@@ -5127,9 +5174,9 @@ class PlayState extends MusicBeatState
 	{
 		if (curStage == 'astral') {
 			FlxG.camera.flash(FlxColor.BLACK, 5, null, true);
-			asPlantadaMinhaMae.alpha = 0.00001;
-			matzuBG.alpha = 0.00001;
-			matzuDESK.alpha = 0.00001;
+			asPlantadaMinhaMae.kill();
+			matzuBG.kill();
+			matzuDESK.kill();
 			matzuFudida1.alpha = 1;
 			matzuFudida2.alpha = 1;
 			matzuFudida3.alpha = 1;
