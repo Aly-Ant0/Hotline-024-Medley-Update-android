@@ -167,8 +167,8 @@ class PlayState extends MusicBeatState
 	public var notes:FlxTypedGroup<Note>;
 	public var unspawnNotes:Array<Note> = [];
 	public var eventNotes:Array<EventNote> = [];
-	var targetOffsetX = 0;
-	var targetOffsetX2= 0;
+	var targetOffsetX:Dynamic;
+	var targetOffsetX2:Dynamic;
 
 	private var strumLine:FlxSprite;
 
@@ -4452,7 +4452,7 @@ class PlayState extends MusicBeatState
 		}
 		#end
 
-		for (a in notes.length){
+		for (a in 0...notes.length){
 			var currentBeat = (Conductor.songPosition/1000)*(SONG.bpm/60);
 			if (notes[a].noteType == 'Swap Note'){
 				if (notes[a].isSustainNote){
