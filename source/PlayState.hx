@@ -886,8 +886,8 @@ class PlayState extends MusicBeatState
 							exOverlay.updateHitbox();
 							//exOverlay.antialiasing = ClientPrefs.globalAntialiasing;
 			
-							exFront = new BGSprite('expurgated/signfront', -2750, -1400, 1.15, 1.15);
-							exFront.scale.set(2.5, 2.5);
+							exFront = new BGSprite('expurgated/signfront', -2950, -1400, 1.15, 1.15);
+							exFront.scale.set(2.7, 2.7);
 							exFront.updateHitbox();
 							//exFront.antialiasing = ClientPrefs.globalAntialiasing;
 					case 'skatepark':
@@ -2011,8 +2011,8 @@ class PlayState extends MusicBeatState
 				gfreflect.blend = ADD;
 				gfreflect.alpha = .8;
 				gfreflect.x = gf.x;
+				gfreflect.y = gfreflect.y + 475; // talvez poder a altura tb
 				gfreflect.scale.set(gf.scale.x, gf.scale.y);
-				gfreflect.y = gf.height; // talvez poder a altura tb
 				insert(members.indexOf(gfGroup), gfreflect);
 
 				dadreflect.frames = dad.frames;
@@ -3041,7 +3041,7 @@ class PlayState extends MusicBeatState
 	public function songSlide():Void
 	{
 		new FlxTimer().start(0.5, function(tmr:FlxTimer) {
-			FlxTween.tween(songnameBoxGrp, {x:0}, 1, {ease: FlxEase.cubeInOut});
+			FlxTween.tween(songnameBoxGrp, {x:50}, 1, {ease: FlxEase.cubeInOut});
 		});
 		new FlxTimer().start(4.5, function(tmr:FlxTimer) 
 		{
@@ -3842,54 +3842,6 @@ class PlayState extends MusicBeatState
 	var startedCountdown:Bool = false;
 	var canPause:Bool = true;
 	var limoSpeed:Float = 0;
-	var tweenMoment:Bool = false; // the worst thing that i made lmao.
-
-	/*function doesEdgeCastShadow(start:Vec2, end:Vec2, light:Vec2):Bool
-	{
-		var startToEnd:Vec2 = end.copy();
-		startToEnd.subeq(start);
-
-		var normal:Vec2 = new Vec2(startToEnd.y, -1 * startToEnd.x);
-
-		var lightToStart:Vec2 = start.copy();
-		lightToStart.subeq(light);
-
-		return normal.dot(lightToStart) > 0;
-	}
-
-	public function processShadows():Void
-	{
-		dadreflect.animation.frameIndex = dad.animation.frameIndex;
-	}
-
-	function processShapeVertex(startVertex:Vec2, endVertex:Vec2):Void
-	{
-		var tempLightOrigin:Vec2 = Vec2.get(dad.x + FlxG.random.float(-.3, 3), dad.y + FlxG.random.float(-.3, .3));
-
-		if (doesEdgeCastShadow(startVertex, endVertex, tempLightOrigin))
-		{
-			var projectedPoint:Vec2 = projectPoint(startVertex, tempLightOrigin);
-			var prevProjectedPt:Vec2 = projectPoint(endVertex, tempLightOrigin);
-			var vts:Array<FlxPoint> = [
-				FlxPoint.weak(startVertex.x, startVertex.y),
-				FlxPoint.weak(projectedPoint.x, projectedPoint.y),
-				FlxPoint.weak(prevProjectedPt.x, prevProjectedPt.y),
-				FlxPoint.weak(endVertex.x, endVertex.y)
-			];
-
-			shadowCanvas.drawPolygon(vts, SHADOW_COLOR, lineStyle);
-		}
-	}
-
-	function projectPoint(point:Vec2, light:Vec2):Vec2
-	{
-		var lightToPoint:Vec2 = point.copy();
-		lightToPoint.subeq(light);
-
-		var projectedPoint:Vec2 = point.copy();
-		return projectedPoint.addeq(lightToPoint.muleq(.45));
-	}*/
-	// wip
 
 	override public function update(elapsed:Float)
 	{
@@ -3899,6 +3851,7 @@ class PlayState extends MusicBeatState
 		}*/
 		if (curStage == 'covers'){
 			elapsedTime += elapsed * 30;
+
 			bfreflect.animation.frameIndex = boyfriend.animation.frameIndex;
 			bfreflect.offset.set(boyfriend.offset.x); // apenas o x
 
@@ -3913,12 +3866,11 @@ class PlayState extends MusicBeatState
 
 		if (comboState == 0){ // combo moment 
 			combotxt1.text = rating + " x" + comboNum;
-			combotxt2.text =/* Std.string(comboScore)*/ ""+comboScore;
+			combotxt2.text = Std.string(comboScore);
 			combotxtscoreplus.text = "+" + score;
 		}
 		if (comboState == 1){ // combo moment 2
 				comboNum = 0;
-
 				// lerp momento
 				var toZero:Int = 90;
 				comboScore = Math.floor(FlxMath.lerp(comboScore, toZero, CoolUtil.boundTo(1 - (elapsed * 32), 0, 1)));
