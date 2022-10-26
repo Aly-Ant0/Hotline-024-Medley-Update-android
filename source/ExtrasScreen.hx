@@ -36,11 +36,12 @@ class ExtrasScreen extends MusicBeatState
 	var secret:FlxSprite;
 	var text:FlxSprite;
 	var buttonLock:FlxSprite;
+	var elapsedTime:Float =0;
 	public static var curSelected:Int = 0; // idk why is public but ok
 	// wip stuff
 	var curSelection:Int = 0; // 0 is extras 1 is covers
-	var selectingExtras:Bool; // null value
-	var selectingCoverz:Bool;
+	var selectingExtras:Bool = true; // null value
+	var selectingCoverz:Bool = false;
 
 	override function create()
 	{
@@ -160,6 +161,11 @@ class ExtrasScreen extends MusicBeatState
 					case 'coversButton':
 						MusicBeatState.switchState(new CoversScreen());
 				}
+		}
+		for (item in buttonGrp.members){
+			elapsedTime += elapsed * 30;
+			if(item.ID == curSelected)
+				item.y = (Math.sin(elapsedTime/29)*7.8);
 		}
 		super.update(elapsed);
 	}
