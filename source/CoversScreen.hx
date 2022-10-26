@@ -167,6 +167,12 @@ class CoversScreen extends MusicBeatState
 					});
 			}
 		}
+		for (butt in buttonGrp.members)
+		{
+			if(butt.ID == curSelected) {
+					butt.y = (Math.sin(elapsedTime/35)*5.2/* <-this is the y*/);
+			}
+		}
 		super.update(elapsed);
 	}
 
@@ -192,7 +198,6 @@ class CoversScreen extends MusicBeatState
 				if(butt.ID == curSelected) {
 					butt.alpha = 1;
 					butt.color = 0xFFFFFFFF;
-					FlxTween.tween(butt, {y: butt.y + 3}, 1, {ease: FlxEase.expoOut, type:PINGPONG});
 				}
 			}
 	}
