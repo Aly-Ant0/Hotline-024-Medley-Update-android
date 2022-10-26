@@ -26,6 +26,7 @@ class CoversScreen extends MusicBeatState
 	var bars:FlxSprite;
 
 	public static var curSelected:Int = 0;
+	var elapsedTime:Float = 0;
 
 	var buttonList:Array<String> = [
 		'button1',
@@ -169,6 +170,7 @@ class CoversScreen extends MusicBeatState
 		}
 		for (butt in buttonGrp.members)
 		{
+			elapsedTime += elapsed * 30;
 			if(butt.ID == curSelected) {
 					butt.y = (Math.sin(elapsedTime/35)*5.2/* <-this is the y*/);
 			}
