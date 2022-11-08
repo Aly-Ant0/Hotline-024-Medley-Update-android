@@ -1,4 +1,5 @@
-package; // sexy code -aly ant
+// sexy code -aly ant
+package;
 
 import flixel.graphics.FlxGraphic;
 #if desktop
@@ -189,10 +190,7 @@ class PlayState extends MusicBeatState
 	private var curSong:String = "";
 
 	// song bar idk
-	var bar:AttachedSprite = new AttachedSprite(null); // dont loads a image. :lmao:
-	var songTxt:FlxText;
-	var songString:String = "";
-	var songnameBoxGrp:FlxTypedSpriteGroup<FlxSprite>; // btw have an flxtext variable (aka var) cuz it extends with flxsprite.
+	var songTag:SongBar;
 
 	public var gfSpeed:Int = 1;
 	public var health:Float = 1;
@@ -2023,6 +2021,39 @@ class PlayState extends MusicBeatState
 				dadreflect.scale.set(dad.scale.x, dad.scale.y);
 				dadreflect.y = dad.height;
 				insert(members.indexOf(dadGroup), dadreflect);
+
+			case 'stage4':
+				bfreflect.frames = boyfriend.frames;
+				bfreflect.flipY = true;
+				bfreflect.blend = ADD;
+				bfreflect.alpha = .55;
+				bfreflect.x = boyfriend.x;
+				switch(boyfriend.curCharacter)
+				{
+					case 'bf':
+						bfreflect.y = boyfriend.y + 390;
+					default:
+						bfreflect.y = boyfriend.height;
+				}
+				insert(members.indexOf(boyfriendGroup), bfreflect);
+
+				gfreflect.frames = gf.frames;
+				gfreflect.flipY = true;
+				gfreflect.blend = ADD;
+				gfreflect.alpha = .8;
+				gfreflect.x = gf.x;
+				gfreflect.y = gf.y + 550; // talvez poder a altura tb
+				gfreflect.scale.set(gf.scale.x, gf.scale.y);
+				insert(members.indexOf(gfGroup), gfreflect);
+
+				dadreflect.frames = dad.frames;
+				dadreflect.flipY = true;
+				dadreflect.blend = ADD; // por isso q no mod os reflexo é mt lindo q da ate vontade de chorar
+				dadreflect.alpha = .8;
+				dadreflect.x = dad.x;
+				dadreflect.scale.set(dad.scale.x, dad.scale.y);
+				dadreflect.y = dad.height;
+				insert(members.indexOf(dadGroup), dadreflect);
 			case 'limo':
 				resetFastCar();
 				insert(members.indexOf(gfGroup) - 1, fastCar);
@@ -2266,40 +2297,20 @@ class PlayState extends MusicBeatState
 				eu pensei nesse nome dps de quando eu tive um sonho.
 				*/
 
-			songnameBoxGrp = new FlxTypedSpriteGroup<FlxSprite>();
-			add(songnameBoxGrp);
+			songTag = new SongBar(null, healthBarBG.y + 160);
+			add(songTag);
 
-			// converts to a image
-			/*var songTxtImg:FlxSprite = new FlxSprite(songTxt.x,songTxt.y).loadGraphic(songTxt.pixels);
-			add(songTxtImg);*/
-
-			bar.makeGraphic(1, 1, FlxColor.BLACK);
-			bar.alpha = 0.55;
-			bar.cameras = [camHUD];
-
-			bar.scrollFactor.set();
-
-			songTxt = new FlxText(bar.width - 45, 0, 0, "", 42); // it mentions the bar variable cuz its already declared look at the line 189
-			songTxt.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), 42, FlxColor.WHITE, RIGHT);
-			songTxt.cameras = [camHUD];
-			songTxt.scrollFactor.set();
-
-			bar.setGraphicSize(Std.int(songTxt.x - 505), Std.int(songTxt.height + 20));
-			bar.updateHitbox(); // song txt bar size fix size???
-
-			songnameBoxGrp.add(bar);
-			songnameBoxGrp.add(songTxt);
 		// if the txt file exists the txt string will get the file text
 		var file:String = Paths.txt(songName + '/' + 'info');
 		if(OpenFlAssets.exists(file)) { // info file fix?
-			songString = OpenFlAssets.getText(SUtil.getPath() + file);
+			songTag.stringShit = OpenFlAssets.getText(SUtil.getPath() + file);
 		}
 		else {
-			songnameBoxGrp.alpha = 0;
-			songString = 'NO BITCHES?'; // for prevent crash
+			songnameBoxGrp.kill();
+			songTag.stringShit = 'NO BITCHES?'; // placeholder
 			// and yes, no bitches.
 			if (FlxG.random.bool(0.1)){
-				songString += '\nYES, NO BITCHES.';
+				songTag.stringShit += '\nYES, NO BITCHES.';
 			}
 		}
 
@@ -3040,18 +3051,7 @@ class PlayState extends MusicBeatState
 	//var songTwn:FlxTween;
 	public function songSlide():Void
 	{
-		new FlxTimer().start(0.5, function(tmr:FlxTimer) {
-			FlxTween.tween(songnameBoxGrp, {x:50}, 1, {ease: FlxEase.cubeInOut});
-		});
-		new FlxTimer().start(4.5, function(tmr:FlxTimer) 
-		{
-			FlxTween.tween(songnameBoxGrp, {x:-500}, 1, {ease: FlxEase.cubeInOut,
-				onComplete: function(twn:FlxTween)
-				{
-					songnameBoxGrp.alpha = 0;
-				}
-			});
-		});
+		return songTag.tweenStartLololololololololololololololololololololollllmlllmlloololololololololololololololollololololollolololololllololololooloololoooloololoolooloollololllollllolookooilolololololololololololollolololololploololololololollollolllolololllololololololololololoololololllollolololololollollllololololololololololololooololololololol(); //spam function lmao
 	}
 
 	//var comboNum:Int = 0;
@@ -3849,19 +3849,33 @@ class PlayState extends MusicBeatState
 		{
 			iconP1.swapOldIcon();
 		}*/
-		if (curStage == 'covers'){
-			elapsedTime += elapsed * 30;
-
-			bfreflect.animation.frameIndex = boyfriend.animation.frameIndex;
-			bfreflect.offset.set(boyfriend.offset.x); // apenas o x
-
-			gfreflect.animation.frameIndex = gf.animation.frameIndex;
-			gfreflect.offset.set(gf.offset.x); // apenas o x
-
-			dadreflect.animation.frameIndex = dad.animation.frameIndex;
-			dadreflect.offset.set(dad.offset.x); // apenas o x
-
-			dadreflect.y = (Math.sin(elapsedTime/20)*-75) + 1400; // trigonometry my beloved
+		switch(curStage){
+			case "covers":
+				elapsedTime += elapsed * 30;
+	
+				bfreflect.animation.frameIndex = boyfriend.animation.frameIndex;
+				bfreflect.offset.set(boyfriend.offset.x); // apenas o x
+	
+				gfreflect.animation.frameIndex = gf.animation.frameIndex;
+				gfreflect.offset.set(gf.offset.x); // apenas o x
+	
+				dadreflect.animation.frameIndex = dad.animation.frameIndex;
+				dadreflect.offset.set(dad.offset.x); // apenas o x
+	
+				dadreflect.y = (Math.sin(elapsedTime/20)*-75) + 1415; // trigonometry my beloved
+			case "stage4":
+				elapsedTime += elapsed * 30;
+	
+				bfreflect.animation.frameIndex = boyfriend.animation.frameIndex;
+				bfreflect.offset.set(boyfriend.offset.x); // apenas o x
+	
+				gfreflect.animation.frameIndex = gf.animation.frameIndex;
+				gfreflect.offset.set(gf.offset.x); // apenas o x
+	
+				dadreflect.animation.frameIndex = dad.animation.frameIndex;
+				dadreflect.offset.set(dad.offset.x); // apenas o x
+	
+				dadreflect.y = (Math.sin(elapsedTime/20)*-50) + 500; // trigonometry my beloved
 		}
 
 		if (comboState == 0){ // combo moment 
@@ -3912,7 +3926,7 @@ class PlayState extends MusicBeatState
 				{
 								combotxt1.text = 'NICE!';
 				}
-				else if (goods>=5||sicks>=5)
+				i if (goods>=5||sicks>=5)
 				{
 								combotxt1.text = 'GREAT!';
 				}
@@ -4102,7 +4116,6 @@ class PlayState extends MusicBeatState
 			momogogoBG.x += 90 * elapsed; // easy huh?
 		}*/
 
-		songTxt.text = '${songString}';
 		// not funny anymore.
 		/*if(FlxG.random.bool(0.4)){
 			songTxt.text += ' BITCH.'; // :trollface:
