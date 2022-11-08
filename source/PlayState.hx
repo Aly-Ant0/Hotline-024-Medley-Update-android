@@ -3926,7 +3926,7 @@ class PlayState extends MusicBeatState
 				{
 								combotxt1.text = 'NICE!';
 				}
-				i if (goods>=5||sicks>=5)
+				if (goods>=5||sicks>=5)
 				{
 								combotxt1.text = 'GREAT!';
 				}
