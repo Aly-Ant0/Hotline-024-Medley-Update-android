@@ -47,11 +47,17 @@ jobs:
           haxelib --quiet install lime 7.9.0
           haxelib --quiet install openfl 9.1.0
           haxelib --quiet install flixel
+          haxelib dev hxcpp hxcpp-new-ndk-support
+          cd hxcpp-new-ndk-support/tools/hxcpp
+          haxe compile.hxml
+          cd ../../../
+          haxelib --quiet install lime-samples
           haxelib --quiet --never run lime setup
           haxelib --quiet install hscript
           haxelib --quiet install flixel-ui
           haxelib --quiet install flixel-addons
           haxelib --quiet install flxanimate 1.2.0
+          git clone https://github.com/Sirox228/hxcpp-new-ndk-support
           haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc --quiet
           haxelib git extension-androidtools https://github.com/MAJigsaw77/extension-androidtools.git --quiet
           haxelib git extension-webview https://github.com/Aly-Ant0/extension-webview.git --quiet
@@ -68,6 +74,7 @@ jobs:
           haxelib set lime 7.9.0
           haxelib set openfl 9.1.0
           haxelib set flxanimate 1.2.0
+          haxelib dev hxcpp hxcpp-new-ndk-support
           haxelib list
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
