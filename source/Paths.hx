@@ -328,6 +328,9 @@ class Paths
 		}
 		return music('$key');
 	}
+	inline static public function h024TextureAtlas(key:String, library:String){
+		return getPath('images/$library/$key', TEXT, 'h024');
+	}
 
 	static public function getTextFromFile(key:String, ?ignoreMods:Bool = false):String
 	{
