@@ -24,9 +24,6 @@ import flixel.util.FlxTimer;
 import flixel.input.keyboard.FlxKey;
 import flixel.graphics.FlxGraphic;
 import Controls;
-#if android
-import android.Hardware;
-#end
 
 using StringTools;
 
@@ -56,8 +53,8 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			'If disabled, the texture will be the hitbox texture of LuckyDog7.', //Description
 			'HitboxJigsaw', //Save data variable name
 			'string',
-			'M.A Jigsaw texture',
-			['M.A Jigsaw texture', 'LuckyDog7 texture']);
+			'M.A Jigsaw',
+			['M.A Jigsaw', 'LuckyDog7']);
 		addOption(option);
 
 		var option:Option = new Option('Middlescroll',
@@ -149,16 +146,6 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.changeValue = 0.1;
 		addOption(option);
 
-		#if android
-		var option:Option = new Option('GameOver Vibration',
-			'If unchecked, will make the game to vibrate when you die.',
-			'vibration',
-			'bool',
-			false);
-		addOption(option);
-		option.onChange = onChangeGameOverVibration;
-		#end
-
 		super();
 	}
 
@@ -166,14 +153,4 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 	{
 		FlxG.sound.play(Paths.sound('hitsound'), ClientPrefs.hitsoundVolume);
 	}
-
-	#if android
-	function onChangeGameOverVibration()
-	{
-		if(ClientPrefs.vibration)
-		{
-			Hardware.vibrate(500);
-		}
-	}
-	#end
 }
