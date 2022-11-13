@@ -2306,7 +2306,7 @@ class PlayState extends MusicBeatState
 			songTag.stringShit = OpenFlAssets.getText(SUtil.getPath() + file);
 		}
 		else {
-			songnameBoxGrp.kill();
+			songTag.kill();
 			songTag.stringShit = 'NO BITCHES?'; // placeholder
 			// and yes, no bitches.
 			if (FlxG.random.bool(0.1)){
@@ -2325,9 +2325,6 @@ class PlayState extends MusicBeatState
 			healthBar.visible = false;
 		}
 
-		songnameBoxGrp.y = healthBarBG.y + 160;
-		songnameBoxGrp.x -= 500;
-
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
 		}
@@ -2341,7 +2338,7 @@ class PlayState extends MusicBeatState
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 		botplayTxt.cameras = [camHUD];
-		songnameBoxGrp.cameras = [camHUD];
+		songTag.cameras = [camHUD];
 		timeBar.cameras = [camHUD];
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
