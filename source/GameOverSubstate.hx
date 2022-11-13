@@ -11,9 +11,6 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.system.FlxSound;
 import flixel.FlxSprite;
-#if android
-import android.Hardware;
-#end
 
 class GameOverSubstate extends MusicBeatSubstate
 {
@@ -75,13 +72,6 @@ class GameOverSubstate extends MusicBeatSubstate
 			});
 			coolStartDeath();
 		});
-
-		#if android
-		if(ClientPrefs.vibration)
-		{
-			Hardware.vibrate(1900);
-		}
-		#end
 		// FlxG.camera.followLerp = 1;
 		// FlxG.camera.focusOn(FlxPoint.get(FlxG.width / 2, FlxG.height / 2));
 	}
