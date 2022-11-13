@@ -1852,7 +1852,7 @@ class PlayState extends MusicBeatState
 		switch(songName) // texture atlas cutscenes
 		{
 			case "fandomania":
-				fandomaniaCutscene = new FlxAnimate(0, 0, Paths.h024TextureAtlas("cutscene1", "hallway");
+				fandomaniaCutscene = new FlxAnimate(0, 0, Paths.h024TextureAtlas("cutscene1", "hallway"));
 				fandomaniaCutscene.anim.addBySymbol('cutscene', 'ExportAtlas', 24, false);
 				fandomaniaCutscene.alpha=0.00001;
 				fandomaniaCutscene.screenCenter();
