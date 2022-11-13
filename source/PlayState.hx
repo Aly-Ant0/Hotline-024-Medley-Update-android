@@ -315,6 +315,8 @@ class PlayState extends MusicBeatState
 	var hallFG:BGSprite;
 	var hallLuzinha:BGSprite;
 
+	var fandomaniaCutscene:FlxAnimate; //using texture atlas in android
+
 	// ARMAGEDOM
 	var bars:BGSprite;
 	var rocks:BGSprite;
@@ -1846,6 +1848,18 @@ class PlayState extends MusicBeatState
 				blackStart.cameras = [cutCam];
 				blackStart.alpha = 0.00001;
 				add(blackStart);
+		}
+		switch(songName) // texture atlas cutscenes
+		{
+			case "fandomania":
+				fandomaniaCutscene = new FlxAnimate(0, 0, Paths.h024TextureAtlas("cutscene1", "hallway");
+				fandomaniaCutscene.anim.addBySymbol('cutscene', 'ExportAtlas', 24, false);
+				fandomaniaCutscene.alpha=0.00001;
+				fandomaniaCutscene.screenCenter();
+				fandomaniaCutscene.cameras = [cutCam];
+				add(fandomaniaCutscene);
+			case "killer-queen":
+				
 		}
 
 		FileSystem.createDirectory(Main.path + "assets"); // saving lines
@@ -6338,14 +6352,6 @@ class PlayState extends MusicBeatState
 		}
 
 		// step hit
-		/*if (curSong == 'No More Innocence')
-		{
-			if (curStep == 570)
-			{
-				//FlxG.log.warn("WHY YOU DON'T GET IT $System.getStringByUsername");
-			}
-		}*/
-		// message test
 		if (curSong == 'Killer Queen')
 		{
 			// TERMINAR
@@ -6356,9 +6362,6 @@ class PlayState extends MusicBeatState
 		{
 			switch(curStep)
 			{
-				case 1:
-					//nothing removed -aly ant
-					//aka aly
 				case 13:
 					FlxTween.tween(cutsceneBG, {alpha:1}, 1);
 					FlxTween.tween(cutsceneLogo, {alpha:1}, 1);
@@ -6396,10 +6399,12 @@ class PlayState extends MusicBeatState
 			switch(curStep)
 			{
 				case 446:
-					//i almost kill ma fone then dont will have a texture atlas cutscenes sorry
-					/*SANESSS.visible = true;
-					SANESSS.animation.play('idle', true);*/
 					FlxG.camera.flash(FlxColor.WHITE, 1, null, true);
+					fandomaniaCutscene.anim.play('cutscene')
+					fandomaniaCutscene.alpha = 1;
+					fandomaniaCutscene.anim.onComplete = function(){
+						fandomaniaCutscene.destroy();
+					}
 				case 456:
 					FlxTween.tween(camHUD, {alpha: 0}, 0.4);
 				case 512:
