@@ -2297,7 +2297,7 @@ class PlayState extends MusicBeatState
 				eu pensei nesse nome dps de quando eu tive um sonho.
 				*/
 
-			songTag = new SongBar(null, healthBarBG.y + 160);
+			songTag = new SongBar(0, healthBarBG.y + 160);
 			add(songTag);
 
 		// if the txt file exists the txt string will get the file text
