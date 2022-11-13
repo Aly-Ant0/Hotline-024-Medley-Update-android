@@ -6400,7 +6400,7 @@ class PlayState extends MusicBeatState
 			{
 				case 446:
 					FlxG.camera.flash(FlxColor.WHITE, 1, null, true);
-					fandomaniaCutscene.anim.play('cutscene')
+					fandomaniaCutscene.anim.play('cutscene');
 					fandomaniaCutscene.alpha = 1;
 					fandomaniaCutscene.anim.onComplete = function(){
 						fandomaniaCutscene.destroy();
