@@ -177,6 +177,11 @@ class Paths
 		return getPath('data/$key.json', TEXT, library);
 	}
 
+	inline static public function songJson(key:String, ?library:String)
+	{
+		return getPath('songs/$key.json', TEXT, library);
+	}
+
 	inline static public function shaderFragment(key:String, ?library:String)
 	{
 		return getPath('shaders/$key.frag', TEXT, library);
