@@ -1,13 +1,11 @@
 // sexy code -aly ant
 package;
 
-import flixel.graphics.FlxGraphic;
 #if desktop
 import Discord.DiscordClient;
 #end
-import Section.SwagSection;
-import Song.SwagSong;
-import WiggleEffect.WiggleEffectType;
+//filxel
+import flixel.graphics.FlxGraphic;
 import flixel.FlxBasic;
 import flixel.FlxCamera;
 import flixel.FlxG;
@@ -20,10 +18,6 @@ import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.display.FlxBackdrop;
 import flixel.addons.effects.FlxTrail;
 import flixel.addons.effects.FlxTrailArea;
-
-// STOLEN FROM WEDNESDAY'S INFIDELITY SOURCE CODE LMAO
-import flxanimate.*;
-import flxanimate.FlxAnimate;
 
 import flixel.addons.effects.chainable.FlxEffectSprite;
 import flixel.addons.effects.chainable.FlxWaveEffect;
@@ -45,38 +39,41 @@ import flixel.util.FlxCollision;
 import flixel.util.FlxColor;
 import flixel.util.FlxSort;
 import flixel.util.FlxStringUtil;
+import flixel.effects.particles.FlxEmitter;
+import flixel.effects.particles.FlxParticle;
+import flixel.effects.FlxFlicker;
+import flixel.util.FlxSave;
 import flixel.util.FlxTimer;
+import flixel.group.FlxSpriteGroup;
+import flixel.input.keyboard.FlxKey;
+//kinda util
+// STOLEN FROM WEDNESDAY'S INFIDELITY SOURCE CODE LMAO
+import flxanimate.*;
+import flxanimate.FlxAnimate;
+//haxe libs
 import haxe.Json;
-import lime.utils.Assets;
+//openfl libs
+import openfl.events.KeyboardEvent;
 import openfl.Lib;
 import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.BitmapFilter;
 import openfl.utils.Assets as OpenFlAssets;
+//lime libs
+import lime.utils.Assets;
+//other stuff
+import Section.SwagSection;
+import Song.SwagSong;
+import WiggleEffect.WiggleEffectType;
 import editors.ChartingState;
 import editors.CharacterEditorState;
-import flixel.group.FlxSpriteGroup;
-import flixel.input.keyboard.FlxKey;
 import Note.EventNote;
-
-//for reflect
-/*
-import nape.geom.Vec2;
-import nape.geom.Vec2List;
-import nape.phys.Body;
-*/
-
-import openfl.events.KeyboardEvent;
-import flixel.effects.particles.FlxEmitter;
-import flixel.effects.particles.FlxParticle;
-import flixel.effects.FlxFlicker;
-import flixel.util.FlxSave;
 import animateatlas.AtlasFrameMaker; // this kill my phone
 import Achievements;
 import StageData;
 import FunkinLua;
 import DialogueBoxPsych;
-
+//system
 import sys.FileSystem;
 import sys.io.File;
 
@@ -1128,9 +1125,7 @@ class PlayState extends MusicBeatState
 		
 						sun2 = new BGSprite('xigmund/SUM-2', 200, -480, 0.3, 0.3);
 						add(sun2);
-		
-					for (i in 0...5)
-					{
+
 						asteroidEmitter1 = new FlxEmitter();
 						asteroidEmitter1.drag.set(0,0,0,0,200,300,500,750);
 						asteroidEmitter1.launchMode = FlxEmitterMode.SQUARE;
@@ -1138,7 +1133,6 @@ class PlayState extends MusicBeatState
 						asteroidEmitter1.lifespan.set(1.9, 8.9);
 						asteroidEmitter1.loadParticles(Paths.image('xigmund/ast1'), 500, 16, true);
 						asteroidEmitter1.start(false, FlxG.random.float(12, 18), FlxG.random.int(1000, 10000));
-					}
 					case 'sus':
 						var bg1:BGSprite = new BGSprite('sus/SUS1', -220, -120, 1.2, 1.2);
 						bg1.setGraphicSize(Std.int(bg1.width * 1.5));
@@ -2313,20 +2307,6 @@ class PlayState extends MusicBeatState
 
 			songTag = new SongBar(0, healthBarBG.y + 160);
 			add(songTag);
-
-		// if the txt file exists the txt string will get the file text
-		var file:String = Paths.txt(songName + '/' + 'info');
-		if(OpenFlAssets.exists(file)) { // info file fix?
-			songTag.stringShit = OpenFlAssets.getText(SUtil.getPath() + file);
-		}
-		else {
-			songTag.kill();
-			songTag.stringShit = 'NO BITCHES?'; // placeholder
-			// and yes, no bitches.
-			if (FlxG.random.bool(0.1)){
-				songTag.stringShit += '\nYES, NO BITCHES.';
-			}
-		}
 
 		if (curStage == 'ena') {
 			iconP2.visible = false;
@@ -3872,11 +3852,11 @@ class PlayState extends MusicBeatState
 	
 				dadreflect.animation.frameIndex = dad.animation.frameIndex;
 				dadreflect.offset.set(dad.offset.x); // apenas o x
-	
-				dadreflect.y = (Math.sin(elapsedTime/20)*-75) + 1415; // trigonometry my beloved
+				if (dad.curCharacter.startsWith('nikku'))
+					dadreflect.y = (Math.sin(elapsedTime/20)*-75) + 1415; // trigonometry my beloved
 			case "stage4":
 				elapsedTime += elapsed * 30;
-	
+
 				bfreflect.animation.frameIndex = boyfriend.animation.frameIndex;
 				bfreflect.offset.set(boyfriend.offset.x); // apenas o x
 	
@@ -3885,8 +3865,8 @@ class PlayState extends MusicBeatState
 	
 				dadreflect.animation.frameIndex = dad.animation.frameIndex;
 				dadreflect.offset.set(dad.offset.x); // apenas o x
-	
-				dadreflect.y = (Math.sin(elapsedTime/20)*-50) + 500; // trigonometry my beloved
+				if (dad.curCharacter.startsWith('nikku'))
+					dadreflect.y = (Math.sin(elapsedTime/20)*-50) + 450; // trigonometry my beloved
 		}
 
 		if (comboState == 0){ // combo moment 
