@@ -60,7 +60,7 @@ class AndroidControlsMenu extends MusicBeatState
 		inputvari.screenCenter(X);
 		add(inputvari);
 
-		var ui_tex = Paths.getSparrowAtlas('androidcontrols/menu/arrows');
+		var ui_tex = Paths.getSparrowAtlas('androidcontrols/menu/024arrows');
 
 		leftArrow = new FlxSprite(inputvari.x - 60, inputvari.y + 50);
 		leftArrow.frames = ui_tex;
@@ -77,12 +77,12 @@ class AndroidControlsMenu extends MusicBeatState
 		add(rightArrow);
 
 		upPozition = new FlxText(10, FlxG.height - 104, 0,"Button Up X:" + vpad.buttonUp.x +" Y:" + vpad.buttonUp.y, 16);
-		upPozition.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		upPozition.setFormat(Paths.font("LEMONMILK-Bold.otf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		upPozition.borderSize = 2.4;
 		add(upPozition);
 
 		downPozition = new FlxText(10, FlxG.height - 84, 0,"Button Down X:" + vpad.buttonDown.x +" Y:" + vpad.buttonDown.y, 16);
-		downPozition.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		downPozition.setFormat(Paths.font("LEMONMILK-Bold.otf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		downPozition.borderSize = 2.4;
 		add(downPozition);
 
