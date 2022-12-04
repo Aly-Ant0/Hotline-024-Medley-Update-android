@@ -6,6 +6,7 @@ import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
+import lime.utils.Assets;
 import Song.SwagSong;
 
 using StringTools;
@@ -31,8 +32,8 @@ class SongBar extends FlxSpriteGroup // culpa do bolsonaro
 		x -= size;
 
 		var file:String = Paths.txt(songName + '/' + 'info');
-		if(OpenFlAssets.exists(file)) { // info file fix?
-			stringShit = openfl.utils.Assets.getText(SUtil.getPath() + file);
+		if(Assets.exists(file)) { // info file fix?
+			stringShit = Assets.getText(Main.path + file);
 		}
 		else {
 			stringShit = 'NO BITCHES?'; // placeholder
