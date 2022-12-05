@@ -1006,7 +1006,7 @@ class PlayState extends MusicBeatState
 							rocks.updateHitbox();
 					case 'momogogo':
 						//var bg:FlxBackdrop;
-						momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), 0.2, 0.2, true, false); // fuck i forgor the scroll value
+						momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), X); // fuck i forgor the scroll value
 						momogogoBG.scrollFactor.set(0.8, 0.8);
 						momogogoBG.y = -270;
 						momogogoBG.scale.set(1.25, 1.25);
@@ -1705,7 +1705,7 @@ class PlayState extends MusicBeatState
 			add(octagonBG2);
 
 			// analfabeto do caralho
-			numbahEiti = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false, 0, Std.int(1900));
+			numbahEiti = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), X, Std.int(1900));
 			numbahEiti.alpha = .0001;
 			numbahEiti.y = 0;
 			//numbahEiti.scale.set(1.3, 1.3);
@@ -1715,7 +1715,7 @@ class PlayState extends MusicBeatState
 			numbahEiti.velocity.x = -150;
 			add(numbahEiti);
 
-			numbahEiti2 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false, 0, 1900);
+			numbahEiti2 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'),X,1900);
 			numbahEiti2.alpha = .0001;
 			numbahEiti2.y = 245;
 			numbahEiti2.alpha = 0.00001;
@@ -1726,7 +1726,7 @@ class PlayState extends MusicBeatState
 			numbahEiti2.cameras = [cutCam];
 			add(numbahEiti2);
 
-			numbahEiti3 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 0.5, 0.5, true, false, 0, Std.int(1900));
+			numbahEiti3 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), X, Std.int(1900));
 			numbahEiti3.alpha = 0.00001;
 			numbahEiti3.screenCenter(X);
 			numbahEiti3.y = 480;
@@ -1789,7 +1789,7 @@ class PlayState extends MusicBeatState
 
 				// sonio ponto eze cutscene
 				//var library:String = 'skatepark/cutscene/'; // lazy
-				bgExe = new FlxBackdrop(Paths.image('skatepark/cutscene/background'), 0.3, 0.3, true, false);
+				bgExe = new FlxBackdrop(Paths.image('skatepark/cutscene/background'), X);
 				bgExe.antialiasing = false;
 				bgExe.scrollFactor.set();
 				bgExe.x = -1135;
@@ -1800,7 +1800,7 @@ class PlayState extends MusicBeatState
 				bgExe.cameras = [cutCam];
 				add(bgExe);
 		
-				groundExe = new FlxBackdrop(Paths.image('skatepark/cutscene/ground'), 0.3, 0.3, true, false);
+				groundExe = new FlxBackdrop(Paths.image('skatepark/cutscene/ground'),X);
 				groundExe.antialiasing = false;
 				groundExe.scrollFactor.set();
 				groundExe.y = 470;
@@ -1828,7 +1828,7 @@ class PlayState extends MusicBeatState
 				nicuEze.cameras = [cutCam];
 				add(nicuEze);
 
-				gostosa = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves'), 0.3, 0.3, true, false);
+				gostosa = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves'), X);
 				gostosa.antialiasing = false;
 				gostosa.scrollFactor.set();
 				gostosa.y = 375;
