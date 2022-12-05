@@ -61,7 +61,7 @@ class MainMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
-		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('hotline/menu/bg'), 0.2, 0.2, true, false, -30);
+		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('hotline/menu/bg'), X, -30);
 		bg.scrollFactor.set();
 		//bg.setGraphicSize(Std.int(bg.width * 1.475));
 		bg.velocity.x = -90;
