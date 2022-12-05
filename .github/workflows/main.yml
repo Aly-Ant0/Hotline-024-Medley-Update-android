@@ -84,9 +84,9 @@ jobs:
       - name: Compile APK
         run: haxelib run lime build android -${{ matrix.arch }}
 
-      - name: H024 apk build
+      - name: finally the apk
         uses: actions/upload-artifact@main
         with:
-          name: androidBuild-${{ matrix.arch }}
+          name: Hotline Medley Update-${{ matrix.arch }}
           path: export/${{ matrix.arch }}/android/bin/app/build/outputs/apk/debug
           if-no-files-found: error
