@@ -53,7 +53,7 @@ class Main extends Sprite
 	{
 		SUtil.doTheCheck();
 		ClientPrefs.loadDefaultKeys();
-		addChild(new FlxGame(0, 0, TitleState, 1, 60, 60, true, false));
+		addChild(new FlxGame(0, 0, TitleState, 60, 60, true, false));
 
 		fpsVar = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsVar);
