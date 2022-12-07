@@ -74,6 +74,7 @@ jobs:
           haxelib run lime config ANDROID_NDK_ROOT $ANDROID_NDK_HOME
           haxelib run lime config JAVA_HOME $JAVA_HOME
           haxelib run lime config ANDROID_SETUP true
+          haxelib set flixel 4.11.0
           haxelib set lime 7.9.0
           haxelib set openfl 9.1.0
           haxelib set flxanimate 1.2.0
