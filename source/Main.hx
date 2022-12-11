@@ -14,6 +14,8 @@ import lime.system.System;
 
 class Main extends Sprite
 {
+	var stateStart = #if debug MainMenuState #else TitleState;
+	public static var framerate:Int = #if desktop 144 #else 60 #end;
 	public static var fpsVar:FPS;
 	//public static var songname:String = ''; // will be used in main menu 
 	public static var path:String = System.applicationStorageDirectory;
@@ -53,7 +55,11 @@ class Main extends Sprite
 	{
 		SUtil.doTheCheck();
 		ClientPrefs.loadDefaultKeys();
-		addChild(new FlxGame(0, 0, TitleState, 60, 60, true, false));
+		#if (flixel >= "5.0.0")
+		addChild(new FlxGame(1280, 720, stateStart, framerate, framerate, true));
+		#else
+		addChild(new FlxGame(1280, 720, stateStart, 1, framerate, framerate, true));
+		#end
 
 		fpsVar = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsVar);
