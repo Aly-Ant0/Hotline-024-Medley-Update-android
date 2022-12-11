@@ -14,7 +14,7 @@ import lime.system.System;
 
 class Main extends Sprite
 {
-	var stateStart = #if debug MainMenuState #else TitleState;
+	var stateStart = #if debug MainMenuState #else TitleState #end;
 	public static var framerate:Int = #if desktop 144 #else 60 #end;
 	public static var fpsVar:FPS;
 	//public static var songname:String = ''; // will be used in main menu 
