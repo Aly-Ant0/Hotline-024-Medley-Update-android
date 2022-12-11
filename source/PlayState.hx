@@ -1692,7 +1692,7 @@ class PlayState extends MusicBeatState
 		{
 					//FlxG.debugger.visible = true;
 			octagonBG = new FlxSprite().makeGraphic(1980, 1080, FlxColor.WHITE);
-			octagonBG.screenCenter(flixel.utils.FlxAxes.X);
+			octagonBG.screenCenter(flixel.utils.FlxAxes.XY);
 			octagonBG.scrollFactor.set(0, 0);
 			octagonBG.scale.set(1.4, 1.4);
 			octagonBG.cameras = [cutCam];
