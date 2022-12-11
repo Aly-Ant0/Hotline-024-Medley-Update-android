@@ -267,15 +267,11 @@ class AllCodes extends MusicBeatState
 		if (controls.BACK) {
 			FlxG.sound.play(Paths.sound('backsfx'));
 			MusicBeatState.switchState(new CodeScreen());
-			if (FlxG.save.data.showcodes == null) // save data
+			if (FlxG.save.data.showcodes == false) // save data
 			{
 				FlxG.save.data.showcodes = true;
+				FlxG.save.flush();
 			}
-			if (FlxG.save.data.showcodes != null) // load data
-			{
-				FlxG.save.data.showcodes = true;
-			}
-			FlxG.save.flush();
 		}
 
 		super.update(elapsed);
