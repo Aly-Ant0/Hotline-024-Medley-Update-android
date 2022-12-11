@@ -728,23 +728,23 @@ class PlayState extends MusicBeatState
 						bg10.updateHitbox();
 					//}
 						cutsceneBG = new BGSprite('stage3/cutscene/bg', 0,0,0,0);
-						cutsceneBG.screenCenter(XY);
+						cutsceneBG.screenCenter(flixel.util.FlxAxes.XY);
 						//cutsceneBG.cameras = [cutCam];
 						cutsceneBG.alpha = 0;
 		
 						cutsceneEnd = new BGSprite('stage3/cutscene/bgEnd', 0,0,0,0);
-						cutsceneEnd.screenCenter(XY);
+						cutsceneEnd.screenCenter(flixel.util.FlxAxes.XY);
 						//cutsceneEnd.cameras = [cutCam];
 						cutsceneEnd.visible = false;
 						
 						cutsceneLogo = new BGSprite('stage3/cutscene/logo', 0,0,0,0);
-						cutsceneLogo.screenCenter(XY);
+						cutsceneLogo.screenCenter(flixel.util.FlxAxes.XY);
 						cutsceneLogo.scale.set(1.6, 1.6);
 						//cutsceneLogo.cameras = [cutCam];
 						cutsceneLogo.alpha = 0;
 		
 						black = new FlxSprite().makeGraphic(2280, 1920, FlxColor.BLACK);
-						black.screenCenter(XY);
+						black.screenCenter(flixel.util.FlxAxes.XY);
 						black.scrollFactor.set(0, 0);
 						black.visible = false;
 						//black.cameras = [cutCam];
@@ -752,7 +752,7 @@ class PlayState extends MusicBeatState
 		
 					  text1 = new BGSprite('stage3/cutscene/text1', 311.6, 294.8, 0, 0);
 					  text1.scale.set(1.8, 1.8);
-					  text1.screenCenter(XY);
+					  text1.screenCenter(flixel.util.FlxAxes.XY);
 					  //text1.cameras = [cutCam];
 						text1.visible = false;
 		
@@ -1007,7 +1007,7 @@ class PlayState extends MusicBeatState
 					case 'momogogo':
 						//var bg:FlxBackdrop;
 						#if (flixel < "5.0.0")
-						momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), X); // fuck i forgor the scroll value
+						momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), flixel.utils.FlxAxes.X); // fuck i forgor the scroll value
 						momogogoBG.scrollFactor.set(0.8, 0.8);
 						momogogoBG.y = -270;
 						momogogoBG.scale.set(1.25, 1.25);
@@ -1021,56 +1021,56 @@ class PlayState extends MusicBeatState
 						//if(!ClientPrefs.dontShowBG)
 							matzuBG = new BGSprite('matzu/BG', 0, 0, 0.1, 0.1);
 							//matzuBG.updateHitbox();
-							matzuBG.screenCenter(XY);
+							matzuBG.screenCenter(flixel.util.FlxAxes.XY);
 							add(matzuBG);
 			
 							matzuDESK = new BGSprite('matzu/DES', 0, 0, 0, 0);
 							matzuDESK.updateHitbox();
-							matzuDESK.screenCenter(XY);
+							matzuDESK.screenCenter(flixel.util.FlxAxes.XY);
 			
 							asPlantadaMinhaMae = new BGSprite('matzu/PLAMTS', 0, 0, 0.5, 0.6);
 							asPlantadaMinhaMae.updateHitbox();
-							asPlantadaMinhaMae.screenCenter(XY);
+							asPlantadaMinhaMae.screenCenter(flixel.util.FlxAxes.XY);
 			
 							// quando ta tudo fucked twisted
 							matzuFudida1 = new BGSprite('matzu/2/BG1', 0, 0, 0.1, 0.1);
-							matzuFudida1.screenCenter(XY);
+							matzuFudida1.screenCenter(flixel.util.FlxAxes.XY);
 							matzuFudida1.updateHitbox();
 							matzuFudida1.alpha = 0.00001;
 							add(matzuFudida1);
 			
 							matzuFudida2 = new BGSprite('matzu/2/idk', 0, 0, 0, 0);
 							matzuFudida2.updateHitbox();
-							matzuFudida2.screenCenter(XY);
+							matzuFudida2.screenCenter(flixel.util.FlxAxes.XY);
 							matzuFudida2.alpha = 0.00001;
 							add(matzuFudida2);
 			
 							matzuFudida3 = new BGSprite('matzu/2/ground', 0, 0, 0, 0);
 							matzuFudida3.updateHitbox();
-							matzuFudida3.screenCenter(XY);
+							matzuFudida3.screenCenter(flixel.util.FlxAxes.XY);
 							matzuFudida3.alpha = 0.00001;
 							add(matzuFudida3);
 			
 							matzuFudida4 = new BGSprite('matzu/2/messages', 0, 0, 0.4, 0.4);
-							matzuFudida4.screenCenter(XY);
+							matzuFudida4.screenCenter(flixel.util.FlxAxes.XY);
 							matzuFudida4.updateHitbox();
 							matzuFudida4.alpha = 0.00001;
 							add(matzuFudida4);
 			
 							matzuFudida5 = new BGSprite('matzu/2/door', 0, 0, 0.4, 0.4);
 							matzuFudida5.updateHitbox();
-							matzuFudida5.screenCenter(XY);
+							matzuFudida5.screenCenter(flixel.util.FlxAxes.XY);
 							matzuFudida5.alpha = 0.00001;
 							add(matzuFudida5);
 			
 							matzuFudida6 = new BGSprite('matzu/2/desk2', 0, 0, 0, 0);
 							matzuFudida6.updateHitbox();
-							matzuFudida6.screenCenter(XY);
+							matzuFudida6.screenCenter(flixel.util.FlxAxes.XY);
 							matzuFudida6.alpha = 0.00001;
 			
 							matzuFudida7 = new BGSprite('matzu/2/plamts2', 0, 0, 1.1, 1.1);
 							matzuFudida7.updateHitbox();
-							matzuFudida7.screenCenter(XY);
+							matzuFudida7.screenCenter(flixel.util.FlxAxes.XY);
 							matzuFudida7.alpha = 0.00001;
 					case 'ena':
 						//if(!ClientPrefs.dontShowBG)
@@ -1692,7 +1692,7 @@ class PlayState extends MusicBeatState
 		{
 					//FlxG.debugger.visible = true;
 			octagonBG = new FlxSprite().makeGraphic(1980, 1080, FlxColor.WHITE);
-			octagonBG.screenCenter(XY);
+			octagonBG.screenCenter(flixel.utils.FlxAxes.X);
 			octagonBG.scrollFactor.set(0, 0);
 			octagonBG.scale.set(1.4, 1.4);
 			octagonBG.cameras = [cutCam];
@@ -1701,14 +1701,14 @@ class PlayState extends MusicBeatState
 
 			octagonBG2 = new FlxSprite().makeGraphic(1980, 236, 0xFFFE923D);
 			octagonBG2.alpha = 0.00001;
-			octagonBG2.screenCenter(XY);
+			octagonBG2.screenCenter(flixel.util.FlxAxes.XY);
 			octagonBG2.scrollFactor.set(0, 0);
 			octagonBG2.cameras = [cutCam];
 			add(octagonBG2);
 
 			// analfabeto do caralho
 			#if (flixel < "5.0.0")
-			numbahEiti = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), X, Std.int(1900));
+			numbahEiti = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), flixel.utils.FlxAxes.X, Std.int(1900));
 			numbahEiti.alpha = .0001;
 			numbahEiti.y = 0;
 			//numbahEiti.scale.set(1.3, 1.3);
@@ -1729,9 +1729,9 @@ class PlayState extends MusicBeatState
 			numbahEiti2.cameras = [cutCam];
 			add(numbahEiti2);
 
-			numbahEiti3 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), X, Std.int(1900));
+			numbahEiti3 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), flixel.utils.FlxAxes.X, Std.int(1900));
 			numbahEiti3.alpha = 0.00001;
-			numbahEiti3.screenCenter(X);
+			numbahEiti3.screenCenter(flixel.utils.FlxAxes.X);
 			numbahEiti3.y = 480;
 			//numbahEiti3.scale.set(1, 1);
 			numbahEiti3.scrollFactor.set(0, 0);
@@ -1794,7 +1794,7 @@ class PlayState extends MusicBeatState
 				// sonio ponto eze cutscene
 				//var library:String = 'skatepark/cutscene/'; // lazy
 				#if (flixel < "5.0.0")
-				bgExe = new FlxBackdrop(Paths.image('skatepark/cutscene/background'), X);
+				bgExe = new FlxBackdrop(Paths.image('skatepark/cutscene/background'), flixel.utils.FlxAxes.X);
 				bgExe.antialiasing = false;
 				bgExe.scrollFactor.set();
 				bgExe.x = -1135;
@@ -1834,7 +1834,7 @@ class PlayState extends MusicBeatState
 				nicuEze.cameras = [cutCam];
 				add(nicuEze);
 				#if (flixel < "5.0.0")
-				gostosa = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves'), X);
+				gostosa = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves'), flixel.utils.FlxAxes.X);
 				gostosa.antialiasing = false;
 				gostosa.scrollFactor.set();
 				gostosa.y = 375;
@@ -2210,7 +2210,7 @@ class PlayState extends MusicBeatState
 
 		healthBarBG = new AttachedSprite('healthBar');
 		healthBarBG.y = FlxG.height * 0.89;
-		healthBarBG.screenCenter(X);
+		healthBarBG.screenCenter(flixel.utils.FlxAxes.X);
 		healthBarBG.scrollFactor.set();
 		healthBarBG.visible = !ClientPrefs.hideHud;
 		healthBarBG.xAdd = -4;
@@ -2255,7 +2255,7 @@ class PlayState extends MusicBeatState
 		add(botplayTxt);
 
 			comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
-			comboGlow.screenCenter(X); // nao botei o combo_x pq preguiça vou chorar
+			comboGlow.screenCenter(flixel.utils.FlxAxes.X); // nao botei o combo_x pq preguiça vou chorar
 			comboGlow.y = COMBO_Y;
 			comboGlow.alpha = 0.00001;
 			comboGlow.blend = ADD; // nao me perguntem o pq o blend ta em add
@@ -4595,7 +4595,7 @@ class PlayState extends MusicBeatState
 		var nicueyes:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('jojo/cutscene1/os_zoi_da_nicu', 'h24'));
 		nicueyes.antialiasing = ClientPrefs.globalAntialiasing;
 		nicueyes.cameras = [cutCam];
-		nicueyes.screenCenter(X);
+		nicueyes.screenCenter(flixel.utils.FlxAxes.X);
 		nicueyes.setGraphicSize(Std.int(nicueyes.width * 2.5), Std.int(nicueyes.height * 2.5));
 		nicueyes.visible = false;
 		nicueyes.scrollFactor.set();
@@ -4606,7 +4606,7 @@ class PlayState extends MusicBeatState
 		bfheteroEyes.cameras = [cutCam];
 		bfheteroEyes.setGraphicSize(Std.int(bfheteroEyes.width * 2.5), Std.int(bfheteroEyes.height * 2.5));
 		bfheteroEyes.scrollFactor.set();
-		bfheteroEyes.screenCenter(X);
+		bfheteroEyes.screenCenter(flixel.utils.FlxAxes.X);
 		bfheteroEyes.visible = false;
 		add(bfheteroEyes);
 
