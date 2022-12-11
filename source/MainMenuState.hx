@@ -61,6 +61,7 @@ class MainMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
+		if (flixel < "5.0.0")
 		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('hotline/menu/bg'), X, -30);
 		bg.scrollFactor.set();
 		//bg.setGraphicSize(Std.int(bg.width * 1.475));
@@ -68,6 +69,7 @@ class MainMenuState extends MusicBeatState
 		bg.updateHitbox();
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
+		#end
 
 		menuItems = new FlxTypedSpriteGroup<FlxSprite>();
 		add(menuItems);
