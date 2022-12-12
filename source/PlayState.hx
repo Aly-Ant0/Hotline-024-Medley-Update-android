@@ -1730,7 +1730,7 @@ class PlayState extends MusicBeatState
 
 			numbahEiti3 = new FlxTiledSprite(Paths.image('skatepark/octagon/numbah_eight'), 240, 240);
 			numbahEiti3.alpha = 0.00001;
-			numbahEiti3.screenCenter(.X);
+			numbahEiti3.screenCenter(X);
 			numbahEiti3.y = 480;
 			//numbahEiti3.scale.set(1, 1);
 			numbahEiti3.scrollFactor.set(0, 0);
