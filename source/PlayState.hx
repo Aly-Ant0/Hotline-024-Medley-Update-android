@@ -1690,7 +1690,7 @@ class PlayState extends MusicBeatState
 		{
 					//FlxG.debugger.visible = true;
 			octagonBG = new FlxSprite().makeGraphic(1980, 1080, FlxColor.WHITE);
-			octagonBG.screenCenter(flixel.utils.FlxAxes.XY);
+			octagonBG.screenCenter(XY);
 			octagonBG.scrollFactor.set(0, 0);
 			octagonBG.scale.set(1.4, 1.4);
 			octagonBG.cameras = [cutCam];
@@ -1730,7 +1730,7 @@ class PlayState extends MusicBeatState
 
 			numbahEiti3 = new FlxTiledSprite(Paths.image('skatepark/octagon/numbah_eight'), 240, 240);
 			numbahEiti3.alpha = 0.00001;
-			numbahEiti3.screenCenter(flixel.utils.FlxAxes.X);
+			numbahEiti3.screenCenter(.X);
 			numbahEiti3.y = 480;
 			//numbahEiti3.scale.set(1, 1);
 			numbahEiti3.scrollFactor.set(0, 0);
@@ -2209,7 +2209,7 @@ class PlayState extends MusicBeatState
 
 		healthBarBG = new AttachedSprite('healthBar');
 		healthBarBG.y = FlxG.height * 0.89;
-		healthBarBG.screenCenter(flixel.utils.FlxAxes.X);
+		healthBarBG.screenCenter(X);
 		healthBarBG.scrollFactor.set();
 		healthBarBG.visible = !ClientPrefs.hideHud;
 		healthBarBG.xAdd = -4;
@@ -2254,7 +2254,7 @@ class PlayState extends MusicBeatState
 		add(botplayTxt);
 
 			comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
-			comboGlow.screenCenter(flixel.utils.FlxAxes.X); // nao botei o combo_x pq preguiça vou chorar
+			comboGlow.screenCenter(X); // nao botei o combo_x pq preguiça vou chorar
 			comboGlow.y = COMBO_Y;
 			comboGlow.alpha = 0.00001;
 			comboGlow.blend = ADD; // nao me perguntem o pq o blend ta em add
@@ -4605,7 +4605,7 @@ class PlayState extends MusicBeatState
 		var nicueyes:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('jojo/cutscene1/os_zoi_da_nicu', 'h24'));
 		nicueyes.antialiasing = ClientPrefs.globalAntialiasing;
 		nicueyes.cameras = [cutCam];
-		nicueyes.screenCenter(flixel.utils.FlxAxes.X);
+		nicueyes.screenCenter(X);
 		nicueyes.setGraphicSize(Std.int(nicueyes.width * 2.5), Std.int(nicueyes.height * 2.5));
 		nicueyes.visible = false;
 		nicueyes.scrollFactor.set();
@@ -4616,7 +4616,7 @@ class PlayState extends MusicBeatState
 		bfheteroEyes.cameras = [cutCam];
 		bfheteroEyes.setGraphicSize(Std.int(bfheteroEyes.width * 2.5), Std.int(bfheteroEyes.height * 2.5));
 		bfheteroEyes.scrollFactor.set();
-		bfheteroEyes.screenCenter(flixel.utils.FlxAxes.X);
+		bfheteroEyes.screenCenter(X);
 		bfheteroEyes.visible = false;
 		add(bfheteroEyes);
 
