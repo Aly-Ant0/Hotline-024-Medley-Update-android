@@ -1705,7 +1705,7 @@ class PlayState extends MusicBeatState
 			add(octagonBG2);
 
 			// analfabeto do caralho
-			numbahEiti = new FlxTiledSprite(Paths.image('skatepark/octagon/numbah_eight'), 240,240;
+			numbahEiti = new FlxTiledSprite(Paths.image('skatepark/octagon/numbah_eight'), 240,240);
 			numbahEiti.alpha = .0001;
 			numbahEiti.y = 0;
 			//numbahEiti.scale.set(1.3, 1.3);
