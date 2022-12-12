@@ -15,7 +15,7 @@ import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.text.FlxText;
 import flixel.math.FlxMath;
 import flixel.tweens.FlxEase;
-import flixel.addons.display.FlxBackdrop;
+import flixel.addons.display.FlxTiledSprite;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import lime.app.Application;
@@ -61,8 +61,8 @@ class MainMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
-		if (flixel < "5.0.0")
-		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('hotline/menu/bg'), flixel.utils.FlxAxes.X, -30);
+		#if (flixel < "5.0.0")
+		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('hotline/menu/bg'), X0);
 		bg.scrollFactor.set();
 		//bg.setGraphicSize(Std.int(bg.width * 1.475));
 		bg.velocity.x = -90;
