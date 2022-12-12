@@ -728,23 +728,23 @@ class PlayState extends MusicBeatState
 						bg10.updateHitbox();
 					//}
 						cutsceneBG = new BGSprite('stage3/cutscene/bg', 0,0,0,0);
-						cutsceneBG.screenCenter(flixel.util.FlxAxes.XY);
+						cutsceneBG.screenCenter(XY);
 						//cutsceneBG.cameras = [cutCam];
 						cutsceneBG.alpha = 0;
 		
 						cutsceneEnd = new BGSprite('stage3/cutscene/bgEnd', 0,0,0,0);
-						cutsceneEnd.screenCenter(flixel.util.FlxAxes.XY);
+						cutsceneEnd.screenCenter(XY);
 						//cutsceneEnd.cameras = [cutCam];
 						cutsceneEnd.visible = false;
 						
 						cutsceneLogo = new BGSprite('stage3/cutscene/logo', 0,0,0,0);
-						cutsceneLogo.screenCenter(flixel.util.FlxAxes.XY);
+						cutsceneLogo.screenCenter(XY);
 						cutsceneLogo.scale.set(1.6, 1.6);
 						//cutsceneLogo.cameras = [cutCam];
 						cutsceneLogo.alpha = 0;
 		
 						black = new FlxSprite().makeGraphic(2280, 1920, FlxColor.BLACK);
-						black.screenCenter(flixel.util.FlxAxes.XY);
+						black.screenCenter(XY);
 						black.scrollFactor.set(0, 0);
 						black.visible = false;
 						//black.cameras = [cutCam];
@@ -752,7 +752,7 @@ class PlayState extends MusicBeatState
 		
 					  text1 = new BGSprite('stage3/cutscene/text1', 311.6, 294.8, 0, 0);
 					  text1.scale.set(1.8, 1.8);
-					  text1.screenCenter(flixel.util.FlxAxes.XY);
+					  text1.screenCenter(XY);
 					  //text1.cameras = [cutCam];
 						text1.visible = false;
 		
@@ -1019,56 +1019,56 @@ class PlayState extends MusicBeatState
 						//if(!ClientPrefs.dontShowBG)
 							matzuBG = new BGSprite('matzu/BG', 0, 0, 0.1, 0.1);
 							//matzuBG.updateHitbox();
-							matzuBG.screenCenter(flixel.util.FlxAxes.XY);
+							matzuBG.screenCenter(XY);
 							add(matzuBG);
 			
 							matzuDESK = new BGSprite('matzu/DES', 0, 0, 0, 0);
 							matzuDESK.updateHitbox();
-							matzuDESK.screenCenter(flixel.util.FlxAxes.XY);
+							matzuDESK.screenCenter(XY);
 			
 							asPlantadaMinhaMae = new BGSprite('matzu/PLAMTS', 0, 0, 0.5, 0.6);
 							asPlantadaMinhaMae.updateHitbox();
-							asPlantadaMinhaMae.screenCenter(flixel.util.FlxAxes.XY);
+							asPlantadaMinhaMae.screenCenter(XY);
 			
 							// quando ta tudo fucked twisted
 							matzuFudida1 = new BGSprite('matzu/2/BG1', 0, 0, 0.1, 0.1);
-							matzuFudida1.screenCenter(flixel.util.FlxAxes.XY);
+							matzuFudida1.screenCenter(XY);
 							matzuFudida1.updateHitbox();
 							matzuFudida1.alpha = 0.00001;
 							add(matzuFudida1);
 			
 							matzuFudida2 = new BGSprite('matzu/2/idk', 0, 0, 0, 0);
 							matzuFudida2.updateHitbox();
-							matzuFudida2.screenCenter(flixel.util.FlxAxes.XY);
+							matzuFudida2.screenCenter(XY);
 							matzuFudida2.alpha = 0.00001;
 							add(matzuFudida2);
 			
 							matzuFudida3 = new BGSprite('matzu/2/ground', 0, 0, 0, 0);
 							matzuFudida3.updateHitbox();
-							matzuFudida3.screenCenter(flixel.util.FlxAxes.XY);
+							matzuFudida3.screenCenter(XY);
 							matzuFudida3.alpha = 0.00001;
 							add(matzuFudida3);
 			
 							matzuFudida4 = new BGSprite('matzu/2/messages', 0, 0, 0.4, 0.4);
-							matzuFudida4.screenCenter(flixel.util.FlxAxes.XY);
+							matzuFudida4.screenCenter(XY);
 							matzuFudida4.updateHitbox();
 							matzuFudida4.alpha = 0.00001;
 							add(matzuFudida4);
 			
 							matzuFudida5 = new BGSprite('matzu/2/door', 0, 0, 0.4, 0.4);
 							matzuFudida5.updateHitbox();
-							matzuFudida5.screenCenter(flixel.util.FlxAxes.XY);
+							matzuFudida5.screenCenter(XY);
 							matzuFudida5.alpha = 0.00001;
 							add(matzuFudida5);
 			
 							matzuFudida6 = new BGSprite('matzu/2/desk2', 0, 0, 0, 0);
 							matzuFudida6.updateHitbox();
-							matzuFudida6.screenCenter(flixel.util.FlxAxes.XY);
+							matzuFudida6.screenCenter(XY);
 							matzuFudida6.alpha = 0.00001;
 			
 							matzuFudida7 = new BGSprite('matzu/2/plamts2', 0, 0, 1.1, 1.1);
 							matzuFudida7.updateHitbox();
-							matzuFudida7.screenCenter(flixel.util.FlxAxes.XY);
+							matzuFudida7.screenCenter(XY);
 							matzuFudida7.alpha = 0.00001;
 					case 'ena':
 						//if(!ClientPrefs.dontShowBG)
@@ -1699,7 +1699,7 @@ class PlayState extends MusicBeatState
 
 			octagonBG2 = new FlxSprite().makeGraphic(1980, 236, 0xFFFE923D);
 			octagonBG2.alpha = 0.00001;
-			octagonBG2.screenCenter(flixel.util.FlxAxes.XY);
+			octagonBG2.screenCenter(XY);
 			octagonBG2.scrollFactor.set(0, 0);
 			octagonBG2.cameras = [cutCam];
 			add(octagonBG2);
