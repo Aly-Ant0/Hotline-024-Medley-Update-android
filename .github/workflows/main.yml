@@ -38,7 +38,7 @@ jobs:
           ndk-version: r21e
 
       - name: Setup Java JDK
-        uses: actions/setup-java@main
+        uses: actions/setup-java@v1
         with:
           distribution: 'zulu'
           java-version: '19'
@@ -47,15 +47,15 @@ jobs:
         uses: android-actions/setup-android@v2
 
       - name: Setup Haxe
-        uses: krdlab/setup-haxe@master
+        uses: krdlab/setup-haxe@v1.1.5
         with:
-          haxe-version: 4.2.4
+          haxe-version: 4.2.5
           
       - name: Install haxelib stuff
         run: |
           haxelib --quiet install lime 7.9.0
           haxelib --quiet install openfl 9.1.0
-          haxelib --quiet install flixel 4.11.0
+          haxelib --quiet install flixel
           haxelib --quiet install lime-samples
           haxelib --quiet install hscript
           haxelib --quiet install flixel-ui
@@ -83,7 +83,7 @@ jobs:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - name: Compile APK
-        run: haxelib run lime build android -${{ matrix.arch }}
+        run: haxelib run lime build android 
 
       - name: finally the apk
         uses: actions/upload-artifact@main
