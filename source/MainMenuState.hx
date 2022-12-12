@@ -16,6 +16,7 @@ import flixel.text.FlxText;
 import flixel.math.FlxMath;
 import flixel.tweens.FlxEase;
 import flixel.addons.display.FlxTiledSprite;
+import flixel.addons.display.FlxBackdrop;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import lime.app.Application;
