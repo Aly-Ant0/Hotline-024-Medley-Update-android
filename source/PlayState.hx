@@ -286,9 +286,9 @@ class PlayState extends MusicBeatState
 	var skateBuches:BGSprite;
 
 	// sonio ponto eze variables
-	var gostosa:FlxBackdrop;
-	var bgExe:FlxBackdrop;
-	var groundExe:FlxBackdrop;
+	var gostosa:FlxTiledSprite;
+	var bgExe:FlxTiledSprite;
+	var groundExe:FlxTiledSprite;
 	var nicuEze:FlxSprite;
 	var eze:FlxSprite;
 	var blackStart:FlxSprite;
@@ -296,9 +296,9 @@ class PlayState extends MusicBeatState
 	// octagon cutscene variables
 	var octagonBG:FlxSprite;
 	var octagonBG2:FlxSprite;
-	var numbahEiti:FlxBackdrop;
-	var numbahEiti2:FlxBackdrop;
-	var numbahEiti3:FlxBackdrop;
+	var numbahEiti:FlxTiledSprite;
+	var numbahEiti2:FlxTiledSprite;
+	var numbahEiti3:FlxTiledSprite;
 	var octagon:FlxSprite;
 	var textOctagon:FlxSprite;
 	var bubbleText:FlxSprite;
@@ -319,7 +319,7 @@ class PlayState extends MusicBeatState
 	var rocks:BGSprite;
 
 	// do stage da gostosa la
-	var momogogoBG:FlxBackdrop;
+	var momogogoBG:FlxTiledSprite;
 
 	// da ultima musica la a astral projection
 	var matzuBG:BGSprite;
@@ -1006,17 +1006,15 @@ class PlayState extends MusicBeatState
 							rocks.updateHitbox();
 					case 'momogogo':
 						//var bg:FlxBackdrop;
-						#if (flixel < "5.0.0")
-						momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), flixel.utils.FlxAxes.X); // fuck i forgor the scroll value
+						momogogoBG = new FlxTiledSprite(Paths.image('momogogo/bg'), 4800, 1080); // fuck i forgor the scroll value
 						momogogoBG.scrollFactor.set(0.8, 0.8);
 						momogogoBG.y = -270;
 						momogogoBG.scale.set(1.25, 1.25);
 						momogogoBG.updateHitbox();
 						momogogoBG.antialiasing = ClientPrefs.globalAntialiasing;
-						momogogoBG.velocity.set(120, 0);
+						//momogogoBG.velocity.set(120, 0);
 						add(momogogoBG);
-						#end
-		
+
 					case 'astral': // pq as planta da minha mãe ta aqui
 						//if(!ClientPrefs.dontShowBG)
 							matzuBG = new BGSprite('matzu/BG', 0, 0, 0.1, 0.1);
@@ -1707,40 +1705,41 @@ class PlayState extends MusicBeatState
 			add(octagonBG2);
 
 			// analfabeto do caralho
-			#if (flixel < "5.0.0")
-			numbahEiti = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), flixel.utils.FlxAxes.X, Std.int(1900));
+			numbahEiti = new FlxTiledSprite(Paths.image('skatepark/octagon/numbah_eight'), 240,240;
 			numbahEiti.alpha = .0001;
 			numbahEiti.y = 0;
 			//numbahEiti.scale.set(1.3, 1.3);
 			numbahEiti.scrollFactor.set(0, 0);
+			numbahEiti.repeatY = false;
 			numbahEiti.cameras = [cutCam];
 		//	numbahEiti.offset.y = 20000000;
-			numbahEiti.velocity.x = -150;
+			//numbahEiti.velocity.x = -150;
 			add(numbahEiti);
 
-			numbahEiti2 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'),X,1900);
+			numbahEiti2 = new FlxTiledSprite(Paths.image('skatepark/octagon/numbah_eight'),240,240);
 			numbahEiti2.alpha = .0001;
 			numbahEiti2.y = 245;
 			numbahEiti2.alpha = 0.00001;
+			numbahEiti2.repeatY = false;
 		//	numbahEiti2.scale.set(1, 1);
 			numbahEiti2.scrollFactor.set(0, 0);
 		//	numbahEiti2.offset.y += 20000000;
-			numbahEiti2.velocity.set(150, 0);
+			//numbahEiti2.velocity.set(150, 0);
 			numbahEiti2.cameras = [cutCam];
 			add(numbahEiti2);
 
-			numbahEiti3 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), flixel.utils.FlxAxes.X, Std.int(1900));
+			numbahEiti3 = new FlxTiledSprite(Paths.image('skatepark/octagon/numbah_eight'), 240, 240);
 			numbahEiti3.alpha = 0.00001;
 			numbahEiti3.screenCenter(flixel.utils.FlxAxes.X);
 			numbahEiti3.y = 480;
 			//numbahEiti3.scale.set(1, 1);
 			numbahEiti3.scrollFactor.set(0, 0);
+			numbahEiti3.repeatY=false;
 
 		//	numbahEiti3.offset.y += 20000000;
-			numbahEiti3.velocity.set(-150, 0);
+			//numbahEiti3.velocity.set(-150, 0);
 			numbahEiti3.cameras = [cutCam];
 			add(numbahEiti3);
-			#end
 
 			nikkuOctagon = new FlxSprite(-425, 465);
 			nikkuOctagon.frames = Paths.getSparrowAtlas('skatepark/octagon/nikku');
@@ -1793,10 +1792,10 @@ class PlayState extends MusicBeatState
 
 				// sonio ponto eze cutscene
 				//var library:String = 'skatepark/cutscene/'; // lazy
-				#if (flixel < "5.0.0")
-				bgExe = new FlxBackdrop(Paths.image('skatepark/cutscene/background'), flixel.utils.FlxAxes.X);
+				bgExe = new FlxTiledSprite(Paths.image('skatepark/cutscene/background'), 1030,257);
 				bgExe.antialiasing = false;
 				bgExe.scrollFactor.set();
+				bgExe.repeatY=false;
 				bgExe.x = -1135;
 				bgExe.y = -85;
 				bgExe.alpha = 0.00001;
@@ -1805,16 +1804,16 @@ class PlayState extends MusicBeatState
 				bgExe.cameras = [cutCam];
 				add(bgExe);
 		
-				groundExe = new FlxBackdrop(Paths.image('skatepark/cutscene/ground'),X);
+				groundExe = new FlxTiledSprite(Paths.image('skatepark/cutscene/ground'),960,104);
 				groundExe.antialiasing = false;
 				groundExe.scrollFactor.set();
+				groundExe.repeatY=false;
 				groundExe.y = 470;
 				groundExe.setGraphicSize(Std.int(groundExe.width * 6.73));
 				groundExe.updateHitbox();
 				groundExe.alpha = 0.00001;
 				groundExe.cameras = [cutCam];
 				add(groundExe);
-				#end
 
 				eze=new FlxSprite(-350, 245).loadGraphic(Paths.image('skatepark/cutscene/exe', 'h24')); // é hj q eu te pego gostosa kkkkkk
 				eze.antialiasing = false;
@@ -1833,17 +1832,17 @@ class PlayState extends MusicBeatState
 				nicuEze.alpha = 0.00001;
 				nicuEze.cameras = [cutCam];
 				add(nicuEze);
-				#if (flixel < "5.0.0")
-				gostosa = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves'), flixel.utils.FlxAxes.X);
+
+				gostosa = new FlxTiledSprite(Paths.image('skatepark/cutscene/leaves'), 680, 85);
 				gostosa.antialiasing = false;
 				gostosa.scrollFactor.set();
 				gostosa.y = 375;
+				gostosa.repeatY=false;
 				gostosa.setGraphicSize(Std.int(gostosa.width * 8.35));
 				gostosa.updateHitbox();
 				gostosa.alpha = 0.00001;
 				gostosa.cameras = [cutCam];
 				add(gostosa);
-				#end
 
 				blackStart = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
 				blackStart.cameras = [cutCam];
@@ -4109,10 +4108,21 @@ class PlayState extends MusicBeatState
 			}	
 		}
 
-		/*if (curStage == 'momogogo')
+		if (curStage == 'momogogo')
 		{
-			momogogoBG.x += 90 * elapsed; // easy huh?
-		}*/
+			momogogoBG.scrollX += 3 + (elapsed / (1/60));
+		}
+
+		if (curSong == 'Sugarcrush'){
+			//octagom
+			numbahEiti.scrollX -= 13 + (elapsed/(1/60));
+			numbahEiti2.scrollX += 13 + (elapsed/(1/60));
+			numbahEiti3.scrollX -= 13 + (elapsed/(1/60));
+			//exe
+			bgExe.scrollX -= (elapsed/(1/60));
+			groundExe.scrollX -= 5 + (elapsed/(1/60));
+			gostosa.scrollX -= 10 + (elapsed/(1/60));
+		}
 
 		// not funny anymore.
 		/*if(FlxG.random.bool(0.4)){
@@ -4745,9 +4755,9 @@ class PlayState extends MusicBeatState
 
 		new FlxTimer().start(0.3, function(tmr:FlxTimer){
 			flash.alpha = 1;
-			FlxFlicker.flicker(flash, 0.5, 0.25, false, false, function(flick:FlxFlicker){
+			FlxFlicker.flicker(flash, 0.5, 0.35, false, false, function(flick:FlxFlicker){
 				removeOctaCut();
-			});
+			}); // ta rapido dms
 		});
 	}
 
@@ -4773,9 +4783,6 @@ class PlayState extends MusicBeatState
 		gostosa.alpha = 1;
 		nicuEze.alpha = 1;
 		eze.alpha = 1;
-		bgExe.velocity.set(-155, 0);
-		groundExe.velocity.set(-165, 0);
-		gostosa.velocity.set(-260, 0);
 
 		var flash:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
 		flash.cameras = [cutCam];
@@ -4786,11 +4793,11 @@ class PlayState extends MusicBeatState
 			onComplete: function(twn:FlxTween)
 			{
 				blackStart.kill();
-				FlxTween.tween(eze, {x: nicuEze.x - 190}, 6.75);
+				FlxTween.tween(eze, {x: nicuEze.x - 190}, 7.);
 			}
 		});
 		FlxTween.tween(nicuEze, {y: nicuEze.y + 5}, 0.1550, {ease:FlxEase.quadInOut, type:PINGPONG});
-		FlxTween.tween(eze, {y: eze.y + 5}, 0.1550, {ease:FlxEase.quadInOut, type:PINGPONG});
+		FlxTween.tween(eze, {y: eze.y + 5}, 0.2550, {ease:FlxEase.quadInOut, type:PINGPONG});
 
 		new FlxTimer().start(5.8, function(pussy:FlxTimer) // uhhhhhh
 		{
