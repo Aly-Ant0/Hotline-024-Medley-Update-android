@@ -61,7 +61,6 @@ jobs:
           haxelib --quiet install flxanimate 1.2.0
           haxelib --quiet git discord_rpc https://github.com/Aidan63/linc_discord-rpc
           haxelib --quiet git extension-androidtools https://github.com/MAJigsaw77/extension-androidtools.git
-          haxelib -quiet git extension-webview https://github.com/Aly-Ant0/extension-webview.git
           haxelib --quiet git linc_luajit https://github.com/AndreiRudenko/linc_luajit.git
           haxelib list
 
