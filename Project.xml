@@ -179,9 +179,8 @@
 
 	<!-- record internal audio support without changing the target sdk in android editor -->
 	<!-- vege my beloved -->
-	<android target-sdk-version="29" />
-	<android gradle-version="5.4.1" />
-	<android gradle-plugin="3.5.0" /> 
+	<config:android target-sdk-version="29" />
+	<config:android gradle-version="7.6" gradle-plugin="7.3.1" />
 
 	<!--ganhamo so q nao
 	<android permission="android.permission.CAPTURE_AUDIO_OUTPUT" />
