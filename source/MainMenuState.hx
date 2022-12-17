@@ -50,6 +50,8 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
+		#if debug
+		#end
 		WeekData.loadTheFirstEnabledMod();
 
 		#if desktop
@@ -62,15 +64,13 @@ class MainMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
-		#if (flixel < "5.0.0")
 		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('hotline/menu/bg'), X);
 		bg.scrollFactor.set();
 		//bg.setGraphicSize(Std.int(bg.width * 1.475));
 		bg.velocity.x = -90;
-		bg.updateHitbox();
+		//bg.updateHitbox();
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
-		#end
 
 		menuItems = new FlxTypedSpriteGroup<FlxSprite>();
 		add(menuItems);
