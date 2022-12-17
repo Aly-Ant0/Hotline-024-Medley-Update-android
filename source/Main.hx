@@ -30,7 +30,34 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
-		SUtil.gameCrashCheck();
+
+		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, function(e:UncaughtErrorEvent)
+		{
+			var errMsg:String = "";
+			var callStack:Array<StackItem> = CallStack.exceptionStack(true);
+			var dateNow:String = Date.now().toString();
+
+			dateNow = StringTools.replace(dateNow, " ", "_");
+			dateNow = StringTools.replace(dateNow, ":", "'");
+
+			for (stackItem in callStack)
+			{
+				switch (stackItem)
+				{
+					case FilePos(s, file, line, column):
+						errMsg += file + " (line " + line + ")\n";
+					default:
+						errMsg += stackItem;
+				}
+			}
+
+			errMsg += '\nUncaught Error: ' + e.error;
+
+			Lib.application.window.alert(errMsg, 'Crash!');
+			System.exit(1);
+		});
+		//i got this in the forever engine musk android port also hi musk :)
+
 		if (stage != null)
 		{
 			init();
