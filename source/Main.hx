@@ -20,7 +20,7 @@ import openfl.events.Event;
 import openfl.events.UncaughtErrorEvent;
 import openfl.display.StageScaleMode;
 import lime.system.System;
-import flash.system.System;
+import flash.system.System as FlashSystem;
 
 class Main extends Sprite
 {
