@@ -20,8 +20,8 @@ class SongBar extends FlxSpriteGroup // culpa do bolsonaro
 
 	public function new(x:Float, y:Float) {
 		super(x, y);
-		var songName:String = Paths.formatToSongPath(PlayState.instance.SONG.song);
-		var text:FlxText = new FlxText(0, 0, 0, stringShit, fontSize);
+		var songName:String = Paths.formatToSongPath(PlayState.SONG.song);
+		var text:FlxText = new FlxText(0, 0, 0, "", fontSize);
 		text.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), fontSize, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		size = text.fieldWidth;
 		var bg:FlxSprite = new FlxSprite(fontSize/-2, fontSize/-2).makeGraphic(Math.floor(size + fontSize), Math.floor(text.height + fontSize), FlxColor.BLACK);
