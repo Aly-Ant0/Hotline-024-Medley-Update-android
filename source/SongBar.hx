@@ -8,21 +8,19 @@ import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
-import Song.SwagSong;
 
 using StringTools;
 using flixel.util.FlxSpriteUtil;
 
 class SongBar extends FlxSpriteGroup // culpa do bolsonaro
 {
-	var song:SwagSong;
 	var size:Float = 0;
 	var fontSize:Int = 42;
 	public var stringShit:String = "";
 
 	public function new(x:Float, y:Float) {
 		super(x, y);
-		var songName:String = Paths.formatToSongPath(song.song);
+		var songName:String = Paths.formatToSongPath(PlayState.instance.SONG.song);
 		var text:FlxText = new FlxText(0, 0, 0, stringShit, fontSize);
 		text.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), fontSize, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		size = text.fieldWidth;
