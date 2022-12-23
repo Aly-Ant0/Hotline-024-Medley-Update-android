@@ -209,7 +209,7 @@ class PlayState extends MusicBeatState
 	public var cameraSpeed:Float = 1;
 
 	var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
-	var dialogueJson:DialogueFileBGSprite
+	var dialogueJson:DialogueFile;
 
 	// stage variables xd
 	var bg10:BGSprite;
