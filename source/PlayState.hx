@@ -1,11 +1,11 @@
 // sexy code -aly ant
 package;
 
+import flixel.graphics.FlxGraphic;
 #if desktop
 import Discord.DiscordClient;
 #end
 //filxel
-import flixel.graphics.FlxGraphic;
 import flixel.FlxBasic;
 import flixel.FlxCamera;
 import flixel.FlxG;
