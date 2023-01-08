@@ -53,11 +53,11 @@ jobs:
         run: |
           haxelib --quiet install lime 7.9.0
           haxelib --quiet install openfl 9.1.0
-          haxelib --quiet install flixel
+          haxelib --quiet install flixel 4.11.0
           haxelib --quiet install lime-samples
           haxelib --quiet install hscript
-          haxelib --quiet install flixel-ui
-          haxelib --quiet install flixel-addons
+          haxelib --quiet install flixel-ui 2.4.0
+          haxelib --quiet install flixel-addons 2.11.0
           haxelib --quiet install flxanimate 1.2.0
           haxelib --quiet git discord_rpc https://github.com/Aidan63/linc_discord-rpc
           haxelib --quiet git extension-androidtools https://github.com/MAJigsaw77/extension-androidtools.git
@@ -72,6 +72,8 @@ jobs:
           haxelib run lime config JAVA_HOME $JAVA_HOME
           haxelib run lime config ANDROID_SETUP true
           haxelib set flixel 4.11.0
+          haxelib set flixel-ui 2.4.0
+          haxelib set flixel-addons 2.11.0
           haxelib set lime 7.9.0
           haxelib set openfl 9.1.0
           haxelib set flxanimate 1.2.0
