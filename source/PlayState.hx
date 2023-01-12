@@ -990,7 +990,7 @@ class PlayState extends MusicBeatState
 							rocks.updateHitbox();
 					case 'momogogo':
 						//var bg:FlxBackdrop;
-						momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), 4800, 1080); // fuck i forgor the scroll value
+						momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), 1, 1, true, false); // fuck i forgor the scroll value
 						momogogoBG.velocity.x = 120;
 						momogogoBG.y = -270;
 						momogogoBG.scale.set(1.25, 1.25);
