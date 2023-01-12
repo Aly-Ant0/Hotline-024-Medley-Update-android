@@ -5,75 +5,59 @@ import flixel.graphics.FlxGraphic;
 #if desktop
 import Discord.DiscordClient;
 #end
-//filxel
+import Section.SwagSection;
+import Song.SwagSong;
+import WiggleEffect.WiggleEffectType;
 import flixel.FlxBasic;
 import flixel.FlxCamera;
 import flixel.FlxG;
-import flixel.FlxGame;
-import flixel.FlxObject;
-import flixel.FlxSprite;
-import flixel.FlxState;
-import flixel.FlxSubState;
-import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.display.FlxBackdrop;
 import flixel.addons.effects.FlxTrail;
 import flixel.addons.effects.FlxTrailArea;
 
+// STOLEN FROM WEDNESDAY'S INFIDELITY SOURCE CODE LMAO
+import flxanimate.*;
+import flxanimate.FlxAnimate;
+
 import flixel.addons.effects.chainable.FlxEffectSprite;
 import flixel.addons.effects.chainable.FlxWaveEffect;
 import flixel.addons.transition.FlxTransitionableState;
-import flixel.graphics.atlas.FlxAtlas;
-import flixel.addons.display.FlxTiledSprite;
-import flixel.graphics.frames.FlxAtlasFrames;
-import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
-import flixel.math.FlxMath;
-import flixel.math.FlxPoint;
-import flixel.math.FlxRect;
-import flixel.system.FlxSound;
-import flixel.text.FlxText;
-import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
-import flixel.ui.FlxBar;
 import flixel.util.FlxCollision;
 import flixel.util.FlxColor;
 import flixel.util.FlxSort;
 import flixel.util.FlxStringUtil;
-import flixel.effects.particles.FlxEmitter;
-import flixel.effects.particles.FlxParticle;
-import flixel.effects.FlxFlicker;
-import flixel.util.FlxSave;
 import flixel.util.FlxTimer;
-import flixel.group.FlxSpriteGroup;
-import flixel.input.keyboard.FlxKey;
-//kinda util
-// STOLEN FROM WEDNESDAY'S INFIDELITY SOURCE CODE LMAO
-import flxanimate.*;
-import flxanimate.FlxAnimate;
-//haxe libs
 import haxe.Json;
-//openfl libs
-import openfl.events.KeyboardEvent;
+import lime.utils.Assets;
 import openfl.Lib;
 import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.BitmapFilter;
 import openfl.utils.Assets as OpenFlAssets;
-//lime libs
-import lime.utils.Assets;
-//other stuff
-import Section.SwagSection;
-import Song.SwagSong;
-import WiggleEffect.WiggleEffectType;
 import editors.ChartingState;
 import editors.CharacterEditorState;
+import flixel.group.FlxSpriteGroup;
+import flixel.input.keyboard.FlxKey;
 import Note.EventNote;
+
+//for reflect
+/*
+import nape.geom.Vec2;
+import nape.geom.Vec2List;
+import nape.phys.Body;
+*/
+
+import openfl.events.KeyboardEvent;
+import flixel.effects.particles.FlxEmitter;
+import flixel.effects.particles.FlxParticle;
+import flixel.effects.FlxFlicker;
+import flixel.util.FlxSave;
 import animateatlas.AtlasFrameMaker; // this kill my phone
 import Achievements;
 import StageData;
 import FunkinLua;
 import DialogueBoxPsych;
-//system
+
 import sys.FileSystem;
 import sys.io.File;
 
@@ -286,9 +270,9 @@ class PlayState extends MusicBeatState
 	var skateBuches:BGSprite;
 
 	// sonio ponto eze variables
-	var gostosa:FlxTiledSprite;
-	var bgExe:FlxTiledSprite;
-	var groundExe:FlxTiledSprite;
+	var gostosa:FlxBackdrop;
+	var bgExe:FlxBackdrop;
+	var groundExe:FlxBackdrop;
 	var nicuEze:FlxSprite;
 	var eze:FlxSprite;
 	var blackStart:FlxSprite;
@@ -296,9 +280,9 @@ class PlayState extends MusicBeatState
 	// octagon cutscene variables
 	var octagonBG:FlxSprite;
 	var octagonBG2:FlxSprite;
-	var numbahEiti:FlxTiledSprite;
-	var numbahEiti2:FlxTiledSprite;
-	var numbahEiti3:FlxTiledSprite;
+	var numbahEiti:FlxBackdrop;
+	var numbahEiti2:FlxBackdrop;
+	var numbahEiti3:FlxBackdrop;
 	var octagon:FlxSprite;
 	var textOctagon:FlxSprite;
 	var bubbleText:FlxSprite;
@@ -319,7 +303,7 @@ class PlayState extends MusicBeatState
 	var rocks:BGSprite;
 
 	// do stage da gostosa la
-	var momogogoBG:FlxTiledSprite;
+	var momogogoBG:FlxBackdrop;
 
 	// da ultima musica la a astral projection
 	var matzuBG:BGSprite;
@@ -1006,8 +990,8 @@ class PlayState extends MusicBeatState
 							rocks.updateHitbox();
 					case 'momogogo':
 						//var bg:FlxBackdrop;
-						momogogoBG = new FlxTiledSprite(Paths.image('momogogo/bg'), 4800, 1080); // fuck i forgor the scroll value
-						momogogoBG.scrollFactor.set(0.8, 0.8);
+						momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), 4800, 1080); // fuck i forgor the scroll value
+						momogogoBG.velocity.x = 120;
 						momogogoBG.y = -270;
 						momogogoBG.scale.set(1.25, 1.25);
 						momogogoBG.updateHitbox();
@@ -1694,7 +1678,7 @@ class PlayState extends MusicBeatState
 			octagonBG.scrollFactor.set(0, 0);
 			octagonBG.scale.set(1.4, 1.4);
 			octagonBG.cameras = [cutCam];
-			octagonBG.alpha = 0.00001; // está nesse valor para o jogo entender que o bagui faz parte do stage ai quando acontecer ai o jogo não laga, genial, né?
+			octagonBG.alpha = 0.00001; // prevent lag
 			add(octagonBG);
 
 			octagonBG2 = new FlxSprite().makeGraphic(1980, 236, 0xFFFE923D);
@@ -1705,36 +1689,32 @@ class PlayState extends MusicBeatState
 			add(octagonBG2);
 
 			// analfabeto do caralho
-			numbahEiti = new FlxTiledSprite(Paths.image('skatepark/octagon/numbah_eight'), 240,240);
+			numbahEiti = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 240,240);
 			numbahEiti.alpha = .0001;
 			numbahEiti.y = 0;
 			//numbahEiti.scale.set(1.3, 1.3);
-			numbahEiti.scrollFactor.set(0, 0);
-			numbahEiti.repeatY = false;
+			numbahEiti.velocity.set(-150, 0);
 			numbahEiti.cameras = [cutCam];
 		//	numbahEiti.offset.y = 20000000;
 			//numbahEiti.velocity.x = -150;
 			add(numbahEiti);
 
-			numbahEiti2 = new FlxTiledSprite(Paths.image('skatepark/octagon/numbah_eight'),240,240);
+			numbahEiti2 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'),1,1,true,false);
 			numbahEiti2.alpha = .0001;
 			numbahEiti2.y = 245;
 			numbahEiti2.alpha = 0.00001;
-			numbahEiti2.repeatY = false;
+			numbahEiti2.velocity.set(150, 0);
 		//	numbahEiti2.scale.set(1, 1);
-			numbahEiti2.scrollFactor.set(0, 0);
-		//	numbahEiti2.offset.y += 20000000;
 			//numbahEiti2.velocity.set(150, 0);
 			numbahEiti2.cameras = [cutCam];
 			add(numbahEiti2);
 
-			numbahEiti3 = new FlxTiledSprite(Paths.image('skatepark/octagon/numbah_eight'), 240, 240);
+			numbahEiti3 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'),1,1,true,false);
 			numbahEiti3.alpha = 0.00001;
 			numbahEiti3.screenCenter(X);
 			numbahEiti3.y = 480;
+			numbahEiti3.velocity.set(-150, 0);
 			//numbahEiti3.scale.set(1, 1);
-			numbahEiti3.scrollFactor.set(0, 0);
-			numbahEiti3.repeatY=false;
 
 		//	numbahEiti3.offset.y += 20000000;
 			//numbahEiti3.velocity.set(-150, 0);
@@ -1792,10 +1772,9 @@ class PlayState extends MusicBeatState
 
 				// sonio ponto eze cutscene
 				//var library:String = 'skatepark/cutscene/'; // lazy
-				bgExe = new FlxTiledSprite(Paths.image('skatepark/cutscene/background'), 1030,257);
+				bgExe = new FlxBackdrop(Paths.image('skatepark/cutscene/background'),1,1,true,false);
 				bgExe.antialiasing = false;
 				bgExe.scrollFactor.set();
-				bgExe.repeatY=false;
 				bgExe.x = -1135;
 				bgExe.y = -85;
 				bgExe.alpha = 0.00001;
@@ -1804,10 +1783,9 @@ class PlayState extends MusicBeatState
 				bgExe.cameras = [cutCam];
 				add(bgExe);
 		
-				groundExe = new FlxTiledSprite(Paths.image('skatepark/cutscene/ground'),960,104);
+				groundExe = new FlxBackdrop(Paths.image('skatepark/cutscene/ground'),1,1,true,false);
 				groundExe.antialiasing = false;
 				groundExe.scrollFactor.set();
-				groundExe.repeatY=false;
 				groundExe.y = 470;
 				groundExe.setGraphicSize(Std.int(groundExe.width * 6.73));
 				groundExe.updateHitbox();
@@ -1833,11 +1811,10 @@ class PlayState extends MusicBeatState
 				nicuEze.cameras = [cutCam];
 				add(nicuEze);
 
-				gostosa = new FlxTiledSprite(Paths.image('skatepark/cutscene/leaves'), 680, 85);
+				gostosa = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves'), 1,1,true,false);
 				gostosa.antialiasing = false;
 				gostosa.scrollFactor.set();
 				gostosa.y = 375;
-				gostosa.repeatY=false;
 				gostosa.setGraphicSize(Std.int(gostosa.width * 8.35));
 				gostosa.updateHitbox();
 				gostosa.alpha = 0.00001;
@@ -4108,7 +4085,7 @@ class PlayState extends MusicBeatState
 			}	
 		}
 
-		if (curStage == 'momogogo')
+		/*if (curStage == 'momogogo')
 		{
 			momogogoBG.scrollX += 3 + (elapsed / (1/60));
 		}
@@ -4122,7 +4099,7 @@ class PlayState extends MusicBeatState
 			bgExe.scrollX -= (elapsed/(1/60));
 			groundExe.scrollX -= 5 + (elapsed/(1/60));
 			gostosa.scrollX -= 10 + (elapsed/(1/60));
-		}
+		}*/
 
 		// not funny anymore.
 		/*if(FlxG.random.bool(0.4)){
@@ -4792,7 +4769,7 @@ class PlayState extends MusicBeatState
 		FlxTween.tween(blackStart, {alpha:0}, 0.1, {
 			onComplete: function(twn:FlxTween)
 			{
-				blackStart.kill();
+				blackStart.destroy();
 				FlxTween.tween(eze, {x: nicuEze.x - 190}, 7.);
 			}
 		});
@@ -4804,11 +4781,11 @@ class PlayState extends MusicBeatState
 			flash.alpha = 1;
 			FlxFlicker.flicker(flash, 0.950/*pra formar 6.150 segundos*/, 0.025, false, false, function(flicker:FlxFlicker)
 			{
-				bgExe.kill();
-				groundExe.kill();
-				nicuEze.kill();
-				eze.kill();
-				gostosa.kill();
+				bgExe.destroy();
+				groundExe.destroy();
+				nicuEze.destroy();
+				eze.destroy();
+				gostosa.destroy();
 				camHUD.alpha = 1;
 			});
 		});
