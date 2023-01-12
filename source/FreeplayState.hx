@@ -55,7 +55,7 @@ class FreeplayState extends MusicBeatState
 	var lerpRating:Float = 0;
 	var intendedScore:Int = 0;
 	var intendedRating:Float = 0;
-
+	var elapsedTime:Float = 0;
 	var intendedColor:Int;
 	var colorTween:FlxTween;
 
@@ -109,8 +109,6 @@ class FreeplayState extends MusicBeatState
 		nicu.antialiasing = ClientPrefs.globalAntialiasing;
 		nicu.screenCenter();
 		add(nicu);
-
-		FlxTween.tween(nicu, {y: nicu.y + 17}, 1.74, {ease: FlxEase.quadInOut, type: PINGPONG});
 
 		grpSongs = new FlxTypedGroup<FreeplayText>();
 		add(grpSongs);
@@ -211,6 +209,8 @@ class FreeplayState extends MusicBeatState
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
+		elapsedTime += elapsed * 30;
+		nicu.y = (Math.sin(elapsedTime/30)*5.3);
 
 		for (port in grpSongs.members) // the angle tween and skew test
 		{
