@@ -5,61 +5,79 @@ import flixel.graphics.FlxGraphic;
 #if desktop
 import Discord.DiscordClient;
 #end
-import Section.SwagSection;
-import Song.SwagSong;
-import WiggleEffect.WiggleEffectType;
+//filxel
 import flixel.FlxBasic;
 import flixel.FlxCamera;
 import flixel.FlxG;
+import flixel.FlxGame;
+import flixel.FlxObject;
+import flixel.FlxSprite;
+import flixel.FlxState;
+import flixel.FlxSubState;
+import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.display.FlxBackdrop;
 import flixel.addons.effects.FlxTrail;
 import flixel.addons.effects.FlxTrailArea;
 
-// STOLEN FROM WEDNESDAY'S INFIDELITY SOURCE CODE LMAO
-import flxanimate.*;
-import flxanimate.FlxAnimate;
-
 import flixel.addons.effects.chainable.FlxEffectSprite;
 import flixel.addons.effects.chainable.FlxWaveEffect;
 import flixel.addons.transition.FlxTransitionableState;
+import flixel.graphics.atlas.FlxAtlas;
+import flixel.addons.display.FlxTiledSprite;
+import flixel.graphics.frames.FlxAtlasFrames;
+import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
+import flixel.math.FlxMath;
+import flixel.math.FlxPoint;
+import flixel.math.FlxRect;
+import flixel.system.FlxSound;
+import flixel.text.FlxText;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
+import flixel.ui.FlxBar;
 import flixel.util.FlxCollision;
 import flixel.util.FlxColor;
 import flixel.util.FlxSort;
 import flixel.util.FlxStringUtil;
+import flixel.effects.particles.FlxEmitter;
+import flixel.effects.particles.FlxParticle;
+import flixel.effects.FlxFlicker;
+import flixel.util.FlxSave;
 import flixel.util.FlxTimer;
+import flixel.group.FlxSpriteGroup;
+import flixel.input.keyboard.FlxKey;
+//kinda util
+// STOLEN FROM WEDNESDAY'S INFIDELITY SOURCE CODE LMAO
+import flxanimate.*;
+import flxanimate.FlxAnimate;
+//haxe libs
 import haxe.Json;
-import lime.utils.Assets;
+//openfl libs
+import openfl.events.KeyboardEvent;
 import openfl.Lib;
 import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.BitmapFilter;
 import openfl.utils.Assets as OpenFlAssets;
+//lime libs
+import lime.utils.Assets;
+//other stuff
+import Section.SwagSection;
+import Song.SwagSong;
+import WiggleEffect.WiggleEffectType;
 import editors.ChartingState;
 import editors.CharacterEditorState;
-import flixel.group.FlxSpriteGroup;
-import flixel.input.keyboard.FlxKey;
 import Note.EventNote;
-
-//for reflect
-/*
-import nape.geom.Vec2;
-import nape.geom.Vec2List;
-import nape.phys.Body;
-*/
-
-import openfl.events.KeyboardEvent;
-import flixel.effects.particles.FlxEmitter;
-import flixel.effects.particles.FlxParticle;
-import flixel.effects.FlxFlicker;
-import flixel.util.FlxSave;
 import animateatlas.AtlasFrameMaker; // this kill my phone
 import Achievements;
 import StageData;
 import FunkinLua;
 import DialogueBoxPsych;
 
+#if (sys && MODS_ALLOWED)
 import sys.FileSystem;
 import sys.io.File;
+#end
 
 using StringTools;
 
