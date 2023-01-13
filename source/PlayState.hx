@@ -74,10 +74,8 @@ import StageData;
 import FunkinLua;
 import DialogueBoxPsych;
 
-#if (sys && MODS_ALLOWED)
 import sys.FileSystem;
 import sys.io.File;
-#end
 
 using StringTools;
 
