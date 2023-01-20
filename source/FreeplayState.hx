@@ -210,7 +210,7 @@ class FreeplayState extends MusicBeatState
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
 		elapsedTime += elapsed * 30;
-		nicu.y = (Math.sin(elapsedTime/30)*5.3);
+		nicu.y = (Math.sin(elapsedTime/25)*8.3);
 
 		for (port in grpSongs.members) // the angle tween and skew test
 		{
