@@ -206,6 +206,132 @@ class PlayState extends MusicBeatState
 
 	var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
 	var dialogueJson:DialogueFile = null;
+	
+		// stage variables xd
+	var bg10:BGSprite;
+	var cutsceneBG:BGSprite;
+	var cutsceneEnd:BGSprite;
+	var cutsceneLogo:BGSprite;
+	var black:FlxSprite;
+	var text1:BGSprite; // and yes, this is a image :trollface:
+	var text2:BGSprite;
+
+	// fun is infinite
+	var majinBG:BGSprite;
+	var majinTVBG:BGSprite;
+	var majinOverlay:BGSprite;
+	var majinTV:BGSprite;
+	var majinGround:BGSprite;
+
+	// covers stage
+	var coverBG1:BGSprite;
+	var coverBG2:BGSprite;
+	var coverBG3:BGSprite;
+	var coverBG4:BGSprite;
+	var coverBG5:BGSprite;
+	var coverBG6:BGSprite;
+	var coverBG7:BGSprite;
+	var coverBG8:BGSprite;
+	var coverBG9:BGSprite;
+
+	var bfreflect:FlxSprite = new FlxSprite();
+	var dadreflect:FlxSprite = new FlxSprite();
+	var gfreflect:FlxSprite = new FlxSprite(); // GOSTOSA AAAA (zoas)
+
+	// expurgated
+	var exSky:BGSprite;
+	var exRock:BGSprite;
+	var exGround:BGSprite;
+	var exOverlay:BGSprite;
+	var exFront:BGSprite;
+
+	// this is my first time using emitters sorry if i broke something
+	var particleEmitter:FlxEmitter;
+
+	// skate
+	var skateSky:BGSprite;
+	var skateFloor:BGSprite;
+	var skateBuildings:BGSprite;
+	var skateLight:BGSprite;
+	var skateTreess:BGSprite;
+	var skateBuches:BGSprite;
+
+	// sonio ponto eze variables
+	var gostosa:FlxBackdrop;
+	var bgExe:FlxBackdrop;
+	var groundExe:FlxBackdrop;
+	var nicuEze:FlxSprite;
+	var eze:FlxSprite;
+	var blackStart:FlxSprite;
+
+	// octagon cutscene variables
+	var octagonBG:FlxSprite;
+	var octagonBG2:FlxSprite;
+	var numbahEiti:FlxBackdrop;
+	var numbahEiti2:FlxBackdrop;
+	var numbahEiti3:FlxBackdrop;
+	var octagon:FlxSprite;
+	var textOctagon:FlxSprite;
+	var bubbleText:FlxSprite;
+	var nikkuOctagon:FlxSprite;
+	var showYou:FlxSprite;
+	var hereme:FlxSprite;
+	var blackStart2:FlxSprite;
+
+	// hauuei
+	var hallBG:BGSprite;
+	var hallFG:BGSprite;
+	var hallLuzinha:BGSprite;
+
+	var fandomaniaCutscene:FlxAnimate; //using texture atlas in android
+
+	// ARMAGEDOM
+	var bars:BGSprite;
+	var rocks:BGSprite;
+
+	// do stage da gostosa la
+	var momogogoBG:FlxBackdrop;
+
+	// da ultima musica la a astral projection
+	var matzuBG:BGSprite;
+	var matzuDESK:BGSprite;
+	var asPlantadaMinhaMae:BGSprite;
+
+	// é quando ta tudo fudido
+	var matzuFudida1:BGSprite;
+	var matzuFudida2:BGSprite;
+	var matzuFudida3:BGSprite;
+	var matzuFudida4:BGSprite;
+	var matzuFudida5:BGSprite;
+	var matzuFudida6:BGSprite;
+	var matzuFudida7:BGSprite;
+
+	// ena
+	var enaOverlay:BGSprite;
+	var idkWhatIsthat:BGSprite;
+
+	// mall da nicu
+	var nicuLight:BGSprite;
+	var oscabodomeucu:BGSprite;
+	var nicuPlants:BGSprite;
+
+	// xigmund
+	var planet:BGSprite;
+	var planet2:BGSprite;
+	var sun:BGSprite;
+	var sun2:BGSprite;
+	var asteroidEmitter1:FlxEmitter;
+	var asteroidEmitter2:FlxEmitter;
+	var asteroidEmitter3:FlxEmitter;
+
+	// sus
+	var osCaboSUS:BGSprite;
+
+	// nicu vs a turma da monica so que nao
+	var naoseiseissoecabomasfds:BGSprite;
+
+	// nightland
+	var blurBg:BGSprite;
 
 	var halloweenBG:BGSprite;
 	var halloweenWhite:BGSprite;
