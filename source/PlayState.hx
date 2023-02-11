@@ -178,7 +178,7 @@ class PlayState extends MusicBeatState
 	public var goods:Int = 0;
 	public var bads:Int = 0;
 	public var shits:Int = 0;
-	public var rating:String = "";
+	var rating:String = "";
 
 	private var generatedMusic:Bool = false;
 	public var endingSong:Bool = false;
@@ -201,138 +201,11 @@ class PlayState extends MusicBeatState
 	public var iconP2:HealthIcon;
 	public var camHUD:FlxCamera;
 	public var camGame:FlxCamera;
-	public var cutCam:FlxCamera;
 	public var camOther:FlxCamera;
 	public var cameraSpeed:Float = 1;
 
 	var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
 	var dialogueJson:DialogueFile = null;
-
-		// stage variables xd
-	var bg10:BGSprite;
-	var cutsceneBG:BGSprite;
-	var cutsceneEnd:BGSprite;
-	var cutsceneLogo:BGSprite;
-	var black:FlxSprite;
-	var text1:BGSprite; // and yes, this is a image :trollface:
-	var text2:BGSprite;
-
-	// fun is infinite
-	var majinBG:BGSprite;
-	var majinTVBG:BGSprite;
-	var majinOverlay:BGSprite;
-	var majinTV:BGSprite;
-	var majinGround:BGSprite;
-
-	// covers stage
-	var coverBG1:BGSprite;
-	var coverBG2:BGSprite;
-	var coverBG3:BGSprite;
-	var coverBG4:BGSprite;
-	var coverBG5:BGSprite;
-	var coverBG6:BGSprite;
-	var coverBG7:BGSprite;
-	var coverBG8:BGSprite;
-	var coverBG9:BGSprite;
-
-	var bfreflect:FlxSprite = new FlxSprite();
-	var dadreflect:FlxSprite = new FlxSprite();
-	var gfreflect:FlxSprite = new FlxSprite(); // GOSTOSA AAAA (zoas)
-
-	// expurgated
-	var exSky:BGSprite;
-	var exRock:BGSprite;
-	var exGround:BGSprite;
-	var exOverlay:BGSprite;
-	var exFront:BGSprite;
-
-	// this is my first time using emitters sorry if i broke something
-	var particleEmitter:FlxEmitter;
-
-	// skate
-	var skateSky:BGSprite;
-	var skateFloor:BGSprite;
-	var skateBuildings:BGSprite;
-	var skateLight:BGSprite;
-	var skateTreess:BGSprite;
-	var skateBuches:BGSprite;
-
-	// sonio ponto eze variables
-	var gostosa:FlxBackdrop;
-	var bgExe:FlxBackdrop;
-	var groundExe:FlxBackdrop;
-	var nicuEze:FlxSprite;
-	var eze:FlxSprite;
-	var blackStart:FlxSprite;
-
-	// octagon cutscene variables
-	var octagonBG:FlxSprite;
-	var octagonBG2:FlxSprite;
-	var numbahEiti:FlxBackdrop;
-	var numbahEiti2:FlxBackdrop;
-	var numbahEiti3:FlxBackdrop;
-	var octagon:FlxSprite;
-	var textOctagon:FlxSprite;
-	var bubbleText:FlxSprite;
-	var nikkuOctagon:FlxSprite;
-	var showYou:FlxSprite;
-	var hereme:FlxSprite;
-	var blackStart2:FlxSprite;
-
-	// hauuei
-	var hallBG:BGSprite;
-	var hallFG:BGSprite;
-	var hallLuzinha:BGSprite;
-
-	var fandomaniaCutscene:FlxAnimate; //using texture atlas in android
-
-	// ARMAGEDOM
-	var bars:BGSprite;
-	var rocks:BGSprite;
-
-	// do stage da gostosa la
-	var momogogoBG:FlxBackdrop;
-
-	// da ultima musica la a astral projection
-	var matzuBG:BGSprite;
-	var matzuDESK:BGSprite;
-	var asPlantadaMinhaMae:BGSprite;
-
-	// é quando ta tudo fudido
-	var matzuFudida1:BGSprite;
-	var matzuFudida2:BGSprite;
-	var matzuFudida3:BGSprite;
-	var matzuFudida4:BGSprite;
-	var matzuFudida5:BGSprite;
-	var matzuFudida6:BGSprite;
-	var matzuFudida7:BGSprite;
-
-	// ena
-	var enaOverlay:BGSprite;
-	var idkWhatIsthat:BGSprite;
-
-	// mall da nicu
-	var nicuLight:BGSprite;
-	var oscabodomeucu:BGSprite;
-	var nicuPlants:BGSprite;
-
-	// xigmund
-	var planet:BGSprite;
-	var planet2:BGSprite;
-	var sun:BGSprite;
-	var sun2:BGSprite;
-	var asteroidEmitter1:FlxEmitter;
-	var asteroidEmitter2:FlxEmitter;
-	var asteroidEmitter3:FlxEmitter;
-
-	// sus
-	var osCaboSUS:BGSprite;
-
-	// nicu vs a turma da monica so que nao
-	var naoseiseissoecabomasfds:BGSprite;
-
-	// nightland
-	var blurBg:BGSprite;
 
 	var halloweenBG:BGSprite;
 	var halloweenWhite:BGSprite;
@@ -373,40 +246,12 @@ class PlayState extends MusicBeatState
 	var tankmanRun:FlxTypedGroup<TankmenBG>;
 	var foregroundSprites:FlxTypedGroup<BGSprite>;
 
-	//score stuff
 	public var songScore:Int = 0;
 	public var songHits:Int = 0;
 	public var songMisses:Int = 0;
-	public var lerpScore:Int = 0;
-	public var scoreTarget:Int = 0;
-	public var lerpScore2:Int = 0;
-	public var scoreTarget2:Int = 0;
 	public var scoreTxt:FlxText;
-	var scoreTxtTween:FlxTween;
-	var score:Int = 350;
-
-	//combo stuff
-	public var comboGlow:FlxSprite;
-	public var combotxtscoreplus:FlxText;
-	public var combotxt1:FlxText;
-	public var combotxt2:FlxText;
-	public var comboScore:Int = 0;
-	public var comboNum:Int = 0; // its the fake combo :trollface:
-	public var comboState:Int = 0;
-	var pressedKey:Bool = false; // unused
-	var endCombo:Bool = false; // unused
-	var showCombo2:Bool = false; // unused
 	var timeTxt:FlxText;
-	var comboTwn:FlxTween;
-	var comboTwn2:FlxTween;
-	var comboTwn3:FlxTween;
-	var comboGlowAlphaTwn:FlxTween;
-	var comboAlphaTwn:FlxTween;
-	var comboAlphaTwn2:FlxTween;
-	var comboAlphaTwn3:FlxTween;
-	var comboTmr:FlxTimer = new FlxTimer();
-	var stopPls:FlxTimer = new FlxTimer();
-	var comboTmr2:Float = 3.5; // unused shit
+	var scoreTxtTween:FlxTween;
 
 	public static var campaignScore:Int = 0;
 	public static var campaignMisses:Int = 0;
@@ -461,16 +306,6 @@ class PlayState extends MusicBeatState
 		// for lua
 		instance = this;
 
-		if (ClientPrefs.middleScroll && !ClientPrefs.downScroll){
-			COMBO_Y = 160;
-		}
-		else if (ClientPrefs.middleScroll && ClientPrefs.downScroll){
-			COMBO_Y = 475;
-		}
-		else if (ClientPrefs.downScroll){
-			COMBO_Y = 560;
-		}
-
 		debugKeysChart = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_1'));
 		debugKeysCharacter = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_2'));
 		PauseSubState.songName = null; //Reset to default
@@ -500,15 +335,12 @@ class PlayState extends MusicBeatState
 
 		// var gameCam:FlxCamera = FlxG.camera;
 		camGame = new FlxCamera();
-		cutCam = new FlxCamera();
 		camHUD = new FlxCamera();
 		camOther = new FlxCamera();
-		cutCam.bgColor.alpha = 0;
 		camHUD.bgColor.alpha = 0;
 		camOther.bgColor.alpha = 0;
 
 		FlxG.cameras.reset(camGame);
-		FlxG.cameras.add(cutCam);
 		FlxG.cameras.add(camHUD);
 		FlxG.cameras.add(camOther);
 		grpNoteSplashes = new FlxTypedGroup<NoteSplash>();
@@ -1521,126 +1353,7 @@ class PlayState extends MusicBeatState
 
 		add(dadGroup);
 		add(boyfriendGroup);
-
-			if (curStage == 'space')
-			{
-				add(bg10);
-				add(black);
-				add(cutsceneBG);
-				add(cutsceneEnd);
-				add(cutsceneLogo);
-				add(text1);
-				add(text2);
-			}
-	
-			if (curStage == 'covers')
-			{
-				add(coverBG7);
-				add(coverBG8);
-			}
-	
-			if (curStage == 'mazin-mall')
-			{
-				add(majinOverlay);
-				add(majinTV);
-			}
-	
-			if (curStage == 'expurgated')
-			{
-				add(exOverlay);
-				add(exFront);
-			}
-	
-			if (curStage == 'skatepark')
-			{
-				add(skateLight);
-				add(skateBuches);
-			}
-	
-			if (curStage == 'hallway')
-			{
-				add(hallLuzinha);
-				add(hallFG);
-			}
-
-			if (curStage == 'amarged')
-			{
-				add(rocks);
-			}
-	
-			if (curStage == 'astral') {
-				add(matzuDESK);
-				add(asPlantadaMinhaMae);
-				add(matzuFudida6);
-				add(matzuFudida7);
-			}
-	
-			if (curStage == 'ena') {
-				add(enaOverlay);
-				add(idkWhatIsthat);
-			}
-
-			if (curStage == 'nikkuMall') {
-				add(nicuLight);
-				add(oscabodomeucu);
-				add(nicuPlants);
-			}
-
-			if (curStage == 'xigmund'){
-				add(asteroidEmitter1);
-			}
-
-			if (curStage == 'sus'){
-				//add(osCaboSUS);
-			}
-
-			if (curStage == 'ddto'){
-				//add(naoseiseissoecabomasfds); esqueci
-			}
-
-			if (curStage == 'nightland'){
-				add(blurBg);
-			}
-
-			if (curStage == 'whitty'){
-				var fg3:BGSprite=new BGSprite('whitty/fg', -350, -260, 1, 1);
-				fg3.setGraphicSize(Std.int(fg3.width * 1.3));
-				fg3.updateHitbox();
-				add(fg3);
-			}
-
-			if (curStage == 'stage4'){
-				var overlay1:BGSprite=new BGSprite('stage4/overlay1', -2350, -1500, 1, 1);
-				overlay1.setGraphicSize(Std.int(overlay1.width * 2));
-				overlay1.updateHitbox();
-				overlay1.blend = ADD;
-				add(overlay1);
-
-				var overlay2:BGSprite=new BGSprite('stage4/overlay2', -2350, -1500, 1, 1);
-				overlay2.setGraphicSize(Std.int(overlay2.width * 2));
-				overlay2.updateHitbox();
-				overlay2.blend = ADD;
-				add(overlay2);
-	
-				var overlay3:BGSprite=new BGSprite('stage4/overlay3', -2350, -900, 1, 1);
-				overlay3.setGraphicSize(Std.int(overlay3.width * 2));
-				overlay3.updateHitbox();
-				overlay3.blend = ADD;
-				add(overlay3);
-				
-				var bushes:BGSprite=new BGSprite('stage4/bushes', -2350, -1500, 1, 1);
-				bushes.setGraphicSize(Std.int(bushes.width * 2));
-				bushes.updateHitbox();
-				add(bushes);
-			}
-
-			if (curStage == 'jojo'){
-				var grad:BGSprite=new BGSprite('jojo/grad', -2700, -1900, 0.7, 0.7);
-				grad.setGraphicSize(Std.int(grad.width * 2));
-				grad.updateHitbox();
-				grad.blend = ADD;
-				add(grad);
-			}
+		
 		switch(curStage)
 		{
 			case 'spooky':
@@ -1654,175 +1367,6 @@ class PlayState extends MusicBeatState
 		luaDebugGroup.cameras = [camOther];
 		add(luaDebugGroup);
 		#end
-
-		if (songName == 'sugarcrush') // crush de açuca
-		{
-					//FlxG.debugger.visible = true;
-			octagonBG = new FlxSprite().makeGraphic(1980, 1080, FlxColor.WHITE);
-			octagonBG.screenCenter(XY);
-			octagonBG.scrollFactor.set(0, 0);
-			octagonBG.scale.set(1.4, 1.4);
-			octagonBG.cameras = [cutCam];
-			octagonBG.alpha = 0.00001; // prevent lag
-			add(octagonBG);
-
-			octagonBG2 = new FlxSprite().makeGraphic(1980, 236, 0xFFFE923D);
-			octagonBG2.alpha = 0.00001;
-			octagonBG2.screenCenter(XY);
-			octagonBG2.scrollFactor.set(0, 0);
-			octagonBG2.cameras = [cutCam];
-			add(octagonBG2);
-
-			// analfabeto do caralho
-			numbahEiti = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'), 240,240);
-			numbahEiti.alpha = .0001;
-			numbahEiti.y = 0;
-			//numbahEiti.scale.set(1.3, 1.3);
-			numbahEiti.velocity.set(-150, 0);
-			numbahEiti.cameras = [cutCam];
-		//	numbahEiti.offset.y = 20000000;
-			//numbahEiti.velocity.x = -150;
-			add(numbahEiti);
-
-			numbahEiti2 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'),1,1,true,false);
-			numbahEiti2.alpha = .0001;
-			numbahEiti2.y = 245;
-			numbahEiti2.alpha = 0.00001;
-			numbahEiti2.velocity.set(150, 0);
-		//	numbahEiti2.scale.set(1, 1);
-			//numbahEiti2.velocity.set(150, 0);
-			numbahEiti2.cameras = [cutCam];
-			add(numbahEiti2);
-
-			numbahEiti3 = new FlxBackdrop(Paths.image('skatepark/octagon/numbah_eight'),1,1,true,false);
-			numbahEiti3.alpha = 0.00001;
-			numbahEiti3.screenCenter(X);
-			numbahEiti3.y = 480;
-			numbahEiti3.velocity.set(-150, 0);
-			//numbahEiti3.scale.set(1, 1);
-
-		//	numbahEiti3.offset.y += 20000000;
-			//numbahEiti3.velocity.set(-150, 0);
-			numbahEiti3.cameras = [cutCam];
-			add(numbahEiti3);
-
-			nikkuOctagon = new FlxSprite(-425, 465);
-			nikkuOctagon.frames = Paths.getSparrowAtlas('skatepark/octagon/nikku');
-			nikkuOctagon.animation.addByPrefix('idle', 'Nikku Move 1', 24, true);
-			nikkuOctagon.animation.addByPrefix('lastFrame', 'Nikku Last Frame', 24, true);
-			nikkuOctagon.animation.play('idle', true);
-			nikkuOctagon.setGraphicSize(Std.int(nikkuOctagon.width * 3.62));
-			nikkuOctagon.updateHitbox();
-			nikkuOctagon.alpha = 0.00001;
-			nikkuOctagon.antialiasing = ClientPrefs.globalAntialiasing;
-			nikkuOctagon.cameras = [cutCam];
-			add(nikkuOctagon);
-			//nikkuOctagon.visible = false;
-
-			bubbleText = new FlxSprite();
-			bubbleText.loadGraphic(Paths.image('skatepark/octagon/textbox'));
-			bubbleText.screenCenter();
-			bubbleText.scale.set(0.00001, 0.00001);
-			bubbleText.alpha = 0.00001;
-			bubbleText.updateHitbox();
-			bubbleText.antialiasing = ClientPrefs.globalAntialiasing;
-			bubbleText.cameras = [cutCam];
-			add(bubbleText);
-
-			textOctagon = new FlxSprite(bubbleText.x + 20, bubbleText.y + 80);
-				textOctagon.frames = Paths.getSparrowAtlas('skatepark/octagon/text', 'h24');
-				textOctagon.animation.addByPrefix('text', 'Text', 24, false);
-				textOctagon.setGraphicSize(Std.int(textOctagon.width*0.6));
-				textOctagon.updateHitbox();
-				textOctagon.antialiasing = ClientPrefs.globalAntialiasing;
-				textOctagon.alpha = 0.00001;
-				textOctagon.cameras = [cutCam];
-				add(textOctagon);
-
-				hereme = new FlxSprite().loadGraphic(Paths.image('skatepark/octagon/hereletme', 'h24')); //tween y: 250
-				hereme.antialiasing = ClientPrefs.globalAntialiasing;
-				hereme.alpha = 0.00001;
-				add(hereme);
-
-				showYou/*here let me show you bitch*/ = new FlxSprite().loadGraphic(Paths.image('skatepark/octagon/showyou', 'h24')); //tween y: 250
-				showYou.antialiasing = ClientPrefs.globalAntialiasing;
-				showYou.alpha = 0.00001;
-				add(showYou);
-
-				octagon = new FlxSprite().loadGraphic(Paths.image('skatepark/octagon/octagon', 'h24')); // tween x:295 tween 2 x: 1238
-				octagon.antialiasing = ClientPrefs.globalAntialiasing;
-				octagon.alpha = 0.00001;
-				octagon.cameras = [cutCam];
-				add(octagon);
-
-				// sonio ponto eze cutscene
-				//var library:String = 'skatepark/cutscene/'; // lazy
-				bgExe = new FlxBackdrop(Paths.image('skatepark/cutscene/background'),1,1,true,false);
-				bgExe.antialiasing = false;
-				bgExe.scrollFactor.set();
-				bgExe.x = -1135;
-				bgExe.y = -85;
-				bgExe.alpha = 0.00001;
-				bgExe.setGraphicSize(Std.int(bgExe.width * 8)); // to larger cuz its pixel and its low quality
-				bgExe.updateHitbox();
-				bgExe.cameras = [cutCam];
-				add(bgExe);
-		
-				groundExe = new FlxBackdrop(Paths.image('skatepark/cutscene/ground'),1,1,true,false);
-				groundExe.antialiasing = false;
-				groundExe.scrollFactor.set();
-				groundExe.y = 470;
-				groundExe.setGraphicSize(Std.int(groundExe.width * 6.73));
-				groundExe.updateHitbox();
-				groundExe.alpha = 0.00001;
-				groundExe.cameras = [cutCam];
-				add(groundExe);
-
-				eze=new FlxSprite(-350, 245).loadGraphic(Paths.image('skatepark/cutscene/exe', 'h24')); // é hj q eu te pego gostosa kkkkkk
-				eze.antialiasing = false;
-				eze.scrollFactor.set();
-				eze.setGraphicSize(Std.int(eze.width * 5.4));
-				eze.updateHitbox();
-				eze.cameras = [cutCam];
-				eze.alpha = 0.00001;
-				add(eze);
-
-				nicuEze = new FlxSprite(565, 180).loadGraphic(Paths.image('skatepark/cutscene/nikku', 'h24')); // pqp me dexa em paz seu porra da o cu na esquina chupa rola
-				nicuEze.antialiasing = false;
-				nicuEze.scrollFactor.set();
-				nicuEze.setGraphicSize(Std.int(nicuEze.width * 5.1));
-				nicuEze.updateHitbox();
-				nicuEze.alpha = 0.00001;
-				nicuEze.cameras = [cutCam];
-				add(nicuEze);
-
-				gostosa = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves'), 1,1,true,false);
-				gostosa.antialiasing = false;
-				gostosa.scrollFactor.set();
-				gostosa.y = 375;
-				gostosa.setGraphicSize(Std.int(gostosa.width * 8.35));
-				gostosa.updateHitbox();
-				gostosa.alpha = 0.00001;
-				gostosa.cameras = [cutCam];
-				add(gostosa);
-
-				blackStart = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
-				blackStart.cameras = [cutCam];
-				blackStart.alpha = 0.00001;
-				add(blackStart);
-		}
-		switch(songName) // texture atlas cutscenes
-		{
-			case "fandomania":
-				fandomaniaCutscene = new FlxAnimate(0, 0, Paths.h024TextureAtlas("cutscene1", "hallway"));
-				fandomaniaCutscene.anim.addBySymbol('cutscene', 'ExportAtlas', 24, false);
-				fandomaniaCutscene.alpha=0.00001;
-				fandomaniaCutscene.screenCenter();
-				fandomaniaCutscene.cameras = [cutCam];
-				add(fandomaniaCutscene);
-			case "killer-queen":
-				
-		}
 
 		FileSystem.createDirectory(Main.path + "assets"); // saving lines
 
@@ -1921,26 +1465,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (noSkins)
-		{
-			dad = new Character(0, 0, SONG.player2);
-		}
-		else {
-			switch(skinSelection) {
-				case 0:
-					dad = new Character(0, 0, 'nikku');
-				case 1:
-					dad = new Character(0, 0, 'nikku-24');
-				case 2:
-					dad = new Character(0, 0, 'nikku-jojo');
-				case 3:
-					dad = new Character(0, 0, 'nikku-classic');
-			}
-		}
-		switch(songName){
-			case 'killer-queen':
-				dad = new Character(0, 0, 'nikku-jojo');
-		}
+		dad = new Character(0, 0, SONG.player2);
 		startCharacterPos(dad, true);
 		dadGroup.add(dad);
 		startCharacterLua(dad.curCharacter);
@@ -2218,79 +1743,6 @@ class PlayState extends MusicBeatState
 			botplayTxt.y = timeBarBG.y - 78;
 		}
 
-		comboGlow = new FlxSprite().loadGraphic(Paths.image('comboGlow'));
-			comboGlow.screenCenter(X); // nao botei o combo_x pq preguiça vou chorar
-			comboGlow.y = COMBO_Y;
-			comboGlow.alpha = 0.00001;
-			comboGlow.blend = ADD; // nao me perguntem o pq o blend ta em add
-			comboGlow.cameras = [camHUD];
-			add(comboGlow);
-
-			combotxt1 = new FlxText(0, COMBO_Y + 15, FlxG.width, "", 33);
-			combotxt1.color = FlxColor.WHITE;
-			combotxt1.setFormat(Paths.font("goodbyeDespair.ttf"), 33, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-			combotxt1.scrollFactor.set();
-			combotxt1.borderSize = 1.25;
-			combotxt1.cameras = [camHUD];
-			combotxt1.alpha = 0.00001;
-			add(combotxt1);
-
-			combotxtscoreplus = new FlxText(0, combotxt1.y + 23, FlxG.width, "", 23);
-			combotxtscoreplus.color = FlxColor.WHITE;
-			combotxtscoreplus.setFormat(Paths.font("goodbyeDespair.ttf"), 23, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-			combotxtscoreplus.scrollFactor.set();
-			combotxtscoreplus.borderSize = 1.25;
-			combotxtscoreplus.cameras = [camHUD];
-			combotxtscoreplus.alpha = 0.00001;
-			add(combotxtscoreplus);
-
-			// combo score lerp
-			combotxt2 = new FlxText(0, combotxtscoreplus.y + 20, FlxG.width, "", 34);
-			combotxt2.setFormat(Paths.font("goodbyeDespair.ttf"), 34, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-			combotxt2.scrollFactor.set();
-			combotxt2.borderSize = 1.25;
-			//combotxt2.setPosition(579, 0); // ibis paint coordinates moment :nerdanimechar:
-			combotxt2.cameras = [camHUD];
-			combotxt2.alpha = 0.00001;
-			add(combotxt2);
-
-				// so para ajudar qm iniciante em haxe ou pode ter em alguma outra linguagem de programação alem do haxe sla
-				/*para vocês que são iniciantes, o sinal de exclamação, significa nao, e so funciona em variaveis do tipo bool
-				por exemplo 
-				if(!algumacoisa){ // a exclamação quer dizer "não".
-					// a condiçao
-				}
-				else{
-					// a condiçao quando é alguma coisa
-				}
-				espero que tenha ajudado.
-
-				-Aly-Ant - 10:47(brazil timezone) 9/4/2022
-
-				e pros cara que faz piada com formiga pq tem ant no final:
-				não galerinha, o ant no final nao quer dizer formiga
-				é q meu nome real é "ALYsson ANTônio",
-				ai se vc separar as tres letras iniciais do nome e do sobrenome, fica ALY ANT,
-				quer dizer que toda vez que vc fala "Aly-Ant", vc ta literalmente falando alysson antonio
-				a mesma coisa com o "Aly", ai quer dizer que, toda vez que ta falando "Aly", vc ta literalmente falando "Alysson".
-				eu pensei nesse nome dps de quando eu tive um sonho.
-				*/
-				
-		if (curStage == 'ena') {
-			iconP2.visible = false;
-		}
-
-		if (curStage == 'astral') {
-			iconP1.visible = false;
-			iconP2.visible = false;
-			healthBarBG.visible = false;
-			healthBar.visible = false;
-		}
-
-		if(ClientPrefs.downScroll) {
-			botplayTxt.y = timeBarBG.y - 78;
-		}
-
 		strumLineNotes.cameras = [camHUD];
 		grpNoteSplashes.cameras = [camHUD];
 		notes.cameras = [camHUD];
@@ -2339,55 +1791,70 @@ class PlayState extends MusicBeatState
 		#end
 		
 		var daSong:String = Paths.formatToSongPath(curSong);
-		if (isCode && !seenCutscene)
+		if (isStoryMode && !seenCutscene)
 		{
 			switch (daSong)
 			{
-				case 'satellite-picnic':
-					snapCamFollowToPos(dad.x + 450, dad.y - 15);
-					var cutscenePhone:FlxSound;
-					cutscenePhone = new FlxSound().loadEmbedded(Paths.sound('panicPhone'));
-					cutscenePhone.play();
-					FlxG.sound.list.add(cutscenePhone);
+				case "monster":
+					var whiteScreen:FlxSprite = new FlxSprite(0, 0).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.WHITE);
+					add(whiteScreen);
+					whiteScreen.scrollFactor.set();
+					whiteScreen.blend = ADD;
+					camHUD.visible = false;
+					snapCamFollowToPos(dad.getMidpoint().x + 150, dad.getMidpoint().y - 100);
+					inCutscene = true;
 
-					var blackStart:FlxSprite = new FlxSprite().makeGraphic(Std.int(FlxG.width*4),Std.int(FlxG.height*4),FlxColor.BLACK);
-					add(blackStart);
+					FlxTween.tween(whiteScreen, {alpha: 0}, 1, {
+						startDelay: 0.1,
+						ease: FlxEase.linear,
+						onComplete: function(twn:FlxTween)
+						{
+							camHUD.visible = true;
+							remove(whiteScreen);
+							startCountdown();
+						}
+					});
+					FlxG.sound.play(Paths.soundRandom('thunder_', 1, 2));
+					if(gf != null) gf.playAnim('scared', true);
+					boyfriend.playAnim('scared', true);
 
-					boyfriend.playAnim('sit');
-					new FlxTimer().start(1, function(tmr:FlxTimer){
-						dad.playAnim('1shock');
-						FlxTween.tween(blackStart, {alpha: 0}, 0.7, {
-							onComplete: function(twn:FlxTween){
-									blackStart.kill();
+				case "winter-horrorland":
+					var blackScreen:FlxSprite = new FlxSprite().makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
+					add(blackScreen);
+					blackScreen.scrollFactor.set();
+					camHUD.visible = false;
+					inCutscene = true;
+
+					FlxTween.tween(blackScreen, {alpha: 0}, 0.7, {
+						ease: FlxEase.linear,
+						onComplete: function(twn:FlxTween) {
+							remove(blackScreen);
+						}
+					});
+					FlxG.sound.play(Paths.sound('Lights_Turn_On'));
+					snapCamFollowToPos(400, -2050);
+					FlxG.camera.focusOn(camFollow);
+					FlxG.camera.zoom = 1.5;
+
+					new FlxTimer().start(0.8, function(tmr:FlxTimer)
+					{
+						camHUD.visible = true;
+						remove(blackScreen);
+						FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 2.5, {
+							ease: FlxEase.quadInOut,
+							onComplete: function(twn:FlxTween)
+							{
+								startCountdown();
 							}
 						});
-						dad.animation.finishCallback = function(name:String){
-							if(name == '1shock'){
-								dad.playAnim('2shock');
-								dad.animation.finishCallback = function(name:String){
-									if(name == '2shock'){
-										dad.playAnim('3shock');
-										boyfriend.playAnim('1shock');
-										boyfriend.animation.finishCallback = function(name:String){
-											if(name == '1shock'){
-												boyfriend.playAnim('2shock');
-												boyfriend.animation.finishCallback = function(name:String){
-													if(name == '2shock'){
-														boyfriend.playAnim('3shock');
-													}
-												};
-											}
-										};
-										dad.animation.finishCallback = function(name:String){
-											if(name == '3shock'){
-												startCountdown();
-											}
-										};
-									}
-								};
-							}
-						};
 					});
+				case 'senpai' | 'roses' | 'thorns':
+					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
+					schoolIntro(doof);
+
+				case 'ugh' | 'guns' | 'stress':
+					tankIntro();
+
 				default:
 					startCountdown();
 			}
@@ -2396,12 +1863,6 @@ class PlayState extends MusicBeatState
 		else
 		{
 			startCountdown();
-		}
-		switch(daSong){
-			case 'broadcasting':
-				black.visible = true;
-				//camGame.visible = false; // kinda buggy
-				camHUD.visible = false;
 		}
 		RecalculateRating();
 
@@ -2993,52 +2454,6 @@ class PlayState extends MusicBeatState
 					boyfriend.animation.finishCallback = null;
 				});
 		}
-	}
-
-	//var comboNum:Int = 0;
-	var startedC:Bool = false;
-	var hasStart:Bool = false;
-	//var resetC:Bool = false;
-	//var finishState:Bool = false;
-	//endCombo = false;
-	function comboStart(note:Note = null):Void // unused and combo moment 4
-	{
-		var pressedKey2:Bool = note.isSustainNote;
-		showCombo2 = true;
-		//resetC = false;
-		//comboNum++;
-		comboTmr.start(comboTmr2, function(tmr:FlxTimer){
-				//finishState = true;
-				//startedC = true;
-				finishCombo();
-		});
-		//resetCombo();
-	}
-
-	function resetCombo(){ //unused too and combo moment 5
-		return comboTmr.reset(comboTmr2);
-		//reseted = true;
-	}
-
-	function finishCombo() // combo moment 6
-	{
-		return comboState = 1;
-	}
-
-	function popUpCombo(){ // combo moment 7
-		return comboNum++;
-	}
-
-	function spawnCombo(){ // combo moment 8
-		combotxt1.alpha = 1;
-		combotxt2.alpha = 1;
-		comboGlow.alpha = 0.3;
-		FlxTween.cancelTweensOf(combotxt1);
-		FlxTween.cancelTweensOf(combotxt2);
-		FlxTween.cancelTweensOf(comboGlow);
-		FlxFlicker.stopFlickering(combotxt1);
-		FlxFlicker.stopFlickering(combotxt2);
-		combotxtscoreplus.alpha = 1;
 	}
 
 	var startTimer:FlxTimer;
@@ -3772,67 +3187,6 @@ class PlayState extends MusicBeatState
 				dadreflect.y = (Math.sin(elapsedTime/20)*-50) + 450; // trigonometry my beloved
 		}
 
-		if (comboState == 0){ // combo moment 
-			combotxt1.text = rating + " x" + comboNum;
-			combotxt2.text = Std.string(comboScore);
-			combotxtscoreplus.text = "+" + score;
-		}
-		if (comboState == 1){ // combo moment 2
-				comboNum = 0;
-				// lerp momento
-				var toZero:Int = 90;
-				comboScore = Math.floor(FlxMath.lerp(comboScore, toZero, CoolUtil.boundTo(1 - (elapsed * 32), 0, 1)));
-				songScore = Math.floor(FlxMath.lerp(songScore, scoreTarget, CoolUtil.boundTo(1 - (elapsed * 32), 0, 1)));
-				if (Math.abs(songScore - scoreTarget) <= 10)
-					songScore = scoreTarget;
-				if (Math.abs(comboScore - toZero) <= 10)
-					comboScore = toZero;
-					toZero = 0; // fix?
-
-				// se tiver visível é claro né meu fi ou fia sla
-
-				// pra qm nao entendeu o sentido dessa msg aq em cima é pq tinha uma condição q se tiver no middlescroll os bagui do combo nao aparecia
-				FlxFlicker.flicker(combotxt1, 1, 0.05, true, false);
-				FlxFlicker.flicker(combotxt2, 1, 0.05, true, false);
-				combotxtscoreplus.alpha = 0;
-				FlxTween.tween(combotxt1, {alpha:0.00001}, 1, {ease: FlxEase.linear, onComplete: function(twn:FlxTween){
-					combotxt1.alpha = 0;
-				}});
-				FlxTween.tween(combotxt2, {alpha:0.00001}, 1, {ease: FlxEase.linear, onComplete: function(twn:FlxTween){
-					combotxt2.alpha = 0;
-				}});
-				//FlxTween.tween(combotxt1, {alpha:0}, 1); // bruh
-				FlxTween.tween(comboGlow, {alpha:0.00001}, 1, {ease: FlxEase.linear, onComplete:function(twn:FlxTween){
-					comboGlow.alpha = 0;
-					sicks = 0;
-					goods = 0;
-					bads = 0;
-					shits = 0;
-				}});
-
-				if (sicks>=20){
-								combotxt1.text = 'PERFECT!!';
-								/*if (FlxG.random.bool(0.6)){
-									combotxt1.text = 'GOOD MAN!';
-								}*/
-				}
-				if (sicks>=10||goods>=10)
-				{
-								combotxt1.text = 'NICE!';
-				}
-				if (goods>=5||sicks>=5)
-				{
-								combotxt1.text = 'GREAT!';
-				}
-				else
-				{
-								combotxt1.text = 'WHOOPS...';
-								/*deeznut++; // nao tem nenhuma utilidade, é so pro log memo pq eu to entediado
-								FlxG.log.add('deez nuts part: ' + deeznut);*/
-								// na vdd tem sim, para lagar o jogo.
-				}
-		}
-
 		switch (curStage)
 		{
 			case 'tank':
@@ -4362,125 +3716,6 @@ class PlayState extends MusicBeatState
 		return pressed;
 	}
 
-	function octaMoment():Void
-	{
-		nikkuOctagon.alpha = 1;
-		blackStart.alpha = 1;
-				new FlxTimer().start(0.0010, function(tmr:FlxTimer)
-				{
-					FlxTween.tween(blackStart, {alpha:0}, 0.15);
-					FlxTween.tween(octagonBG, {alpha: 1}, 0.15);
-					FlxTween.tween(octagonBG2, {alpha: 1}, 0.15);
-					FlxTween.tween(numbahEiti, {alpha: 1}, 0.15);
-					FlxTween.tween(numbahEiti2, {alpha: 1}, 0.15);
-					FlxTween.tween(numbahEiti3, {alpha: 1}, 0.15, {
-						onComplete:function(twn:FlxTween)
-						{
-							FlxTween.tween(nikkuOctagon, {x:50,y:90}, 0.15, { // ata é por isso que tava do lado da tela saporra
-								onComplete:function(twn:FlxTween) 
-								{
-									bubbleText.alpha = 1;
-									FlxTween.tween(bubbleText, {"scale.x": 1, "scale.y": 1}, 0.15, {
-										ease: FlxEase.quadInOut,
-										onComplete:function(twn:FlxTween)
-										{
-											textOctagon.alpha = 1;
-											textOctagon.animation.play('text');
-											textOctagon.animation.finishCallback = function(name:String){
-												if (name == 'text'){
-													octaMoment2();
-												}
-											};
-										}
-									});
-								}
-							});
-						}
-					});
-				});
-	}
-	function octaMoment2():Void // pre-end of the cutscene
-	{
-		//nikkuOctagon.y = 200;
-		var flash:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.WHITE);
-		flash.alpha = 0.00001;
-		flash.cameras = [cutCam];
-		add(flash);
-
-		FlxTween.tween(bubbleText, {x: FlxG.width * 1.5}, 0.25, {ease:FlxEase.quadInOut});
-		FlxTween.tween(nikkuOctagon, {x: 500}, 0.25, {
-			onComplete: function(twn:FlxTween)
-			{
-				nikkuOctagon.animation.play('lastFrame');
-				FlxTween.tween(nikkuOctagon, {"scale.x":1.5, "scale.y":1.5}, 2.2, {
-					onComplete:function(twn:FlxTween){
-						//removeOctaCut();
-					}
-				});
-			}
-		});
-
-		new FlxTimer().start(0.3, function(tmr:FlxTimer){
-			flash.alpha = 1;
-			FlxFlicker.flicker(flash, 0.5, 0.35, false, false, function(flick:FlxFlicker){
-				removeOctaCut();
-			}); // ta rapido dms
-		});
-	}
-
-	function removeOctaCut():Void //end
-	{
-		octagonBG.kill();
-		octagonBG2.kill();
-		numbahEiti.kill();
-		numbahEiti2.kill();
-		numbahEiti3.kill();
-		nikkuOctagon.kill();
-		bubbleText.kill();
-		textOctagon.kill();
-		//octagon.
-	}
-
-	function sonicEZEMoment() // taporra o sonio ponto eze
-	{
-		// flash 8 coords lmao
-		camHUD.alpha = 0;
-		bgExe.alpha = 1;
-		groundExe.alpha = 1;
-		gostosa.alpha = 1;
-		nicuEze.alpha = 1;
-		eze.alpha = 1;
-
-		var flash:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
-		flash.cameras = [cutCam];
-		flash.alpha = 0.00001;
-		add(flash);
-
-		FlxTween.tween(blackStart, {alpha:0}, 0.1, {
-			onComplete: function(twn:FlxTween)
-			{
-				blackStart.destroy();
-				FlxTween.tween(eze, {x: nicuEze.x - 190}, 7.);
-			}
-		});
-		FlxTween.tween(nicuEze, {y: nicuEze.y + 5}, 0.1550, {ease:FlxEase.quadInOut, type:PINGPONG});
-		FlxTween.tween(eze, {y: eze.y + 5}, 0.2550, {ease:FlxEase.quadInOut, type:PINGPONG});
-
-		new FlxTimer().start(5.8, function(pussy:FlxTimer) // uhhhhhh
-		{
-			flash.alpha = 1;
-			FlxFlicker.flicker(flash, 0.950/*pra formar 6.150 segundos*/, 0.025, false, false, function(flicker:FlxFlicker)
-			{
-				bgExe.destroy();
-				groundExe.destroy();
-				nicuEze.destroy();
-				eze.destroy();
-				gostosa.destroy();
-				camHUD.alpha = 1;
-			});
-		});
-	}
-
 	public function triggerEventNote(eventName:String, value1:String, value2:String) {
 		switch(eventName) {
 			case 'Hey!':
@@ -4607,17 +3842,6 @@ class PlayState extends MusicBeatState
 
 			case 'Kill Henchmen':
 				killHenchmen();
-
-			case 'Astral Event':
-				//if(!ClientPrefs.dontShowBG) {
-					changeAstralBG();
-				//}
-
-			case 'Sugarcrush Octagon Cutscene':
-				octaMoment();
-
-			case 'Sonic.EXE Cutscene': // eita bixo o sonio ponto eze
-				sonicEZEMoment();
 
 			case 'Add Camera Zoom':
 				if(ClientPrefs.camZooms && FlxG.camera.zoom < 1.35) {
@@ -4819,23 +4043,6 @@ class PlayState extends MusicBeatState
 				}
 		}
 		callOnLuas('onEvent', [eventName, value1, value2]);
-	}
-
-	function changeAstralBG():Void
-	{
-		if (curStage == 'astral') {
-			FlxG.camera.flash(FlxColor.BLACK, 5, null, true);
-			asPlantadaMinhaMae.kill();
-			matzuBG.kill();
-			matzuDESK.kill();
-			matzuFudida1.alpha = 1;
-			matzuFudida2.alpha = 1;
-			matzuFudida3.alpha = 1;
-			matzuFudida4.alpha = 1;
-			matzuFudida5.alpha=1;
-			matzuFudida6.alpha=1;
-			matzuFudida7.alpha=1;
-		}
 	}
 
 	function moveCameraSection(?id:Int = 0):Void {
@@ -5072,39 +4279,7 @@ class PlayState extends MusicBeatState
 					}
 				}
 			}
-			if (isCovers)
-			{
-				cancelMusicFadeTween();
-				if(FlxTransitionableState.skipNextTransIn) {
-					CustomFadeTransition.nextCamera = null;
-				}
-				MusicBeatState.switchState(new CoversScreen());
-				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
-				FlxG.sound.music.fadeIn(4, 0, 0.8);
-				//changedDifficulty = false;
-			}
-			if (isExtras)
-			{
-				cancelMusicFadeTween();
-				if(FlxTransitionableState.skipNextTransIn) {
-					CustomFadeTransition.nextCamera = null;
-				}
-				MusicBeatState.switchState(new ExtrasScreen());
-				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
-				FlxG.sound.music.fadeIn(4, 0, 0.8);
-				//changedDifficulty = false;
-			}
-			if (isCode) {
-				cancelMusicFadeTween();
-				if(FlxTransitionableState.skipNextTransIn) {
-					CustomFadeTransition.nextCamera = null;
-				}
-				MusicBeatState.switchState(new CodeScreen());
-				FlxG.sound.playMusic(Paths.music('codemenu'), 0);
-				FlxG.sound.music.fadeIn(4, 0, 0.8);
-				//changedDifficulty = false;
-			}
-			if (isFreeplay)
+			else
 			{
 				trace('WENT BACK TO FREEPLAY??');
 				cancelMusicFadeTween();
@@ -5112,9 +4287,8 @@ class PlayState extends MusicBeatState
 					CustomFadeTransition.nextCamera = null;
 				}
 				MusicBeatState.switchState(new FreeplayState());
-				FlxG.sound.playMusic(Paths.music('nightlight'), 0);
-				FlxG.sound.music.fadeIn(4, 0, 0.8);
-				//changedDifficulty = false;
+				FlxG.sound.playMusic(Paths.music('freakyMenu'));
+				changedDifficulty = false;
 			}
 			transitioning = true;
 		}
@@ -5159,6 +4333,7 @@ class PlayState extends MusicBeatState
 
 	private function popUpScore(note:Note = null):Void
 	{
+		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.ratingOffset);
 		//trace(noteDiff, ' ' + Math.abs(note.strumTime - Conductor.songPosition));
 
 		// boyfriend.playAnim('hey');
@@ -5171,9 +4346,10 @@ class PlayState extends MusicBeatState
 		coolText.x = FlxG.width * 0.35;
 		//
 
-		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.ratingOffset);
-		//var rating:FlxSprite = new FlxSprite();
-	//tryna do MS based judgment due to popular demand
+		var rating:FlxSprite = new FlxSprite();
+		var score:Int = 350;
+
+		//tryna do MS based judgment due to popular demand
 		var daRating:String = Conductor.judgeNote(note, noteDiff);
 
 		switch (daRating)
@@ -5182,25 +4358,20 @@ class PlayState extends MusicBeatState
 				totalNotesHit += 0;
 				note.ratingMod = 0;
 				score = 50;
-				rating = "SHIT!";
 				if(!note.ratingDisabled) shits++;
 			case "bad": // bad
 				totalNotesHit += 0.5;
 				note.ratingMod = 0.5;
 				score = 100;
-				rating = "BAD!";
 				if(!note.ratingDisabled) bads++;
 			case "good": // good
 				totalNotesHit += 0.75;
 				note.ratingMod = 0.75;
 				score = 200;
-				rating = "GOOD!";
 				if(!note.ratingDisabled) goods++;
 			case "sick": // sick
 				totalNotesHit += 1;
 				note.ratingMod = 1;
-				score = 350;
-				rating = "SICK!";
 				if(!note.ratingDisabled) sicks++;
 		}
 		note.rating = daRating;
@@ -5209,12 +4380,9 @@ class PlayState extends MusicBeatState
 		{
 			spawnNoteSplashOnNote(note);
 		}
-		
-		if (!practiceMode && !cpuControlled) {
-			comboScore += score;
-			scoreTarget += score;
-			//songScore += score;
-		}
+
+		if(!practiceMode && !cpuControlled) {
+			songScore += score;
 			if(!note.ratingDisabled)
 			{
 				songHits++;
@@ -5235,6 +4403,7 @@ class PlayState extends MusicBeatState
 					}
 				});
 			}
+		}
 
 		/* if (combo > 60)
 				daRating = 'sick';
@@ -5243,7 +4412,58 @@ class PlayState extends MusicBeatState
 			else if (combo > 4)
 				daRating = 'bad';
 		 */
-		var daCombo:Int = 0;
+
+		var pixelShitPart1:String = "";
+		var pixelShitPart2:String = '';
+
+		if (PlayState.isPixelStage)
+		{
+			pixelShitPart1 = 'pixelUI/';
+			pixelShitPart2 = '-pixel';
+		}
+
+		rating.loadGraphic(Paths.image(pixelShitPart1 + daRating + pixelShitPart2));
+		rating.cameras = [camHUD];
+		rating.screenCenter();
+		rating.x = coolText.x - 40;
+		rating.y -= 60;
+		rating.acceleration.y = 550;
+		rating.velocity.y -= FlxG.random.int(140, 175);
+		rating.velocity.x -= FlxG.random.int(0, 10);
+		rating.visible = (!ClientPrefs.hideHud && showRating);
+		rating.x += ClientPrefs.comboOffset[0];
+		rating.y -= ClientPrefs.comboOffset[1];
+
+		var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'combo' + pixelShitPart2));
+		comboSpr.cameras = [camHUD];
+		comboSpr.screenCenter();
+		comboSpr.x = coolText.x;
+		comboSpr.acceleration.y = 600;
+		comboSpr.velocity.y -= 150;
+		comboSpr.visible = (!ClientPrefs.hideHud && showCombo);
+		comboSpr.x += ClientPrefs.comboOffset[0];
+		comboSpr.y -= ClientPrefs.comboOffset[1];
+
+
+		comboSpr.velocity.x += FlxG.random.int(1, 10);
+		insert(members.indexOf(strumLineNotes), rating);
+
+		if (!PlayState.isPixelStage)
+		{
+			rating.setGraphicSize(Std.int(rating.width * 0.7));
+			rating.antialiasing = ClientPrefs.globalAntialiasing;
+			comboSpr.setGraphicSize(Std.int(comboSpr.width * 0.7));
+			comboSpr.antialiasing = ClientPrefs.globalAntialiasing;
+		}
+		else
+		{
+			rating.setGraphicSize(Std.int(rating.width * daPixelZoom * 0.85));
+			comboSpr.setGraphicSize(Std.int(comboSpr.width * daPixelZoom * 0.85));
+		}
+
+		comboSpr.updateHitbox();
+		rating.updateHitbox();
+
 		var seperatedScore:Array<Int> = [];
 
 		if(combo >= 1000) {
@@ -5253,41 +4473,69 @@ class PlayState extends MusicBeatState
 		seperatedScore.push(Math.floor(combo / 10) % 10);
 		seperatedScore.push(combo % 10);
 
-			//add(comboGlow); esse add não precisa lol pq se não vai crashar SPOILER: NÃO FUNCIONOU VEI BUAAAA
-			//add(combotxt1);
-			//add(combotxt2);
-			
-			if (comboState == 1) {
+		var daLoop:Int = 0;
+		for (i in seperatedScore)
+		{
+			var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'num' + Std.int(i) + pixelShitPart2));
+			numScore.cameras = [camHUD];
+			numScore.screenCenter();
+			numScore.x = coolText.x + (43 * daLoop) - 90;
+			numScore.y += 80;
 
+			numScore.x += ClientPrefs.comboOffset[2];
+			numScore.y -= ClientPrefs.comboOffset[3];
+
+			if (!PlayState.isPixelStage)
+			{
+				numScore.antialiasing = ClientPrefs.globalAntialiasing;
+				numScore.setGraphicSize(Std.int(numScore.width * 0.5));
 			}
-			if (comboTwn != null) {
-					comboTwn.cancel();
+			else
+			{
+				numScore.setGraphicSize(Std.int(numScore.width * daPixelZoom));
 			}
-			combotxt1.scale.x += 0.0485;
-			combotxt1.scale.y += 0.0485;
-			comboTwn = FlxTween.tween(combotxt1.scale, {x: 1, y: 1}, 0.2, {
-				onComplete: function(twn:FlxTween) {
-							comboTwn = null;
-				}
-			});
-			if (comboTwn2 != null) {
-					comboTwn2.cancel();
-			}
-			combotxt2.scale.x += 0.0485;
-			combotxt2.scale.y += 0.0485;
-			comboTwn2 = FlxTween.tween(combotxt2.scale, {x: 1, y: 1}, 0.2, {
-				onComplete: function(twn:FlxTween) {
-						comboTwn2 = null;
-				}
+			numScore.updateHitbox();
+
+			numScore.acceleration.y = FlxG.random.int(200, 300);
+			numScore.velocity.y -= FlxG.random.int(140, 160);
+			numScore.velocity.x = FlxG.random.float(-5, 5);
+			numScore.visible = !ClientPrefs.hideHud;
+
+			//if (combo >= 10 || combo == 0)
+				insert(members.indexOf(strumLineNotes), numScore);
+
+			FlxTween.tween(numScore, {alpha: 0}, 0.2, {
+				onComplete: function(tween:FlxTween)
+				{
+					numScore.destroy();
+				},
+				startDelay: Conductor.crochet * 0.002
 			});
 
-		 /* 
+			daLoop++;
+		}
+		/* 
 			trace(combo);
 			trace(seperatedScore);
 		 */
 
-		//coolText.text = Std.string(seperatedScore);
+		coolText.text = Std.string(seperatedScore);
 		// add(coolText);
+
+		FlxTween.tween(rating, {alpha: 0}, 0.2, {
+			startDelay: Conductor.crochet * 0.001
+		});
+
+		FlxTween.tween(comboSpr, {alpha: 0}, 0.2, {
+			onComplete: function(tween:FlxTween)
+			{
+				coolText.destroy();
+				comboSpr.destroy();
+
+				rating.destroy();
+			},
+			startDelay: Conductor.crochet * 0.001
+		});
 	}
 
 	private function onKeyPress(event:KeyboardEvent):Void
@@ -5654,19 +4902,9 @@ class PlayState extends MusicBeatState
 
 			if (!note.isSustainNote)
 			{
-				comboState = 0;
-				spawnCombo();
+				combo += 1;
 				popUpScore(note);
-				popUpCombo();
 				if(combo > 9999) combo = 9999;
-				//startedC = true;
-				comboTmr.cancel();
-				comboTmr.start(2, function(tmr:FlxTimer){
-					//finishState = true;
-					//startedC = true;
-					//hasStart = false;
-					finishCombo();
-				});
 			}
 			health += note.hitHealth * healthGain;
 
@@ -6093,17 +5331,9 @@ class PlayState extends MusicBeatState
 
 		iconP1.scale.set(1.2, 1.2);
 		iconP2.scale.set(1.2, 1.2);
+
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
-
-		if (curStage == 'mazin-mall')
-			{
-				if (curBeat % 1 == 0)
-				{
-					majinTVBG.animation.play('idle', true);
-				}
-			}
-
 		
 		if (gf != null && curBeat % Math.round(gfSpeed * gf.danceEveryNumBeats) == 0 && gf.animation.curAnim != null && !gf.animation.curAnim.name.startsWith("sing") && !gf.stunned)
 		{
