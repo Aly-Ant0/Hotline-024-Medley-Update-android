@@ -1356,6 +1356,21 @@ class FunkinLua {
 				}
 			}
 		});
+		Lua_helper.add_callback(lua, "startVideo", function(videoFile:String) {
+			#if VIDEOS_ALLOWED
+//			if(FileSystem.exists(Paths.video(videoFile))) {
+				//PlayState.instance.startVideo(videoFile);
+//			} else {
+//				luaTrace('Video file not found: ' + videoFile);
+//			}
+			#else
+			if(PlayState.instance.endingSong) {
+				PlayState.instance.endSong();
+			} else {
+				PlayState.instance.startCountdown();
+			}
+			#end
+		});
 		
 		Lua_helper.add_callback(lua, "playMusic", function(sound:String, volume:Float = 1, loop:Bool = false) {
 			FlxG.sound.playMusic(Paths.music(sound), volume, loop);
