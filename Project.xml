@@ -166,18 +166,14 @@
 	<!-- Akways enable Null Object Reference check -->
 	<haxedef name="HXCPP_CHECK_POINTER" if="release" />
 	<haxedef name="HXCPP_STACK_LINE" if="release" />
-	
-		<!-- Android stuff: thanks Yoshi Engine -->
-	<config:android permission="android.permission.ACCESS_NETWORK_STATE"/>
-	<config:android permission="android.permission.INTERNET"/>
-	<config:android permission="android.permission.VIBRATE"/>
-	<config:android permission="android.permission.WRITE_EXTERNAL_STORAGE"/>
-	<config:android permission="android.permission.READ_EXTERNAL_STORAGE"/>
+	<haxedef name="HXCPP_STACK_TRACE" />
+	<section if="android">
+		<!--Gradle-->
+		<config:android gradle-version="7.6" gradle-plugin="7.3.1" />
 
-	<!-- record internal audio support without changing the target sdk in android editor -->
-	<!-- vege my beloved -->
-	<config:android target-sdk-version="29" />
-	<config:android gradle-version="7.6" gradle-plugin="7.3.1" />
+		<!--Audio Recording Fix-->
+		<config:android target-sdk-version="29" if="${lime <= 8.0.0}" />
+	</section>
 
 	<!--ganhamo so q nao
 	<android permission="android.permission.CAPTURE_AUDIO_OUTPUT" />
