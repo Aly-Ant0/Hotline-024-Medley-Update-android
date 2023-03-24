@@ -3863,30 +3863,41 @@ class PlayState extends MusicBeatState
 		switch(curStage){
 			case "covers":
 				elapsedTime += elapsed * 30;
-	
-				bfreflect.animation.frameIndex = boyfriend.animation.frameIndex;
-				bfreflect.offset.set(boyfriend.offset.x); // apenas o x
-	
-				gfreflect.animation.frameIndex = gf.animation.frameIndex;
-				gfreflect.offset.set(gf.offset.x); // apenas o x
-	
-				dadreflect.animation.frameIndex = dad.animation.frameIndex;
-				dadreflect.offset.set(dad.offset.x); // apenas o x
-	
-				dadreflect.y = (Math.sin(elapsedTime/20)*-75) + 1415; // trigonometry my beloved
-			case "stage4":
+				for (chars in [bfreflect, gfreflect, dadreflect)
+				{
+					if (chars != null) //lazy to specify all the chars lol
+					{
+						bfreflect.animation.frameIndex = boyfriend.animation.frameIndex;
+						bfreflect.offset.set(boyfriend.offset.x); // apenas o x
+			
+						gfreflect.animation.frameIndex = gf.animation.frameIndex;
+						gfreflect.offset.set(gf.offset.x); // apenas o x
+			
+						dadreflect.animation.frameIndex = dad.animation.frameIndex;
+						dadreflect.offset.set(dad.offset.x); // apenas o x
+						if (dad.curCharacter.startsWith('nikku'))
+							dadreflect.y = (Math.sin(elapsedTime/20)*-75) + 1415; // trigonometry my beloved
+					}
+				}
+			case "stage4": //i gonna rewrite this idk
 				elapsedTime += elapsed * 30;
-	
-				bfreflect.animation.frameIndex = boyfriend.animation.frameIndex;
-				bfreflect.offset.set(boyfriend.offset.x); // apenas o x
-	
-				gfreflect.animation.frameIndex = gf.animation.frameIndex;
-				gfreflect.offset.set(gf.offset.x); // apenas o x
-	
-				dadreflect.animation.frameIndex = dad.animation.frameIndex;
-				dadreflect.offset.set(dad.offset.x); // apenas o x
-	
-				dadreflect.y = (Math.sin(elapsedTime/20)*-50) + 500; // trigonometry my beloved
+				for (chars in [bfreflect, gfreflect, dadreflect])
+				{
+					if (chars != null)
+					{
+						bfreflect.animation.frameIndex = boyfriend.animation.frameIndex;
+						bfreflect.offset.set(boyfriend.offset.x); // apenas o x
+			
+						gfreflect.animation.frameIndex = gf.animation.frameIndex;
+						gfreflect.offset.set(gf.offset.x); // apenas o x
+			
+						dadreflect.animation.frameIndex = dad.animation.frameIndex;
+						dadreflect.offset.set(dad.offset.x); // apenas o x
+
+						if (dad.curCharacter.startsWith('nikku'))
+							dadreflect.y = (Math.sin(elapsedTime/20)*-50) + 500; // trigonometry my beloved
+					}
+				}
 		}
 
 		if (comboState == 0){ // combo moment 
