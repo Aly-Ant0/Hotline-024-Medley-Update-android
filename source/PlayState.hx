@@ -3863,7 +3863,7 @@ class PlayState extends MusicBeatState
 		switch(curStage){
 			case "covers":
 				elapsedTime += elapsed * 30;
-				for (chars in [bfreflect, gfreflect, dadreflect)
+				for (chars in [bfreflect, gfreflect, dadreflect, boyfriend, gf, dad])
 				{
 					if (chars != null) //lazy to specify all the chars lol
 					{
@@ -3881,7 +3881,7 @@ class PlayState extends MusicBeatState
 				}
 			case "stage4": //i gonna rewrite this idk
 				elapsedTime += elapsed * 30;
-				for (chars in [bfreflect, gfreflect, dadreflect])
+				for (chars in [bfreflect, gfreflect, dadreflect, boyfriend, gf, dad])
 				{
 					if (chars != null)
 					{
