@@ -181,7 +181,7 @@ class TitleState extends MusicBeatState
 			FlxTransitionableState.skipNextTransIn = true;
 			FlxTransitionableState.skipNextTransOut = true;
 			MusicBeatState.switchState(new FlashingState());
-		} else {
+		} /*else {
 			#if desktop
 			if (!DiscordClient.isInitialized)
 			{
@@ -196,7 +196,8 @@ class TitleState extends MusicBeatState
 			{
 				startIntro();
 			});
-		}
+		}*/
+		MusicBeatState.switchState(new MainMenuState());
 		#end
 	}
 
