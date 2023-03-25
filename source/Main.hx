@@ -28,6 +28,7 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
+		SUtil.gameCrashCheck();
 		if (stage != null)
 		{
 			init();
@@ -50,8 +51,7 @@ class Main extends Sprite
 
 	private function setupGame():Void
 	{
-		SUtil.uncaughtErrorHandler();
-		SUtil.checkFiles();
+		SUtil.doTheCheck();
 
 		ClientPrefs.loadDefaultKeys();
 		addChild(new FlxGame(0, 0, TitleState, 1, 60, 60, true, false));
