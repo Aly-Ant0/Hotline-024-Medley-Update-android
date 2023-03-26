@@ -197,7 +197,6 @@ class TitleState extends MusicBeatState
 				startIntro();
 			});
 		}*/
-		MusicBeatState.switchState(new MainMenuState());
 		#end
 	}
 
@@ -236,6 +235,7 @@ class TitleState extends MusicBeatState
 				FlxG.sound.playMusic(Paths.h024Music('customer-service', 'preload', 'CUSTOMER SERVICE'));
 			}
 		}
+		Conductor.changeBPM(102);
 		persistentUpdate = true;
 
 		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('the'));
@@ -460,11 +460,6 @@ class TitleState extends MusicBeatState
 	{
 		super.stepHit();
 
-		if (initialized && transitioning && skippedIntro){
-			if (curStep % 0 == 4) FlxG.camera.zoom += 0.25;
-			if (curStep % 0 == 8) FlxG.camera.zoom += 0.45;
-		}
-
 		if(logoBl != null) 
 			logoBl.animation.play('bump', true);
 
@@ -475,51 +470,62 @@ class TitleState extends MusicBeatState
 			else
 				gfDance.animation.play('danceLeft');
 		}
-
-		switch (curStep) // shit
+		if (!closedState)
 		{
-			case 1:
-				FlxTween.tween(txt, {y: -FlxG.height + 25}, 0.25);
-				FlxTween.tween(txt2, {y: FlxG.height - 25}, 0.25);
-				FlxTween.tween(teamLogo, {"scale.x": 1, "scale.y": 1}, 3.5, {ease:FlxEase.expoOut});
-			case 30:
-				FlxTween.tween(teamLogo, {alpha: 0.0001}, 0.1, {
-					onComplete:function(tw:FlxTween)
-					{
-						teamLogo.destroy();
-					}
-				});
-			case 35:
-				FlxTween.tween(txt, {alpha: 0.0001}, 0.1, {
-					onComplete:function(tw:FlxTween)
-					{
-						txt.destroy();
-					}
-				});
-				FlxTween.tween(txt2, {alpha: 0.0001}, 0.1, {
-					onComplete:function(tw:FlxTween)
-					{
-						txt2.destroy();
-					}
-				});
-			case 39:
-				createCoolText([curWacky[0]], 0);
-			case 44:
-				addMoreText(curWacky[1], 0);
-			case 48:
-				deleteCoolText();
-			case 52:
-				createCoolText(['Hotline 0'], 0);
-			case 56:
-				deleteCoolText();
-				FlxG.camera.zoom += 0.25;
-				createCoolText(['Hotline 02'], 0);
-			case 60:
-				deleteCoolText();
-				FlxG.camera.zoom += 0.45;
-				createCoolText(['Hotline 024'], 0);
-			case 64:
-				skipIntro();
+			sickBeats++;
+			switch (sickBeat) // shit
+			{
+				case 0:
+					FlxTween.tween(txt, {y: -FlxG.height + 25}, 0.25);
+					FlxTween.tween(txt2, {y: FlxG.height - 25}, 0.25);
+					FlxTween.tween(teamLogo, {"scale.x": 0.5, "scale.y": 0.5}, 2.5, {ease:FlxEase.expoOut,
+						onComplete: function(twn:FlxTween){
+							FlxTween.tween(teamLogo, {"scale.x": 1, "scale.y": 1}, 1.5, {ease:FlxEase.linear});
+						}
+					});
+				case 30:
+					FlxTween.tween(teamLogo, {alpha: 0.0001}, 0.1, {
+						onComplete:function(tw:FlxTween)
+						{
+							teamLogo.destroy();
+						}
+					});
+				case 35:
+					FlxTween.tween(txt, {alpha: 0.0001}, 0.1, {
+						onComplete:function(tw:FlxTween)
+						{
+							txt.destroy();
+						}
+					});
+					FlxTween.tween(txt2, {alpha: 0.0001}, 0.1, {
+						onComplete:function(tw:FlxTween)
+						{
+							txt2.destroy();
+						}
+					});
+				case 39:
+					createCoolText([curWacky[0]], 0);
+				case 44:
+					addMoreText(curWacky[1], 0);
+				case 48:
+					deleteCoolText();
+				case 52:
+					createCoolText(['Hotline 0'], 0);
+				case 56:
+					deleteCoolText();
+					FlxG.camera.zoom += 0.25;
+					createCoolText(['Hotline 02'], 0);
+				case 60:
+					deleteCoolText();
+					FlxG.camera.zoom += 0.45;
+					createCoolText(['Hotline 024'], 0);
+				case 64:
+					skipIntro();
+			}
+		}
+		if (initialized && transitioning && skippedIntro){
+			if (sickBeats % 0 == 4) FlxG.camera.zoom += 0.25;
+			if (sickBeats % 0 == 8) FlxG.camera.zoom += 0.45;
 		}
 	}
 
