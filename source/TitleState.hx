@@ -473,7 +473,7 @@ class TitleState extends MusicBeatState
 		if (!closedState)
 		{
 			sickBeats++;
-			switch (sickBeat) // shit
+			switch (sickBeats) // shit
 			{
 				case 0:
 					FlxTween.tween(txt, {y: -FlxG.height + 25}, 0.25);
