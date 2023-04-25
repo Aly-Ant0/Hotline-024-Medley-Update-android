@@ -7,12 +7,12 @@ import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
-import lime.utils.Assets;
+import openfl.utils.Assets;
 
 using StringTools;
 using flixel.util.FlxSpriteUtil;
 
-class SongBar extends FlxSpriteGroup // culpa do bolsonaro
+class SongBar extends FlxSpriteGroup // porra mateus so nao tava encontrando a 
 {
 	var size:Float = 0;
 	var fontSize:Int = 42;
@@ -32,7 +32,7 @@ class SongBar extends FlxSpriteGroup // culpa do bolsonaro
 
 		var file:String = Paths.txt(songName + '/' + 'info');
 		if(Assets.exists(file)) { // info file fix?
-			stringShit = Assets.getText(Main.path + file);
+			stringShit = Assets.getText(SUtil.getPath + file);
 		}
 		else {
 			stringShit = 'NO BITCHES?'; // placeholder
@@ -42,7 +42,7 @@ class SongBar extends FlxSpriteGroup // culpa do bolsonaro
 			}
 		}
 	}
-	public function tweenStartLololololololololololololololololololololollllmlllmlloololololololololololololololollololololollolololololllololololooloololoooloololoolooloollololllollllolookooilolololololololololololollolololololploololololololollollolllolololllololololololololololoololololllollolololololollollllololololololololololololooololololololol(){ //ok stop spamming lol pls
+	public function tweenLol(){ //ok stop spamming lol pls
 		FlxTween.tween(this, {x: x + size + (fontSize/2)}, 1, {ease: FlxEase.cubeInOut, startDelay:0.5, onComplete:function(twn:FlxTween){
 			FlxTween.tween(this, {x: x - size}, 1, {ease: FlxEase.cubeInOut, startDelay: 5, onComplete: function(twn:FlxTween){ this.destroy(); }});
 		}});
