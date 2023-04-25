@@ -268,7 +268,7 @@ class PlayState extends MusicBeatState
 
 	var bfreflect:FlxSprite = new FlxSprite();
 	var dadreflect:FlxSprite = new FlxSprite();
-	var gfreflect:FlxSprite = new FlxSprite(); // GOSTOSA AAAA (zoas)
+	var gfreflect:FlxSprite = new FlxSprite();
 
 	// expurgated
 	var exSky:BGSprite;
@@ -1795,7 +1795,7 @@ class PlayState extends MusicBeatState
 
 				// sonio ponto eze cutscene
 				//var library:String = 'skatepark/cutscene/'; // lazy
-				bgExe = new FlxBackdrop(Paths.image('skatepark/cutscene/background'), 0.3, 0.3, true, false);
+				bgExe = new FlxBackdrop(Paths.image('skatepark/cutscene/background'), 1, 1, true, false);
 				bgExe.antialiasing = false;
 				bgExe.scrollFactor.set();
 				bgExe.x = -1135;
@@ -1806,7 +1806,7 @@ class PlayState extends MusicBeatState
 				bgExe.cameras = [cutCam];
 				add(bgExe);
 		
-				groundExe = new FlxBackdrop(Paths.image('skatepark/cutscene/ground'), 0.3, 0.3, true, false);
+				groundExe = new FlxBackdrop(Paths.image('skatepark/cutscene/ground'), 1, 1, true, false);
 				groundExe.antialiasing = false;
 				groundExe.scrollFactor.set();
 				groundExe.y = 470;
@@ -1834,7 +1834,7 @@ class PlayState extends MusicBeatState
 				nicuEze.cameras = [cutCam];
 				add(nicuEze);
 
-				gostosa = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves'), 0.3, 0.3, true, false);
+				gostosa = new FlxBackdrop(Paths.image('skatepark/cutscene/leaves'), 1, 1, true, false);
 				gostosa.antialiasing = false;
 				gostosa.scrollFactor.set();
 				gostosa.y = 375;
