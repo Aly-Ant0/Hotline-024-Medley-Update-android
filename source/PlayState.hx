@@ -3062,7 +3062,7 @@ class PlayState extends MusicBeatState
 	//var songTwn:FlxTween;
 	public function songSlide():Void
 	{
-		return songTag.tweenStartLololololololololololololololololololololollllmlllmlloololololololololololololololollololololollolololololllololololooloololoooloololoolooloollololllollllolookooilolololololololololololollolololololploololololololollollolllolololllololololololololololoololololllollolololololollollllololololololololololololooololololololol(); //spam function lmao
+		return songTag.tweenLol(); //spam function lmao
 	}
 
 	//var comboNum:Int = 0;
