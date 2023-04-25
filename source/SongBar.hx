@@ -32,7 +32,7 @@ class SongBar extends FlxSpriteGroup // porra mateus so nao tava encontrando a
 
 		var file:String = Paths.txt(songName + '/' + 'info');
 		if(Assets.exists(file)) { // info file fix?
-			stringShit = Assets.getText(SUtil.getPath + file);
+			stringShit = Assets.getText(SUtil.getPath() + file);
 		}
 		else {
 			stringShit = 'NO BITCHES?'; // placeholder
