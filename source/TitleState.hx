@@ -181,7 +181,7 @@ class TitleState extends MusicBeatState
 			FlxTransitionableState.skipNextTransIn = true;
 			FlxTransitionableState.skipNextTransOut = true;
 			MusicBeatState.switchState(new FlashingState());
-		} /*else {
+		} else {
 			#if desktop
 			if (!DiscordClient.isInitialized)
 			{
@@ -196,7 +196,7 @@ class TitleState extends MusicBeatState
 			{
 				startIntro();
 			});
-		}*/
+		}
 		#end
 	}
 
@@ -373,10 +373,10 @@ class TitleState extends MusicBeatState
 			{
 				FlxG.sound.playMusic(Paths.h024Music('nightlight', 'preload', 'NIGHTLIGHT'), 0);
 				FlxTween.num(FlxG.sound.volume, 1, 4);
-				MusicBeatState.switchState(new MainMenuState());
 				closedState = true;
 			});
 		}
+		MusicBeatState.switchState(new MainMenuState());
 
 		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
 		if (gamepad != null)
