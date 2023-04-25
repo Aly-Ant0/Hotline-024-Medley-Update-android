@@ -374,9 +374,9 @@ class TitleState extends MusicBeatState
 				FlxG.sound.playMusic(Paths.h024Music('nightlight', 'preload', 'NIGHTLIGHT'), 0);
 				FlxTween.num(FlxG.sound.volume, 1, 4);
 				closedState = true;
+				MusicBeatState.switchState(new MainMenuState());
 			});
 		}
-		MusicBeatState.switchState(new MainMenuState());
 
 		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
 		if (gamepad != null)
