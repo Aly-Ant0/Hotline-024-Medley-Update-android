@@ -29,7 +29,7 @@ class FreeplayText extends FlxSkewedSprite
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		y = FlxMath.lerp(y, (targetY * 150) - -10, CoolUtil.boundTo(elapsed * 6, 0, 1));
+		y = FlxMath.lerp(y, (targetY * 450) - -10, CoolUtil.boundTo(elapsed * 6, 0, 1));
 		//x = x * (targetY - 0.5);
 		if(forceX != Math.NEGATIVE_INFINITY) {
 			x = forceX;
