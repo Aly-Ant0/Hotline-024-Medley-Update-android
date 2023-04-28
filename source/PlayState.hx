@@ -423,7 +423,7 @@ class PlayState extends MusicBeatState
 	public var combotxtscoreplus:FlxText;
 	public var combotxt1:FlxText;
 	public var combotxt2:FlxText;
-	public var comboScore:Int = 0;
+	public var comboScore:Float = 0;
 	public var comboNum:Int = 0; // its the fake combo :trollface:
 	public var comboState:Int = 0;
 	var pressedKey:Bool = false; // unused
@@ -3899,7 +3899,7 @@ class PlayState extends MusicBeatState
 
 		if (comboState == 0){ // combo moment 
 			combotxt1.text = rating + " x" + comboNum;
-			combotxt2.text = "" + comboScore;
+			combotxt2.text = "" + ;
 			combotxtscoreplus.text = "+" + score;
 		}
 		if (comboState == 1){ // combo moment 2
@@ -5857,8 +5857,9 @@ class PlayState extends MusicBeatState
 		//trace(daNote.missHealth);
 		songMisses++;
 		vocals.volume = 0;
-		if(!practiceMode) songScore -= 10;
-		
+		if(!practiceMode)
+			comboScore -= 10;
+
 		totalPlayed++;
 		RecalculateRating();
 
@@ -5898,7 +5899,7 @@ class PlayState extends MusicBeatState
 			}
 			combo = 0;
 
-			if(!practiceMode) songScore -= 10;
+			if(!practiceMode) comboScore -= 10;
 			if(!endingSong) {
 				songMisses++;
 			}
