@@ -31,7 +31,7 @@ class SongBar extends FlxSpriteGroup
 		pulledText += '\n';
 
 		var text = new FlxText(0, 0, 0, "", fontSize);
-		text.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), fontSize, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		text.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), fontSize, FlxColor.WHITE, FlxTextAlign.LEFT);
 
 		text.text = pulledText;
 		text.updateHitbox();
