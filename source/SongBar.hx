@@ -24,7 +24,10 @@ class SongBar extends FlxSpriteGroup
 	public function new(_x:Float, _y:Float, _song:String) {
 		super(_x, _y);
 
-		var pulledText:String = Assets.getText(Paths.txt(_song.toLowerCase().replace(' ', '-') + "/info"));
+		var pulledText:String = '';
+		if (_song.toLowerCase().replace(' ', '-') != 'astral-projection')
+			pulledText = Assets.getText(Paths.txt(_song.toLowerCase().replace(' ', '-') + "/info"));
+
 		pulledText += '\n';
 
 		var text = new FlxText(0, 0, 0, "", fontSize);
@@ -32,15 +35,17 @@ class SongBar extends FlxSpriteGroup
 
 		text.text = pulledText;
 		text.updateHitbox();
-
 		size = text.fieldWidth;
 
 		var bg = new FlxSprite(fontSize/-2, fontSize/-2).makeGraphic(Math.floor(size + fontSize), Std.int(text.height + 5), FlxColor.BLACK);
 		bg.alpha = 0.47;
 		text.text += "\n";
 
-		add(bg);
-		add(text);
+		if (_song.toLowerCase().replace(' ', '-') != 'astral-projection')
+		{
+			add(bg);
+			add(text);
+		}
 
 		x -= size;
 		alpha = 0.00000001; 
