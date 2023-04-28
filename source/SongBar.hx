@@ -19,7 +19,7 @@ class SongBar extends FlxSpriteGroup
 {
 	var meta:Array<Array<String>> = [];
 	var size:Float = 0;
-	var fontSize:Int = 32;
+	var fontSize:Int = 42;
 
 	public function new(_x:Float, _y:Float, _song:String) {
 		super(_x, _y);
