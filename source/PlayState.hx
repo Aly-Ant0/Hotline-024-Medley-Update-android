@@ -3059,7 +3059,7 @@ class PlayState extends MusicBeatState
 	//var songTwn:FlxTween;
 	public function songSlide():Void
 	{
-		return songTag.tweenLol(); //spam function lmao
+		return songTag.start(); //spam function lmao
 	}
 
 	//var comboNum:Int = 0;
