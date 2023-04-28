@@ -861,14 +861,14 @@ class PlayState extends MusicBeatState
 							add(exRock);
 		
 							// i get this code from vs afton mod (is code by fabs and others coders too, and is open source and getting from haxeflixel API)
-							particleEmitter = new FlxEmitter(-2080.5, 1512.4);
+							particleEmitter = new FlxEmitter(-2080.5, 1312.4);
 							particleEmitter.launchMode = FlxEmitterMode.SQUARE;
 							particleEmitter.velocity.set(-50, -200, 50, -600, -90, 0, 90, -600);
 							particleEmitter.scale.set(4, 4, 4, 4, 0, 0, 0, 0);
 							particleEmitter.drag.set(0, 0, 0, 0, 5, 5, 10, 10);
 							particleEmitter.width = 4787.45;
 							particleEmitter.alpha.set(1, 1);
-							particleEmitter.lifespan.set(1.9, 4.9);
+							particleEmitter.lifespan.set(1.9, 6.9);
 							particleEmitter.loadParticles(Paths.image('expurgated/particle'), 500, 16, true);
 		
 							particleEmitter.start(false, FlxG.random.float(.01097, .0308), 1000000);
@@ -1009,8 +1009,8 @@ class PlayState extends MusicBeatState
 							rocks.updateHitbox();
 					case 'momogogo':
 						//var bg:FlxBackdrop;
-						momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), 0.2, 0.2, true, false); // fuck i forgor the scroll value
-						momogogoBG.scrollFactor.set(0.8, 0.8);
+						momogogoBG = new FlxBackdrop(Paths.image('momogogo/bg'), 1, 1, true, false); // fuck i forgor the scroll value
+						//momogogoBG.scrollFactor.set(0.8, 0.8);
 						momogogoBG.y = -270;
 						momogogoBG.scale.set(1.25, 1.25);
 						momogogoBG.updateHitbox();
@@ -1020,58 +1020,61 @@ class PlayState extends MusicBeatState
 		
 					case 'astral': // pq as planta da minha mãe ta aqui
 						//if(!ClientPrefs.dontShowBG)
-							matzuBG = new BGSprite('matzu/BG', 0, 0, 0.1, 0.1);
+							matzuBG = new BGSprite('matzu/BG', 0, 0, 0.8, 0.8);
 							//matzuBG.updateHitbox();
 							matzuBG.screenCenter(XY);
 							add(matzuBG);
 			
-							matzuDESK = new BGSprite('matzu/DES', 0, 0, 0, 0);
+							matzuDESK = new BGSprite('matzu/DES', 0, 0, 1, 1);
 							matzuDESK.updateHitbox();
 							matzuDESK.screenCenter(XY);
 			
-							asPlantadaMinhaMae = new BGSprite('matzu/PLAMTS', 0, 0, 0.5, 0.6);
+							asPlantadaMinhaMae = new BGSprite('matzu/PLAMTS', 0, 0, 1.2, 1.2);
+							asPlantadaMinhaMae.scale.set(1.2, 1.2);
 							asPlantadaMinhaMae.updateHitbox();
 							asPlantadaMinhaMae.screenCenter(XY);
 			
 							// quando ta tudo fucked twisted
-							matzuFudida1 = new BGSprite('matzu/2/BG1', 0, 0, 0.1, 0.1);
+							matzuFudida1 = new BGSprite('matzu/2/BG1', 0, 0, 0.8, 0.8);
 							matzuFudida1.screenCenter(XY);
 							matzuFudida1.updateHitbox();
 							matzuFudida1.alpha = 0.00001;
 							add(matzuFudida1);
 			
-							matzuFudida2 = new BGSprite('matzu/2/idk', 0, 0, 0, 0);
+							matzuFudida2 = new BGSprite('matzu/2/idk', 0, 0, 0.88, 0.68);
 							matzuFudida2.updateHitbox();
 							matzuFudida2.screenCenter(XY);
 							matzuFudida2.alpha = 0.00001;
 							add(matzuFudida2);
 			
-							matzuFudida3 = new BGSprite('matzu/2/ground', 0, 0, 0, 0);
+							matzuFudida3 = new BGSprite('matzu/2/ground', 0, 0, 0.88, 0.88);
 							matzuFudida3.updateHitbox();
 							matzuFudida3.screenCenter(XY);
 							matzuFudida3.alpha = 0.00001;
 							add(matzuFudida3);
 			
-							matzuFudida4 = new BGSprite('matzu/2/messages', 0, 0, 0.4, 0.4);
+							matzuFudida4 = new BGSprite('matzu/2/messages', 0, 0, 0.9, 0.9);
 							matzuFudida4.screenCenter(XY);
 							matzuFudida4.updateHitbox();
 							matzuFudida4.alpha = 0.00001;
 							add(matzuFudida4);
 			
-							matzuFudida5 = new BGSprite('matzu/2/door', 0, 0, 0.4, 0.4);
+							matzuFudida5 = new BGSprite('matzu/2/door', 0, 0, 0.9, 0.9);
 							matzuFudida5.updateHitbox();
 							matzuFudida5.screenCenter(XY);
 							matzuFudida5.alpha = 0.00001;
 							add(matzuFudida5);
 			
-							matzuFudida6 = new BGSprite('matzu/2/desk2', 0, 0, 0, 0);
+							matzuFudida6 = new BGSprite('matzu/2/desk2', 0, 0, 1, 1);
 							matzuFudida6.updateHitbox();
 							matzuFudida6.screenCenter(XY);
 							matzuFudida6.alpha = 0.00001;
 			
-							matzuFudida7 = new BGSprite('matzu/2/plamts2', 0, 0, 1.1, 1.1);
+							matzuFudida7 = new BGSprite('matzu/2/plamts2', 0, 0, 1.2, 1.2);
 							matzuFudida7.updateHitbox();
 							matzuFudida7.screenCenter(XY);
+							matzuFudida7.scale.set(1.2, 1.2);
+							matzuFudida7.updateHitbox();
 							matzuFudida7.alpha = 0.00001;
 					case 'ena':
 						//if(!ClientPrefs.dontShowBG)
@@ -2056,8 +2059,8 @@ class PlayState extends MusicBeatState
 				gfreflect.blend = ADD;
 				gfreflect.alpha = .8;
 				gfreflect.x = gf.x;
-				gfreflect.y = gf.y + 550; // talvez poder a altura tb
 				gfreflect.scale.set(gf.scale.x, gf.scale.y);
+				gfreflect.y = gf.y + 275; // talvez poder a altura tb
 				insert(members.indexOf(gfGroup), gfreflect);
 
 				dadreflect.frames = dad.frames;
@@ -2317,6 +2320,10 @@ class PlayState extends MusicBeatState
 			add(songTag);
 		}
 
+
+		var blackStart:FlxSprite = new FlxSprite().makeGraphic(FlxG.width,FlxG.height,FlxColor.BLACK);
+		add(blackStart);
+
 		if (curStage == 'ena') {
 			iconP2.visible = false;
 		}
@@ -2386,50 +2393,51 @@ class PlayState extends MusicBeatState
 			switch (daSong)
 			{
 				case 'satellite-picnic':
-					snapCamFollowToPos(dad.x + 450, dad.y - 15);
-					var cutscenePhone:FlxSound;
-					cutscenePhone = new FlxSound().loadEmbedded(Paths.sound('panicPhone'));
-					cutscenePhone.play();
-					FlxG.sound.list.add(cutscenePhone);
-
-					var blackStart:FlxSprite = new FlxSprite().makeGraphic(Std.int(FlxG.width*4),Std.int(FlxG.height*4),FlxColor.BLACK);
-					add(blackStart);
-
-					boyfriend.playAnim('sit');
-					new FlxTimer().start(1, function(tmr:FlxTimer){
-						dad.playAnim('1shock');
-						FlxTween.tween(blackStart, {alpha: 0}, 0.7, {
-							onComplete: function(twn:FlxTween){
-									blackStart.kill();
-							}
+					if (blackStart != null)
+					{
+						blackStart.alpha = 0.000001;
+						snapCamFollowToPos(dad.x + 450, dad.y - 15);
+						var cutscenePhone:FlxSound;
+						cutscenePhone = new FlxSound().loadEmbedded(Paths.sound('panicPhone'));
+						cutscenePhone.play();
+						FlxG.sound.list.add(cutscenePhone);
+	
+						boyfriend.playAnim('sit');
+						new FlxTimer().start(1, function(tmr:FlxTimer){
+							dad.playAnim('1shock');
+							FlxTween.tween(blackStart, {alpha: 0.000001}, 0.7, {
+								onComplete: function(twn:FlxTween){
+										blackStart.kill();
+								}
+							});
+							dad.animation.finishCallback = function(name:String){
+								if(name == '1shock'){
+									dad.playAnim('2shock');
+									dad.animation.finishCallback = function(name:String){
+										if(name == '2shock'){
+											dad.playAnim('3shock');
+											boyfriend.playAnim('1shock');
+											boyfriend.animation.finishCallback = function(name:String){
+												if(name == '1shock'){
+													boyfriend.playAnim('2shock');
+													boyfriend.animation.finishCallback = function(name:String){
+														if(name == '2shock'){
+															boyfriend.playAnim('3shock');
+														}
+													};
+												}
+											};
+											dad.animation.finishCallback = function(name:String){
+												if(name == '3shock'){
+													startCountdown();
+												}
+											};
+										}
+									};
+								}
+							};
 						});
-						dad.animation.finishCallback = function(name:String){
-							if(name == '1shock'){
-								dad.playAnim('2shock');
-								dad.animation.finishCallback = function(name:String){
-									if(name == '2shock'){
-										dad.playAnim('3shock');
-										boyfriend.playAnim('1shock');
-										boyfriend.animation.finishCallback = function(name:String){
-											if(name == '1shock'){
-												boyfriend.playAnim('2shock');
-												boyfriend.animation.finishCallback = function(name:String){
-													if(name == '2shock'){
-														boyfriend.playAnim('3shock');
-													}
-												};
-											}
-										};
-										dad.animation.finishCallback = function(name:String){
-											if(name == '3shock'){
-												startCountdown();
-											}
-										};
-									}
-								};
-							}
-						};
-					});
+					}
 				default:
 					startCountdown();
 			}
@@ -3884,7 +3892,7 @@ class PlayState extends MusicBeatState
 						dadreflect.offset.set(dad.offset.x); // apenas o x
 
 						if (dad.curCharacter.startsWith('nikku'))
-							dadreflect.y = (Math.sin(elapsedTime/20)*-50) + 500; // trigonometry my beloved
+							dadreflect.y = (Math.sin(elapsedTime/20)*-50) + 342; // trigonometry my beloved
 					}
 				}
 		}
@@ -3897,14 +3905,11 @@ class PlayState extends MusicBeatState
 		if (comboState == 1){ // combo moment 2
 				comboNum = 0;
 				// lerp momento
-				var toZero:Int = 90;
+				
 				comboScore = Math.floor(FlxMath.lerp(comboScore, toZero, CoolUtil.boundTo(1 - (elapsed * 32), 0, 1)));
 				songScore = Math.floor(FlxMath.lerp(songScore, scoreTarget, CoolUtil.boundTo(1 - (elapsed * 32), 0, 1)));
 				if (Math.abs(songScore - scoreTarget) <= 10)
 					songScore = scoreTarget;
-				if (Math.abs(comboScore - toZero) <= 10)
-					comboScore = toZero;
-					toZero = 0; // fix?
 
 				// se tiver visível é claro né meu fi ou fia sla
 
