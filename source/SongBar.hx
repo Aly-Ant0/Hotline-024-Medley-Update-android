@@ -19,7 +19,7 @@ class SongBar extends FlxSpriteGroup
 {
 	var meta:Array<Array<String>> = [];
 	var size:Float = 0;
-	var fontSize:Int = 24;
+	var fontSize:Int = 32;
 
 	public function new(_x:Float, _y:Float, _song:String) {
 		super(_x, _y);
@@ -28,14 +28,14 @@ class SongBar extends FlxSpriteGroup
 		pulledText += '\n';
 
 		var text = new FlxText(0, 0, 0, "", fontSize);
-		text.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf.ttf"), fontSize, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		text.setFormat(Paths.font("Coco-Sharp-Heavy-Italic-trial.ttf"), fontSize, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 
 		text.text = pulledText;
 		text.updateHitbox();
 
 		size = text.fieldWidth;
 
-		var bg = new FlxSprite(fontSize/-2, fontSize/-2).makeGraphic(Math.floor(size + fontSize), Std.int(text.height + 15), FlxColor.WHITE);
+		var bg = new FlxSprite(fontSize/-2, fontSize/-2).makeGraphic(Math.floor(size + fontSize), Std.int(text.height + 5), FlxColor.BLACK);
 		bg.alpha = 0.47;
 		text.text += "\n";
 
