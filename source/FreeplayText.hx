@@ -19,6 +19,10 @@ class FreeplayText extends FlxSkewedSprite
 	public function new(x:Float, y:Float, portName:String = '')
 	{
 		super(x, y);
+
+		this.x = x;
+		this.y = y;
+
 		forceX = Math.NEGATIVE_INFINITY;
 
 		loadGraphic(Paths.image('freeplaySongText/' + portName, 'shared'));
@@ -29,7 +33,8 @@ class FreeplayText extends FlxSkewedSprite
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		y = FlxMath.lerp(y, (targetY * 450) - -10, CoolUtil.boundTo(elapsed * 6, 0, 1));
+		
+		y = FlxMath.lerp(y, (targetY *1.3*450) + this.y, CoolUtil.boundTo(elapsed * 6, 0, 1));
 		//x = x * (targetY - 0.5);
 		if(forceX != Math.NEGATIVE_INFINITY) {
 			x = forceX;
