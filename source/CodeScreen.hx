@@ -47,10 +47,11 @@ class CodeScreen extends MusicBeatState
 		PlayState.isCovers = false;
 		PlayState.isExtras = false;
 		PlayState.isFreeplay = false;
+
+		
 		//PlayState.noSkins = true; // no skins?
 
 		FlxG.sound.playMusic(Paths.music('codemenu'), 0);
-		FlxG.sound.music.fadeIn(4, 0, 0.8);
 
 		bg = new FlxSprite().loadGraphic(Paths.image('hotline/menu/code/bg'));
 		bg.screenCenter();
@@ -140,6 +141,11 @@ class CodeScreen extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		if (FlxG.sound.music.volume < 0.8)
+		{
+			FlxG.sound.music.volume += 0.3 * FlxG.elapsed;
+		}
+
 		numbersSpr.forEach(function(spr:FlxSprite)
 		{
 			selection = spr.ID;
@@ -239,7 +245,7 @@ class CodeScreen extends MusicBeatState
 						LoadingState.loadAndSwitchState(new PlayState());
 						FlxG.mouse.visible = false;
 					default:
-						FlxG.sound.play(Paths.sound('errorsfx'));
+						FlxG.sound.play(Paths.sound('errorsfx'), 0.87);
 						code.text = '';
 						//isError = false;
 				}
@@ -253,6 +259,11 @@ class AllCodes extends MusicBeatState
 	public static var save:Bool = true;
 
 	override function create() {
+		if (!FlxG.save.data.showcodes) // save data
+			{
+				FlxG.save.data.showcodes = true;
+				FlxG.save.flush();
+			}
 		bg = new FlxSprite().loadGraphic(Paths.image('hotline/menu/code/buttons/code/fun'));
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		bg.screenCenter();
@@ -267,11 +278,6 @@ class AllCodes extends MusicBeatState
 		if (controls.BACK) {
 			FlxG.sound.play(Paths.sound('backsfx'));
 			MusicBeatState.switchState(new CodeScreen());
-			if (FlxG.save.data.showcodes == false) // save data
-			{
-				FlxG.save.data.showcodes = true;
-				FlxG.save.flush();
-			}
 		}
 
 		super.update(elapsed);
