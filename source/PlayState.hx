@@ -3899,7 +3899,7 @@ class PlayState extends MusicBeatState
 
 		if (comboState == 0){ // combo moment 
 			combotxt1.text = rating + " x" + comboNum;
-			combotxt2.text = "" + ;
+			combotxt2.text = "" + comboScore;
 			combotxtscoreplus.text = "+" + score;
 		}
 		if (comboState == 1){ // combo moment 2
