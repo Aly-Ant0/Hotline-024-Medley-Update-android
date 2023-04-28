@@ -11,8 +11,8 @@ class FreeplayText extends FlxSkewedSprite
 {
 	public var targetY:Float = 0;
 	public var forceX:Float = Math.NEGATIVE_INFINITY;
-	public var maxSkew:Float = 5; // selected item
-	public var minSkew:Float = -5; // not selected item
+	public var maxSkew:Float = 10; // selected item
+	public var minSkew:Float = -10; // not selected item
 	public var skewDirection:Float = 0; // lmao
 	public var skewSpeed:Float = 2.3;
 
@@ -34,7 +34,7 @@ class FreeplayText extends FlxSkewedSprite
 	{
 		super.update(elapsed);
 		
-		y = FlxMath.lerp(y, (targetY *1.3*450) + this.y, CoolUtil.boundTo(elapsed * 6, 0, 1));
+		y = FlxMath.lerp(y, (targetY * 200) + -10, CoolUtil.boundTo(elapsed * 6, 0, 1));
 		//x = x * (targetY - 0.5);
 		if(forceX != Math.NEGATIVE_INFINITY) {
 			x = forceX;
