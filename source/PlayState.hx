@@ -2318,6 +2318,8 @@ class PlayState extends MusicBeatState
 
 
 		var blackStart:FlxSprite = new FlxSprite().makeGraphic(FlxG.width,FlxG.height,FlxColor.BLACK);
+		blackStart.cameras = [camHUD];
+		blackStart.visible = false;
 		add(blackStart);
 
 		if (curStage == 'ena') {
@@ -2391,7 +2393,7 @@ class PlayState extends MusicBeatState
 				case 'satellite-picnic':
 					if (blackStart != null)
 					{
-						blackStart.alpha = 0.000001;
+						blackStart.visible = true;
 						snapCamFollowToPos(dad.x + 450, dad.y - 15);
 						var cutscenePhone:FlxSound;
 						cutscenePhone = new FlxSound().loadEmbedded(Paths.sound('panicPhone'));
@@ -3893,23 +3895,23 @@ class PlayState extends MusicBeatState
 				}
 		}
 
-		if (comboState == 0){ // combo moment 
+		if (comboState == 0 ){ // combo moment 
 			combotxt1.text = rating + " x" + comboNum;
 			combotxt2.text = "" + comboScore;
 			combotxtscoreplus.text = "+" + score;
 		}
 		if (comboState == 1){ // combo moment 2
+			combotxt2.text = "" + comboScore;
+			//combotxtscoreplus.text = "+" + score;
+
 				comboNum = 0;
 				// lerp momento
-				elapsedTime += elapsed * 30;
-				if (comboScore > 0)
-					comboScore -= 1 * (elapsedTime/5); //like a lerp tho idk
-				else if (comboScore <= 0)
-					comboScore = 0;
-
 				songScore = Math.floor(FlxMath.lerp(songScore, scoreTarget, CoolUtil.boundTo(1 - (elapsed * 32), 0, 1)));
 				if (Math.abs(songScore - scoreTarget) <= 10)
 					songScore = scoreTarget;
+				comboScore = Math.floor(FlxMath.lerp(comboScore, 0, CoolUtil.boundTo(1 - (elapsed * 32), 0, 1)));
+				if (Math.abs(songScore - 0) <= 10)
+					songScore = 0;
 				
 
 				// se tiver visível é claro né meu fi ou fia sla
