@@ -2313,12 +2313,8 @@ class PlayState extends MusicBeatState
 				a mesma coisa com o "Aly", ai quer dizer que, toda vez que ta falando "Aly", vc ta literalmente falando "Alysson".
 				eu pensei nesse nome dps de quando eu tive um sonho.
 				*/
-
-		if (songTag != null)
-		{
 			songTag = new SongBar(0, healthBarBG.y + 160, SONG.song);
 			add(songTag);
-		}
 
 
 		var blackStart:FlxSprite = new FlxSprite().makeGraphic(FlxG.width,FlxG.height,FlxColor.BLACK);
@@ -3907,7 +3903,7 @@ class PlayState extends MusicBeatState
 				// lerp momento
 				elapsedTime += elapsed * 30;
 				if (comboScore > 0)
-					comboScore -= 1 * (elapsedTime/7); //like a lerp tho idk
+					comboScore -= 1 * (elapsedTime/5); //like a lerp tho idk
 				else if (comboScore <= 0)
 					comboScore = 0;
 
