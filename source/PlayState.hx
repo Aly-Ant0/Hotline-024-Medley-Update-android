@@ -3899,17 +3899,22 @@ class PlayState extends MusicBeatState
 
 		if (comboState == 0){ // combo moment 
 			combotxt1.text = rating + " x" + comboNum;
-			combotxt2.text = Std.string(comboScore);
+			combotxt2.text = "" + comboScore;
 			combotxtscoreplus.text = "+" + score;
 		}
 		if (comboState == 1){ // combo moment 2
 				comboNum = 0;
 				// lerp momento
-				
-				comboScore = Math.floor(FlxMath.lerp(comboScore, toZero, CoolUtil.boundTo(1 - (elapsed * 32), 0, 1)));
+				elapsedTime += elapsed * 30;
+				if (comboScore > 0)
+					comboScore -= 1 * (elapsedTime/7); //like a lerp tho idk
+				else if (comboScore <= 0)
+					comboScore = 0;
+
 				songScore = Math.floor(FlxMath.lerp(songScore, scoreTarget, CoolUtil.boundTo(1 - (elapsed * 32), 0, 1)));
 				if (Math.abs(songScore - scoreTarget) <= 10)
 					songScore = scoreTarget;
+				
 
 				// se tiver visível é claro né meu fi ou fia sla
 
