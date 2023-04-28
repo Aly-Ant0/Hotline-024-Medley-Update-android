@@ -21,7 +21,7 @@ class SongBar extends FlxSpriteGroup
 	var size:Float = 0;
 	var fontSize:Int = 24;
 
-	public function new(_x:Float, _y:Float, _song:String, ?_numberThing:Int = -1) {
+	public function new(_x:Float, _y:Float, _song:String) {
 		super(_x, _y);
 
 		var pulledText:String = Assets.getText(Paths.txt(_song.toLowerCase().replace(' ', '-') + "/info"));
