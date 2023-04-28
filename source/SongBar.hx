@@ -15,7 +15,7 @@ import flixel.util.FlxColor;
 using StringTools;
 using flixel.util.FlxSpriteUtil;
 
-class TaskSong extends FlxSpriteGroup
+class SongBar extends FlxSpriteGroup
 {
 	var meta:Array<Array<String>> = [];
 	var size:Float = 0;
