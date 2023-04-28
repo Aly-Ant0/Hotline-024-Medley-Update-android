@@ -2311,21 +2311,10 @@ class PlayState extends MusicBeatState
 				eu pensei nesse nome dps de quando eu tive um sonho.
 				*/
 
-			songTag = new SongBar(0, healthBarBG.y + 160);
+		if (songTag != null)
+		{
+			songTag = new SongBar(0, healthBarBG.y + 160, SONG.song);
 			add(songTag);
-
-		// if the txt file exists the txt string will get the file text
-		var file:String = Paths.txt(songName + '/' + 'info');
-		if(OpenFlAssets.exists(file)) { // info file fix?
-			songTag.stringShit = OpenFlAssets.getText(SUtil.getPath() + file);
-		}
-		else {
-			songTag.kill();
-			songTag.stringShit = 'NO BITCHES?'; // placeholder
-			// and yes, no bitches.
-			if (FlxG.random.bool(0.1)){
-				songTag.stringShit += '\nYES, NO BITCHES.';
-			}
 		}
 
 		if (curStage == 'ena') {
