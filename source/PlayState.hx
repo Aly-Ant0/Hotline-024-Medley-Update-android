@@ -2060,7 +2060,7 @@ class PlayState extends MusicBeatState
 				gfreflect.alpha = .8;
 				gfreflect.x = gf.x;
 				gfreflect.scale.set(gf.scale.x, gf.scale.y);
-				gfreflect.y = gf.y + 275; // talvez poder a altura tb
+				gfreflect.y = gf.y + gf.height; // talvez poder a altura tb
 				insert(members.indexOf(gfGroup), gfreflect);
 
 				dadreflect.frames = dad.frames;
