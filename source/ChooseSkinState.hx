@@ -50,52 +50,29 @@ class ChooseSkinState extends MusicBeatState
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
 
-    bg = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/bg'));
-    bg.antialiasing = ClientPrefs.globalAntialiasing;
-    add(bg);
+		bg = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/bg'));
+		bg.antialiasing = ClientPrefs.globalAntialiasing;
+		add(bg);
 
-    /*nikku = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/nikku'));
-    nikku.screenCenter(XY);
+		skinS = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/' + skinShit[curSelected]));
+		skinS.antialiasing = ClientPrefs.globalAntialiasing;
+		skinS.screenCenter(XY);
 
-    nikkuShadow = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/nikkuShadow'));
-    nikkuShadow.screenCenter(XY);
+		skinShadow = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/' + skinShit[curSelected] + 'Shadow'));
+		skinShadow.antialiasing = ClientPrefs.globalAntialiasing;
+		skinShadow.alpha = 0.3;
+		skinShadow.screenCenter(XY);
 
-    classic = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/classic'));
-    classic.screenCenter(XY);
+		bars = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/bars'));
+		bars.screenCenter(XY);
 
-    classicShadow = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/classicShadow'));
-    classicShadow.screenCenter(XY);
+		chooseText = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/text'));
+		chooseText.antialiasing = ClientPrefs.globalAntialiasing;
+		chooseText.screenCenter(XY);
 
-    jojo = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/jojo'));
-    jojo.screenCenter(XY);
-
-    jojoShadow = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/jojoShadow'));
-    jojoShadow.screenCenter(XY);
-
-    nikku2 = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/nikku2'));
-    nikku2.screenCenter(XY);
-
-    nikku2Shadow = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/nikku2Shadow'));
-    nikku2Shadow.screenCenter(XY);*/
-    
-    skinS = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/' + skinShit[curSelected]));
-    skinS.antialiasing = ClientPrefs.globalAntialiasing;
-    skinS.screenCenter(XY);
-    
-    skinShadow = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/' + skinShit[curSelected] + 'Shadow'));
-    skinShadow.antialiasing = ClientPrefs.globalAntialiasing;
-    skinShadow.screenCenter(XY);
-    
-    bars = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/bars'));
-    bars.screenCenter(XY);
-    
-    chooseText = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/text'));
-    chooseText.antialiasing = ClientPrefs.globalAntialiasing;
-    chooseText.screenCenter(XY);
-    
-    triangles = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/triangles'));
-    triangles.antialiasing = ClientPrefs.globalAntialiasing;
-    triangles.screenCenter(XY);
+		triangles = new FlxSprite().loadGraphic(Paths.image('hotline/menu/skins/triangles'));
+		triangles.antialiasing = ClientPrefs.globalAntialiasing;
+		triangles.screenCenter(XY);
     
     /*add(nikkuShadow);
     add(nikku);
@@ -109,6 +86,11 @@ class ChooseSkinState extends MusicBeatState
     add(chooseText);
     add(triangles);
 
+    FlxTween.tween(skinShadow, {alpha: 0.99999}, 0.5, {
+    	onComplete: function(twn:FlxTween)
+    		canSelect = true;
+    });
+
     changeSkin();
     super.create();
 
@@ -116,7 +98,7 @@ class ChooseSkinState extends MusicBeatState
     addVirtualPad(LEFT_RIGHT, A_B);
     #end
   }
-  
+
   override function update(elapsed:Float)
   {
   	if(canSelect)
