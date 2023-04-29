@@ -225,16 +225,18 @@ class FreeplayState extends MusicBeatState
 						var lastAngle:Float = port.angle;
 						var lastX:Float = port.x;
 						port.angle = FlxMath.lerp(lastAngle, -3, CoolUtil.boundTo(elapsed * 0.6, 0, 1));
-						port.skew.x = skewTarget * port.skewSpeed * elapsed;
-						skewTarget = -3;
+						if (port.ID == curSelected) {
+							port.skew.x = skewTarget * port.skewSpeed * elapsed;
+							skewTarget = -3;
+						}
 						port.x = FlxMath.lerp(lastX, 310, CoolUtil.boundTo(elapsed * 0.6, 0, 1));
 						port.forceX = port.x;
 				}
 				else
 				{
+						skewTarget += 2.2 * Math.abs(-port.targetY); //i kinda know to use the abs function :sun_glasses:
 						port.skew.x = skewTarget * port.skewSpeed * elapsed;
-						skewTarget += -port.targetY * (-1);
-						port.x = FlxMath.lerp(port.x, 255 + -55 * Math.abs(port.targetY), CoolUtil.boundTo(elapsed * 0.6, 0, 1));
+						port.x = FlxMath.lerp(port.x, 285 + -30 * Math.abs(port.targetY), CoolUtil.boundTo(elapsed * 0.6, 0, 1));
 						port.forceX = port.x;
 						port.angle = FlxMath.lerp(port.angle, 7 * port.targetY, CoolUtil.boundTo(elapsed * 0.6, 0, 1));
 				}
