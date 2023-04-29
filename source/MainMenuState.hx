@@ -86,7 +86,7 @@ class MainMenuState extends MusicBeatState
 			menuItem.animation.addByPrefix('idle', "normal", 24);
 			menuItem.animation.addByPrefix('selected', "glow", 24);
 			menuItem.animation.play('idle');
-			menuItem.scale.set(0.66, 0.66);
+			menuItem.scale.set(0.75, 0.75);
 			menuItem.antialiasing = ClientPrefs.globalAntialiasing;
 			menuItem.updateHitbox();
 			menuItem.ID = i;
@@ -99,7 +99,7 @@ class MainMenuState extends MusicBeatState
 		bars.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bars);
 
-		var disc:FlxSprite = new FlxSprite(FlxG.width - 30, -FlxG.height - 15);
+		var disc:FlxSprite = new FlxSprite((+FlxG.width) - 30, -FlxG.height + 15);
 		disc.frames = Paths.getSparrowAtlas('hotline/menu/vinyl');
 		disc.animation.addByPrefix('j', 'vinyl', 24, true);
 		disc.animation.play('j');
@@ -218,7 +218,7 @@ class MainMenuState extends MusicBeatState
 				{
 					var daChoice:String = optionShit[curSelected];
 					if (daChoice=='story_mode'){
-						FlxG.sound.play(Paths.sound('errorsfx'));
+						FlxG.sound.play(Paths.sound('errorsfx'), 0.8);
 						if (item.ID==curSelected){
 							FlxFlicker.flicker(item, 0.4, 0.06, true, false);
 						}
@@ -285,11 +285,11 @@ class MainMenuState extends MusicBeatState
 		super.update(elapsed);
 	}
 
-	function sortItem(useless:Int, obj1:FlxSprite, obj2:FlxSprite)
+	function sortItem(order:Int, obj1:FlxSprite, obj2:FlxSprite)
 	{
 		return
 		{
-			FlxSort.byValues(FlxSort.ASCENDING, obj1.y, obj2.y);
+			FlxSort.byValues(FlxSort.DESCENDING, obj1.y, obj2.y);
 		}
 	}
 
@@ -317,32 +317,18 @@ class MainMenuState extends MusicBeatState
 				spr.animation.play('selected');
 				spr.centerOffsets();
 			}
+			if (spr.ID == curSelected)
+				spr.visible = true;
+				FlxTween.tween(spr, {x: 100 + (370 * 1)}, 0.50, {ease: FlxEase.expoOut});
+			else if (spr.ID == curSelected + 1)
+				spr.visible = true;
+				FlxTween.tween(spr, {x: 100 + (370 * 2)}, 0.50, {ease: FlxEase.expoOut});
+			else if (spr.ID == curSelected - 1)
+				spr.visible = true;
+				FlxTween.tween(spr, {x: 100 + (370 * 0)}, 0.50, {ease: FlxEase.expoOut});
+			else if (spr.ID == curSelected - 2 || spr.ID == curSelected + 2) //hsshhs
+				FlxTween.tween(spr, {x: 100 + (370 * 0)}, 0.50, {ease: FlxEase.expoOut});
+				spr.visible = false;
 		});
-		switch (curSelected) // code from musk but with some changes (i requested the main menu code for him just for the buttons lmao)
-		{
-			case 0:
-				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 1)}, 0.50, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 2)}, 0.50, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 0)}, 0.50, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 0)}, 0.50, {ease: FlxEase.expoOut});
-
-			case 1:
-				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 0)}, 0.50, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 1)}, 0.50, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 2)}, 0.50, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 1)}, 0.50, {ease: FlxEase.expoOut});
-
-			case 2:
-				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 1)}, 0.50, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 0)}, 0.50, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 1)}, 0.50, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 2)}, 0.50, {ease: FlxEase.expoOut});
-
-			case 3:
-				FlxTween.tween(menuItems.members[0], {x: 100 + (370 * 2)}, 0.50, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[1], {x: 100 + (370 * 1)}, 0.50, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[2], {x: 100 + (370 * 0)}, 0.50, {ease: FlxEase.expoOut});
-				FlxTween.tween(menuItems.members[3], {x: 100 + (370 * 1)}, 0.50, {ease: FlxEase.expoOut});
-		}
 	}
 }
