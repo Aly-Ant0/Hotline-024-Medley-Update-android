@@ -318,17 +318,25 @@ class MainMenuState extends MusicBeatState
 				spr.centerOffsets();
 			}
 			if (spr.ID == curSelected)
+			{
 				spr.visible = true;
 				FlxTween.tween(spr, {x: 100 + (370 * 1)}, 0.50, {ease: FlxEase.expoOut});
+			}
 			else if (spr.ID == curSelected + 1)
+			{
 				spr.visible = true;
 				FlxTween.tween(spr, {x: 100 + (370 * 2)}, 0.50, {ease: FlxEase.expoOut});
+			}
 			else if (spr.ID == curSelected - 1)
+			{
 				spr.visible = true;
 				FlxTween.tween(spr, {x: 100 + (370 * 0)}, 0.50, {ease: FlxEase.expoOut});
-			else if (spr.ID == curSelected - 2 || spr.ID == curSelected + 2) //hsshhs
+			}
+			else if (spr.ID == curSelected - 2 || spr.ID == curSelected + 2)
+			{ //hsshhs
 				FlxTween.tween(spr, {x: 100 + (370 * 0)}, 0.50, {ease: FlxEase.expoOut});
 				spr.visible = false;
+			}
 		});
 	}
 }
