@@ -88,7 +88,9 @@ class ChooseSkinState extends MusicBeatState
 
     FlxTween.tween(skinShadow, {alpha: 0.99999}, 0.5, {
     	onComplete: function(twn:FlxTween)
+    	{
     		canSelect = true;
+    	}
     });
 
     changeSkin();
