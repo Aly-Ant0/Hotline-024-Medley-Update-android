@@ -234,7 +234,7 @@ class FreeplayState extends MusicBeatState
 				}
 				else
 				{
-						skewTarget += 2.2 * port.angle; //i kinda know to use the abs function :sun_glasses:
+						skewTarget = 2.2 * port.angle; //i kinda know to use the abs function :sun_glasses:
 						port.skew.x = skewTarget * port.skewSpeed * elapsed;
 						port.x = FlxMath.lerp(port.x, 285 + -30 * Math.abs(port.targetY), CoolUtil.boundTo(elapsed * 0.6, 0, 1));
 						port.forceX = port.x;
